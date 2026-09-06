@@ -5,8 +5,10 @@
     editorDirectory="" modelPluginID="org.eclipse.datatools.enablement.ingres" redirection=""
     modelName="Ingressqlmodel" editPluginClass="org.eclipse.datatools.enablement.ingres.models.ingressqlmodel.provider.IngressqlmodelEditPlugin"
     editorPluginClass="org.eclipse.datatools.enablement.ingres.models.ingressqlmodel.presentation.IngressqlmodelEditorPlugin"
-    rootImplementsInterface="" runtimeCompatibility="true" testsDirectory="" importerID="org.eclipse.emf.importer.ecore"
-    providerRootExtendsClass="" usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.genmodel#//sqlmodel">
+    updateClasspath="false" rootImplementsInterface="" runtimeCompatibility="true"
+    testsDirectory="" importerID="org.eclipse.emf.importer.ecore" providerRootExtendsClass=""
+    usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.genmodel#//sqlmodel"
+    importOrganizing="true" cleanup="true">
   <foreignModel>ingressqlmodel.ecore</foreignModel>
   <genPackages prefix="Ingressqlmodel" basePackage="org.eclipse.datatools.enablement.ingres.models"
       disposableProviderFactory="true" ecorePackage="ingressqlmodel.ecore#/">

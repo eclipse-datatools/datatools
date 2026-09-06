@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENamedElementImpl;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EStringToStringMapEntryImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
@@ -148,6 +149,7 @@ public abstract class SQLObjectImpl extends ENamedElementImpl implements SQLObje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return SQLSchemaPackage.Literals.SQL_OBJECT;
 	}
@@ -157,6 +159,7 @@ public abstract class SQLObjectImpl extends ENamedElementImpl implements SQLObje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList getDependencies() {
 		if (dependencies == null) {
 			dependencies = new EObjectContainmentEList(Dependency.class, this, SQLSchemaPackage.SQL_OBJECT__DEPENDENCIES);
@@ -169,6 +172,7 @@ public abstract class SQLObjectImpl extends ENamedElementImpl implements SQLObje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getDescription() {
 		return description;
 	}
@@ -178,11 +182,13 @@ public abstract class SQLObjectImpl extends ENamedElementImpl implements SQLObje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDescription(String newDescription) {
 		String oldDescription = description;
 		description = newDescription;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLSchemaPackage.SQL_OBJECT__DESCRIPTION, oldDescription, description));
+		}
 	}
 
 	/**
@@ -190,6 +196,7 @@ public abstract class SQLObjectImpl extends ENamedElementImpl implements SQLObje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getLabel() {
 		return label;
 	}
@@ -199,11 +206,13 @@ public abstract class SQLObjectImpl extends ENamedElementImpl implements SQLObje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLabel(String newLabel) {
 		String oldLabel = label;
 		label = newLabel;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLSchemaPackage.SQL_OBJECT__LABEL, oldLabel, label));
+		}
 	}
 
 	/**
@@ -211,6 +220,7 @@ public abstract class SQLObjectImpl extends ENamedElementImpl implements SQLObje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList getComments() {
 		if (comments == null) {
 			comments = new EObjectWithInverseResolvingEList(Comment.class, this, SQLSchemaPackage.SQL_OBJECT__COMMENTS, SQLSchemaPackage.COMMENT__SQL_OBJECT);
@@ -223,6 +233,7 @@ public abstract class SQLObjectImpl extends ENamedElementImpl implements SQLObje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList getExtensions() {
 		if (extensions == null) {
 			extensions = new EObjectContainmentWithInverseEList(ObjectExtension.class, this, SQLSchemaPackage.SQL_OBJECT__EXTENSIONS, SQLSchemaPackage.OBJECT_EXTENSION__SQL_OBJECT);
@@ -235,6 +246,7 @@ public abstract class SQLObjectImpl extends ENamedElementImpl implements SQLObje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList getPrivileges() {
 		if (privileges == null) {
 			privileges = new EObjectWithInverseResolvingEList(Privilege.class, this, SQLSchemaPackage.SQL_OBJECT__PRIVILEGES, SQLAccessControlPackage.PRIVILEGE__OBJECT);
@@ -246,6 +258,7 @@ public abstract class SQLObjectImpl extends ENamedElementImpl implements SQLObje
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 */
+	@Override
 	public EAnnotation addEAnnotation(String source) {
 		EAnnotation eAnnotation = this.getEAnnotation(source);
 		if (eAnnotation == null) {
@@ -253,7 +266,7 @@ public abstract class SQLObjectImpl extends ENamedElementImpl implements SQLObje
 			eAnnotation.setSource(source);
 			this.getEAnnotations().add(eAnnotation);
 		}
-		
+
 		return eAnnotation;
 	}
 
@@ -261,11 +274,12 @@ public abstract class SQLObjectImpl extends ENamedElementImpl implements SQLObje
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 */
+	@Override
 	public void addEAnnotationDetail(EAnnotation eAnnotation, String key, String value) {
 		if (eAnnotation != null) {
 			EStringToStringMapEntryImpl mapEntry =
 				(EStringToStringMapEntryImpl)EcoreFactory.eINSTANCE.create(EcorePackage.eINSTANCE.getEStringToStringMapEntry());
-				
+
 			mapEntry.setTypedKey(key);
 			mapEntry.setTypedValue(value);
 			eAnnotation.getDetails().add(mapEntry);
@@ -276,6 +290,7 @@ public abstract class SQLObjectImpl extends ENamedElementImpl implements SQLObje
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 */
+	@Override
 	public String getEAnnotationDetail(EAnnotation eAnnotation, String key) {
 		String value = ""; //$NON-NLS-1$
 		if (eAnnotation != null) {
@@ -294,6 +309,7 @@ public abstract class SQLObjectImpl extends ENamedElementImpl implements SQLObje
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 */
+	@Override
 	public void setAnnotationDetail(EAnnotation eAnnotation, String key, String value) {
 		if (eAnnotation != null) {
 			Iterator eAnnotationDetailsIterator = eAnnotation.getDetails().iterator();
@@ -310,6 +326,7 @@ public abstract class SQLObjectImpl extends ENamedElementImpl implements SQLObje
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 */
+	@Override
 	public void removeEAnnotationDetail(EAnnotation eAnnotation, String key) {
 		if (eAnnotation != null) {
 	         BasicEList deferredRemove = new BasicEList();
@@ -330,11 +347,10 @@ public abstract class SQLObjectImpl extends ENamedElementImpl implements SQLObje
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 */
+	@Override
 	public EAnnotation getEAnnotation(String source) {
 		EAnnotation eAnnotation = null;
-		Iterator eAnnotationIterator = this.getEAnnotations().iterator();
-		while(eAnnotationIterator.hasNext()) {
-			EAnnotation currentEAnnotation = (EAnnotation)eAnnotationIterator.next();
+		for (EAnnotation currentEAnnotation : this.getEAnnotations()) {
 			if (currentEAnnotation.getSource().equalsIgnoreCase(source)) {
 				eAnnotation = currentEAnnotation;
 			}
@@ -347,6 +363,7 @@ public abstract class SQLObjectImpl extends ENamedElementImpl implements SQLObje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case SQLSchemaPackage.SQL_OBJECT__COMMENTS:
@@ -364,6 +381,7 @@ public abstract class SQLObjectImpl extends ENamedElementImpl implements SQLObje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case SQLSchemaPackage.SQL_OBJECT__DEPENDENCIES:
@@ -383,6 +401,7 @@ public abstract class SQLObjectImpl extends ENamedElementImpl implements SQLObje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SQLSchemaPackage.SQL_OBJECT__DEPENDENCIES:
@@ -406,6 +425,7 @@ public abstract class SQLObjectImpl extends ENamedElementImpl implements SQLObje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case SQLSchemaPackage.SQL_OBJECT__DEPENDENCIES:
@@ -439,6 +459,7 @@ public abstract class SQLObjectImpl extends ENamedElementImpl implements SQLObje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case SQLSchemaPackage.SQL_OBJECT__DEPENDENCIES:
@@ -468,6 +489,7 @@ public abstract class SQLObjectImpl extends ENamedElementImpl implements SQLObje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SQLSchemaPackage.SQL_OBJECT__DEPENDENCIES:
@@ -491,8 +513,11 @@ public abstract class SQLObjectImpl extends ENamedElementImpl implements SQLObje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (description: "); //$NON-NLS-1$

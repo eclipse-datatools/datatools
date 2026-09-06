@@ -8,7 +8,7 @@
  *
  * Contributors:
  *  Actuate Corporation  - initial API and implementation
- *  
+ *
  *************************************************************************
  *
  * $Id: ScalarValueChoicesImpl.java,v 1.2 2007/04/11 02:59:52 lchan Exp $
@@ -34,155 +34,136 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.impl.ScalarValueChoicesImpl#getScalarValues <em>Scalar Values</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class ScalarValueChoicesImpl extends EObjectImpl implements
-        ScalarValueChoices
-{
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public static final String copyright = "Copyright (c) 2005, 2009 Actuate Corporation"; //$NON-NLS-1$
+public class ScalarValueChoicesImpl extends EObjectImpl implements ScalarValueChoices {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final String copyright = "Copyright (c) 2005, 2010 Actuate Corporation"; //$NON-NLS-1$
 
-    /**
-     * The cached value of the '{@link #getScalarValues() <em>Scalar Values</em>}' containment reference list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getScalarValues()
-     * @generated
-     * @ordered
-     */
-    protected EList<ScalarValueDefinition> m_scalarValues;
+	/**
+	 * The cached value of the '{@link #getScalarValues() <em>Scalar Values</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getScalarValues()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<ScalarValueDefinition> scalarValues;
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected ScalarValueChoicesImpl()
-    {
-        super();
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ScalarValueChoicesImpl() {
+		super();
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    protected EClass eStaticClass()
-    {
-        return DesignPackage.Literals.SCALAR_VALUE_CHOICES;
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return DesignPackage.Literals.SCALAR_VALUE_CHOICES;
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EList<ScalarValueDefinition> getScalarValues()
-    {
-        if( m_scalarValues == null )
-        {
-            m_scalarValues = new EObjectContainmentEList<ScalarValueDefinition>(
-                    ScalarValueDefinition.class, this,
-                    DesignPackage.SCALAR_VALUE_CHOICES__SCALAR_VALUES );
-        }
-        return m_scalarValues;
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<ScalarValueDefinition> getScalarValues() {
+		if (scalarValues == null) {
+			scalarValues = new EObjectContainmentEList<>(ScalarValueDefinition.class, this,
+					DesignPackage.SCALAR_VALUE_CHOICES__SCALAR_VALUES);
+		}
+		return scalarValues;
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public NotificationChain eInverseRemove( InternalEObject otherEnd,
-            int featureID, NotificationChain msgs )
-    {
-        switch( featureID )
-        {
-        case DesignPackage.SCALAR_VALUE_CHOICES__SCALAR_VALUES:
-            return ((InternalEList<?>) getScalarValues()).basicRemove(
-                    otherEnd, msgs );
-        }
-        return super.eInverseRemove( otherEnd, featureID, msgs );
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+		case DesignPackage.SCALAR_VALUE_CHOICES__SCALAR_VALUES:
+			return ((InternalEList<?>) getScalarValues()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public Object eGet( int featureID, boolean resolve, boolean coreType )
-    {
-        switch( featureID )
-        {
-        case DesignPackage.SCALAR_VALUE_CHOICES__SCALAR_VALUES:
-            return getScalarValues();
-        }
-        return super.eGet( featureID, resolve, coreType );
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+		case DesignPackage.SCALAR_VALUE_CHOICES__SCALAR_VALUES:
+			return getScalarValues();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @SuppressWarnings("unchecked")
-    @Override
-    public void eSet( int featureID, Object newValue )
-    {
-        switch( featureID )
-        {
-        case DesignPackage.SCALAR_VALUE_CHOICES__SCALAR_VALUES:
-            getScalarValues().clear();
-            getScalarValues().addAll(
-                    (Collection<? extends ScalarValueDefinition>) newValue );
-            return;
-        }
-        super.eSet( featureID, newValue );
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
+		case DesignPackage.SCALAR_VALUE_CHOICES__SCALAR_VALUES:
+			getScalarValues().clear();
+			getScalarValues().addAll((Collection<? extends ScalarValueDefinition>) newValue);
+			return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public void eUnset( int featureID )
-    {
-        switch( featureID )
-        {
-        case DesignPackage.SCALAR_VALUE_CHOICES__SCALAR_VALUES:
-            getScalarValues().clear();
-            return;
-        }
-        super.eUnset( featureID );
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eUnset(int featureID) {
+		switch (featureID) {
+		case DesignPackage.SCALAR_VALUE_CHOICES__SCALAR_VALUES:
+			getScalarValues().clear();
+			return;
+		}
+		super.eUnset(featureID);
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public boolean eIsSet( int featureID )
-    {
-        switch( featureID )
-        {
-        case DesignPackage.SCALAR_VALUE_CHOICES__SCALAR_VALUES:
-            return m_scalarValues != null && !m_scalarValues.isEmpty();
-        }
-        return super.eIsSet( featureID );
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+		case DesignPackage.SCALAR_VALUE_CHOICES__SCALAR_VALUES:
+			return scalarValues != null && !scalarValues.isEmpty();
+		}
+		return super.eIsSet(featureID);
+	}
 
 } //ScalarValueChoicesImpl

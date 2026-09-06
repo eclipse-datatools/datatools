@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -30,11 +30,11 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.constraints.impl.UniqueConstraintImpl#isClustered <em>Clustered</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.constraints.impl.UniqueConstraintImpl#getForeignKey <em>Foreign Key</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -81,6 +81,7 @@ public class UniqueConstraintImpl extends ReferenceConstraintImpl implements Uni
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return SQLConstraintsPackage.Literals.UNIQUE_CONSTRAINT;
 	}
@@ -90,7 +91,8 @@ public class UniqueConstraintImpl extends ReferenceConstraintImpl implements Uni
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public boolean isClustered() {
+    @Override
+	public boolean isClustered() {
 		return clustered;
 	}
 
@@ -99,11 +101,13 @@ public class UniqueConstraintImpl extends ReferenceConstraintImpl implements Uni
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public void setClustered(boolean newClustered) {
+    @Override
+	public void setClustered(boolean newClustered) {
 		boolean oldClustered = clustered;
 		clustered = newClustered;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLConstraintsPackage.UNIQUE_CONSTRAINT__CLUSTERED, oldClustered, clustered));
+		}
 	}
 
     /**
@@ -111,6 +115,7 @@ public class UniqueConstraintImpl extends ReferenceConstraintImpl implements Uni
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList getForeignKey() {
 		if (foreignKey == null) {
 			foreignKey = new EObjectWithInverseResolvingEList(ForeignKey.class, this, SQLConstraintsPackage.UNIQUE_CONSTRAINT__FOREIGN_KEY, SQLConstraintsPackage.FOREIGN_KEY__UNIQUE_CONSTRAINT);
@@ -123,6 +128,7 @@ public class UniqueConstraintImpl extends ReferenceConstraintImpl implements Uni
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case SQLConstraintsPackage.UNIQUE_CONSTRAINT__FOREIGN_KEY:
@@ -136,6 +142,7 @@ public class UniqueConstraintImpl extends ReferenceConstraintImpl implements Uni
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case SQLConstraintsPackage.UNIQUE_CONSTRAINT__FOREIGN_KEY:
@@ -149,6 +156,7 @@ public class UniqueConstraintImpl extends ReferenceConstraintImpl implements Uni
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SQLConstraintsPackage.UNIQUE_CONSTRAINT__CLUSTERED:
@@ -164,6 +172,7 @@ public class UniqueConstraintImpl extends ReferenceConstraintImpl implements Uni
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case SQLConstraintsPackage.UNIQUE_CONSTRAINT__CLUSTERED:
@@ -182,6 +191,7 @@ public class UniqueConstraintImpl extends ReferenceConstraintImpl implements Uni
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case SQLConstraintsPackage.UNIQUE_CONSTRAINT__CLUSTERED:
@@ -199,6 +209,7 @@ public class UniqueConstraintImpl extends ReferenceConstraintImpl implements Uni
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SQLConstraintsPackage.UNIQUE_CONSTRAINT__CLUSTERED:
@@ -214,8 +225,11 @@ public class UniqueConstraintImpl extends ReferenceConstraintImpl implements Uni
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public String toString() {
-		if (eIsProxy()) return super.toString();
+    @Override
+	public String toString() {
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (clustered: "); //$NON-NLS-1$

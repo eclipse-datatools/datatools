@@ -33,6 +33,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.impl.SybaseASEDatabaseImpl#getDataTypes <em>Data Types</em>}</li>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.impl.SybaseASEDatabaseImpl#isEncryptionKeyApplicable <em>Encryption Key Applicable</em>}</li>
@@ -43,15 +44,14 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.impl.SybaseASEDatabaseImpl#getSdsServer <em>Sds Server</em>}</li>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.impl.SybaseASEDatabaseImpl#getTempDBName <em>Temp DB Name</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class SybaseASEDatabaseImpl extends DatabaseImpl implements SybaseASEDatabase 
+public class SybaseASEDatabaseImpl extends DatabaseImpl implements SybaseASEDatabase
 {
-	
+
 	public static final String VERSION_15              = "15";
-	
+
 	/**
 	 * The cached value of the '{@link #getDataTypes() <em>Data Types</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -176,6 +176,7 @@ public class SybaseASEDatabaseImpl extends DatabaseImpl implements SybaseASEData
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return SybaseasesqlmodelPackage.Literals.SYBASE_ASE_DATABASE;
 	}
@@ -185,6 +186,7 @@ public class SybaseASEDatabaseImpl extends DatabaseImpl implements SybaseASEData
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList getDataTypes() {
 		if (dataTypes == null) {
 			dataTypes = new EObjectWithInverseResolvingEList(SybaseASEPredefinedDataType.class, this, SybaseasesqlmodelPackage.SYBASE_ASE_DATABASE__DATA_TYPES, SybaseasesqlmodelPackage.SYBASE_ASE_PREDEFINED_DATA_TYPE__DATABASE);
@@ -197,6 +199,7 @@ public class SybaseASEDatabaseImpl extends DatabaseImpl implements SybaseASEData
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isEncryptionKeyApplicable() {
 		return encryptionKeyApplicable;
 	}
@@ -206,11 +209,13 @@ public class SybaseASEDatabaseImpl extends DatabaseImpl implements SybaseASEData
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setEncryptionKeyApplicable(boolean newEncryptionKeyApplicable) {
 		boolean oldEncryptionKeyApplicable = encryptionKeyApplicable;
 		encryptionKeyApplicable = newEncryptionKeyApplicable;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasesqlmodelPackage.SYBASE_ASE_DATABASE__ENCRYPTION_KEY_APPLICABLE, oldEncryptionKeyApplicable, encryptionKeyApplicable));
+		}
 	}
 
 	/**
@@ -218,6 +223,7 @@ public class SybaseASEDatabaseImpl extends DatabaseImpl implements SybaseASEData
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList getRoles() {
 		if (roles == null) {
 			roles = new EObjectResolvingEList(SybaseASERole.class, this, SybaseasesqlmodelPackage.SYBASE_ASE_DATABASE__ROLES);
@@ -230,6 +236,7 @@ public class SybaseASEDatabaseImpl extends DatabaseImpl implements SybaseASEData
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList getCaches() {
 		if (caches == null) {
 			caches = new EObjectContainmentWithInverseEList(SybaseASECache.class, this, SybaseasesqlmodelPackage.SYBASE_ASE_DATABASE__CACHES, SybaseasesqlmodelPackage.SYBASE_ASE_CACHE__DATABASE);
@@ -242,6 +249,7 @@ public class SybaseASEDatabaseImpl extends DatabaseImpl implements SybaseASEData
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList getWebServices() {
 		if (webServices == null) {
 			webServices = new EObjectContainmentWithInverseEList(SybaseASEWebService.class, this, SybaseasesqlmodelPackage.SYBASE_ASE_DATABASE__WEB_SERVICES, SybaseasesqlmodelPackage.SYBASE_ASE_WEB_SERVICE__DATABASE);
@@ -254,6 +262,7 @@ public class SybaseASEDatabaseImpl extends DatabaseImpl implements SybaseASEData
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isWebserviceApplicable() {
 		return webserviceApplicable;
 	}
@@ -263,11 +272,13 @@ public class SybaseASEDatabaseImpl extends DatabaseImpl implements SybaseASEData
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setWebserviceApplicable(boolean newWebserviceApplicable) {
 		boolean oldWebserviceApplicable = webserviceApplicable;
 		webserviceApplicable = newWebserviceApplicable;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasesqlmodelPackage.SYBASE_ASE_DATABASE__WEBSERVICE_APPLICABLE, oldWebserviceApplicable, webserviceApplicable));
+		}
 	}
 
 	/**
@@ -275,7 +286,8 @@ public class SybaseASEDatabaseImpl extends DatabaseImpl implements SybaseASEData
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EList getSdsServer()
+    @Override
+	public EList getSdsServer()
     {
 		if (sdsServer == null) {
 			sdsServer = new EDataTypeUniqueEList(String.class, this, SybaseasesqlmodelPackage.SYBASE_ASE_DATABASE__SDS_SERVER);
@@ -288,6 +300,7 @@ public class SybaseASEDatabaseImpl extends DatabaseImpl implements SybaseASEData
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getTempDBName() {
 		return tempDBName;
 	}
@@ -297,17 +310,20 @@ public class SybaseASEDatabaseImpl extends DatabaseImpl implements SybaseASEData
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTempDBName(String newTempDBName) {
 		String oldTempDBName = tempDBName;
 		tempDBName = newTempDBName;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasesqlmodelPackage.SYBASE_ASE_DATABASE__TEMP_DB_NAME, oldTempDBName, tempDBName));
+		}
 	}
 
 				/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 */
+	@Override
 	public boolean isComputedColApplicable() {
 		return getVersion().compareTo(VERSION_15) >= 0;
 	}
@@ -316,6 +332,7 @@ public class SybaseASEDatabaseImpl extends DatabaseImpl implements SybaseASEData
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 */
+	@Override
 	public boolean isPartitionsApplicable() {
 		return getVersion().compareTo(VERSION_15) >= 0;
 	}
@@ -324,6 +341,7 @@ public class SybaseASEDatabaseImpl extends DatabaseImpl implements SybaseASEData
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 */
+	@Override
 	public boolean isFunctionalBasedIndexMemApplicable() {
 		return getVersion().compareTo(VERSION_15) >= 0;
 	}
@@ -333,6 +351,7 @@ public class SybaseASEDatabaseImpl extends DatabaseImpl implements SybaseASEData
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case SybaseasesqlmodelPackage.SYBASE_ASE_DATABASE__DATA_TYPES:
@@ -350,6 +369,7 @@ public class SybaseASEDatabaseImpl extends DatabaseImpl implements SybaseASEData
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case SybaseasesqlmodelPackage.SYBASE_ASE_DATABASE__DATA_TYPES:
@@ -367,6 +387,7 @@ public class SybaseASEDatabaseImpl extends DatabaseImpl implements SybaseASEData
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SybaseasesqlmodelPackage.SYBASE_ASE_DATABASE__DATA_TYPES:
@@ -394,6 +415,7 @@ public class SybaseASEDatabaseImpl extends DatabaseImpl implements SybaseASEData
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case SybaseasesqlmodelPackage.SYBASE_ASE_DATABASE__DATA_TYPES:
@@ -434,6 +456,7 @@ public class SybaseASEDatabaseImpl extends DatabaseImpl implements SybaseASEData
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case SybaseasesqlmodelPackage.SYBASE_ASE_DATABASE__DATA_TYPES:
@@ -469,6 +492,7 @@ public class SybaseASEDatabaseImpl extends DatabaseImpl implements SybaseASEData
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SybaseasesqlmodelPackage.SYBASE_ASE_DATABASE__DATA_TYPES:
@@ -496,8 +520,11 @@ public class SybaseASEDatabaseImpl extends DatabaseImpl implements SybaseASEData
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (encryptionKeyApplicable: "); //$NON-NLS-1$

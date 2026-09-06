@@ -21,194 +21,206 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.impl.SybaseASEColumnCheckConstraintImpl#getColumn <em>Column</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class SybaseASEColumnCheckConstraintImpl extends SybaseASECheckConstraintImpl implements SybaseASEColumnCheckConstraint 
+public class SybaseASEColumnCheckConstraintImpl extends SybaseASECheckConstraintImpl implements SybaseASEColumnCheckConstraint
 {
 	/**
-     * The cached value of the '{@link #getColumn() <em>Column</em>}' reference.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getColumn() <em>Column</em>}' reference.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getColumn()
-     * @generated
-     * @ordered
-     */
+	 * @see #getColumn()
+	 * @generated
+	 * @ordered
+	 */
     protected SybaseASEColumn column;
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected SybaseASEColumnCheckConstraintImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	protected EClass eStaticClass() {
-        return SybaseasesqlmodelPackage.Literals.SYBASE_ASE_COLUMN_CHECK_CONSTRAINT;
-    }
+		return SybaseasesqlmodelPackage.Literals.SYBASE_ASE_COLUMN_CHECK_CONSTRAINT;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public SybaseASEColumn getColumn() {
-        if (column != null && column.eIsProxy())
-        {
-            InternalEObject oldColumn = (InternalEObject)column;
-            column = (SybaseASEColumn)eResolveProxy(oldColumn);
-            if (column != oldColumn)
-            {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, SybaseasesqlmodelPackage.SYBASE_ASE_COLUMN_CHECK_CONSTRAINT__COLUMN, oldColumn, column));
-            }
-        }
-        return column;
-    }
+		if (column != null && column.eIsProxy()) {
+			InternalEObject oldColumn = (InternalEObject)column;
+			column = (SybaseASEColumn)eResolveProxy(oldColumn);
+			if (column != oldColumn) {
+				if (eNotificationRequired()) {
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SybaseasesqlmodelPackage.SYBASE_ASE_COLUMN_CHECK_CONSTRAINT__COLUMN, oldColumn, column));
+				}
+			}
+		}
+		return column;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public SybaseASEColumn basicGetColumn() {
-        return column;
-    }
+		return column;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public NotificationChain basicSetColumn(SybaseASEColumn newColumn, NotificationChain msgs) {
-        SybaseASEColumn oldColumn = column;
-        column = newColumn;
-        if (eNotificationRequired())
-        {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SybaseasesqlmodelPackage.SYBASE_ASE_COLUMN_CHECK_CONSTRAINT__COLUMN, oldColumn, newColumn);
-            if (msgs == null) msgs = notification; else msgs.add(notification);
-        }
-        return msgs;
-    }
+		SybaseASEColumn oldColumn = column;
+		column = newColumn;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SybaseasesqlmodelPackage.SYBASE_ASE_COLUMN_CHECK_CONSTRAINT__COLUMN, oldColumn, newColumn);
+			if (msgs == null) {
+				msgs = notification;
+			} else {
+				msgs.add(notification);
+			}
+		}
+		return msgs;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public void setColumn(SybaseASEColumn newColumn) {
-        if (newColumn != column)
-        {
-            NotificationChain msgs = null;
-            if (column != null)
-                msgs = ((InternalEObject)column).eInverseRemove(this, SybaseasesqlmodelPackage.SYBASE_ASE_COLUMN__COLUMN_CHECK, SybaseASEColumn.class, msgs);
-            if (newColumn != null)
-                msgs = ((InternalEObject)newColumn).eInverseAdd(this, SybaseasesqlmodelPackage.SYBASE_ASE_COLUMN__COLUMN_CHECK, SybaseASEColumn.class, msgs);
-            msgs = basicSetColumn(newColumn, msgs);
-            if (msgs != null) msgs.dispatch();
-        }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SybaseasesqlmodelPackage.SYBASE_ASE_COLUMN_CHECK_CONSTRAINT__COLUMN, newColumn, newColumn));
-    }
+		if (newColumn != column) {
+			NotificationChain msgs = null;
+			if (column != null) {
+				msgs = ((InternalEObject)column).eInverseRemove(this, SybaseasesqlmodelPackage.SYBASE_ASE_COLUMN__COLUMN_CHECK, SybaseASEColumn.class, msgs);
+			}
+			if (newColumn != null) {
+				msgs = ((InternalEObject)newColumn).eInverseAdd(this, SybaseasesqlmodelPackage.SYBASE_ASE_COLUMN__COLUMN_CHECK, SybaseASEColumn.class, msgs);
+			}
+			msgs = basicSetColumn(newColumn, msgs);
+			if (msgs != null) {
+				msgs.dispatch();
+			}
+		}
+		else if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasesqlmodelPackage.SYBASE_ASE_COLUMN_CHECK_CONSTRAINT__COLUMN, newColumn, newColumn));
+		}
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID)
-        {
-            case SybaseasesqlmodelPackage.SYBASE_ASE_COLUMN_CHECK_CONSTRAINT__COLUMN:
-                if (column != null)
-                    msgs = ((InternalEObject)column).eInverseRemove(this, SybaseasesqlmodelPackage.SYBASE_ASE_COLUMN__COLUMN_CHECK, SybaseASEColumn.class, msgs);
-                return basicSetColumn((SybaseASEColumn)otherEnd, msgs);
-        }
-        return super.eInverseAdd(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case SybaseasesqlmodelPackage.SYBASE_ASE_COLUMN_CHECK_CONSTRAINT__COLUMN:
+				if (column != null) {
+					msgs = ((InternalEObject)column).eInverseRemove(this, SybaseasesqlmodelPackage.SYBASE_ASE_COLUMN__COLUMN_CHECK, SybaseASEColumn.class, msgs);
+				}
+				return basicSetColumn((SybaseASEColumn)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID)
-        {
-            case SybaseasesqlmodelPackage.SYBASE_ASE_COLUMN_CHECK_CONSTRAINT__COLUMN:
-                return basicSetColumn(null, msgs);
-        }
-        return super.eInverseRemove(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case SybaseasesqlmodelPackage.SYBASE_ASE_COLUMN_CHECK_CONSTRAINT__COLUMN:
+				return basicSetColumn(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID)
-        {
-            case SybaseasesqlmodelPackage.SYBASE_ASE_COLUMN_CHECK_CONSTRAINT__COLUMN:
-                if (resolve) return getColumn();
-                return basicGetColumn();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case SybaseasesqlmodelPackage.SYBASE_ASE_COLUMN_CHECK_CONSTRAINT__COLUMN:
+				if (resolve) {
+					return getColumn();
+				}
+				return basicGetColumn();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
-        switch (featureID)
-        {
-            case SybaseasesqlmodelPackage.SYBASE_ASE_COLUMN_CHECK_CONSTRAINT__COLUMN:
-                setColumn((SybaseASEColumn)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case SybaseasesqlmodelPackage.SYBASE_ASE_COLUMN_CHECK_CONSTRAINT__COLUMN:
+				setColumn((SybaseASEColumn)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public void eUnset(int featureID) {
-        switch (featureID)
-        {
-            case SybaseasesqlmodelPackage.SYBASE_ASE_COLUMN_CHECK_CONSTRAINT__COLUMN:
-                setColumn((SybaseASEColumn)null);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case SybaseasesqlmodelPackage.SYBASE_ASE_COLUMN_CHECK_CONSTRAINT__COLUMN:
+				setColumn((SybaseASEColumn)null);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public boolean eIsSet(int featureID) {
-        switch (featureID)
-        {
-            case SybaseasesqlmodelPackage.SYBASE_ASE_COLUMN_CHECK_CONSTRAINT__COLUMN:
-                return column != null;
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case SybaseasesqlmodelPackage.SYBASE_ASE_COLUMN_CHECK_CONSTRAINT__COLUMN:
+				return column != null;
+		}
+		return super.eIsSet(featureID);
+	}
 
 } //SybaseASEColumnCheckConstraintImpl

@@ -8,7 +8,7 @@
  *
  * Contributors:
  *  Actuate Corporation  - initial API and implementation
- *  
+ *
  *************************************************************************
  *
  * $Id: InputPromptControlStyle.java,v 1.2 2007/04/11 02:59:53 lchan Exp $
@@ -34,269 +34,263 @@ import org.eclipse.emf.common.util.Enumerator;
  * @generated
  */
 public enum InputPromptControlStyle implements Enumerator {
-    /**
-     * The '<em><b>Text Field</b></em>' literal object.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #TEXT_FIELD
-     * @generated
-     * @ordered
-     */
-    TEXT_FIELD_LITERAL(0, "TextField", "TextField"), //$NON-NLS-1$ //$NON-NLS-2$
-    /**
-     * The '<em><b>Selectable List</b></em>' literal object.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #SELECTABLE_LIST
-     * @generated
-     * @ordered
-     */
-    SELECTABLE_LIST_LITERAL(1, "SelectableList", "SelectableList"), //$NON-NLS-1$ //$NON-NLS-2$
-    /**
-     * The '<em><b>Selectable List With Text Field</b></em>' literal object.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #SELECTABLE_LIST_WITH_TEXT_FIELD
-     * @generated
-     * @ordered
-     */
-    SELECTABLE_LIST_WITH_TEXT_FIELD_LITERAL(2, "SelectableListWithTextField", //$NON-NLS-1$
-            "SelectableListWithTextField"), //$NON-NLS-1$
-    /**
-     * The '<em><b>Check Box</b></em>' literal object.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #CHECK_BOX
-     * @generated
-     * @ordered
-     */
-    CHECK_BOX_LITERAL(3, "CheckBox", "CheckBox"), //$NON-NLS-1$ //$NON-NLS-2$
-    /**
-     * The '<em><b>Radio Button</b></em>' literal object.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #RADIO_BUTTON
-     * @generated
-     * @ordered
-     */
-    RADIO_BUTTON_LITERAL(4, "RadioButton", "RadioButton"); //$NON-NLS-1$ //$NON-NLS-2$
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public static final String copyright = "Copyright (c) 2005, 2009 Actuate Corporation"; //$NON-NLS-1$
+	/**
+	 * The '<em><b>Text Field</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #TEXT_FIELD
+	 * @generated
+	 * @ordered
+	 */
+	TEXT_FIELD_LITERAL(0, "TextField", "TextField"), //$NON-NLS-1$ //$NON-NLS-2$
+	/**
+	 * The '<em><b>Selectable List</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #SELECTABLE_LIST
+	 * @generated
+	 * @ordered
+	 */
+	SELECTABLE_LIST_LITERAL(1, "SelectableList", "SelectableList"), //$NON-NLS-1$ //$NON-NLS-2$
+	/**
+	 * The '<em><b>Selectable List With Text Field</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #SELECTABLE_LIST_WITH_TEXT_FIELD
+	 * @generated
+	 * @ordered
+	 */
+	SELECTABLE_LIST_WITH_TEXT_FIELD_LITERAL(2, "SelectableListWithTextField", //$NON-NLS-1$
+			"SelectableListWithTextField"), //$NON-NLS-1$
+	/**
+	 * The '<em><b>Check Box</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #CHECK_BOX
+	 * @generated
+	 * @ordered
+	 */
+	CHECK_BOX_LITERAL(3, "CheckBox", "CheckBox"), //$NON-NLS-1$ //$NON-NLS-2$
+	/**
+	 * The '<em><b>Radio Button</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #RADIO_BUTTON
+	 * @generated
+	 * @ordered
+	 */
+	RADIO_BUTTON_LITERAL(4, "RadioButton", "RadioButton"); //$NON-NLS-1$ //$NON-NLS-2$
 
-    /**
-     * The '<em><b>Text Field</b></em>' literal value.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #TEXT_FIELD_LITERAL
-     * @model name="TextField"
-     * @generated
-     * @ordered
-     */
-    public static final int TEXT_FIELD = 0;
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final String copyright = "Copyright (c) 2005, 2010 Actuate Corporation"; //$NON-NLS-1$
 
-    /**
-     * The '<em><b>Selectable List</b></em>' literal value.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #SELECTABLE_LIST_LITERAL
-     * @model name="SelectableList"
-     * @generated
-     * @ordered
-     */
-    public static final int SELECTABLE_LIST = 1;
+	/**
+	 * The '<em><b>Text Field</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #TEXT_FIELD_LITERAL
+	 * @model name="TextField"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int TEXT_FIELD = 0;
 
-    /**
-     * The '<em><b>Selectable List With Text Field</b></em>' literal value.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #SELECTABLE_LIST_WITH_TEXT_FIELD_LITERAL
-     * @model name="SelectableListWithTextField"
-     * @generated
-     * @ordered
-     */
-    public static final int SELECTABLE_LIST_WITH_TEXT_FIELD = 2;
+	/**
+	 * The '<em><b>Selectable List</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #SELECTABLE_LIST_LITERAL
+	 * @model name="SelectableList"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int SELECTABLE_LIST = 1;
 
-    /**
-     * The '<em><b>Check Box</b></em>' literal value.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #CHECK_BOX_LITERAL
-     * @model name="CheckBox"
-     * @generated
-     * @ordered
-     */
-    public static final int CHECK_BOX = 3;
+	/**
+	 * The '<em><b>Selectable List With Text Field</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #SELECTABLE_LIST_WITH_TEXT_FIELD_LITERAL
+	 * @model name="SelectableListWithTextField"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int SELECTABLE_LIST_WITH_TEXT_FIELD = 2;
 
-    /**
-     * The '<em><b>Radio Button</b></em>' literal value.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #RADIO_BUTTON_LITERAL
-     * @model name="RadioButton"
-     * @generated
-     * @ordered
-     */
-    public static final int RADIO_BUTTON = 4;
+	/**
+	 * The '<em><b>Check Box</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #CHECK_BOX_LITERAL
+	 * @model name="CheckBox"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int CHECK_BOX = 3;
 
-    /**
-     * An array of all the '<em><b>Input Prompt Control Style</b></em>' enumerators.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    private static final InputPromptControlStyle[] VALUES_ARRAY = new InputPromptControlStyle[]
-    { TEXT_FIELD_LITERAL, SELECTABLE_LIST_LITERAL,
-            SELECTABLE_LIST_WITH_TEXT_FIELD_LITERAL, CHECK_BOX_LITERAL,
-            RADIO_BUTTON_LITERAL, };
+	/**
+	 * The '<em><b>Radio Button</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #RADIO_BUTTON_LITERAL
+	 * @model name="RadioButton"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int RADIO_BUTTON = 4;
 
-    /**
-     * A public read-only list of all the '<em><b>Input Prompt Control Style</b></em>' enumerators.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public static final List<InputPromptControlStyle> VALUES = Collections
-            .unmodifiableList( Arrays.asList( VALUES_ARRAY ) );
+	/**
+	 * An array of all the '<em><b>Input Prompt Control Style</b></em>' enumerators.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private static final InputPromptControlStyle[] VALUES_ARRAY = new InputPromptControlStyle[] { TEXT_FIELD_LITERAL,
+			SELECTABLE_LIST_LITERAL, SELECTABLE_LIST_WITH_TEXT_FIELD_LITERAL, CHECK_BOX_LITERAL,
+			RADIO_BUTTON_LITERAL, };
 
-    /**
-     * Returns the '<em><b>Input Prompt Control Style</b></em>' literal with the specified literal value.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public static InputPromptControlStyle get( String literal )
-    {
-        for( int i = 0; i < VALUES_ARRAY.length; ++i)
-        {
-            InputPromptControlStyle result = VALUES_ARRAY[i];
-            if( result.toString().equals( literal ) )
-            {
-                return result;
-            }
-        }
-        return null;
-    }
+	/**
+	 * A public read-only list of all the '<em><b>Input Prompt Control Style</b></em>' enumerators.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final List<InputPromptControlStyle> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
-    /**
-     * Returns the '<em><b>Input Prompt Control Style</b></em>' literal with the specified name.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public static InputPromptControlStyle getByName( String name )
-    {
-        for( int i = 0; i < VALUES_ARRAY.length; ++i)
-        {
-            InputPromptControlStyle result = VALUES_ARRAY[i];
-            if( result.getName().equals( name ) )
-            {
-                return result;
-            }
-        }
-        return null;
-    }
+	/**
+	 * Returns the '<em><b>Input Prompt Control Style</b></em>' literal with the specified literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
+	 * @generated
+	 */
+	public static InputPromptControlStyle get(String literal) {
+		for (InputPromptControlStyle result : VALUES_ARRAY) {
+			if (result.toString().equals(literal)) {
+				return result;
+			}
+		}
+		return null;
+	}
 
-    /**
-     * Returns the '<em><b>Input Prompt Control Style</b></em>' literal with the specified integer value.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public static InputPromptControlStyle get( int value )
-    {
-        switch( value )
-        {
-        case TEXT_FIELD:
-            return TEXT_FIELD_LITERAL;
-        case SELECTABLE_LIST:
-            return SELECTABLE_LIST_LITERAL;
-        case SELECTABLE_LIST_WITH_TEXT_FIELD:
-            return SELECTABLE_LIST_WITH_TEXT_FIELD_LITERAL;
-        case CHECK_BOX:
-            return CHECK_BOX_LITERAL;
-        case RADIO_BUTTON:
-            return RADIO_BUTTON_LITERAL;
-        }
-        return null;
-    }
+	/**
+	 * Returns the '<em><b>Input Prompt Control Style</b></em>' literal with the specified name.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
+	 * @generated
+	 */
+	public static InputPromptControlStyle getByName(String name) {
+		for (InputPromptControlStyle result : VALUES_ARRAY) {
+			if (result.getName().equals(name)) {
+				return result;
+			}
+		}
+		return null;
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    private final int value;
+	/**
+	 * Returns the '<em><b>Input Prompt Control Style</b></em>' literal with the specified integer value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
+	 * @generated
+	 */
+	public static InputPromptControlStyle get(int value) {
+		switch (value) {
+		case TEXT_FIELD:
+			return TEXT_FIELD_LITERAL;
+		case SELECTABLE_LIST:
+			return SELECTABLE_LIST_LITERAL;
+		case SELECTABLE_LIST_WITH_TEXT_FIELD:
+			return SELECTABLE_LIST_WITH_TEXT_FIELD_LITERAL;
+		case CHECK_BOX:
+			return CHECK_BOX_LITERAL;
+		case RADIO_BUTTON:
+			return RADIO_BUTTON_LITERAL;
+		}
+		return null;
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    private final String name;
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private final int value;
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    private final String literal;
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private final String name;
 
-    /**
-     * Only this class can construct instances.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    private InputPromptControlStyle( int value, String name, String literal )
-    {
-        this.value = value;
-        this.name = name;
-        this.literal = literal;
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private final String literal;
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public int getValue()
-    {
-        return value;
-    }
+	/**
+	 * Only this class can construct instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private InputPromptControlStyle(int value, String name, String literal) {
+		this.value = value;
+		this.name = name;
+		this.literal = literal;
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public String getName()
-    {
-        return name;
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int getValue() {
+		return value;
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public String getLiteral()
-    {
-        return literal;
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getName() {
+		return name;
+	}
 
-    /**
-     * Returns the literal value of the enumerator, which is its string representation.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public String toString()
-    {
-        return literal;
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getLiteral() {
+		return literal;
+	}
+
+	/**
+	 * Returns the literal value of the enumerator, which is its string representation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		return literal;
+	}
 }

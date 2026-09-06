@@ -2,8 +2,9 @@
 <genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.datatools.enablement.sybase.asa.models/src"
     editDirectory="" editorDirectory="" modelPluginID="org.eclipse.datatools.enablement.sybase.asa.models"
-    modelName="Sybaseasabasesqlmodel" testsDirectory="" importerID="org.eclipse.emf.importer.ecore"
-    usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.genmodel#//sqlmodel ../../org.eclipse.datatools.enablement.sybase.models/models/sybasesqlmodel.genmodel#//sybasesqlmodel">
+    modelName="Sybaseasabasesqlmodel" updateClasspath="false" testsDirectory="" importerID="org.eclipse.emf.importer.ecore"
+    usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.genmodel#//sqlmodel ../../org.eclipse.datatools.enablement.sybase.models/models/sybasesqlmodel.genmodel#//sybasesqlmodel"
+    importOrganizing="true" cleanup="true">
   <foreignModel>sybaseasabasesqlmodel.ecore</foreignModel>
   <genPackages prefix="Sybaseasabasesqlmodel" basePackage="org.eclipse.datatools.enablement.sybase.asa.models"
       disposableProviderFactory="true" ecorePackage="sybaseasabasesqlmodel.ecore#/">

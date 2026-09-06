@@ -29,273 +29,305 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.query.impl.QuerySelectStatementImpl#getQueryExpr <em>Query Expr</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.query.impl.QuerySelectStatementImpl#getOrderByClause <em>Order By Clause</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.query.impl.QuerySelectStatementImpl#getUpdatabilityExpr <em>Updatability Expr</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
 public class QuerySelectStatementImpl extends QueryStatementImpl implements QuerySelectStatement {
 	/**
-     * The cached value of the '{@link #getQueryExpr() <em>Query Expr</em>}' containment reference.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getQueryExpr() <em>Query Expr</em>}' containment reference.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getQueryExpr()
-     * @generated
-     * @ordered
-     */
+	 * @see #getQueryExpr()
+	 * @generated
+	 * @ordered
+	 */
     protected QueryExpressionRoot queryExpr;
 
 	/**
-     * The cached value of the '{@link #getOrderByClause() <em>Order By Clause</em>}' containment reference list.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getOrderByClause() <em>Order By Clause</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getOrderByClause()
-     * @generated
-     * @ordered
-     */
+	 * @see #getOrderByClause()
+	 * @generated
+	 * @ordered
+	 */
     protected EList orderByClause;
 
 	/**
-     * The cached value of the '{@link #getUpdatabilityExpr() <em>Updatability Expr</em>}' containment reference.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getUpdatabilityExpr() <em>Updatability Expr</em>}' containment reference.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getUpdatabilityExpr()
-     * @generated
-     * @ordered
-     */
+	 * @see #getUpdatabilityExpr()
+	 * @generated
+	 * @ordered
+	 */
     protected UpdatabilityExpression updatabilityExpr;
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected QuerySelectStatementImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    protected EClass eStaticClass() {
-        return SQLQueryModelPackage.Literals.QUERY_SELECT_STATEMENT;
-    }
+	 * @generated
+	 */
+    @Override
+	protected EClass eStaticClass() {
+		return SQLQueryModelPackage.Literals.QUERY_SELECT_STATEMENT;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public QueryExpressionRoot getQueryExpr() {
-        return queryExpr;
-    }
+	 * @generated
+	 */
+    @Override
+	public QueryExpressionRoot getQueryExpr() {
+		return queryExpr;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public NotificationChain basicSetQueryExpr(QueryExpressionRoot newQueryExpr, NotificationChain msgs) {
-        QueryExpressionRoot oldQueryExpr = queryExpr;
-        queryExpr = newQueryExpr;
-        if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.QUERY_SELECT_STATEMENT__QUERY_EXPR, oldQueryExpr, newQueryExpr);
-            if (msgs == null) msgs = notification; else msgs.add(notification);
-        }
-        return msgs;
-    }
+		QueryExpressionRoot oldQueryExpr = queryExpr;
+		queryExpr = newQueryExpr;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.QUERY_SELECT_STATEMENT__QUERY_EXPR, oldQueryExpr, newQueryExpr);
+			if (msgs == null) {
+				msgs = notification;
+			} else {
+				msgs.add(notification);
+			}
+		}
+		return msgs;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setQueryExpr(QueryExpressionRoot newQueryExpr) {
-        if (newQueryExpr != queryExpr) {
-            NotificationChain msgs = null;
-            if (queryExpr != null)
-                msgs = ((InternalEObject)queryExpr).eInverseRemove(this, SQLQueryModelPackage.QUERY_EXPRESSION_ROOT__SELECT_STATEMENT, QueryExpressionRoot.class, msgs);
-            if (newQueryExpr != null)
-                msgs = ((InternalEObject)newQueryExpr).eInverseAdd(this, SQLQueryModelPackage.QUERY_EXPRESSION_ROOT__SELECT_STATEMENT, QueryExpressionRoot.class, msgs);
-            msgs = basicSetQueryExpr(newQueryExpr, msgs);
-            if (msgs != null) msgs.dispatch();
-        }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.QUERY_SELECT_STATEMENT__QUERY_EXPR, newQueryExpr, newQueryExpr));
-    }
+	 * @generated
+	 */
+    @Override
+	public void setQueryExpr(QueryExpressionRoot newQueryExpr) {
+		if (newQueryExpr != queryExpr) {
+			NotificationChain msgs = null;
+			if (queryExpr != null) {
+				msgs = ((InternalEObject)queryExpr).eInverseRemove(this, SQLQueryModelPackage.QUERY_EXPRESSION_ROOT__SELECT_STATEMENT, QueryExpressionRoot.class, msgs);
+			}
+			if (newQueryExpr != null) {
+				msgs = ((InternalEObject)newQueryExpr).eInverseAdd(this, SQLQueryModelPackage.QUERY_EXPRESSION_ROOT__SELECT_STATEMENT, QueryExpressionRoot.class, msgs);
+			}
+			msgs = basicSetQueryExpr(newQueryExpr, msgs);
+			if (msgs != null) {
+				msgs.dispatch();
+			}
+		}
+		else if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.QUERY_SELECT_STATEMENT__QUERY_EXPR, newQueryExpr, newQueryExpr));
+		}
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public EList getOrderByClause() {
-        if (orderByClause == null) {
-            orderByClause = new EObjectContainmentWithInverseEList(OrderBySpecification.class, this, SQLQueryModelPackage.QUERY_SELECT_STATEMENT__ORDER_BY_CLAUSE, SQLQueryModelPackage.ORDER_BY_SPECIFICATION__SELECT_STATEMENT);
-        }
-        return orderByClause;
-    }
+	 * @generated
+	 */
+    @Override
+	public EList getOrderByClause() {
+		if (orderByClause == null) {
+			orderByClause = new EObjectContainmentWithInverseEList(OrderBySpecification.class, this, SQLQueryModelPackage.QUERY_SELECT_STATEMENT__ORDER_BY_CLAUSE, SQLQueryModelPackage.ORDER_BY_SPECIFICATION__SELECT_STATEMENT);
+		}
+		return orderByClause;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public UpdatabilityExpression getUpdatabilityExpr() {
-        return updatabilityExpr;
-    }
+	 * @generated
+	 */
+    @Override
+	public UpdatabilityExpression getUpdatabilityExpr() {
+		return updatabilityExpr;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public NotificationChain basicSetUpdatabilityExpr(UpdatabilityExpression newUpdatabilityExpr, NotificationChain msgs) {
-        UpdatabilityExpression oldUpdatabilityExpr = updatabilityExpr;
-        updatabilityExpr = newUpdatabilityExpr;
-        if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.QUERY_SELECT_STATEMENT__UPDATABILITY_EXPR, oldUpdatabilityExpr, newUpdatabilityExpr);
-            if (msgs == null) msgs = notification; else msgs.add(notification);
-        }
-        return msgs;
-    }
+		UpdatabilityExpression oldUpdatabilityExpr = updatabilityExpr;
+		updatabilityExpr = newUpdatabilityExpr;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.QUERY_SELECT_STATEMENT__UPDATABILITY_EXPR, oldUpdatabilityExpr, newUpdatabilityExpr);
+			if (msgs == null) {
+				msgs = notification;
+			} else {
+				msgs.add(notification);
+			}
+		}
+		return msgs;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setUpdatabilityExpr(UpdatabilityExpression newUpdatabilityExpr) {
-        if (newUpdatabilityExpr != updatabilityExpr) {
-            NotificationChain msgs = null;
-            if (updatabilityExpr != null)
-                msgs = ((InternalEObject)updatabilityExpr).eInverseRemove(this, SQLQueryModelPackage.UPDATABILITY_EXPRESSION__SELECT_STATEMENT, UpdatabilityExpression.class, msgs);
-            if (newUpdatabilityExpr != null)
-                msgs = ((InternalEObject)newUpdatabilityExpr).eInverseAdd(this, SQLQueryModelPackage.UPDATABILITY_EXPRESSION__SELECT_STATEMENT, UpdatabilityExpression.class, msgs);
-            msgs = basicSetUpdatabilityExpr(newUpdatabilityExpr, msgs);
-            if (msgs != null) msgs.dispatch();
-        }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.QUERY_SELECT_STATEMENT__UPDATABILITY_EXPR, newUpdatabilityExpr, newUpdatabilityExpr));
-    }
+	 * @generated
+	 */
+    @Override
+	public void setUpdatabilityExpr(UpdatabilityExpression newUpdatabilityExpr) {
+		if (newUpdatabilityExpr != updatabilityExpr) {
+			NotificationChain msgs = null;
+			if (updatabilityExpr != null) {
+				msgs = ((InternalEObject)updatabilityExpr).eInverseRemove(this, SQLQueryModelPackage.UPDATABILITY_EXPRESSION__SELECT_STATEMENT, UpdatabilityExpression.class, msgs);
+			}
+			if (newUpdatabilityExpr != null) {
+				msgs = ((InternalEObject)newUpdatabilityExpr).eInverseAdd(this, SQLQueryModelPackage.UPDATABILITY_EXPRESSION__SELECT_STATEMENT, UpdatabilityExpression.class, msgs);
+			}
+			msgs = basicSetUpdatabilityExpr(newUpdatabilityExpr, msgs);
+			if (msgs != null) {
+				msgs.dispatch();
+			}
+		}
+		else if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.QUERY_SELECT_STATEMENT__UPDATABILITY_EXPR, newUpdatabilityExpr, newUpdatabilityExpr));
+		}
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case SQLQueryModelPackage.QUERY_SELECT_STATEMENT__QUERY_EXPR:
-                if (queryExpr != null)
-                    msgs = ((InternalEObject)queryExpr).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLQueryModelPackage.QUERY_SELECT_STATEMENT__QUERY_EXPR, null, msgs);
-                return basicSetQueryExpr((QueryExpressionRoot)otherEnd, msgs);
-            case SQLQueryModelPackage.QUERY_SELECT_STATEMENT__ORDER_BY_CLAUSE:
-                return ((InternalEList)getOrderByClause()).basicAdd(otherEnd, msgs);
-            case SQLQueryModelPackage.QUERY_SELECT_STATEMENT__UPDATABILITY_EXPR:
-                if (updatabilityExpr != null)
-                    msgs = ((InternalEObject)updatabilityExpr).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLQueryModelPackage.QUERY_SELECT_STATEMENT__UPDATABILITY_EXPR, null, msgs);
-                return basicSetUpdatabilityExpr((UpdatabilityExpression)otherEnd, msgs);
-        }
-        return super.eInverseAdd(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case SQLQueryModelPackage.QUERY_SELECT_STATEMENT__QUERY_EXPR:
+				if (queryExpr != null) {
+					msgs = ((InternalEObject)queryExpr).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLQueryModelPackage.QUERY_SELECT_STATEMENT__QUERY_EXPR, null, msgs);
+				}
+				return basicSetQueryExpr((QueryExpressionRoot)otherEnd, msgs);
+			case SQLQueryModelPackage.QUERY_SELECT_STATEMENT__ORDER_BY_CLAUSE:
+				return ((InternalEList)getOrderByClause()).basicAdd(otherEnd, msgs);
+			case SQLQueryModelPackage.QUERY_SELECT_STATEMENT__UPDATABILITY_EXPR:
+				if (updatabilityExpr != null) {
+					msgs = ((InternalEObject)updatabilityExpr).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLQueryModelPackage.QUERY_SELECT_STATEMENT__UPDATABILITY_EXPR, null, msgs);
+				}
+				return basicSetUpdatabilityExpr((UpdatabilityExpression)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case SQLQueryModelPackage.QUERY_SELECT_STATEMENT__QUERY_EXPR:
-                return basicSetQueryExpr(null, msgs);
-            case SQLQueryModelPackage.QUERY_SELECT_STATEMENT__ORDER_BY_CLAUSE:
-                return ((InternalEList)getOrderByClause()).basicRemove(otherEnd, msgs);
-            case SQLQueryModelPackage.QUERY_SELECT_STATEMENT__UPDATABILITY_EXPR:
-                return basicSetUpdatabilityExpr(null, msgs);
-        }
-        return super.eInverseRemove(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case SQLQueryModelPackage.QUERY_SELECT_STATEMENT__QUERY_EXPR:
+				return basicSetQueryExpr(null, msgs);
+			case SQLQueryModelPackage.QUERY_SELECT_STATEMENT__ORDER_BY_CLAUSE:
+				return ((InternalEList)getOrderByClause()).basicRemove(otherEnd, msgs);
+			case SQLQueryModelPackage.QUERY_SELECT_STATEMENT__UPDATABILITY_EXPR:
+				return basicSetUpdatabilityExpr(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case SQLQueryModelPackage.QUERY_SELECT_STATEMENT__QUERY_EXPR:
-                return getQueryExpr();
-            case SQLQueryModelPackage.QUERY_SELECT_STATEMENT__ORDER_BY_CLAUSE:
-                return getOrderByClause();
-            case SQLQueryModelPackage.QUERY_SELECT_STATEMENT__UPDATABILITY_EXPR:
-                return getUpdatabilityExpr();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case SQLQueryModelPackage.QUERY_SELECT_STATEMENT__QUERY_EXPR:
+				return getQueryExpr();
+			case SQLQueryModelPackage.QUERY_SELECT_STATEMENT__ORDER_BY_CLAUSE:
+				return getOrderByClause();
+			case SQLQueryModelPackage.QUERY_SELECT_STATEMENT__UPDATABILITY_EXPR:
+				return getUpdatabilityExpr();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case SQLQueryModelPackage.QUERY_SELECT_STATEMENT__QUERY_EXPR:
-                setQueryExpr((QueryExpressionRoot)newValue);
-                return;
-            case SQLQueryModelPackage.QUERY_SELECT_STATEMENT__ORDER_BY_CLAUSE:
-                getOrderByClause().clear();
-                getOrderByClause().addAll((Collection)newValue);
-                return;
-            case SQLQueryModelPackage.QUERY_SELECT_STATEMENT__UPDATABILITY_EXPR:
-                setUpdatabilityExpr((UpdatabilityExpression)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case SQLQueryModelPackage.QUERY_SELECT_STATEMENT__QUERY_EXPR:
+				setQueryExpr((QueryExpressionRoot)newValue);
+				return;
+			case SQLQueryModelPackage.QUERY_SELECT_STATEMENT__ORDER_BY_CLAUSE:
+				getOrderByClause().clear();
+				getOrderByClause().addAll((Collection)newValue);
+				return;
+			case SQLQueryModelPackage.QUERY_SELECT_STATEMENT__UPDATABILITY_EXPR:
+				setUpdatabilityExpr((UpdatabilityExpression)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public void eUnset(int featureID) {
-        switch (featureID) {
-            case SQLQueryModelPackage.QUERY_SELECT_STATEMENT__QUERY_EXPR:
-                setQueryExpr((QueryExpressionRoot)null);
-                return;
-            case SQLQueryModelPackage.QUERY_SELECT_STATEMENT__ORDER_BY_CLAUSE:
-                getOrderByClause().clear();
-                return;
-            case SQLQueryModelPackage.QUERY_SELECT_STATEMENT__UPDATABILITY_EXPR:
-                setUpdatabilityExpr((UpdatabilityExpression)null);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case SQLQueryModelPackage.QUERY_SELECT_STATEMENT__QUERY_EXPR:
+				setQueryExpr((QueryExpressionRoot)null);
+				return;
+			case SQLQueryModelPackage.QUERY_SELECT_STATEMENT__ORDER_BY_CLAUSE:
+				getOrderByClause().clear();
+				return;
+			case SQLQueryModelPackage.QUERY_SELECT_STATEMENT__UPDATABILITY_EXPR:
+				setUpdatabilityExpr((UpdatabilityExpression)null);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case SQLQueryModelPackage.QUERY_SELECT_STATEMENT__QUERY_EXPR:
-                return queryExpr != null;
-            case SQLQueryModelPackage.QUERY_SELECT_STATEMENT__ORDER_BY_CLAUSE:
-                return orderByClause != null && !orderByClause.isEmpty();
-            case SQLQueryModelPackage.QUERY_SELECT_STATEMENT__UPDATABILITY_EXPR:
-                return updatabilityExpr != null;
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case SQLQueryModelPackage.QUERY_SELECT_STATEMENT__QUERY_EXPR:
+				return queryExpr != null;
+			case SQLQueryModelPackage.QUERY_SELECT_STATEMENT__ORDER_BY_CLAUSE:
+				return orderByClause != null && !orderByClause.isEmpty();
+			case SQLQueryModelPackage.QUERY_SELECT_STATEMENT__UPDATABILITY_EXPR:
+				return updatabilityExpr != null;
+		}
+		return super.eIsSet(featureID);
+	}
 
 } //SQLSelectStatementImpl

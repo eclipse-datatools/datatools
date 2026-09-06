@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -155,20 +155,10 @@ public class SQLStatementsPackageImpl extends EPackageImpl implements SQLStateme
 	private static boolean isInited = false;
 
 	/**
-	 * Creates, registers, and initializes the <b>Package</b> for this
-	 * model, and for any others upon which it depends.  Simple
-	 * dependencies are satisfied by calling this method on all
-	 * dependent packages before doing anything else.  This method drives
-	 * initialization for interdependent packages directly, in parallel
-	 * with this package, itself.
-	 * <p>Of this package and its interdependencies, all packages which
-	 * have not yet been registered by their URI values are first created
-	 * and registered.  The packages are then initialized in two steps:
-	 * meta-model objects for all of the packages are created before any
-	 * are initialized, since one package's meta-model objects may refer to
-	 * those of another.
-	 * <p>Invocation of this method will not affect any packages that have
-	 * already been initialized.
+	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
+	 *
+	 * <p>This method is used to initialize {@link SQLStatementsPackage#eINSTANCE} when that field is accessed.
+	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #eNS_URI
@@ -177,10 +167,13 @@ public class SQLStatementsPackageImpl extends EPackageImpl implements SQLStateme
 	 * @generated
 	 */
 	public static SQLStatementsPackage init() {
-		if (isInited) return (SQLStatementsPackage)EPackage.Registry.INSTANCE.getEPackage(SQLStatementsPackage.eNS_URI);
+		if (isInited) {
+			return (SQLStatementsPackage)EPackage.Registry.INSTANCE.getEPackage(SQLStatementsPackage.eNS_URI);
+		}
 
 		// Obtain or create and register package
-		SQLStatementsPackageImpl theSQLStatementsPackage = (SQLStatementsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(eNS_URI) instanceof SQLStatementsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(eNS_URI) : new SQLStatementsPackageImpl());
+		Object registeredSQLStatementsPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		SQLStatementsPackageImpl theSQLStatementsPackage = registeredSQLStatementsPackage instanceof SQLStatementsPackageImpl ? (SQLStatementsPackageImpl)registeredSQLStatementsPackage : new SQLStatementsPackageImpl();
 
 		isInited = true;
 
@@ -188,13 +181,20 @@ public class SQLStatementsPackageImpl extends EPackageImpl implements SQLStateme
 		EcorePackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
-		SQLSchemaPackageImpl theSQLSchemaPackage = (SQLSchemaPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SQLSchemaPackage.eNS_URI) instanceof SQLSchemaPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SQLSchemaPackage.eNS_URI) : SQLSchemaPackage.eINSTANCE);
-		SQLConstraintsPackageImpl theSQLConstraintsPackage = (SQLConstraintsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SQLConstraintsPackage.eNS_URI) instanceof SQLConstraintsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SQLConstraintsPackage.eNS_URI) : SQLConstraintsPackage.eINSTANCE);
-		SQLDataTypesPackageImpl theSQLDataTypesPackage = (SQLDataTypesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SQLDataTypesPackage.eNS_URI) instanceof SQLDataTypesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SQLDataTypesPackage.eNS_URI) : SQLDataTypesPackage.eINSTANCE);
-		SQLExpressionsPackageImpl theSQLExpressionsPackage = (SQLExpressionsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SQLExpressionsPackage.eNS_URI) instanceof SQLExpressionsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SQLExpressionsPackage.eNS_URI) : SQLExpressionsPackage.eINSTANCE);
-		SQLRoutinesPackageImpl theSQLRoutinesPackage = (SQLRoutinesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SQLRoutinesPackage.eNS_URI) instanceof SQLRoutinesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SQLRoutinesPackage.eNS_URI) : SQLRoutinesPackage.eINSTANCE);
-		SQLTablesPackageImpl theSQLTablesPackage = (SQLTablesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SQLTablesPackage.eNS_URI) instanceof SQLTablesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SQLTablesPackage.eNS_URI) : SQLTablesPackage.eINSTANCE);
-		SQLAccessControlPackageImpl theSQLAccessControlPackage = (SQLAccessControlPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SQLAccessControlPackage.eNS_URI) instanceof SQLAccessControlPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SQLAccessControlPackage.eNS_URI) : SQLAccessControlPackage.eINSTANCE);
+		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(SQLSchemaPackage.eNS_URI);
+		SQLSchemaPackageImpl theSQLSchemaPackage = (SQLSchemaPackageImpl)(registeredPackage instanceof SQLSchemaPackageImpl ? registeredPackage : SQLSchemaPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(SQLConstraintsPackage.eNS_URI);
+		SQLConstraintsPackageImpl theSQLConstraintsPackage = (SQLConstraintsPackageImpl)(registeredPackage instanceof SQLConstraintsPackageImpl ? registeredPackage : SQLConstraintsPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(SQLDataTypesPackage.eNS_URI);
+		SQLDataTypesPackageImpl theSQLDataTypesPackage = (SQLDataTypesPackageImpl)(registeredPackage instanceof SQLDataTypesPackageImpl ? registeredPackage : SQLDataTypesPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(SQLExpressionsPackage.eNS_URI);
+		SQLExpressionsPackageImpl theSQLExpressionsPackage = (SQLExpressionsPackageImpl)(registeredPackage instanceof SQLExpressionsPackageImpl ? registeredPackage : SQLExpressionsPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(SQLRoutinesPackage.eNS_URI);
+		SQLRoutinesPackageImpl theSQLRoutinesPackage = (SQLRoutinesPackageImpl)(registeredPackage instanceof SQLRoutinesPackageImpl ? registeredPackage : SQLRoutinesPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(SQLTablesPackage.eNS_URI);
+		SQLTablesPackageImpl theSQLTablesPackage = (SQLTablesPackageImpl)(registeredPackage instanceof SQLTablesPackageImpl ? registeredPackage : SQLTablesPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(SQLAccessControlPackage.eNS_URI);
+		SQLAccessControlPackageImpl theSQLAccessControlPackage = (SQLAccessControlPackageImpl)(registeredPackage instanceof SQLAccessControlPackageImpl ? registeredPackage : SQLAccessControlPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theSQLStatementsPackage.createPackageContents();
@@ -219,6 +219,8 @@ public class SQLStatementsPackageImpl extends EPackageImpl implements SQLStateme
 		// Mark meta-data to indicate it can't be changed
 		theSQLStatementsPackage.freeze();
 
+		// Update the registry and return the package
+		EPackage.Registry.INSTANCE.put(SQLStatementsPackage.eNS_URI, theSQLStatementsPackage);
 		return theSQLStatementsPackage;
 	}
 
@@ -227,6 +229,7 @@ public class SQLStatementsPackageImpl extends EPackageImpl implements SQLStateme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getSQLStatement() {
 		return sqlStatementEClass;
 	}
@@ -236,6 +239,7 @@ public class SQLStatementsPackageImpl extends EPackageImpl implements SQLStateme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getSQLDataStatement() {
 		return sqlDataStatementEClass;
 	}
@@ -245,6 +249,7 @@ public class SQLStatementsPackageImpl extends EPackageImpl implements SQLStateme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getSQLSchemaStatement() {
 		return sqlSchemaStatementEClass;
 	}
@@ -254,6 +259,7 @@ public class SQLStatementsPackageImpl extends EPackageImpl implements SQLStateme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getSQLControlStatement() {
 		return sqlControlStatementEClass;
 	}
@@ -263,6 +269,7 @@ public class SQLStatementsPackageImpl extends EPackageImpl implements SQLStateme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getSQLDataChangeStatement() {
 		return sqlDataChangeStatementEClass;
 	}
@@ -272,6 +279,7 @@ public class SQLStatementsPackageImpl extends EPackageImpl implements SQLStateme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getSQLStatementDefault() {
 		return sqlStatementDefaultEClass;
 	}
@@ -281,6 +289,7 @@ public class SQLStatementsPackageImpl extends EPackageImpl implements SQLStateme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getSQLStatementDefault_SQL() {
 		return (EAttribute)sqlStatementDefaultEClass.getEStructuralFeatures().get(0);
 	}
@@ -290,6 +299,7 @@ public class SQLStatementsPackageImpl extends EPackageImpl implements SQLStateme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getSQLConnectionStatement() {
 		return sqlConnectionStatementEClass;
 	}
@@ -299,6 +309,7 @@ public class SQLStatementsPackageImpl extends EPackageImpl implements SQLStateme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getSQLDiagnosticsStatement() {
 		return sqlDiagnosticsStatementEClass;
 	}
@@ -308,6 +319,7 @@ public class SQLStatementsPackageImpl extends EPackageImpl implements SQLStateme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getSQLDynamicStatement() {
 		return sqlDynamicStatementEClass;
 	}
@@ -317,6 +329,7 @@ public class SQLStatementsPackageImpl extends EPackageImpl implements SQLStateme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getSQLSessionStatement() {
 		return sqlSessionStatementEClass;
 	}
@@ -326,6 +339,7 @@ public class SQLStatementsPackageImpl extends EPackageImpl implements SQLStateme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getSQLTransactionStatement() {
 		return sqlTransactionStatementEClass;
 	}
@@ -335,6 +349,7 @@ public class SQLStatementsPackageImpl extends EPackageImpl implements SQLStateme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SQLStatementsFactory getSQLStatementsFactory() {
 		return (SQLStatementsFactory)getEFactoryInstance();
 	}
@@ -354,7 +369,9 @@ public class SQLStatementsPackageImpl extends EPackageImpl implements SQLStateme
 	 * @generated
 	 */
 	public void createPackageContents() {
-		if (isCreated) return;
+		if (isCreated) {
+			return;
+		}
 		isCreated = true;
 
 		// Create classes and their features
@@ -397,7 +414,9 @@ public class SQLStatementsPackageImpl extends EPackageImpl implements SQLStateme
 	 * @generated
 	 */
 	public void initializePackageContents() {
-		if (isInitialized) return;
+		if (isInitialized) {
+			return;
+		}
 		isInitialized = true;
 
 		// Initialize package

@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -22,11 +22,11 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.datatypes.impl.TimeDataTypeImpl#getFractionalSecondsPrecision <em>Fractional Seconds Precision</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.datatypes.impl.TimeDataTypeImpl#isTimeZone <em>Time Zone</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -85,6 +85,7 @@ public class TimeDataTypeImpl extends PredefinedDataTypeImpl implements TimeData
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return SQLDataTypesPackage.Literals.TIME_DATA_TYPE;
 	}
@@ -94,6 +95,7 @@ public class TimeDataTypeImpl extends PredefinedDataTypeImpl implements TimeData
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getFractionalSecondsPrecision() {
 		return fractionalSecondsPrecision;
 	}
@@ -103,11 +105,13 @@ public class TimeDataTypeImpl extends PredefinedDataTypeImpl implements TimeData
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setFractionalSecondsPrecision(int newFractionalSecondsPrecision) {
 		int oldFractionalSecondsPrecision = fractionalSecondsPrecision;
 		fractionalSecondsPrecision = newFractionalSecondsPrecision;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLDataTypesPackage.TIME_DATA_TYPE__FRACTIONAL_SECONDS_PRECISION, oldFractionalSecondsPrecision, fractionalSecondsPrecision));
+		}
 	}
 
 	/**
@@ -115,6 +119,7 @@ public class TimeDataTypeImpl extends PredefinedDataTypeImpl implements TimeData
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isTimeZone() {
 		return timeZone;
 	}
@@ -124,11 +129,13 @@ public class TimeDataTypeImpl extends PredefinedDataTypeImpl implements TimeData
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTimeZone(boolean newTimeZone) {
 		boolean oldTimeZone = timeZone;
 		timeZone = newTimeZone;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLDataTypesPackage.TIME_DATA_TYPE__TIME_ZONE, oldTimeZone, timeZone));
+		}
 	}
 
 	/**
@@ -136,10 +143,11 @@ public class TimeDataTypeImpl extends PredefinedDataTypeImpl implements TimeData
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SQLDataTypesPackage.TIME_DATA_TYPE__FRACTIONAL_SECONDS_PRECISION:
-				return Integer.valueOf(getFractionalSecondsPrecision());
+				return new Integer(getFractionalSecondsPrecision());
 			case SQLDataTypesPackage.TIME_DATA_TYPE__TIME_ZONE:
 				return isTimeZone() ? Boolean.TRUE : Boolean.FALSE;
 		}
@@ -151,6 +159,7 @@ public class TimeDataTypeImpl extends PredefinedDataTypeImpl implements TimeData
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case SQLDataTypesPackage.TIME_DATA_TYPE__FRACTIONAL_SECONDS_PRECISION:
@@ -168,6 +177,7 @@ public class TimeDataTypeImpl extends PredefinedDataTypeImpl implements TimeData
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case SQLDataTypesPackage.TIME_DATA_TYPE__FRACTIONAL_SECONDS_PRECISION:
@@ -185,6 +195,7 @@ public class TimeDataTypeImpl extends PredefinedDataTypeImpl implements TimeData
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SQLDataTypesPackage.TIME_DATA_TYPE__FRACTIONAL_SECONDS_PRECISION:
@@ -200,8 +211,11 @@ public class TimeDataTypeImpl extends PredefinedDataTypeImpl implements TimeData
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (fractionalSecondsPrecision: "); //$NON-NLS-1$

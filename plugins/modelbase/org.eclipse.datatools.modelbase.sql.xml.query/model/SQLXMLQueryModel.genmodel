@@ -4,7 +4,9 @@
     creationCommands="false" editDirectory="" editorDirectory="" modelPluginID="org.eclipse.datatools.modelbase.sql.xml.query"
     runtimeJar="true" modelName="SQLXMLQueryModel" editPluginClass="com.ibm.db.models.sql.xml.query.provider.SQLXMLQueryModelEditPlugin"
     editorPluginClass="org.eclipse.datatools.modelbase.sql.xml.query.presentation.SQLXMLQueryModelEditorPlugin"
-    testsDirectory="" importerID="org.eclipse.emf.importer.rose" usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.datatools.modelbase.sql.query/model/SQLQueryModel.genmodel#//query ../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.genmodel#//sqlmodel">
+    updateClasspath="false" testsDirectory="" importerID="org.eclipse.emf.importer.rose"
+    usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.datatools.modelbase.sql.query/model/SQLQueryModel.genmodel#//query ../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.genmodel#//sqlmodel"
+    importOrganizing="true" cleanup="true">
   <foreignModel>SQLXMLQueryModel.mdl</foreignModel>
   <foreignModel>CDM_EXTRACT_PATH</foreignModel>
   <foreignModel>../..</foreignModel>

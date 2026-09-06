@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -23,11 +23,11 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.routines.impl.MethodImpl#isOverriding <em>Overriding</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.routines.impl.MethodImpl#isConstructor <em>Constructor</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -86,6 +86,7 @@ public class MethodImpl extends FunctionImpl implements Method {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return SQLRoutinesPackage.Literals.METHOD;
 	}
@@ -95,6 +96,7 @@ public class MethodImpl extends FunctionImpl implements Method {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isOverriding() {
 		return overriding;
 	}
@@ -104,11 +106,13 @@ public class MethodImpl extends FunctionImpl implements Method {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOverriding(boolean newOverriding) {
 		boolean oldOverriding = overriding;
 		overriding = newOverriding;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLRoutinesPackage.METHOD__OVERRIDING, oldOverriding, overriding));
+		}
 	}
 
 	/**
@@ -116,6 +120,7 @@ public class MethodImpl extends FunctionImpl implements Method {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isConstructor() {
 		return constructor;
 	}
@@ -125,11 +130,13 @@ public class MethodImpl extends FunctionImpl implements Method {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setConstructor(boolean newConstructor) {
 		boolean oldConstructor = constructor;
 		constructor = newConstructor;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLRoutinesPackage.METHOD__CONSTRUCTOR, oldConstructor, constructor));
+		}
 	}
 
 	/**
@@ -137,6 +144,7 @@ public class MethodImpl extends FunctionImpl implements Method {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SQLRoutinesPackage.METHOD__OVERRIDING:
@@ -152,6 +160,7 @@ public class MethodImpl extends FunctionImpl implements Method {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case SQLRoutinesPackage.METHOD__OVERRIDING:
@@ -169,6 +178,7 @@ public class MethodImpl extends FunctionImpl implements Method {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case SQLRoutinesPackage.METHOD__OVERRIDING:
@@ -186,6 +196,7 @@ public class MethodImpl extends FunctionImpl implements Method {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SQLRoutinesPackage.METHOD__OVERRIDING:
@@ -201,8 +212,11 @@ public class MethodImpl extends FunctionImpl implements Method {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (overriding: "); //$NON-NLS-1$

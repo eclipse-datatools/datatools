@@ -18,15 +18,15 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl.SybaseASABaseProxyTableImpl#getRemoteObjectLocation <em>Remote Object Location</em>}</li>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl.SybaseASABaseProxyTableImpl#isExisting <em>Existing</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class SybaseASABaseProxyTableImpl extends SybaseASABaseTableImpl implements SybaseASABaseProxyTable 
+public class SybaseASABaseProxyTableImpl extends SybaseASABaseTableImpl implements SybaseASABaseProxyTable
 {
     /**
 	 * The default value of the '{@link #getRemoteObjectLocation() <em>Remote Object Location</em>}' attribute.
@@ -84,6 +84,7 @@ public class SybaseASABaseProxyTableImpl extends SybaseASABaseTableImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass()
     {
 		return SybaseasabasesqlmodelPackage.Literals.SYBASE_ASA_BASE_PROXY_TABLE;
@@ -94,6 +95,7 @@ public class SybaseASABaseProxyTableImpl extends SybaseASABaseTableImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getRemoteObjectLocation()
     {
 		return remoteObjectLocation;
@@ -104,12 +106,14 @@ public class SybaseASABaseProxyTableImpl extends SybaseASABaseTableImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRemoteObjectLocation(String newRemoteObjectLocation)
     {
 		String oldRemoteObjectLocation = remoteObjectLocation;
 		remoteObjectLocation = newRemoteObjectLocation;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_PROXY_TABLE__REMOTE_OBJECT_LOCATION, oldRemoteObjectLocation, remoteObjectLocation));
+		}
 	}
 
     /**
@@ -117,7 +121,8 @@ public class SybaseASABaseProxyTableImpl extends SybaseASABaseTableImpl implemen
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public boolean isExisting()
+    @Override
+	public boolean isExisting()
     {
 		return existing;
 	}
@@ -127,12 +132,14 @@ public class SybaseASABaseProxyTableImpl extends SybaseASABaseTableImpl implemen
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public void setExisting(boolean newExisting)
+    @Override
+	public void setExisting(boolean newExisting)
     {
 		boolean oldExisting = existing;
 		existing = newExisting;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_PROXY_TABLE__EXISTING, oldExisting, existing));
+		}
 	}
 
     /**
@@ -140,6 +147,7 @@ public class SybaseASABaseProxyTableImpl extends SybaseASABaseTableImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
     {
 		switch (featureID) {
@@ -156,6 +164,7 @@ public class SybaseASABaseProxyTableImpl extends SybaseASABaseTableImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue)
     {
 		switch (featureID) {
@@ -174,6 +183,7 @@ public class SybaseASABaseProxyTableImpl extends SybaseASABaseTableImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID)
     {
 		switch (featureID) {
@@ -192,6 +202,7 @@ public class SybaseASABaseProxyTableImpl extends SybaseASABaseTableImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID)
     {
 		switch (featureID) {
@@ -208,9 +219,12 @@ public class SybaseASABaseProxyTableImpl extends SybaseASABaseTableImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString()
     {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (remoteObjectLocation: ");

@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.TableDefinitionImpl#isAuditSupported <em>Audit Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.TableDefinitionImpl#isDataCaptureSupported <em>Data Capture Supported</em>}</li>
@@ -31,7 +32,6 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.TableDefinitionImpl#isValidProcSupported <em>Valid Proc Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.TableDefinitionImpl#getMaximumIdentifierLength <em>Maximum Identifier Length</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -170,6 +170,7 @@ public class TableDefinitionImpl extends EObjectImpl implements TableDefinition 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return DatabaseDefinitionPackage.Literals.TABLE_DEFINITION;
 	}
@@ -179,6 +180,7 @@ public class TableDefinitionImpl extends EObjectImpl implements TableDefinition 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isAuditSupported() {
 		return auditSupported;
 	}
@@ -188,11 +190,13 @@ public class TableDefinitionImpl extends EObjectImpl implements TableDefinition 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setAuditSupported(boolean newAuditSupported) {
 		boolean oldAuditSupported = auditSupported;
 		auditSupported = newAuditSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.TABLE_DEFINITION__AUDIT_SUPPORTED, oldAuditSupported, auditSupported));
+		}
 	}
 
 	/**
@@ -200,6 +204,7 @@ public class TableDefinitionImpl extends EObjectImpl implements TableDefinition 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isDataCaptureSupported() {
 		return dataCaptureSupported;
 	}
@@ -209,11 +214,13 @@ public class TableDefinitionImpl extends EObjectImpl implements TableDefinition 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDataCaptureSupported(boolean newDataCaptureSupported) {
 		boolean oldDataCaptureSupported = dataCaptureSupported;
 		dataCaptureSupported = newDataCaptureSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.TABLE_DEFINITION__DATA_CAPTURE_SUPPORTED, oldDataCaptureSupported, dataCaptureSupported));
+		}
 	}
 
 	/**
@@ -221,6 +228,7 @@ public class TableDefinitionImpl extends EObjectImpl implements TableDefinition 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isEditProcSupported() {
 		return editProcSupported;
 	}
@@ -230,11 +238,13 @@ public class TableDefinitionImpl extends EObjectImpl implements TableDefinition 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setEditProcSupported(boolean newEditProcSupported) {
 		boolean oldEditProcSupported = editProcSupported;
 		editProcSupported = newEditProcSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.TABLE_DEFINITION__EDIT_PROC_SUPPORTED, oldEditProcSupported, editProcSupported));
+		}
 	}
 
 	/**
@@ -242,6 +252,7 @@ public class TableDefinitionImpl extends EObjectImpl implements TableDefinition 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isEncodingSupported() {
 		return encodingSupported;
 	}
@@ -251,11 +262,13 @@ public class TableDefinitionImpl extends EObjectImpl implements TableDefinition 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setEncodingSupported(boolean newEncodingSupported) {
 		boolean oldEncodingSupported = encodingSupported;
 		encodingSupported = newEncodingSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.TABLE_DEFINITION__ENCODING_SUPPORTED, oldEncodingSupported, encodingSupported));
+		}
 	}
 
 	/**
@@ -263,6 +276,7 @@ public class TableDefinitionImpl extends EObjectImpl implements TableDefinition 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isValidProcSupported() {
 		return validProcSupported;
 	}
@@ -272,11 +286,13 @@ public class TableDefinitionImpl extends EObjectImpl implements TableDefinition 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setValidProcSupported(boolean newValidProcSupported) {
 		boolean oldValidProcSupported = validProcSupported;
 		validProcSupported = newValidProcSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.TABLE_DEFINITION__VALID_PROC_SUPPORTED, oldValidProcSupported, validProcSupported));
+		}
 	}
 
 	/**
@@ -284,6 +300,7 @@ public class TableDefinitionImpl extends EObjectImpl implements TableDefinition 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getMaximumIdentifierLength() {
 		return maximumIdentifierLength;
 	}
@@ -293,11 +310,13 @@ public class TableDefinitionImpl extends EObjectImpl implements TableDefinition 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMaximumIdentifierLength(int newMaximumIdentifierLength) {
 		int oldMaximumIdentifierLength = maximumIdentifierLength;
 		maximumIdentifierLength = newMaximumIdentifierLength;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.TABLE_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH, oldMaximumIdentifierLength, maximumIdentifierLength));
+		}
 	}
 
 	/**
@@ -305,6 +324,7 @@ public class TableDefinitionImpl extends EObjectImpl implements TableDefinition 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.TABLE_DEFINITION__AUDIT_SUPPORTED:
@@ -318,7 +338,7 @@ public class TableDefinitionImpl extends EObjectImpl implements TableDefinition 
 			case DatabaseDefinitionPackage.TABLE_DEFINITION__VALID_PROC_SUPPORTED:
 				return isValidProcSupported() ? Boolean.TRUE : Boolean.FALSE;
 			case DatabaseDefinitionPackage.TABLE_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH:
-				return Integer.valueOf(getMaximumIdentifierLength());
+				return new Integer(getMaximumIdentifierLength());
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -328,6 +348,7 @@ public class TableDefinitionImpl extends EObjectImpl implements TableDefinition 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.TABLE_DEFINITION__AUDIT_SUPPORTED:
@@ -357,6 +378,7 @@ public class TableDefinitionImpl extends EObjectImpl implements TableDefinition 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.TABLE_DEFINITION__AUDIT_SUPPORTED:
@@ -386,6 +408,7 @@ public class TableDefinitionImpl extends EObjectImpl implements TableDefinition 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.TABLE_DEFINITION__AUDIT_SUPPORTED:
@@ -409,8 +432,11 @@ public class TableDefinitionImpl extends EObjectImpl implements TableDefinition 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (auditSupported: "); //$NON-NLS-1$

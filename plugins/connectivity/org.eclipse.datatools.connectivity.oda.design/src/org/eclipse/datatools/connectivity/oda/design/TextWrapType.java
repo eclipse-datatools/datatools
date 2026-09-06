@@ -8,7 +8,7 @@
  *
  * Contributors:
  *  Actuate Corporation  - initial API and implementation
- *  
+ *
  *************************************************************************
  *
  * $Id: TextWrapType.java,v 1.2 2007/04/11 02:59:53 lchan Exp $
@@ -34,200 +34,193 @@ import org.eclipse.emf.common.util.Enumerator;
  * @generated
  */
 public enum TextWrapType implements Enumerator {
-    /**
-     * The '<em><b>None</b></em>' literal object.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #NONE
-     * @generated
-     * @ordered
-     */
-    NONE_LITERAL(0, "None", "None"), //$NON-NLS-1$ //$NON-NLS-2$
-    /**
-     * The '<em><b>Word</b></em>' literal object.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #WORD
-     * @generated
-     * @ordered
-     */
-    WORD_LITERAL(1, "Word", "Word"); //$NON-NLS-1$ //$NON-NLS-2$
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public static final String copyright = "Copyright (c) 2005, 2009 Actuate Corporation"; //$NON-NLS-1$
+	/**
+	 * The '<em><b>None</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #NONE
+	 * @generated
+	 * @ordered
+	 */
+	NONE_LITERAL(0, "None", "None"), //$NON-NLS-1$ //$NON-NLS-2$
+	/**
+	 * The '<em><b>Word</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #WORD
+	 * @generated
+	 * @ordered
+	 */
+	WORD_LITERAL(1, "Word", "Word"); //$NON-NLS-1$ //$NON-NLS-2$
 
-    /**
-     * The '<em><b>None</b></em>' literal value.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #NONE_LITERAL
-     * @model name="None"
-     * @generated
-     * @ordered
-     */
-    public static final int NONE = 0;
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final String copyright = "Copyright (c) 2005, 2010 Actuate Corporation"; //$NON-NLS-1$
 
-    /**
-     * The '<em><b>Word</b></em>' literal value.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #WORD_LITERAL
-     * @model name="Word"
-     * @generated
-     * @ordered
-     */
-    public static final int WORD = 1;
+	/**
+	 * The '<em><b>None</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #NONE_LITERAL
+	 * @model name="None"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int NONE = 0;
 
-    /**
-     * An array of all the '<em><b>Text Wrap Type</b></em>' enumerators.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    private static final TextWrapType[] VALUES_ARRAY = new TextWrapType[]
-    { NONE_LITERAL, WORD_LITERAL, };
+	/**
+	 * The '<em><b>Word</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #WORD_LITERAL
+	 * @model name="Word"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int WORD = 1;
 
-    /**
-     * A public read-only list of all the '<em><b>Text Wrap Type</b></em>' enumerators.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public static final List<TextWrapType> VALUES = Collections
-            .unmodifiableList( Arrays.asList( VALUES_ARRAY ) );
+	/**
+	 * An array of all the '<em><b>Text Wrap Type</b></em>' enumerators.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private static final TextWrapType[] VALUES_ARRAY = new TextWrapType[] { NONE_LITERAL, WORD_LITERAL, };
 
-    /**
-     * Returns the '<em><b>Text Wrap Type</b></em>' literal with the specified literal value.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public static TextWrapType get( String literal )
-    {
-        for( int i = 0; i < VALUES_ARRAY.length; ++i)
-        {
-            TextWrapType result = VALUES_ARRAY[i];
-            if( result.toString().equals( literal ) )
-            {
-                return result;
-            }
-        }
-        return null;
-    }
+	/**
+	 * A public read-only list of all the '<em><b>Text Wrap Type</b></em>' enumerators.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final List<TextWrapType> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
-    /**
-     * Returns the '<em><b>Text Wrap Type</b></em>' literal with the specified name.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public static TextWrapType getByName( String name )
-    {
-        for( int i = 0; i < VALUES_ARRAY.length; ++i)
-        {
-            TextWrapType result = VALUES_ARRAY[i];
-            if( result.getName().equals( name ) )
-            {
-                return result;
-            }
-        }
-        return null;
-    }
+	/**
+	 * Returns the '<em><b>Text Wrap Type</b></em>' literal with the specified literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
+	 * @generated
+	 */
+	public static TextWrapType get(String literal) {
+		for (TextWrapType result : VALUES_ARRAY) {
+			if (result.toString().equals(literal)) {
+				return result;
+			}
+		}
+		return null;
+	}
 
-    /**
-     * Returns the '<em><b>Text Wrap Type</b></em>' literal with the specified integer value.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public static TextWrapType get( int value )
-    {
-        switch( value )
-        {
-        case NONE:
-            return NONE_LITERAL;
-        case WORD:
-            return WORD_LITERAL;
-        }
-        return null;
-    }
+	/**
+	 * Returns the '<em><b>Text Wrap Type</b></em>' literal with the specified name.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
+	 * @generated
+	 */
+	public static TextWrapType getByName(String name) {
+		for (TextWrapType result : VALUES_ARRAY) {
+			if (result.getName().equals(name)) {
+				return result;
+			}
+		}
+		return null;
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    private final int value;
+	/**
+	 * Returns the '<em><b>Text Wrap Type</b></em>' literal with the specified integer value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
+	 * @generated
+	 */
+	public static TextWrapType get(int value) {
+		switch (value) {
+		case NONE:
+			return NONE_LITERAL;
+		case WORD:
+			return WORD_LITERAL;
+		}
+		return null;
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    private final String name;
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private final int value;
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    private final String literal;
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private final String name;
 
-    /**
-     * Only this class can construct instances.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    private TextWrapType( int value, String name, String literal )
-    {
-        this.value = value;
-        this.name = name;
-        this.literal = literal;
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private final String literal;
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public int getValue()
-    {
-        return value;
-    }
+	/**
+	 * Only this class can construct instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private TextWrapType(int value, String name, String literal) {
+		this.value = value;
+		this.name = name;
+		this.literal = literal;
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public String getName()
-    {
-        return name;
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int getValue() {
+		return value;
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public String getLiteral()
-    {
-        return literal;
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getName() {
+		return name;
+	}
 
-    /**
-     * Returns the literal value of the enumerator, which is its string representation.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public String toString()
-    {
-        return literal;
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getLiteral() {
+		return literal;
+	}
+
+	/**
+	 * Returns the literal value of the enumerator, which is its string representation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		return literal;
+	}
 }

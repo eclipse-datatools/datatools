@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -30,11 +30,11 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.datatypes.impl.DomainImpl#getConstraint <em>Constraint</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.datatypes.impl.DomainImpl#getDefaultValue <em>Default Value</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -83,6 +83,7 @@ public class DomainImpl extends DistinctUserDefinedTypeImpl implements Domain {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return SQLDataTypesPackage.Literals.DOMAIN;
 	}
@@ -92,6 +93,7 @@ public class DomainImpl extends DistinctUserDefinedTypeImpl implements Domain {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList getConstraint() {
 		if (constraint == null) {
 			constraint = new EObjectContainmentEList(CheckConstraint.class, this, SQLDataTypesPackage.DOMAIN__CONSTRAINT);
@@ -104,6 +106,7 @@ public class DomainImpl extends DistinctUserDefinedTypeImpl implements Domain {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getDefaultValue() {
 		return defaultValue;
 	}
@@ -113,11 +116,13 @@ public class DomainImpl extends DistinctUserDefinedTypeImpl implements Domain {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDefaultValue(String newDefaultValue) {
 		String oldDefaultValue = defaultValue;
 		defaultValue = newDefaultValue;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLDataTypesPackage.DOMAIN__DEFAULT_VALUE, oldDefaultValue, defaultValue));
+		}
 	}
 
 	/**
@@ -125,6 +130,7 @@ public class DomainImpl extends DistinctUserDefinedTypeImpl implements Domain {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case SQLDataTypesPackage.DOMAIN__CONSTRAINT:
@@ -138,6 +144,7 @@ public class DomainImpl extends DistinctUserDefinedTypeImpl implements Domain {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SQLDataTypesPackage.DOMAIN__CONSTRAINT:
@@ -153,6 +160,7 @@ public class DomainImpl extends DistinctUserDefinedTypeImpl implements Domain {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case SQLDataTypesPackage.DOMAIN__CONSTRAINT:
@@ -171,6 +179,7 @@ public class DomainImpl extends DistinctUserDefinedTypeImpl implements Domain {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case SQLDataTypesPackage.DOMAIN__CONSTRAINT:
@@ -188,6 +197,7 @@ public class DomainImpl extends DistinctUserDefinedTypeImpl implements Domain {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SQLDataTypesPackage.DOMAIN__CONSTRAINT:
@@ -203,8 +213,11 @@ public class DomainImpl extends DistinctUserDefinedTypeImpl implements Domain {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (defaultValue: "); //$NON-NLS-1$

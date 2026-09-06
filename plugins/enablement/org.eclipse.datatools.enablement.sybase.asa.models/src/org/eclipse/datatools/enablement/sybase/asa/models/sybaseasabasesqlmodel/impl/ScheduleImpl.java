@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl.ScheduleImpl#isRecurring <em>Recurring</em>}</li>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl.ScheduleImpl#getStartTime <em>Start Time</em>}</li>
@@ -37,11 +38,10 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  *   <li>{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl.ScheduleImpl#getIntervalMount <em>Interval Mount</em>}</li>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl.ScheduleImpl#getEvent <em>Event</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class ScheduleImpl extends SQLObjectImpl implements Schedule 
+public class ScheduleImpl extends SQLObjectImpl implements Schedule
 {
     /**
 	 * The default value of the '{@link #isRecurring() <em>Recurring</em>}' attribute.
@@ -218,6 +218,7 @@ public class ScheduleImpl extends SQLObjectImpl implements Schedule
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass()
     {
 		return SybaseasabasesqlmodelPackage.Literals.SCHEDULE;
@@ -228,6 +229,7 @@ public class ScheduleImpl extends SQLObjectImpl implements Schedule
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isRecurring()
     {
 		return recurring;
@@ -238,12 +240,14 @@ public class ScheduleImpl extends SQLObjectImpl implements Schedule
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRecurring(boolean newRecurring)
     {
 		boolean oldRecurring = recurring;
 		recurring = newRecurring;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SCHEDULE__RECURRING, oldRecurring, recurring));
+		}
 	}
 
     /**
@@ -251,6 +255,7 @@ public class ScheduleImpl extends SQLObjectImpl implements Schedule
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Date getStartTime()
     {
 		return startTime;
@@ -261,12 +266,14 @@ public class ScheduleImpl extends SQLObjectImpl implements Schedule
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setStartTime(Date newStartTime)
     {
 		Date oldStartTime = startTime;
 		startTime = newStartTime;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SCHEDULE__START_TIME, oldStartTime, startTime));
+		}
 	}
 
     /**
@@ -274,6 +281,7 @@ public class ScheduleImpl extends SQLObjectImpl implements Schedule
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Date getStopTime()
     {
 		return stopTime;
@@ -284,12 +292,14 @@ public class ScheduleImpl extends SQLObjectImpl implements Schedule
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setStopTime(Date newStopTime)
     {
 		Date oldStopTime = stopTime;
 		stopTime = newStopTime;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SCHEDULE__STOP_TIME, oldStopTime, stopTime));
+		}
 	}
 
     /**
@@ -297,6 +307,7 @@ public class ScheduleImpl extends SQLObjectImpl implements Schedule
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Date getStartDate()
     {
 		return startDate;
@@ -307,12 +318,14 @@ public class ScheduleImpl extends SQLObjectImpl implements Schedule
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setStartDate(Date newStartDate)
     {
 		Date oldStartDate = startDate;
 		startDate = newStartDate;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SCHEDULE__START_DATE, oldStartDate, startDate));
+		}
 	}
 
     /**
@@ -320,6 +333,7 @@ public class ScheduleImpl extends SQLObjectImpl implements Schedule
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getDaysOfWeek()
     {
 		return daysOfWeek;
@@ -330,12 +344,14 @@ public class ScheduleImpl extends SQLObjectImpl implements Schedule
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDaysOfWeek(int newDaysOfWeek)
     {
 		int oldDaysOfWeek = daysOfWeek;
 		daysOfWeek = newDaysOfWeek;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SCHEDULE__DAYS_OF_WEEK, oldDaysOfWeek, daysOfWeek));
+		}
 	}
 
     /**
@@ -343,6 +359,7 @@ public class ScheduleImpl extends SQLObjectImpl implements Schedule
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getDaysOfMonth()
     {
 		return daysOfMonth;
@@ -353,12 +370,14 @@ public class ScheduleImpl extends SQLObjectImpl implements Schedule
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDaysOfMonth(int newDaysOfMonth)
     {
 		int oldDaysOfMonth = daysOfMonth;
 		daysOfMonth = newDaysOfMonth;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SCHEDULE__DAYS_OF_MONTH, oldDaysOfMonth, daysOfMonth));
+		}
 	}
 
     /**
@@ -366,6 +385,7 @@ public class ScheduleImpl extends SQLObjectImpl implements Schedule
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IntervalUnitType getIntervalUnit()
     {
 		return intervalUnit;
@@ -376,12 +396,14 @@ public class ScheduleImpl extends SQLObjectImpl implements Schedule
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIntervalUnit(IntervalUnitType newIntervalUnit)
     {
 		IntervalUnitType oldIntervalUnit = intervalUnit;
 		intervalUnit = newIntervalUnit == null ? INTERVAL_UNIT_EDEFAULT : newIntervalUnit;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SCHEDULE__INTERVAL_UNIT, oldIntervalUnit, intervalUnit));
+		}
 	}
 
     /**
@@ -389,6 +411,7 @@ public class ScheduleImpl extends SQLObjectImpl implements Schedule
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getIntervalMount()
     {
 		return intervalMount;
@@ -399,12 +422,14 @@ public class ScheduleImpl extends SQLObjectImpl implements Schedule
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIntervalMount(int newIntervalMount)
     {
 		int oldIntervalMount = intervalMount;
 		intervalMount = newIntervalMount;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SCHEDULE__INTERVAL_MOUNT, oldIntervalMount, intervalMount));
+		}
 	}
 
     /**
@@ -412,10 +437,13 @@ public class ScheduleImpl extends SQLObjectImpl implements Schedule
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SybaseASABaseEvent getEvent()
     {
-		if (eContainerFeatureID != SybaseasabasesqlmodelPackage.SCHEDULE__EVENT) return null;
-		return (SybaseASABaseEvent)eContainer();
+		if (eContainerFeatureID() != SybaseasabasesqlmodelPackage.SCHEDULE__EVENT) {
+			return null;
+		}
+		return (SybaseASABaseEvent)eInternalContainer();
 	}
 
     /**
@@ -434,21 +462,28 @@ public class ScheduleImpl extends SQLObjectImpl implements Schedule
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setEvent(SybaseASABaseEvent newEvent)
     {
-		if (newEvent != eInternalContainer() || (eContainerFeatureID != SybaseasabasesqlmodelPackage.SCHEDULE__EVENT && newEvent != null)) {
-			if (EcoreUtil.isAncestor(this, newEvent))
+		if (newEvent != eInternalContainer() || (eContainerFeatureID() != SybaseasabasesqlmodelPackage.SCHEDULE__EVENT && newEvent != null)) {
+			if (EcoreUtil.isAncestor(this, newEvent)) {
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			}
 			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
+			if (eInternalContainer() != null) {
 				msgs = eBasicRemoveFromContainer(msgs);
-			if (newEvent != null)
+			}
+			if (newEvent != null) {
 				msgs = ((InternalEObject)newEvent).eInverseAdd(this, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_EVENT__SCHEDULES, SybaseASABaseEvent.class, msgs);
+			}
 			msgs = basicSetEvent(newEvent, msgs);
-			if (msgs != null) msgs.dispatch();
+			if (msgs != null) {
+				msgs.dispatch();
+			}
 		}
-		else if (eNotificationRequired())
+		else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SCHEDULE__EVENT, newEvent, newEvent));
+		}
 	}
 
     /**
@@ -456,12 +491,14 @@ public class ScheduleImpl extends SQLObjectImpl implements Schedule
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
     {
 		switch (featureID) {
 			case SybaseasabasesqlmodelPackage.SCHEDULE__EVENT:
-				if (eInternalContainer() != null)
+				if (eInternalContainer() != null) {
 					msgs = eBasicRemoveFromContainer(msgs);
+				}
 				return basicSetEvent((SybaseASABaseEvent)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -472,6 +509,7 @@ public class ScheduleImpl extends SQLObjectImpl implements Schedule
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
     {
 		switch (featureID) {
@@ -486,9 +524,10 @@ public class ScheduleImpl extends SQLObjectImpl implements Schedule
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs)
+    @Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs)
     {
-		switch (eContainerFeatureID) {
+		switch (eContainerFeatureID()) {
 			case SybaseasabasesqlmodelPackage.SCHEDULE__EVENT:
 				return eInternalContainer().eInverseRemove(this, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_EVENT__SCHEDULES, SybaseASABaseEvent.class, msgs);
 		}
@@ -500,6 +539,7 @@ public class ScheduleImpl extends SQLObjectImpl implements Schedule
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
     {
 		switch (featureID) {
@@ -512,13 +552,13 @@ public class ScheduleImpl extends SQLObjectImpl implements Schedule
 			case SybaseasabasesqlmodelPackage.SCHEDULE__START_DATE:
 				return getStartDate();
 			case SybaseasabasesqlmodelPackage.SCHEDULE__DAYS_OF_WEEK:
-				return Integer.valueOf(getDaysOfWeek());
+				return new Integer(getDaysOfWeek());
 			case SybaseasabasesqlmodelPackage.SCHEDULE__DAYS_OF_MONTH:
-				return Integer.valueOf(getDaysOfMonth());
+				return new Integer(getDaysOfMonth());
 			case SybaseasabasesqlmodelPackage.SCHEDULE__INTERVAL_UNIT:
 				return getIntervalUnit();
 			case SybaseasabasesqlmodelPackage.SCHEDULE__INTERVAL_MOUNT:
-				return Integer.valueOf(getIntervalMount());
+				return new Integer(getIntervalMount());
 			case SybaseasabasesqlmodelPackage.SCHEDULE__EVENT:
 				return getEvent();
 		}
@@ -530,6 +570,7 @@ public class ScheduleImpl extends SQLObjectImpl implements Schedule
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue)
     {
 		switch (featureID) {
@@ -569,6 +610,7 @@ public class ScheduleImpl extends SQLObjectImpl implements Schedule
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID)
     {
 		switch (featureID) {
@@ -608,6 +650,7 @@ public class ScheduleImpl extends SQLObjectImpl implements Schedule
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID)
     {
 		switch (featureID) {
@@ -638,9 +681,12 @@ public class ScheduleImpl extends SQLObjectImpl implements Schedule
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString()
     {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (recurring: ");
@@ -663,7 +709,8 @@ public class ScheduleImpl extends SQLObjectImpl implements Schedule
 		return result.toString();
 	}
 
-    public boolean equals(Object obj)
+    @Override
+	public boolean equals(Object obj)
     {
         if (!(obj instanceof ScheduleImpl))
         {

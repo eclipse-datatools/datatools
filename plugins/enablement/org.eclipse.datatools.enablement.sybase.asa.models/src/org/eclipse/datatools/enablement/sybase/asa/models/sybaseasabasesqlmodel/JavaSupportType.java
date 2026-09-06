@@ -61,7 +61,7 @@ public final class JavaSupportType extends AbstractEnumerator {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #JDK13_LITERAL
-	 * @model literal="JDK '1.3'"
+	 * @model literal="JDK \'1.3\'"
 	 * @generated
 	 * @ordered
 	 */
@@ -76,7 +76,7 @@ public final class JavaSupportType extends AbstractEnumerator {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #JDK118_LITERAL
-	 * @model literal="JDK '1.1.8'"
+	 * @model literal="JDK \'1.1.8\'"
 	 * @generated
 	 * @ordered
 	 */
@@ -110,7 +110,7 @@ public final class JavaSupportType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final JavaSupportType JDK13_LITERAL = new JavaSupportType(JDK13, "JDK13", "JDK '1.3'");
+	public static final JavaSupportType JDK13_LITERAL = new JavaSupportType(JDK13, "JDK13", "JDK \'1.3\'");
 
     /**
 	 * The '<em><b>JDK118</b></em>' literal object.
@@ -120,7 +120,7 @@ public final class JavaSupportType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final JavaSupportType JDK118_LITERAL = new JavaSupportType(JDK118, "JDK118", "JDK '1.1.8'");
+	public static final JavaSupportType JDK118_LITERAL = new JavaSupportType(JDK118, "JDK118", "JDK \'1.1.8\'");
 
     /**
 	 * An array of all the '<em><b>Java Support Type</b></em>' enumerators.
@@ -148,12 +148,13 @@ public final class JavaSupportType extends AbstractEnumerator {
 	 * Returns the '<em><b>Java Support Type</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static JavaSupportType get(String literal)
     {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			JavaSupportType result = VALUES_ARRAY[i];
+		for (JavaSupportType result : VALUES_ARRAY) {
 			if (result.toString().equals(literal)) {
 				return result;
 			}
@@ -165,12 +166,13 @@ public final class JavaSupportType extends AbstractEnumerator {
 	 * Returns the '<em><b>Java Support Type</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static JavaSupportType getByName(String name)
     {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			JavaSupportType result = VALUES_ARRAY[i];
+		for (JavaSupportType result : VALUES_ARRAY) {
 			if (result.getName().equals(name)) {
 				return result;
 			}
@@ -182,6 +184,8 @@ public final class JavaSupportType extends AbstractEnumerator {
 	 * Returns the '<em><b>Java Support Type</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static JavaSupportType get(int value)

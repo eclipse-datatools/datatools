@@ -16,12 +16,12 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.SQLSyntaxDefinition#getKeywords <em>Keywords</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.SQLSyntaxDefinition#getOperators <em>Operators</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.SQLSyntaxDefinition#getTerminationCharacter <em>Termination Character</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getSQLSyntaxDefinition()
  * @model

@@ -125,11 +125,12 @@ public final class ParameterMode extends AbstractEnumerator {
 	 * Returns the '<em><b>Parameter Mode</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static ParameterMode get(String literal) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			ParameterMode result = VALUES_ARRAY[i];
+		for (ParameterMode result : VALUES_ARRAY) {
 			if (result.toString().equals(literal)) {
 				return result;
 			}
@@ -141,11 +142,12 @@ public final class ParameterMode extends AbstractEnumerator {
 	 * Returns the '<em><b>Parameter Mode</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static ParameterMode getByName(String name) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			ParameterMode result = VALUES_ARRAY[i];
+		for (ParameterMode result : VALUES_ARRAY) {
 			if (result.getName().equals(name)) {
 				return result;
 			}
@@ -157,6 +159,8 @@ public final class ParameterMode extends AbstractEnumerator {
 	 * Returns the '<em><b>Parameter Mode</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static ParameterMode get(int value) {

@@ -29,260 +29,274 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.impl.SybaseASESegmentImpl#getCatalog <em>Catalog</em>}</li>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.impl.SybaseASESegmentImpl#getDeviceNames <em>Device Names</em>}</li>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.impl.SybaseASESegmentImpl#getThresholds <em>Thresholds</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class SybaseASESegmentImpl extends SQLObjectImpl implements SybaseASESegment 
+public class SybaseASESegmentImpl extends SQLObjectImpl implements SybaseASESegment
 {
 	/**
-     * The cached value of the '{@link #getDeviceNames() <em>Device Names</em>}' attribute list.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getDeviceNames() <em>Device Names</em>}' attribute list.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getDeviceNames()
-     * @generated
-     * @ordered
-     */
+	 * @see #getDeviceNames()
+	 * @generated
+	 * @ordered
+	 */
 	protected EList deviceNames;
 
 	/**
-     * The cached value of the '{@link #getThresholds() <em>Thresholds</em>}' reference list.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getThresholds() <em>Thresholds</em>}' reference list.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getThresholds()
-     * @generated
-     * @ordered
-     */
+	 * @see #getThresholds()
+	 * @generated
+	 * @ordered
+	 */
 	protected EList thresholds;
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected SybaseASESegmentImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	protected EClass eStaticClass() {
-        return SybaseasesqlmodelPackage.Literals.SYBASE_ASE_SEGMENT;
-    }
+		return SybaseasesqlmodelPackage.Literals.SYBASE_ASE_SEGMENT;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public SybaseASECatalog getCatalog() {
-        if (eContainerFeatureID != SybaseasesqlmodelPackage.SYBASE_ASE_SEGMENT__CATALOG) return null;
-        return (SybaseASECatalog)eContainer();
-    }
+		if (eContainerFeatureID() != SybaseasesqlmodelPackage.SYBASE_ASE_SEGMENT__CATALOG) {
+			return null;
+		}
+		return (SybaseASECatalog)eInternalContainer();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public NotificationChain basicSetCatalog(SybaseASECatalog newCatalog, NotificationChain msgs) {
-        msgs = eBasicSetContainer((InternalEObject)newCatalog, SybaseasesqlmodelPackage.SYBASE_ASE_SEGMENT__CATALOG, msgs);
-        return msgs;
-    }
+		msgs = eBasicSetContainer((InternalEObject)newCatalog, SybaseasesqlmodelPackage.SYBASE_ASE_SEGMENT__CATALOG, msgs);
+		return msgs;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public void setCatalog(SybaseASECatalog newCatalog) {
-        if (newCatalog != eInternalContainer() || (eContainerFeatureID != SybaseasesqlmodelPackage.SYBASE_ASE_SEGMENT__CATALOG && newCatalog != null))
-        {
-            if (EcoreUtil.isAncestor(this, newCatalog))
-                throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
-            NotificationChain msgs = null;
-            if (eInternalContainer() != null)
-                msgs = eBasicRemoveFromContainer(msgs);
-            if (newCatalog != null)
-                msgs = ((InternalEObject)newCatalog).eInverseAdd(this, SybaseasesqlmodelPackage.SYBASE_ASE_CATALOG__SEGMENTS, SybaseASECatalog.class, msgs);
-            msgs = basicSetCatalog(newCatalog, msgs);
-            if (msgs != null) msgs.dispatch();
-        }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SybaseasesqlmodelPackage.SYBASE_ASE_SEGMENT__CATALOG, newCatalog, newCatalog));
-    }
+		if (newCatalog != eInternalContainer() || (eContainerFeatureID() != SybaseasesqlmodelPackage.SYBASE_ASE_SEGMENT__CATALOG && newCatalog != null)) {
+			if (EcoreUtil.isAncestor(this, newCatalog)) {
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
+			}
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null) {
+				msgs = eBasicRemoveFromContainer(msgs);
+			}
+			if (newCatalog != null) {
+				msgs = ((InternalEObject)newCatalog).eInverseAdd(this, SybaseasesqlmodelPackage.SYBASE_ASE_CATALOG__SEGMENTS, SybaseASECatalog.class, msgs);
+			}
+			msgs = basicSetCatalog(newCatalog, msgs);
+			if (msgs != null) {
+				msgs.dispatch();
+			}
+		}
+		else if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasesqlmodelPackage.SYBASE_ASE_SEGMENT__CATALOG, newCatalog, newCatalog));
+		}
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public EList getDeviceNames() {
-        if (deviceNames == null)
-        {
-            deviceNames = new EDataTypeUniqueEList(String.class, this, SybaseasesqlmodelPackage.SYBASE_ASE_SEGMENT__DEVICE_NAMES);
-        }
-        return deviceNames;
-    }
+		if (deviceNames == null) {
+			deviceNames = new EDataTypeUniqueEList(String.class, this, SybaseasesqlmodelPackage.SYBASE_ASE_SEGMENT__DEVICE_NAMES);
+		}
+		return deviceNames;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public EList getThresholds() {
-        if (thresholds == null)
-        {
-            thresholds = new EObjectResolvingEList(SegmentThreshold.class, this, SybaseasesqlmodelPackage.SYBASE_ASE_SEGMENT__THRESHOLDS);
-        }
-        return thresholds;
-    }
+		if (thresholds == null) {
+			thresholds = new EObjectResolvingEList(SegmentThreshold.class, this, SybaseasesqlmodelPackage.SYBASE_ASE_SEGMENT__THRESHOLDS);
+		}
+		return thresholds;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID)
-        {
-            case SybaseasesqlmodelPackage.SYBASE_ASE_SEGMENT__CATALOG:
-                if (eInternalContainer() != null)
-                    msgs = eBasicRemoveFromContainer(msgs);
-                return basicSetCatalog((SybaseASECatalog)otherEnd, msgs);
-        }
-        return super.eInverseAdd(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case SybaseasesqlmodelPackage.SYBASE_ASE_SEGMENT__CATALOG:
+				if (eInternalContainer() != null) {
+					msgs = eBasicRemoveFromContainer(msgs);
+				}
+				return basicSetCatalog((SybaseASECatalog)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID)
-        {
-            case SybaseasesqlmodelPackage.SYBASE_ASE_SEGMENT__CATALOG:
-                return basicSetCatalog(null, msgs);
-        }
-        return super.eInverseRemove(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case SybaseasesqlmodelPackage.SYBASE_ASE_SEGMENT__CATALOG:
+				return basicSetCatalog(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-        switch (eContainerFeatureID)
-        {
-            case SybaseasesqlmodelPackage.SYBASE_ASE_SEGMENT__CATALOG:
-                return eInternalContainer().eInverseRemove(this, SybaseasesqlmodelPackage.SYBASE_ASE_CATALOG__SEGMENTS, SybaseASECatalog.class, msgs);
-        }
-        return super.eBasicRemoveFromContainerFeature(msgs);
-    }
+	 * @generated
+	 */
+    @Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID()) {
+			case SybaseasesqlmodelPackage.SYBASE_ASE_SEGMENT__CATALOG:
+				return eInternalContainer().eInverseRemove(this, SybaseasesqlmodelPackage.SYBASE_ASE_CATALOG__SEGMENTS, SybaseASECatalog.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID)
-        {
-            case SybaseasesqlmodelPackage.SYBASE_ASE_SEGMENT__CATALOG:
-                return getCatalog();
-            case SybaseasesqlmodelPackage.SYBASE_ASE_SEGMENT__DEVICE_NAMES:
-                return getDeviceNames();
-            case SybaseasesqlmodelPackage.SYBASE_ASE_SEGMENT__THRESHOLDS:
-                return getThresholds();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case SybaseasesqlmodelPackage.SYBASE_ASE_SEGMENT__CATALOG:
+				return getCatalog();
+			case SybaseasesqlmodelPackage.SYBASE_ASE_SEGMENT__DEVICE_NAMES:
+				return getDeviceNames();
+			case SybaseasesqlmodelPackage.SYBASE_ASE_SEGMENT__THRESHOLDS:
+				return getThresholds();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
-        switch (featureID)
-        {
-            case SybaseasesqlmodelPackage.SYBASE_ASE_SEGMENT__CATALOG:
-                setCatalog((SybaseASECatalog)newValue);
-                return;
-            case SybaseasesqlmodelPackage.SYBASE_ASE_SEGMENT__DEVICE_NAMES:
-                getDeviceNames().clear();
-                getDeviceNames().addAll((Collection)newValue);
-                return;
-            case SybaseasesqlmodelPackage.SYBASE_ASE_SEGMENT__THRESHOLDS:
-                getThresholds().clear();
-                getThresholds().addAll((Collection)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case SybaseasesqlmodelPackage.SYBASE_ASE_SEGMENT__CATALOG:
+				setCatalog((SybaseASECatalog)newValue);
+				return;
+			case SybaseasesqlmodelPackage.SYBASE_ASE_SEGMENT__DEVICE_NAMES:
+				getDeviceNames().clear();
+				getDeviceNames().addAll((Collection)newValue);
+				return;
+			case SybaseasesqlmodelPackage.SYBASE_ASE_SEGMENT__THRESHOLDS:
+				getThresholds().clear();
+				getThresholds().addAll((Collection)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public void eUnset(int featureID) {
-        switch (featureID)
-        {
-            case SybaseasesqlmodelPackage.SYBASE_ASE_SEGMENT__CATALOG:
-                setCatalog((SybaseASECatalog)null);
-                return;
-            case SybaseasesqlmodelPackage.SYBASE_ASE_SEGMENT__DEVICE_NAMES:
-                getDeviceNames().clear();
-                return;
-            case SybaseasesqlmodelPackage.SYBASE_ASE_SEGMENT__THRESHOLDS:
-                getThresholds().clear();
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case SybaseasesqlmodelPackage.SYBASE_ASE_SEGMENT__CATALOG:
+				setCatalog((SybaseASECatalog)null);
+				return;
+			case SybaseasesqlmodelPackage.SYBASE_ASE_SEGMENT__DEVICE_NAMES:
+				getDeviceNames().clear();
+				return;
+			case SybaseasesqlmodelPackage.SYBASE_ASE_SEGMENT__THRESHOLDS:
+				getThresholds().clear();
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public boolean eIsSet(int featureID) {
-        switch (featureID)
-        {
-            case SybaseasesqlmodelPackage.SYBASE_ASE_SEGMENT__CATALOG:
-                return getCatalog() != null;
-            case SybaseasesqlmodelPackage.SYBASE_ASE_SEGMENT__DEVICE_NAMES:
-                return deviceNames != null && !deviceNames.isEmpty();
-            case SybaseasesqlmodelPackage.SYBASE_ASE_SEGMENT__THRESHOLDS:
-                return thresholds != null && !thresholds.isEmpty();
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case SybaseasesqlmodelPackage.SYBASE_ASE_SEGMENT__CATALOG:
+				return getCatalog() != null;
+			case SybaseasesqlmodelPackage.SYBASE_ASE_SEGMENT__DEVICE_NAMES:
+				return deviceNames != null && !deviceNames.isEmpty();
+			case SybaseasesqlmodelPackage.SYBASE_ASE_SEGMENT__THRESHOLDS:
+				return thresholds != null && !thresholds.isEmpty();
+		}
+		return super.eIsSet(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public String toString() {
-        if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (deviceNames: "); //$NON-NLS-1$
-        result.append(deviceNames);
-        result.append(')');
-        return result.toString();
-    }
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (deviceNames: "); //$NON-NLS-1$
+		result.append(deviceNames);
+		result.append(')');
+		return result.toString();
+	}
 
 } //SybaseASESegmentImpl

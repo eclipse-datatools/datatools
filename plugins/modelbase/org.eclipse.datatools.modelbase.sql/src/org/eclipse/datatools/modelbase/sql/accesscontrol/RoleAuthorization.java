@@ -23,13 +23,13 @@ import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.accesscontrol.RoleAuthorization#isGrantable <em>Grantable</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.accesscontrol.RoleAuthorization#getRole <em>Role</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.accesscontrol.RoleAuthorization#getGrantee <em>Grantee</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.accesscontrol.RoleAuthorization#getGrantor <em>Grantor</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.datatools.modelbase.sql.accesscontrol.SQLAccessControlPackage#getRoleAuthorization()
  * @model

@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -19,17 +19,17 @@ import org.eclipse.emf.common.util.EList;
  *
  * <!-- begin-model-doc -->
  * Reference: 5WD-02-Foundation-2002-12 4.27 SQL-invoked routines, 5WD-02-Foundation-2002-12 11.50 <SQL-invoked routine>
- * 
+ *
  * <!-- end-model-doc -->
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.routines.Procedure#getMaxResultSets <em>Max Result Sets</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.routines.Procedure#isOldSavePoint <em>Old Save Point</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.routines.Procedure#getResultSet <em>Result Set</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.datatools.modelbase.sql.routines.SQLRoutinesPackage#getProcedure()
  * @model
@@ -42,7 +42,7 @@ public interface Procedure extends Routine {
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * Maximun number of result sets the procedure can return.  If the stored procedure returns more result sets than is specified by this value, then a database error will be generated.
-	 * 
+	 *
 	 * From 5WD-02-Foundation-2002-12
 	 * 11.50 <SQL-invoked routine>
 	 * <dynamic result sets characteristic> ::= DYNAMIC RESULT SETS <maximum dynamic result sets>
@@ -73,7 +73,7 @@ public interface Procedure extends Routine {
 	 * From 5WD-02-Foundation-2002-12
 	 * 4.27 SQL-invoked routines
 	 * An SQL-invoked procedure may optionally be specified to require a new savepoint level to be established when it is invoked and destroyed on return from the executed routine body. The alternative of not taking a savepoint can also be directly specified with OLD SAVEPOINT LEVEL . When an SQL-invoked function is invoked a new savepoint level is always established.
-	 * 
+	 *
 	 * 11.50 <SQL-invoked routine>
 	 * <savepoint level indication> ::= NEW SAVEPOINT LEVEL | OLD SAVEPOINT LEVEL
 	 * <!-- end-model-doc -->

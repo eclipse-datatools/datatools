@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -34,7 +34,7 @@ public class SQLStatementsFactoryImpl extends EFactoryImpl implements SQLStateme
 	 */
 	public static SQLStatementsFactory init() {
 		try {
-			SQLStatementsFactory theSQLStatementsFactory = (SQLStatementsFactory)EPackage.Registry.INSTANCE.getEFactory("http:///org/eclipse/datatools/modelbase/sql/statements.ecore"); //$NON-NLS-1$ 
+			SQLStatementsFactory theSQLStatementsFactory = (SQLStatementsFactory)EPackage.Registry.INSTANCE.getEFactory(SQLStatementsPackage.eNS_URI);
 			if (theSQLStatementsFactory != null) {
 				return theSQLStatementsFactory;
 			}
@@ -60,6 +60,7 @@ public class SQLStatementsFactoryImpl extends EFactoryImpl implements SQLStateme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case SQLStatementsPackage.SQL_STATEMENT_DEFAULT: return createSQLStatementDefault();
@@ -73,6 +74,7 @@ public class SQLStatementsFactoryImpl extends EFactoryImpl implements SQLStateme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SQLStatementDefault createSQLStatementDefault() {
 		SQLStatementDefaultImpl sqlStatementDefault = new SQLStatementDefaultImpl();
 		return sqlStatementDefault;
@@ -83,6 +85,7 @@ public class SQLStatementsFactoryImpl extends EFactoryImpl implements SQLStateme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SQLStatementsPackage getSQLStatementsPackage() {
 		return (SQLStatementsPackage)getEPackage();
 	}
@@ -93,6 +96,7 @@ public class SQLStatementsFactoryImpl extends EFactoryImpl implements SQLStateme
 	 * @deprecated
 	 * @generated
 	 */
+	@Deprecated
 	public static SQLStatementsPackage getPackage() {
 		return SQLStatementsPackage.eINSTANCE;
 	}

@@ -25,17 +25,17 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl.SybaseASABaseParameterImpl#isNullable <em>Nullable</em>}</li>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl.SybaseASABaseParameterImpl#getDefaultValue <em>Default Value</em>}</li>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl.SybaseASABaseParameterImpl#getJDBCParameterType <em>JDBC Parameter Type</em>}</li>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl.SybaseASABaseParameterImpl#getParmType <em>Parm Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class SybaseASABaseParameterImpl extends ParameterImpl implements SybaseASABaseParameter 
+public class SybaseASABaseParameterImpl extends ParameterImpl implements SybaseASABaseParameter
 {
     /**
 	 * The default value of the '{@link #isNullable() <em>Nullable</em>}' attribute.
@@ -132,6 +132,7 @@ public class SybaseASABaseParameterImpl extends ParameterImpl implements SybaseA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass()
     {
 		return SybaseasabasesqlmodelPackage.Literals.SYBASE_ASA_BASE_PARAMETER;
@@ -142,7 +143,8 @@ public class SybaseASABaseParameterImpl extends ParameterImpl implements SybaseA
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public boolean isNullable()
+    @Override
+	public boolean isNullable()
     {
 		return nullable;
 	}
@@ -152,12 +154,14 @@ public class SybaseASABaseParameterImpl extends ParameterImpl implements SybaseA
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public void setNullable(boolean newNullable)
+    @Override
+	public void setNullable(boolean newNullable)
     {
 		boolean oldNullable = nullable;
 		nullable = newNullable;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_PARAMETER__NULLABLE, oldNullable, nullable));
+		}
 	}
 
     /**
@@ -165,7 +169,8 @@ public class SybaseASABaseParameterImpl extends ParameterImpl implements SybaseA
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public String getDefaultValue()
+    @Override
+	public String getDefaultValue()
     {
 		return defaultValue;
 	}
@@ -175,26 +180,29 @@ public class SybaseASABaseParameterImpl extends ParameterImpl implements SybaseA
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public void setDefaultValue(String newDefaultValue)
+    @Override
+	public void setDefaultValue(String newDefaultValue)
     {
 		String oldDefaultValue = defaultValue;
 		defaultValue = newDefaultValue;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_PARAMETER__DEFAULT_VALUE, oldDefaultValue, defaultValue));
+		}
 	}
 
     /**
      * <!-- begin-user-doc -->
-     * For ASA Parameter, the JDBCParameterType is mapped from ParameterType 
+     * For ASA Parameter, the JDBCParameterType is mapped from ParameterType
      * <!-- end-user-doc -->
      */
-    public JDBCParameterType getJDBCParameterType()
+    @Override
+	public JDBCParameterType getJDBCParameterType()
     {
         if (eIsSet(SybasesqlmodelPackage.SYBASE_PARAMETER__JDBC_PARAMETER_TYPE))
         {
-            return jdbcParameterType; 
+            return jdbcParameterType;
         }
-            
+
         switch (parmType.getValue())
         {
             case ParameterType.RESULT:
@@ -223,12 +231,14 @@ public class SybaseASABaseParameterImpl extends ParameterImpl implements SybaseA
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public void setJDBCParameterType(JDBCParameterType newJDBCParameterType)
+    @Override
+	public void setJDBCParameterType(JDBCParameterType newJDBCParameterType)
     {
 		JDBCParameterType oldJDBCParameterType = jdbcParameterType;
 		jdbcParameterType = newJDBCParameterType == null ? JDBC_PARAMETER_TYPE_EDEFAULT : newJDBCParameterType;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_PARAMETER__JDBC_PARAMETER_TYPE, oldJDBCParameterType, jdbcParameterType));
+		}
 	}
 
     /**
@@ -236,6 +246,7 @@ public class SybaseASABaseParameterImpl extends ParameterImpl implements SybaseA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ParameterType getParmType()
     {
 		return parmType;
@@ -246,12 +257,14 @@ public class SybaseASABaseParameterImpl extends ParameterImpl implements SybaseA
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public void setParmType(ParameterType newParmType)
+    @Override
+	public void setParmType(ParameterType newParmType)
     {
 		ParameterType oldParmType = parmType;
 		parmType = newParmType == null ? PARM_TYPE_EDEFAULT : newParmType;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_PARAMETER__PARM_TYPE, oldParmType, parmType));
+		}
 	}
 
     /**
@@ -259,6 +272,7 @@ public class SybaseASABaseParameterImpl extends ParameterImpl implements SybaseA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
     {
 		switch (featureID) {
@@ -279,6 +293,7 @@ public class SybaseASABaseParameterImpl extends ParameterImpl implements SybaseA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue)
     {
 		switch (featureID) {
@@ -303,6 +318,7 @@ public class SybaseASABaseParameterImpl extends ParameterImpl implements SybaseA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID)
     {
 		switch (featureID) {
@@ -327,6 +343,7 @@ public class SybaseASABaseParameterImpl extends ParameterImpl implements SybaseA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID)
     {
 		switch (featureID) {
@@ -347,7 +364,8 @@ public class SybaseASABaseParameterImpl extends ParameterImpl implements SybaseA
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public int eBaseStructuralFeatureID(int derivedFeatureID, Class baseClass)
+    @Override
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class baseClass)
     {
 		if (baseClass == SybaseParameter.class) {
 			switch (derivedFeatureID) {
@@ -365,7 +383,8 @@ public class SybaseASABaseParameterImpl extends ParameterImpl implements SybaseA
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public int eDerivedStructuralFeatureID(int baseFeatureID, Class baseClass)
+    @Override
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class baseClass)
     {
 		if (baseClass == SybaseParameter.class) {
 			switch (baseFeatureID) {
@@ -383,9 +402,12 @@ public class SybaseASABaseParameterImpl extends ParameterImpl implements SybaseA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString()
     {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (nullable: ");

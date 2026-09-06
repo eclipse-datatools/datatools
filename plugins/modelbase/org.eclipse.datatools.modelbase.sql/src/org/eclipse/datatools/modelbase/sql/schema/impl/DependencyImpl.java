@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -24,11 +24,11 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.schema.impl.DependencyImpl#getTargetEnd <em>Target End</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.schema.impl.DependencyImpl#getDependencyType <em>Dependency Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -77,6 +77,7 @@ public class DependencyImpl extends SQLObjectImpl implements Dependency {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return SQLSchemaPackage.Literals.DEPENDENCY;
 	}
@@ -86,13 +87,15 @@ public class DependencyImpl extends SQLObjectImpl implements Dependency {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EObject getTargetEnd() {
 		if (targetEnd != null && targetEnd.eIsProxy()) {
 			InternalEObject oldTargetEnd = (InternalEObject)targetEnd;
 			targetEnd = eResolveProxy(oldTargetEnd);
 			if (targetEnd != oldTargetEnd) {
-				if (eNotificationRequired())
+				if (eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SQLSchemaPackage.DEPENDENCY__TARGET_END, oldTargetEnd, targetEnd));
+				}
 			}
 		}
 		return targetEnd;
@@ -112,11 +115,13 @@ public class DependencyImpl extends SQLObjectImpl implements Dependency {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTargetEnd(EObject newTargetEnd) {
 		EObject oldTargetEnd = targetEnd;
 		targetEnd = newTargetEnd;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLSchemaPackage.DEPENDENCY__TARGET_END, oldTargetEnd, targetEnd));
+		}
 	}
 
 	/**
@@ -124,6 +129,7 @@ public class DependencyImpl extends SQLObjectImpl implements Dependency {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getDependencyType() {
 		return dependencyType;
 	}
@@ -133,11 +139,13 @@ public class DependencyImpl extends SQLObjectImpl implements Dependency {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDependencyType(String newDependencyType) {
 		String oldDependencyType = dependencyType;
 		dependencyType = newDependencyType;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLSchemaPackage.DEPENDENCY__DEPENDENCY_TYPE, oldDependencyType, dependencyType));
+		}
 	}
 
 	/**
@@ -145,10 +153,13 @@ public class DependencyImpl extends SQLObjectImpl implements Dependency {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SQLSchemaPackage.DEPENDENCY__TARGET_END:
-				if (resolve) return getTargetEnd();
+				if (resolve) {
+					return getTargetEnd();
+				}
 				return basicGetTargetEnd();
 			case SQLSchemaPackage.DEPENDENCY__DEPENDENCY_TYPE:
 				return getDependencyType();
@@ -161,6 +172,7 @@ public class DependencyImpl extends SQLObjectImpl implements Dependency {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case SQLSchemaPackage.DEPENDENCY__TARGET_END:
@@ -178,6 +190,7 @@ public class DependencyImpl extends SQLObjectImpl implements Dependency {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case SQLSchemaPackage.DEPENDENCY__TARGET_END:
@@ -195,6 +208,7 @@ public class DependencyImpl extends SQLObjectImpl implements Dependency {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SQLSchemaPackage.DEPENDENCY__TARGET_END:
@@ -210,8 +224,11 @@ public class DependencyImpl extends SQLObjectImpl implements Dependency {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (dependencyType: "); //$NON-NLS-1$

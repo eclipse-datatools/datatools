@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.ConstructedDataTypeDefinitionImpl#isArrayDatatypeSupported <em>Array Datatype Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.ConstructedDataTypeDefinitionImpl#isMultisetDatatypeSupported <em>Multiset Datatype Supported</em>}</li>
@@ -26,7 +27,6 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.ConstructedDataTypeDefinitionImpl#isReferenceDatatypeSupported <em>Reference Datatype Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.ConstructedDataTypeDefinitionImpl#isCursorDatatypeSupported <em>Cursor Datatype Supported</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -145,6 +145,7 @@ public class ConstructedDataTypeDefinitionImpl extends EObjectImpl implements Co
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return DatabaseDefinitionPackage.Literals.CONSTRUCTED_DATA_TYPE_DEFINITION;
 	}
@@ -154,6 +155,7 @@ public class ConstructedDataTypeDefinitionImpl extends EObjectImpl implements Co
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isArrayDatatypeSupported() {
 		return arrayDatatypeSupported;
 	}
@@ -163,11 +165,13 @@ public class ConstructedDataTypeDefinitionImpl extends EObjectImpl implements Co
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setArrayDatatypeSupported(boolean newArrayDatatypeSupported) {
 		boolean oldArrayDatatypeSupported = arrayDatatypeSupported;
 		arrayDatatypeSupported = newArrayDatatypeSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.CONSTRUCTED_DATA_TYPE_DEFINITION__ARRAY_DATATYPE_SUPPORTED, oldArrayDatatypeSupported, arrayDatatypeSupported));
+		}
 	}
 
 	/**
@@ -175,6 +179,7 @@ public class ConstructedDataTypeDefinitionImpl extends EObjectImpl implements Co
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isMultisetDatatypeSupported() {
 		return multisetDatatypeSupported;
 	}
@@ -184,11 +189,13 @@ public class ConstructedDataTypeDefinitionImpl extends EObjectImpl implements Co
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMultisetDatatypeSupported(boolean newMultisetDatatypeSupported) {
 		boolean oldMultisetDatatypeSupported = multisetDatatypeSupported;
 		multisetDatatypeSupported = newMultisetDatatypeSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.CONSTRUCTED_DATA_TYPE_DEFINITION__MULTISET_DATATYPE_SUPPORTED, oldMultisetDatatypeSupported, multisetDatatypeSupported));
+		}
 	}
 
 	/**
@@ -196,6 +203,7 @@ public class ConstructedDataTypeDefinitionImpl extends EObjectImpl implements Co
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isRowDatatypeSupported() {
 		return rowDatatypeSupported;
 	}
@@ -205,11 +213,13 @@ public class ConstructedDataTypeDefinitionImpl extends EObjectImpl implements Co
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRowDatatypeSupported(boolean newRowDatatypeSupported) {
 		boolean oldRowDatatypeSupported = rowDatatypeSupported;
 		rowDatatypeSupported = newRowDatatypeSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.CONSTRUCTED_DATA_TYPE_DEFINITION__ROW_DATATYPE_SUPPORTED, oldRowDatatypeSupported, rowDatatypeSupported));
+		}
 	}
 
 	/**
@@ -217,6 +227,7 @@ public class ConstructedDataTypeDefinitionImpl extends EObjectImpl implements Co
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isReferenceDatatypeSupported() {
 		return referenceDatatypeSupported;
 	}
@@ -226,11 +237,13 @@ public class ConstructedDataTypeDefinitionImpl extends EObjectImpl implements Co
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setReferenceDatatypeSupported(boolean newReferenceDatatypeSupported) {
 		boolean oldReferenceDatatypeSupported = referenceDatatypeSupported;
 		referenceDatatypeSupported = newReferenceDatatypeSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.CONSTRUCTED_DATA_TYPE_DEFINITION__REFERENCE_DATATYPE_SUPPORTED, oldReferenceDatatypeSupported, referenceDatatypeSupported));
+		}
 	}
 
 	/**
@@ -238,6 +251,7 @@ public class ConstructedDataTypeDefinitionImpl extends EObjectImpl implements Co
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isCursorDatatypeSupported() {
 		return cursorDatatypeSupported;
 	}
@@ -247,11 +261,13 @@ public class ConstructedDataTypeDefinitionImpl extends EObjectImpl implements Co
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCursorDatatypeSupported(boolean newCursorDatatypeSupported) {
 		boolean oldCursorDatatypeSupported = cursorDatatypeSupported;
 		cursorDatatypeSupported = newCursorDatatypeSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.CONSTRUCTED_DATA_TYPE_DEFINITION__CURSOR_DATATYPE_SUPPORTED, oldCursorDatatypeSupported, cursorDatatypeSupported));
+		}
 	}
 
 	/**
@@ -259,6 +275,7 @@ public class ConstructedDataTypeDefinitionImpl extends EObjectImpl implements Co
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.CONSTRUCTED_DATA_TYPE_DEFINITION__ARRAY_DATATYPE_SUPPORTED:
@@ -280,6 +297,7 @@ public class ConstructedDataTypeDefinitionImpl extends EObjectImpl implements Co
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.CONSTRUCTED_DATA_TYPE_DEFINITION__ARRAY_DATATYPE_SUPPORTED:
@@ -306,6 +324,7 @@ public class ConstructedDataTypeDefinitionImpl extends EObjectImpl implements Co
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.CONSTRUCTED_DATA_TYPE_DEFINITION__ARRAY_DATATYPE_SUPPORTED:
@@ -332,6 +351,7 @@ public class ConstructedDataTypeDefinitionImpl extends EObjectImpl implements Co
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.CONSTRUCTED_DATA_TYPE_DEFINITION__ARRAY_DATATYPE_SUPPORTED:
@@ -353,8 +373,11 @@ public class ConstructedDataTypeDefinitionImpl extends EObjectImpl implements Co
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (arrayDatatypeSupported: "); //$NON-NLS-1$

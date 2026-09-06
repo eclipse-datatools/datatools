@@ -8,7 +8,7 @@
  *
  * Contributors:
  *  Actuate Corporation - initial API and implementation
- *  
+ *
  *************************************************************************
  *
  * $Id: AndExpression.java,v 1.1 2009/01/30 00:23:57 lchan Exp $
@@ -21,22 +21,20 @@ package org.eclipse.datatools.connectivity.oda.design;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * A built-in composite filter expression whose child expressions are combined by the And boolean operator.  The composite expression is evaluated to be true only if all its child expressions are evaluated as true.  
+ * A built-in composite filter expression whose child expressions are combined by the And boolean operator.  The composite expression is evaluated to be true only if all its child expressions are evaluated as true.
  * <!-- end-model-doc -->
  *
  *
  * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getAndExpression()
- * @since 3.3 (DTP 1.8)
  * @model extendedMetaData="name='AndExpression' kind='elementOnly'"
  * @generated
  */
-public interface AndExpression extends CompositeFilterExpression
-{
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    String copyright = "Copyright (c) 2009 Actuate Corporation"; //$NON-NLS-1$
+public interface AndExpression extends CompositeFilterExpression {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	String copyright = "Copyright (c) 2005, 2010 Actuate Corporation"; //$NON-NLS-1$
 
 } // AndExpression

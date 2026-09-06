@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -37,6 +37,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.constraints.impl.IndexImpl#getSchema <em>Schema</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.constraints.impl.IndexImpl#isClustered <em>Clustered</em>}</li>
@@ -48,7 +49,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.eclipse.datatools.modelbase.sql.constraints.impl.IndexImpl#getForeignKey <em>Foreign Key</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.constraints.impl.IndexImpl#getIncludedMembers <em>Included Members</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -197,6 +197,7 @@ public class IndexImpl extends SQLObjectImpl implements Index {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return SQLConstraintsPackage.Literals.INDEX;
 	}
@@ -206,13 +207,15 @@ public class IndexImpl extends SQLObjectImpl implements Index {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Schema getSchema() {
 		if (schema != null && schema.eIsProxy()) {
 			InternalEObject oldSchema = (InternalEObject)schema;
 			schema = (Schema)eResolveProxy(oldSchema);
 			if (schema != oldSchema) {
-				if (eNotificationRequired())
+				if (eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SQLConstraintsPackage.INDEX__SCHEMA, oldSchema, schema));
+				}
 			}
 		}
 		return schema;
@@ -237,7 +240,11 @@ public class IndexImpl extends SQLObjectImpl implements Index {
 		schema = newSchema;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLConstraintsPackage.INDEX__SCHEMA, oldSchema, newSchema);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			if (msgs == null) {
+				msgs = notification;
+			} else {
+				msgs.add(notification);
+			}
 		}
 		return msgs;
 	}
@@ -247,18 +254,24 @@ public class IndexImpl extends SQLObjectImpl implements Index {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSchema(Schema newSchema) {
 		if (newSchema != schema) {
 			NotificationChain msgs = null;
-			if (schema != null)
+			if (schema != null) {
 				msgs = ((InternalEObject)schema).eInverseRemove(this, SQLSchemaPackage.SCHEMA__INDICES, Schema.class, msgs);
-			if (newSchema != null)
+			}
+			if (newSchema != null) {
 				msgs = ((InternalEObject)newSchema).eInverseAdd(this, SQLSchemaPackage.SCHEMA__INDICES, Schema.class, msgs);
+			}
 			msgs = basicSetSchema(newSchema, msgs);
-			if (msgs != null) msgs.dispatch();
+			if (msgs != null) {
+				msgs.dispatch();
+			}
 		}
-		else if (eNotificationRequired())
+		else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLConstraintsPackage.INDEX__SCHEMA, newSchema, newSchema));
+		}
 	}
 
 	/**
@@ -266,6 +279,7 @@ public class IndexImpl extends SQLObjectImpl implements Index {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isClustered() {
 		return clustered;
 	}
@@ -275,11 +289,13 @@ public class IndexImpl extends SQLObjectImpl implements Index {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setClustered(boolean newClustered) {
 		boolean oldClustered = clustered;
 		clustered = newClustered;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLConstraintsPackage.INDEX__CLUSTERED, oldClustered, clustered));
+		}
 	}
 
 	/**
@@ -287,6 +303,7 @@ public class IndexImpl extends SQLObjectImpl implements Index {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getFillFactor() {
 		return fillFactor;
 	}
@@ -296,11 +313,13 @@ public class IndexImpl extends SQLObjectImpl implements Index {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setFillFactor(int newFillFactor) {
 		int oldFillFactor = fillFactor;
 		fillFactor = newFillFactor;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLConstraintsPackage.INDEX__FILL_FACTOR, oldFillFactor, fillFactor));
+		}
 	}
 
 	/**
@@ -308,6 +327,7 @@ public class IndexImpl extends SQLObjectImpl implements Index {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isUnique() {
 		return unique;
 	}
@@ -317,11 +337,13 @@ public class IndexImpl extends SQLObjectImpl implements Index {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setUnique(boolean newUnique) {
 		boolean oldUnique = unique;
 		unique = newUnique;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLConstraintsPackage.INDEX__UNIQUE, oldUnique, unique));
+		}
 	}
 
 	/**
@@ -329,6 +351,7 @@ public class IndexImpl extends SQLObjectImpl implements Index {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSystemGenerated() {
 		return systemGenerated;
 	}
@@ -338,11 +361,13 @@ public class IndexImpl extends SQLObjectImpl implements Index {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSystemGenerated(boolean newSystemGenerated) {
 		boolean oldSystemGenerated = systemGenerated;
 		systemGenerated = newSystemGenerated;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLConstraintsPackage.INDEX__SYSTEM_GENERATED, oldSystemGenerated, systemGenerated));
+		}
 	}
 
 	/**
@@ -350,6 +375,7 @@ public class IndexImpl extends SQLObjectImpl implements Index {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList getMembers() {
 		if (members == null) {
 			members = new EObjectContainmentEList(IndexMember.class, this, SQLConstraintsPackage.INDEX__MEMBERS);
@@ -362,13 +388,15 @@ public class IndexImpl extends SQLObjectImpl implements Index {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Table getTable() {
 		if (table != null && table.eIsProxy()) {
 			InternalEObject oldTable = (InternalEObject)table;
 			table = (Table)eResolveProxy(oldTable);
 			if (table != oldTable) {
-				if (eNotificationRequired())
+				if (eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SQLConstraintsPackage.INDEX__TABLE, oldTable, table));
+				}
 			}
 		}
 		return table;
@@ -393,7 +421,11 @@ public class IndexImpl extends SQLObjectImpl implements Index {
 		table = newTable;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLConstraintsPackage.INDEX__TABLE, oldTable, newTable);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			if (msgs == null) {
+				msgs = notification;
+			} else {
+				msgs.add(notification);
+			}
 		}
 		return msgs;
 	}
@@ -403,18 +435,24 @@ public class IndexImpl extends SQLObjectImpl implements Index {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTable(Table newTable) {
 		if (newTable != table) {
 			NotificationChain msgs = null;
-			if (table != null)
+			if (table != null) {
 				msgs = ((InternalEObject)table).eInverseRemove(this, SQLTablesPackage.TABLE__INDEX, Table.class, msgs);
-			if (newTable != null)
+			}
+			if (newTable != null) {
 				msgs = ((InternalEObject)newTable).eInverseAdd(this, SQLTablesPackage.TABLE__INDEX, Table.class, msgs);
+			}
 			msgs = basicSetTable(newTable, msgs);
-			if (msgs != null) msgs.dispatch();
+			if (msgs != null) {
+				msgs.dispatch();
+			}
 		}
-		else if (eNotificationRequired())
+		else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLConstraintsPackage.INDEX__TABLE, newTable, newTable));
+		}
 	}
 
 	/**
@@ -422,6 +460,7 @@ public class IndexImpl extends SQLObjectImpl implements Index {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList getForeignKey() {
 		if (foreignKey == null) {
 			foreignKey = new EObjectWithInverseResolvingEList(ForeignKey.class, this, SQLConstraintsPackage.INDEX__FOREIGN_KEY, SQLConstraintsPackage.FOREIGN_KEY__UNIQUE_INDEX);
@@ -434,6 +473,7 @@ public class IndexImpl extends SQLObjectImpl implements Index {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList getIncludedMembers() {
 		if (includedMembers == null) {
 			includedMembers = new EObjectContainmentEList(IndexMember.class, this, SQLConstraintsPackage.INDEX__INCLUDED_MEMBERS);
@@ -446,15 +486,18 @@ public class IndexImpl extends SQLObjectImpl implements Index {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case SQLConstraintsPackage.INDEX__SCHEMA:
-				if (schema != null)
+				if (schema != null) {
 					msgs = ((InternalEObject)schema).eInverseRemove(this, SQLSchemaPackage.SCHEMA__INDICES, Schema.class, msgs);
+				}
 				return basicSetSchema((Schema)otherEnd, msgs);
 			case SQLConstraintsPackage.INDEX__TABLE:
-				if (table != null)
+				if (table != null) {
 					msgs = ((InternalEObject)table).eInverseRemove(this, SQLTablesPackage.TABLE__INDEX, Table.class, msgs);
+				}
 				return basicSetTable((Table)otherEnd, msgs);
 			case SQLConstraintsPackage.INDEX__FOREIGN_KEY:
 				return ((InternalEList)getForeignKey()).basicAdd(otherEnd, msgs);
@@ -467,6 +510,7 @@ public class IndexImpl extends SQLObjectImpl implements Index {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case SQLConstraintsPackage.INDEX__SCHEMA:
@@ -488,15 +532,18 @@ public class IndexImpl extends SQLObjectImpl implements Index {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SQLConstraintsPackage.INDEX__SCHEMA:
-				if (resolve) return getSchema();
+				if (resolve) {
+					return getSchema();
+				}
 				return basicGetSchema();
 			case SQLConstraintsPackage.INDEX__CLUSTERED:
 				return isClustered() ? Boolean.TRUE : Boolean.FALSE;
 			case SQLConstraintsPackage.INDEX__FILL_FACTOR:
-				return Integer.valueOf(getFillFactor());
+				return new Integer(getFillFactor());
 			case SQLConstraintsPackage.INDEX__UNIQUE:
 				return isUnique() ? Boolean.TRUE : Boolean.FALSE;
 			case SQLConstraintsPackage.INDEX__SYSTEM_GENERATED:
@@ -504,7 +551,9 @@ public class IndexImpl extends SQLObjectImpl implements Index {
 			case SQLConstraintsPackage.INDEX__MEMBERS:
 				return getMembers();
 			case SQLConstraintsPackage.INDEX__TABLE:
-				if (resolve) return getTable();
+				if (resolve) {
+					return getTable();
+				}
 				return basicGetTable();
 			case SQLConstraintsPackage.INDEX__FOREIGN_KEY:
 				return getForeignKey();
@@ -519,6 +568,7 @@ public class IndexImpl extends SQLObjectImpl implements Index {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case SQLConstraintsPackage.INDEX__SCHEMA:
@@ -560,6 +610,7 @@ public class IndexImpl extends SQLObjectImpl implements Index {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case SQLConstraintsPackage.INDEX__SCHEMA:
@@ -598,6 +649,7 @@ public class IndexImpl extends SQLObjectImpl implements Index {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SQLConstraintsPackage.INDEX__SCHEMA:
@@ -627,8 +679,11 @@ public class IndexImpl extends SQLObjectImpl implements Index {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (clustered: "); //$NON-NLS-1$

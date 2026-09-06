@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.schema.impl.EventImpl#getFor <em>For</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.schema.impl.EventImpl#getCondition <em>Condition</em>}</li>
@@ -28,7 +29,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *   <li>{@link org.eclipse.datatools.modelbase.sql.schema.impl.EventImpl#isEnabled <em>Enabled</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.schema.impl.EventImpl#getDatabase <em>Database</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -137,6 +137,7 @@ public class EventImpl extends SQLObjectImpl implements Event {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return SQLSchemaPackage.Literals.EVENT;
 	}
@@ -146,6 +147,7 @@ public class EventImpl extends SQLObjectImpl implements Event {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getFor() {
 		return for_;
 	}
@@ -155,11 +157,13 @@ public class EventImpl extends SQLObjectImpl implements Event {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setFor(String newFor) {
 		String oldFor = for_;
 		for_ = newFor;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLSchemaPackage.EVENT__FOR, oldFor, for_));
+		}
 	}
 
 	/**
@@ -167,6 +171,7 @@ public class EventImpl extends SQLObjectImpl implements Event {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getCondition() {
 		return condition;
 	}
@@ -176,11 +181,13 @@ public class EventImpl extends SQLObjectImpl implements Event {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCondition(String newCondition) {
 		String oldCondition = condition;
 		condition = newCondition;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLSchemaPackage.EVENT__CONDITION, oldCondition, condition));
+		}
 	}
 
 	/**
@@ -188,6 +195,7 @@ public class EventImpl extends SQLObjectImpl implements Event {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getAction() {
 		return action;
 	}
@@ -197,11 +205,13 @@ public class EventImpl extends SQLObjectImpl implements Event {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setAction(String newAction) {
 		String oldAction = action;
 		action = newAction;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLSchemaPackage.EVENT__ACTION, oldAction, action));
+		}
 	}
 
 	/**
@@ -209,6 +219,7 @@ public class EventImpl extends SQLObjectImpl implements Event {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isEnabled() {
 		return enabled;
 	}
@@ -218,11 +229,13 @@ public class EventImpl extends SQLObjectImpl implements Event {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setEnabled(boolean newEnabled) {
 		boolean oldEnabled = enabled;
 		enabled = newEnabled;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLSchemaPackage.EVENT__ENABLED, oldEnabled, enabled));
+		}
 	}
 
 	/**
@@ -230,13 +243,15 @@ public class EventImpl extends SQLObjectImpl implements Event {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Database getDatabase() {
 		if (database != null && database.eIsProxy()) {
 			InternalEObject oldDatabase = (InternalEObject)database;
 			database = (Database)eResolveProxy(oldDatabase);
 			if (database != oldDatabase) {
-				if (eNotificationRequired())
+				if (eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SQLSchemaPackage.EVENT__DATABASE, oldDatabase, database));
+				}
 			}
 		}
 		return database;
@@ -261,7 +276,11 @@ public class EventImpl extends SQLObjectImpl implements Event {
 		database = newDatabase;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLSchemaPackage.EVENT__DATABASE, oldDatabase, newDatabase);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			if (msgs == null) {
+				msgs = notification;
+			} else {
+				msgs.add(notification);
+			}
 		}
 		return msgs;
 	}
@@ -271,18 +290,24 @@ public class EventImpl extends SQLObjectImpl implements Event {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDatabase(Database newDatabase) {
 		if (newDatabase != database) {
 			NotificationChain msgs = null;
-			if (database != null)
+			if (database != null) {
 				msgs = ((InternalEObject)database).eInverseRemove(this, SQLSchemaPackage.DATABASE__EVENTS, Database.class, msgs);
-			if (newDatabase != null)
+			}
+			if (newDatabase != null) {
 				msgs = ((InternalEObject)newDatabase).eInverseAdd(this, SQLSchemaPackage.DATABASE__EVENTS, Database.class, msgs);
+			}
 			msgs = basicSetDatabase(newDatabase, msgs);
-			if (msgs != null) msgs.dispatch();
+			if (msgs != null) {
+				msgs.dispatch();
+			}
 		}
-		else if (eNotificationRequired())
+		else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLSchemaPackage.EVENT__DATABASE, newDatabase, newDatabase));
+		}
 	}
 
 	/**
@@ -290,11 +315,13 @@ public class EventImpl extends SQLObjectImpl implements Event {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case SQLSchemaPackage.EVENT__DATABASE:
-				if (database != null)
+				if (database != null) {
 					msgs = ((InternalEObject)database).eInverseRemove(this, SQLSchemaPackage.DATABASE__EVENTS, Database.class, msgs);
+				}
 				return basicSetDatabase((Database)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -305,6 +332,7 @@ public class EventImpl extends SQLObjectImpl implements Event {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case SQLSchemaPackage.EVENT__DATABASE:
@@ -318,6 +346,7 @@ public class EventImpl extends SQLObjectImpl implements Event {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SQLSchemaPackage.EVENT__FOR:
@@ -329,7 +358,9 @@ public class EventImpl extends SQLObjectImpl implements Event {
 			case SQLSchemaPackage.EVENT__ENABLED:
 				return isEnabled() ? Boolean.TRUE : Boolean.FALSE;
 			case SQLSchemaPackage.EVENT__DATABASE:
-				if (resolve) return getDatabase();
+				if (resolve) {
+					return getDatabase();
+				}
 				return basicGetDatabase();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -340,6 +371,7 @@ public class EventImpl extends SQLObjectImpl implements Event {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case SQLSchemaPackage.EVENT__FOR:
@@ -366,6 +398,7 @@ public class EventImpl extends SQLObjectImpl implements Event {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case SQLSchemaPackage.EVENT__FOR:
@@ -392,6 +425,7 @@ public class EventImpl extends SQLObjectImpl implements Event {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SQLSchemaPackage.EVENT__FOR:
@@ -413,8 +447,11 @@ public class EventImpl extends SQLObjectImpl implements Event {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (for: "); //$NON-NLS-1$

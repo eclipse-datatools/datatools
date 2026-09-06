@@ -15,10 +15,10 @@ import org.eclipse.datatools.modelbase.sql.accesscontrol.Privilege;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybasePrivilege#isRevoked <em>Revoked</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybasesqlmodelPackage#getSybasePrivilege()
  * @model

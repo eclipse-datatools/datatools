@@ -19,12 +19,12 @@ import org.eclipse.datatools.modelbase.sql.routines.Parameter;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybaseParameter#isNullable <em>Nullable</em>}</li>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybaseParameter#getDefaultValue <em>Default Value</em>}</li>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybaseParameter#getJDBCParameterType <em>JDBC Parameter Type</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybasesqlmodelPackage#getSybaseParameter()
  * @model

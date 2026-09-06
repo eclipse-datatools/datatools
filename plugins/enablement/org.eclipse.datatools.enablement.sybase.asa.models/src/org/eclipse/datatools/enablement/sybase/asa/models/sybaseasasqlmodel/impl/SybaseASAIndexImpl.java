@@ -19,14 +19,14 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.impl.SybaseASAIndexImpl#isVirtual <em>Virtual</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class SybaseASAIndexImpl extends SybaseASABaseIndexImpl implements SybaseASAIndex 
+public class SybaseASAIndexImpl extends SybaseASABaseIndexImpl implements SybaseASAIndex
 {
     /**
 	 * The default value of the '{@link #isVirtual() <em>Virtual</em>}' attribute.
@@ -63,6 +63,7 @@ public class SybaseASAIndexImpl extends SybaseASABaseIndexImpl implements Sybase
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass()
     {
 		return SybaseasasqlmodelPackage.Literals.SYBASE_ASA_INDEX;
@@ -73,6 +74,7 @@ public class SybaseASAIndexImpl extends SybaseASABaseIndexImpl implements Sybase
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isVirtual()
     {
 		return virtual;
@@ -83,12 +85,14 @@ public class SybaseASAIndexImpl extends SybaseASABaseIndexImpl implements Sybase
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setVirtual(boolean newVirtual)
     {
 		boolean oldVirtual = virtual;
 		virtual = newVirtual;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasasqlmodelPackage.SYBASE_ASA_INDEX__VIRTUAL, oldVirtual, virtual));
+		}
 	}
 
     /**
@@ -96,6 +100,7 @@ public class SybaseASAIndexImpl extends SybaseASABaseIndexImpl implements Sybase
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
     {
 		switch (featureID) {
@@ -110,6 +115,7 @@ public class SybaseASAIndexImpl extends SybaseASABaseIndexImpl implements Sybase
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue)
     {
 		switch (featureID) {
@@ -125,6 +131,7 @@ public class SybaseASAIndexImpl extends SybaseASABaseIndexImpl implements Sybase
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID)
     {
 		switch (featureID) {
@@ -140,6 +147,7 @@ public class SybaseASAIndexImpl extends SybaseASABaseIndexImpl implements Sybase
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID)
     {
 		switch (featureID) {
@@ -154,9 +162,12 @@ public class SybaseASAIndexImpl extends SybaseASABaseIndexImpl implements Sybase
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString()
     {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (virtual: ");

@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -65,7 +65,7 @@ public class DatabaseDefinitionFactoryImpl extends EFactoryImpl implements Datab
 	 */
 	public static DatabaseDefinitionFactory init() {
 		try {
-			DatabaseDefinitionFactory theDatabaseDefinitionFactory = (DatabaseDefinitionFactory)EPackage.Registry.INSTANCE.getEFactory("http:///org/eclipse/datatools/modelbase/dbdefinition/dbdefinition.ecore"); //$NON-NLS-1$ 
+			DatabaseDefinitionFactory theDatabaseDefinitionFactory = (DatabaseDefinitionFactory)EPackage.Registry.INSTANCE.getEFactory(DatabaseDefinitionPackage.eNS_URI);
 			if (theDatabaseDefinitionFactory != null) {
 				return theDatabaseDefinitionFactory;
 			}
@@ -91,6 +91,7 @@ public class DatabaseDefinitionFactoryImpl extends EFactoryImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION: return createDatabaseVendorDefinition();
@@ -125,6 +126,7 @@ public class DatabaseDefinitionFactoryImpl extends EFactoryImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
 			case DatabaseDefinitionPackage.CHECK_OPTION:
@@ -155,6 +157,7 @@ public class DatabaseDefinitionFactoryImpl extends EFactoryImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
 			case DatabaseDefinitionPackage.CHECK_OPTION:
@@ -185,6 +188,7 @@ public class DatabaseDefinitionFactoryImpl extends EFactoryImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public DatabaseVendorDefinition createDatabaseVendorDefinition() {
 		DatabaseVendorDefinitionImpl databaseVendorDefinition = new DatabaseVendorDefinitionImpl();
 		return databaseVendorDefinition;
@@ -195,6 +199,7 @@ public class DatabaseDefinitionFactoryImpl extends EFactoryImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public PredefinedDataTypeDefinition createPredefinedDataTypeDefinition() {
 		PredefinedDataTypeDefinitionImpl predefinedDataTypeDefinition = new PredefinedDataTypeDefinitionImpl();
 		return predefinedDataTypeDefinition;
@@ -205,6 +210,7 @@ public class DatabaseDefinitionFactoryImpl extends EFactoryImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TableSpaceDefinition createTableSpaceDefinition() {
 		TableSpaceDefinitionImpl tableSpaceDefinition = new TableSpaceDefinitionImpl();
 		return tableSpaceDefinition;
@@ -215,6 +221,7 @@ public class DatabaseDefinitionFactoryImpl extends EFactoryImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public StoredProcedureDefinition createStoredProcedureDefinition() {
 		StoredProcedureDefinitionImpl storedProcedureDefinition = new StoredProcedureDefinitionImpl();
 		return storedProcedureDefinition;
@@ -225,6 +232,7 @@ public class DatabaseDefinitionFactoryImpl extends EFactoryImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TriggerDefinition createTriggerDefinition() {
 		TriggerDefinitionImpl triggerDefinition = new TriggerDefinitionImpl();
 		return triggerDefinition;
@@ -235,6 +243,7 @@ public class DatabaseDefinitionFactoryImpl extends EFactoryImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ColumnDefinition createColumnDefinition() {
 		ColumnDefinitionImpl columnDefinition = new ColumnDefinitionImpl();
 		return columnDefinition;
@@ -245,6 +254,7 @@ public class DatabaseDefinitionFactoryImpl extends EFactoryImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ConstraintDefinition createConstraintDefinition() {
 		ConstraintDefinitionImpl constraintDefinition = new ConstraintDefinitionImpl();
 		return constraintDefinition;
@@ -255,6 +265,7 @@ public class DatabaseDefinitionFactoryImpl extends EFactoryImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IndexDefinition createIndexDefinition() {
 		IndexDefinitionImpl indexDefinition = new IndexDefinitionImpl();
 		return indexDefinition;
@@ -265,6 +276,7 @@ public class DatabaseDefinitionFactoryImpl extends EFactoryImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ExtendedDefinition createExtendedDefinition() {
 		ExtendedDefinitionImpl extendedDefinition = new ExtendedDefinitionImpl();
 		return extendedDefinition;
@@ -275,6 +287,7 @@ public class DatabaseDefinitionFactoryImpl extends EFactoryImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TableDefinition createTableDefinition() {
 		TableDefinitionImpl tableDefinition = new TableDefinitionImpl();
 		return tableDefinition;
@@ -285,6 +298,7 @@ public class DatabaseDefinitionFactoryImpl extends EFactoryImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SequenceDefinition createSequenceDefinition() {
 		SequenceDefinitionImpl sequenceDefinition = new SequenceDefinitionImpl();
 		return sequenceDefinition;
@@ -295,6 +309,7 @@ public class DatabaseDefinitionFactoryImpl extends EFactoryImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public UserDefinedTypeDefinition createUserDefinedTypeDefinition() {
 		UserDefinedTypeDefinitionImpl userDefinedTypeDefinition = new UserDefinedTypeDefinitionImpl();
 		return userDefinedTypeDefinition;
@@ -305,6 +320,7 @@ public class DatabaseDefinitionFactoryImpl extends EFactoryImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public QueryDefinition createQueryDefinition() {
 		QueryDefinitionImpl queryDefinition = new QueryDefinitionImpl();
 		return queryDefinition;
@@ -315,6 +331,7 @@ public class DatabaseDefinitionFactoryImpl extends EFactoryImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SQLSyntaxDefinition createSQLSyntaxDefinition() {
 		SQLSyntaxDefinitionImpl sqlSyntaxDefinition = new SQLSyntaxDefinitionImpl();
 		return sqlSyntaxDefinition;
@@ -325,6 +342,7 @@ public class DatabaseDefinitionFactoryImpl extends EFactoryImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NicknameDefinition createNicknameDefinition() {
 		NicknameDefinitionImpl nicknameDefinition = new NicknameDefinitionImpl();
 		return nicknameDefinition;
@@ -335,6 +353,7 @@ public class DatabaseDefinitionFactoryImpl extends EFactoryImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SchemaDefinition createSchemaDefinition() {
 		SchemaDefinitionImpl schemaDefinition = new SchemaDefinitionImpl();
 		return schemaDefinition;
@@ -345,6 +364,7 @@ public class DatabaseDefinitionFactoryImpl extends EFactoryImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ViewDefinition createViewDefinition() {
 		ViewDefinitionImpl viewDefinition = new ViewDefinitionImpl();
 		return viewDefinition;
@@ -355,6 +375,7 @@ public class DatabaseDefinitionFactoryImpl extends EFactoryImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public FieldQualifierDefinition createFieldQualifierDefinition() {
 		FieldQualifierDefinitionImpl fieldQualifierDefinition = new FieldQualifierDefinitionImpl();
 		return fieldQualifierDefinition;
@@ -365,6 +386,7 @@ public class DatabaseDefinitionFactoryImpl extends EFactoryImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public DebuggerDefinition createDebuggerDefinition() {
 		DebuggerDefinitionImpl debuggerDefinition = new DebuggerDefinitionImpl();
 		return debuggerDefinition;
@@ -375,6 +397,7 @@ public class DatabaseDefinitionFactoryImpl extends EFactoryImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public PrivilegedElementDefinition createPrivilegedElementDefinition() {
 		PrivilegedElementDefinitionImpl privilegedElementDefinition = new PrivilegedElementDefinitionImpl();
 		return privilegedElementDefinition;
@@ -385,6 +408,7 @@ public class DatabaseDefinitionFactoryImpl extends EFactoryImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public PrivilegeDefinition createPrivilegeDefinition() {
 		PrivilegeDefinitionImpl privilegeDefinition = new PrivilegeDefinitionImpl();
 		return privilegeDefinition;
@@ -395,6 +419,7 @@ public class DatabaseDefinitionFactoryImpl extends EFactoryImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ConstructedDataTypeDefinition createConstructedDataTypeDefinition() {
 		ConstructedDataTypeDefinitionImpl constructedDataTypeDefinition = new ConstructedDataTypeDefinitionImpl();
 		return constructedDataTypeDefinition;
@@ -407,7 +432,9 @@ public class DatabaseDefinitionFactoryImpl extends EFactoryImpl implements Datab
 	 */
 	public CheckOption createCheckOptionFromString(EDataType eDataType, String initialValue) {
 		CheckOption result = CheckOption.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		if (result == null) {
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		}
 		return result;
 	}
 
@@ -427,7 +454,9 @@ public class DatabaseDefinitionFactoryImpl extends EFactoryImpl implements Datab
 	 */
 	public LanguageType createLanguageTypeFromString(EDataType eDataType, String initialValue) {
 		LanguageType result = LanguageType.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		if (result == null) {
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		}
 		return result;
 	}
 
@@ -447,7 +476,9 @@ public class DatabaseDefinitionFactoryImpl extends EFactoryImpl implements Datab
 	 */
 	public ParameterStyle createParameterStyleFromString(EDataType eDataType, String initialValue) {
 		ParameterStyle result = ParameterStyle.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		if (result == null) {
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		}
 		return result;
 	}
 
@@ -467,7 +498,9 @@ public class DatabaseDefinitionFactoryImpl extends EFactoryImpl implements Datab
 	 */
 	public ParentDeleteDRIRuleType createParentDeleteDRIRuleTypeFromString(EDataType eDataType, String initialValue) {
 		ParentDeleteDRIRuleType result = ParentDeleteDRIRuleType.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		if (result == null) {
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		}
 		return result;
 	}
 
@@ -487,7 +520,9 @@ public class DatabaseDefinitionFactoryImpl extends EFactoryImpl implements Datab
 	 */
 	public ParentUpdateDRIRuleType createParentUpdateDRIRuleTypeFromString(EDataType eDataType, String initialValue) {
 		ParentUpdateDRIRuleType result = ParentUpdateDRIRuleType.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		if (result == null) {
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		}
 		return result;
 	}
 
@@ -507,7 +542,9 @@ public class DatabaseDefinitionFactoryImpl extends EFactoryImpl implements Datab
 	 */
 	public ProcedureType createProcedureTypeFromString(EDataType eDataType, String initialValue) {
 		ProcedureType result = ProcedureType.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		if (result == null) {
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		}
 		return result;
 	}
 
@@ -527,7 +564,9 @@ public class DatabaseDefinitionFactoryImpl extends EFactoryImpl implements Datab
 	 */
 	public TableSpaceType createTableSpaceTypeFromString(EDataType eDataType, String initialValue) {
 		TableSpaceType result = TableSpaceType.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		if (result == null) {
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		}
 		return result;
 	}
 
@@ -547,7 +586,9 @@ public class DatabaseDefinitionFactoryImpl extends EFactoryImpl implements Datab
 	 */
 	public PercentFreeTerminology createPercentFreeTerminologyFromString(EDataType eDataType, String initialValue) {
 		PercentFreeTerminology result = PercentFreeTerminology.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		if (result == null) {
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		}
 		return result;
 	}
 
@@ -567,7 +608,9 @@ public class DatabaseDefinitionFactoryImpl extends EFactoryImpl implements Datab
 	 */
 	public LengthUnit createLengthUnitFromString(EDataType eDataType, String initialValue) {
 		LengthUnit result = LengthUnit.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		if (result == null) {
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		}
 		return result;
 	}
 
@@ -585,6 +628,7 @@ public class DatabaseDefinitionFactoryImpl extends EFactoryImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public DatabaseDefinitionPackage getDatabaseDefinitionPackage() {
 		return (DatabaseDefinitionPackage)getEPackage();
 	}
@@ -595,6 +639,7 @@ public class DatabaseDefinitionFactoryImpl extends EFactoryImpl implements Datab
 	 * @deprecated
 	 * @generated
 	 */
+	@Deprecated
 	public static DatabaseDefinitionPackage getPackage() {
 		return DatabaseDefinitionPackage.eINSTANCE;
 	}

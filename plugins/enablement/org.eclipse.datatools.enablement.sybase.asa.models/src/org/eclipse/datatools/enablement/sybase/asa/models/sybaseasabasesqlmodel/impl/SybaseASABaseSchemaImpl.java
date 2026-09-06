@@ -1,6 +1,6 @@
 /**
  * <copyright> </copyright>
- * 
+ *
  * $Id: SybaseASABaseSchemaImpl.java,v 1.3 2008/03/27 07:35:08 lsong Exp $
  */
 package org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl;
@@ -22,8 +22,6 @@ import org.eclipse.emf.ecore.EClass;
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Sybase ASA Base Schema</b></em>'. <!--
  * end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */
@@ -42,17 +40,19 @@ public class SybaseASABaseSchemaImpl extends SchemaImpl implements SybaseASABase
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-    protected EClass eStaticClass()
+    @Override
+	protected EClass eStaticClass()
     {
 		return SybaseasabasesqlmodelPackage.Literals.SYBASE_ASA_BASE_SCHEMA;
 	}
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
+     *
      * @generated NOT
      */
-    public List getNormalTables()
+    @Override
+	public List getNormalTables()
     {
         List result = new ArrayList();
         List tableList = getTables();
@@ -70,10 +70,11 @@ public class SybaseASABaseSchemaImpl extends SchemaImpl implements SybaseASABase
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
+     *
      * @generated NOT
      */
-    public List getTempTables()
+    @Override
+	public List getTempTables()
     {
         List result = new ArrayList();
         List tableList = getTables();
@@ -90,10 +91,11 @@ public class SybaseASABaseSchemaImpl extends SchemaImpl implements SybaseASABase
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
+     *
      * @generated NOT
      */
-    public List getSystemTables()
+    @Override
+	public List getSystemTables()
     {
         List result = new ArrayList();
         List tableList = getTables();
@@ -110,10 +112,11 @@ public class SybaseASABaseSchemaImpl extends SchemaImpl implements SybaseASABase
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
+     *
      * @generated NOT
      */
-    public List getProxyTables()
+    @Override
+	public List getProxyTables()
     {
         List result = new ArrayList();
         List tableList = getTables();
@@ -130,10 +133,11 @@ public class SybaseASABaseSchemaImpl extends SchemaImpl implements SybaseASABase
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
+     *
      * @generated NOT
      */
-    public List getViewTables(boolean systemFlag)
+    @Override
+	public List getViewTables(boolean systemFlag)
     {
         List result = new ArrayList();
         List tableList = getTables();
@@ -165,7 +169,8 @@ public class SybaseASABaseSchemaImpl extends SchemaImpl implements SybaseASABase
      * <!-- end-user-doc -->
      * @generated NOT
      */
-    public List getSystemAndNormalTables()
+    @Override
+	public List getSystemAndNormalTables()
     {
         List result = new ArrayList();
         List tableList = getTables();
@@ -180,12 +185,14 @@ public class SybaseASABaseSchemaImpl extends SchemaImpl implements SybaseASABase
         return result;
     }
 
-    public EList getSuperIndices()
+    @Override
+	public EList getSuperIndices()
     {
         return super.getIndices();
     }
 
-    public EList getSuperTriggers()
+    @Override
+	public EList getSuperTriggers()
     {
         return super.getTriggers();
     }

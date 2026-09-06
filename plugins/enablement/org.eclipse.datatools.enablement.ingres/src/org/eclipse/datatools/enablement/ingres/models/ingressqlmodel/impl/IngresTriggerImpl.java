@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *   Ingres Corporation - initial API and implementation
  *
@@ -27,10 +27,10 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.enablement.ingres.models.ingressqlmodel.impl.IngresTriggerImpl#getSource <em>Source</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -66,6 +66,7 @@ public class IngresTriggerImpl extends TriggerImpl implements IngresTrigger {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return IngressqlmodelPackage.Literals.INGRES_TRIGGER;
 	}
@@ -75,13 +76,15 @@ public class IngresTriggerImpl extends TriggerImpl implements IngresTrigger {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Source getSource() {
 		if (source != null && source.eIsProxy()) {
 			InternalEObject oldSource = (InternalEObject)source;
 			source = (Source)eResolveProxy(oldSource);
 			if (source != oldSource) {
-				if (eNotificationRequired())
+				if (eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, IngressqlmodelPackage.INGRES_TRIGGER__SOURCE, oldSource, source));
+				}
 			}
 		}
 		return source;
@@ -101,11 +104,13 @@ public class IngresTriggerImpl extends TriggerImpl implements IngresTrigger {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSource(Source newSource) {
 		Source oldSource = source;
 		source = newSource;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, IngressqlmodelPackage.INGRES_TRIGGER__SOURCE, oldSource, source));
+		}
 	}
 
 	/**
@@ -113,10 +118,13 @@ public class IngresTriggerImpl extends TriggerImpl implements IngresTrigger {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case IngressqlmodelPackage.INGRES_TRIGGER__SOURCE:
-				if (resolve) return getSource();
+				if (resolve) {
+					return getSource();
+				}
 				return basicGetSource();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -127,6 +135,7 @@ public class IngresTriggerImpl extends TriggerImpl implements IngresTrigger {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case IngressqlmodelPackage.INGRES_TRIGGER__SOURCE:
@@ -141,6 +150,7 @@ public class IngresTriggerImpl extends TriggerImpl implements IngresTrigger {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case IngressqlmodelPackage.INGRES_TRIGGER__SOURCE:
@@ -155,6 +165,7 @@ public class IngresTriggerImpl extends TriggerImpl implements IngresTrigger {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case IngressqlmodelPackage.INGRES_TRIGGER__SOURCE:

@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *   Ingres Corporation - initial API and implementation
  *
@@ -118,20 +118,10 @@ public class IngressqlmodelPackageImpl extends EPackageImpl implements Ingressql
 	private static boolean isInited = false;
 
 	/**
-	 * Creates, registers, and initializes the <b>Package</b> for this
-	 * model, and for any others upon which it depends.  Simple
-	 * dependencies are satisfied by calling this method on all
-	 * dependent packages before doing anything else.  This method drives
-	 * initialization for interdependent packages directly, in parallel
-	 * with this package, itself.
-	 * <p>Of this package and its interdependencies, all packages which
-	 * have not yet been registered by their URI values are first created
-	 * and registered.  The packages are then initialized in two steps:
-	 * meta-model objects for all of the packages are created before any
-	 * are initialized, since one package's meta-model objects may refer to
-	 * those of another.
-	 * <p>Invocation of this method will not affect any packages that have
-	 * already been initialized.
+	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
+	 *
+	 * <p>This method is used to initialize {@link IngressqlmodelPackage#eINSTANCE} when that field is accessed.
+	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #eNS_URI
@@ -140,10 +130,13 @@ public class IngressqlmodelPackageImpl extends EPackageImpl implements Ingressql
 	 * @generated
 	 */
 	public static IngressqlmodelPackage init() {
-		if (isInited) return (IngressqlmodelPackage)EPackage.Registry.INSTANCE.getEPackage(IngressqlmodelPackage.eNS_URI);
+		if (isInited) {
+			return (IngressqlmodelPackage)EPackage.Registry.INSTANCE.getEPackage(IngressqlmodelPackage.eNS_URI);
+		}
 
 		// Obtain or create and register package
-		IngressqlmodelPackageImpl theIngressqlmodelPackage = (IngressqlmodelPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(eNS_URI) instanceof IngressqlmodelPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(eNS_URI) : new IngressqlmodelPackageImpl());
+		Object registeredIngressqlmodelPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		IngressqlmodelPackageImpl theIngressqlmodelPackage = registeredIngressqlmodelPackage instanceof IngressqlmodelPackageImpl ? (IngressqlmodelPackageImpl)registeredIngressqlmodelPackage : new IngressqlmodelPackageImpl();
 
 		isInited = true;
 
@@ -167,6 +160,8 @@ public class IngressqlmodelPackageImpl extends EPackageImpl implements Ingressql
 		// Mark meta-data to indicate it can't be changed
 		theIngressqlmodelPackage.freeze();
 
+		// Update the registry and return the package
+		EPackage.Registry.INSTANCE.put(IngressqlmodelPackage.eNS_URI, theIngressqlmodelPackage);
 		return theIngressqlmodelPackage;
 	}
 
@@ -175,6 +170,7 @@ public class IngressqlmodelPackageImpl extends EPackageImpl implements Ingressql
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getIngresSynonym() {
 		return ingresSynonymEClass;
 	}
@@ -184,6 +180,7 @@ public class IngressqlmodelPackageImpl extends EPackageImpl implements Ingressql
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getIngresSynonym_Schema() {
 		return (EReference)ingresSynonymEClass.getEStructuralFeatures().get(0);
 	}
@@ -193,6 +190,7 @@ public class IngressqlmodelPackageImpl extends EPackageImpl implements Ingressql
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getIngresSynonym_TableName() {
 		return (EAttribute)ingresSynonymEClass.getEStructuralFeatures().get(1);
 	}
@@ -202,6 +200,7 @@ public class IngressqlmodelPackageImpl extends EPackageImpl implements Ingressql
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getIngresDBEvent() {
 		return ingresDBEventEClass;
 	}
@@ -211,6 +210,7 @@ public class IngressqlmodelPackageImpl extends EPackageImpl implements Ingressql
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getIngresDBEvent_Schema() {
 		return (EReference)ingresDBEventEClass.getEStructuralFeatures().get(0);
 	}
@@ -220,6 +220,7 @@ public class IngressqlmodelPackageImpl extends EPackageImpl implements Ingressql
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getIngresSchema() {
 		return ingresSchemaEClass;
 	}
@@ -229,6 +230,7 @@ public class IngressqlmodelPackageImpl extends EPackageImpl implements Ingressql
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getIngresSchema_DBEvents() {
 		return (EReference)ingresSchemaEClass.getEStructuralFeatures().get(0);
 	}
@@ -238,6 +240,7 @@ public class IngressqlmodelPackageImpl extends EPackageImpl implements Ingressql
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getIngresSchema_Synonyms() {
 		return (EReference)ingresSchemaEClass.getEStructuralFeatures().get(1);
 	}
@@ -247,6 +250,7 @@ public class IngressqlmodelPackageImpl extends EPackageImpl implements Ingressql
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getIngresViewTable() {
 		return ingresViewTableEClass;
 	}
@@ -256,6 +260,7 @@ public class IngressqlmodelPackageImpl extends EPackageImpl implements Ingressql
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getIngresViewTable_Source() {
 		return (EReference)ingresViewTableEClass.getEStructuralFeatures().get(0);
 	}
@@ -265,6 +270,7 @@ public class IngressqlmodelPackageImpl extends EPackageImpl implements Ingressql
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getIngresTrigger() {
 		return ingresTriggerEClass;
 	}
@@ -274,6 +280,7 @@ public class IngressqlmodelPackageImpl extends EPackageImpl implements Ingressql
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getIngresTrigger_Source() {
 		return (EReference)ingresTriggerEClass.getEStructuralFeatures().get(0);
 	}
@@ -283,6 +290,7 @@ public class IngressqlmodelPackageImpl extends EPackageImpl implements Ingressql
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getIngresIdentitySpecifier() {
 		return ingresIdentitySpecifierEClass;
 	}
@@ -292,6 +300,7 @@ public class IngressqlmodelPackageImpl extends EPackageImpl implements Ingressql
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getIngresIdentitySpecifier_DataType() {
 		return (EAttribute)ingresIdentitySpecifierEClass.getEStructuralFeatures().get(0);
 	}
@@ -301,6 +310,7 @@ public class IngressqlmodelPackageImpl extends EPackageImpl implements Ingressql
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getIngresIdentitySpecifier_SeqLength() {
 		return (EAttribute)ingresIdentitySpecifierEClass.getEStructuralFeatures().get(1);
 	}
@@ -310,6 +320,7 @@ public class IngressqlmodelPackageImpl extends EPackageImpl implements Ingressql
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getIngresIdentitySpecifier_SeqPrecision() {
 		return (EAttribute)ingresIdentitySpecifierEClass.getEStructuralFeatures().get(2);
 	}
@@ -319,6 +330,7 @@ public class IngressqlmodelPackageImpl extends EPackageImpl implements Ingressql
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getIngresIdentitySpecifier_MaximumOption() {
 		return (EAttribute)ingresIdentitySpecifierEClass.getEStructuralFeatures().get(3);
 	}
@@ -328,6 +340,7 @@ public class IngressqlmodelPackageImpl extends EPackageImpl implements Ingressql
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getIngresIdentitySpecifier_MinimumOption() {
 		return (EAttribute)ingresIdentitySpecifierEClass.getEStructuralFeatures().get(4);
 	}
@@ -337,6 +350,7 @@ public class IngressqlmodelPackageImpl extends EPackageImpl implements Ingressql
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getIngresIdentitySpecifier_CacheSize() {
 		return (EAttribute)ingresIdentitySpecifierEClass.getEStructuralFeatures().get(5);
 	}
@@ -346,6 +360,7 @@ public class IngressqlmodelPackageImpl extends EPackageImpl implements Ingressql
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getIngresIdentitySpecifier_CacheOption() {
 		return (EAttribute)ingresIdentitySpecifierEClass.getEStructuralFeatures().get(6);
 	}
@@ -355,6 +370,7 @@ public class IngressqlmodelPackageImpl extends EPackageImpl implements Ingressql
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getIngresIdentitySpecifier_OrderOption() {
 		return (EAttribute)ingresIdentitySpecifierEClass.getEStructuralFeatures().get(7);
 	}
@@ -364,6 +380,7 @@ public class IngressqlmodelPackageImpl extends EPackageImpl implements Ingressql
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IngressqlmodelFactory getIngressqlmodelFactory() {
 		return (IngressqlmodelFactory)getEFactoryInstance();
 	}
@@ -383,7 +400,9 @@ public class IngressqlmodelPackageImpl extends EPackageImpl implements Ingressql
 	 * @generated
 	 */
 	public void createPackageContents() {
-		if (isCreated) return;
+		if (isCreated) {
+			return;
+		}
 		isCreated = true;
 
 		// Create classes and their features
@@ -430,7 +449,9 @@ public class IngressqlmodelPackageImpl extends EPackageImpl implements Ingressql
 	 * @generated
 	 */
 	public void initializePackageContents() {
-		if (isInitialized) return;
+		if (isInitialized) {
+			return;
+		}
 		isInitialized = true;
 
 		// Initialize package

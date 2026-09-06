@@ -15,10 +15,10 @@ import org.eclipse.datatools.modelbase.sql.tables.Trigger;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseASETrigger#isEnabled <em>Enabled</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseasesqlmodelPackage#getSybaseASETrigger()
  * @model
@@ -27,29 +27,29 @@ import org.eclipse.datatools.modelbase.sql.tables.Trigger;
 public interface SybaseASETrigger extends Trigger
 {
     /**
-     * Returns the value of the '<em><b>Enabled</b></em>' attribute.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Enabled</em>' attribute isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Enabled</em>' attribute.
-     * @see #setEnabled(boolean)
-     * @see org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseasesqlmodelPackage#getSybaseASETrigger_Enabled()
-     * @model
-     * @generated
-     */
+	 * @return the value of the '<em>Enabled</em>' attribute.
+	 * @see #setEnabled(boolean)
+	 * @see org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseasesqlmodelPackage#getSybaseASETrigger_Enabled()
+	 * @model
+	 * @generated
+	 */
     boolean isEnabled();
 
     /**
-     * Sets the value of the '{@link org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseASETrigger#isEnabled <em>Enabled</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseASETrigger#isEnabled <em>Enabled</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Enabled</em>' attribute.
-     * @see #isEnabled()
-     * @generated
-     */
+	 * @param value the new value of the '<em>Enabled</em>' attribute.
+	 * @see #isEnabled()
+	 * @generated
+	 */
     void setEnabled(boolean value);
 
 } // SybaseASETrigger

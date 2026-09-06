@@ -19,140 +19,151 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.query.impl.OrderByOrdinalImpl#getOrdinalValue <em>Ordinal Value</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
 public class OrderByOrdinalImpl extends OrderBySpecificationImpl implements OrderByOrdinal {
 	/**
-     * The default value of the '{@link #getOrdinalValue() <em>Ordinal Value</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getOrdinalValue() <em>Ordinal Value</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getOrdinalValue()
-     * @generated
-     * @ordered
-     */
+	 * @see #getOrdinalValue()
+	 * @generated
+	 * @ordered
+	 */
     protected static final int ORDINAL_VALUE_EDEFAULT = 0;
 
 	/**
-     * The cached value of the '{@link #getOrdinalValue() <em>Ordinal Value</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getOrdinalValue() <em>Ordinal Value</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getOrdinalValue()
-     * @generated
-     * @ordered
-     */
+	 * @see #getOrdinalValue()
+	 * @generated
+	 * @ordered
+	 */
     protected int ordinalValue = ORDINAL_VALUE_EDEFAULT;
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected OrderByOrdinalImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    protected EClass eStaticClass() {
-        return SQLQueryModelPackage.Literals.ORDER_BY_ORDINAL;
-    }
+	 * @generated
+	 */
+    @Override
+	protected EClass eStaticClass() {
+		return SQLQueryModelPackage.Literals.ORDER_BY_ORDINAL;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public int getOrdinalValue() {
-        return ordinalValue;
-    }
+	 * @generated
+	 */
+    @Override
+	public int getOrdinalValue() {
+		return ordinalValue;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
-  public void setOrdinalValue(int newOrdinalValue) {
-        int oldOrdinalValue = ordinalValue;
-        ordinalValue = newOrdinalValue;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.ORDER_BY_ORDINAL__ORDINAL_VALUE, oldOrdinalValue, ordinalValue));
-    }
+	 * @generated
+	 */
+  @Override
+public void setOrdinalValue(int newOrdinalValue) {
+		int oldOrdinalValue = ordinalValue;
+		ordinalValue = newOrdinalValue;
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.ORDER_BY_ORDINAL__ORDINAL_VALUE, oldOrdinalValue, ordinalValue));
+		}
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case SQLQueryModelPackage.ORDER_BY_ORDINAL__ORDINAL_VALUE:
-                return Integer.valueOf(getOrdinalValue());
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case SQLQueryModelPackage.ORDER_BY_ORDINAL__ORDINAL_VALUE:
+				return new Integer(getOrdinalValue());
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case SQLQueryModelPackage.ORDER_BY_ORDINAL__ORDINAL_VALUE:
-                setOrdinalValue(((Integer)newValue).intValue());
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case SQLQueryModelPackage.ORDER_BY_ORDINAL__ORDINAL_VALUE:
+				setOrdinalValue(((Integer)newValue).intValue());
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public void eUnset(int featureID) {
-        switch (featureID) {
-            case SQLQueryModelPackage.ORDER_BY_ORDINAL__ORDINAL_VALUE:
-                setOrdinalValue(ORDINAL_VALUE_EDEFAULT);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case SQLQueryModelPackage.ORDER_BY_ORDINAL__ORDINAL_VALUE:
+				setOrdinalValue(ORDINAL_VALUE_EDEFAULT);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case SQLQueryModelPackage.ORDER_BY_ORDINAL__ORDINAL_VALUE:
-                return ordinalValue != ORDINAL_VALUE_EDEFAULT;
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case SQLQueryModelPackage.ORDER_BY_ORDINAL__ORDINAL_VALUE:
+				return ordinalValue != ORDINAL_VALUE_EDEFAULT;
+		}
+		return super.eIsSet(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public String toString() {
-        if (eIsProxy()) return super.toString();
+	 * @generated
+	 */
+    @Override
+	public String toString() {
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (ordinalValue: ");
-        result.append(ordinalValue);
-        result.append(')');
-        return result.toString();
-    }
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (ordinalValue: ");
+		result.append(ordinalValue);
+		result.append(')');
+		return result.toString();
+	}
 
 } //SQLOrderByOrdinalImpl

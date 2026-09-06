@@ -35,1802 +35,1886 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
  */
 public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier {
     /**
-     * This keeps track of the root adapter factory that delegates to this adapter factory.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the root adapter factory that delegates to this adapter factory.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
   protected ComposedAdapterFactory parentAdapterFactory;
 
     /**
-     * This is used to implement {@link org.eclipse.emf.edit.provider.IChangeNotifier}.
-     * <!-- begin-user-doc -->
+	 * This is used to implement {@link org.eclipse.emf.edit.provider.IChangeNotifier}.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
   protected IChangeNotifier changeNotifier = new ChangeNotifier();
 
     /**
-     * This keeps track of all the supported types checked by {@link #isFactoryForType isFactoryForType}.
-     * <!-- begin-user-doc -->
+	 * This keeps track of all the supported types checked by {@link #isFactoryForType isFactoryForType}.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
   protected Collection supportedTypes = new ArrayList();
 
     /**
-     * This constructs an instance.
-     * <!-- begin-user-doc -->
+	 * This constructs an instance.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
   public SQLQueryModelItemProviderAdapterFactory() {
-        supportedTypes.add(IEditingDomainItemProvider.class);
-        supportedTypes.add(IStructuredItemContentProvider.class);
-        supportedTypes.add(ITreeItemContentProvider.class);
-        supportedTypes.add(IItemLabelProvider.class);
-        supportedTypes.add(IItemPropertySource.class);
-    }
+		supportedTypes.add(IEditingDomainItemProvider.class);
+		supportedTypes.add(IStructuredItemContentProvider.class);
+		supportedTypes.add(ITreeItemContentProvider.class);
+		supportedTypes.add(IItemLabelProvider.class);
+		supportedTypes.add(IItemPropertySource.class);
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.QueryDeleteStatement} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.QueryDeleteStatement} instances.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
   protected QueryDeleteStatementItemProvider queryDeleteStatementItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.QueryDeleteStatement}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.QueryDeleteStatement}.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
-  public Adapter createQueryDeleteStatementAdapter() {
-        if (queryDeleteStatementItemProvider == null) {
-            queryDeleteStatementItemProvider = new QueryDeleteStatementItemProvider(this);
-        }
+	 * @generated
+	 */
+  @Override
+public Adapter createQueryDeleteStatementAdapter() {
+		if (queryDeleteStatementItemProvider == null) {
+			queryDeleteStatementItemProvider = new QueryDeleteStatementItemProvider(this);
+		}
 
-        return queryDeleteStatementItemProvider;
-    }
+		return queryDeleteStatementItemProvider;
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.QueryInsertStatement} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.QueryInsertStatement} instances.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
   protected QueryInsertStatementItemProvider queryInsertStatementItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.QueryInsertStatement}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.QueryInsertStatement}.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
-  public Adapter createQueryInsertStatementAdapter() {
-        if (queryInsertStatementItemProvider == null) {
-            queryInsertStatementItemProvider = new QueryInsertStatementItemProvider(this);
-        }
+	 * @generated
+	 */
+  @Override
+public Adapter createQueryInsertStatementAdapter() {
+		if (queryInsertStatementItemProvider == null) {
+			queryInsertStatementItemProvider = new QueryInsertStatementItemProvider(this);
+		}
 
-        return queryInsertStatementItemProvider;
-    }
+		return queryInsertStatementItemProvider;
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.QuerySelectStatement} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.QuerySelectStatement} instances.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
   protected QuerySelectStatementItemProvider querySelectStatementItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.QuerySelectStatement}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.QuerySelectStatement}.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
-  public Adapter createQuerySelectStatementAdapter() {
-        if (querySelectStatementItemProvider == null) {
-            querySelectStatementItemProvider = new QuerySelectStatementItemProvider(this);
-        }
+	 * @generated
+	 */
+  @Override
+public Adapter createQuerySelectStatementAdapter() {
+		if (querySelectStatementItemProvider == null) {
+			querySelectStatementItemProvider = new QuerySelectStatementItemProvider(this);
+		}
 
-        return querySelectStatementItemProvider;
-    }
+		return querySelectStatementItemProvider;
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.QueryUpdateStatement} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.QueryUpdateStatement} instances.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
   protected QueryUpdateStatementItemProvider queryUpdateStatementItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.QueryUpdateStatement}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.QueryUpdateStatement}.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
-  public Adapter createQueryUpdateStatementAdapter() {
-        if (queryUpdateStatementItemProvider == null) {
-            queryUpdateStatementItemProvider = new QueryUpdateStatementItemProvider(this);
-        }
+	 * @generated
+	 */
+  @Override
+public Adapter createQueryUpdateStatementAdapter() {
+		if (queryUpdateStatementItemProvider == null) {
+			queryUpdateStatementItemProvider = new QueryUpdateStatementItemProvider(this);
+		}
 
-        return queryUpdateStatementItemProvider;
-    }
+		return queryUpdateStatementItemProvider;
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.UpdateAssignmentExpression} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.UpdateAssignmentExpression} instances.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
   protected UpdateAssignmentExpressionItemProvider updateAssignmentExpressionItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.UpdateAssignmentExpression}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.UpdateAssignmentExpression}.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
-  public Adapter createUpdateAssignmentExpressionAdapter() {
-        if (updateAssignmentExpressionItemProvider == null) {
-            updateAssignmentExpressionItemProvider = new UpdateAssignmentExpressionItemProvider(this);
-        }
+	 * @generated
+	 */
+  @Override
+public Adapter createUpdateAssignmentExpressionAdapter() {
+		if (updateAssignmentExpressionItemProvider == null) {
+			updateAssignmentExpressionItemProvider = new UpdateAssignmentExpressionItemProvider(this);
+		}
 
-        return updateAssignmentExpressionItemProvider;
-    }
+		return updateAssignmentExpressionItemProvider;
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.CursorReference} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.CursorReference} instances.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
   protected CursorReferenceItemProvider cursorReferenceItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.CursorReference}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.CursorReference}.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
-  public Adapter createCursorReferenceAdapter() {
-        if (cursorReferenceItemProvider == null) {
-            cursorReferenceItemProvider = new CursorReferenceItemProvider(this);
-        }
+	 * @generated
+	 */
+  @Override
+public Adapter createCursorReferenceAdapter() {
+		if (cursorReferenceItemProvider == null) {
+			cursorReferenceItemProvider = new CursorReferenceItemProvider(this);
+		}
 
-        return cursorReferenceItemProvider;
-    }
+		return cursorReferenceItemProvider;
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.QueryExpressionRoot} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.QueryExpressionRoot} instances.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
   protected QueryExpressionRootItemProvider queryExpressionRootItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.QueryExpressionRoot}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.QueryExpressionRoot}.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
-  public Adapter createQueryExpressionRootAdapter() {
-        if (queryExpressionRootItemProvider == null) {
-            queryExpressionRootItemProvider = new QueryExpressionRootItemProvider(this);
-        }
+	 * @generated
+	 */
+  @Override
+public Adapter createQueryExpressionRootAdapter() {
+		if (queryExpressionRootItemProvider == null) {
+			queryExpressionRootItemProvider = new QueryExpressionRootItemProvider(this);
+		}
 
-        return queryExpressionRootItemProvider;
-    }
+		return queryExpressionRootItemProvider;
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.ValuesRow} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.ValuesRow} instances.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
   protected ValuesRowItemProvider valuesRowItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.ValuesRow}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.ValuesRow}.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
-  public Adapter createValuesRowAdapter() {
-        if (valuesRowItemProvider == null) {
-            valuesRowItemProvider = new ValuesRowItemProvider(this);
-        }
+	 * @generated
+	 */
+  @Override
+public Adapter createValuesRowAdapter() {
+		if (valuesRowItemProvider == null) {
+			valuesRowItemProvider = new ValuesRowItemProvider(this);
+		}
 
-        return valuesRowItemProvider;
-    }
+		return valuesRowItemProvider;
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.QueryValues} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.QueryValues} instances.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
   protected QueryValuesItemProvider queryValuesItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.QueryValues}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.QueryValues}.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
-  public Adapter createQueryValuesAdapter() {
-        if (queryValuesItemProvider == null) {
-            queryValuesItemProvider = new QueryValuesItemProvider(this);
-        }
+	 * @generated
+	 */
+  @Override
+public Adapter createQueryValuesAdapter() {
+		if (queryValuesItemProvider == null) {
+			queryValuesItemProvider = new QueryValuesItemProvider(this);
+		}
 
-        return queryValuesItemProvider;
-    }
+		return queryValuesItemProvider;
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.TableJoined} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.TableJoined} instances.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
   protected TableJoinedItemProvider tableJoinedItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.TableJoined}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.TableJoined}.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
-  public Adapter createTableJoinedAdapter() {
-        if (tableJoinedItemProvider == null) {
-            tableJoinedItemProvider = new TableJoinedItemProvider(this);
-        }
+	 * @generated
+	 */
+  @Override
+public Adapter createTableJoinedAdapter() {
+		if (tableJoinedItemProvider == null) {
+			tableJoinedItemProvider = new TableJoinedItemProvider(this);
+		}
 
-        return tableJoinedItemProvider;
-    }
+		return tableJoinedItemProvider;
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.WithTableSpecification} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.WithTableSpecification} instances.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected WithTableSpecificationItemProvider withTableSpecificationItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.WithTableSpecification}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.WithTableSpecification}.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public Adapter createWithTableSpecificationAdapter() {
-        if (withTableSpecificationItemProvider == null) {
-            withTableSpecificationItemProvider = new WithTableSpecificationItemProvider(this);
-        }
+		if (withTableSpecificationItemProvider == null) {
+			withTableSpecificationItemProvider = new WithTableSpecificationItemProvider(this);
+		}
 
-        return withTableSpecificationItemProvider;
-    }
+		return withTableSpecificationItemProvider;
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.SearchConditionCombined} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.SearchConditionCombined} instances.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
   protected SearchConditionCombinedItemProvider searchConditionCombinedItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.SearchConditionCombined}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.SearchConditionCombined}.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
-  public Adapter createSearchConditionCombinedAdapter() {
-        if (searchConditionCombinedItemProvider == null) {
-            searchConditionCombinedItemProvider = new SearchConditionCombinedItemProvider(this);
-        }
+	 * @generated
+	 */
+  @Override
+public Adapter createSearchConditionCombinedAdapter() {
+		if (searchConditionCombinedItemProvider == null) {
+			searchConditionCombinedItemProvider = new SearchConditionCombinedItemProvider(this);
+		}
 
-        return searchConditionCombinedItemProvider;
-    }
+		return searchConditionCombinedItemProvider;
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.OrderByValueExpression} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.OrderByValueExpression} instances.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
   protected OrderByValueExpressionItemProvider orderByValueExpressionItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.OrderByValueExpression}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.OrderByValueExpression}.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
-  public Adapter createOrderByValueExpressionAdapter() {
-        if (orderByValueExpressionItemProvider == null) {
-            orderByValueExpressionItemProvider = new OrderByValueExpressionItemProvider(this);
-        }
+	 * @generated
+	 */
+  @Override
+public Adapter createOrderByValueExpressionAdapter() {
+		if (orderByValueExpressionItemProvider == null) {
+			orderByValueExpressionItemProvider = new OrderByValueExpressionItemProvider(this);
+		}
 
-        return orderByValueExpressionItemProvider;
-    }
+		return orderByValueExpressionItemProvider;
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.QueryCombined} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.QueryCombined} instances.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
   protected QueryCombinedItemProvider queryCombinedItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.QueryCombined}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.QueryCombined}.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
-  public Adapter createQueryCombinedAdapter() {
-        if (queryCombinedItemProvider == null) {
-            queryCombinedItemProvider = new QueryCombinedItemProvider(this);
-        }
+	 * @generated
+	 */
+  @Override
+public Adapter createQueryCombinedAdapter() {
+		if (queryCombinedItemProvider == null) {
+			queryCombinedItemProvider = new QueryCombinedItemProvider(this);
+		}
 
-        return queryCombinedItemProvider;
-    }
+		return queryCombinedItemProvider;
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.QuerySelect} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.QuerySelect} instances.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
   protected QuerySelectItemProvider querySelectItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.QuerySelect}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.QuerySelect}.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
-  public Adapter createQuerySelectAdapter() {
-        if (querySelectItemProvider == null) {
-            querySelectItemProvider = new QuerySelectItemProvider(this);
-        }
+	 * @generated
+	 */
+  @Override
+public Adapter createQuerySelectAdapter() {
+		if (querySelectItemProvider == null) {
+			querySelectItemProvider = new QuerySelectItemProvider(this);
+		}
 
-        return querySelectItemProvider;
-    }
+		return querySelectItemProvider;
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.ResultTableAllColumns} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.ResultTableAllColumns} instances.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
   protected ResultTableAllColumnsItemProvider resultTableAllColumnsItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.ResultTableAllColumns}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.ResultTableAllColumns}.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
-  public Adapter createResultTableAllColumnsAdapter() {
-        if (resultTableAllColumnsItemProvider == null) {
-            resultTableAllColumnsItemProvider = new ResultTableAllColumnsItemProvider(this);
-        }
+	 * @generated
+	 */
+  @Override
+public Adapter createResultTableAllColumnsAdapter() {
+		if (resultTableAllColumnsItemProvider == null) {
+			resultTableAllColumnsItemProvider = new ResultTableAllColumnsItemProvider(this);
+		}
 
-        return resultTableAllColumnsItemProvider;
-    }
+		return resultTableAllColumnsItemProvider;
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.ResultColumn} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.ResultColumn} instances.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
   protected ResultColumnItemProvider resultColumnItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.ResultColumn}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.ResultColumn}.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
-  public Adapter createResultColumnAdapter() {
-        if (resultColumnItemProvider == null) {
-            resultColumnItemProvider = new ResultColumnItemProvider(this);
-        }
+	 * @generated
+	 */
+  @Override
+public Adapter createResultColumnAdapter() {
+		if (resultColumnItemProvider == null) {
+			resultColumnItemProvider = new ResultColumnItemProvider(this);
+		}
 
-        return resultColumnItemProvider;
-    }
+		return resultColumnItemProvider;
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.PredicateBasic} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.PredicateBasic} instances.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
   protected PredicateBasicItemProvider predicateBasicItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.PredicateBasic}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.PredicateBasic}.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
-  public Adapter createPredicateBasicAdapter() {
-        if (predicateBasicItemProvider == null) {
-            predicateBasicItemProvider = new PredicateBasicItemProvider(this);
-        }
+	 * @generated
+	 */
+  @Override
+public Adapter createPredicateBasicAdapter() {
+		if (predicateBasicItemProvider == null) {
+			predicateBasicItemProvider = new PredicateBasicItemProvider(this);
+		}
 
-        return predicateBasicItemProvider;
-    }
+		return predicateBasicItemProvider;
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.PredicateBetween} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.PredicateBetween} instances.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
   protected PredicateBetweenItemProvider predicateBetweenItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.PredicateBetween}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.PredicateBetween}.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
-  public Adapter createPredicateBetweenAdapter() {
-        if (predicateBetweenItemProvider == null) {
-            predicateBetweenItemProvider = new PredicateBetweenItemProvider(this);
-        }
+	 * @generated
+	 */
+  @Override
+public Adapter createPredicateBetweenAdapter() {
+		if (predicateBetweenItemProvider == null) {
+			predicateBetweenItemProvider = new PredicateBetweenItemProvider(this);
+		}
 
-        return predicateBetweenItemProvider;
-    }
+		return predicateBetweenItemProvider;
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.PredicateExists} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.PredicateExists} instances.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
   protected PredicateExistsItemProvider predicateExistsItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.PredicateExists}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.PredicateExists}.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
-  public Adapter createPredicateExistsAdapter() {
-        if (predicateExistsItemProvider == null) {
-            predicateExistsItemProvider = new PredicateExistsItemProvider(this);
-        }
+	 * @generated
+	 */
+  @Override
+public Adapter createPredicateExistsAdapter() {
+		if (predicateExistsItemProvider == null) {
+			predicateExistsItemProvider = new PredicateExistsItemProvider(this);
+		}
 
-        return predicateExistsItemProvider;
-    }
+		return predicateExistsItemProvider;
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.PredicateLike} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.PredicateLike} instances.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
   protected PredicateLikeItemProvider predicateLikeItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.PredicateLike}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.PredicateLike}.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
-  public Adapter createPredicateLikeAdapter() {
-        if (predicateLikeItemProvider == null) {
-            predicateLikeItemProvider = new PredicateLikeItemProvider(this);
-        }
+	 * @generated
+	 */
+  @Override
+public Adapter createPredicateLikeAdapter() {
+		if (predicateLikeItemProvider == null) {
+			predicateLikeItemProvider = new PredicateLikeItemProvider(this);
+		}
 
-        return predicateLikeItemProvider;
-    }
+		return predicateLikeItemProvider;
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.PredicateIsNull} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.PredicateIsNull} instances.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
   protected PredicateIsNullItemProvider predicateIsNullItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.PredicateIsNull}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.PredicateIsNull}.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
-  public Adapter createPredicateIsNullAdapter() {
-        if (predicateIsNullItemProvider == null) {
-            predicateIsNullItemProvider = new PredicateIsNullItemProvider(this);
-        }
+	 * @generated
+	 */
+  @Override
+public Adapter createPredicateIsNullAdapter() {
+		if (predicateIsNullItemProvider == null) {
+			predicateIsNullItemProvider = new PredicateIsNullItemProvider(this);
+		}
 
-        return predicateIsNullItemProvider;
-    }
+		return predicateIsNullItemProvider;
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.PredicateQuantifiedValueSelect} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.PredicateQuantifiedValueSelect} instances.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
   protected PredicateQuantifiedValueSelectItemProvider predicateQuantifiedValueSelectItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.PredicateQuantifiedValueSelect}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.PredicateQuantifiedValueSelect}.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
-  public Adapter createPredicateQuantifiedValueSelectAdapter() {
-        if (predicateQuantifiedValueSelectItemProvider == null) {
-            predicateQuantifiedValueSelectItemProvider = new PredicateQuantifiedValueSelectItemProvider(this);
-        }
+	 * @generated
+	 */
+  @Override
+public Adapter createPredicateQuantifiedValueSelectAdapter() {
+		if (predicateQuantifiedValueSelectItemProvider == null) {
+			predicateQuantifiedValueSelectItemProvider = new PredicateQuantifiedValueSelectItemProvider(this);
+		}
 
-        return predicateQuantifiedValueSelectItemProvider;
-    }
+		return predicateQuantifiedValueSelectItemProvider;
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.PredicateQuantifiedRowSelect} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.PredicateQuantifiedRowSelect} instances.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
   protected PredicateQuantifiedRowSelectItemProvider predicateQuantifiedRowSelectItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.PredicateQuantifiedRowSelect}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.PredicateQuantifiedRowSelect}.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
-  public Adapter createPredicateQuantifiedRowSelectAdapter() {
-        if (predicateQuantifiedRowSelectItemProvider == null) {
-            predicateQuantifiedRowSelectItemProvider = new PredicateQuantifiedRowSelectItemProvider(this);
-        }
+	 * @generated
+	 */
+  @Override
+public Adapter createPredicateQuantifiedRowSelectAdapter() {
+		if (predicateQuantifiedRowSelectItemProvider == null) {
+			predicateQuantifiedRowSelectItemProvider = new PredicateQuantifiedRowSelectItemProvider(this);
+		}
 
-        return predicateQuantifiedRowSelectItemProvider;
-    }
+		return predicateQuantifiedRowSelectItemProvider;
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.PredicateInValueSelect} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.PredicateInValueSelect} instances.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
   protected PredicateInValueSelectItemProvider predicateInValueSelectItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.PredicateInValueSelect}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.PredicateInValueSelect}.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
-  public Adapter createPredicateInValueSelectAdapter() {
-        if (predicateInValueSelectItemProvider == null) {
-            predicateInValueSelectItemProvider = new PredicateInValueSelectItemProvider(this);
-        }
+	 * @generated
+	 */
+  @Override
+public Adapter createPredicateInValueSelectAdapter() {
+		if (predicateInValueSelectItemProvider == null) {
+			predicateInValueSelectItemProvider = new PredicateInValueSelectItemProvider(this);
+		}
 
-        return predicateInValueSelectItemProvider;
-    }
+		return predicateInValueSelectItemProvider;
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.PredicateInValueList} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.PredicateInValueList} instances.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
   protected PredicateInValueListItemProvider predicateInValueListItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.PredicateInValueList}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.PredicateInValueList}.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
-  public Adapter createPredicateInValueListAdapter() {
-        if (predicateInValueListItemProvider == null) {
-            predicateInValueListItemProvider = new PredicateInValueListItemProvider(this);
-        }
+	 * @generated
+	 */
+  @Override
+public Adapter createPredicateInValueListAdapter() {
+		if (predicateInValueListItemProvider == null) {
+			predicateInValueListItemProvider = new PredicateInValueListItemProvider(this);
+		}
 
-        return predicateInValueListItemProvider;
-    }
+		return predicateInValueListItemProvider;
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.PredicateInValueRowSelect} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.PredicateInValueRowSelect} instances.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
   protected PredicateInValueRowSelectItemProvider predicateInValueRowSelectItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.PredicateInValueRowSelect}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.PredicateInValueRowSelect}.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
-  public Adapter createPredicateInValueRowSelectAdapter() {
-        if (predicateInValueRowSelectItemProvider == null) {
-            predicateInValueRowSelectItemProvider = new PredicateInValueRowSelectItemProvider(this);
-        }
+	 * @generated
+	 */
+  @Override
+public Adapter createPredicateInValueRowSelectAdapter() {
+		if (predicateInValueRowSelectItemProvider == null) {
+			predicateInValueRowSelectItemProvider = new PredicateInValueRowSelectItemProvider(this);
+		}
 
-        return predicateInValueRowSelectItemProvider;
-    }
+		return predicateInValueRowSelectItemProvider;
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionSimple} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionSimple} instances.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
   protected ValueExpressionSimpleItemProvider valueExpressionSimpleItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionSimple}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionSimple}.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
-  public Adapter createValueExpressionSimpleAdapter() {
-        if (valueExpressionSimpleItemProvider == null) {
-            valueExpressionSimpleItemProvider = new ValueExpressionSimpleItemProvider(this);
-        }
+	 * @generated
+	 */
+  @Override
+public Adapter createValueExpressionSimpleAdapter() {
+		if (valueExpressionSimpleItemProvider == null) {
+			valueExpressionSimpleItemProvider = new ValueExpressionSimpleItemProvider(this);
+		}
 
-        return valueExpressionSimpleItemProvider;
-    }
+		return valueExpressionSimpleItemProvider;
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionColumn} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionColumn} instances.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
   protected ValueExpressionColumnItemProvider valueExpressionColumnItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionColumn}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionColumn}.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
-  public Adapter createValueExpressionColumnAdapter() {
-        if (valueExpressionColumnItemProvider == null) {
-            valueExpressionColumnItemProvider = new ValueExpressionColumnItemProvider(this);
-        }
+	 * @generated
+	 */
+  @Override
+public Adapter createValueExpressionColumnAdapter() {
+		if (valueExpressionColumnItemProvider == null) {
+			valueExpressionColumnItemProvider = new ValueExpressionColumnItemProvider(this);
+		}
 
-        return valueExpressionColumnItemProvider;
-    }
+		return valueExpressionColumnItemProvider;
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionVariable} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionVariable} instances.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
   protected ValueExpressionVariableItemProvider valueExpressionVariableItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionVariable}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionVariable}.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
-  public Adapter createValueExpressionVariableAdapter() {
-        if (valueExpressionVariableItemProvider == null) {
-            valueExpressionVariableItemProvider = new ValueExpressionVariableItemProvider(this);
-        }
+	 * @generated
+	 */
+  @Override
+public Adapter createValueExpressionVariableAdapter() {
+		if (valueExpressionVariableItemProvider == null) {
+			valueExpressionVariableItemProvider = new ValueExpressionVariableItemProvider(this);
+		}
 
-        return valueExpressionVariableItemProvider;
-    }
+		return valueExpressionVariableItemProvider;
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionScalarSelect} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionScalarSelect} instances.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
   protected ValueExpressionScalarSelectItemProvider valueExpressionScalarSelectItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionScalarSelect}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionScalarSelect}.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
-  public Adapter createValueExpressionScalarSelectAdapter() {
-        if (valueExpressionScalarSelectItemProvider == null) {
-            valueExpressionScalarSelectItemProvider = new ValueExpressionScalarSelectItemProvider(this);
-        }
+	 * @generated
+	 */
+  @Override
+public Adapter createValueExpressionScalarSelectAdapter() {
+		if (valueExpressionScalarSelectItemProvider == null) {
+			valueExpressionScalarSelectItemProvider = new ValueExpressionScalarSelectItemProvider(this);
+		}
 
-        return valueExpressionScalarSelectItemProvider;
-    }
+		return valueExpressionScalarSelectItemProvider;
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionLabeledDuration} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionLabeledDuration} instances.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
   protected ValueExpressionLabeledDurationItemProvider valueExpressionLabeledDurationItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionLabeledDuration}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionLabeledDuration}.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
-  public Adapter createValueExpressionLabeledDurationAdapter() {
-        if (valueExpressionLabeledDurationItemProvider == null) {
-            valueExpressionLabeledDurationItemProvider = new ValueExpressionLabeledDurationItemProvider(this);
-        }
+	 * @generated
+	 */
+  @Override
+public Adapter createValueExpressionLabeledDurationAdapter() {
+		if (valueExpressionLabeledDurationItemProvider == null) {
+			valueExpressionLabeledDurationItemProvider = new ValueExpressionLabeledDurationItemProvider(this);
+		}
 
-        return valueExpressionLabeledDurationItemProvider;
-    }
+		return valueExpressionLabeledDurationItemProvider;
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionCast} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionCast} instances.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
   protected ValueExpressionCastItemProvider valueExpressionCastItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionCast}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionCast}.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
-  public Adapter createValueExpressionCastAdapter() {
-        if (valueExpressionCastItemProvider == null) {
-            valueExpressionCastItemProvider = new ValueExpressionCastItemProvider(this);
-        }
+	 * @generated
+	 */
+  @Override
+public Adapter createValueExpressionCastAdapter() {
+		if (valueExpressionCastItemProvider == null) {
+			valueExpressionCastItemProvider = new ValueExpressionCastItemProvider(this);
+		}
 
-        return valueExpressionCastItemProvider;
-    }
+		return valueExpressionCastItemProvider;
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionNullValue} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionNullValue} instances.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
   protected ValueExpressionNullValueItemProvider valueExpressionNullValueItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionNullValue}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionNullValue}.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
-  public Adapter createValueExpressionNullValueAdapter() {
-        if (valueExpressionNullValueItemProvider == null) {
-            valueExpressionNullValueItemProvider = new ValueExpressionNullValueItemProvider(this);
-        }
+	 * @generated
+	 */
+  @Override
+public Adapter createValueExpressionNullValueAdapter() {
+		if (valueExpressionNullValueItemProvider == null) {
+			valueExpressionNullValueItemProvider = new ValueExpressionNullValueItemProvider(this);
+		}
 
-        return valueExpressionNullValueItemProvider;
-    }
+		return valueExpressionNullValueItemProvider;
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionDefaultValue} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionDefaultValue} instances.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
   protected ValueExpressionDefaultValueItemProvider valueExpressionDefaultValueItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionDefaultValue}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionDefaultValue}.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
-  public Adapter createValueExpressionDefaultValueAdapter() {
-        if (valueExpressionDefaultValueItemProvider == null) {
-            valueExpressionDefaultValueItemProvider = new ValueExpressionDefaultValueItemProvider(this);
-        }
+	 * @generated
+	 */
+  @Override
+public Adapter createValueExpressionDefaultValueAdapter() {
+		if (valueExpressionDefaultValueItemProvider == null) {
+			valueExpressionDefaultValueItemProvider = new ValueExpressionDefaultValueItemProvider(this);
+		}
 
-        return valueExpressionDefaultValueItemProvider;
-    }
+		return valueExpressionDefaultValueItemProvider;
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionFunction} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionFunction} instances.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
   protected ValueExpressionFunctionItemProvider valueExpressionFunctionItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionFunction}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionFunction}.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
-  public Adapter createValueExpressionFunctionAdapter() {
-        if (valueExpressionFunctionItemProvider == null) {
-            valueExpressionFunctionItemProvider = new ValueExpressionFunctionItemProvider(this);
-        }
+	 * @generated
+	 */
+  @Override
+public Adapter createValueExpressionFunctionAdapter() {
+		if (valueExpressionFunctionItemProvider == null) {
+			valueExpressionFunctionItemProvider = new ValueExpressionFunctionItemProvider(this);
+		}
 
-        return valueExpressionFunctionItemProvider;
-    }
+		return valueExpressionFunctionItemProvider;
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionCombined} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionCombined} instances.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
   protected ValueExpressionCombinedItemProvider valueExpressionCombinedItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionCombined}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionCombined}.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
-  public Adapter createValueExpressionCombinedAdapter() {
-        if (valueExpressionCombinedItemProvider == null) {
-            valueExpressionCombinedItemProvider = new ValueExpressionCombinedItemProvider(this);
-        }
+	 * @generated
+	 */
+  @Override
+public Adapter createValueExpressionCombinedAdapter() {
+		if (valueExpressionCombinedItemProvider == null) {
+			valueExpressionCombinedItemProvider = new ValueExpressionCombinedItemProvider(this);
+		}
 
-        return valueExpressionCombinedItemProvider;
-    }
+		return valueExpressionCombinedItemProvider;
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.GroupingSets} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.GroupingSets} instances.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
   protected GroupingSetsItemProvider groupingSetsItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.GroupingSets}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.GroupingSets}.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
-  public Adapter createGroupingSetsAdapter() {
-        if (groupingSetsItemProvider == null) {
-            groupingSetsItemProvider = new GroupingSetsItemProvider(this);
-        }
+	 * @generated
+	 */
+  @Override
+public Adapter createGroupingSetsAdapter() {
+		if (groupingSetsItemProvider == null) {
+			groupingSetsItemProvider = new GroupingSetsItemProvider(this);
+		}
 
-        return groupingSetsItemProvider;
-    }
+		return groupingSetsItemProvider;
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.GroupingSetsElementSublist} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.GroupingSetsElementSublist} instances.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
   protected GroupingSetsElementSublistItemProvider groupingSetsElementSublistItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.GroupingSetsElementSublist}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.GroupingSetsElementSublist}.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
-  public Adapter createGroupingSetsElementSublistAdapter() {
-        if (groupingSetsElementSublistItemProvider == null) {
-            groupingSetsElementSublistItemProvider = new GroupingSetsElementSublistItemProvider(this);
-        }
+	 * @generated
+	 */
+  @Override
+public Adapter createGroupingSetsElementSublistAdapter() {
+		if (groupingSetsElementSublistItemProvider == null) {
+			groupingSetsElementSublistItemProvider = new GroupingSetsElementSublistItemProvider(this);
+		}
 
-        return groupingSetsElementSublistItemProvider;
-    }
+		return groupingSetsElementSublistItemProvider;
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.GroupingSetsElementExpression} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.GroupingSetsElementExpression} instances.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
   protected GroupingSetsElementExpressionItemProvider groupingSetsElementExpressionItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.GroupingSetsElementExpression}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.GroupingSetsElementExpression}.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
-  public Adapter createGroupingSetsElementExpressionAdapter() {
-        if (groupingSetsElementExpressionItemProvider == null) {
-            groupingSetsElementExpressionItemProvider = new GroupingSetsElementExpressionItemProvider(this);
-        }
+	 * @generated
+	 */
+  @Override
+public Adapter createGroupingSetsElementExpressionAdapter() {
+		if (groupingSetsElementExpressionItemProvider == null) {
+			groupingSetsElementExpressionItemProvider = new GroupingSetsElementExpressionItemProvider(this);
+		}
 
-        return groupingSetsElementExpressionItemProvider;
-    }
+		return groupingSetsElementExpressionItemProvider;
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.SuperGroup} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.SuperGroup} instances.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
   protected SuperGroupItemProvider superGroupItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.SuperGroup}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.SuperGroup}.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
-  public Adapter createSuperGroupAdapter() {
-        if (superGroupItemProvider == null) {
-            superGroupItemProvider = new SuperGroupItemProvider(this);
-        }
+	 * @generated
+	 */
+  @Override
+public Adapter createSuperGroupAdapter() {
+		if (superGroupItemProvider == null) {
+			superGroupItemProvider = new SuperGroupItemProvider(this);
+		}
 
-        return superGroupItemProvider;
-    }
+		return superGroupItemProvider;
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.GroupingExpression} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.GroupingExpression} instances.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
   protected GroupingExpressionItemProvider groupingExpressionItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.GroupingExpression}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.GroupingExpression}.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
-  public Adapter createGroupingExpressionAdapter() {
-        if (groupingExpressionItemProvider == null) {
-            groupingExpressionItemProvider = new GroupingExpressionItemProvider(this);
-        }
+	 * @generated
+	 */
+  @Override
+public Adapter createGroupingExpressionAdapter() {
+		if (groupingExpressionItemProvider == null) {
+			groupingExpressionItemProvider = new GroupingExpressionItemProvider(this);
+		}
 
-        return groupingExpressionItemProvider;
-    }
+		return groupingExpressionItemProvider;
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.SuperGroupElementSublist} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.SuperGroupElementSublist} instances.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
   protected SuperGroupElementSublistItemProvider superGroupElementSublistItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.SuperGroupElementSublist}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.SuperGroupElementSublist}.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
-  public Adapter createSuperGroupElementSublistAdapter() {
-        if (superGroupElementSublistItemProvider == null) {
-            superGroupElementSublistItemProvider = new SuperGroupElementSublistItemProvider(this);
-        }
+	 * @generated
+	 */
+  @Override
+public Adapter createSuperGroupElementSublistAdapter() {
+		if (superGroupElementSublistItemProvider == null) {
+			superGroupElementSublistItemProvider = new SuperGroupElementSublistItemProvider(this);
+		}
 
-        return superGroupElementSublistItemProvider;
-    }
+		return superGroupElementSublistItemProvider;
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.SuperGroupElementExpression} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.SuperGroupElementExpression} instances.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
   protected SuperGroupElementExpressionItemProvider superGroupElementExpressionItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.SuperGroupElementExpression}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.SuperGroupElementExpression}.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
-  public Adapter createSuperGroupElementExpressionAdapter() {
-        if (superGroupElementExpressionItemProvider == null) {
-            superGroupElementExpressionItemProvider = new SuperGroupElementExpressionItemProvider(this);
-        }
+	 * @generated
+	 */
+  @Override
+public Adapter createSuperGroupElementExpressionAdapter() {
+		if (superGroupElementExpressionItemProvider == null) {
+			superGroupElementExpressionItemProvider = new SuperGroupElementExpressionItemProvider(this);
+		}
 
-        return superGroupElementExpressionItemProvider;
-    }
+		return superGroupElementExpressionItemProvider;
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionCaseSearch} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionCaseSearch} instances.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
   protected ValueExpressionCaseSearchItemProvider valueExpressionCaseSearchItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionCaseSearch}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionCaseSearch}.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
-  public Adapter createValueExpressionCaseSearchAdapter() {
-        if (valueExpressionCaseSearchItemProvider == null) {
-            valueExpressionCaseSearchItemProvider = new ValueExpressionCaseSearchItemProvider(this);
-        }
+	 * @generated
+	 */
+  @Override
+public Adapter createValueExpressionCaseSearchAdapter() {
+		if (valueExpressionCaseSearchItemProvider == null) {
+			valueExpressionCaseSearchItemProvider = new ValueExpressionCaseSearchItemProvider(this);
+		}
 
-        return valueExpressionCaseSearchItemProvider;
-    }
+		return valueExpressionCaseSearchItemProvider;
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionCaseSimple} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionCaseSimple} instances.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
   protected ValueExpressionCaseSimpleItemProvider valueExpressionCaseSimpleItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionCaseSimple}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionCaseSimple}.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
-  public Adapter createValueExpressionCaseSimpleAdapter() {
-        if (valueExpressionCaseSimpleItemProvider == null) {
-            valueExpressionCaseSimpleItemProvider = new ValueExpressionCaseSimpleItemProvider(this);
-        }
+	 * @generated
+	 */
+  @Override
+public Adapter createValueExpressionCaseSimpleAdapter() {
+		if (valueExpressionCaseSimpleItemProvider == null) {
+			valueExpressionCaseSimpleItemProvider = new ValueExpressionCaseSimpleItemProvider(this);
+		}
 
-        return valueExpressionCaseSimpleItemProvider;
-    }
+		return valueExpressionCaseSimpleItemProvider;
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionCaseElse} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionCaseElse} instances.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
   protected ValueExpressionCaseElseItemProvider valueExpressionCaseElseItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionCaseElse}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionCaseElse}.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
-  public Adapter createValueExpressionCaseElseAdapter() {
-        if (valueExpressionCaseElseItemProvider == null) {
-            valueExpressionCaseElseItemProvider = new ValueExpressionCaseElseItemProvider(this);
-        }
+	 * @generated
+	 */
+  @Override
+public Adapter createValueExpressionCaseElseAdapter() {
+		if (valueExpressionCaseElseItemProvider == null) {
+			valueExpressionCaseElseItemProvider = new ValueExpressionCaseElseItemProvider(this);
+		}
 
-        return valueExpressionCaseElseItemProvider;
-    }
+		return valueExpressionCaseElseItemProvider;
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionCaseSearchContent} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionCaseSearchContent} instances.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
   protected ValueExpressionCaseSearchContentItemProvider valueExpressionCaseSearchContentItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionCaseSearchContent}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionCaseSearchContent}.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
-  public Adapter createValueExpressionCaseSearchContentAdapter() {
-        if (valueExpressionCaseSearchContentItemProvider == null) {
-            valueExpressionCaseSearchContentItemProvider = new ValueExpressionCaseSearchContentItemProvider(this);
-        }
+	 * @generated
+	 */
+  @Override
+public Adapter createValueExpressionCaseSearchContentAdapter() {
+		if (valueExpressionCaseSearchContentItemProvider == null) {
+			valueExpressionCaseSearchContentItemProvider = new ValueExpressionCaseSearchContentItemProvider(this);
+		}
 
-        return valueExpressionCaseSearchContentItemProvider;
-    }
+		return valueExpressionCaseSearchContentItemProvider;
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionCaseSimpleContent} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionCaseSimpleContent} instances.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
   protected ValueExpressionCaseSimpleContentItemProvider valueExpressionCaseSimpleContentItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionCaseSimpleContent}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionCaseSimpleContent}.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
-  public Adapter createValueExpressionCaseSimpleContentAdapter() {
-        if (valueExpressionCaseSimpleContentItemProvider == null) {
-            valueExpressionCaseSimpleContentItemProvider = new ValueExpressionCaseSimpleContentItemProvider(this);
-        }
+	 * @generated
+	 */
+  @Override
+public Adapter createValueExpressionCaseSimpleContentAdapter() {
+		if (valueExpressionCaseSimpleContentItemProvider == null) {
+			valueExpressionCaseSimpleContentItemProvider = new ValueExpressionCaseSimpleContentItemProvider(this);
+		}
 
-        return valueExpressionCaseSimpleContentItemProvider;
-    }
+		return valueExpressionCaseSimpleContentItemProvider;
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.TableInDatabase} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.TableInDatabase} instances.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
   protected TableInDatabaseItemProvider tableInDatabaseItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.TableInDatabase}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.TableInDatabase}.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
-  public Adapter createTableInDatabaseAdapter() {
-        if (tableInDatabaseItemProvider == null) {
-            tableInDatabaseItemProvider = new TableInDatabaseItemProvider(this);
-        }
+	 * @generated
+	 */
+  @Override
+public Adapter createTableInDatabaseAdapter() {
+		if (tableInDatabaseItemProvider == null) {
+			tableInDatabaseItemProvider = new TableInDatabaseItemProvider(this);
+		}
 
-        return tableInDatabaseItemProvider;
-    }
+		return tableInDatabaseItemProvider;
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.TableFunction} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.TableFunction} instances.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
   protected TableFunctionItemProvider tableFunctionItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.TableFunction}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.TableFunction}.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
-  public Adapter createTableFunctionAdapter() {
-        if (tableFunctionItemProvider == null) {
-            tableFunctionItemProvider = new TableFunctionItemProvider(this);
-        }
+	 * @generated
+	 */
+  @Override
+public Adapter createTableFunctionAdapter() {
+		if (tableFunctionItemProvider == null) {
+			tableFunctionItemProvider = new TableFunctionItemProvider(this);
+		}
 
-        return tableFunctionItemProvider;
-    }
+		return tableFunctionItemProvider;
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.ColumnName} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.ColumnName} instances.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
   protected ColumnNameItemProvider columnNameItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.ColumnName}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.ColumnName}.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
-  public Adapter createColumnNameAdapter() {
-        if (columnNameItemProvider == null) {
-            columnNameItemProvider = new ColumnNameItemProvider(this);
-        }
+	 * @generated
+	 */
+  @Override
+public Adapter createColumnNameAdapter() {
+		if (columnNameItemProvider == null) {
+			columnNameItemProvider = new ColumnNameItemProvider(this);
+		}
 
-        return columnNameItemProvider;
-    }
+		return columnNameItemProvider;
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.TableNested} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.TableNested} instances.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
   protected TableNestedItemProvider tableNestedItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.TableNested}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.TableNested}.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
-  public Adapter createTableNestedAdapter() {
-        if (tableNestedItemProvider == null) {
-            tableNestedItemProvider = new TableNestedItemProvider(this);
-        }
+	 * @generated
+	 */
+  @Override
+public Adapter createTableNestedAdapter() {
+		if (tableNestedItemProvider == null) {
+			tableNestedItemProvider = new TableNestedItemProvider(this);
+		}
 
-        return tableNestedItemProvider;
-    }
+		return tableNestedItemProvider;
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.QueryMergeStatement} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.QueryMergeStatement} instances.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
   protected QueryMergeStatementItemProvider queryMergeStatementItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.QueryMergeStatement}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.QueryMergeStatement}.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
-  public Adapter createQueryMergeStatementAdapter() {
-        if (queryMergeStatementItemProvider == null) {
-            queryMergeStatementItemProvider = new QueryMergeStatementItemProvider(this);
-        }
+	 * @generated
+	 */
+  @Override
+public Adapter createQueryMergeStatementAdapter() {
+		if (queryMergeStatementItemProvider == null) {
+			queryMergeStatementItemProvider = new QueryMergeStatementItemProvider(this);
+		}
 
-        return queryMergeStatementItemProvider;
-    }
+		return queryMergeStatementItemProvider;
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.SearchConditionNested} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.SearchConditionNested} instances.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
   protected SearchConditionNestedItemProvider searchConditionNestedItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.SearchConditionNested}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.SearchConditionNested}.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
-  public Adapter createSearchConditionNestedAdapter() {
-        if (searchConditionNestedItemProvider == null) {
-            searchConditionNestedItemProvider = new SearchConditionNestedItemProvider(this);
-        }
+	 * @generated
+	 */
+  @Override
+public Adapter createSearchConditionNestedAdapter() {
+		if (searchConditionNestedItemProvider == null) {
+			searchConditionNestedItemProvider = new SearchConditionNestedItemProvider(this);
+		}
 
-        return searchConditionNestedItemProvider;
-    }
+		return searchConditionNestedItemProvider;
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionNested} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionNested} instances.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
   protected ValueExpressionNestedItemProvider valueExpressionNestedItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionNested}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionNested}.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
-  public Adapter createValueExpressionNestedAdapter() {
-        if (valueExpressionNestedItemProvider == null) {
-            valueExpressionNestedItemProvider = new ValueExpressionNestedItemProvider(this);
-        }
+	 * @generated
+	 */
+  @Override
+public Adapter createValueExpressionNestedAdapter() {
+		if (valueExpressionNestedItemProvider == null) {
+			valueExpressionNestedItemProvider = new ValueExpressionNestedItemProvider(this);
+		}
 
-        return valueExpressionNestedItemProvider;
-    }
+		return valueExpressionNestedItemProvider;
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.OrderByOrdinal} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.OrderByOrdinal} instances.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
   protected OrderByOrdinalItemProvider orderByOrdinalItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.OrderByOrdinal}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.OrderByOrdinal}.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
-  public Adapter createOrderByOrdinalAdapter() {
-        if (orderByOrdinalItemProvider == null) {
-            orderByOrdinalItemProvider = new OrderByOrdinalItemProvider(this);
-        }
+	 * @generated
+	 */
+  @Override
+public Adapter createOrderByOrdinalAdapter() {
+		if (orderByOrdinalItemProvider == null) {
+			orderByOrdinalItemProvider = new OrderByOrdinalItemProvider(this);
+		}
 
-        return orderByOrdinalItemProvider;
-    }
+		return orderByOrdinalItemProvider;
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.TableCorrelation} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.TableCorrelation} instances.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
   protected TableCorrelationItemProvider tableCorrelationItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.TableCorrelation}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.TableCorrelation}.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
-  public Adapter createTableCorrelationAdapter() {
-        if (tableCorrelationItemProvider == null) {
-            tableCorrelationItemProvider = new TableCorrelationItemProvider(this);
-        }
+	 * @generated
+	 */
+  @Override
+public Adapter createTableCorrelationAdapter() {
+		if (tableCorrelationItemProvider == null) {
+			tableCorrelationItemProvider = new TableCorrelationItemProvider(this);
+		}
 
-        return tableCorrelationItemProvider;
-    }
+		return tableCorrelationItemProvider;
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.UpdateSource} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.UpdateSource} instances.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
   protected UpdateSourceItemProvider updateSourceItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.UpdateSource}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.UpdateSource}.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
-  public Adapter createUpdateSourceAdapter() {
-        if (updateSourceItemProvider == null) {
-            updateSourceItemProvider = new UpdateSourceItemProvider(this);
-        }
+	 * @generated
+	 */
+  @Override
+public Adapter createUpdateSourceAdapter() {
+		if (updateSourceItemProvider == null) {
+			updateSourceItemProvider = new UpdateSourceItemProvider(this);
+		}
 
-        return updateSourceItemProvider;
-    }
+		return updateSourceItemProvider;
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.UpdateSourceExprList} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.UpdateSourceExprList} instances.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
   protected UpdateSourceExprListItemProvider updateSourceExprListItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.UpdateSourceExprList}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.UpdateSourceExprList}.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
-  public Adapter createUpdateSourceExprListAdapter() {
-        if (updateSourceExprListItemProvider == null) {
-            updateSourceExprListItemProvider = new UpdateSourceExprListItemProvider(this);
-        }
+	 * @generated
+	 */
+  @Override
+public Adapter createUpdateSourceExprListAdapter() {
+		if (updateSourceExprListItemProvider == null) {
+			updateSourceExprListItemProvider = new UpdateSourceExprListItemProvider(this);
+		}
 
-        return updateSourceExprListItemProvider;
-    }
+		return updateSourceExprListItemProvider;
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.UpdateSourceQuery} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.UpdateSourceQuery} instances.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
   protected UpdateSourceQueryItemProvider updateSourceQueryItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.UpdateSourceQuery}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.UpdateSourceQuery}.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
-  public Adapter createUpdateSourceQueryAdapter() {
-        if (updateSourceQueryItemProvider == null) {
-            updateSourceQueryItemProvider = new UpdateSourceQueryItemProvider(this);
-        }
+	 * @generated
+	 */
+  @Override
+public Adapter createUpdateSourceQueryAdapter() {
+		if (updateSourceQueryItemProvider == null) {
+			updateSourceQueryItemProvider = new UpdateSourceQueryItemProvider(this);
+		}
 
-        return updateSourceQueryItemProvider;
-    }
+		return updateSourceQueryItemProvider;
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.OrderByResultColumn} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.OrderByResultColumn} instances.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
   protected OrderByResultColumnItemProvider orderByResultColumnItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.OrderByResultColumn}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.OrderByResultColumn}.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
-  public Adapter createOrderByResultColumnAdapter() {
-        if (orderByResultColumnItemProvider == null) {
-            orderByResultColumnItemProvider = new OrderByResultColumnItemProvider(this);
-        }
+	 * @generated
+	 */
+  @Override
+public Adapter createOrderByResultColumnAdapter() {
+		if (orderByResultColumnItemProvider == null) {
+			orderByResultColumnItemProvider = new OrderByResultColumnItemProvider(this);
+		}
 
-        return orderByResultColumnItemProvider;
-    }
+		return orderByResultColumnItemProvider;
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.WithTableReference} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.WithTableReference} instances.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected WithTableReferenceItemProvider withTableReferenceItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.WithTableReference}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.WithTableReference}.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public Adapter createWithTableReferenceAdapter() {
-        if (withTableReferenceItemProvider == null) {
-            withTableReferenceItemProvider = new WithTableReferenceItemProvider(this);
-        }
+		if (withTableReferenceItemProvider == null) {
+			withTableReferenceItemProvider = new WithTableReferenceItemProvider(this);
+		}
 
-        return withTableReferenceItemProvider;
-    }
+		return withTableReferenceItemProvider;
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.QueryNested} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.QueryNested} instances.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected QueryNestedItemProvider queryNestedItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.QueryNested}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.QueryNested}.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public Adapter createQueryNestedAdapter() {
-        if (queryNestedItemProvider == null) {
-            queryNestedItemProvider = new QueryNestedItemProvider(this);
-        }
+	 * @generated
+	 */
+    @Override
+	public Adapter createQueryNestedAdapter() {
+		if (queryNestedItemProvider == null) {
+			queryNestedItemProvider = new QueryNestedItemProvider(this);
+		}
 
-        return queryNestedItemProvider;
-    }
+		return queryNestedItemProvider;
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionRow} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionRow} instances.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected ValueExpressionRowItemProvider valueExpressionRowItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionRow}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionRow}.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public Adapter createValueExpressionRowAdapter() {
-        if (valueExpressionRowItemProvider == null) {
-            valueExpressionRowItemProvider = new ValueExpressionRowItemProvider(this);
-        }
+	 * @generated
+	 */
+    @Override
+	public Adapter createValueExpressionRowAdapter() {
+		if (valueExpressionRowItemProvider == null) {
+			valueExpressionRowItemProvider = new ValueExpressionRowItemProvider(this);
+		}
 
-        return valueExpressionRowItemProvider;
-    }
+		return valueExpressionRowItemProvider;
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.MergeTargetTable} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.MergeTargetTable} instances.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected MergeTargetTableItemProvider mergeTargetTableItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.MergeTargetTable}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.MergeTargetTable}.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public Adapter createMergeTargetTableAdapter() {
-        if (mergeTargetTableItemProvider == null) {
-            mergeTargetTableItemProvider = new MergeTargetTableItemProvider(this);
-        }
+	 * @generated
+	 */
+    @Override
+	public Adapter createMergeTargetTableAdapter() {
+		if (mergeTargetTableItemProvider == null) {
+			mergeTargetTableItemProvider = new MergeTargetTableItemProvider(this);
+		}
 
-        return mergeTargetTableItemProvider;
-    }
+		return mergeTargetTableItemProvider;
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.MergeSourceTable} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.MergeSourceTable} instances.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected MergeSourceTableItemProvider mergeSourceTableItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.MergeSourceTable}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.MergeSourceTable}.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public Adapter createMergeSourceTableAdapter() {
-        if (mergeSourceTableItemProvider == null) {
-            mergeSourceTableItemProvider = new MergeSourceTableItemProvider(this);
-        }
+	 * @generated
+	 */
+    @Override
+	public Adapter createMergeSourceTableAdapter() {
+		if (mergeSourceTableItemProvider == null) {
+			mergeSourceTableItemProvider = new MergeSourceTableItemProvider(this);
+		}
 
-        return mergeSourceTableItemProvider;
-    }
+		return mergeSourceTableItemProvider;
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.MergeOnCondition} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.MergeOnCondition} instances.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected MergeOnConditionItemProvider mergeOnConditionItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.MergeOnCondition}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.MergeOnCondition}.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public Adapter createMergeOnConditionAdapter() {
-        if (mergeOnConditionItemProvider == null) {
-            mergeOnConditionItemProvider = new MergeOnConditionItemProvider(this);
-        }
+	 * @generated
+	 */
+    @Override
+	public Adapter createMergeOnConditionAdapter() {
+		if (mergeOnConditionItemProvider == null) {
+			mergeOnConditionItemProvider = new MergeOnConditionItemProvider(this);
+		}
 
-        return mergeOnConditionItemProvider;
-    }
+		return mergeOnConditionItemProvider;
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.MergeUpdateSpecification} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.MergeUpdateSpecification} instances.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected MergeUpdateSpecificationItemProvider mergeUpdateSpecificationItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.MergeUpdateSpecification}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.MergeUpdateSpecification}.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public Adapter createMergeUpdateSpecificationAdapter() {
-        if (mergeUpdateSpecificationItemProvider == null) {
-            mergeUpdateSpecificationItemProvider = new MergeUpdateSpecificationItemProvider(this);
-        }
+	 * @generated
+	 */
+    @Override
+	public Adapter createMergeUpdateSpecificationAdapter() {
+		if (mergeUpdateSpecificationItemProvider == null) {
+			mergeUpdateSpecificationItemProvider = new MergeUpdateSpecificationItemProvider(this);
+		}
 
-        return mergeUpdateSpecificationItemProvider;
-    }
+		return mergeUpdateSpecificationItemProvider;
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.MergeInsertSpecification} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.MergeInsertSpecification} instances.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected MergeInsertSpecificationItemProvider mergeInsertSpecificationItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.MergeInsertSpecification}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.MergeInsertSpecification}.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public Adapter createMergeInsertSpecificationAdapter() {
-        if (mergeInsertSpecificationItemProvider == null) {
-            mergeInsertSpecificationItemProvider = new MergeInsertSpecificationItemProvider(this);
-        }
+	 * @generated
+	 */
+    @Override
+	public Adapter createMergeInsertSpecificationAdapter() {
+		if (mergeInsertSpecificationItemProvider == null) {
+			mergeInsertSpecificationItemProvider = new MergeInsertSpecificationItemProvider(this);
+		}
 
-        return mergeInsertSpecificationItemProvider;
-    }
+		return mergeInsertSpecificationItemProvider;
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.MergeOperationSpecification} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.MergeOperationSpecification} instances.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected MergeOperationSpecificationItemProvider mergeOperationSpecificationItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.MergeOperationSpecification}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.MergeOperationSpecification}.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public Adapter createMergeOperationSpecificationAdapter() {
-        if (mergeOperationSpecificationItemProvider == null) {
-            mergeOperationSpecificationItemProvider = new MergeOperationSpecificationItemProvider(this);
-        }
+	 * @generated
+	 */
+    @Override
+	public Adapter createMergeOperationSpecificationAdapter() {
+		if (mergeOperationSpecificationItemProvider == null) {
+			mergeOperationSpecificationItemProvider = new MergeOperationSpecificationItemProvider(this);
+		}
 
-        return mergeOperationSpecificationItemProvider;
-    }
+		return mergeOperationSpecificationItemProvider;
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.UpdateOfColumn} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.UpdateOfColumn} instances.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected UpdateOfColumnItemProvider updateOfColumnItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.UpdateOfColumn}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.UpdateOfColumn}.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public Adapter createUpdateOfColumnAdapter() {
-        if (updateOfColumnItemProvider == null) {
-            updateOfColumnItemProvider = new UpdateOfColumnItemProvider(this);
-        }
+	 * @generated
+	 */
+    @Override
+	public Adapter createUpdateOfColumnAdapter() {
+		if (updateOfColumnItemProvider == null) {
+			updateOfColumnItemProvider = new UpdateOfColumnItemProvider(this);
+		}
 
-        return updateOfColumnItemProvider;
-    }
+		return updateOfColumnItemProvider;
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.UpdatabilityExpression} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.UpdatabilityExpression} instances.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected UpdatabilityExpressionItemProvider updatabilityExpressionItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.UpdatabilityExpression}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.UpdatabilityExpression}.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public Adapter createUpdatabilityExpressionAdapter() {
-        if (updatabilityExpressionItemProvider == null) {
-            updatabilityExpressionItemProvider = new UpdatabilityExpressionItemProvider(this);
-        }
+	 * @generated
+	 */
+    @Override
+	public Adapter createUpdatabilityExpressionAdapter() {
+		if (updatabilityExpressionItemProvider == null) {
+			updatabilityExpressionItemProvider = new UpdatabilityExpressionItemProvider(this);
+		}
 
-        return updatabilityExpressionItemProvider;
-    }
+		return updatabilityExpressionItemProvider;
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.CallStatement} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.CallStatement} instances.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected CallStatementItemProvider callStatementItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.CallStatement}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.CallStatement}.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public Adapter createCallStatementAdapter() {
-        if (callStatementItemProvider == null) {
-            callStatementItemProvider = new CallStatementItemProvider(this);
-        }
+	 * @generated
+	 */
+    @Override
+	public Adapter createCallStatementAdapter() {
+		if (callStatementItemProvider == null) {
+			callStatementItemProvider = new CallStatementItemProvider(this);
+		}
 
-        return callStatementItemProvider;
-    }
+		return callStatementItemProvider;
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.ProcedureReference} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.ProcedureReference} instances.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected ProcedureReferenceItemProvider procedureReferenceItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.ProcedureReference}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.ProcedureReference}.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public Adapter createProcedureReferenceAdapter() {
-        if (procedureReferenceItemProvider == null) {
-            procedureReferenceItemProvider = new ProcedureReferenceItemProvider(this);
-        }
+	 * @generated
+	 */
+    @Override
+	public Adapter createProcedureReferenceAdapter() {
+		if (procedureReferenceItemProvider == null) {
+			procedureReferenceItemProvider = new ProcedureReferenceItemProvider(this);
+		}
 
-        return procedureReferenceItemProvider;
-    }
+		return procedureReferenceItemProvider;
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.TableQueryLateral} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.TableQueryLateral} instances.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected TableQueryLateralItemProvider tableQueryLateralItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.TableQueryLateral}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.TableQueryLateral}.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public Adapter createTableQueryLateralAdapter() {
-        if (tableQueryLateralItemProvider == null) {
-            tableQueryLateralItemProvider = new TableQueryLateralItemProvider(this);
-        }
+	 * @generated
+	 */
+    @Override
+	public Adapter createTableQueryLateralAdapter() {
+		if (tableQueryLateralItemProvider == null) {
+			tableQueryLateralItemProvider = new TableQueryLateralItemProvider(this);
+		}
 
-        return tableQueryLateralItemProvider;
-    }
-
-    /**
-     * This returns the root adapter factory that contains this factory.
-     * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-     * @generated
-     */
-  public ComposeableAdapterFactory getRootAdapterFactory() {
-        return parentAdapterFactory == null ? this : parentAdapterFactory.getRootAdapterFactory();
-    }
+		return tableQueryLateralItemProvider;
+	}
 
     /**
-     * This sets the composed adapter factory that contains this factory.
-     * <!-- begin-user-doc -->
+	 * This returns the root adapter factory that contains this factory.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
-  public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory) {
-        this.parentAdapterFactory = parentAdapterFactory;
-    }
+	 * @generated
+	 */
+  @Override
+public ComposeableAdapterFactory getRootAdapterFactory() {
+		return parentAdapterFactory == null ? this : parentAdapterFactory.getRootAdapterFactory();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * This sets the composed adapter factory that contains this factory.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
-  public boolean isFactoryForType(Object type) {
-        return supportedTypes.contains(type) || super.isFactoryForType(type);
-    }
+	 * @generated
+	 */
+  @Override
+public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory) {
+		this.parentAdapterFactory = parentAdapterFactory;
+	}
 
     /**
-     * This implementation substitutes the factory itself as the key for the adapter.
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
-  public Adapter adapt(Notifier notifier, Object type) {
-        return super.adapt(notifier, this);
-    }
+	 * @generated
+	 */
+  @Override
+public boolean isFactoryForType(Object type) {
+		return supportedTypes.contains(type) || super.isFactoryForType(type);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * This implementation substitutes the factory itself as the key for the adapter.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
-  public Object adapt(Object object, Object type) {
-        if (isFactoryForType(type)) {
-            Object adapter = super.adapt(object, type);
-            if (!(type instanceof Class) || (((Class)type).isInstance(adapter))) {
-                return adapter;
-            }
-        }
-
-        return null;
-    }
+	 * @generated
+	 */
+  @Override
+public Adapter adapt(Notifier notifier, Object type) {
+		return super.adapt(notifier, this);
+	}
 
     /**
-     * This adds a listener.
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
-  public void addListener(INotifyChangedListener notifyChangedListener) {
-        changeNotifier.addListener(notifyChangedListener);
-    }
+	 * @generated
+	 */
+  @Override
+public Object adapt(Object object, Object type) {
+		if (isFactoryForType(type)) {
+			Object adapter = super.adapt(object, type);
+			if (!(type instanceof Class) || (((Class)type).isInstance(adapter))) {
+				return adapter;
+			}
+		}
+
+		return null;
+	}
 
     /**
-     * This removes a listener.
-     * <!-- begin-user-doc -->
+	 * This adds a listener.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
-  public void removeListener(INotifyChangedListener notifyChangedListener) {
-        changeNotifier.removeListener(notifyChangedListener);
-    }
+	 * @generated
+	 */
+  @Override
+public void addListener(INotifyChangedListener notifyChangedListener) {
+		changeNotifier.addListener(notifyChangedListener);
+	}
 
     /**
-     * This delegates to {@link #changeNotifier} and to {@link #parentAdapterFactory}.
-     * <!-- begin-user-doc -->
+	 * This removes a listener.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
-  public void fireNotifyChanged(Notification notification) {
-        changeNotifier.fireNotifyChanged(notification);
+	 * @generated
+	 */
+  @Override
+public void removeListener(INotifyChangedListener notifyChangedListener) {
+		changeNotifier.removeListener(notifyChangedListener);
+	}
 
-        if (parentAdapterFactory != null) {
-            parentAdapterFactory.fireNotifyChanged(notification);
-        }
-    }
+    /**
+	 * This delegates to {@link #changeNotifier} and to {@link #parentAdapterFactory}.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 */
+  @Override
+public void fireNotifyChanged(Notification notification) {
+		changeNotifier.fireNotifyChanged(notification);
+
+		if (parentAdapterFactory != null) {
+			parentAdapterFactory.fireNotifyChanged(notification);
+		}
+	}
 
 }

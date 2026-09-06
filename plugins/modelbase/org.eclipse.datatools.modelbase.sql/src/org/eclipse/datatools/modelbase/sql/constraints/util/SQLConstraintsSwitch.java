@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -108,116 +108,236 @@ public class SQLConstraintsSwitch {
 			case SQLConstraintsPackage.ASSERTION: {
 				Assertion assertion = (Assertion)theEObject;
 				Object result = caseAssertion(assertion);
-				if (result == null) result = caseConstraint(assertion);
-				if (result == null) result = caseSQLObject(assertion);
-				if (result == null) result = caseENamedElement(assertion);
-				if (result == null) result = caseEModelElement(assertion);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = caseConstraint(assertion);
+				}
+				if (result == null) {
+					result = caseSQLObject(assertion);
+				}
+				if (result == null) {
+					result = caseENamedElement(assertion);
+				}
+				if (result == null) {
+					result = caseEModelElement(assertion);
+				}
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case SQLConstraintsPackage.CONSTRAINT: {
 				Constraint constraint = (Constraint)theEObject;
 				Object result = caseConstraint(constraint);
-				if (result == null) result = caseSQLObject(constraint);
-				if (result == null) result = caseENamedElement(constraint);
-				if (result == null) result = caseEModelElement(constraint);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = caseSQLObject(constraint);
+				}
+				if (result == null) {
+					result = caseENamedElement(constraint);
+				}
+				if (result == null) {
+					result = caseEModelElement(constraint);
+				}
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case SQLConstraintsPackage.TABLE_CONSTRAINT: {
 				TableConstraint tableConstraint = (TableConstraint)theEObject;
 				Object result = caseTableConstraint(tableConstraint);
-				if (result == null) result = caseConstraint(tableConstraint);
-				if (result == null) result = caseSQLObject(tableConstraint);
-				if (result == null) result = caseENamedElement(tableConstraint);
-				if (result == null) result = caseEModelElement(tableConstraint);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = caseConstraint(tableConstraint);
+				}
+				if (result == null) {
+					result = caseSQLObject(tableConstraint);
+				}
+				if (result == null) {
+					result = caseENamedElement(tableConstraint);
+				}
+				if (result == null) {
+					result = caseEModelElement(tableConstraint);
+				}
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case SQLConstraintsPackage.REFERENCE_CONSTRAINT: {
 				ReferenceConstraint referenceConstraint = (ReferenceConstraint)theEObject;
 				Object result = caseReferenceConstraint(referenceConstraint);
-				if (result == null) result = caseTableConstraint(referenceConstraint);
-				if (result == null) result = caseConstraint(referenceConstraint);
-				if (result == null) result = caseSQLObject(referenceConstraint);
-				if (result == null) result = caseENamedElement(referenceConstraint);
-				if (result == null) result = caseEModelElement(referenceConstraint);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = caseTableConstraint(referenceConstraint);
+				}
+				if (result == null) {
+					result = caseConstraint(referenceConstraint);
+				}
+				if (result == null) {
+					result = caseSQLObject(referenceConstraint);
+				}
+				if (result == null) {
+					result = caseENamedElement(referenceConstraint);
+				}
+				if (result == null) {
+					result = caseEModelElement(referenceConstraint);
+				}
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case SQLConstraintsPackage.CHECK_CONSTRAINT: {
 				CheckConstraint checkConstraint = (CheckConstraint)theEObject;
 				Object result = caseCheckConstraint(checkConstraint);
-				if (result == null) result = caseTableConstraint(checkConstraint);
-				if (result == null) result = caseConstraint(checkConstraint);
-				if (result == null) result = caseSQLObject(checkConstraint);
-				if (result == null) result = caseENamedElement(checkConstraint);
-				if (result == null) result = caseEModelElement(checkConstraint);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = caseTableConstraint(checkConstraint);
+				}
+				if (result == null) {
+					result = caseConstraint(checkConstraint);
+				}
+				if (result == null) {
+					result = caseSQLObject(checkConstraint);
+				}
+				if (result == null) {
+					result = caseENamedElement(checkConstraint);
+				}
+				if (result == null) {
+					result = caseEModelElement(checkConstraint);
+				}
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case SQLConstraintsPackage.FOREIGN_KEY: {
 				ForeignKey foreignKey = (ForeignKey)theEObject;
 				Object result = caseForeignKey(foreignKey);
-				if (result == null) result = caseReferenceConstraint(foreignKey);
-				if (result == null) result = caseTableConstraint(foreignKey);
-				if (result == null) result = caseConstraint(foreignKey);
-				if (result == null) result = caseSQLObject(foreignKey);
-				if (result == null) result = caseENamedElement(foreignKey);
-				if (result == null) result = caseEModelElement(foreignKey);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = caseReferenceConstraint(foreignKey);
+				}
+				if (result == null) {
+					result = caseTableConstraint(foreignKey);
+				}
+				if (result == null) {
+					result = caseConstraint(foreignKey);
+				}
+				if (result == null) {
+					result = caseSQLObject(foreignKey);
+				}
+				if (result == null) {
+					result = caseENamedElement(foreignKey);
+				}
+				if (result == null) {
+					result = caseEModelElement(foreignKey);
+				}
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case SQLConstraintsPackage.UNIQUE_CONSTRAINT: {
 				UniqueConstraint uniqueConstraint = (UniqueConstraint)theEObject;
 				Object result = caseUniqueConstraint(uniqueConstraint);
-				if (result == null) result = caseReferenceConstraint(uniqueConstraint);
-				if (result == null) result = caseTableConstraint(uniqueConstraint);
-				if (result == null) result = caseConstraint(uniqueConstraint);
-				if (result == null) result = caseSQLObject(uniqueConstraint);
-				if (result == null) result = caseENamedElement(uniqueConstraint);
-				if (result == null) result = caseEModelElement(uniqueConstraint);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = caseReferenceConstraint(uniqueConstraint);
+				}
+				if (result == null) {
+					result = caseTableConstraint(uniqueConstraint);
+				}
+				if (result == null) {
+					result = caseConstraint(uniqueConstraint);
+				}
+				if (result == null) {
+					result = caseSQLObject(uniqueConstraint);
+				}
+				if (result == null) {
+					result = caseENamedElement(uniqueConstraint);
+				}
+				if (result == null) {
+					result = caseEModelElement(uniqueConstraint);
+				}
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case SQLConstraintsPackage.PRIMARY_KEY: {
 				PrimaryKey primaryKey = (PrimaryKey)theEObject;
 				Object result = casePrimaryKey(primaryKey);
-				if (result == null) result = caseUniqueConstraint(primaryKey);
-				if (result == null) result = caseReferenceConstraint(primaryKey);
-				if (result == null) result = caseTableConstraint(primaryKey);
-				if (result == null) result = caseConstraint(primaryKey);
-				if (result == null) result = caseSQLObject(primaryKey);
-				if (result == null) result = caseENamedElement(primaryKey);
-				if (result == null) result = caseEModelElement(primaryKey);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = caseUniqueConstraint(primaryKey);
+				}
+				if (result == null) {
+					result = caseReferenceConstraint(primaryKey);
+				}
+				if (result == null) {
+					result = caseTableConstraint(primaryKey);
+				}
+				if (result == null) {
+					result = caseConstraint(primaryKey);
+				}
+				if (result == null) {
+					result = caseSQLObject(primaryKey);
+				}
+				if (result == null) {
+					result = caseENamedElement(primaryKey);
+				}
+				if (result == null) {
+					result = caseEModelElement(primaryKey);
+				}
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case SQLConstraintsPackage.INDEX: {
 				Index index = (Index)theEObject;
 				Object result = caseIndex(index);
-				if (result == null) result = caseSQLObject(index);
-				if (result == null) result = caseENamedElement(index);
-				if (result == null) result = caseEModelElement(index);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = caseSQLObject(index);
+				}
+				if (result == null) {
+					result = caseENamedElement(index);
+				}
+				if (result == null) {
+					result = caseEModelElement(index);
+				}
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case SQLConstraintsPackage.INDEX_MEMBER: {
 				IndexMember indexMember = (IndexMember)theEObject;
 				Object result = caseIndexMember(indexMember);
-				if (result == null) result = caseSQLObject(indexMember);
-				if (result == null) result = caseENamedElement(indexMember);
-				if (result == null) result = caseEModelElement(indexMember);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = caseSQLObject(indexMember);
+				}
+				if (result == null) {
+					result = caseENamedElement(indexMember);
+				}
+				if (result == null) {
+					result = caseEModelElement(indexMember);
+				}
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case SQLConstraintsPackage.INDEX_EXPRESSION: {
 				IndexExpression indexExpression = (IndexExpression)theEObject;
 				Object result = caseIndexExpression(indexExpression);
-				if (result == null) result = caseSQLObject(indexExpression);
-				if (result == null) result = caseENamedElement(indexExpression);
-				if (result == null) result = caseEModelElement(indexExpression);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = caseSQLObject(indexExpression);
+				}
+				if (result == null) {
+					result = caseENamedElement(indexExpression);
+				}
+				if (result == null) {
+					result = caseEModelElement(indexExpression);
+				}
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			default: return defaultCase(theEObject);

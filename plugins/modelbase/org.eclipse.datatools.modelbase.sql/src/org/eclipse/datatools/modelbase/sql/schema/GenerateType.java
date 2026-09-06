@@ -19,7 +19,7 @@ import org.eclipse.emf.common.util.AbstractEnumerator;
  * <!-- end-user-doc -->
  * <!-- begin-model-doc -->
  * Reference: 5WD-02-Foundation-2002-12 4.14.4 Identity columns
- * 
+ *
  * <!-- end-model-doc -->
  * @see org.eclipse.datatools.modelbase.sql.schema.SQLSchemaPackage#getGenerateType()
  * @model
@@ -100,11 +100,12 @@ public final class GenerateType extends AbstractEnumerator {
 	 * Returns the '<em><b>Generate Type</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static GenerateType get(String literal) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			GenerateType result = VALUES_ARRAY[i];
+		for (GenerateType result : VALUES_ARRAY) {
 			if (result.toString().equals(literal)) {
 				return result;
 			}
@@ -116,11 +117,12 @@ public final class GenerateType extends AbstractEnumerator {
 	 * Returns the '<em><b>Generate Type</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static GenerateType getByName(String name) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			GenerateType result = VALUES_ARRAY[i];
+		for (GenerateType result : VALUES_ARRAY) {
 			if (result.getName().equals(name)) {
 				return result;
 			}
@@ -132,6 +134,8 @@ public final class GenerateType extends AbstractEnumerator {
 	 * Returns the '<em><b>Generate Type</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static GenerateType get(int value) {

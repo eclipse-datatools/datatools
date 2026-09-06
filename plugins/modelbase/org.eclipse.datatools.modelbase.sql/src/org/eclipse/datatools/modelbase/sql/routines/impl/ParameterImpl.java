@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -29,13 +29,13 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.routines.impl.ParameterImpl#getMode <em>Mode</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.routines.impl.ParameterImpl#isLocator <em>Locator</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.routines.impl.ParameterImpl#getRoutine <em>Routine</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.routines.impl.ParameterImpl#getStringTypeOption <em>String Type Option</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -104,6 +104,7 @@ public class ParameterImpl extends TypedElementImpl implements Parameter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return SQLRoutinesPackage.Literals.PARAMETER;
 	}
@@ -113,6 +114,7 @@ public class ParameterImpl extends TypedElementImpl implements Parameter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ParameterMode getMode() {
 		return mode;
 	}
@@ -122,11 +124,13 @@ public class ParameterImpl extends TypedElementImpl implements Parameter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMode(ParameterMode newMode) {
 		ParameterMode oldMode = mode;
 		mode = newMode == null ? MODE_EDEFAULT : newMode;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLRoutinesPackage.PARAMETER__MODE, oldMode, mode));
+		}
 	}
 
 	/**
@@ -134,6 +138,7 @@ public class ParameterImpl extends TypedElementImpl implements Parameter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isLocator() {
 		return locator;
 	}
@@ -143,11 +148,13 @@ public class ParameterImpl extends TypedElementImpl implements Parameter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLocator(boolean newLocator) {
 		boolean oldLocator = locator;
 		locator = newLocator;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLRoutinesPackage.PARAMETER__LOCATOR, oldLocator, locator));
+		}
 	}
 
 	/**
@@ -155,9 +162,12 @@ public class ParameterImpl extends TypedElementImpl implements Parameter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Routine getRoutine() {
-		if (eContainerFeatureID != SQLRoutinesPackage.PARAMETER__ROUTINE) return null;
-		return (Routine)eContainer();
+		if (eContainerFeatureID() != SQLRoutinesPackage.PARAMETER__ROUTINE) {
+			return null;
+		}
+		return (Routine)eInternalContainer();
 	}
 
 	/**
@@ -175,20 +185,27 @@ public class ParameterImpl extends TypedElementImpl implements Parameter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRoutine(Routine newRoutine) {
-		if (newRoutine != eInternalContainer() || (eContainerFeatureID != SQLRoutinesPackage.PARAMETER__ROUTINE && newRoutine != null)) {
-			if (EcoreUtil.isAncestor(this, newRoutine))
+		if (newRoutine != eInternalContainer() || (eContainerFeatureID() != SQLRoutinesPackage.PARAMETER__ROUTINE && newRoutine != null)) {
+			if (EcoreUtil.isAncestor(this, newRoutine)) {
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
+			}
 			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
+			if (eInternalContainer() != null) {
 				msgs = eBasicRemoveFromContainer(msgs);
-			if (newRoutine != null)
+			}
+			if (newRoutine != null) {
 				msgs = ((InternalEObject)newRoutine).eInverseAdd(this, SQLRoutinesPackage.ROUTINE__PARAMETERS, Routine.class, msgs);
+			}
 			msgs = basicSetRoutine(newRoutine, msgs);
-			if (msgs != null) msgs.dispatch();
+			if (msgs != null) {
+				msgs.dispatch();
+			}
 		}
-		else if (eNotificationRequired())
+		else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLRoutinesPackage.PARAMETER__ROUTINE, newRoutine, newRoutine));
+		}
 	}
 
 	/**
@@ -196,6 +213,7 @@ public class ParameterImpl extends TypedElementImpl implements Parameter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public CharacterStringDataType getStringTypeOption() {
 		return stringTypeOption;
 	}
@@ -210,7 +228,11 @@ public class ParameterImpl extends TypedElementImpl implements Parameter {
 		stringTypeOption = newStringTypeOption;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLRoutinesPackage.PARAMETER__STRING_TYPE_OPTION, oldStringTypeOption, newStringTypeOption);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			if (msgs == null) {
+				msgs = notification;
+			} else {
+				msgs.add(notification);
+			}
 		}
 		return msgs;
 	}
@@ -220,18 +242,24 @@ public class ParameterImpl extends TypedElementImpl implements Parameter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setStringTypeOption(CharacterStringDataType newStringTypeOption) {
 		if (newStringTypeOption != stringTypeOption) {
 			NotificationChain msgs = null;
-			if (stringTypeOption != null)
+			if (stringTypeOption != null) {
 				msgs = ((InternalEObject)stringTypeOption).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLRoutinesPackage.PARAMETER__STRING_TYPE_OPTION, null, msgs);
-			if (newStringTypeOption != null)
+			}
+			if (newStringTypeOption != null) {
 				msgs = ((InternalEObject)newStringTypeOption).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SQLRoutinesPackage.PARAMETER__STRING_TYPE_OPTION, null, msgs);
+			}
 			msgs = basicSetStringTypeOption(newStringTypeOption, msgs);
-			if (msgs != null) msgs.dispatch();
+			if (msgs != null) {
+				msgs.dispatch();
+			}
 		}
-		else if (eNotificationRequired())
+		else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLRoutinesPackage.PARAMETER__STRING_TYPE_OPTION, newStringTypeOption, newStringTypeOption));
+		}
 	}
 
 	/**
@@ -239,11 +267,13 @@ public class ParameterImpl extends TypedElementImpl implements Parameter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case SQLRoutinesPackage.PARAMETER__ROUTINE:
-				if (eInternalContainer() != null)
+				if (eInternalContainer() != null) {
 					msgs = eBasicRemoveFromContainer(msgs);
+				}
 				return basicSetRoutine((Routine)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -254,6 +284,7 @@ public class ParameterImpl extends TypedElementImpl implements Parameter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case SQLRoutinesPackage.PARAMETER__ROUTINE:
@@ -269,8 +300,9 @@ public class ParameterImpl extends TypedElementImpl implements Parameter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID) {
+		switch (eContainerFeatureID()) {
 			case SQLRoutinesPackage.PARAMETER__ROUTINE:
 				return eInternalContainer().eInverseRemove(this, SQLRoutinesPackage.ROUTINE__PARAMETERS, Routine.class, msgs);
 		}
@@ -282,6 +314,7 @@ public class ParameterImpl extends TypedElementImpl implements Parameter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SQLRoutinesPackage.PARAMETER__MODE:
@@ -301,6 +334,7 @@ public class ParameterImpl extends TypedElementImpl implements Parameter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case SQLRoutinesPackage.PARAMETER__MODE:
@@ -324,6 +358,7 @@ public class ParameterImpl extends TypedElementImpl implements Parameter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case SQLRoutinesPackage.PARAMETER__MODE:
@@ -347,6 +382,7 @@ public class ParameterImpl extends TypedElementImpl implements Parameter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SQLRoutinesPackage.PARAMETER__MODE:
@@ -366,8 +402,11 @@ public class ParameterImpl extends TypedElementImpl implements Parameter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (mode: "); //$NON-NLS-1$

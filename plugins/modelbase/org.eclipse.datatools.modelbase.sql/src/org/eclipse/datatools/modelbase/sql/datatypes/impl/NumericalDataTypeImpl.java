@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -22,10 +22,10 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.datatypes.impl.NumericalDataTypeImpl#getPrecision <em>Precision</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -64,6 +64,7 @@ public abstract class NumericalDataTypeImpl extends PredefinedDataTypeImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return SQLDataTypesPackage.Literals.NUMERICAL_DATA_TYPE;
 	}
@@ -73,6 +74,7 @@ public abstract class NumericalDataTypeImpl extends PredefinedDataTypeImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getPrecision() {
 		return precision;
 	}
@@ -82,11 +84,13 @@ public abstract class NumericalDataTypeImpl extends PredefinedDataTypeImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPrecision(int newPrecision) {
 		int oldPrecision = precision;
 		precision = newPrecision;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLDataTypesPackage.NUMERICAL_DATA_TYPE__PRECISION, oldPrecision, precision));
+		}
 	}
 
 	/**
@@ -94,10 +98,11 @@ public abstract class NumericalDataTypeImpl extends PredefinedDataTypeImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SQLDataTypesPackage.NUMERICAL_DATA_TYPE__PRECISION:
-				return Integer.valueOf(getPrecision());
+				return new Integer(getPrecision());
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -107,6 +112,7 @@ public abstract class NumericalDataTypeImpl extends PredefinedDataTypeImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case SQLDataTypesPackage.NUMERICAL_DATA_TYPE__PRECISION:
@@ -121,6 +127,7 @@ public abstract class NumericalDataTypeImpl extends PredefinedDataTypeImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case SQLDataTypesPackage.NUMERICAL_DATA_TYPE__PRECISION:
@@ -135,6 +142,7 @@ public abstract class NumericalDataTypeImpl extends PredefinedDataTypeImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SQLDataTypesPackage.NUMERICAL_DATA_TYPE__PRECISION:
@@ -148,8 +156,11 @@ public abstract class NumericalDataTypeImpl extends PredefinedDataTypeImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (precision: "); //$NON-NLS-1$

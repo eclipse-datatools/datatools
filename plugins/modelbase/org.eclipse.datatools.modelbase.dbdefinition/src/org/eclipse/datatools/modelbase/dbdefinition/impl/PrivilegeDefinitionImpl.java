@@ -24,11 +24,11 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.PrivilegeDefinitionImpl#getActionElementDefinitions <em>Action Element Definitions</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.PrivilegeDefinitionImpl#getName <em>Name</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -77,6 +77,7 @@ public class PrivilegeDefinitionImpl extends EObjectImpl implements PrivilegeDef
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return DatabaseDefinitionPackage.Literals.PRIVILEGE_DEFINITION;
 	}
@@ -86,6 +87,7 @@ public class PrivilegeDefinitionImpl extends EObjectImpl implements PrivilegeDef
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList getActionElementDefinitions() {
 		if (actionElementDefinitions == null) {
 			actionElementDefinitions = new EObjectResolvingEList(PrivilegedElementDefinition.class, this, DatabaseDefinitionPackage.PRIVILEGE_DEFINITION__ACTION_ELEMENT_DEFINITIONS);
@@ -98,6 +100,7 @@ public class PrivilegeDefinitionImpl extends EObjectImpl implements PrivilegeDef
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName() {
 		return name;
 	}
@@ -107,11 +110,13 @@ public class PrivilegeDefinitionImpl extends EObjectImpl implements PrivilegeDef
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.PRIVILEGE_DEFINITION__NAME, oldName, name));
+		}
 	}
 
 	/**
@@ -119,6 +124,7 @@ public class PrivilegeDefinitionImpl extends EObjectImpl implements PrivilegeDef
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.PRIVILEGE_DEFINITION__ACTION_ELEMENT_DEFINITIONS:
@@ -134,6 +140,7 @@ public class PrivilegeDefinitionImpl extends EObjectImpl implements PrivilegeDef
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.PRIVILEGE_DEFINITION__ACTION_ELEMENT_DEFINITIONS:
@@ -152,6 +159,7 @@ public class PrivilegeDefinitionImpl extends EObjectImpl implements PrivilegeDef
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.PRIVILEGE_DEFINITION__ACTION_ELEMENT_DEFINITIONS:
@@ -169,6 +177,7 @@ public class PrivilegeDefinitionImpl extends EObjectImpl implements PrivilegeDef
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.PRIVILEGE_DEFINITION__ACTION_ELEMENT_DEFINITIONS:
@@ -184,8 +193,11 @@ public class PrivilegeDefinitionImpl extends EObjectImpl implements PrivilegeDef
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (name: "); //$NON-NLS-1$

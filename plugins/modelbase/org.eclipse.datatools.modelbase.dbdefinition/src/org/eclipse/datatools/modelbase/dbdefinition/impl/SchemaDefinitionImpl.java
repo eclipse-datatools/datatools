@@ -19,10 +19,10 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.SchemaDefinitionImpl#getMaximumIdentifierLength <em>Maximum Identifier Length</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -61,6 +61,7 @@ public class SchemaDefinitionImpl extends EObjectImpl implements SchemaDefinitio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return DatabaseDefinitionPackage.Literals.SCHEMA_DEFINITION;
 	}
@@ -70,6 +71,7 @@ public class SchemaDefinitionImpl extends EObjectImpl implements SchemaDefinitio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getMaximumIdentifierLength() {
 		return maximumIdentifierLength;
 	}
@@ -79,11 +81,13 @@ public class SchemaDefinitionImpl extends EObjectImpl implements SchemaDefinitio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMaximumIdentifierLength(int newMaximumIdentifierLength) {
 		int oldMaximumIdentifierLength = maximumIdentifierLength;
 		maximumIdentifierLength = newMaximumIdentifierLength;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.SCHEMA_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH, oldMaximumIdentifierLength, maximumIdentifierLength));
+		}
 	}
 
 	/**
@@ -91,10 +95,11 @@ public class SchemaDefinitionImpl extends EObjectImpl implements SchemaDefinitio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.SCHEMA_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH:
-				return Integer.valueOf(getMaximumIdentifierLength());
+				return new Integer(getMaximumIdentifierLength());
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -104,6 +109,7 @@ public class SchemaDefinitionImpl extends EObjectImpl implements SchemaDefinitio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.SCHEMA_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH:
@@ -118,6 +124,7 @@ public class SchemaDefinitionImpl extends EObjectImpl implements SchemaDefinitio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.SCHEMA_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH:
@@ -132,6 +139,7 @@ public class SchemaDefinitionImpl extends EObjectImpl implements SchemaDefinitio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.SCHEMA_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH:
@@ -145,8 +153,11 @@ public class SchemaDefinitionImpl extends EObjectImpl implements SchemaDefinitio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (maximumIdentifierLength: "); //$NON-NLS-1$

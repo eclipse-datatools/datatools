@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -173,7 +173,7 @@ public class SQLConstraintsPackageImpl extends EPackageImpl implements SQLConstr
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * 
+	 *
 	 * <p>This method is used to initialize {@link SQLConstraintsPackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
@@ -184,10 +184,13 @@ public class SQLConstraintsPackageImpl extends EPackageImpl implements SQLConstr
 	 * @generated
 	 */
 	public static SQLConstraintsPackage init() {
-		if (isInited) return (SQLConstraintsPackage)EPackage.Registry.INSTANCE.getEPackage(SQLConstraintsPackage.eNS_URI);
+		if (isInited) {
+			return (SQLConstraintsPackage)EPackage.Registry.INSTANCE.getEPackage(SQLConstraintsPackage.eNS_URI);
+		}
 
 		// Obtain or create and register package
-		SQLConstraintsPackageImpl theSQLConstraintsPackage = (SQLConstraintsPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof SQLConstraintsPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new SQLConstraintsPackageImpl());
+		Object registeredSQLConstraintsPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		SQLConstraintsPackageImpl theSQLConstraintsPackage = registeredSQLConstraintsPackage instanceof SQLConstraintsPackageImpl ? (SQLConstraintsPackageImpl)registeredSQLConstraintsPackage : new SQLConstraintsPackageImpl();
 
 		isInited = true;
 
@@ -195,13 +198,20 @@ public class SQLConstraintsPackageImpl extends EPackageImpl implements SQLConstr
 		EcorePackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
-		SQLSchemaPackageImpl theSQLSchemaPackage = (SQLSchemaPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SQLSchemaPackage.eNS_URI) instanceof SQLSchemaPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SQLSchemaPackage.eNS_URI) : SQLSchemaPackage.eINSTANCE);
-		SQLDataTypesPackageImpl theSQLDataTypesPackage = (SQLDataTypesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SQLDataTypesPackage.eNS_URI) instanceof SQLDataTypesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SQLDataTypesPackage.eNS_URI) : SQLDataTypesPackage.eINSTANCE);
-		SQLExpressionsPackageImpl theSQLExpressionsPackage = (SQLExpressionsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SQLExpressionsPackage.eNS_URI) instanceof SQLExpressionsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SQLExpressionsPackage.eNS_URI) : SQLExpressionsPackage.eINSTANCE);
-		SQLRoutinesPackageImpl theSQLRoutinesPackage = (SQLRoutinesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SQLRoutinesPackage.eNS_URI) instanceof SQLRoutinesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SQLRoutinesPackage.eNS_URI) : SQLRoutinesPackage.eINSTANCE);
-		SQLStatementsPackageImpl theSQLStatementsPackage = (SQLStatementsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SQLStatementsPackage.eNS_URI) instanceof SQLStatementsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SQLStatementsPackage.eNS_URI) : SQLStatementsPackage.eINSTANCE);
-		SQLTablesPackageImpl theSQLTablesPackage = (SQLTablesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SQLTablesPackage.eNS_URI) instanceof SQLTablesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SQLTablesPackage.eNS_URI) : SQLTablesPackage.eINSTANCE);
-		SQLAccessControlPackageImpl theSQLAccessControlPackage = (SQLAccessControlPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SQLAccessControlPackage.eNS_URI) instanceof SQLAccessControlPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SQLAccessControlPackage.eNS_URI) : SQLAccessControlPackage.eINSTANCE);
+		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(SQLSchemaPackage.eNS_URI);
+		SQLSchemaPackageImpl theSQLSchemaPackage = (SQLSchemaPackageImpl)(registeredPackage instanceof SQLSchemaPackageImpl ? registeredPackage : SQLSchemaPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(SQLDataTypesPackage.eNS_URI);
+		SQLDataTypesPackageImpl theSQLDataTypesPackage = (SQLDataTypesPackageImpl)(registeredPackage instanceof SQLDataTypesPackageImpl ? registeredPackage : SQLDataTypesPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(SQLExpressionsPackage.eNS_URI);
+		SQLExpressionsPackageImpl theSQLExpressionsPackage = (SQLExpressionsPackageImpl)(registeredPackage instanceof SQLExpressionsPackageImpl ? registeredPackage : SQLExpressionsPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(SQLRoutinesPackage.eNS_URI);
+		SQLRoutinesPackageImpl theSQLRoutinesPackage = (SQLRoutinesPackageImpl)(registeredPackage instanceof SQLRoutinesPackageImpl ? registeredPackage : SQLRoutinesPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(SQLStatementsPackage.eNS_URI);
+		SQLStatementsPackageImpl theSQLStatementsPackage = (SQLStatementsPackageImpl)(registeredPackage instanceof SQLStatementsPackageImpl ? registeredPackage : SQLStatementsPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(SQLTablesPackage.eNS_URI);
+		SQLTablesPackageImpl theSQLTablesPackage = (SQLTablesPackageImpl)(registeredPackage instanceof SQLTablesPackageImpl ? registeredPackage : SQLTablesPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(SQLAccessControlPackage.eNS_URI);
+		SQLAccessControlPackageImpl theSQLAccessControlPackage = (SQLAccessControlPackageImpl)(registeredPackage instanceof SQLAccessControlPackageImpl ? registeredPackage : SQLAccessControlPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theSQLConstraintsPackage.createPackageContents();
@@ -226,7 +236,6 @@ public class SQLConstraintsPackageImpl extends EPackageImpl implements SQLConstr
 		// Mark meta-data to indicate it can't be changed
 		theSQLConstraintsPackage.freeze();
 
-  
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(SQLConstraintsPackage.eNS_URI, theSQLConstraintsPackage);
 		return theSQLConstraintsPackage;
@@ -237,6 +246,7 @@ public class SQLConstraintsPackageImpl extends EPackageImpl implements SQLConstr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getAssertion() {
 		return assertionEClass;
 	}
@@ -246,6 +256,7 @@ public class SQLConstraintsPackageImpl extends EPackageImpl implements SQLConstr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getAssertion_SearchCondition() {
 		return (EReference)assertionEClass.getEStructuralFeatures().get(0);
 	}
@@ -255,6 +266,7 @@ public class SQLConstraintsPackageImpl extends EPackageImpl implements SQLConstr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getAssertion_Schema() {
 		return (EReference)assertionEClass.getEStructuralFeatures().get(1);
 	}
@@ -264,6 +276,7 @@ public class SQLConstraintsPackageImpl extends EPackageImpl implements SQLConstr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getAssertion_ConstrainedTables() {
 		return (EReference)assertionEClass.getEStructuralFeatures().get(2);
 	}
@@ -273,6 +286,7 @@ public class SQLConstraintsPackageImpl extends EPackageImpl implements SQLConstr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getConstraint() {
 		return constraintEClass;
 	}
@@ -282,6 +296,7 @@ public class SQLConstraintsPackageImpl extends EPackageImpl implements SQLConstr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getConstraint_Deferrable() {
 		return (EAttribute)constraintEClass.getEStructuralFeatures().get(0);
 	}
@@ -291,6 +306,7 @@ public class SQLConstraintsPackageImpl extends EPackageImpl implements SQLConstr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getConstraint_InitiallyDeferred() {
 		return (EAttribute)constraintEClass.getEStructuralFeatures().get(1);
 	}
@@ -300,6 +316,7 @@ public class SQLConstraintsPackageImpl extends EPackageImpl implements SQLConstr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getConstraint_Enforced() {
 		return (EAttribute)constraintEClass.getEStructuralFeatures().get(2);
 	}
@@ -309,6 +326,7 @@ public class SQLConstraintsPackageImpl extends EPackageImpl implements SQLConstr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getTableConstraint() {
 		return tableConstraintEClass;
 	}
@@ -318,6 +336,7 @@ public class SQLConstraintsPackageImpl extends EPackageImpl implements SQLConstr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTableConstraint_BaseTable() {
 		return (EReference)tableConstraintEClass.getEStructuralFeatures().get(0);
 	}
@@ -327,6 +346,7 @@ public class SQLConstraintsPackageImpl extends EPackageImpl implements SQLConstr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getReferenceConstraint() {
 		return referenceConstraintEClass;
 	}
@@ -336,6 +356,7 @@ public class SQLConstraintsPackageImpl extends EPackageImpl implements SQLConstr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getReferenceConstraint_Members() {
 		return (EReference)referenceConstraintEClass.getEStructuralFeatures().get(0);
 	}
@@ -345,6 +366,7 @@ public class SQLConstraintsPackageImpl extends EPackageImpl implements SQLConstr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getCheckConstraint() {
 		return checkConstraintEClass;
 	}
@@ -354,6 +376,7 @@ public class SQLConstraintsPackageImpl extends EPackageImpl implements SQLConstr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getCheckConstraint_SearchCondition() {
 		return (EReference)checkConstraintEClass.getEStructuralFeatures().get(0);
 	}
@@ -363,6 +386,7 @@ public class SQLConstraintsPackageImpl extends EPackageImpl implements SQLConstr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getForeignKey() {
 		return foreignKeyEClass;
 	}
@@ -372,6 +396,7 @@ public class SQLConstraintsPackageImpl extends EPackageImpl implements SQLConstr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getForeignKey_Match() {
 		return (EAttribute)foreignKeyEClass.getEStructuralFeatures().get(0);
 	}
@@ -381,6 +406,7 @@ public class SQLConstraintsPackageImpl extends EPackageImpl implements SQLConstr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getForeignKey_OnUpdate() {
 		return (EAttribute)foreignKeyEClass.getEStructuralFeatures().get(1);
 	}
@@ -390,6 +416,7 @@ public class SQLConstraintsPackageImpl extends EPackageImpl implements SQLConstr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getForeignKey_OnDelete() {
 		return (EAttribute)foreignKeyEClass.getEStructuralFeatures().get(2);
 	}
@@ -399,6 +426,7 @@ public class SQLConstraintsPackageImpl extends EPackageImpl implements SQLConstr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getForeignKey_UniqueConstraint() {
 		return (EReference)foreignKeyEClass.getEStructuralFeatures().get(3);
 	}
@@ -408,6 +436,7 @@ public class SQLConstraintsPackageImpl extends EPackageImpl implements SQLConstr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getForeignKey_ReferencedMembers() {
 		return (EReference)foreignKeyEClass.getEStructuralFeatures().get(4);
 	}
@@ -417,6 +446,7 @@ public class SQLConstraintsPackageImpl extends EPackageImpl implements SQLConstr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getForeignKey_UniqueIndex() {
 		return (EReference)foreignKeyEClass.getEStructuralFeatures().get(5);
 	}
@@ -426,6 +456,7 @@ public class SQLConstraintsPackageImpl extends EPackageImpl implements SQLConstr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getForeignKey_ReferencedTable() {
 		return (EReference)foreignKeyEClass.getEStructuralFeatures().get(6);
 	}
@@ -435,6 +466,7 @@ public class SQLConstraintsPackageImpl extends EPackageImpl implements SQLConstr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getUniqueConstraint() {
 		return uniqueConstraintEClass;
 	}
@@ -444,7 +476,8 @@ public class SQLConstraintsPackageImpl extends EPackageImpl implements SQLConstr
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EAttribute getUniqueConstraint_Clustered() {
+    @Override
+	public EAttribute getUniqueConstraint_Clustered() {
 		return (EAttribute)uniqueConstraintEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -453,6 +486,7 @@ public class SQLConstraintsPackageImpl extends EPackageImpl implements SQLConstr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getUniqueConstraint_ForeignKey() {
 		return (EReference)uniqueConstraintEClass.getEStructuralFeatures().get(1);
 	}
@@ -462,6 +496,7 @@ public class SQLConstraintsPackageImpl extends EPackageImpl implements SQLConstr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getPrimaryKey() {
 		return primaryKeyEClass;
 	}
@@ -471,6 +506,7 @@ public class SQLConstraintsPackageImpl extends EPackageImpl implements SQLConstr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getIndex() {
 		return indexEClass;
 	}
@@ -480,6 +516,7 @@ public class SQLConstraintsPackageImpl extends EPackageImpl implements SQLConstr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getIndex_Schema() {
 		return (EReference)indexEClass.getEStructuralFeatures().get(0);
 	}
@@ -489,6 +526,7 @@ public class SQLConstraintsPackageImpl extends EPackageImpl implements SQLConstr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getIndex_Clustered() {
 		return (EAttribute)indexEClass.getEStructuralFeatures().get(1);
 	}
@@ -498,6 +536,7 @@ public class SQLConstraintsPackageImpl extends EPackageImpl implements SQLConstr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getIndex_FillFactor() {
 		return (EAttribute)indexEClass.getEStructuralFeatures().get(2);
 	}
@@ -507,6 +546,7 @@ public class SQLConstraintsPackageImpl extends EPackageImpl implements SQLConstr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getIndex_Unique() {
 		return (EAttribute)indexEClass.getEStructuralFeatures().get(3);
 	}
@@ -516,6 +556,7 @@ public class SQLConstraintsPackageImpl extends EPackageImpl implements SQLConstr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getIndex_SystemGenerated() {
 		return (EAttribute)indexEClass.getEStructuralFeatures().get(4);
 	}
@@ -525,6 +566,7 @@ public class SQLConstraintsPackageImpl extends EPackageImpl implements SQLConstr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getIndex_Members() {
 		return (EReference)indexEClass.getEStructuralFeatures().get(5);
 	}
@@ -534,6 +576,7 @@ public class SQLConstraintsPackageImpl extends EPackageImpl implements SQLConstr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getIndex_Table() {
 		return (EReference)indexEClass.getEStructuralFeatures().get(6);
 	}
@@ -543,6 +586,7 @@ public class SQLConstraintsPackageImpl extends EPackageImpl implements SQLConstr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getIndex_ForeignKey() {
 		return (EReference)indexEClass.getEStructuralFeatures().get(7);
 	}
@@ -552,6 +596,7 @@ public class SQLConstraintsPackageImpl extends EPackageImpl implements SQLConstr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getIndex_IncludedMembers() {
 		return (EReference)indexEClass.getEStructuralFeatures().get(8);
 	}
@@ -561,6 +606,7 @@ public class SQLConstraintsPackageImpl extends EPackageImpl implements SQLConstr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getIndexMember() {
 		return indexMemberEClass;
 	}
@@ -570,6 +616,7 @@ public class SQLConstraintsPackageImpl extends EPackageImpl implements SQLConstr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getIndexMember_IncrementType() {
 		return (EAttribute)indexMemberEClass.getEStructuralFeatures().get(0);
 	}
@@ -579,6 +626,7 @@ public class SQLConstraintsPackageImpl extends EPackageImpl implements SQLConstr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getIndexMember_Column() {
 		return (EReference)indexMemberEClass.getEStructuralFeatures().get(1);
 	}
@@ -588,6 +636,7 @@ public class SQLConstraintsPackageImpl extends EPackageImpl implements SQLConstr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getIndexMember_Expression() {
 		return (EReference)indexMemberEClass.getEStructuralFeatures().get(2);
 	}
@@ -597,6 +646,7 @@ public class SQLConstraintsPackageImpl extends EPackageImpl implements SQLConstr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getIndexExpression() {
 		return indexExpressionEClass;
 	}
@@ -606,6 +656,7 @@ public class SQLConstraintsPackageImpl extends EPackageImpl implements SQLConstr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getIndexExpression_Sql() {
 		return (EAttribute)indexExpressionEClass.getEStructuralFeatures().get(0);
 	}
@@ -615,6 +666,7 @@ public class SQLConstraintsPackageImpl extends EPackageImpl implements SQLConstr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EEnum getMatchType() {
 		return matchTypeEEnum;
 	}
@@ -624,6 +676,7 @@ public class SQLConstraintsPackageImpl extends EPackageImpl implements SQLConstr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EEnum getIncrementType() {
 		return incrementTypeEEnum;
 	}
@@ -633,6 +686,7 @@ public class SQLConstraintsPackageImpl extends EPackageImpl implements SQLConstr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SQLConstraintsFactory getSQLConstraintsFactory() {
 		return (SQLConstraintsFactory)getEFactoryInstance();
 	}
@@ -652,7 +706,9 @@ public class SQLConstraintsPackageImpl extends EPackageImpl implements SQLConstr
 	 * @generated
 	 */
 	public void createPackageContents() {
-		if (isCreated) return;
+		if (isCreated) {
+			return;
+		}
 		isCreated = true;
 
 		// Create classes and their features
@@ -729,7 +785,9 @@ public class SQLConstraintsPackageImpl extends EPackageImpl implements SQLConstr
 	 * @generated
 	 */
 	public void initializePackageContents() {
-		if (isInitialized) return;
+		if (isInitialized) {
+			return;
+		}
 		isInitialized = true;
 
 		// Initialize package

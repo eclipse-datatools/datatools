@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -27,11 +27,11 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.datatypes.impl.UserDefinedTypeImpl#getSchema <em>Schema</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.datatypes.impl.UserDefinedTypeImpl#getOrdering <em>Ordering</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -70,6 +70,7 @@ public abstract class UserDefinedTypeImpl extends DataTypeImpl implements UserDe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return SQLDataTypesPackage.Literals.USER_DEFINED_TYPE;
 	}
@@ -79,13 +80,15 @@ public abstract class UserDefinedTypeImpl extends DataTypeImpl implements UserDe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Schema getSchema() {
 		if (schema != null && schema.eIsProxy()) {
 			InternalEObject oldSchema = (InternalEObject)schema;
 			schema = (Schema)eResolveProxy(oldSchema);
 			if (schema != oldSchema) {
-				if (eNotificationRequired())
+				if (eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SQLDataTypesPackage.USER_DEFINED_TYPE__SCHEMA, oldSchema, schema));
+				}
 			}
 		}
 		return schema;
@@ -110,7 +113,11 @@ public abstract class UserDefinedTypeImpl extends DataTypeImpl implements UserDe
 		schema = newSchema;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLDataTypesPackage.USER_DEFINED_TYPE__SCHEMA, oldSchema, newSchema);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			if (msgs == null) {
+				msgs = notification;
+			} else {
+				msgs.add(notification);
+			}
 		}
 		return msgs;
 	}
@@ -120,18 +127,24 @@ public abstract class UserDefinedTypeImpl extends DataTypeImpl implements UserDe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSchema(Schema newSchema) {
 		if (newSchema != schema) {
 			NotificationChain msgs = null;
-			if (schema != null)
+			if (schema != null) {
 				msgs = ((InternalEObject)schema).eInverseRemove(this, SQLSchemaPackage.SCHEMA__USER_DEFINED_TYPES, Schema.class, msgs);
-			if (newSchema != null)
+			}
+			if (newSchema != null) {
 				msgs = ((InternalEObject)newSchema).eInverseAdd(this, SQLSchemaPackage.SCHEMA__USER_DEFINED_TYPES, Schema.class, msgs);
+			}
 			msgs = basicSetSchema(newSchema, msgs);
-			if (msgs != null) msgs.dispatch();
+			if (msgs != null) {
+				msgs.dispatch();
+			}
 		}
-		else if (eNotificationRequired())
+		else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLDataTypesPackage.USER_DEFINED_TYPE__SCHEMA, newSchema, newSchema));
+		}
 	}
 
 	/**
@@ -139,6 +152,7 @@ public abstract class UserDefinedTypeImpl extends DataTypeImpl implements UserDe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public UserDefinedTypeOrdering getOrdering() {
 		return ordering;
 	}
@@ -153,7 +167,11 @@ public abstract class UserDefinedTypeImpl extends DataTypeImpl implements UserDe
 		ordering = newOrdering;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLDataTypesPackage.USER_DEFINED_TYPE__ORDERING, oldOrdering, newOrdering);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			if (msgs == null) {
+				msgs = notification;
+			} else {
+				msgs.add(notification);
+			}
 		}
 		return msgs;
 	}
@@ -163,18 +181,24 @@ public abstract class UserDefinedTypeImpl extends DataTypeImpl implements UserDe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOrdering(UserDefinedTypeOrdering newOrdering) {
 		if (newOrdering != ordering) {
 			NotificationChain msgs = null;
-			if (ordering != null)
+			if (ordering != null) {
 				msgs = ((InternalEObject)ordering).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLDataTypesPackage.USER_DEFINED_TYPE__ORDERING, null, msgs);
-			if (newOrdering != null)
+			}
+			if (newOrdering != null) {
 				msgs = ((InternalEObject)newOrdering).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SQLDataTypesPackage.USER_DEFINED_TYPE__ORDERING, null, msgs);
+			}
 			msgs = basicSetOrdering(newOrdering, msgs);
-			if (msgs != null) msgs.dispatch();
+			if (msgs != null) {
+				msgs.dispatch();
+			}
 		}
-		else if (eNotificationRequired())
+		else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLDataTypesPackage.USER_DEFINED_TYPE__ORDERING, newOrdering, newOrdering));
+		}
 	}
 
 	/**
@@ -182,11 +206,13 @@ public abstract class UserDefinedTypeImpl extends DataTypeImpl implements UserDe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case SQLDataTypesPackage.USER_DEFINED_TYPE__SCHEMA:
-				if (schema != null)
+				if (schema != null) {
 					msgs = ((InternalEObject)schema).eInverseRemove(this, SQLSchemaPackage.SCHEMA__USER_DEFINED_TYPES, Schema.class, msgs);
+				}
 				return basicSetSchema((Schema)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -197,6 +223,7 @@ public abstract class UserDefinedTypeImpl extends DataTypeImpl implements UserDe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case SQLDataTypesPackage.USER_DEFINED_TYPE__SCHEMA:
@@ -212,10 +239,13 @@ public abstract class UserDefinedTypeImpl extends DataTypeImpl implements UserDe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SQLDataTypesPackage.USER_DEFINED_TYPE__SCHEMA:
-				if (resolve) return getSchema();
+				if (resolve) {
+					return getSchema();
+				}
 				return basicGetSchema();
 			case SQLDataTypesPackage.USER_DEFINED_TYPE__ORDERING:
 				return getOrdering();
@@ -228,6 +258,7 @@ public abstract class UserDefinedTypeImpl extends DataTypeImpl implements UserDe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case SQLDataTypesPackage.USER_DEFINED_TYPE__SCHEMA:
@@ -245,6 +276,7 @@ public abstract class UserDefinedTypeImpl extends DataTypeImpl implements UserDe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case SQLDataTypesPackage.USER_DEFINED_TYPE__SCHEMA:
@@ -262,6 +294,7 @@ public abstract class UserDefinedTypeImpl extends DataTypeImpl implements UserDe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SQLDataTypesPackage.USER_DEFINED_TYPE__SCHEMA:

@@ -19,10 +19,10 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.impl.SybaseIndexMemberImpl#getColumnExpression <em>Column Expression</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -61,6 +61,7 @@ public class SybaseIndexMemberImpl extends IndexMemberImpl implements SybaseInde
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return SybasesqlmodelPackage.Literals.SYBASE_INDEX_MEMBER;
 	}
@@ -70,6 +71,7 @@ public class SybaseIndexMemberImpl extends IndexMemberImpl implements SybaseInde
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getColumnExpression() {
 		return columnExpression;
 	}
@@ -79,11 +81,13 @@ public class SybaseIndexMemberImpl extends IndexMemberImpl implements SybaseInde
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setColumnExpression(String newColumnExpression) {
 		String oldColumnExpression = columnExpression;
 		columnExpression = newColumnExpression;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SybasesqlmodelPackage.SYBASE_INDEX_MEMBER__COLUMN_EXPRESSION, oldColumnExpression, columnExpression));
+		}
 	}
 
 	/**
@@ -91,6 +95,7 @@ public class SybaseIndexMemberImpl extends IndexMemberImpl implements SybaseInde
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SybasesqlmodelPackage.SYBASE_INDEX_MEMBER__COLUMN_EXPRESSION:
@@ -104,6 +109,7 @@ public class SybaseIndexMemberImpl extends IndexMemberImpl implements SybaseInde
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case SybasesqlmodelPackage.SYBASE_INDEX_MEMBER__COLUMN_EXPRESSION:
@@ -118,6 +124,7 @@ public class SybaseIndexMemberImpl extends IndexMemberImpl implements SybaseInde
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case SybasesqlmodelPackage.SYBASE_INDEX_MEMBER__COLUMN_EXPRESSION:
@@ -132,6 +139,7 @@ public class SybaseIndexMemberImpl extends IndexMemberImpl implements SybaseInde
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SybasesqlmodelPackage.SYBASE_INDEX_MEMBER__COLUMN_EXPRESSION:
@@ -145,8 +153,11 @@ public class SybaseIndexMemberImpl extends IndexMemberImpl implements SybaseInde
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (columnExpression: ");

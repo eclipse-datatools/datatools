@@ -8,7 +8,7 @@
  *
  * Contributors:
  *  Actuate Corporation  - initial API and implementation
- *  
+ *
  *************************************************************************
  *
  * $Id: ParameterFields.java,v 1.2 2007/04/11 02:59:53 lchan Exp $
@@ -28,35 +28,34 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.ParameterFields#getFieldCollection <em>Field Collection</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getParameterFields()
  * @model extendedMetaData="name='ParameterFields' kind='elementOnly'"
  * @generated
  */
-public interface ParameterFields extends EObject
-{
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    String copyright = "Copyright (c) 2005, 2009 Actuate Corporation"; //$NON-NLS-1$
+public interface ParameterFields extends EObject {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	String copyright = "Copyright (c) 2005, 2010 Actuate Corporation"; //$NON-NLS-1$
 
-    /**
-     * Returns the value of the '<em><b>Field Collection</b></em>' containment reference list.
-     * The list contents are of type {@link org.eclipse.datatools.connectivity.oda.design.ParameterFieldDefinition}.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Field Collection</em>' containment reference list.
-     * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getParameterFields_FieldCollection()
-     * @model containment="true" required="true"
-     *        extendedMetaData="kind='element' name='fieldCollection' namespace='##targetNamespace'"
-     * @generated
-     */
-    EList<ParameterFieldDefinition> getFieldCollection();
+	/**
+	 * Returns the value of the '<em><b>Field Collection</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.datatools.connectivity.oda.design.ParameterFieldDefinition}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Field Collection</em>' containment reference list.
+	 * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getParameterFields_FieldCollection()
+	 * @model containment="true" required="true"
+	 *        extendedMetaData="kind='element' name='fieldCollection' namespace='##targetNamespace'"
+	 * @generated
+	 */
+	EList<ParameterFieldDefinition> getFieldCollection();
 
 } // ParameterFields

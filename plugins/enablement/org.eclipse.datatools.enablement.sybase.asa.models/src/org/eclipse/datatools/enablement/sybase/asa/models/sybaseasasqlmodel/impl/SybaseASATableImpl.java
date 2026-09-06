@@ -19,14 +19,14 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.impl.SybaseASATableImpl#getPctfree <em>Pctfree</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class SybaseASATableImpl extends SybaseASABaseTableImpl implements SybaseASATable 
+public class SybaseASATableImpl extends SybaseASABaseTableImpl implements SybaseASATable
 {
     /**
 	 * The default value of the '{@link #getPctfree() <em>Pctfree</em>}' attribute.
@@ -63,6 +63,7 @@ public class SybaseASATableImpl extends SybaseASABaseTableImpl implements Sybase
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass()
     {
 		return SybaseasasqlmodelPackage.Literals.SYBASE_ASA_TABLE;
@@ -73,6 +74,7 @@ public class SybaseASATableImpl extends SybaseASABaseTableImpl implements Sybase
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getPctfree()
     {
 		return pctfree;
@@ -83,12 +85,14 @@ public class SybaseASATableImpl extends SybaseASABaseTableImpl implements Sybase
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPctfree(int newPctfree)
     {
 		int oldPctfree = pctfree;
 		pctfree = newPctfree;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasasqlmodelPackage.SYBASE_ASA_TABLE__PCTFREE, oldPctfree, pctfree));
+		}
 	}
 
     /**
@@ -96,11 +100,12 @@ public class SybaseASATableImpl extends SybaseASABaseTableImpl implements Sybase
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
     {
 		switch (featureID) {
 			case SybaseasasqlmodelPackage.SYBASE_ASA_TABLE__PCTFREE:
-				return Integer.valueOf(getPctfree());
+				return new Integer(getPctfree());
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -110,6 +115,7 @@ public class SybaseASATableImpl extends SybaseASABaseTableImpl implements Sybase
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue)
     {
 		switch (featureID) {
@@ -125,6 +131,7 @@ public class SybaseASATableImpl extends SybaseASABaseTableImpl implements Sybase
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID)
     {
 		switch (featureID) {
@@ -140,6 +147,7 @@ public class SybaseASATableImpl extends SybaseASABaseTableImpl implements Sybase
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID)
     {
 		switch (featureID) {
@@ -154,9 +162,12 @@ public class SybaseASATableImpl extends SybaseASABaseTableImpl implements Sybase
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString()
     {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (pctfree: ");

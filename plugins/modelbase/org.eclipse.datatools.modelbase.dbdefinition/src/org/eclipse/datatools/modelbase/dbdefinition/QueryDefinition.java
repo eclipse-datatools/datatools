@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.QueryDefinition#getIdentifierQuoteString <em>Identifier Quote String</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.QueryDefinition#getHostVariableMarker <em>Host Variable Marker</em>}</li>
@@ -24,7 +25,6 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.QueryDefinition#isExtendedGroupingSupported <em>Extended Grouping Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.QueryDefinition#isTableAliasInDeleteSupported <em>Table Alias In Delete Supported</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getQueryDefinition()
  * @model

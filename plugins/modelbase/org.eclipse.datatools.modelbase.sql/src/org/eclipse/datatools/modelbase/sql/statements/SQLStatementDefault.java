@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -20,10 +20,10 @@ import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.statements.SQLStatementDefault#getSQL <em>SQL</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.datatools.modelbase.sql.statements.SQLStatementsPackage#getSQLStatementDefault()
  * @model
@@ -44,6 +44,7 @@ public interface SQLStatementDefault extends SQLObject, SQLStatement{
 	 * @model
 	 * @generated
 	 */
+	@Override
 	String getSQL();
 
 	/**
@@ -54,6 +55,7 @@ public interface SQLStatementDefault extends SQLObject, SQLStatement{
 	 * @see #getSQL()
 	 * @generated
 	 */
+	@Override
 	void setSQL(String value);
 
 } // SQLStatementDefault

@@ -27,232 +27,262 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLValueFunctionCommentContentImpl#getValueFunctionComment <em>Value Function Comment</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLValueFunctionCommentContentImpl#getValueExpr <em>Value Expr</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
 public class XMLValueFunctionCommentContentImpl extends QueryValueExpressionImpl implements XMLValueFunctionCommentContent {
 	/**
-     * The cached value of the '{@link #getValueExpr() <em>Value Expr</em>}' containment reference.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getValueExpr() <em>Value Expr</em>}' containment reference.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getValueExpr()
-     * @generated
-     * @ordered
-     */
+	 * @see #getValueExpr()
+	 * @generated
+	 * @ordered
+	 */
     protected QueryValueExpression valueExpr;
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected XMLValueFunctionCommentContentImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    protected EClass eStaticClass() {
-        return SQLXMLQueryModelPackage.Literals.XML_VALUE_FUNCTION_COMMENT_CONTENT;
-    }
+	 * @generated
+	 */
+    @Override
+	protected EClass eStaticClass() {
+		return SQLXMLQueryModelPackage.Literals.XML_VALUE_FUNCTION_COMMENT_CONTENT;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public XMLValueFunctionComment getValueFunctionComment() {
-        if (eContainerFeatureID() != SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_COMMENT_CONTENT__VALUE_FUNCTION_COMMENT) return null;
-        return (XMLValueFunctionComment)eContainer();
-    }
+	 * @generated
+	 */
+    @Override
+	public XMLValueFunctionComment getValueFunctionComment() {
+		if (eContainerFeatureID() != SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_COMMENT_CONTENT__VALUE_FUNCTION_COMMENT) {
+			return null;
+		}
+		return (XMLValueFunctionComment)eInternalContainer();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public NotificationChain basicSetValueFunctionComment(XMLValueFunctionComment newValueFunctionComment, NotificationChain msgs) {
-        msgs = eBasicSetContainer((InternalEObject)newValueFunctionComment, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_COMMENT_CONTENT__VALUE_FUNCTION_COMMENT, msgs);
-        return msgs;
-    }
+		msgs = eBasicSetContainer((InternalEObject)newValueFunctionComment, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_COMMENT_CONTENT__VALUE_FUNCTION_COMMENT, msgs);
+		return msgs;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setValueFunctionComment(XMLValueFunctionComment newValueFunctionComment) {
-        if (newValueFunctionComment != eInternalContainer() || (eContainerFeatureID() != SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_COMMENT_CONTENT__VALUE_FUNCTION_COMMENT && newValueFunctionComment != null)) {
-            if (EcoreUtil.isAncestor(this, newValueFunctionComment))
-                throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
-            NotificationChain msgs = null;
-            if (eInternalContainer() != null)
-                msgs = eBasicRemoveFromContainer(msgs);
-            if (newValueFunctionComment != null)
-                msgs = ((InternalEObject)newValueFunctionComment).eInverseAdd(this, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_COMMENT__COMMENT_CONTENT, XMLValueFunctionComment.class, msgs);
-            msgs = basicSetValueFunctionComment(newValueFunctionComment, msgs);
-            if (msgs != null) msgs.dispatch();
-        }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_COMMENT_CONTENT__VALUE_FUNCTION_COMMENT, newValueFunctionComment, newValueFunctionComment));
-    }
+	 * @generated
+	 */
+    @Override
+	public void setValueFunctionComment(XMLValueFunctionComment newValueFunctionComment) {
+		if (newValueFunctionComment != eInternalContainer() || (eContainerFeatureID() != SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_COMMENT_CONTENT__VALUE_FUNCTION_COMMENT && newValueFunctionComment != null)) {
+			if (EcoreUtil.isAncestor(this, newValueFunctionComment)) {
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			}
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null) {
+				msgs = eBasicRemoveFromContainer(msgs);
+			}
+			if (newValueFunctionComment != null) {
+				msgs = ((InternalEObject)newValueFunctionComment).eInverseAdd(this, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_COMMENT__COMMENT_CONTENT, XMLValueFunctionComment.class, msgs);
+			}
+			msgs = basicSetValueFunctionComment(newValueFunctionComment, msgs);
+			if (msgs != null) {
+				msgs.dispatch();
+			}
+		}
+		else if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_COMMENT_CONTENT__VALUE_FUNCTION_COMMENT, newValueFunctionComment, newValueFunctionComment));
+		}
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public QueryValueExpression getValueExpr() {
-        return valueExpr;
-    }
+	 * @generated
+	 */
+    @Override
+	public QueryValueExpression getValueExpr() {
+		return valueExpr;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public NotificationChain basicSetValueExpr(QueryValueExpression newValueExpr, NotificationChain msgs) {
-        QueryValueExpression oldValueExpr = valueExpr;
-        valueExpr = newValueExpr;
-        if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_COMMENT_CONTENT__VALUE_EXPR, oldValueExpr, newValueExpr);
-            if (msgs == null) msgs = notification; else msgs.add(notification);
-        }
-        return msgs;
-    }
+		QueryValueExpression oldValueExpr = valueExpr;
+		valueExpr = newValueExpr;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_COMMENT_CONTENT__VALUE_EXPR, oldValueExpr, newValueExpr);
+			if (msgs == null) {
+				msgs = notification;
+			} else {
+				msgs.add(notification);
+			}
+		}
+		return msgs;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setValueExpr(QueryValueExpression newValueExpr) {
-        if (newValueExpr != valueExpr) {
-            NotificationChain msgs = null;
-            if (valueExpr != null)
-                msgs = ((InternalEObject)valueExpr).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_COMMENT_CONTENT__VALUE_EXPR, null, msgs);
-            if (newValueExpr != null)
-                msgs = ((InternalEObject)newValueExpr).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_COMMENT_CONTENT__VALUE_EXPR, null, msgs);
-            msgs = basicSetValueExpr(newValueExpr, msgs);
-            if (msgs != null) msgs.dispatch();
-        }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_COMMENT_CONTENT__VALUE_EXPR, newValueExpr, newValueExpr));
-    }
+	 * @generated
+	 */
+    @Override
+	public void setValueExpr(QueryValueExpression newValueExpr) {
+		if (newValueExpr != valueExpr) {
+			NotificationChain msgs = null;
+			if (valueExpr != null) {
+				msgs = ((InternalEObject)valueExpr).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_COMMENT_CONTENT__VALUE_EXPR, null, msgs);
+			}
+			if (newValueExpr != null) {
+				msgs = ((InternalEObject)newValueExpr).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_COMMENT_CONTENT__VALUE_EXPR, null, msgs);
+			}
+			msgs = basicSetValueExpr(newValueExpr, msgs);
+			if (msgs != null) {
+				msgs.dispatch();
+			}
+		}
+		else if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_COMMENT_CONTENT__VALUE_EXPR, newValueExpr, newValueExpr));
+		}
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_COMMENT_CONTENT__VALUE_FUNCTION_COMMENT:
-                if (eInternalContainer() != null)
-                    msgs = eBasicRemoveFromContainer(msgs);
-                return basicSetValueFunctionComment((XMLValueFunctionComment)otherEnd, msgs);
-        }
-        return super.eInverseAdd(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_COMMENT_CONTENT__VALUE_FUNCTION_COMMENT:
+				if (eInternalContainer() != null) {
+					msgs = eBasicRemoveFromContainer(msgs);
+				}
+				return basicSetValueFunctionComment((XMLValueFunctionComment)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_COMMENT_CONTENT__VALUE_FUNCTION_COMMENT:
-                return basicSetValueFunctionComment(null, msgs);
-            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_COMMENT_CONTENT__VALUE_EXPR:
-                return basicSetValueExpr(null, msgs);
-        }
-        return super.eInverseRemove(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_COMMENT_CONTENT__VALUE_FUNCTION_COMMENT:
+				return basicSetValueFunctionComment(null, msgs);
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_COMMENT_CONTENT__VALUE_EXPR:
+				return basicSetValueExpr(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-        switch (eContainerFeatureID()) {
-            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_COMMENT_CONTENT__VALUE_FUNCTION_COMMENT:
-                return eInternalContainer().eInverseRemove(this, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_COMMENT__COMMENT_CONTENT, XMLValueFunctionComment.class, msgs);
-        }
-        return super.eBasicRemoveFromContainerFeature(msgs);
-    }
+		switch (eContainerFeatureID()) {
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_COMMENT_CONTENT__VALUE_FUNCTION_COMMENT:
+				return eInternalContainer().eInverseRemove(this, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_COMMENT__COMMENT_CONTENT, XMLValueFunctionComment.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_COMMENT_CONTENT__VALUE_FUNCTION_COMMENT:
-                return getValueFunctionComment();
-            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_COMMENT_CONTENT__VALUE_EXPR:
-                return getValueExpr();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_COMMENT_CONTENT__VALUE_FUNCTION_COMMENT:
+				return getValueFunctionComment();
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_COMMENT_CONTENT__VALUE_EXPR:
+				return getValueExpr();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_COMMENT_CONTENT__VALUE_FUNCTION_COMMENT:
-                setValueFunctionComment((XMLValueFunctionComment)newValue);
-                return;
-            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_COMMENT_CONTENT__VALUE_EXPR:
-                setValueExpr((QueryValueExpression)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_COMMENT_CONTENT__VALUE_FUNCTION_COMMENT:
+				setValueFunctionComment((XMLValueFunctionComment)newValue);
+				return;
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_COMMENT_CONTENT__VALUE_EXPR:
+				setValueExpr((QueryValueExpression)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public void eUnset(int featureID) {
-        switch (featureID) {
-            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_COMMENT_CONTENT__VALUE_FUNCTION_COMMENT:
-                setValueFunctionComment((XMLValueFunctionComment)null);
-                return;
-            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_COMMENT_CONTENT__VALUE_EXPR:
-                setValueExpr((QueryValueExpression)null);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_COMMENT_CONTENT__VALUE_FUNCTION_COMMENT:
+				setValueFunctionComment((XMLValueFunctionComment)null);
+				return;
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_COMMENT_CONTENT__VALUE_EXPR:
+				setValueExpr((QueryValueExpression)null);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_COMMENT_CONTENT__VALUE_FUNCTION_COMMENT:
-                return getValueFunctionComment() != null;
-            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_COMMENT_CONTENT__VALUE_EXPR:
-                return valueExpr != null;
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_COMMENT_CONTENT__VALUE_FUNCTION_COMMENT:
+				return getValueFunctionComment() != null;
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_COMMENT_CONTENT__VALUE_EXPR:
+				return valueExpr != null;
+		}
+		return super.eIsSet(featureID);
+	}
 
 } //XMLValueFunctionCommentContentImpl

@@ -32,6 +32,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl.SybaseASABaseDatabaseImpl#getDataTypes <em>Data Types</em>}</li>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl.SybaseASABaseDatabaseImpl#getWebServices <em>Web Services</em>}</li>
@@ -49,11 +50,10 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl.SybaseASABaseDatabaseImpl#getJavaSupport <em>Java Support</em>}</li>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl.SybaseASABaseDatabaseImpl#getPasswordCaseSensitive <em>Password Case Sensitive</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class SybaseASABaseDatabaseImpl extends DatabaseImpl implements SybaseASABaseDatabase 
+public class SybaseASABaseDatabaseImpl extends DatabaseImpl implements SybaseASABaseDatabase
 {
     /**
 	 * The cached value of the '{@link #getDataTypes() <em>Data Types</em>}' reference list.
@@ -330,6 +330,7 @@ public class SybaseASABaseDatabaseImpl extends DatabaseImpl implements SybaseASA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass()
     {
 		return SybaseasabasesqlmodelPackage.Literals.SYBASE_ASA_BASE_DATABASE;
@@ -340,6 +341,7 @@ public class SybaseASABaseDatabaseImpl extends DatabaseImpl implements SybaseASA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList getDataTypes()
     {
 		if (dataTypes == null) {
@@ -353,6 +355,7 @@ public class SybaseASABaseDatabaseImpl extends DatabaseImpl implements SybaseASA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList getWebServices()
     {
 		if (webServices == null) {
@@ -366,6 +369,7 @@ public class SybaseASABaseDatabaseImpl extends DatabaseImpl implements SybaseASA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList getDbSpaces()
     {
 		if (dbSpaces == null) {
@@ -379,6 +383,7 @@ public class SybaseASABaseDatabaseImpl extends DatabaseImpl implements SybaseASA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getDatabaseFileName()
     {
 		return databaseFileName;
@@ -389,12 +394,14 @@ public class SybaseASABaseDatabaseImpl extends DatabaseImpl implements SybaseASA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDatabaseFileName(String newDatabaseFileName)
     {
 		String oldDatabaseFileName = databaseFileName;
 		databaseFileName = newDatabaseFileName;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_DATABASE__DATABASE_FILE_NAME, oldDatabaseFileName, databaseFileName));
+		}
 	}
 
     /**
@@ -402,6 +409,7 @@ public class SybaseASABaseDatabaseImpl extends DatabaseImpl implements SybaseASA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getLogFileName()
     {
 		return logFileName;
@@ -412,12 +420,14 @@ public class SybaseASABaseDatabaseImpl extends DatabaseImpl implements SybaseASA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLogFileName(String newLogFileName)
     {
 		String oldLogFileName = logFileName;
 		logFileName = newLogFileName;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_DATABASE__LOG_FILE_NAME, oldLogFileName, logFileName));
+		}
 	}
 
     /**
@@ -425,6 +435,7 @@ public class SybaseASABaseDatabaseImpl extends DatabaseImpl implements SybaseASA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getMirrorFileName()
     {
 		return mirrorFileName;
@@ -435,12 +446,14 @@ public class SybaseASABaseDatabaseImpl extends DatabaseImpl implements SybaseASA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMirrorFileName(String newMirrorFileName)
     {
 		String oldMirrorFileName = mirrorFileName;
 		mirrorFileName = newMirrorFileName;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_DATABASE__MIRROR_FILE_NAME, oldMirrorFileName, mirrorFileName));
+		}
 	}
 
     /**
@@ -448,6 +461,7 @@ public class SybaseASABaseDatabaseImpl extends DatabaseImpl implements SybaseASA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isCaseSensitive()
     {
 		return caseSensitive;
@@ -458,12 +472,14 @@ public class SybaseASABaseDatabaseImpl extends DatabaseImpl implements SybaseASA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCaseSensitive(boolean newCaseSensitive)
     {
 		boolean oldCaseSensitive = caseSensitive;
 		caseSensitive = newCaseSensitive;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_DATABASE__CASE_SENSITIVE, oldCaseSensitive, caseSensitive));
+		}
 	}
 
     /**
@@ -471,6 +487,7 @@ public class SybaseASABaseDatabaseImpl extends DatabaseImpl implements SybaseASA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getCollation()
     {
 		return collation;
@@ -481,12 +498,14 @@ public class SybaseASABaseDatabaseImpl extends DatabaseImpl implements SybaseASA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCollation(String newCollation)
     {
 		String oldCollation = collation;
 		collation = newCollation;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_DATABASE__COLLATION, oldCollation, collation));
+		}
 	}
 
     /**
@@ -494,6 +513,7 @@ public class SybaseASABaseDatabaseImpl extends DatabaseImpl implements SybaseASA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isBlankPaddingOn()
     {
 		return blankPaddingOn;
@@ -504,12 +524,14 @@ public class SybaseASABaseDatabaseImpl extends DatabaseImpl implements SybaseASA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setBlankPaddingOn(boolean newBlankPaddingOn)
     {
 		boolean oldBlankPaddingOn = blankPaddingOn;
 		blankPaddingOn = newBlankPaddingOn;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_DATABASE__BLANK_PADDING_ON, oldBlankPaddingOn, blankPaddingOn));
+		}
 	}
 
     /**
@@ -517,6 +539,7 @@ public class SybaseASABaseDatabaseImpl extends DatabaseImpl implements SybaseASA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isCheckSumOn()
     {
 		return checkSumOn;
@@ -527,12 +550,14 @@ public class SybaseASABaseDatabaseImpl extends DatabaseImpl implements SybaseASA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCheckSumOn(boolean newCheckSumOn)
     {
 		boolean oldCheckSumOn = checkSumOn;
 		checkSumOn = newCheckSumOn;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_DATABASE__CHECK_SUM_ON, oldCheckSumOn, checkSumOn));
+		}
 	}
 
     /**
@@ -540,6 +565,7 @@ public class SybaseASABaseDatabaseImpl extends DatabaseImpl implements SybaseASA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isJConnectOn()
     {
 		return jConnectOn;
@@ -550,12 +576,14 @@ public class SybaseASABaseDatabaseImpl extends DatabaseImpl implements SybaseASA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setJConnectOn(boolean newJConnectOn)
     {
 		boolean oldJConnectOn = jConnectOn;
 		jConnectOn = newJConnectOn;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_DATABASE__JCONNECT_ON, oldJConnectOn, jConnectOn));
+		}
 	}
 
     /**
@@ -563,6 +591,7 @@ public class SybaseASABaseDatabaseImpl extends DatabaseImpl implements SybaseASA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getPageSize()
     {
 		return pageSize;
@@ -573,12 +602,14 @@ public class SybaseASABaseDatabaseImpl extends DatabaseImpl implements SybaseASA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPageSize(int newPageSize)
     {
 		int oldPageSize = pageSize;
 		pageSize = newPageSize;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_DATABASE__PAGE_SIZE, oldPageSize, pageSize));
+		}
 	}
 
     /**
@@ -586,14 +617,16 @@ public class SybaseASABaseDatabaseImpl extends DatabaseImpl implements SybaseASA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EncryptionInfo getEncryptionInfo()
     {
 		if (encryptionInfo != null && encryptionInfo.eIsProxy()) {
 			InternalEObject oldEncryptionInfo = (InternalEObject)encryptionInfo;
 			encryptionInfo = (EncryptionInfo)eResolveProxy(oldEncryptionInfo);
 			if (encryptionInfo != oldEncryptionInfo) {
-				if (eNotificationRequired())
+				if (eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_DATABASE__ENCRYPTION_INFO, oldEncryptionInfo, encryptionInfo));
+				}
 			}
 		}
 		return encryptionInfo;
@@ -614,12 +647,14 @@ public class SybaseASABaseDatabaseImpl extends DatabaseImpl implements SybaseASA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setEncryptionInfo(EncryptionInfo newEncryptionInfo)
     {
 		EncryptionInfo oldEncryptionInfo = encryptionInfo;
 		encryptionInfo = newEncryptionInfo;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_DATABASE__ENCRYPTION_INFO, oldEncryptionInfo, encryptionInfo));
+		}
 	}
 
     /**
@@ -627,6 +662,7 @@ public class SybaseASABaseDatabaseImpl extends DatabaseImpl implements SybaseASA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public JavaSupportType getJavaSupport()
     {
 		return javaSupport;
@@ -637,12 +673,14 @@ public class SybaseASABaseDatabaseImpl extends DatabaseImpl implements SybaseASA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setJavaSupport(JavaSupportType newJavaSupport)
     {
 		JavaSupportType oldJavaSupport = javaSupport;
 		javaSupport = newJavaSupport == null ? JAVA_SUPPORT_EDEFAULT : newJavaSupport;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_DATABASE__JAVA_SUPPORT, oldJavaSupport, javaSupport));
+		}
 	}
 
     /**
@@ -650,6 +688,7 @@ public class SybaseASABaseDatabaseImpl extends DatabaseImpl implements SybaseASA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Boolean getPasswordCaseSensitive()
     {
 		return passwordCaseSensitive;
@@ -660,12 +699,14 @@ public class SybaseASABaseDatabaseImpl extends DatabaseImpl implements SybaseASA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPasswordCaseSensitive(Boolean newPasswordCaseSensitive)
     {
 		Boolean oldPasswordCaseSensitive = passwordCaseSensitive;
 		passwordCaseSensitive = newPasswordCaseSensitive;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_DATABASE__PASSWORD_CASE_SENSITIVE, oldPasswordCaseSensitive, passwordCaseSensitive));
+		}
 	}
 
 	/**
@@ -673,11 +714,14 @@ public class SybaseASABaseDatabaseImpl extends DatabaseImpl implements SybaseASA
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	@Override
 	public boolean isBaseOnASA10() {
 		String version = this.getVersion();
 		int index = version.indexOf('.');
-		if(index == -1) index = version.length();
-        
+		if(index == -1) {
+			index = version.length();
+		}
+
 		try
         {
             int iVer = Integer.valueOf(version.substring(0, index)).intValue();
@@ -694,6 +738,7 @@ public class SybaseASABaseDatabaseImpl extends DatabaseImpl implements SybaseASA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
     {
 		switch (featureID) {
@@ -712,6 +757,7 @@ public class SybaseASABaseDatabaseImpl extends DatabaseImpl implements SybaseASA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
     {
 		switch (featureID) {
@@ -730,6 +776,7 @@ public class SybaseASABaseDatabaseImpl extends DatabaseImpl implements SybaseASA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
     {
 		switch (featureID) {
@@ -756,9 +803,11 @@ public class SybaseASABaseDatabaseImpl extends DatabaseImpl implements SybaseASA
 			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_DATABASE__JCONNECT_ON:
 				return isJConnectOn() ? Boolean.TRUE : Boolean.FALSE;
 			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_DATABASE__PAGE_SIZE:
-				return Integer.valueOf(getPageSize());
+				return new Integer(getPageSize());
 			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_DATABASE__ENCRYPTION_INFO:
-				if (resolve) return getEncryptionInfo();
+				if (resolve) {
+					return getEncryptionInfo();
+				}
 				return basicGetEncryptionInfo();
 			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_DATABASE__JAVA_SUPPORT:
 				return getJavaSupport();
@@ -773,6 +822,7 @@ public class SybaseASABaseDatabaseImpl extends DatabaseImpl implements SybaseASA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue)
     {
 		switch (featureID) {
@@ -833,6 +883,7 @@ public class SybaseASABaseDatabaseImpl extends DatabaseImpl implements SybaseASA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID)
     {
 		switch (featureID) {
@@ -890,6 +941,7 @@ public class SybaseASABaseDatabaseImpl extends DatabaseImpl implements SybaseASA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID)
     {
 		switch (featureID) {
@@ -932,9 +984,12 @@ public class SybaseASABaseDatabaseImpl extends DatabaseImpl implements SybaseASA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString()
     {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (databaseFileName: ");
@@ -962,11 +1017,12 @@ public class SybaseASABaseDatabaseImpl extends DatabaseImpl implements SybaseASA
 		result.append(')');
 		return result.toString();
 	}
-	
+
 	 /**
      * @NOT generated
      */
-    public EList getDatabaseSchemas()
+    @Override
+	public EList getDatabaseSchemas()
     {
         return super.getSchemas();
     }

@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -25,16 +25,16 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.derby.impl.SynonymImpl#getTable <em>Table</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
 public class SynonymImpl extends TableImpl implements Synonym {
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
 	/**
@@ -61,6 +61,7 @@ public class SynonymImpl extends TableImpl implements Synonym {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return DerbyModelPackage.Literals.SYNONYM;
 	}
@@ -70,13 +71,15 @@ public class SynonymImpl extends TableImpl implements Synonym {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Table getTable() {
 		if (table != null && table.eIsProxy()) {
 			InternalEObject oldTable = (InternalEObject)table;
 			table = (Table)eResolveProxy(oldTable);
 			if (table != oldTable) {
-				if (eNotificationRequired())
+				if (eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DerbyModelPackage.SYNONYM__TABLE, oldTable, table));
+				}
 			}
 		}
 		return table;
@@ -96,11 +99,13 @@ public class SynonymImpl extends TableImpl implements Synonym {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTable(Table newTable) {
 		Table oldTable = table;
 		table = newTable;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DerbyModelPackage.SYNONYM__TABLE, oldTable, table));
+		}
 	}
 
 	/**
@@ -108,10 +113,13 @@ public class SynonymImpl extends TableImpl implements Synonym {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case DerbyModelPackage.SYNONYM__TABLE:
-				if (resolve) return getTable();
+				if (resolve) {
+					return getTable();
+				}
 				return basicGetTable();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -122,6 +130,7 @@ public class SynonymImpl extends TableImpl implements Synonym {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case DerbyModelPackage.SYNONYM__TABLE:
@@ -136,6 +145,7 @@ public class SynonymImpl extends TableImpl implements Synonym {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case DerbyModelPackage.SYNONYM__TABLE:
@@ -150,6 +160,7 @@ public class SynonymImpl extends TableImpl implements Synonym {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case DerbyModelPackage.SYNONYM__TABLE:

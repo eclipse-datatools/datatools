@@ -16,11 +16,11 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.PrivilegedElementDefinition#getPrivilegeDefinitions <em>Privilege Definitions</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.PrivilegedElementDefinition#getName <em>Name</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getPrivilegedElementDefinition()
  * @model

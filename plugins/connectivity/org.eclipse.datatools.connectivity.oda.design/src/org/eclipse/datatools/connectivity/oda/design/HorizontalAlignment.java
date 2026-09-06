@@ -8,7 +8,7 @@
  *
  * Contributors:
  *  Actuate Corporation  - initial API and implementation
- *  
+ *
  *************************************************************************
  *
  * $Id: HorizontalAlignment.java,v 1.3 2009/04/24 03:20:26 lchan Exp $
@@ -34,271 +34,264 @@ import org.eclipse.emf.common.util.Enumerator;
  * @generated
  */
 public enum HorizontalAlignment implements Enumerator {
-    /**
-     * The '<em><b>Automatic</b></em>' literal object.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #AUTOMATIC
-     * @generated
-     * @ordered
-     */
-    AUTOMATIC_LITERAL(0, "Automatic", "Automatic"), //$NON-NLS-1$ //$NON-NLS-2$
-    /**
-     * The '<em><b>Left</b></em>' literal object.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #LEFT
-     * @generated
-     * @ordered
-     */
-    LEFT_LITERAL(1, "Left", "Left"), //$NON-NLS-1$ //$NON-NLS-2$
-    /**
-     * The '<em><b>Center</b></em>' literal object.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #CENTER
-     * @generated
-     * @ordered
-     */
-    CENTER_LITERAL(2, "Center", "Center"), //$NON-NLS-1$ //$NON-NLS-2$
-    /**
-     * The '<em><b>Right</b></em>' literal object.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #RIGHT
-     * @generated
-     * @ordered
-     */
-    RIGHT_LITERAL(3, "Right", "Right"), /**
-                                         * The '<em><b>Left And Right</b></em>' literal object.
-                                         * <!-- begin-user-doc -->
-                                         * <!-- end-user-doc -->
-                                         * @see #LEFT_AND_RIGHT
-                                         * @generated
-                                         * @ordered
-                                         */
-    LEFT_AND_RIGHT_LITERAL(4, "LeftAndRight", "Left and Right"); //$NON-NLS-1$ //$NON-NLS-2$
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public static final String copyright = "Copyright (c) 2005, 2010 Actuate Corporation"; //$NON-NLS-1$
+	/**
+	 * The '<em><b>Automatic</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #AUTOMATIC
+	 * @generated
+	 * @ordered
+	 */
+	AUTOMATIC_LITERAL(0, "Automatic", "Automatic"), //$NON-NLS-1$ //$NON-NLS-2$
+	/**
+	 * The '<em><b>Left</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #LEFT
+	 * @generated
+	 * @ordered
+	 */
+	LEFT_LITERAL(1, "Left", "Left"), //$NON-NLS-1$ //$NON-NLS-2$
+	/**
+	 * The '<em><b>Center</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #CENTER
+	 * @generated
+	 * @ordered
+	 */
+	CENTER_LITERAL(2, "Center", "Center"), //$NON-NLS-1$ //$NON-NLS-2$
+	/**
+	 * The '<em><b>Right</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #RIGHT
+	 * @generated
+	 * @ordered
+	 */
+	RIGHT_LITERAL(3, "Right", "Right"),
+	/**
+	* The '<em><b>Left And Right</b></em>' literal object.
+	* <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	* @see #LEFT_AND_RIGHT
+	* @generated
+	* @ordered
+	*/
+	LEFT_AND_RIGHT_LITERAL(4, "LeftAndRight", "Left and Right"); //$NON-NLS-1$ //$NON-NLS-2$
 
-    /**
-     * The '<em><b>Automatic</b></em>' literal value.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #AUTOMATIC_LITERAL
-     * @model name="Automatic"
-     * @generated
-     * @ordered
-     */
-    public static final int AUTOMATIC = 0;
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final String copyright = "Copyright (c) 2005, 2010 Actuate Corporation"; //$NON-NLS-1$
 
-    /**
-     * The '<em><b>Left</b></em>' literal value.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #LEFT_LITERAL
-     * @model name="Left"
-     * @generated
-     * @ordered
-     */
-    public static final int LEFT = 1;
+	/**
+	 * The '<em><b>Automatic</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #AUTOMATIC_LITERAL
+	 * @model name="Automatic"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int AUTOMATIC = 0;
 
-    /**
-     * The '<em><b>Center</b></em>' literal value.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #CENTER_LITERAL
-     * @model name="Center"
-     * @generated
-     * @ordered
-     */
-    public static final int CENTER = 2;
+	/**
+	 * The '<em><b>Left</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #LEFT_LITERAL
+	 * @model name="Left"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int LEFT = 1;
 
-    /**
-     * The '<em><b>Right</b></em>' literal value.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #RIGHT_LITERAL
-     * @model name="Right"
-     * @generated
-     * @ordered
-     */
-    public static final int RIGHT = 3;
+	/**
+	 * The '<em><b>Center</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #CENTER_LITERAL
+	 * @model name="Center"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int CENTER = 2;
 
-    /**
-     * The '<em><b>Left And Right</b></em>' literal value.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of '<em><b>Left And Right</b></em>' literal object isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @see #LEFT_AND_RIGHT_LITERAL
-     * @model name="LeftAndRight" literal="Left and Right"
-     * @generated
-     * @ordered
-     * @since 3.3.1 (DTP 1.8.1)
-     */
-    public static final int LEFT_AND_RIGHT = 4;
+	/**
+	 * The '<em><b>Right</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #RIGHT_LITERAL
+	 * @model name="Right"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int RIGHT = 3;
 
-    /**
-     * An array of all the '<em><b>Horizontal Alignment</b></em>' enumerators.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    private static final HorizontalAlignment[] VALUES_ARRAY = new HorizontalAlignment[]
-    { AUTOMATIC_LITERAL, LEFT_LITERAL, CENTER_LITERAL, RIGHT_LITERAL,
-            LEFT_AND_RIGHT_LITERAL, };
+	/**
+	 * The '<em><b>Left And Right</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>Left And Right</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #LEFT_AND_RIGHT_LITERAL
+	 * @model name="LeftAndRight" literal="Left and Right"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int LEFT_AND_RIGHT = 4;
 
-    /**
-     * A public read-only list of all the '<em><b>Horizontal Alignment</b></em>' enumerators.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public static final List<HorizontalAlignment> VALUES = Collections
-            .unmodifiableList( Arrays.asList( VALUES_ARRAY ) );
+	/**
+	 * An array of all the '<em><b>Horizontal Alignment</b></em>' enumerators.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private static final HorizontalAlignment[] VALUES_ARRAY = new HorizontalAlignment[] { AUTOMATIC_LITERAL,
+			LEFT_LITERAL, CENTER_LITERAL, RIGHT_LITERAL, LEFT_AND_RIGHT_LITERAL, };
 
-    /**
-     * Returns the '<em><b>Horizontal Alignment</b></em>' literal with the specified literal value.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public static HorizontalAlignment get( String literal )
-    {
-        for( int i = 0; i < VALUES_ARRAY.length; ++i)
-        {
-            HorizontalAlignment result = VALUES_ARRAY[i];
-            if( result.toString().equals( literal ) )
-            {
-                return result;
-            }
-        }
-        return null;
-    }
+	/**
+	 * A public read-only list of all the '<em><b>Horizontal Alignment</b></em>' enumerators.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final List<HorizontalAlignment> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
-    /**
-     * Returns the '<em><b>Horizontal Alignment</b></em>' literal with the specified name.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public static HorizontalAlignment getByName( String name )
-    {
-        for( int i = 0; i < VALUES_ARRAY.length; ++i)
-        {
-            HorizontalAlignment result = VALUES_ARRAY[i];
-            if( result.getName().equals( name ) )
-            {
-                return result;
-            }
-        }
-        return null;
-    }
+	/**
+	 * Returns the '<em><b>Horizontal Alignment</b></em>' literal with the specified literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
+	 * @generated
+	 */
+	public static HorizontalAlignment get(String literal) {
+		for (HorizontalAlignment result : VALUES_ARRAY) {
+			if (result.toString().equals(literal)) {
+				return result;
+			}
+		}
+		return null;
+	}
 
-    /**
-     * Returns the '<em><b>Horizontal Alignment</b></em>' literal with the specified integer value.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public static HorizontalAlignment get( int value )
-    {
-        switch( value )
-        {
-        case AUTOMATIC:
-            return AUTOMATIC_LITERAL;
-        case LEFT:
-            return LEFT_LITERAL;
-        case CENTER:
-            return CENTER_LITERAL;
-        case RIGHT:
-            return RIGHT_LITERAL;
-        case LEFT_AND_RIGHT:
-            return LEFT_AND_RIGHT_LITERAL;
-        }
-        return null;
-    }
+	/**
+	 * Returns the '<em><b>Horizontal Alignment</b></em>' literal with the specified name.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
+	 * @generated
+	 */
+	public static HorizontalAlignment getByName(String name) {
+		for (HorizontalAlignment result : VALUES_ARRAY) {
+			if (result.getName().equals(name)) {
+				return result;
+			}
+		}
+		return null;
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    private final int value;
+	/**
+	 * Returns the '<em><b>Horizontal Alignment</b></em>' literal with the specified integer value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
+	 * @generated
+	 */
+	public static HorizontalAlignment get(int value) {
+		switch (value) {
+		case AUTOMATIC:
+			return AUTOMATIC_LITERAL;
+		case LEFT:
+			return LEFT_LITERAL;
+		case CENTER:
+			return CENTER_LITERAL;
+		case RIGHT:
+			return RIGHT_LITERAL;
+		case LEFT_AND_RIGHT:
+			return LEFT_AND_RIGHT_LITERAL;
+		}
+		return null;
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    private final String name;
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private final int value;
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    private final String literal;
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private final String name;
 
-    /**
-     * Only this class can construct instances.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    private HorizontalAlignment( int value, String name, String literal )
-    {
-        this.value = value;
-        this.name = name;
-        this.literal = literal;
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private final String literal;
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public int getValue()
-    {
-        return value;
-    }
+	/**
+	 * Only this class can construct instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private HorizontalAlignment(int value, String name, String literal) {
+		this.value = value;
+		this.name = name;
+		this.literal = literal;
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public String getName()
-    {
-        return name;
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int getValue() {
+		return value;
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public String getLiteral()
-    {
-        return literal;
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getName() {
+		return name;
+	}
 
-    /**
-     * Returns the literal value of the enumerator, which is its string representation.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public String toString()
-    {
-        return literal;
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getLiteral() {
+		return literal;
+	}
+
+	/**
+	 * Returns the literal value of the enumerator, which is its string representation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		return literal;
+	}
 }

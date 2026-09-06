@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -27,10 +27,10 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.constraints.impl.TableConstraintImpl#getBaseTable <em>Base Table</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -49,6 +49,7 @@ public abstract class TableConstraintImpl extends ConstraintImpl implements Tabl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return SQLConstraintsPackage.Literals.TABLE_CONSTRAINT;
 	}
@@ -58,9 +59,12 @@ public abstract class TableConstraintImpl extends ConstraintImpl implements Tabl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public BaseTable getBaseTable() {
-		if (eContainerFeatureID() != SQLConstraintsPackage.TABLE_CONSTRAINT__BASE_TABLE) return null;
-		return (BaseTable)eContainer();
+		if (eContainerFeatureID() != SQLConstraintsPackage.TABLE_CONSTRAINT__BASE_TABLE) {
+			return null;
+		}
+		return (BaseTable)eInternalContainer();
 	}
 
 	/**
@@ -78,20 +82,27 @@ public abstract class TableConstraintImpl extends ConstraintImpl implements Tabl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setBaseTable(BaseTable newBaseTable) {
 		if (newBaseTable != eInternalContainer() || (eContainerFeatureID() != SQLConstraintsPackage.TABLE_CONSTRAINT__BASE_TABLE && newBaseTable != null)) {
-			if (EcoreUtil.isAncestor(this, newBaseTable))
+			if (EcoreUtil.isAncestor(this, newBaseTable)) {
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
+			}
 			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
+			if (eInternalContainer() != null) {
 				msgs = eBasicRemoveFromContainer(msgs);
-			if (newBaseTable != null)
+			}
+			if (newBaseTable != null) {
 				msgs = ((InternalEObject)newBaseTable).eInverseAdd(this, SQLTablesPackage.BASE_TABLE__CONSTRAINTS, BaseTable.class, msgs);
+			}
 			msgs = basicSetBaseTable(newBaseTable, msgs);
-			if (msgs != null) msgs.dispatch();
+			if (msgs != null) {
+				msgs.dispatch();
+			}
 		}
-		else if (eNotificationRequired())
+		else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLConstraintsPackage.TABLE_CONSTRAINT__BASE_TABLE, newBaseTable, newBaseTable));
+		}
 	}
 
 	/**
@@ -99,11 +110,13 @@ public abstract class TableConstraintImpl extends ConstraintImpl implements Tabl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case SQLConstraintsPackage.TABLE_CONSTRAINT__BASE_TABLE:
-				if (eInternalContainer() != null)
+				if (eInternalContainer() != null) {
 					msgs = eBasicRemoveFromContainer(msgs);
+				}
 				return basicSetBaseTable((BaseTable)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -114,6 +127,7 @@ public abstract class TableConstraintImpl extends ConstraintImpl implements Tabl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case SQLConstraintsPackage.TABLE_CONSTRAINT__BASE_TABLE:
@@ -127,6 +141,7 @@ public abstract class TableConstraintImpl extends ConstraintImpl implements Tabl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
 			case SQLConstraintsPackage.TABLE_CONSTRAINT__BASE_TABLE:
@@ -140,6 +155,7 @@ public abstract class TableConstraintImpl extends ConstraintImpl implements Tabl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SQLConstraintsPackage.TABLE_CONSTRAINT__BASE_TABLE:
@@ -153,6 +169,7 @@ public abstract class TableConstraintImpl extends ConstraintImpl implements Tabl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case SQLConstraintsPackage.TABLE_CONSTRAINT__BASE_TABLE:
@@ -167,6 +184,7 @@ public abstract class TableConstraintImpl extends ConstraintImpl implements Tabl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case SQLConstraintsPackage.TABLE_CONSTRAINT__BASE_TABLE:
@@ -181,6 +199,7 @@ public abstract class TableConstraintImpl extends ConstraintImpl implements Tabl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SQLConstraintsPackage.TABLE_CONSTRAINT__BASE_TABLE:

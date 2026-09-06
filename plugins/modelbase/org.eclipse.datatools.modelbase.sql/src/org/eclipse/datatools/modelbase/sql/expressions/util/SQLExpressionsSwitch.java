@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -103,49 +103,85 @@ public class SQLExpressionsSwitch {
 			case SQLExpressionsPackage.QUERY_EXPRESSION: {
 				QueryExpression queryExpression = (QueryExpression)theEObject;
 				Object result = caseQueryExpression(queryExpression);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case SQLExpressionsPackage.VALUE_EXPRESSION: {
 				ValueExpression valueExpression = (ValueExpression)theEObject;
 				Object result = caseValueExpression(valueExpression);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case SQLExpressionsPackage.SEARCH_CONDITION: {
 				SearchCondition searchCondition = (SearchCondition)theEObject;
 				Object result = caseSearchCondition(searchCondition);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case SQLExpressionsPackage.QUERY_EXPRESSION_DEFAULT: {
 				QueryExpressionDefault queryExpressionDefault = (QueryExpressionDefault)theEObject;
 				Object result = caseQueryExpressionDefault(queryExpressionDefault);
-				if (result == null) result = caseSQLObject(queryExpressionDefault);
-				if (result == null) result = caseQueryExpression(queryExpressionDefault);
-				if (result == null) result = caseENamedElement(queryExpressionDefault);
-				if (result == null) result = caseEModelElement(queryExpressionDefault);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = caseSQLObject(queryExpressionDefault);
+				}
+				if (result == null) {
+					result = caseQueryExpression(queryExpressionDefault);
+				}
+				if (result == null) {
+					result = caseENamedElement(queryExpressionDefault);
+				}
+				if (result == null) {
+					result = caseEModelElement(queryExpressionDefault);
+				}
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case SQLExpressionsPackage.SEARCH_CONDITION_DEFAULT: {
 				SearchConditionDefault searchConditionDefault = (SearchConditionDefault)theEObject;
 				Object result = caseSearchConditionDefault(searchConditionDefault);
-				if (result == null) result = caseSQLObject(searchConditionDefault);
-				if (result == null) result = caseSearchCondition(searchConditionDefault);
-				if (result == null) result = caseENamedElement(searchConditionDefault);
-				if (result == null) result = caseEModelElement(searchConditionDefault);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = caseSQLObject(searchConditionDefault);
+				}
+				if (result == null) {
+					result = caseSearchCondition(searchConditionDefault);
+				}
+				if (result == null) {
+					result = caseENamedElement(searchConditionDefault);
+				}
+				if (result == null) {
+					result = caseEModelElement(searchConditionDefault);
+				}
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case SQLExpressionsPackage.VALUE_EXPRESSION_DEFAULT: {
 				ValueExpressionDefault valueExpressionDefault = (ValueExpressionDefault)theEObject;
 				Object result = caseValueExpressionDefault(valueExpressionDefault);
-				if (result == null) result = caseSQLObject(valueExpressionDefault);
-				if (result == null) result = caseValueExpression(valueExpressionDefault);
-				if (result == null) result = caseENamedElement(valueExpressionDefault);
-				if (result == null) result = caseEModelElement(valueExpressionDefault);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = caseSQLObject(valueExpressionDefault);
+				}
+				if (result == null) {
+					result = caseValueExpression(valueExpressionDefault);
+				}
+				if (result == null) {
+					result = caseENamedElement(valueExpressionDefault);
+				}
+				if (result == null) {
+					result = caseEModelElement(valueExpressionDefault);
+				}
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			default: return defaultCase(theEObject);

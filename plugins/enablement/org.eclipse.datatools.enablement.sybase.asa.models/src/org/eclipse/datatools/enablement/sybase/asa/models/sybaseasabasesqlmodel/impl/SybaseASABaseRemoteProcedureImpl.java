@@ -18,14 +18,14 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl.SybaseASABaseRemoteProcedureImpl#getLocation <em>Location</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class SybaseASABaseRemoteProcedureImpl extends SybaseASABaseProcedureImpl implements SybaseASABaseRemoteProcedure 
+public class SybaseASABaseRemoteProcedureImpl extends SybaseASABaseProcedureImpl implements SybaseASABaseRemoteProcedure
 {
     /**
 	 * The default value of the '{@link #getLocation() <em>Location</em>}' attribute.
@@ -62,6 +62,7 @@ public class SybaseASABaseRemoteProcedureImpl extends SybaseASABaseProcedureImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass()
     {
 		return SybaseasabasesqlmodelPackage.Literals.SYBASE_ASA_BASE_REMOTE_PROCEDURE;
@@ -72,6 +73,7 @@ public class SybaseASABaseRemoteProcedureImpl extends SybaseASABaseProcedureImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getLocation()
     {
 		return location;
@@ -82,12 +84,14 @@ public class SybaseASABaseRemoteProcedureImpl extends SybaseASABaseProcedureImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLocation(String newLocation)
     {
 		String oldLocation = location;
 		location = newLocation;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_REMOTE_PROCEDURE__LOCATION, oldLocation, location));
+		}
 	}
 
     /**
@@ -95,6 +99,7 @@ public class SybaseASABaseRemoteProcedureImpl extends SybaseASABaseProcedureImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
     {
 		switch (featureID) {
@@ -109,6 +114,7 @@ public class SybaseASABaseRemoteProcedureImpl extends SybaseASABaseProcedureImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue)
     {
 		switch (featureID) {
@@ -124,6 +130,7 @@ public class SybaseASABaseRemoteProcedureImpl extends SybaseASABaseProcedureImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID)
     {
 		switch (featureID) {
@@ -139,6 +146,7 @@ public class SybaseASABaseRemoteProcedureImpl extends SybaseASABaseProcedureImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID)
     {
 		switch (featureID) {
@@ -153,9 +161,12 @@ public class SybaseASABaseRemoteProcedureImpl extends SybaseASABaseProcedureImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString()
     {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (location: ");

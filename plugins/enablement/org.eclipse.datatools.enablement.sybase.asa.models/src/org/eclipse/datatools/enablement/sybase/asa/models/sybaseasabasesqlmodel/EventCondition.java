@@ -15,12 +15,12 @@ import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.EventCondition#getOperator <em>Operator</em>}</li>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.EventCondition#getValue <em>Value</em>}</li>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.EventCondition#getEvent <em>Event</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseasabasesqlmodelPackage#getEventCondition()
  * @model
@@ -61,7 +61,7 @@ public interface EventCondition extends SQLObject
 	 * <!-- begin-model-doc -->
 	 * x01 = first day | x02 = second day | ... x40000000 = 31st day
 	 *  | x80000000 = last day of month
-	 * 
+	 *
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Value</em>' attribute.
 	 * @see #setValue(int)

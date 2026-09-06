@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.datatypes.impl.IntervalDataTypeImpl#getLeadingQualifier <em>Leading Qualifier</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.datatypes.impl.IntervalDataTypeImpl#getTrailingQualifier <em>Trailing Qualifier</em>}</li>
@@ -30,7 +31,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *   <li>{@link org.eclipse.datatools.modelbase.sql.datatypes.impl.IntervalDataTypeImpl#getTrailingFieldPrecision <em>Trailing Field Precision</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.datatypes.impl.IntervalDataTypeImpl#getFractionalSecondsPrecision <em>Fractional Seconds Precision</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -149,6 +149,7 @@ public class IntervalDataTypeImpl extends PredefinedDataTypeImpl implements Inte
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return SQLDataTypesPackage.Literals.INTERVAL_DATA_TYPE;
 	}
@@ -158,6 +159,7 @@ public class IntervalDataTypeImpl extends PredefinedDataTypeImpl implements Inte
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IntervalQualifierType getLeadingQualifier() {
 		return leadingQualifier;
 	}
@@ -167,11 +169,13 @@ public class IntervalDataTypeImpl extends PredefinedDataTypeImpl implements Inte
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLeadingQualifier(IntervalQualifierType newLeadingQualifier) {
 		IntervalQualifierType oldLeadingQualifier = leadingQualifier;
 		leadingQualifier = newLeadingQualifier == null ? LEADING_QUALIFIER_EDEFAULT : newLeadingQualifier;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLDataTypesPackage.INTERVAL_DATA_TYPE__LEADING_QUALIFIER, oldLeadingQualifier, leadingQualifier));
+		}
 	}
 
 	/**
@@ -179,6 +183,7 @@ public class IntervalDataTypeImpl extends PredefinedDataTypeImpl implements Inte
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IntervalQualifierType getTrailingQualifier() {
 		return trailingQualifier;
 	}
@@ -188,11 +193,13 @@ public class IntervalDataTypeImpl extends PredefinedDataTypeImpl implements Inte
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTrailingQualifier(IntervalQualifierType newTrailingQualifier) {
 		IntervalQualifierType oldTrailingQualifier = trailingQualifier;
 		trailingQualifier = newTrailingQualifier == null ? TRAILING_QUALIFIER_EDEFAULT : newTrailingQualifier;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLDataTypesPackage.INTERVAL_DATA_TYPE__TRAILING_QUALIFIER, oldTrailingQualifier, trailingQualifier));
+		}
 	}
 
 	/**
@@ -200,6 +207,7 @@ public class IntervalDataTypeImpl extends PredefinedDataTypeImpl implements Inte
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getLeadingFieldPrecision() {
 		return leadingFieldPrecision;
 	}
@@ -209,11 +217,13 @@ public class IntervalDataTypeImpl extends PredefinedDataTypeImpl implements Inte
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLeadingFieldPrecision(int newLeadingFieldPrecision) {
 		int oldLeadingFieldPrecision = leadingFieldPrecision;
 		leadingFieldPrecision = newLeadingFieldPrecision;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLDataTypesPackage.INTERVAL_DATA_TYPE__LEADING_FIELD_PRECISION, oldLeadingFieldPrecision, leadingFieldPrecision));
+		}
 	}
 
 	/**
@@ -221,6 +231,7 @@ public class IntervalDataTypeImpl extends PredefinedDataTypeImpl implements Inte
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getTrailingFieldPrecision() {
 		return trailingFieldPrecision;
 	}
@@ -230,11 +241,13 @@ public class IntervalDataTypeImpl extends PredefinedDataTypeImpl implements Inte
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTrailingFieldPrecision(int newTrailingFieldPrecision) {
 		int oldTrailingFieldPrecision = trailingFieldPrecision;
 		trailingFieldPrecision = newTrailingFieldPrecision;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLDataTypesPackage.INTERVAL_DATA_TYPE__TRAILING_FIELD_PRECISION, oldTrailingFieldPrecision, trailingFieldPrecision));
+		}
 	}
 
 	/**
@@ -242,6 +255,7 @@ public class IntervalDataTypeImpl extends PredefinedDataTypeImpl implements Inte
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getFractionalSecondsPrecision() {
 		return fractionalSecondsPrecision;
 	}
@@ -251,11 +265,13 @@ public class IntervalDataTypeImpl extends PredefinedDataTypeImpl implements Inte
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setFractionalSecondsPrecision(int newFractionalSecondsPrecision) {
 		int oldFractionalSecondsPrecision = fractionalSecondsPrecision;
 		fractionalSecondsPrecision = newFractionalSecondsPrecision;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLDataTypesPackage.INTERVAL_DATA_TYPE__FRACTIONAL_SECONDS_PRECISION, oldFractionalSecondsPrecision, fractionalSecondsPrecision));
+		}
 	}
 
 	/**
@@ -263,6 +279,7 @@ public class IntervalDataTypeImpl extends PredefinedDataTypeImpl implements Inte
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SQLDataTypesPackage.INTERVAL_DATA_TYPE__LEADING_QUALIFIER:
@@ -270,11 +287,11 @@ public class IntervalDataTypeImpl extends PredefinedDataTypeImpl implements Inte
 			case SQLDataTypesPackage.INTERVAL_DATA_TYPE__TRAILING_QUALIFIER:
 				return getTrailingQualifier();
 			case SQLDataTypesPackage.INTERVAL_DATA_TYPE__LEADING_FIELD_PRECISION:
-				return Integer.valueOf(getLeadingFieldPrecision());
+				return new Integer(getLeadingFieldPrecision());
 			case SQLDataTypesPackage.INTERVAL_DATA_TYPE__TRAILING_FIELD_PRECISION:
-				return Integer.valueOf(getTrailingFieldPrecision());
+				return new Integer(getTrailingFieldPrecision());
 			case SQLDataTypesPackage.INTERVAL_DATA_TYPE__FRACTIONAL_SECONDS_PRECISION:
-				return Integer.valueOf(getFractionalSecondsPrecision());
+				return new Integer(getFractionalSecondsPrecision());
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -284,6 +301,7 @@ public class IntervalDataTypeImpl extends PredefinedDataTypeImpl implements Inte
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case SQLDataTypesPackage.INTERVAL_DATA_TYPE__LEADING_QUALIFIER:
@@ -310,6 +328,7 @@ public class IntervalDataTypeImpl extends PredefinedDataTypeImpl implements Inte
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case SQLDataTypesPackage.INTERVAL_DATA_TYPE__LEADING_QUALIFIER:
@@ -336,6 +355,7 @@ public class IntervalDataTypeImpl extends PredefinedDataTypeImpl implements Inte
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SQLDataTypesPackage.INTERVAL_DATA_TYPE__LEADING_QUALIFIER:
@@ -357,8 +377,11 @@ public class IntervalDataTypeImpl extends PredefinedDataTypeImpl implements Inte
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (leadingQualifier: "); //$NON-NLS-1$

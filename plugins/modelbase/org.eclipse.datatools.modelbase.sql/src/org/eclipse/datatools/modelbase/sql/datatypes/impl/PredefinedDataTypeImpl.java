@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -23,10 +23,10 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.datatypes.impl.PredefinedDataTypeImpl#getPrimitiveType <em>Primitive Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -65,6 +65,7 @@ public abstract class PredefinedDataTypeImpl extends SQLDataTypeImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return SQLDataTypesPackage.Literals.PREDEFINED_DATA_TYPE;
 	}
@@ -74,6 +75,7 @@ public abstract class PredefinedDataTypeImpl extends SQLDataTypeImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public PrimitiveType getPrimitiveType() {
 		return primitiveType;
 	}
@@ -83,11 +85,13 @@ public abstract class PredefinedDataTypeImpl extends SQLDataTypeImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPrimitiveType(PrimitiveType newPrimitiveType) {
 		PrimitiveType oldPrimitiveType = primitiveType;
 		primitiveType = newPrimitiveType == null ? PRIMITIVE_TYPE_EDEFAULT : newPrimitiveType;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLDataTypesPackage.PREDEFINED_DATA_TYPE__PRIMITIVE_TYPE, oldPrimitiveType, primitiveType));
+		}
 	}
 
 	/**
@@ -95,6 +99,7 @@ public abstract class PredefinedDataTypeImpl extends SQLDataTypeImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SQLDataTypesPackage.PREDEFINED_DATA_TYPE__PRIMITIVE_TYPE:
@@ -108,6 +113,7 @@ public abstract class PredefinedDataTypeImpl extends SQLDataTypeImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case SQLDataTypesPackage.PREDEFINED_DATA_TYPE__PRIMITIVE_TYPE:
@@ -122,6 +128,7 @@ public abstract class PredefinedDataTypeImpl extends SQLDataTypeImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case SQLDataTypesPackage.PREDEFINED_DATA_TYPE__PRIMITIVE_TYPE:
@@ -136,6 +143,7 @@ public abstract class PredefinedDataTypeImpl extends SQLDataTypeImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SQLDataTypesPackage.PREDEFINED_DATA_TYPE__PRIMITIVE_TYPE:
@@ -149,8 +157,11 @@ public abstract class PredefinedDataTypeImpl extends SQLDataTypeImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (primitiveType: "); //$NON-NLS-1$

@@ -15,29 +15,30 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Sybase ASE Privilege</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
+ * @deprecated
  * @generated
  */
+@Deprecated
 public class SybaseASEPrivilegeImpl extends SybasePrivilegeImpl implements SybaseASEPrivilege
 {
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected SybaseASEPrivilegeImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    protected EClass eStaticClass() {
-        return SybaseasesqlmodelPackage.Literals.SYBASE_ASE_PRIVILEGE;
-    }
+	 * @generated
+	 */
+    @Override
+	protected EClass eStaticClass() {
+		return SybaseasesqlmodelPackage.Literals.SYBASE_ASE_PRIVILEGE;
+	}
 
 } //SybaseASEPrivilegeImpl

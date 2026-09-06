@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *   Ingres Corporation - initial API and implementation
  *
@@ -28,10 +28,10 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.enablement.ingres.models.ingressqlmodel.impl.IngresDBEventImpl#getSchema <em>Schema</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -67,6 +67,7 @@ public class IngresDBEventImpl extends SQLObjectImpl implements IngresDBEvent {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return IngressqlmodelPackage.Literals.INGRES_DB_EVENT;
 	}
@@ -76,13 +77,15 @@ public class IngresDBEventImpl extends SQLObjectImpl implements IngresDBEvent {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IngresSchema getSchema() {
 		if (schema != null && schema.eIsProxy()) {
 			InternalEObject oldSchema = (InternalEObject)schema;
 			schema = (IngresSchema)eResolveProxy(oldSchema);
 			if (schema != oldSchema) {
-				if (eNotificationRequired())
+				if (eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, IngressqlmodelPackage.INGRES_DB_EVENT__SCHEMA, oldSchema, schema));
+				}
 			}
 		}
 		return schema;
@@ -107,7 +110,11 @@ public class IngresDBEventImpl extends SQLObjectImpl implements IngresDBEvent {
 		schema = newSchema;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, IngressqlmodelPackage.INGRES_DB_EVENT__SCHEMA, oldSchema, newSchema);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			if (msgs == null) {
+				msgs = notification;
+			} else {
+				msgs.add(notification);
+			}
 		}
 		return msgs;
 	}
@@ -117,18 +124,24 @@ public class IngresDBEventImpl extends SQLObjectImpl implements IngresDBEvent {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSchema(IngresSchema newSchema) {
 		if (newSchema != schema) {
 			NotificationChain msgs = null;
-			if (schema != null)
+			if (schema != null) {
 				msgs = ((InternalEObject)schema).eInverseRemove(this, IngressqlmodelPackage.INGRES_SCHEMA__DB_EVENTS, IngresSchema.class, msgs);
-			if (newSchema != null)
+			}
+			if (newSchema != null) {
 				msgs = ((InternalEObject)newSchema).eInverseAdd(this, IngressqlmodelPackage.INGRES_SCHEMA__DB_EVENTS, IngresSchema.class, msgs);
+			}
 			msgs = basicSetSchema(newSchema, msgs);
-			if (msgs != null) msgs.dispatch();
+			if (msgs != null) {
+				msgs.dispatch();
+			}
 		}
-		else if (eNotificationRequired())
+		else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, IngressqlmodelPackage.INGRES_DB_EVENT__SCHEMA, newSchema, newSchema));
+		}
 	}
 
 	/**
@@ -136,11 +149,13 @@ public class IngresDBEventImpl extends SQLObjectImpl implements IngresDBEvent {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case IngressqlmodelPackage.INGRES_DB_EVENT__SCHEMA:
-				if (schema != null)
+				if (schema != null) {
 					msgs = ((InternalEObject)schema).eInverseRemove(this, IngressqlmodelPackage.INGRES_SCHEMA__DB_EVENTS, IngresSchema.class, msgs);
+				}
 				return basicSetSchema((IngresSchema)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -151,6 +166,7 @@ public class IngresDBEventImpl extends SQLObjectImpl implements IngresDBEvent {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case IngressqlmodelPackage.INGRES_DB_EVENT__SCHEMA:
@@ -164,10 +180,13 @@ public class IngresDBEventImpl extends SQLObjectImpl implements IngresDBEvent {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case IngressqlmodelPackage.INGRES_DB_EVENT__SCHEMA:
-				if (resolve) return getSchema();
+				if (resolve) {
+					return getSchema();
+				}
 				return basicGetSchema();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -178,6 +197,7 @@ public class IngresDBEventImpl extends SQLObjectImpl implements IngresDBEvent {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case IngressqlmodelPackage.INGRES_DB_EVENT__SCHEMA:
@@ -192,6 +212,7 @@ public class IngresDBEventImpl extends SQLObjectImpl implements IngresDBEvent {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case IngressqlmodelPackage.INGRES_DB_EVENT__SCHEMA:
@@ -206,6 +227,7 @@ public class IngresDBEventImpl extends SQLObjectImpl implements IngresDBEvent {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case IngressqlmodelPackage.INGRES_DB_EVENT__SCHEMA:

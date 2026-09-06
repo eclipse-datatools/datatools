@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -37,6 +37,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.routines.impl.RoutineImpl#getSpecificName <em>Specific Name</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.routines.impl.RoutineImpl#getLanguage <em>Language</em>}</li>
@@ -52,7 +53,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.eclipse.datatools.modelbase.sql.routines.impl.RoutineImpl#getSource <em>Source</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.routines.impl.RoutineImpl#getSchema <em>Schema</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -301,6 +301,7 @@ public abstract class RoutineImpl extends SQLObjectImpl implements Routine {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return SQLRoutinesPackage.Literals.ROUTINE;
 	}
@@ -310,6 +311,7 @@ public abstract class RoutineImpl extends SQLObjectImpl implements Routine {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getSpecificName() {
 		return specificName;
 	}
@@ -319,11 +321,13 @@ public abstract class RoutineImpl extends SQLObjectImpl implements Routine {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSpecificName(String newSpecificName) {
 		String oldSpecificName = specificName;
 		specificName = newSpecificName;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLRoutinesPackage.ROUTINE__SPECIFIC_NAME, oldSpecificName, specificName));
+		}
 	}
 
 	/**
@@ -331,6 +335,7 @@ public abstract class RoutineImpl extends SQLObjectImpl implements Routine {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getLanguage() {
 		return language;
 	}
@@ -340,11 +345,13 @@ public abstract class RoutineImpl extends SQLObjectImpl implements Routine {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLanguage(String newLanguage) {
 		String oldLanguage = language;
 		language = newLanguage;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLRoutinesPackage.ROUTINE__LANGUAGE, oldLanguage, language));
+		}
 	}
 
 	/**
@@ -352,6 +359,7 @@ public abstract class RoutineImpl extends SQLObjectImpl implements Routine {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getParameterStyle() {
 		return parameterStyle;
 	}
@@ -361,11 +369,13 @@ public abstract class RoutineImpl extends SQLObjectImpl implements Routine {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setParameterStyle(String newParameterStyle) {
 		String oldParameterStyle = parameterStyle;
 		parameterStyle = newParameterStyle;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLRoutinesPackage.ROUTINE__PARAMETER_STYLE, oldParameterStyle, parameterStyle));
+		}
 	}
 
 	/**
@@ -373,6 +383,7 @@ public abstract class RoutineImpl extends SQLObjectImpl implements Routine {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isDeterministic() {
 		return deterministic;
 	}
@@ -382,11 +393,13 @@ public abstract class RoutineImpl extends SQLObjectImpl implements Routine {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDeterministic(boolean newDeterministic) {
 		boolean oldDeterministic = deterministic;
 		deterministic = newDeterministic;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLRoutinesPackage.ROUTINE__DETERMINISTIC, oldDeterministic, deterministic));
+		}
 	}
 
 	/**
@@ -394,6 +407,7 @@ public abstract class RoutineImpl extends SQLObjectImpl implements Routine {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public DataAccess getSqlDataAccess() {
 		return sqlDataAccess;
 	}
@@ -403,11 +417,13 @@ public abstract class RoutineImpl extends SQLObjectImpl implements Routine {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSqlDataAccess(DataAccess newSqlDataAccess) {
 		DataAccess oldSqlDataAccess = sqlDataAccess;
 		sqlDataAccess = newSqlDataAccess == null ? SQL_DATA_ACCESS_EDEFAULT : newSqlDataAccess;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLRoutinesPackage.ROUTINE__SQL_DATA_ACCESS, oldSqlDataAccess, sqlDataAccess));
+		}
 	}
 
 	/**
@@ -415,6 +431,7 @@ public abstract class RoutineImpl extends SQLObjectImpl implements Routine {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getCreationTS() {
 		return creationTS;
 	}
@@ -424,11 +441,13 @@ public abstract class RoutineImpl extends SQLObjectImpl implements Routine {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCreationTS(String newCreationTS) {
 		String oldCreationTS = creationTS;
 		creationTS = newCreationTS;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLRoutinesPackage.ROUTINE__CREATION_TS, oldCreationTS, creationTS));
+		}
 	}
 
 	/**
@@ -436,6 +455,7 @@ public abstract class RoutineImpl extends SQLObjectImpl implements Routine {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getLastAlteredTS() {
 		return lastAlteredTS;
 	}
@@ -445,11 +465,13 @@ public abstract class RoutineImpl extends SQLObjectImpl implements Routine {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLastAlteredTS(String newLastAlteredTS) {
 		String oldLastAlteredTS = lastAlteredTS;
 		lastAlteredTS = newLastAlteredTS;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLRoutinesPackage.ROUTINE__LAST_ALTERED_TS, oldLastAlteredTS, lastAlteredTS));
+		}
 	}
 
 	/**
@@ -457,6 +479,7 @@ public abstract class RoutineImpl extends SQLObjectImpl implements Routine {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getAuthorizationID() {
 		return authorizationID;
 	}
@@ -466,11 +489,13 @@ public abstract class RoutineImpl extends SQLObjectImpl implements Routine {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setAuthorizationID(String newAuthorizationID) {
 		String oldAuthorizationID = authorizationID;
 		authorizationID = newAuthorizationID;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLRoutinesPackage.ROUTINE__AUTHORIZATION_ID, oldAuthorizationID, authorizationID));
+		}
 	}
 
 	/**
@@ -478,6 +503,7 @@ public abstract class RoutineImpl extends SQLObjectImpl implements Routine {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getSecurity() {
 		return security;
 	}
@@ -487,11 +513,13 @@ public abstract class RoutineImpl extends SQLObjectImpl implements Routine {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSecurity(String newSecurity) {
 		String oldSecurity = security;
 		security = newSecurity;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLRoutinesPackage.ROUTINE__SECURITY, oldSecurity, security));
+		}
 	}
 
 	/**
@@ -499,6 +527,7 @@ public abstract class RoutineImpl extends SQLObjectImpl implements Routine {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getExternalName() {
 		return externalName;
 	}
@@ -508,11 +537,13 @@ public abstract class RoutineImpl extends SQLObjectImpl implements Routine {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setExternalName(String newExternalName) {
 		String oldExternalName = externalName;
 		externalName = newExternalName;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLRoutinesPackage.ROUTINE__EXTERNAL_NAME, oldExternalName, externalName));
+		}
 	}
 
 	/**
@@ -520,6 +551,7 @@ public abstract class RoutineImpl extends SQLObjectImpl implements Routine {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList getParameters() {
 		if (parameters == null) {
 			parameters = new EObjectContainmentWithInverseEList(Parameter.class, this, SQLRoutinesPackage.ROUTINE__PARAMETERS, SQLRoutinesPackage.PARAMETER__ROUTINE);
@@ -532,7 +564,8 @@ public abstract class RoutineImpl extends SQLObjectImpl implements Routine {
     * <p>
     * @return a list of IN and INOUT parameters associated with this routine.
     */
-   public EList getInputParameters() {
+   @Override
+public EList getInputParameters() {
       return getParameters(ParameterMode.IN);
    }
 
@@ -541,7 +574,8 @@ public abstract class RoutineImpl extends SQLObjectImpl implements Routine {
     * <p>
     * @return a list of OUT and INOUT parameters associated with this routine.
     */
-   public EList getOutputParameters() {
+   @Override
+public EList getOutputParameters() {
       return getParameters(ParameterMode.OUT);
    }
 
@@ -562,20 +596,22 @@ public abstract class RoutineImpl extends SQLObjectImpl implements Routine {
       EList filteredList = new BasicEList();
       for (int i = 0, parmCnt = allList.size(); i < parmCnt; i++) {
          parm = (Parameter)allList.get(i);
-         if ((aMode == ParameterMode.IN) && (parm.getMode().getValue() != ParameterMode.OUT))
-            filteredList.add(parm);
-         else if ((aMode == ParameterMode.OUT) && (parm.getMode().getValue() != ParameterMode.IN))
-            filteredList.add(parm);
+         if ((aMode == ParameterMode.IN) && (parm.getMode().getValue() != ParameterMode.OUT)) {
+			filteredList.add(parm);
+		 } else if ((aMode == ParameterMode.OUT) && (parm.getMode().getValue() != ParameterMode.IN)) {
+			filteredList.add(parm);
+		 }
       }
       return filteredList;
    }
 
-   
-   
+
+
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Source getSource() {
 		return source;
 	}
@@ -590,7 +626,11 @@ public abstract class RoutineImpl extends SQLObjectImpl implements Routine {
 		source = newSource;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLRoutinesPackage.ROUTINE__SOURCE, oldSource, newSource);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			if (msgs == null) {
+				msgs = notification;
+			} else {
+				msgs.add(notification);
+			}
 		}
 		return msgs;
 	}
@@ -600,18 +640,24 @@ public abstract class RoutineImpl extends SQLObjectImpl implements Routine {
     * <!-- end-user-doc -->
 	 * @generated
 	 */
-   public void setSource(Source newSource) {
+   @Override
+public void setSource(Source newSource) {
 		if (newSource != source) {
 			NotificationChain msgs = null;
-			if (source != null)
+			if (source != null) {
 				msgs = ((InternalEObject)source).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLRoutinesPackage.ROUTINE__SOURCE, null, msgs);
-			if (newSource != null)
+			}
+			if (newSource != null) {
 				msgs = ((InternalEObject)newSource).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SQLRoutinesPackage.ROUTINE__SOURCE, null, msgs);
+			}
 			msgs = basicSetSource(newSource, msgs);
-			if (msgs != null) msgs.dispatch();
+			if (msgs != null) {
+				msgs.dispatch();
+			}
 		}
-		else if (eNotificationRequired())
+		else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLRoutinesPackage.ROUTINE__SOURCE, newSource, newSource));
+		}
 	}
 
 	/**
@@ -619,13 +665,15 @@ public abstract class RoutineImpl extends SQLObjectImpl implements Routine {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Schema getSchema() {
 		if (schema != null && schema.eIsProxy()) {
 			InternalEObject oldSchema = (InternalEObject)schema;
 			schema = (Schema)eResolveProxy(oldSchema);
 			if (schema != oldSchema) {
-				if (eNotificationRequired())
+				if (eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SQLRoutinesPackage.ROUTINE__SCHEMA, oldSchema, schema));
+				}
 			}
 		}
 		return schema;
@@ -650,7 +698,11 @@ public abstract class RoutineImpl extends SQLObjectImpl implements Routine {
 		schema = newSchema;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLRoutinesPackage.ROUTINE__SCHEMA, oldSchema, newSchema);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			if (msgs == null) {
+				msgs = notification;
+			} else {
+				msgs.add(notification);
+			}
 		}
 		return msgs;
 	}
@@ -660,18 +712,24 @@ public abstract class RoutineImpl extends SQLObjectImpl implements Routine {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSchema(Schema newSchema) {
 		if (newSchema != schema) {
 			NotificationChain msgs = null;
-			if (schema != null)
+			if (schema != null) {
 				msgs = ((InternalEObject)schema).eInverseRemove(this, SQLSchemaPackage.SCHEMA__ROUTINES, Schema.class, msgs);
-			if (newSchema != null)
+			}
+			if (newSchema != null) {
 				msgs = ((InternalEObject)newSchema).eInverseAdd(this, SQLSchemaPackage.SCHEMA__ROUTINES, Schema.class, msgs);
+			}
 			msgs = basicSetSchema(newSchema, msgs);
-			if (msgs != null) msgs.dispatch();
+			if (msgs != null) {
+				msgs.dispatch();
+			}
 		}
-		else if (eNotificationRequired())
+		else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLRoutinesPackage.ROUTINE__SCHEMA, newSchema, newSchema));
+		}
 	}
 
 	/**
@@ -679,13 +737,15 @@ public abstract class RoutineImpl extends SQLObjectImpl implements Routine {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case SQLRoutinesPackage.ROUTINE__PARAMETERS:
 				return ((InternalEList)getParameters()).basicAdd(otherEnd, msgs);
 			case SQLRoutinesPackage.ROUTINE__SCHEMA:
-				if (schema != null)
+				if (schema != null) {
 					msgs = ((InternalEObject)schema).eInverseRemove(this, SQLSchemaPackage.SCHEMA__ROUTINES, Schema.class, msgs);
+				}
 				return basicSetSchema((Schema)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -696,6 +756,7 @@ public abstract class RoutineImpl extends SQLObjectImpl implements Routine {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case SQLRoutinesPackage.ROUTINE__PARAMETERS:
@@ -713,6 +774,7 @@ public abstract class RoutineImpl extends SQLObjectImpl implements Routine {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SQLRoutinesPackage.ROUTINE__SPECIFIC_NAME:
@@ -740,7 +802,9 @@ public abstract class RoutineImpl extends SQLObjectImpl implements Routine {
 			case SQLRoutinesPackage.ROUTINE__SOURCE:
 				return getSource();
 			case SQLRoutinesPackage.ROUTINE__SCHEMA:
-				if (resolve) return getSchema();
+				if (resolve) {
+					return getSchema();
+				}
 				return basicGetSchema();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -751,6 +815,7 @@ public abstract class RoutineImpl extends SQLObjectImpl implements Routine {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case SQLRoutinesPackage.ROUTINE__SPECIFIC_NAME:
@@ -802,6 +867,7 @@ public abstract class RoutineImpl extends SQLObjectImpl implements Routine {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case SQLRoutinesPackage.ROUTINE__SPECIFIC_NAME:
@@ -852,6 +918,7 @@ public abstract class RoutineImpl extends SQLObjectImpl implements Routine {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SQLRoutinesPackage.ROUTINE__SPECIFIC_NAME:
@@ -889,8 +956,11 @@ public abstract class RoutineImpl extends SQLObjectImpl implements Routine {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (specificName: "); //$NON-NLS-1$

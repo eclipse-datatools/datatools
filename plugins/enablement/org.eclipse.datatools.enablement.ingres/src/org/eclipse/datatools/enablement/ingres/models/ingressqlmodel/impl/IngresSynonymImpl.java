@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *   Ingres Corporation - initial API and implementation
  *
@@ -28,11 +28,11 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.enablement.ingres.models.ingressqlmodel.impl.IngresSynonymImpl#getSchema <em>Schema</em>}</li>
  *   <li>{@link org.eclipse.datatools.enablement.ingres.models.ingressqlmodel.impl.IngresSynonymImpl#getTableName <em>Table Name</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -88,6 +88,7 @@ public class IngresSynonymImpl extends SQLObjectImpl implements IngresSynonym {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return IngressqlmodelPackage.Literals.INGRES_SYNONYM;
 	}
@@ -97,13 +98,15 @@ public class IngresSynonymImpl extends SQLObjectImpl implements IngresSynonym {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IngresSchema getSchema() {
 		if (schema != null && schema.eIsProxy()) {
 			InternalEObject oldSchema = (InternalEObject)schema;
 			schema = (IngresSchema)eResolveProxy(oldSchema);
 			if (schema != oldSchema) {
-				if (eNotificationRequired())
+				if (eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, IngressqlmodelPackage.INGRES_SYNONYM__SCHEMA, oldSchema, schema));
+				}
 			}
 		}
 		return schema;
@@ -128,7 +131,11 @@ public class IngresSynonymImpl extends SQLObjectImpl implements IngresSynonym {
 		schema = newSchema;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, IngressqlmodelPackage.INGRES_SYNONYM__SCHEMA, oldSchema, newSchema);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			if (msgs == null) {
+				msgs = notification;
+			} else {
+				msgs.add(notification);
+			}
 		}
 		return msgs;
 	}
@@ -138,18 +145,24 @@ public class IngresSynonymImpl extends SQLObjectImpl implements IngresSynonym {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSchema(IngresSchema newSchema) {
 		if (newSchema != schema) {
 			NotificationChain msgs = null;
-			if (schema != null)
+			if (schema != null) {
 				msgs = ((InternalEObject)schema).eInverseRemove(this, IngressqlmodelPackage.INGRES_SCHEMA__SYNONYMS, IngresSchema.class, msgs);
-			if (newSchema != null)
+			}
+			if (newSchema != null) {
 				msgs = ((InternalEObject)newSchema).eInverseAdd(this, IngressqlmodelPackage.INGRES_SCHEMA__SYNONYMS, IngresSchema.class, msgs);
+			}
 			msgs = basicSetSchema(newSchema, msgs);
-			if (msgs != null) msgs.dispatch();
+			if (msgs != null) {
+				msgs.dispatch();
+			}
 		}
-		else if (eNotificationRequired())
+		else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, IngressqlmodelPackage.INGRES_SYNONYM__SCHEMA, newSchema, newSchema));
+		}
 	}
 
 	/**
@@ -157,6 +170,7 @@ public class IngresSynonymImpl extends SQLObjectImpl implements IngresSynonym {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getTableName() {
 		return tableName;
 	}
@@ -166,11 +180,13 @@ public class IngresSynonymImpl extends SQLObjectImpl implements IngresSynonym {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTableName(String newTableName) {
 		String oldTableName = tableName;
 		tableName = newTableName;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, IngressqlmodelPackage.INGRES_SYNONYM__TABLE_NAME, oldTableName, tableName));
+		}
 	}
 
 	/**
@@ -178,11 +194,13 @@ public class IngresSynonymImpl extends SQLObjectImpl implements IngresSynonym {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case IngressqlmodelPackage.INGRES_SYNONYM__SCHEMA:
-				if (schema != null)
+				if (schema != null) {
 					msgs = ((InternalEObject)schema).eInverseRemove(this, IngressqlmodelPackage.INGRES_SCHEMA__SYNONYMS, IngresSchema.class, msgs);
+				}
 				return basicSetSchema((IngresSchema)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -193,6 +211,7 @@ public class IngresSynonymImpl extends SQLObjectImpl implements IngresSynonym {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case IngressqlmodelPackage.INGRES_SYNONYM__SCHEMA:
@@ -206,10 +225,13 @@ public class IngresSynonymImpl extends SQLObjectImpl implements IngresSynonym {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case IngressqlmodelPackage.INGRES_SYNONYM__SCHEMA:
-				if (resolve) return getSchema();
+				if (resolve) {
+					return getSchema();
+				}
 				return basicGetSchema();
 			case IngressqlmodelPackage.INGRES_SYNONYM__TABLE_NAME:
 				return getTableName();
@@ -222,6 +244,7 @@ public class IngresSynonymImpl extends SQLObjectImpl implements IngresSynonym {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case IngressqlmodelPackage.INGRES_SYNONYM__SCHEMA:
@@ -239,6 +262,7 @@ public class IngresSynonymImpl extends SQLObjectImpl implements IngresSynonym {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case IngressqlmodelPackage.INGRES_SYNONYM__SCHEMA:
@@ -256,6 +280,7 @@ public class IngresSynonymImpl extends SQLObjectImpl implements IngresSynonym {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case IngressqlmodelPackage.INGRES_SYNONYM__SCHEMA:
@@ -271,8 +296,11 @@ public class IngresSynonymImpl extends SQLObjectImpl implements IngresSynonym {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (tableName: ");

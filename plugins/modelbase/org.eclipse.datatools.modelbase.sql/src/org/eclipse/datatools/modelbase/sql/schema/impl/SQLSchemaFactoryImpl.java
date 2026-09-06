@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -47,7 +47,7 @@ public class SQLSchemaFactoryImpl extends EFactoryImpl implements SQLSchemaFacto
 	 */
 	public static SQLSchemaFactory init() {
 		try {
-			SQLSchemaFactory theSQLSchemaFactory = (SQLSchemaFactory)EPackage.Registry.INSTANCE.getEFactory("http:///org/eclipse/datatools/modelbase/sql/schema.ecore"); //$NON-NLS-1$ 
+			SQLSchemaFactory theSQLSchemaFactory = (SQLSchemaFactory)EPackage.Registry.INSTANCE.getEFactory(SQLSchemaPackage.eNS_URI);
 			if (theSQLSchemaFactory != null) {
 				return theSQLSchemaFactory;
 			}
@@ -73,6 +73,7 @@ public class SQLSchemaFactoryImpl extends EFactoryImpl implements SQLSchemaFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case SQLSchemaPackage.IDENTITY_SPECIFIER: return createIdentitySpecifier();
@@ -93,6 +94,7 @@ public class SQLSchemaFactoryImpl extends EFactoryImpl implements SQLSchemaFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
 			case SQLSchemaPackage.GENERATE_TYPE:
@@ -113,6 +115,7 @@ public class SQLSchemaFactoryImpl extends EFactoryImpl implements SQLSchemaFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
 			case SQLSchemaPackage.GENERATE_TYPE:
@@ -133,6 +136,7 @@ public class SQLSchemaFactoryImpl extends EFactoryImpl implements SQLSchemaFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IdentitySpecifier createIdentitySpecifier() {
 		IdentitySpecifierImpl identitySpecifier = new IdentitySpecifierImpl();
 		return identitySpecifier;
@@ -143,6 +147,7 @@ public class SQLSchemaFactoryImpl extends EFactoryImpl implements SQLSchemaFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Dependency createDependency() {
 		DependencyImpl dependency = new DependencyImpl();
 		return dependency;
@@ -153,6 +158,7 @@ public class SQLSchemaFactoryImpl extends EFactoryImpl implements SQLSchemaFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Schema createSchema() {
 		SchemaImpl schema = new SchemaImpl();
 		return schema;
@@ -163,6 +169,7 @@ public class SQLSchemaFactoryImpl extends EFactoryImpl implements SQLSchemaFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Sequence createSequence() {
 		SequenceImpl sequence = new SequenceImpl();
 		return sequence;
@@ -173,6 +180,7 @@ public class SQLSchemaFactoryImpl extends EFactoryImpl implements SQLSchemaFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Database createDatabase() {
 		DatabaseImpl database = new DatabaseImpl();
 		return database;
@@ -183,6 +191,7 @@ public class SQLSchemaFactoryImpl extends EFactoryImpl implements SQLSchemaFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Event createEvent() {
 		EventImpl event = new EventImpl();
 		return event;
@@ -193,6 +202,7 @@ public class SQLSchemaFactoryImpl extends EFactoryImpl implements SQLSchemaFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Comment createComment() {
 		CommentImpl comment = new CommentImpl();
 		return comment;
@@ -203,6 +213,7 @@ public class SQLSchemaFactoryImpl extends EFactoryImpl implements SQLSchemaFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Catalog createCatalog() {
 		CatalogImpl catalog = new CatalogImpl();
 		return catalog;
@@ -215,7 +226,9 @@ public class SQLSchemaFactoryImpl extends EFactoryImpl implements SQLSchemaFacto
 	 */
 	public GenerateType createGenerateTypeFromString(EDataType eDataType, String initialValue) {
 		GenerateType result = GenerateType.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		if (result == null) {
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		}
 		return result;
 	}
 
@@ -235,7 +248,9 @@ public class SQLSchemaFactoryImpl extends EFactoryImpl implements SQLSchemaFacto
 	 */
 	public ReferentialActionType createReferentialActionTypeFromString(EDataType eDataType, String initialValue) {
 		ReferentialActionType result = ReferentialActionType.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		if (result == null) {
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		}
 		return result;
 	}
 
@@ -289,6 +304,7 @@ public class SQLSchemaFactoryImpl extends EFactoryImpl implements SQLSchemaFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SQLSchemaPackage getSQLSchemaPackage() {
 		return (SQLSchemaPackage)getEPackage();
 	}
@@ -299,6 +315,7 @@ public class SQLSchemaFactoryImpl extends EFactoryImpl implements SQLSchemaFacto
 	 * @deprecated
 	 * @generated
 	 */
+	@Deprecated
 	public static SQLSchemaPackage getPackage() {
 		return SQLSchemaPackage.eINSTANCE;
 	}

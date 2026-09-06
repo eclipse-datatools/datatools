@@ -130,20 +130,10 @@ public class SybasesqlmodelPackageImpl extends EPackageImpl implements Sybasesql
 	private static boolean isInited = false;
 
 	/**
-	 * Creates, registers, and initializes the <b>Package</b> for this
-	 * model, and for any others upon which it depends.  Simple
-	 * dependencies are satisfied by calling this method on all
-	 * dependent packages before doing anything else.  This method drives
-	 * initialization for interdependent packages directly, in parallel
-	 * with this package, itself.
-	 * <p>Of this package and its interdependencies, all packages which
-	 * have not yet been registered by their URI values are first created
-	 * and registered.  The packages are then initialized in two steps:
-	 * meta-model objects for all of the packages are created before any
-	 * are initialized, since one package's meta-model objects may refer to
-	 * those of another.
-	 * <p>Invocation of this method will not affect any packages that have
-	 * already been initialized.
+	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
+	 *
+	 * <p>This method is used to initialize {@link SybasesqlmodelPackage#eINSTANCE} when that field is accessed.
+	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #eNS_URI
@@ -152,14 +142,18 @@ public class SybasesqlmodelPackageImpl extends EPackageImpl implements Sybasesql
 	 * @generated
 	 */
 	public static SybasesqlmodelPackage init() {
-		if (isInited) return (SybasesqlmodelPackage)EPackage.Registry.INSTANCE.getEPackage(SybasesqlmodelPackage.eNS_URI);
+		if (isInited) {
+			return (SybasesqlmodelPackage)EPackage.Registry.INSTANCE.getEPackage(SybasesqlmodelPackage.eNS_URI);
+		}
 
 		// Obtain or create and register package
-		SybasesqlmodelPackageImpl theSybasesqlmodelPackage = (SybasesqlmodelPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(eNS_URI) instanceof SybasesqlmodelPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(eNS_URI) : new SybasesqlmodelPackageImpl());
+		Object registeredSybasesqlmodelPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		SybasesqlmodelPackageImpl theSybasesqlmodelPackage = registeredSybasesqlmodelPackage instanceof SybasesqlmodelPackageImpl ? (SybasesqlmodelPackageImpl)registeredSybasesqlmodelPackage : new SybasesqlmodelPackageImpl();
 
 		isInited = true;
 
 		// Initialize simple dependencies
+		EcorePackage.eINSTANCE.eClass();
 		SQLSchemaPackage.eINSTANCE.eClass();
 		SQLConstraintsPackage.eINSTANCE.eClass();
 		SQLDataTypesPackage.eINSTANCE.eClass();
@@ -178,6 +172,8 @@ public class SybasesqlmodelPackageImpl extends EPackageImpl implements Sybasesql
 		// Mark meta-data to indicate it can't be changed
 		theSybasesqlmodelPackage.freeze();
 
+		// Update the registry and return the package
+		EPackage.Registry.INSTANCE.put(SybasesqlmodelPackage.eNS_URI, theSybasesqlmodelPackage);
 		return theSybasesqlmodelPackage;
 	}
 
@@ -186,6 +182,7 @@ public class SybasesqlmodelPackageImpl extends EPackageImpl implements Sybasesql
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getSybaseParameter() {
 		return sybaseParameterEClass;
 	}
@@ -195,6 +192,7 @@ public class SybasesqlmodelPackageImpl extends EPackageImpl implements Sybasesql
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getSybaseParameter_Nullable() {
 		return (EAttribute)sybaseParameterEClass.getEStructuralFeatures().get(0);
 	}
@@ -204,6 +202,7 @@ public class SybasesqlmodelPackageImpl extends EPackageImpl implements Sybasesql
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getSybaseParameter_DefaultValue() {
 		return (EAttribute)sybaseParameterEClass.getEStructuralFeatures().get(1);
 	}
@@ -213,6 +212,7 @@ public class SybasesqlmodelPackageImpl extends EPackageImpl implements Sybasesql
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getSybaseParameter_JDBCParameterType() {
 		return (EAttribute)sybaseParameterEClass.getEStructuralFeatures().get(2);
 	}
@@ -222,6 +222,7 @@ public class SybasesqlmodelPackageImpl extends EPackageImpl implements Sybasesql
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getSybaseRoutine() {
 		return sybaseRoutineEClass;
 	}
@@ -231,6 +232,7 @@ public class SybasesqlmodelPackageImpl extends EPackageImpl implements Sybasesql
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getSybaseBaseTable() {
 		return sybaseBaseTableEClass;
 	}
@@ -240,6 +242,7 @@ public class SybasesqlmodelPackageImpl extends EPackageImpl implements Sybasesql
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getSybaseViewTable() {
 		return sybaseViewTableEClass;
 	}
@@ -249,6 +252,7 @@ public class SybasesqlmodelPackageImpl extends EPackageImpl implements Sybasesql
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getSybaseAuthorizationIdentifier() {
 		return sybaseAuthorizationIdentifierEClass;
 	}
@@ -258,6 +262,7 @@ public class SybasesqlmodelPackageImpl extends EPackageImpl implements Sybasesql
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getSybaseAuthorizationIdentifier_SqlContainer() {
 		return (EReference)sybaseAuthorizationIdentifierEClass.getEStructuralFeatures().get(0);
 	}
@@ -267,6 +272,7 @@ public class SybasesqlmodelPackageImpl extends EPackageImpl implements Sybasesql
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getSybaseIndexMember() {
 		return sybaseIndexMemberEClass;
 	}
@@ -276,6 +282,7 @@ public class SybasesqlmodelPackageImpl extends EPackageImpl implements Sybasesql
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getSybaseIndexMember_ColumnExpression() {
 		return (EAttribute)sybaseIndexMemberEClass.getEStructuralFeatures().get(0);
 	}
@@ -285,6 +292,7 @@ public class SybasesqlmodelPackageImpl extends EPackageImpl implements Sybasesql
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getSybaseAuthorizedObject() {
 		return sybaseAuthorizedObjectEClass;
 	}
@@ -294,6 +302,7 @@ public class SybasesqlmodelPackageImpl extends EPackageImpl implements Sybasesql
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getSybasePrivilege() {
 		return sybasePrivilegeEClass;
 	}
@@ -303,6 +312,7 @@ public class SybasesqlmodelPackageImpl extends EPackageImpl implements Sybasesql
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getSybasePrivilege_Revoked() {
 		return (EAttribute)sybasePrivilegeEClass.getEStructuralFeatures().get(0);
 	}
@@ -312,6 +322,7 @@ public class SybasesqlmodelPackageImpl extends EPackageImpl implements Sybasesql
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EEnum getJDBCParameterType() {
 		return jdbcParameterTypeEEnum;
 	}
@@ -321,6 +332,7 @@ public class SybasesqlmodelPackageImpl extends EPackageImpl implements Sybasesql
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SybasesqlmodelFactory getSybasesqlmodelFactory() {
 		return (SybasesqlmodelFactory)getEFactoryInstance();
 	}
@@ -340,7 +352,9 @@ public class SybasesqlmodelPackageImpl extends EPackageImpl implements Sybasesql
 	 * @generated
 	 */
 	public void createPackageContents() {
-		if (isCreated) return;
+		if (isCreated) {
+			return;
+		}
 		isCreated = true;
 
 		// Create classes and their features
@@ -385,7 +399,9 @@ public class SybasesqlmodelPackageImpl extends EPackageImpl implements Sybasesql
 	 * @generated
 	 */
 	public void initializePackageContents() {
-		if (isInitialized) return;
+		if (isInitialized) {
+			return;
+		}
 		isInitialized = true;
 
 		// Initialize package

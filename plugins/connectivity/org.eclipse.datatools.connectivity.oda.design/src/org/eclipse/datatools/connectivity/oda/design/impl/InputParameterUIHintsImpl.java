@@ -8,7 +8,7 @@
  *
  * Contributors:
  *  Actuate Corporation - initial API and implementation
- *  
+ *
  *************************************************************************
  *
  * $Id: InputParameterUIHintsImpl.java,v 1.4 2010/02/17 02:20:38 lchan Exp $
@@ -29,215 +29,199 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.impl.InputParameterUIHintsImpl#getGroupPromptDisplayName <em>Group Prompt Display Name</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class InputParameterUIHintsImpl extends EObjectImpl implements
-        InputParameterUIHints
-{
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public static final String copyright = "Copyright (c) 2005, 2010 Actuate Corporation"; //$NON-NLS-1$
+public class InputParameterUIHintsImpl extends EObjectImpl implements InputParameterUIHints {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final String copyright = "Copyright (c) 2005, 2010 Actuate Corporation"; //$NON-NLS-1$
 
-    /**
-     * The default value of the '{@link #getGroupPromptDisplayName() <em>Group Prompt Display Name</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getGroupPromptDisplayName()
-     * @generated
-     * @ordered
-     */
-    protected static final String GROUP_PROMPT_DISPLAY_NAME_EDEFAULT = null;
+	/**
+	 * The default value of the '{@link #getGroupPromptDisplayName() <em>Group Prompt Display Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getGroupPromptDisplayName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String GROUP_PROMPT_DISPLAY_NAME_EDEFAULT = null;
 
-    /**
-     * The cached value of the '{@link #getGroupPromptDisplayName() <em>Group Prompt Display Name</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getGroupPromptDisplayName()
-     * @generated
-     * @ordered
-     */
-    protected String m_groupPromptDisplayName = GROUP_PROMPT_DISPLAY_NAME_EDEFAULT;
+	/**
+	 * The cached value of the '{@link #getGroupPromptDisplayName() <em>Group Prompt Display Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getGroupPromptDisplayName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String groupPromptDisplayName = GROUP_PROMPT_DISPLAY_NAME_EDEFAULT;
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected InputParameterUIHintsImpl()
-    {
-        super();
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected InputParameterUIHintsImpl() {
+		super();
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    protected EClass eStaticClass()
-    {
-        return DesignPackage.Literals.INPUT_PARAMETER_UI_HINTS;
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return DesignPackage.Literals.INPUT_PARAMETER_UI_HINTS;
+	}
 
-    /* (non-Javadoc)
-     * @see org.eclipse.datatools.connectivity.oda.design.InputParameterUIHints#getGroupPromptDisplayName()
-     * @generated NOT
-     */
-    public String getGroupPromptDisplayName()
-    {
-        return DesignUtil.getDefaultResourceString( getGroupPromptDisplayNameGen() );
-    }
+	/* (non-Javadoc)
+	 * @see org.eclipse.datatools.connectivity.oda.design.InputParameterUIHints#getGroupPromptDisplayName()
+	 * @generated NOT
+	 */
+	@Override
+	public String getGroupPromptDisplayName() {
+		return DesignUtil.getDefaultResourceString(getGroupPromptDisplayNameGen());
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected String getGroupPromptDisplayNameGen()
-    {
-        return m_groupPromptDisplayName;
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected String getGroupPromptDisplayNameGen() {
+		return groupPromptDisplayName;
+	}
 
-    /* (non-Javadoc)
-     * @see org.eclipse.datatools.connectivity.oda.design.InputParameterUIHints#setGroupPromptDisplayName(java.lang.String)
-     * @generated NOT
-     */
-    public void setGroupPromptDisplayName( String newGroupPromptDisplayName )
-    {
-        String newAttrValue = 
-            DesignUtil.addDefaultToResourceAttribute( newGroupPromptDisplayName, getGroupPromptDisplayNameGen() );
-        setGroupPromptDisplayNameGen( newAttrValue );
-    }
-    
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected void setGroupPromptDisplayNameGen( String newGroupPromptDisplayName )
-    {
-        String oldGroupPromptDisplayName = m_groupPromptDisplayName;
-        m_groupPromptDisplayName = newGroupPromptDisplayName;
-        if( eNotificationRequired() )
-            eNotify( new ENotificationImpl(
-                    this,
-                    Notification.SET,
-                    DesignPackage.INPUT_PARAMETER_UI_HINTS__GROUP_PROMPT_DISPLAY_NAME,
-                    oldGroupPromptDisplayName, m_groupPromptDisplayName ) );
-    }
-    
-    /* (non-Javadoc)
-     * @see org.eclipse.datatools.connectivity.oda.design.InputParameterUIHints#getGroupPromptDisplayNameKey()
-     * @generated NOT
-     */
-    public String getGroupPromptDisplayNameKey()
-    {
-        return DesignUtil.getResourceKey( getGroupPromptDisplayNameGen() );
-    }
+	/* (non-Javadoc)
+	 * @see org.eclipse.datatools.connectivity.oda.design.InputParameterUIHints#setGroupPromptDisplayName(java.lang.String)
+	 * @generated NOT
+	 */
+	@Override
+	public void setGroupPromptDisplayName(String newGroupPromptDisplayName) {
+		String newAttrValue = DesignUtil.addDefaultToResourceAttribute(newGroupPromptDisplayName,
+				getGroupPromptDisplayNameGen());
+		setGroupPromptDisplayNameGen(newAttrValue);
+	}
 
-    /* (non-Javadoc)
-     * @see org.eclipse.datatools.connectivity.oda.design.InputParameterUIHints#setGroupPromptDisplayNameKey(java.lang.String)
-     * @generated NOT
-     */
-    public void setGroupPromptDisplayNameKey( String newGroupPromptDisplayNameKey )
-    {
-        String newAttrValue = 
-            DesignUtil.addKeyToResourceAttribute( newGroupPromptDisplayNameKey, getGroupPromptDisplayNameGen() );
-        setGroupPromptDisplayNameGen( newAttrValue );
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void setGroupPromptDisplayNameGen(String newGroupPromptDisplayName) {
+		String oldGroupPromptDisplayName = groupPromptDisplayName;
+		groupPromptDisplayName = newGroupPromptDisplayName;
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					DesignPackage.INPUT_PARAMETER_UI_HINTS__GROUP_PROMPT_DISPLAY_NAME, oldGroupPromptDisplayName,
+					groupPromptDisplayName));
+		}
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated NOT
-     */
-    @Override
-    public Object eGet( int featureID, boolean resolve, boolean coreType )
-    {
-        switch( featureID )
-        {
-        case DesignPackage.INPUT_PARAMETER_UI_HINTS__GROUP_PROMPT_DISPLAY_NAME:
-            return getGroupPromptDisplayNameGen();
-        }
-        return super.eGet( featureID, resolve, coreType );
-    }
+	/* (non-Javadoc)
+	 * @see org.eclipse.datatools.connectivity.oda.design.InputParameterUIHints#getGroupPromptDisplayNameKey()
+	 * @generated NOT
+	 */
+	@Override
+	public String getGroupPromptDisplayNameKey() {
+		return DesignUtil.getResourceKey(getGroupPromptDisplayNameGen());
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated NOT
-     */
-    @Override
-    public void eSet( int featureID, Object newValue )
-    {
-        switch( featureID )
-        {
-        case DesignPackage.INPUT_PARAMETER_UI_HINTS__GROUP_PROMPT_DISPLAY_NAME:
-            setGroupPromptDisplayNameGen( (String) newValue );
-            return;
-        }
-        super.eSet( featureID, newValue );
-    }
+	/* (non-Javadoc)
+	 * @see org.eclipse.datatools.connectivity.oda.design.InputParameterUIHints#setGroupPromptDisplayNameKey(java.lang.String)
+	 * @generated NOT
+	 */
+	@Override
+	public void setGroupPromptDisplayNameKey(String newGroupPromptDisplayNameKey) {
+		String newAttrValue = DesignUtil.addKeyToResourceAttribute(newGroupPromptDisplayNameKey,
+				getGroupPromptDisplayNameGen());
+		setGroupPromptDisplayNameGen(newAttrValue);
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated NOT
-     */
-    @Override
-    public void eUnset( int featureID )
-    {
-        switch( featureID )
-        {
-        case DesignPackage.INPUT_PARAMETER_UI_HINTS__GROUP_PROMPT_DISPLAY_NAME:
-            setGroupPromptDisplayNameGen( GROUP_PROMPT_DISPLAY_NAME_EDEFAULT );
-            return;
-        }
-        super.eUnset( featureID );
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+		case DesignPackage.INPUT_PARAMETER_UI_HINTS__GROUP_PROMPT_DISPLAY_NAME:
+			return getGroupPromptDisplayNameGen();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public boolean eIsSet( int featureID )
-    {
-        switch( featureID )
-        {
-        case DesignPackage.INPUT_PARAMETER_UI_HINTS__GROUP_PROMPT_DISPLAY_NAME:
-            return GROUP_PROMPT_DISPLAY_NAME_EDEFAULT == null ? m_groupPromptDisplayName != null
-                    : !GROUP_PROMPT_DISPLAY_NAME_EDEFAULT
-                            .equals( m_groupPromptDisplayName );
-        }
-        return super.eIsSet( featureID );
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
+		case DesignPackage.INPUT_PARAMETER_UI_HINTS__GROUP_PROMPT_DISPLAY_NAME:
+			setGroupPromptDisplayNameGen((String) newValue);
+			return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public String toString()
-    {
-        if( eIsProxy() )
-            return super.toString();
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public void eUnset(int featureID) {
+		switch (featureID) {
+		case DesignPackage.INPUT_PARAMETER_UI_HINTS__GROUP_PROMPT_DISPLAY_NAME:
+			setGroupPromptDisplayNameGen(GROUP_PROMPT_DISPLAY_NAME_EDEFAULT);
+			return;
+		}
+		super.eUnset(featureID);
+	}
 
-        StringBuffer result = new StringBuffer( super.toString() );
-        result.append( " (groupPromptDisplayName: " ); //$NON-NLS-1$
-        result.append( m_groupPromptDisplayName );
-        result.append( ')' );
-        return result.toString();
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+		case DesignPackage.INPUT_PARAMETER_UI_HINTS__GROUP_PROMPT_DISPLAY_NAME:
+			return GROUP_PROMPT_DISPLAY_NAME_EDEFAULT == null ? groupPromptDisplayName != null
+					: !GROUP_PROMPT_DISPLAY_NAME_EDEFAULT.equals(groupPromptDisplayName);
+		}
+		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) {
+			return super.toString();
+		}
+
+		StringBuilder result = new StringBuilder(super.toString());
+		result.append(" (groupPromptDisplayName: "); //$NON-NLS-1$
+		result.append(groupPromptDisplayName);
+		result.append(')');
+		return result.toString();
+	}
 
 } //InputParameterUIHintsImpl

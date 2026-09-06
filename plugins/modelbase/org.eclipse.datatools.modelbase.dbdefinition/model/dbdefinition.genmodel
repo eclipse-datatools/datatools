@@ -4,8 +4,9 @@
     editDirectory="" editorDirectory="" modelPluginID="org.eclipse.datatools.modelbase.dbdefinition"
     runtimeJar="true" modelName="Dbdefinition" editPluginClass="org.eclipse.datatools.modelbase.dbdefinition.provider.DbdefinitionEditPlugin"
     editorPluginClass="org.eclipse.datatools.modelbase.dbdefinition.presentation.DbdefinitionEditorPlugin"
-    nonNLSMarkers="true" testsDirectory="" importerID="org.eclipse.emf.importer.rose"
-    usedGenPackages="../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.genmodel#//sqlmodel ../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore">
+    updateClasspath="false" nonNLSMarkers="true" testsDirectory="" importerID="org.eclipse.emf.importer.rose"
+    usedGenPackages="../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.genmodel#//sqlmodel ../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore"
+    importOrganizing="true" cleanup="true">
   <foreignModel>DatabaseDefinitionModel.mdl</foreignModel>
   <foreignModel>CDM_EXTRACT_PATH</foreignModel>
   <foreignModel>../../</foreignModel>

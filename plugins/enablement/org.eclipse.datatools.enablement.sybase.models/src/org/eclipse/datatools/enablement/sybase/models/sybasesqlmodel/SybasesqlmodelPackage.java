@@ -1098,6 +1098,15 @@ public interface SybasesqlmodelPackage extends EPackage {
 	int SYBASE_INDEX_MEMBER__COLUMN = SQLConstraintsPackage.INDEX_MEMBER__COLUMN;
 
 	/**
+	 * The feature id for the '<em><b>Expression</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYBASE_INDEX_MEMBER__EXPRESSION = SQLConstraintsPackage.INDEX_MEMBER__EXPRESSION;
+
+	/**
 	 * The feature id for the '<em><b>Column Expression</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

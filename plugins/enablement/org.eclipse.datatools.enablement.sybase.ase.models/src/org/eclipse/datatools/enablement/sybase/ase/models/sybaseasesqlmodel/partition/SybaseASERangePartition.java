@@ -16,11 +16,11 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.partition.SybaseASERangePartition#getColumns <em>Columns</em>}</li>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.partition.SybaseASERangePartition#getRangePartitionItems <em>Range Partition Items</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.partition.PartitionPackage#getSybaseASERangePartition()
  * @model
@@ -28,35 +28,35 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface SybaseASERangePartition extends SybaseASEPartition, SQLObject {
 	/**
-     * Returns the value of the '<em><b>Columns</b></em>' reference list.
-     * The list contents are of type {@link org.eclipse.datatools.modelbase.sql.tables.Column}.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Columns</b></em>' reference list.
+	 * The list contents are of type {@link org.eclipse.datatools.modelbase.sql.tables.Column}.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Columns</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Columns</em>' reference list.
-     * @see org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.partition.PartitionPackage#getSybaseASERangePartition_Columns()
-     * @model type="org.eclipse.datatools.modelbase.sql.tables.Column" required="true"
-     * @generated
-     */
+	 * @return the value of the '<em>Columns</em>' reference list.
+	 * @see org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.partition.PartitionPackage#getSybaseASERangePartition_Columns()
+	 * @model type="org.eclipse.datatools.modelbase.sql.tables.Column" required="true"
+	 * @generated
+	 */
 	EList getColumns();
 
 	/**
-     * Returns the value of the '<em><b>Range Partition Items</b></em>' reference list.
-     * The list contents are of type {@link org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.partition.ListRangePartitionItem}.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Range Partition Items</b></em>' reference list.
+	 * The list contents are of type {@link org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.partition.ListRangePartitionItem}.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Range Partition Items</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Range Partition Items</em>' reference list.
-     * @see org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.partition.PartitionPackage#getSybaseASERangePartition_RangePartitionItems()
-     * @model type="org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.partition.ListRangePartitionItem"
-     * @generated
-     */
+	 * @return the value of the '<em>Range Partition Items</em>' reference list.
+	 * @see org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.partition.PartitionPackage#getSybaseASERangePartition_RangePartitionItems()
+	 * @model type="org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.partition.ListRangePartitionItem"
+	 * @generated
+	 */
 	EList getRangePartitionItems();
 
 } // SybaseASERangePartition

@@ -19,154 +19,161 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.impl.SybaseASETriggerImpl#isEnabled <em>Enabled</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
 public class SybaseASETriggerImpl extends TriggerImpl implements SybaseASETrigger
 {
     /**
-     * The default value of the '{@link #isEnabled() <em>Enabled</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #isEnabled() <em>Enabled</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #isEnabled()
-     * @generated
-     * @ordered
-     */
+	 * @see #isEnabled()
+	 * @generated
+	 * @ordered
+	 */
     protected static final boolean ENABLED_EDEFAULT = false;
 
     /**
-     * The cached value of the '{@link #isEnabled() <em>Enabled</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #isEnabled() <em>Enabled</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #isEnabled()
-     * @generated
-     * @ordered
-     */
+	 * @see #isEnabled()
+	 * @generated
+	 * @ordered
+	 */
     protected boolean enabled = ENABLED_EDEFAULT;
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected SybaseASETriggerImpl()
     {
-        super();
-    }
+		super();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    protected EClass eStaticClass()
+	 * @generated
+	 */
+    @Override
+	protected EClass eStaticClass()
     {
-        return SybaseasesqlmodelPackage.Literals.SYBASE_ASE_TRIGGER;
-    }
+		return SybaseasesqlmodelPackage.Literals.SYBASE_ASE_TRIGGER;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public boolean isEnabled()
+	 * @generated
+	 */
+    @Override
+	public boolean isEnabled()
     {
-        return enabled;
-    }
+		return enabled;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setEnabled(boolean newEnabled)
+	 * @generated
+	 */
+    @Override
+	public void setEnabled(boolean newEnabled)
     {
-        boolean oldEnabled = enabled;
-        enabled = newEnabled;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SybaseasesqlmodelPackage.SYBASE_ASE_TRIGGER__ENABLED, oldEnabled, enabled));
-    }
+		boolean oldEnabled = enabled;
+		enabled = newEnabled;
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasesqlmodelPackage.SYBASE_ASE_TRIGGER__ENABLED, oldEnabled, enabled));
+		}
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public Object eGet(int featureID, boolean resolve, boolean coreType)
+	 * @generated
+	 */
+    @Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType)
     {
-        switch (featureID)
-        {
-            case SybaseasesqlmodelPackage.SYBASE_ASE_TRIGGER__ENABLED:
-                return isEnabled() ? Boolean.TRUE : Boolean.FALSE;
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case SybaseasesqlmodelPackage.SYBASE_ASE_TRIGGER__ENABLED:
+				return isEnabled() ? Boolean.TRUE : Boolean.FALSE;
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public void eSet(int featureID, Object newValue)
+	 * @generated
+	 */
+    @Override
+	public void eSet(int featureID, Object newValue)
     {
-        switch (featureID)
-        {
-            case SybaseasesqlmodelPackage.SYBASE_ASE_TRIGGER__ENABLED:
-                setEnabled(((Boolean)newValue).booleanValue());
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case SybaseasesqlmodelPackage.SYBASE_ASE_TRIGGER__ENABLED:
+				setEnabled(((Boolean)newValue).booleanValue());
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public void eUnset(int featureID)
+	 * @generated
+	 */
+    @Override
+	public void eUnset(int featureID)
     {
-        switch (featureID)
-        {
-            case SybaseasesqlmodelPackage.SYBASE_ASE_TRIGGER__ENABLED:
-                setEnabled(ENABLED_EDEFAULT);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case SybaseasesqlmodelPackage.SYBASE_ASE_TRIGGER__ENABLED:
+				setEnabled(ENABLED_EDEFAULT);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public boolean eIsSet(int featureID)
+	 * @generated
+	 */
+    @Override
+	public boolean eIsSet(int featureID)
     {
-        switch (featureID)
-        {
-            case SybaseasesqlmodelPackage.SYBASE_ASE_TRIGGER__ENABLED:
-                return enabled != ENABLED_EDEFAULT;
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case SybaseasesqlmodelPackage.SYBASE_ASE_TRIGGER__ENABLED:
+				return enabled != ENABLED_EDEFAULT;
+		}
+		return super.eIsSet(featureID);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public String toString()
+	 * @generated
+	 */
+    @Override
+	public String toString()
     {
-        if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (enabled: "); //$NON-NLS-1$
-        result.append(enabled);
-        result.append(')');
-        return result.toString();
-    }
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (enabled: "); //$NON-NLS-1$
+		result.append(enabled);
+		result.append(')');
+		return result.toString();
+	}
 
 } //SybaseASETriggerImpl

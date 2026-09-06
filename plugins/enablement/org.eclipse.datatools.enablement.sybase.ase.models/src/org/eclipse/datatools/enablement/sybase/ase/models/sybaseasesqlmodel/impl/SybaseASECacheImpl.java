@@ -23,175 +23,186 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.impl.SybaseASECacheImpl#getDatabase <em>Database</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class SybaseASECacheImpl extends SQLObjectImpl implements SybaseASECache 
+public class SybaseASECacheImpl extends SQLObjectImpl implements SybaseASECache
 {
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected SybaseASECacheImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	protected EClass eStaticClass() {
-        return SybaseasesqlmodelPackage.Literals.SYBASE_ASE_CACHE;
-    }
+		return SybaseasesqlmodelPackage.Literals.SYBASE_ASE_CACHE;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public SybaseASEDatabase getDatabase() {
-        if (eContainerFeatureID != SybaseasesqlmodelPackage.SYBASE_ASE_CACHE__DATABASE) return null;
-        return (SybaseASEDatabase)eContainer();
-    }
+		if (eContainerFeatureID() != SybaseasesqlmodelPackage.SYBASE_ASE_CACHE__DATABASE) {
+			return null;
+		}
+		return (SybaseASEDatabase)eInternalContainer();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public NotificationChain basicSetDatabase(SybaseASEDatabase newDatabase, NotificationChain msgs) {
-        msgs = eBasicSetContainer((InternalEObject)newDatabase, SybaseasesqlmodelPackage.SYBASE_ASE_CACHE__DATABASE, msgs);
-        return msgs;
-    }
+		msgs = eBasicSetContainer((InternalEObject)newDatabase, SybaseasesqlmodelPackage.SYBASE_ASE_CACHE__DATABASE, msgs);
+		return msgs;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public void setDatabase(SybaseASEDatabase newDatabase) {
-        if (newDatabase != eInternalContainer() || (eContainerFeatureID != SybaseasesqlmodelPackage.SYBASE_ASE_CACHE__DATABASE && newDatabase != null))
-        {
-            if (EcoreUtil.isAncestor(this, newDatabase))
-                throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
-            NotificationChain msgs = null;
-            if (eInternalContainer() != null)
-                msgs = eBasicRemoveFromContainer(msgs);
-            if (newDatabase != null)
-                msgs = ((InternalEObject)newDatabase).eInverseAdd(this, SybaseasesqlmodelPackage.SYBASE_ASE_DATABASE__CACHES, SybaseASEDatabase.class, msgs);
-            msgs = basicSetDatabase(newDatabase, msgs);
-            if (msgs != null) msgs.dispatch();
-        }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SybaseasesqlmodelPackage.SYBASE_ASE_CACHE__DATABASE, newDatabase, newDatabase));
-    }
+		if (newDatabase != eInternalContainer() || (eContainerFeatureID() != SybaseasesqlmodelPackage.SYBASE_ASE_CACHE__DATABASE && newDatabase != null)) {
+			if (EcoreUtil.isAncestor(this, newDatabase)) {
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
+			}
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null) {
+				msgs = eBasicRemoveFromContainer(msgs);
+			}
+			if (newDatabase != null) {
+				msgs = ((InternalEObject)newDatabase).eInverseAdd(this, SybaseasesqlmodelPackage.SYBASE_ASE_DATABASE__CACHES, SybaseASEDatabase.class, msgs);
+			}
+			msgs = basicSetDatabase(newDatabase, msgs);
+			if (msgs != null) {
+				msgs.dispatch();
+			}
+		}
+		else if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasesqlmodelPackage.SYBASE_ASE_CACHE__DATABASE, newDatabase, newDatabase));
+		}
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID)
-        {
-            case SybaseasesqlmodelPackage.SYBASE_ASE_CACHE__DATABASE:
-                if (eInternalContainer() != null)
-                    msgs = eBasicRemoveFromContainer(msgs);
-                return basicSetDatabase((SybaseASEDatabase)otherEnd, msgs);
-        }
-        return super.eInverseAdd(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case SybaseasesqlmodelPackage.SYBASE_ASE_CACHE__DATABASE:
+				if (eInternalContainer() != null) {
+					msgs = eBasicRemoveFromContainer(msgs);
+				}
+				return basicSetDatabase((SybaseASEDatabase)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID)
-        {
-            case SybaseasesqlmodelPackage.SYBASE_ASE_CACHE__DATABASE:
-                return basicSetDatabase(null, msgs);
-        }
-        return super.eInverseRemove(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case SybaseasesqlmodelPackage.SYBASE_ASE_CACHE__DATABASE:
+				return basicSetDatabase(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-        switch (eContainerFeatureID)
-        {
-            case SybaseasesqlmodelPackage.SYBASE_ASE_CACHE__DATABASE:
-                return eInternalContainer().eInverseRemove(this, SybaseasesqlmodelPackage.SYBASE_ASE_DATABASE__CACHES, SybaseASEDatabase.class, msgs);
-        }
-        return super.eBasicRemoveFromContainerFeature(msgs);
-    }
+	 * @generated
+	 */
+    @Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID()) {
+			case SybaseasesqlmodelPackage.SYBASE_ASE_CACHE__DATABASE:
+				return eInternalContainer().eInverseRemove(this, SybaseasesqlmodelPackage.SYBASE_ASE_DATABASE__CACHES, SybaseASEDatabase.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID)
-        {
-            case SybaseasesqlmodelPackage.SYBASE_ASE_CACHE__DATABASE:
-                return getDatabase();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case SybaseasesqlmodelPackage.SYBASE_ASE_CACHE__DATABASE:
+				return getDatabase();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
-        switch (featureID)
-        {
-            case SybaseasesqlmodelPackage.SYBASE_ASE_CACHE__DATABASE:
-                setDatabase((SybaseASEDatabase)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case SybaseasesqlmodelPackage.SYBASE_ASE_CACHE__DATABASE:
+				setDatabase((SybaseASEDatabase)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public void eUnset(int featureID) {
-        switch (featureID)
-        {
-            case SybaseasesqlmodelPackage.SYBASE_ASE_CACHE__DATABASE:
-                setDatabase((SybaseASEDatabase)null);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case SybaseasesqlmodelPackage.SYBASE_ASE_CACHE__DATABASE:
+				setDatabase((SybaseASEDatabase)null);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public boolean eIsSet(int featureID) {
-        switch (featureID)
-        {
-            case SybaseasesqlmodelPackage.SYBASE_ASE_CACHE__DATABASE:
-                return getDatabase() != null;
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case SybaseasesqlmodelPackage.SYBASE_ASE_CACHE__DATABASE:
+				return getDatabase() != null;
+		}
+		return super.eIsSet(featureID);
+	}
 
 } //SybaseASECacheImpl

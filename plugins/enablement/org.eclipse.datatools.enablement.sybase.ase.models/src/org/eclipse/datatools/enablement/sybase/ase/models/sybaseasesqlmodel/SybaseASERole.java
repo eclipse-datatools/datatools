@@ -23,14 +23,14 @@ import org.eclipse.datatools.modelbase.sql.accesscontrol.Role;
  */
 public interface SybaseASERole extends Role, SybaseAuthorizationIdentifier {
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * <!-- begin-model-doc -->
-     * Get privileges of role for specified catalog
-     * <!-- end-model-doc -->
-     * @model dataType="org.eclipse.datatools.modelbase.sql.schema.List" many="false" catalogNameRequired="true"
-     * @generated
-     */
+	 * <!-- begin-model-doc -->
+	 * Get privileges of role for specified catalog
+	 * <!-- end-model-doc -->
+	 * @model dataType="org.eclipse.datatools.modelbase.sql.schema.List" many="false" catalogNameRequired="true"
+	 * @generated
+	 */
     List getReceivedPrivileges(String catalogName);
 
 } // SybaseASERole

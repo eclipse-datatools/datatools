@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.routines.impl.FunctionImpl#isNullCall <em>Null Call</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.routines.impl.FunctionImpl#isStatic <em>Static</em>}</li>
@@ -37,7 +38,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *   <li>{@link org.eclipse.datatools.modelbase.sql.routines.impl.FunctionImpl#getReturnScalar <em>Return Scalar</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.routines.impl.FunctionImpl#getReturnCast <em>Return Cast</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -186,6 +186,7 @@ public class FunctionImpl extends RoutineImpl implements Function {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return SQLRoutinesPackage.Literals.FUNCTION;
 	}
@@ -195,6 +196,7 @@ public class FunctionImpl extends RoutineImpl implements Function {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isNullCall() {
 		return nullCall;
 	}
@@ -204,11 +206,13 @@ public class FunctionImpl extends RoutineImpl implements Function {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setNullCall(boolean newNullCall) {
 		boolean oldNullCall = nullCall;
 		nullCall = newNullCall;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLRoutinesPackage.FUNCTION__NULL_CALL, oldNullCall, nullCall));
+		}
 	}
 
 	/**
@@ -216,6 +220,7 @@ public class FunctionImpl extends RoutineImpl implements Function {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isStatic() {
 		return static_;
 	}
@@ -225,11 +230,13 @@ public class FunctionImpl extends RoutineImpl implements Function {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setStatic(boolean newStatic) {
 		boolean oldStatic = static_;
 		static_ = newStatic;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLRoutinesPackage.FUNCTION__STATIC, oldStatic, static_));
+		}
 	}
 
 	/**
@@ -237,6 +244,7 @@ public class FunctionImpl extends RoutineImpl implements Function {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getTransformGroup() {
 		return transformGroup;
 	}
@@ -246,11 +254,13 @@ public class FunctionImpl extends RoutineImpl implements Function {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTransformGroup(String newTransformGroup) {
 		String oldTransformGroup = transformGroup;
 		transformGroup = newTransformGroup;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLRoutinesPackage.FUNCTION__TRANSFORM_GROUP, oldTransformGroup, transformGroup));
+		}
 	}
 
 	/**
@@ -258,6 +268,7 @@ public class FunctionImpl extends RoutineImpl implements Function {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isTypePreserving() {
 		return typePreserving;
 	}
@@ -267,11 +278,13 @@ public class FunctionImpl extends RoutineImpl implements Function {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTypePreserving(boolean newTypePreserving) {
 		boolean oldTypePreserving = typePreserving;
 		typePreserving = newTypePreserving;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLRoutinesPackage.FUNCTION__TYPE_PRESERVING, oldTypePreserving, typePreserving));
+		}
 	}
 
 	/**
@@ -279,6 +292,7 @@ public class FunctionImpl extends RoutineImpl implements Function {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isMutator() {
 		return mutator;
 	}
@@ -288,11 +302,13 @@ public class FunctionImpl extends RoutineImpl implements Function {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMutator(boolean newMutator) {
 		boolean oldMutator = mutator;
 		mutator = newMutator;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLRoutinesPackage.FUNCTION__MUTATOR, oldMutator, mutator));
+		}
 	}
 
 	/**
@@ -300,6 +316,7 @@ public class FunctionImpl extends RoutineImpl implements Function {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public RoutineResultTable getReturnTable() {
 		return returnTable;
 	}
@@ -314,7 +331,11 @@ public class FunctionImpl extends RoutineImpl implements Function {
 		returnTable = newReturnTable;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLRoutinesPackage.FUNCTION__RETURN_TABLE, oldReturnTable, newReturnTable);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			if (msgs == null) {
+				msgs = notification;
+			} else {
+				msgs.add(notification);
+			}
 		}
 		return msgs;
 	}
@@ -324,18 +345,24 @@ public class FunctionImpl extends RoutineImpl implements Function {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setReturnTable(RoutineResultTable newReturnTable) {
 		if (newReturnTable != returnTable) {
 			NotificationChain msgs = null;
-			if (returnTable != null)
+			if (returnTable != null) {
 				msgs = ((InternalEObject)returnTable).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLRoutinesPackage.FUNCTION__RETURN_TABLE, null, msgs);
-			if (newReturnTable != null)
+			}
+			if (newReturnTable != null) {
 				msgs = ((InternalEObject)newReturnTable).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SQLRoutinesPackage.FUNCTION__RETURN_TABLE, null, msgs);
+			}
 			msgs = basicSetReturnTable(newReturnTable, msgs);
-			if (msgs != null) msgs.dispatch();
+			if (msgs != null) {
+				msgs.dispatch();
+			}
 		}
-		else if (eNotificationRequired())
+		else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLRoutinesPackage.FUNCTION__RETURN_TABLE, newReturnTable, newReturnTable));
+		}
 	}
 
 	/**
@@ -343,6 +370,7 @@ public class FunctionImpl extends RoutineImpl implements Function {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Parameter getReturnScalar() {
 		return returnScalar;
 	}
@@ -357,7 +385,11 @@ public class FunctionImpl extends RoutineImpl implements Function {
 		returnScalar = newReturnScalar;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLRoutinesPackage.FUNCTION__RETURN_SCALAR, oldReturnScalar, newReturnScalar);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			if (msgs == null) {
+				msgs = notification;
+			} else {
+				msgs.add(notification);
+			}
 		}
 		return msgs;
 	}
@@ -367,18 +399,24 @@ public class FunctionImpl extends RoutineImpl implements Function {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setReturnScalar(Parameter newReturnScalar) {
 		if (newReturnScalar != returnScalar) {
 			NotificationChain msgs = null;
-			if (returnScalar != null)
+			if (returnScalar != null) {
 				msgs = ((InternalEObject)returnScalar).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLRoutinesPackage.FUNCTION__RETURN_SCALAR, null, msgs);
-			if (newReturnScalar != null)
+			}
+			if (newReturnScalar != null) {
 				msgs = ((InternalEObject)newReturnScalar).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SQLRoutinesPackage.FUNCTION__RETURN_SCALAR, null, msgs);
+			}
 			msgs = basicSetReturnScalar(newReturnScalar, msgs);
-			if (msgs != null) msgs.dispatch();
+			if (msgs != null) {
+				msgs.dispatch();
+			}
 		}
-		else if (eNotificationRequired())
+		else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLRoutinesPackage.FUNCTION__RETURN_SCALAR, newReturnScalar, newReturnScalar));
+		}
 	}
 
 	/**
@@ -386,6 +424,7 @@ public class FunctionImpl extends RoutineImpl implements Function {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Parameter getReturnCast() {
 		return returnCast;
 	}
@@ -400,7 +439,11 @@ public class FunctionImpl extends RoutineImpl implements Function {
 		returnCast = newReturnCast;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLRoutinesPackage.FUNCTION__RETURN_CAST, oldReturnCast, newReturnCast);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			if (msgs == null) {
+				msgs = notification;
+			} else {
+				msgs.add(notification);
+			}
 		}
 		return msgs;
 	}
@@ -410,18 +453,24 @@ public class FunctionImpl extends RoutineImpl implements Function {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setReturnCast(Parameter newReturnCast) {
 		if (newReturnCast != returnCast) {
 			NotificationChain msgs = null;
-			if (returnCast != null)
+			if (returnCast != null) {
 				msgs = ((InternalEObject)returnCast).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLRoutinesPackage.FUNCTION__RETURN_CAST, null, msgs);
-			if (newReturnCast != null)
+			}
+			if (newReturnCast != null) {
 				msgs = ((InternalEObject)newReturnCast).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SQLRoutinesPackage.FUNCTION__RETURN_CAST, null, msgs);
+			}
 			msgs = basicSetReturnCast(newReturnCast, msgs);
-			if (msgs != null) msgs.dispatch();
+			if (msgs != null) {
+				msgs.dispatch();
+			}
 		}
-		else if (eNotificationRequired())
+		else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLRoutinesPackage.FUNCTION__RETURN_CAST, newReturnCast, newReturnCast));
+		}
 	}
 
 	/**
@@ -429,6 +478,7 @@ public class FunctionImpl extends RoutineImpl implements Function {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case SQLRoutinesPackage.FUNCTION__RETURN_TABLE:
@@ -446,6 +496,7 @@ public class FunctionImpl extends RoutineImpl implements Function {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SQLRoutinesPackage.FUNCTION__NULL_CALL:
@@ -473,6 +524,7 @@ public class FunctionImpl extends RoutineImpl implements Function {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case SQLRoutinesPackage.FUNCTION__NULL_CALL:
@@ -508,6 +560,7 @@ public class FunctionImpl extends RoutineImpl implements Function {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case SQLRoutinesPackage.FUNCTION__NULL_CALL:
@@ -543,6 +596,7 @@ public class FunctionImpl extends RoutineImpl implements Function {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SQLRoutinesPackage.FUNCTION__NULL_CALL:
@@ -570,8 +624,11 @@ public class FunctionImpl extends RoutineImpl implements Function {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (nullCall: "); //$NON-NLS-1$

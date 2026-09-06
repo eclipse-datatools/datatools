@@ -24,180 +24,187 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.partition.impl.PartitionNumInSegmentsImpl#getPartitionNumb <em>Partition Numb</em>}</li>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.partition.impl.PartitionNumInSegmentsImpl#getSegment <em>Segment</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class PartitionNumInSegmentsImpl extends SQLObjectImpl implements PartitionNumInSegments 
+public class PartitionNumInSegmentsImpl extends SQLObjectImpl implements PartitionNumInSegments
 {
 	/**
-     * The default value of the '{@link #getPartitionNumb() <em>Partition Numb</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getPartitionNumb() <em>Partition Numb</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getPartitionNumb()
-     * @generated
-     * @ordered
-     */
+	 * @see #getPartitionNumb()
+	 * @generated
+	 * @ordered
+	 */
 	protected static final int PARTITION_NUMB_EDEFAULT = 0;
 
 	/**
-     * The cached value of the '{@link #getPartitionNumb() <em>Partition Numb</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getPartitionNumb() <em>Partition Numb</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getPartitionNumb()
-     * @generated
-     * @ordered
-     */
+	 * @see #getPartitionNumb()
+	 * @generated
+	 * @ordered
+	 */
 	protected int partitionNumb = PARTITION_NUMB_EDEFAULT;
 
 	/**
-     * The cached value of the '{@link #getSegment() <em>Segment</em>}' reference list.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getSegment() <em>Segment</em>}' reference list.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getSegment()
-     * @generated
-     * @ordered
-     */
+	 * @see #getSegment()
+	 * @generated
+	 * @ordered
+	 */
 	protected EList segment;
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected PartitionNumInSegmentsImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	protected EClass eStaticClass() {
-        return PartitionPackage.Literals.PARTITION_NUM_IN_SEGMENTS;
-    }
+		return PartitionPackage.Literals.PARTITION_NUM_IN_SEGMENTS;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public int getPartitionNumb() {
-        return partitionNumb;
-    }
+		return partitionNumb;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public void setPartitionNumb(int newPartitionNumb) {
-        int oldPartitionNumb = partitionNumb;
-        partitionNumb = newPartitionNumb;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, PartitionPackage.PARTITION_NUM_IN_SEGMENTS__PARTITION_NUMB, oldPartitionNumb, partitionNumb));
-    }
+		int oldPartitionNumb = partitionNumb;
+		partitionNumb = newPartitionNumb;
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, PartitionPackage.PARTITION_NUM_IN_SEGMENTS__PARTITION_NUMB, oldPartitionNumb, partitionNumb));
+		}
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public EList getSegment() {
-        if (segment == null)
-        {
-            segment = new EObjectResolvingEList(SybaseASESegment.class, this, PartitionPackage.PARTITION_NUM_IN_SEGMENTS__SEGMENT);
-        }
-        return segment;
-    }
+		if (segment == null) {
+			segment = new EObjectResolvingEList(SybaseASESegment.class, this, PartitionPackage.PARTITION_NUM_IN_SEGMENTS__SEGMENT);
+		}
+		return segment;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID)
-        {
-            case PartitionPackage.PARTITION_NUM_IN_SEGMENTS__PARTITION_NUMB:
-                return Integer.valueOf(getPartitionNumb());
-            case PartitionPackage.PARTITION_NUM_IN_SEGMENTS__SEGMENT:
-                return getSegment();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case PartitionPackage.PARTITION_NUM_IN_SEGMENTS__PARTITION_NUMB:
+				return new Integer(getPartitionNumb());
+			case PartitionPackage.PARTITION_NUM_IN_SEGMENTS__SEGMENT:
+				return getSegment();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
-        switch (featureID)
-        {
-            case PartitionPackage.PARTITION_NUM_IN_SEGMENTS__PARTITION_NUMB:
-                setPartitionNumb(((Integer)newValue).intValue());
-                return;
-            case PartitionPackage.PARTITION_NUM_IN_SEGMENTS__SEGMENT:
-                getSegment().clear();
-                getSegment().addAll((Collection)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case PartitionPackage.PARTITION_NUM_IN_SEGMENTS__PARTITION_NUMB:
+				setPartitionNumb(((Integer)newValue).intValue());
+				return;
+			case PartitionPackage.PARTITION_NUM_IN_SEGMENTS__SEGMENT:
+				getSegment().clear();
+				getSegment().addAll((Collection)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public void eUnset(int featureID) {
-        switch (featureID)
-        {
-            case PartitionPackage.PARTITION_NUM_IN_SEGMENTS__PARTITION_NUMB:
-                setPartitionNumb(PARTITION_NUMB_EDEFAULT);
-                return;
-            case PartitionPackage.PARTITION_NUM_IN_SEGMENTS__SEGMENT:
-                getSegment().clear();
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case PartitionPackage.PARTITION_NUM_IN_SEGMENTS__PARTITION_NUMB:
+				setPartitionNumb(PARTITION_NUMB_EDEFAULT);
+				return;
+			case PartitionPackage.PARTITION_NUM_IN_SEGMENTS__SEGMENT:
+				getSegment().clear();
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public boolean eIsSet(int featureID) {
-        switch (featureID)
-        {
-            case PartitionPackage.PARTITION_NUM_IN_SEGMENTS__PARTITION_NUMB:
-                return partitionNumb != PARTITION_NUMB_EDEFAULT;
-            case PartitionPackage.PARTITION_NUM_IN_SEGMENTS__SEGMENT:
-                return segment != null && !segment.isEmpty();
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case PartitionPackage.PARTITION_NUM_IN_SEGMENTS__PARTITION_NUMB:
+				return partitionNumb != PARTITION_NUMB_EDEFAULT;
+			case PartitionPackage.PARTITION_NUM_IN_SEGMENTS__SEGMENT:
+				return segment != null && !segment.isEmpty();
+		}
+		return super.eIsSet(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public String toString() {
-        if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (partitionNumb: "); //$NON-NLS-1$
-        result.append(partitionNumb);
-        result.append(')');
-        return result.toString();
-    }
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (partitionNumb: "); //$NON-NLS-1$
+		result.append(partitionNumb);
+		result.append(')');
+		return result.toString();
+	}
 
 } //PartitionNumInSegmentsImpl

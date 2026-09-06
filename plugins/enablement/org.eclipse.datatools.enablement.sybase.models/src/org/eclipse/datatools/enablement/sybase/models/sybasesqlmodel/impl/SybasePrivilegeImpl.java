@@ -19,10 +19,10 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.impl.SybasePrivilegeImpl#isRevoked <em>Revoked</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -61,6 +61,7 @@ public class SybasePrivilegeImpl extends PrivilegeImpl implements SybasePrivileg
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return SybasesqlmodelPackage.Literals.SYBASE_PRIVILEGE;
 	}
@@ -70,6 +71,7 @@ public class SybasePrivilegeImpl extends PrivilegeImpl implements SybasePrivileg
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isRevoked() {
 		return revoked;
 	}
@@ -79,11 +81,13 @@ public class SybasePrivilegeImpl extends PrivilegeImpl implements SybasePrivileg
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRevoked(boolean newRevoked) {
 		boolean oldRevoked = revoked;
 		revoked = newRevoked;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SybasesqlmodelPackage.SYBASE_PRIVILEGE__REVOKED, oldRevoked, revoked));
+		}
 	}
 
 	/**
@@ -91,6 +95,7 @@ public class SybasePrivilegeImpl extends PrivilegeImpl implements SybasePrivileg
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SybasesqlmodelPackage.SYBASE_PRIVILEGE__REVOKED:
@@ -104,6 +109,7 @@ public class SybasePrivilegeImpl extends PrivilegeImpl implements SybasePrivileg
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case SybasesqlmodelPackage.SYBASE_PRIVILEGE__REVOKED:
@@ -118,6 +124,7 @@ public class SybasePrivilegeImpl extends PrivilegeImpl implements SybasePrivileg
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case SybasesqlmodelPackage.SYBASE_PRIVILEGE__REVOKED:
@@ -132,6 +139,7 @@ public class SybasePrivilegeImpl extends PrivilegeImpl implements SybasePrivileg
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SybasesqlmodelPackage.SYBASE_PRIVILEGE__REVOKED:
@@ -145,8 +153,11 @@ public class SybasePrivilegeImpl extends PrivilegeImpl implements SybasePrivileg
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (revoked: ");

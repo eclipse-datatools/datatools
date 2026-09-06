@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -44,7 +44,7 @@ public class SQLConstraintsFactoryImpl extends EFactoryImpl implements SQLConstr
 	 */
 	public static SQLConstraintsFactory init() {
 		try {
-			SQLConstraintsFactory theSQLConstraintsFactory = (SQLConstraintsFactory)EPackage.Registry.INSTANCE.getEFactory("http:///org/eclipse/datatools/modelbase/sql/constraints.ecore"); //$NON-NLS-1$ 
+			SQLConstraintsFactory theSQLConstraintsFactory = (SQLConstraintsFactory)EPackage.Registry.INSTANCE.getEFactory(SQLConstraintsPackage.eNS_URI);
 			if (theSQLConstraintsFactory != null) {
 				return theSQLConstraintsFactory;
 			}
@@ -70,6 +70,7 @@ public class SQLConstraintsFactoryImpl extends EFactoryImpl implements SQLConstr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case SQLConstraintsPackage.ASSERTION: return createAssertion();
@@ -90,6 +91,7 @@ public class SQLConstraintsFactoryImpl extends EFactoryImpl implements SQLConstr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
 			case SQLConstraintsPackage.MATCH_TYPE:
@@ -106,6 +108,7 @@ public class SQLConstraintsFactoryImpl extends EFactoryImpl implements SQLConstr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
 			case SQLConstraintsPackage.MATCH_TYPE:
@@ -122,6 +125,7 @@ public class SQLConstraintsFactoryImpl extends EFactoryImpl implements SQLConstr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Assertion createAssertion() {
 		AssertionImpl assertion = new AssertionImpl();
 		return assertion;
@@ -132,6 +136,7 @@ public class SQLConstraintsFactoryImpl extends EFactoryImpl implements SQLConstr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public CheckConstraint createCheckConstraint() {
 		CheckConstraintImpl checkConstraint = new CheckConstraintImpl();
 		return checkConstraint;
@@ -142,6 +147,7 @@ public class SQLConstraintsFactoryImpl extends EFactoryImpl implements SQLConstr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ForeignKey createForeignKey() {
 		ForeignKeyImpl foreignKey = new ForeignKeyImpl();
 		return foreignKey;
@@ -152,6 +158,7 @@ public class SQLConstraintsFactoryImpl extends EFactoryImpl implements SQLConstr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public UniqueConstraint createUniqueConstraint() {
 		UniqueConstraintImpl uniqueConstraint = new UniqueConstraintImpl();
 		return uniqueConstraint;
@@ -162,6 +169,7 @@ public class SQLConstraintsFactoryImpl extends EFactoryImpl implements SQLConstr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public PrimaryKey createPrimaryKey() {
 		PrimaryKeyImpl primaryKey = new PrimaryKeyImpl();
 		return primaryKey;
@@ -172,6 +180,7 @@ public class SQLConstraintsFactoryImpl extends EFactoryImpl implements SQLConstr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Index createIndex() {
 		IndexImpl index = new IndexImpl();
 		return index;
@@ -182,6 +191,7 @@ public class SQLConstraintsFactoryImpl extends EFactoryImpl implements SQLConstr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IndexMember createIndexMember() {
 		IndexMemberImpl indexMember = new IndexMemberImpl();
 		return indexMember;
@@ -192,6 +202,7 @@ public class SQLConstraintsFactoryImpl extends EFactoryImpl implements SQLConstr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IndexExpression createIndexExpression() {
 		IndexExpressionImpl indexExpression = new IndexExpressionImpl();
 		return indexExpression;
@@ -204,7 +215,9 @@ public class SQLConstraintsFactoryImpl extends EFactoryImpl implements SQLConstr
 	 */
 	public MatchType createMatchTypeFromString(EDataType eDataType, String initialValue) {
 		MatchType result = MatchType.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		if (result == null) {
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		}
 		return result;
 	}
 
@@ -224,7 +237,9 @@ public class SQLConstraintsFactoryImpl extends EFactoryImpl implements SQLConstr
 	 */
 	public IncrementType createIncrementTypeFromString(EDataType eDataType, String initialValue) {
 		IncrementType result = IncrementType.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		if (result == null) {
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		}
 		return result;
 	}
 
@@ -242,6 +257,7 @@ public class SQLConstraintsFactoryImpl extends EFactoryImpl implements SQLConstr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SQLConstraintsPackage getSQLConstraintsPackage() {
 		return (SQLConstraintsPackage)getEPackage();
 	}
@@ -252,6 +268,7 @@ public class SQLConstraintsFactoryImpl extends EFactoryImpl implements SQLConstr
 	 * @deprecated
 	 * @generated
 	 */
+	@Deprecated
 	public static SQLConstraintsPackage getPackage() {
 		return SQLConstraintsPackage.eINSTANCE;
 	}

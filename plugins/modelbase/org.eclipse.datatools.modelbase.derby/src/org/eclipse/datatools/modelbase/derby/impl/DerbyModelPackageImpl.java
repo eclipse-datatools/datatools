@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -25,6 +25,7 @@ import org.eclipse.datatools.modelbase.sql.tables.SQLTablesPackage;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 /**
@@ -75,20 +76,10 @@ public class DerbyModelPackageImpl extends EPackageImpl implements DerbyModelPac
 	private static boolean isInited = false;
 
 	/**
-	 * Creates, registers, and initializes the <b>Package</b> for this
-	 * model, and for any others upon which it depends.  Simple
-	 * dependencies are satisfied by calling this method on all
-	 * dependent packages before doing anything else.  This method drives
-	 * initialization for interdependent packages directly, in parallel
-	 * with this package, itself.
-	 * <p>Of this package and its interdependencies, all packages which
-	 * have not yet been registered by their URI values are first created
-	 * and registered.  The packages are then initialized in two steps:
-	 * meta-model objects for all of the packages are created before any
-	 * are initialized, since one package's meta-model objects may refer to
-	 * those of another.
-	 * <p>Invocation of this method will not affect any packages that have
-	 * already been initialized.
+	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
+	 *
+	 * <p>This method is used to initialize {@link DerbyModelPackage#eINSTANCE} when that field is accessed.
+	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #eNS_URI
@@ -97,14 +88,18 @@ public class DerbyModelPackageImpl extends EPackageImpl implements DerbyModelPac
 	 * @generated
 	 */
 	public static DerbyModelPackage init() {
-		if (isInited) return (DerbyModelPackage)EPackage.Registry.INSTANCE.getEPackage(DerbyModelPackage.eNS_URI);
+		if (isInited) {
+			return (DerbyModelPackage)EPackage.Registry.INSTANCE.getEPackage(DerbyModelPackage.eNS_URI);
+		}
 
 		// Obtain or create and register package
-		DerbyModelPackageImpl theDerbyModelPackage = (DerbyModelPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(eNS_URI) instanceof DerbyModelPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(eNS_URI) : new DerbyModelPackageImpl());
+		Object registeredDerbyModelPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		DerbyModelPackageImpl theDerbyModelPackage = registeredDerbyModelPackage instanceof DerbyModelPackageImpl ? (DerbyModelPackageImpl)registeredDerbyModelPackage : new DerbyModelPackageImpl();
 
 		isInited = true;
 
 		// Initialize simple dependencies
+		EcorePackage.eINSTANCE.eClass();
 		SQLSchemaPackage.eINSTANCE.eClass();
 		SQLConstraintsPackage.eINSTANCE.eClass();
 		SQLDataTypesPackage.eINSTANCE.eClass();
@@ -123,6 +118,8 @@ public class DerbyModelPackageImpl extends EPackageImpl implements DerbyModelPac
 		// Mark meta-data to indicate it can't be changed
 		theDerbyModelPackage.freeze();
 
+		// Update the registry and return the package
+		EPackage.Registry.INSTANCE.put(DerbyModelPackage.eNS_URI, theDerbyModelPackage);
 		return theDerbyModelPackage;
 	}
 
@@ -131,6 +128,7 @@ public class DerbyModelPackageImpl extends EPackageImpl implements DerbyModelPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getSynonym() {
 		return synonymEClass;
 	}
@@ -140,6 +138,7 @@ public class DerbyModelPackageImpl extends EPackageImpl implements DerbyModelPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getSynonym_Table() {
 		return (EReference)synonymEClass.getEStructuralFeatures().get(0);
 	}
@@ -149,6 +148,7 @@ public class DerbyModelPackageImpl extends EPackageImpl implements DerbyModelPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getDerbySchema() {
 		return derbySchemaEClass;
 	}
@@ -158,6 +158,7 @@ public class DerbyModelPackageImpl extends EPackageImpl implements DerbyModelPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public DerbyModelFactory getDerbyModelFactory() {
 		return (DerbyModelFactory)getEFactoryInstance();
 	}
@@ -177,7 +178,9 @@ public class DerbyModelPackageImpl extends EPackageImpl implements DerbyModelPac
 	 * @generated
 	 */
 	public void createPackageContents() {
-		if (isCreated) return;
+		if (isCreated) {
+			return;
+		}
 		isCreated = true;
 
 		// Create classes and their features
@@ -202,7 +205,9 @@ public class DerbyModelPackageImpl extends EPackageImpl implements DerbyModelPac
 	 * @generated
 	 */
 	public void initializePackageContents() {
-		if (isInitialized) return;
+		if (isInitialized) {
+			return;
+		}
 		isInitialized = true;
 
 		// Initialize package

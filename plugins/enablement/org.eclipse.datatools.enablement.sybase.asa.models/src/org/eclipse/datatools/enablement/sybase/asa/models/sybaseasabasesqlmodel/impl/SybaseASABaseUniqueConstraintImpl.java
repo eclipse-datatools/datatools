@@ -21,36 +21,15 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
- *   <li>{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl.SybaseASABaseUniqueConstraintImpl#isClustered <em>Clustered</em>}</li>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl.SybaseASABaseUniqueConstraintImpl#getSystemGenIndex <em>System Gen Index</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class SybaseASABaseUniqueConstraintImpl extends UniqueConstraintImpl implements SybaseASABaseUniqueConstraint 
+public class SybaseASABaseUniqueConstraintImpl extends UniqueConstraintImpl implements SybaseASABaseUniqueConstraint
 {
-    /**
-	 * The default value of the '{@link #isClustered() <em>Clustered</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isClustered()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean CLUSTERED_EDEFAULT = false;
-
-    /**
-	 * The cached value of the '{@link #isClustered() <em>Clustered</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isClustered()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean clustered = CLUSTERED_EDEFAULT;
-
     /**
 	 * The cached value of the '{@link #getSystemGenIndex() <em>System Gen Index</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -76,6 +55,7 @@ public class SybaseASABaseUniqueConstraintImpl extends UniqueConstraintImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass()
     {
 		return SybaseasabasesqlmodelPackage.Literals.SYBASE_ASA_BASE_UNIQUE_CONSTRAINT;
@@ -83,40 +63,19 @@ public class SybaseASABaseUniqueConstraintImpl extends UniqueConstraintImpl impl
 
     /**
 	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isClustered()
-    {
-		return clustered;
-	}
-
-    /**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setClustered(boolean newClustered)
-    {
-		boolean oldClustered = clustered;
-		clustered = newClustered;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_UNIQUE_CONSTRAINT__CLUSTERED, oldClustered, clustered));
-	}
-
-    /**
-	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public SybaseASABaseIndex getSystemGenIndex()
+    @Override
+	public SybaseASABaseIndex getSystemGenIndex()
     {
 		if (systemGenIndex != null && systemGenIndex.eIsProxy()) {
 			InternalEObject oldSystemGenIndex = (InternalEObject)systemGenIndex;
 			systemGenIndex = (SybaseASABaseIndex)eResolveProxy(oldSystemGenIndex);
 			if (systemGenIndex != oldSystemGenIndex) {
-				if (eNotificationRequired())
+				if (eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_UNIQUE_CONSTRAINT__SYSTEM_GEN_INDEX, oldSystemGenIndex, systemGenIndex));
+				}
 			}
 		}
 		return systemGenIndex;
@@ -137,12 +96,14 @@ public class SybaseASABaseUniqueConstraintImpl extends UniqueConstraintImpl impl
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public void setSystemGenIndex(SybaseASABaseIndex newSystemGenIndex)
+    @Override
+	public void setSystemGenIndex(SybaseASABaseIndex newSystemGenIndex)
     {
 		SybaseASABaseIndex oldSystemGenIndex = systemGenIndex;
 		systemGenIndex = newSystemGenIndex;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_UNIQUE_CONSTRAINT__SYSTEM_GEN_INDEX, oldSystemGenIndex, systemGenIndex));
+		}
 	}
 
     /**
@@ -150,13 +111,14 @@ public class SybaseASABaseUniqueConstraintImpl extends UniqueConstraintImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
     {
 		switch (featureID) {
-			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_UNIQUE_CONSTRAINT__CLUSTERED:
-				return isClustered() ? Boolean.TRUE : Boolean.FALSE;
 			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_UNIQUE_CONSTRAINT__SYSTEM_GEN_INDEX:
-				if (resolve) return getSystemGenIndex();
+				if (resolve) {
+					return getSystemGenIndex();
+				}
 				return basicGetSystemGenIndex();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -167,12 +129,10 @@ public class SybaseASABaseUniqueConstraintImpl extends UniqueConstraintImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue)
     {
 		switch (featureID) {
-			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_UNIQUE_CONSTRAINT__CLUSTERED:
-				setClustered(((Boolean)newValue).booleanValue());
-				return;
 			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_UNIQUE_CONSTRAINT__SYSTEM_GEN_INDEX:
 				setSystemGenIndex((SybaseASABaseIndex)newValue);
 				return;
@@ -185,12 +145,10 @@ public class SybaseASABaseUniqueConstraintImpl extends UniqueConstraintImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID)
     {
 		switch (featureID) {
-			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_UNIQUE_CONSTRAINT__CLUSTERED:
-				setClustered(CLUSTERED_EDEFAULT);
-				return;
 			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_UNIQUE_CONSTRAINT__SYSTEM_GEN_INDEX:
 				setSystemGenIndex((SybaseASABaseIndex)null);
 				return;
@@ -203,31 +161,14 @@ public class SybaseASABaseUniqueConstraintImpl extends UniqueConstraintImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID)
     {
 		switch (featureID) {
-			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_UNIQUE_CONSTRAINT__CLUSTERED:
-				return clustered != CLUSTERED_EDEFAULT;
 			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_UNIQUE_CONSTRAINT__SYSTEM_GEN_INDEX:
 				return systemGenIndex != null;
 		}
 		return super.eIsSet(featureID);
-	}
-
-    /**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String toString()
-    {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (clustered: ");
-		result.append(clustered);
-		result.append(')');
-		return result.toString();
 	}
 
 } //SybaseASABaseUniqueConstraintImpl

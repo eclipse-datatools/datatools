@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -35,6 +35,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.PredefinedDataTypeDefinitionImpl#getLeadingFieldQualifierDefinition <em>Leading Field Qualifier Definition</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.PredefinedDataTypeDefinitionImpl#getTrailingFieldQualifierDefinition <em>Trailing Field Qualifier Definition</em>}</li>
@@ -85,7 +86,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.PredefinedDataTypeDefinitionImpl#getLengthSemantic <em>Length Semantic</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.PredefinedDataTypeDefinitionImpl#getLanguageType <em>Language Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -964,6 +964,7 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return DatabaseDefinitionPackage.Literals.PREDEFINED_DATA_TYPE_DEFINITION;
 	}
@@ -973,6 +974,7 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList getLeadingFieldQualifierDefinition() {
 		if (leadingFieldQualifierDefinition == null) {
 			leadingFieldQualifierDefinition = new EObjectContainmentEList(FieldQualifierDefinition.class, this, DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LEADING_FIELD_QUALIFIER_DEFINITION);
@@ -985,6 +987,7 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList getTrailingFieldQualifierDefinition() {
 		if (trailingFieldQualifierDefinition == null) {
 			trailingFieldQualifierDefinition = new EObjectContainmentEList(FieldQualifierDefinition.class, this, DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__TRAILING_FIELD_QUALIFIER_DEFINITION);
@@ -997,13 +1000,15 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public FieldQualifierDefinition getDefaultTrailingFieldQualifierDefinition() {
 		if (defaultTrailingFieldQualifierDefinition != null && defaultTrailingFieldQualifierDefinition.eIsProxy()) {
 			InternalEObject oldDefaultTrailingFieldQualifierDefinition = (InternalEObject)defaultTrailingFieldQualifierDefinition;
 			defaultTrailingFieldQualifierDefinition = (FieldQualifierDefinition)eResolveProxy(oldDefaultTrailingFieldQualifierDefinition);
 			if (defaultTrailingFieldQualifierDefinition != oldDefaultTrailingFieldQualifierDefinition) {
-				if (eNotificationRequired())
+				if (eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__DEFAULT_TRAILING_FIELD_QUALIFIER_DEFINITION, oldDefaultTrailingFieldQualifierDefinition, defaultTrailingFieldQualifierDefinition));
+				}
 			}
 		}
 		return defaultTrailingFieldQualifierDefinition;
@@ -1023,11 +1028,13 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDefaultTrailingFieldQualifierDefinition(FieldQualifierDefinition newDefaultTrailingFieldQualifierDefinition) {
 		FieldQualifierDefinition oldDefaultTrailingFieldQualifierDefinition = defaultTrailingFieldQualifierDefinition;
 		defaultTrailingFieldQualifierDefinition = newDefaultTrailingFieldQualifierDefinition;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__DEFAULT_TRAILING_FIELD_QUALIFIER_DEFINITION, oldDefaultTrailingFieldQualifierDefinition, defaultTrailingFieldQualifierDefinition));
+		}
 	}
 
 	/**
@@ -1035,13 +1042,15 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public FieldQualifierDefinition getDefaultLeadingFieldQualifierDefinition() {
 		if (defaultLeadingFieldQualifierDefinition != null && defaultLeadingFieldQualifierDefinition.eIsProxy()) {
 			InternalEObject oldDefaultLeadingFieldQualifierDefinition = (InternalEObject)defaultLeadingFieldQualifierDefinition;
 			defaultLeadingFieldQualifierDefinition = (FieldQualifierDefinition)eResolveProxy(oldDefaultLeadingFieldQualifierDefinition);
 			if (defaultLeadingFieldQualifierDefinition != oldDefaultLeadingFieldQualifierDefinition) {
-				if (eNotificationRequired())
+				if (eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__DEFAULT_LEADING_FIELD_QUALIFIER_DEFINITION, oldDefaultLeadingFieldQualifierDefinition, defaultLeadingFieldQualifierDefinition));
+				}
 			}
 		}
 		return defaultLeadingFieldQualifierDefinition;
@@ -1061,11 +1070,13 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDefaultLeadingFieldQualifierDefinition(FieldQualifierDefinition newDefaultLeadingFieldQualifierDefinition) {
 		FieldQualifierDefinition oldDefaultLeadingFieldQualifierDefinition = defaultLeadingFieldQualifierDefinition;
 		defaultLeadingFieldQualifierDefinition = newDefaultLeadingFieldQualifierDefinition;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__DEFAULT_LEADING_FIELD_QUALIFIER_DEFINITION, oldDefaultLeadingFieldQualifierDefinition, defaultLeadingFieldQualifierDefinition));
+		}
 	}
 
 	/**
@@ -1073,6 +1084,7 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isLengthSupported() {
 		return lengthSupported;
 	}
@@ -1082,11 +1094,13 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLengthSupported(boolean newLengthSupported) {
 		boolean oldLengthSupported = lengthSupported;
 		lengthSupported = newLengthSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LENGTH_SUPPORTED, oldLengthSupported, lengthSupported));
+		}
 	}
 
 	/**
@@ -1094,6 +1108,7 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isScaleSupported() {
 		return scaleSupported;
 	}
@@ -1103,11 +1118,13 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setScaleSupported(boolean newScaleSupported) {
 		boolean oldScaleSupported = scaleSupported;
 		scaleSupported = newScaleSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__SCALE_SUPPORTED, oldScaleSupported, scaleSupported));
+		}
 	}
 
 	/**
@@ -1115,6 +1132,7 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isPrecisionSupported() {
 		return precisionSupported;
 	}
@@ -1124,11 +1142,13 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPrecisionSupported(boolean newPrecisionSupported) {
 		boolean oldPrecisionSupported = precisionSupported;
 		precisionSupported = newPrecisionSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__PRECISION_SUPPORTED, oldPrecisionSupported, precisionSupported));
+		}
 	}
 
 	/**
@@ -1136,6 +1156,7 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isKeyConstraintSupported() {
 		return keyConstraintSupported;
 	}
@@ -1145,11 +1166,13 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setKeyConstraintSupported(boolean newKeyConstraintSupported) {
 		boolean oldKeyConstraintSupported = keyConstraintSupported;
 		keyConstraintSupported = newKeyConstraintSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__KEY_CONSTRAINT_SUPPORTED, oldKeyConstraintSupported, keyConstraintSupported));
+		}
 	}
 
 	/**
@@ -1157,6 +1180,7 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isIdentitySupported() {
 		return identitySupported;
 	}
@@ -1166,11 +1190,13 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIdentitySupported(boolean newIdentitySupported) {
 		boolean oldIdentitySupported = identitySupported;
 		identitySupported = newIdentitySupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__IDENTITY_SUPPORTED, oldIdentitySupported, identitySupported));
+		}
 	}
 
 	/**
@@ -1178,6 +1204,7 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isMultipleColumnsSupported() {
 		return multipleColumnsSupported;
 	}
@@ -1187,11 +1214,13 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMultipleColumnsSupported(boolean newMultipleColumnsSupported) {
 		boolean oldMultipleColumnsSupported = multipleColumnsSupported;
 		multipleColumnsSupported = newMultipleColumnsSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__MULTIPLE_COLUMNS_SUPPORTED, oldMultipleColumnsSupported, multipleColumnsSupported));
+		}
 	}
 
 	/**
@@ -1199,6 +1228,7 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isNullableSupported() {
 		return nullableSupported;
 	}
@@ -1208,11 +1238,13 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setNullableSupported(boolean newNullableSupported) {
 		boolean oldNullableSupported = nullableSupported;
 		nullableSupported = newNullableSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__NULLABLE_SUPPORTED, oldNullableSupported, nullableSupported));
+		}
 	}
 
 	/**
@@ -1220,6 +1252,7 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isDefaultSupported() {
 		return defaultSupported;
 	}
@@ -1229,11 +1262,13 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDefaultSupported(boolean newDefaultSupported) {
 		boolean oldDefaultSupported = defaultSupported;
 		defaultSupported = newDefaultSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__DEFAULT_SUPPORTED, oldDefaultSupported, defaultSupported));
+		}
 	}
 
 	/**
@@ -1241,6 +1276,7 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isClusteringSupported() {
 		return clusteringSupported;
 	}
@@ -1250,11 +1286,13 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setClusteringSupported(boolean newClusteringSupported) {
 		boolean oldClusteringSupported = clusteringSupported;
 		clusteringSupported = newClusteringSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__CLUSTERING_SUPPORTED, oldClusteringSupported, clusteringSupported));
+		}
 	}
 
 	/**
@@ -1262,6 +1300,7 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isFillFactorSupported() {
 		return fillFactorSupported;
 	}
@@ -1271,11 +1310,13 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setFillFactorSupported(boolean newFillFactorSupported) {
 		boolean oldFillFactorSupported = fillFactorSupported;
 		fillFactorSupported = newFillFactorSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__FILL_FACTOR_SUPPORTED, oldFillFactorSupported, fillFactorSupported));
+		}
 	}
 
 	/**
@@ -1283,6 +1324,7 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isBitDataSupported() {
 		return bitDataSupported;
 	}
@@ -1292,11 +1334,13 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setBitDataSupported(boolean newBitDataSupported) {
 		boolean oldBitDataSupported = bitDataSupported;
 		bitDataSupported = newBitDataSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__BIT_DATA_SUPPORTED, oldBitDataSupported, bitDataSupported));
+		}
 	}
 
 	/**
@@ -1304,6 +1348,7 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public long getMaximumValue() {
 		return maximumValue;
 	}
@@ -1313,11 +1358,13 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMaximumValue(long newMaximumValue) {
 		long oldMaximumValue = maximumValue;
 		maximumValue = newMaximumValue;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__MAXIMUM_VALUE, oldMaximumValue, maximumValue));
+		}
 	}
 
 	/**
@@ -1325,6 +1372,7 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public long getMinimumValue() {
 		return minimumValue;
 	}
@@ -1334,11 +1382,13 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMinimumValue(long newMinimumValue) {
 		long oldMinimumValue = minimumValue;
 		minimumValue = newMinimumValue;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__MINIMUM_VALUE, oldMinimumValue, minimumValue));
+		}
 	}
 
 	/**
@@ -1346,6 +1396,7 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getMaximumLength() {
 		return maximumLength;
 	}
@@ -1355,11 +1406,13 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMaximumLength(int newMaximumLength) {
 		int oldMaximumLength = maximumLength;
 		maximumLength = newMaximumLength;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__MAXIMUM_LENGTH, oldMaximumLength, maximumLength));
+		}
 	}
 
 	/**
@@ -1367,6 +1420,7 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getMaximumPrecision() {
 		return maximumPrecision;
 	}
@@ -1376,11 +1430,13 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMaximumPrecision(int newMaximumPrecision) {
 		int oldMaximumPrecision = maximumPrecision;
 		maximumPrecision = newMaximumPrecision;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__MAXIMUM_PRECISION, oldMaximumPrecision, maximumPrecision));
+		}
 	}
 
 	/**
@@ -1388,6 +1444,7 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getMaximumScale() {
 		return maximumScale;
 	}
@@ -1397,11 +1454,13 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMaximumScale(int newMaximumScale) {
 		int oldMaximumScale = maximumScale;
 		maximumScale = newMaximumScale;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__MAXIMUM_SCALE, oldMaximumScale, maximumScale));
+		}
 	}
 
 	/**
@@ -1409,6 +1468,7 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getMinimumScale() {
 		return minimumScale;
 	}
@@ -1418,11 +1478,13 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMinimumScale(int newMinimumScale) {
 		int oldMinimumScale = minimumScale;
 		minimumScale = newMinimumScale;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__MINIMUM_SCALE, oldMinimumScale, minimumScale));
+		}
 	}
 
 	/**
@@ -1430,6 +1492,7 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList getDefaultValueTypes() {
 		if (defaultValueTypes == null) {
 			defaultValueTypes = new EDataTypeUniqueEList(String.class, this, DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__DEFAULT_VALUE_TYPES);
@@ -1442,6 +1505,7 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public PrimitiveType getPrimitiveType() {
 		return primitiveType;
 	}
@@ -1451,11 +1515,13 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPrimitiveType(PrimitiveType newPrimitiveType) {
 		PrimitiveType oldPrimitiveType = primitiveType;
 		primitiveType = newPrimitiveType == null ? PRIMITIVE_TYPE_EDEFAULT : newPrimitiveType;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__PRIMITIVE_TYPE, oldPrimitiveType, primitiveType));
+		}
 	}
 
 	/**
@@ -1463,6 +1529,7 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList getName() {
 		if (name == null) {
 			name = new EDataTypeUniqueEList(String.class, this, DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__NAME);
@@ -1475,6 +1542,7 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getJdbcEnumType() {
 		return jdbcEnumType;
 	}
@@ -1484,11 +1552,13 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setJdbcEnumType(int newJdbcEnumType) {
 		int oldJdbcEnumType = jdbcEnumType;
 		jdbcEnumType = newJdbcEnumType;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__JDBC_ENUM_TYPE, oldJdbcEnumType, jdbcEnumType));
+		}
 	}
 
 	/**
@@ -1496,6 +1566,7 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList getCharacterSet() {
 		if (characterSet == null) {
 			characterSet = new EDataTypeUniqueEList(String.class, this, DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__CHARACTER_SET);
@@ -1508,6 +1579,7 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList getEncodingScheme() {
 		if (encodingScheme == null) {
 			encodingScheme = new EDataTypeUniqueEList(String.class, this, DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__ENCODING_SCHEME);
@@ -1520,6 +1592,7 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getCharacterSetSuffix() {
 		return characterSetSuffix;
 	}
@@ -1529,11 +1602,13 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCharacterSetSuffix(String newCharacterSetSuffix) {
 		String oldCharacterSetSuffix = characterSetSuffix;
 		characterSetSuffix = newCharacterSetSuffix;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__CHARACTER_SET_SUFFIX, oldCharacterSetSuffix, characterSetSuffix));
+		}
 	}
 
 	/**
@@ -1541,6 +1616,7 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getEncodingSchemeSuffix() {
 		return encodingSchemeSuffix;
 	}
@@ -1550,11 +1626,13 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setEncodingSchemeSuffix(String newEncodingSchemeSuffix) {
 		String oldEncodingSchemeSuffix = encodingSchemeSuffix;
 		encodingSchemeSuffix = newEncodingSchemeSuffix;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__ENCODING_SCHEME_SUFFIX, oldEncodingSchemeSuffix, encodingSchemeSuffix));
+		}
 	}
 
 	/**
@@ -1562,6 +1640,7 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getJavaClassName() {
 		return javaClassName;
 	}
@@ -1571,11 +1650,13 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setJavaClassName(String newJavaClassName) {
 		String oldJavaClassName = javaClassName;
 		javaClassName = newJavaClassName;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__JAVA_CLASS_NAME, oldJavaClassName, javaClassName));
+		}
 	}
 
 	/**
@@ -1583,6 +1664,7 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getDefaultLength() {
 		return defaultLength;
 	}
@@ -1592,11 +1674,13 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDefaultLength(int newDefaultLength) {
 		int oldDefaultLength = defaultLength;
 		defaultLength = newDefaultLength;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__DEFAULT_LENGTH, oldDefaultLength, defaultLength));
+		}
 	}
 
 	/**
@@ -1604,6 +1688,7 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getDefaultPrecision() {
 		return defaultPrecision;
 	}
@@ -1613,11 +1698,13 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDefaultPrecision(int newDefaultPrecision) {
 		int oldDefaultPrecision = defaultPrecision;
 		defaultPrecision = newDefaultPrecision;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__DEFAULT_PRECISION, oldDefaultPrecision, defaultPrecision));
+		}
 	}
 
 	/**
@@ -1625,6 +1712,7 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getDefaultScale() {
 		return defaultScale;
 	}
@@ -1634,11 +1722,13 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDefaultScale(int newDefaultScale) {
 		int oldDefaultScale = defaultScale;
 		defaultScale = newDefaultScale;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__DEFAULT_SCALE, oldDefaultScale, defaultScale));
+		}
 	}
 
 	/**
@@ -1646,6 +1736,7 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getCutoffPrecision() {
 		return cutoffPrecision;
 	}
@@ -1655,11 +1746,13 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCutoffPrecision(int newCutoffPrecision) {
 		int oldCutoffPrecision = cutoffPrecision;
 		cutoffPrecision = newCutoffPrecision;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__CUTOFF_PRECISION, oldCutoffPrecision, cutoffPrecision));
+		}
 	}
 
 	/**
@@ -1667,6 +1760,7 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public LengthUnit getLengthUnit() {
 		return lengthUnit;
 	}
@@ -1676,11 +1770,13 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLengthUnit(LengthUnit newLengthUnit) {
 		LengthUnit oldLengthUnit = lengthUnit;
 		lengthUnit = newLengthUnit == null ? LENGTH_UNIT_EDEFAULT : newLengthUnit;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LENGTH_UNIT, oldLengthUnit, lengthUnit));
+		}
 	}
 
 	/**
@@ -1688,6 +1784,7 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isOrderingSupported() {
 		return orderingSupported;
 	}
@@ -1697,11 +1794,13 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOrderingSupported(boolean newOrderingSupported) {
 		boolean oldOrderingSupported = orderingSupported;
 		orderingSupported = newOrderingSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__ORDERING_SUPPORTED, oldOrderingSupported, orderingSupported));
+		}
 	}
 
 	/**
@@ -1709,6 +1808,7 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isGroupingSupported() {
 		return groupingSupported;
 	}
@@ -1718,11 +1818,13 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setGroupingSupported(boolean newGroupingSupported) {
 		boolean oldGroupingSupported = groupingSupported;
 		groupingSupported = newGroupingSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__GROUPING_SUPPORTED, oldGroupingSupported, groupingSupported));
+		}
 	}
 
 	/**
@@ -1730,6 +1832,7 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getDisplayName() {
 		return displayName;
 	}
@@ -1739,11 +1842,13 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDisplayName(String newDisplayName) {
 		String oldDisplayName = displayName;
 		displayName = newDisplayName;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__DISPLAY_NAME, oldDisplayName, displayName));
+		}
 	}
 
 	/**
@@ -1751,6 +1856,7 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isDisplayNameSupported() {
 		return displayNameSupported;
 	}
@@ -1760,11 +1866,13 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDisplayNameSupported(boolean newDisplayNameSupported) {
 		boolean oldDisplayNameSupported = displayNameSupported;
 		displayNameSupported = newDisplayNameSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__DISPLAY_NAME_SUPPORTED, oldDisplayNameSupported, displayNameSupported));
+		}
 	}
 
 	/**
@@ -1772,6 +1880,7 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isLeadingFieldQualifierSupported() {
 		return leadingFieldQualifierSupported;
 	}
@@ -1781,11 +1890,13 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLeadingFieldQualifierSupported(boolean newLeadingFieldQualifierSupported) {
 		boolean oldLeadingFieldQualifierSupported = leadingFieldQualifierSupported;
 		leadingFieldQualifierSupported = newLeadingFieldQualifierSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LEADING_FIELD_QUALIFIER_SUPPORTED, oldLeadingFieldQualifierSupported, leadingFieldQualifierSupported));
+		}
 	}
 
 	/**
@@ -1793,6 +1904,7 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isTrailingFieldQualifierSupported() {
 		return trailingFieldQualifierSupported;
 	}
@@ -1802,11 +1914,13 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTrailingFieldQualifierSupported(boolean newTrailingFieldQualifierSupported) {
 		boolean oldTrailingFieldQualifierSupported = trailingFieldQualifierSupported;
 		trailingFieldQualifierSupported = newTrailingFieldQualifierSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__TRAILING_FIELD_QUALIFIER_SUPPORTED, oldTrailingFieldQualifierSupported, trailingFieldQualifierSupported));
+		}
 	}
 
 	/**
@@ -1814,6 +1928,7 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getFieldQualifierSeparator() {
 		return fieldQualifierSeparator;
 	}
@@ -1823,11 +1938,13 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setFieldQualifierSeparator(String newFieldQualifierSeparator) {
 		String oldFieldQualifierSeparator = fieldQualifierSeparator;
 		fieldQualifierSeparator = newFieldQualifierSeparator;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__FIELD_QUALIFIER_SEPARATOR, oldFieldQualifierSeparator, fieldQualifierSeparator));
+		}
 	}
 
 	/**
@@ -1835,6 +1952,7 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isLargeValueSpecifierSupported() {
 		return largeValueSpecifierSupported;
 	}
@@ -1844,11 +1962,13 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLargeValueSpecifierSupported(boolean newLargeValueSpecifierSupported) {
 		boolean oldLargeValueSpecifierSupported = largeValueSpecifierSupported;
 		largeValueSpecifierSupported = newLargeValueSpecifierSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LARGE_VALUE_SPECIFIER_SUPPORTED, oldLargeValueSpecifierSupported, largeValueSpecifierSupported));
+		}
 	}
 
 	/**
@@ -1856,6 +1976,7 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getLargeValueSpecifierName() {
 		return largeValueSpecifierName;
 	}
@@ -1865,11 +1986,13 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLargeValueSpecifierName(String newLargeValueSpecifierName) {
 		String oldLargeValueSpecifierName = largeValueSpecifierName;
 		largeValueSpecifierName = newLargeValueSpecifierName;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LARGE_VALUE_SPECIFIER_NAME, oldLargeValueSpecifierName, largeValueSpecifierName));
+		}
 	}
 
 	/**
@@ -1877,6 +2000,7 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getLargeValueSpecifierLength() {
 		return largeValueSpecifierLength;
 	}
@@ -1886,11 +2010,13 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLargeValueSpecifierLength(int newLargeValueSpecifierLength) {
 		int oldLargeValueSpecifierLength = largeValueSpecifierLength;
 		largeValueSpecifierLength = newLargeValueSpecifierLength;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LARGE_VALUE_SPECIFIER_LENGTH, oldLargeValueSpecifierLength, largeValueSpecifierLength));
+		}
 	}
 
 	/**
@@ -1898,6 +2024,7 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isLengthSemanticSupported() {
 		return lengthSemanticSupported;
 	}
@@ -1907,11 +2034,13 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLengthSemanticSupported(boolean newLengthSemanticSupported) {
 		boolean oldLengthSemanticSupported = lengthSemanticSupported;
 		lengthSemanticSupported = newLengthSemanticSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LENGTH_SEMANTIC_SUPPORTED, oldLengthSemanticSupported, lengthSemanticSupported));
+		}
 	}
 
 	/**
@@ -1919,6 +2048,7 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList getLengthSemantic() {
 		if (lengthSemantic == null) {
 			lengthSemantic = new EDataTypeUniqueEList(String.class, this, DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LENGTH_SEMANTIC);
@@ -1931,6 +2061,7 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList getLanguageType() {
 		if (languageType == null) {
 			languageType = new EDataTypeUniqueEList(LanguageType.class, this, DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LANGUAGE_TYPE);
@@ -1943,6 +2074,7 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LEADING_FIELD_QUALIFIER_DEFINITION:
@@ -1958,6 +2090,7 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LEADING_FIELD_QUALIFIER_DEFINITION:
@@ -1965,10 +2098,14 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__TRAILING_FIELD_QUALIFIER_DEFINITION:
 				return getTrailingFieldQualifierDefinition();
 			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__DEFAULT_TRAILING_FIELD_QUALIFIER_DEFINITION:
-				if (resolve) return getDefaultTrailingFieldQualifierDefinition();
+				if (resolve) {
+					return getDefaultTrailingFieldQualifierDefinition();
+				}
 				return basicGetDefaultTrailingFieldQualifierDefinition();
 			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__DEFAULT_LEADING_FIELD_QUALIFIER_DEFINITION:
-				if (resolve) return getDefaultLeadingFieldQualifierDefinition();
+				if (resolve) {
+					return getDefaultLeadingFieldQualifierDefinition();
+				}
 				return basicGetDefaultLeadingFieldQualifierDefinition();
 			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LENGTH_SUPPORTED:
 				return isLengthSupported() ? Boolean.TRUE : Boolean.FALSE;
@@ -1993,17 +2130,17 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__BIT_DATA_SUPPORTED:
 				return isBitDataSupported() ? Boolean.TRUE : Boolean.FALSE;
 			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__MAXIMUM_VALUE:
-				return Long.valueOf(getMaximumValue());
+				return new Long(getMaximumValue());
 			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__MINIMUM_VALUE:
-				return Long.valueOf(getMinimumValue());
+				return new Long(getMinimumValue());
 			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__MAXIMUM_LENGTH:
-				return Integer.valueOf(getMaximumLength());
+				return new Integer(getMaximumLength());
 			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__MAXIMUM_PRECISION:
-				return Integer.valueOf(getMaximumPrecision());
+				return new Integer(getMaximumPrecision());
 			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__MAXIMUM_SCALE:
-				return Integer.valueOf(getMaximumScale());
+				return new Integer(getMaximumScale());
 			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__MINIMUM_SCALE:
-				return Integer.valueOf(getMinimumScale());
+				return new Integer(getMinimumScale());
 			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__DEFAULT_VALUE_TYPES:
 				return getDefaultValueTypes();
 			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__PRIMITIVE_TYPE:
@@ -2011,7 +2148,7 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__NAME:
 				return getName();
 			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__JDBC_ENUM_TYPE:
-				return Integer.valueOf(getJdbcEnumType());
+				return new Integer(getJdbcEnumType());
 			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__CHARACTER_SET:
 				return getCharacterSet();
 			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__ENCODING_SCHEME:
@@ -2023,13 +2160,13 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__JAVA_CLASS_NAME:
 				return getJavaClassName();
 			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__DEFAULT_LENGTH:
-				return Integer.valueOf(getDefaultLength());
+				return new Integer(getDefaultLength());
 			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__DEFAULT_PRECISION:
-				return Integer.valueOf(getDefaultPrecision());
+				return new Integer(getDefaultPrecision());
 			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__DEFAULT_SCALE:
-				return Integer.valueOf(getDefaultScale());
+				return new Integer(getDefaultScale());
 			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__CUTOFF_PRECISION:
-				return Integer.valueOf(getCutoffPrecision());
+				return new Integer(getCutoffPrecision());
 			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LENGTH_UNIT:
 				return getLengthUnit();
 			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__ORDERING_SUPPORTED:
@@ -2051,7 +2188,7 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LARGE_VALUE_SPECIFIER_NAME:
 				return getLargeValueSpecifierName();
 			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LARGE_VALUE_SPECIFIER_LENGTH:
-				return Integer.valueOf(getLargeValueSpecifierLength());
+				return new Integer(getLargeValueSpecifierLength());
 			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LENGTH_SEMANTIC_SUPPORTED:
 				return isLengthSemanticSupported() ? Boolean.TRUE : Boolean.FALSE;
 			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LENGTH_SEMANTIC:
@@ -2067,6 +2204,7 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LEADING_FIELD_QUALIFIER_DEFINITION:
@@ -2230,6 +2368,7 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LEADING_FIELD_QUALIFIER_DEFINITION:
@@ -2385,6 +2524,7 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LEADING_FIELD_QUALIFIER_DEFINITION:
@@ -2492,8 +2632,11 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (lengthSupported: "); //$NON-NLS-1$

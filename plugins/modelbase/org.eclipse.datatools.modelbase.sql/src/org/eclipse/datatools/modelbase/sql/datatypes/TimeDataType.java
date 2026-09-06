@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -18,16 +18,16 @@ package org.eclipse.datatools.modelbase.sql.datatypes;
  *
  * <!-- begin-model-doc -->
  * Reference: 5WD-02-Foundation-2002-12 4.6.1 Datetimes
- * 
+ *
  * <!-- end-model-doc -->
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.datatypes.TimeDataType#getFractionalSecondsPrecision <em>Fractional Seconds Precision</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.datatypes.TimeDataType#isTimeZone <em>Time Zone</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage#getTimeDataType()
  * @model

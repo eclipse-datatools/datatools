@@ -24,372 +24,421 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.query.impl.TableJoinedImpl#getJoinOperator <em>Join Operator</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.query.impl.TableJoinedImpl#getJoinCondition <em>Join Condition</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.query.impl.TableJoinedImpl#getTableRefRight <em>Table Ref Right</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.query.impl.TableJoinedImpl#getTableRefLeft <em>Table Ref Left</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
 public class TableJoinedImpl extends TableReferenceImpl implements TableJoined {
 	/**
-     * The default value of the '{@link #getJoinOperator() <em>Join Operator</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getJoinOperator() <em>Join Operator</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getJoinOperator()
-     * @generated
-     * @ordered
-     */
+	 * @see #getJoinOperator()
+	 * @generated
+	 * @ordered
+	 */
     protected static final TableJoinedOperator JOIN_OPERATOR_EDEFAULT = TableJoinedOperator.DEFAULT_INNER_LITERAL;
 
 	/**
-     * The cached value of the '{@link #getJoinOperator() <em>Join Operator</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getJoinOperator() <em>Join Operator</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getJoinOperator()
-     * @generated
-     * @ordered
-     */
+	 * @see #getJoinOperator()
+	 * @generated
+	 * @ordered
+	 */
     protected TableJoinedOperator joinOperator = JOIN_OPERATOR_EDEFAULT;
 
 	/**
-     * The cached value of the '{@link #getJoinCondition() <em>Join Condition</em>}' containment reference.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getJoinCondition() <em>Join Condition</em>}' containment reference.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getJoinCondition()
-     * @generated
-     * @ordered
-     */
+	 * @see #getJoinCondition()
+	 * @generated
+	 * @ordered
+	 */
     protected QuerySearchCondition joinCondition;
 
 	/**
-     * The cached value of the '{@link #getTableRefRight() <em>Table Ref Right</em>}' containment reference.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getTableRefRight() <em>Table Ref Right</em>}' containment reference.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getTableRefRight()
-     * @generated
-     * @ordered
-     */
+	 * @see #getTableRefRight()
+	 * @generated
+	 * @ordered
+	 */
     protected TableReference tableRefRight;
 
 	/**
-     * The cached value of the '{@link #getTableRefLeft() <em>Table Ref Left</em>}' containment reference.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getTableRefLeft() <em>Table Ref Left</em>}' containment reference.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getTableRefLeft()
-     * @generated
-     * @ordered
-     */
+	 * @see #getTableRefLeft()
+	 * @generated
+	 * @ordered
+	 */
     protected TableReference tableRefLeft;
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected TableJoinedImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    protected EClass eStaticClass() {
-        return SQLQueryModelPackage.Literals.TABLE_JOINED;
-    }
+	 * @generated
+	 */
+    @Override
+	protected EClass eStaticClass() {
+		return SQLQueryModelPackage.Literals.TABLE_JOINED;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public TableJoinedOperator getJoinOperator() {
-        return joinOperator;
-    }
+	 * @generated
+	 */
+    @Override
+	public TableJoinedOperator getJoinOperator() {
+		return joinOperator;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setJoinOperator(TableJoinedOperator newJoinOperator) {
-        TableJoinedOperator oldJoinOperator = joinOperator;
-        joinOperator = newJoinOperator == null ? JOIN_OPERATOR_EDEFAULT : newJoinOperator;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.TABLE_JOINED__JOIN_OPERATOR, oldJoinOperator, joinOperator));
-    }
+	 * @generated
+	 */
+    @Override
+	public void setJoinOperator(TableJoinedOperator newJoinOperator) {
+		TableJoinedOperator oldJoinOperator = joinOperator;
+		joinOperator = newJoinOperator == null ? JOIN_OPERATOR_EDEFAULT : newJoinOperator;
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.TABLE_JOINED__JOIN_OPERATOR, oldJoinOperator, joinOperator));
+		}
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public QuerySearchCondition getJoinCondition() {
-        return joinCondition;
-    }
+	 * @generated
+	 */
+    @Override
+	public QuerySearchCondition getJoinCondition() {
+		return joinCondition;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public NotificationChain basicSetJoinCondition(QuerySearchCondition newJoinCondition, NotificationChain msgs) {
-        QuerySearchCondition oldJoinCondition = joinCondition;
-        joinCondition = newJoinCondition;
-        if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.TABLE_JOINED__JOIN_CONDITION, oldJoinCondition, newJoinCondition);
-            if (msgs == null) msgs = notification; else msgs.add(notification);
-        }
-        return msgs;
-    }
+		QuerySearchCondition oldJoinCondition = joinCondition;
+		joinCondition = newJoinCondition;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.TABLE_JOINED__JOIN_CONDITION, oldJoinCondition, newJoinCondition);
+			if (msgs == null) {
+				msgs = notification;
+			} else {
+				msgs.add(notification);
+			}
+		}
+		return msgs;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setJoinCondition(QuerySearchCondition newJoinCondition) {
-        if (newJoinCondition != joinCondition) {
-            NotificationChain msgs = null;
-            if (joinCondition != null)
-                msgs = ((InternalEObject)joinCondition).eInverseRemove(this, SQLQueryModelPackage.QUERY_SEARCH_CONDITION__TABLE_JOINED, QuerySearchCondition.class, msgs);
-            if (newJoinCondition != null)
-                msgs = ((InternalEObject)newJoinCondition).eInverseAdd(this, SQLQueryModelPackage.QUERY_SEARCH_CONDITION__TABLE_JOINED, QuerySearchCondition.class, msgs);
-            msgs = basicSetJoinCondition(newJoinCondition, msgs);
-            if (msgs != null) msgs.dispatch();
-        }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.TABLE_JOINED__JOIN_CONDITION, newJoinCondition, newJoinCondition));
-    }
+	 * @generated
+	 */
+    @Override
+	public void setJoinCondition(QuerySearchCondition newJoinCondition) {
+		if (newJoinCondition != joinCondition) {
+			NotificationChain msgs = null;
+			if (joinCondition != null) {
+				msgs = ((InternalEObject)joinCondition).eInverseRemove(this, SQLQueryModelPackage.QUERY_SEARCH_CONDITION__TABLE_JOINED, QuerySearchCondition.class, msgs);
+			}
+			if (newJoinCondition != null) {
+				msgs = ((InternalEObject)newJoinCondition).eInverseAdd(this, SQLQueryModelPackage.QUERY_SEARCH_CONDITION__TABLE_JOINED, QuerySearchCondition.class, msgs);
+			}
+			msgs = basicSetJoinCondition(newJoinCondition, msgs);
+			if (msgs != null) {
+				msgs.dispatch();
+			}
+		}
+		else if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.TABLE_JOINED__JOIN_CONDITION, newJoinCondition, newJoinCondition));
+		}
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public TableReference getTableRefRight() {
-        return tableRefRight;
-    }
+	 * @generated
+	 */
+    @Override
+	public TableReference getTableRefRight() {
+		return tableRefRight;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public NotificationChain basicSetTableRefRight(TableReference newTableRefRight, NotificationChain msgs) {
-        TableReference oldTableRefRight = tableRefRight;
-        tableRefRight = newTableRefRight;
-        if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.TABLE_JOINED__TABLE_REF_RIGHT, oldTableRefRight, newTableRefRight);
-            if (msgs == null) msgs = notification; else msgs.add(notification);
-        }
-        return msgs;
-    }
+		TableReference oldTableRefRight = tableRefRight;
+		tableRefRight = newTableRefRight;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.TABLE_JOINED__TABLE_REF_RIGHT, oldTableRefRight, newTableRefRight);
+			if (msgs == null) {
+				msgs = notification;
+			} else {
+				msgs.add(notification);
+			}
+		}
+		return msgs;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setTableRefRight(TableReference newTableRefRight) {
-        if (newTableRefRight != tableRefRight) {
-            NotificationChain msgs = null;
-            if (tableRefRight != null)
-                msgs = ((InternalEObject)tableRefRight).eInverseRemove(this, SQLQueryModelPackage.TABLE_REFERENCE__TABLE_JOINED_RIGHT, TableReference.class, msgs);
-            if (newTableRefRight != null)
-                msgs = ((InternalEObject)newTableRefRight).eInverseAdd(this, SQLQueryModelPackage.TABLE_REFERENCE__TABLE_JOINED_RIGHT, TableReference.class, msgs);
-            msgs = basicSetTableRefRight(newTableRefRight, msgs);
-            if (msgs != null) msgs.dispatch();
-        }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.TABLE_JOINED__TABLE_REF_RIGHT, newTableRefRight, newTableRefRight));
-    }
+	 * @generated
+	 */
+    @Override
+	public void setTableRefRight(TableReference newTableRefRight) {
+		if (newTableRefRight != tableRefRight) {
+			NotificationChain msgs = null;
+			if (tableRefRight != null) {
+				msgs = ((InternalEObject)tableRefRight).eInverseRemove(this, SQLQueryModelPackage.TABLE_REFERENCE__TABLE_JOINED_RIGHT, TableReference.class, msgs);
+			}
+			if (newTableRefRight != null) {
+				msgs = ((InternalEObject)newTableRefRight).eInverseAdd(this, SQLQueryModelPackage.TABLE_REFERENCE__TABLE_JOINED_RIGHT, TableReference.class, msgs);
+			}
+			msgs = basicSetTableRefRight(newTableRefRight, msgs);
+			if (msgs != null) {
+				msgs.dispatch();
+			}
+		}
+		else if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.TABLE_JOINED__TABLE_REF_RIGHT, newTableRefRight, newTableRefRight));
+		}
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public TableReference getTableRefLeft() {
-        return tableRefLeft;
-    }
+	 * @generated
+	 */
+    @Override
+	public TableReference getTableRefLeft() {
+		return tableRefLeft;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public NotificationChain basicSetTableRefLeft(TableReference newTableRefLeft, NotificationChain msgs) {
-        TableReference oldTableRefLeft = tableRefLeft;
-        tableRefLeft = newTableRefLeft;
-        if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.TABLE_JOINED__TABLE_REF_LEFT, oldTableRefLeft, newTableRefLeft);
-            if (msgs == null) msgs = notification; else msgs.add(notification);
-        }
-        return msgs;
-    }
+		TableReference oldTableRefLeft = tableRefLeft;
+		tableRefLeft = newTableRefLeft;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.TABLE_JOINED__TABLE_REF_LEFT, oldTableRefLeft, newTableRefLeft);
+			if (msgs == null) {
+				msgs = notification;
+			} else {
+				msgs.add(notification);
+			}
+		}
+		return msgs;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setTableRefLeft(TableReference newTableRefLeft) {
-        if (newTableRefLeft != tableRefLeft) {
-            NotificationChain msgs = null;
-            if (tableRefLeft != null)
-                msgs = ((InternalEObject)tableRefLeft).eInverseRemove(this, SQLQueryModelPackage.TABLE_REFERENCE__TABLE_JOINED_LEFT, TableReference.class, msgs);
-            if (newTableRefLeft != null)
-                msgs = ((InternalEObject)newTableRefLeft).eInverseAdd(this, SQLQueryModelPackage.TABLE_REFERENCE__TABLE_JOINED_LEFT, TableReference.class, msgs);
-            msgs = basicSetTableRefLeft(newTableRefLeft, msgs);
-            if (msgs != null) msgs.dispatch();
-        }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.TABLE_JOINED__TABLE_REF_LEFT, newTableRefLeft, newTableRefLeft));
-    }
+	 * @generated
+	 */
+    @Override
+	public void setTableRefLeft(TableReference newTableRefLeft) {
+		if (newTableRefLeft != tableRefLeft) {
+			NotificationChain msgs = null;
+			if (tableRefLeft != null) {
+				msgs = ((InternalEObject)tableRefLeft).eInverseRemove(this, SQLQueryModelPackage.TABLE_REFERENCE__TABLE_JOINED_LEFT, TableReference.class, msgs);
+			}
+			if (newTableRefLeft != null) {
+				msgs = ((InternalEObject)newTableRefLeft).eInverseAdd(this, SQLQueryModelPackage.TABLE_REFERENCE__TABLE_JOINED_LEFT, TableReference.class, msgs);
+			}
+			msgs = basicSetTableRefLeft(newTableRefLeft, msgs);
+			if (msgs != null) {
+				msgs.dispatch();
+			}
+		}
+		else if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.TABLE_JOINED__TABLE_REF_LEFT, newTableRefLeft, newTableRefLeft));
+		}
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case SQLQueryModelPackage.TABLE_JOINED__JOIN_CONDITION:
-                if (joinCondition != null)
-                    msgs = ((InternalEObject)joinCondition).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLQueryModelPackage.TABLE_JOINED__JOIN_CONDITION, null, msgs);
-                return basicSetJoinCondition((QuerySearchCondition)otherEnd, msgs);
-            case SQLQueryModelPackage.TABLE_JOINED__TABLE_REF_RIGHT:
-                if (tableRefRight != null)
-                    msgs = ((InternalEObject)tableRefRight).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLQueryModelPackage.TABLE_JOINED__TABLE_REF_RIGHT, null, msgs);
-                return basicSetTableRefRight((TableReference)otherEnd, msgs);
-            case SQLQueryModelPackage.TABLE_JOINED__TABLE_REF_LEFT:
-                if (tableRefLeft != null)
-                    msgs = ((InternalEObject)tableRefLeft).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLQueryModelPackage.TABLE_JOINED__TABLE_REF_LEFT, null, msgs);
-                return basicSetTableRefLeft((TableReference)otherEnd, msgs);
-        }
-        return super.eInverseAdd(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case SQLQueryModelPackage.TABLE_JOINED__JOIN_CONDITION:
+				if (joinCondition != null) {
+					msgs = ((InternalEObject)joinCondition).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLQueryModelPackage.TABLE_JOINED__JOIN_CONDITION, null, msgs);
+				}
+				return basicSetJoinCondition((QuerySearchCondition)otherEnd, msgs);
+			case SQLQueryModelPackage.TABLE_JOINED__TABLE_REF_RIGHT:
+				if (tableRefRight != null) {
+					msgs = ((InternalEObject)tableRefRight).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLQueryModelPackage.TABLE_JOINED__TABLE_REF_RIGHT, null, msgs);
+				}
+				return basicSetTableRefRight((TableReference)otherEnd, msgs);
+			case SQLQueryModelPackage.TABLE_JOINED__TABLE_REF_LEFT:
+				if (tableRefLeft != null) {
+					msgs = ((InternalEObject)tableRefLeft).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLQueryModelPackage.TABLE_JOINED__TABLE_REF_LEFT, null, msgs);
+				}
+				return basicSetTableRefLeft((TableReference)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case SQLQueryModelPackage.TABLE_JOINED__JOIN_CONDITION:
-                return basicSetJoinCondition(null, msgs);
-            case SQLQueryModelPackage.TABLE_JOINED__TABLE_REF_RIGHT:
-                return basicSetTableRefRight(null, msgs);
-            case SQLQueryModelPackage.TABLE_JOINED__TABLE_REF_LEFT:
-                return basicSetTableRefLeft(null, msgs);
-        }
-        return super.eInverseRemove(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case SQLQueryModelPackage.TABLE_JOINED__JOIN_CONDITION:
+				return basicSetJoinCondition(null, msgs);
+			case SQLQueryModelPackage.TABLE_JOINED__TABLE_REF_RIGHT:
+				return basicSetTableRefRight(null, msgs);
+			case SQLQueryModelPackage.TABLE_JOINED__TABLE_REF_LEFT:
+				return basicSetTableRefLeft(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case SQLQueryModelPackage.TABLE_JOINED__JOIN_OPERATOR:
-                return getJoinOperator();
-            case SQLQueryModelPackage.TABLE_JOINED__JOIN_CONDITION:
-                return getJoinCondition();
-            case SQLQueryModelPackage.TABLE_JOINED__TABLE_REF_RIGHT:
-                return getTableRefRight();
-            case SQLQueryModelPackage.TABLE_JOINED__TABLE_REF_LEFT:
-                return getTableRefLeft();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case SQLQueryModelPackage.TABLE_JOINED__JOIN_OPERATOR:
+				return getJoinOperator();
+			case SQLQueryModelPackage.TABLE_JOINED__JOIN_CONDITION:
+				return getJoinCondition();
+			case SQLQueryModelPackage.TABLE_JOINED__TABLE_REF_RIGHT:
+				return getTableRefRight();
+			case SQLQueryModelPackage.TABLE_JOINED__TABLE_REF_LEFT:
+				return getTableRefLeft();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case SQLQueryModelPackage.TABLE_JOINED__JOIN_OPERATOR:
-                setJoinOperator((TableJoinedOperator)newValue);
-                return;
-            case SQLQueryModelPackage.TABLE_JOINED__JOIN_CONDITION:
-                setJoinCondition((QuerySearchCondition)newValue);
-                return;
-            case SQLQueryModelPackage.TABLE_JOINED__TABLE_REF_RIGHT:
-                setTableRefRight((TableReference)newValue);
-                return;
-            case SQLQueryModelPackage.TABLE_JOINED__TABLE_REF_LEFT:
-                setTableRefLeft((TableReference)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case SQLQueryModelPackage.TABLE_JOINED__JOIN_OPERATOR:
+				setJoinOperator((TableJoinedOperator)newValue);
+				return;
+			case SQLQueryModelPackage.TABLE_JOINED__JOIN_CONDITION:
+				setJoinCondition((QuerySearchCondition)newValue);
+				return;
+			case SQLQueryModelPackage.TABLE_JOINED__TABLE_REF_RIGHT:
+				setTableRefRight((TableReference)newValue);
+				return;
+			case SQLQueryModelPackage.TABLE_JOINED__TABLE_REF_LEFT:
+				setTableRefLeft((TableReference)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public void eUnset(int featureID) {
-        switch (featureID) {
-            case SQLQueryModelPackage.TABLE_JOINED__JOIN_OPERATOR:
-                setJoinOperator(JOIN_OPERATOR_EDEFAULT);
-                return;
-            case SQLQueryModelPackage.TABLE_JOINED__JOIN_CONDITION:
-                setJoinCondition((QuerySearchCondition)null);
-                return;
-            case SQLQueryModelPackage.TABLE_JOINED__TABLE_REF_RIGHT:
-                setTableRefRight((TableReference)null);
-                return;
-            case SQLQueryModelPackage.TABLE_JOINED__TABLE_REF_LEFT:
-                setTableRefLeft((TableReference)null);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case SQLQueryModelPackage.TABLE_JOINED__JOIN_OPERATOR:
+				setJoinOperator(JOIN_OPERATOR_EDEFAULT);
+				return;
+			case SQLQueryModelPackage.TABLE_JOINED__JOIN_CONDITION:
+				setJoinCondition((QuerySearchCondition)null);
+				return;
+			case SQLQueryModelPackage.TABLE_JOINED__TABLE_REF_RIGHT:
+				setTableRefRight((TableReference)null);
+				return;
+			case SQLQueryModelPackage.TABLE_JOINED__TABLE_REF_LEFT:
+				setTableRefLeft((TableReference)null);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case SQLQueryModelPackage.TABLE_JOINED__JOIN_OPERATOR:
-                return joinOperator != JOIN_OPERATOR_EDEFAULT;
-            case SQLQueryModelPackage.TABLE_JOINED__JOIN_CONDITION:
-                return joinCondition != null;
-            case SQLQueryModelPackage.TABLE_JOINED__TABLE_REF_RIGHT:
-                return tableRefRight != null;
-            case SQLQueryModelPackage.TABLE_JOINED__TABLE_REF_LEFT:
-                return tableRefLeft != null;
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case SQLQueryModelPackage.TABLE_JOINED__JOIN_OPERATOR:
+				return joinOperator != JOIN_OPERATOR_EDEFAULT;
+			case SQLQueryModelPackage.TABLE_JOINED__JOIN_CONDITION:
+				return joinCondition != null;
+			case SQLQueryModelPackage.TABLE_JOINED__TABLE_REF_RIGHT:
+				return tableRefRight != null;
+			case SQLQueryModelPackage.TABLE_JOINED__TABLE_REF_LEFT:
+				return tableRefLeft != null;
+		}
+		return super.eIsSet(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public String toString() {
-        if (eIsProxy()) return super.toString();
+	 * @generated
+	 */
+    @Override
+	public String toString() {
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (joinOperator: ");
-        result.append(joinOperator);
-        result.append(')');
-        return result.toString();
-    }
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (joinOperator: ");
+		result.append(joinOperator);
+		result.append(')');
+		return result.toString();
+	}
 
 } //SQLTableJoinedImpl

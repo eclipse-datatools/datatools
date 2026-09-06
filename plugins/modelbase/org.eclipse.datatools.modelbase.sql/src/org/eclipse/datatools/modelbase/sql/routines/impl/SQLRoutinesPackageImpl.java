@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -156,20 +156,10 @@ public class SQLRoutinesPackageImpl extends EPackageImpl implements SQLRoutinesP
 	private static boolean isInited = false;
 
 	/**
-	 * Creates, registers, and initializes the <b>Package</b> for this
-	 * model, and for any others upon which it depends.  Simple
-	 * dependencies are satisfied by calling this method on all
-	 * dependent packages before doing anything else.  This method drives
-	 * initialization for interdependent packages directly, in parallel
-	 * with this package, itself.
-	 * <p>Of this package and its interdependencies, all packages which
-	 * have not yet been registered by their URI values are first created
-	 * and registered.  The packages are then initialized in two steps:
-	 * meta-model objects for all of the packages are created before any
-	 * are initialized, since one package's meta-model objects may refer to
-	 * those of another.
-	 * <p>Invocation of this method will not affect any packages that have
-	 * already been initialized.
+	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
+	 *
+	 * <p>This method is used to initialize {@link SQLRoutinesPackage#eINSTANCE} when that field is accessed.
+	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #eNS_URI
@@ -178,10 +168,13 @@ public class SQLRoutinesPackageImpl extends EPackageImpl implements SQLRoutinesP
 	 * @generated
 	 */
 	public static SQLRoutinesPackage init() {
-		if (isInited) return (SQLRoutinesPackage)EPackage.Registry.INSTANCE.getEPackage(SQLRoutinesPackage.eNS_URI);
+		if (isInited) {
+			return (SQLRoutinesPackage)EPackage.Registry.INSTANCE.getEPackage(SQLRoutinesPackage.eNS_URI);
+		}
 
 		// Obtain or create and register package
-		SQLRoutinesPackageImpl theSQLRoutinesPackage = (SQLRoutinesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(eNS_URI) instanceof SQLRoutinesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(eNS_URI) : new SQLRoutinesPackageImpl());
+		Object registeredSQLRoutinesPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		SQLRoutinesPackageImpl theSQLRoutinesPackage = registeredSQLRoutinesPackage instanceof SQLRoutinesPackageImpl ? (SQLRoutinesPackageImpl)registeredSQLRoutinesPackage : new SQLRoutinesPackageImpl();
 
 		isInited = true;
 
@@ -189,13 +182,20 @@ public class SQLRoutinesPackageImpl extends EPackageImpl implements SQLRoutinesP
 		EcorePackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
-		SQLSchemaPackageImpl theSQLSchemaPackage = (SQLSchemaPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SQLSchemaPackage.eNS_URI) instanceof SQLSchemaPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SQLSchemaPackage.eNS_URI) : SQLSchemaPackage.eINSTANCE);
-		SQLConstraintsPackageImpl theSQLConstraintsPackage = (SQLConstraintsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SQLConstraintsPackage.eNS_URI) instanceof SQLConstraintsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SQLConstraintsPackage.eNS_URI) : SQLConstraintsPackage.eINSTANCE);
-		SQLDataTypesPackageImpl theSQLDataTypesPackage = (SQLDataTypesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SQLDataTypesPackage.eNS_URI) instanceof SQLDataTypesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SQLDataTypesPackage.eNS_URI) : SQLDataTypesPackage.eINSTANCE);
-		SQLExpressionsPackageImpl theSQLExpressionsPackage = (SQLExpressionsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SQLExpressionsPackage.eNS_URI) instanceof SQLExpressionsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SQLExpressionsPackage.eNS_URI) : SQLExpressionsPackage.eINSTANCE);
-		SQLStatementsPackageImpl theSQLStatementsPackage = (SQLStatementsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SQLStatementsPackage.eNS_URI) instanceof SQLStatementsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SQLStatementsPackage.eNS_URI) : SQLStatementsPackage.eINSTANCE);
-		SQLTablesPackageImpl theSQLTablesPackage = (SQLTablesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SQLTablesPackage.eNS_URI) instanceof SQLTablesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SQLTablesPackage.eNS_URI) : SQLTablesPackage.eINSTANCE);
-		SQLAccessControlPackageImpl theSQLAccessControlPackage = (SQLAccessControlPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SQLAccessControlPackage.eNS_URI) instanceof SQLAccessControlPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SQLAccessControlPackage.eNS_URI) : SQLAccessControlPackage.eINSTANCE);
+		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(SQLSchemaPackage.eNS_URI);
+		SQLSchemaPackageImpl theSQLSchemaPackage = (SQLSchemaPackageImpl)(registeredPackage instanceof SQLSchemaPackageImpl ? registeredPackage : SQLSchemaPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(SQLConstraintsPackage.eNS_URI);
+		SQLConstraintsPackageImpl theSQLConstraintsPackage = (SQLConstraintsPackageImpl)(registeredPackage instanceof SQLConstraintsPackageImpl ? registeredPackage : SQLConstraintsPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(SQLDataTypesPackage.eNS_URI);
+		SQLDataTypesPackageImpl theSQLDataTypesPackage = (SQLDataTypesPackageImpl)(registeredPackage instanceof SQLDataTypesPackageImpl ? registeredPackage : SQLDataTypesPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(SQLExpressionsPackage.eNS_URI);
+		SQLExpressionsPackageImpl theSQLExpressionsPackage = (SQLExpressionsPackageImpl)(registeredPackage instanceof SQLExpressionsPackageImpl ? registeredPackage : SQLExpressionsPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(SQLStatementsPackage.eNS_URI);
+		SQLStatementsPackageImpl theSQLStatementsPackage = (SQLStatementsPackageImpl)(registeredPackage instanceof SQLStatementsPackageImpl ? registeredPackage : SQLStatementsPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(SQLTablesPackage.eNS_URI);
+		SQLTablesPackageImpl theSQLTablesPackage = (SQLTablesPackageImpl)(registeredPackage instanceof SQLTablesPackageImpl ? registeredPackage : SQLTablesPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(SQLAccessControlPackage.eNS_URI);
+		SQLAccessControlPackageImpl theSQLAccessControlPackage = (SQLAccessControlPackageImpl)(registeredPackage instanceof SQLAccessControlPackageImpl ? registeredPackage : SQLAccessControlPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theSQLRoutinesPackage.createPackageContents();
@@ -220,6 +220,8 @@ public class SQLRoutinesPackageImpl extends EPackageImpl implements SQLRoutinesP
 		// Mark meta-data to indicate it can't be changed
 		theSQLRoutinesPackage.freeze();
 
+		// Update the registry and return the package
+		EPackage.Registry.INSTANCE.put(SQLRoutinesPackage.eNS_URI, theSQLRoutinesPackage);
 		return theSQLRoutinesPackage;
 	}
 
@@ -228,6 +230,7 @@ public class SQLRoutinesPackageImpl extends EPackageImpl implements SQLRoutinesP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getRoutine() {
 		return routineEClass;
 	}
@@ -237,6 +240,7 @@ public class SQLRoutinesPackageImpl extends EPackageImpl implements SQLRoutinesP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getRoutine_SpecificName() {
 		return (EAttribute)routineEClass.getEStructuralFeatures().get(0);
 	}
@@ -246,6 +250,7 @@ public class SQLRoutinesPackageImpl extends EPackageImpl implements SQLRoutinesP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getRoutine_Language() {
 		return (EAttribute)routineEClass.getEStructuralFeatures().get(1);
 	}
@@ -255,6 +260,7 @@ public class SQLRoutinesPackageImpl extends EPackageImpl implements SQLRoutinesP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getRoutine_ParameterStyle() {
 		return (EAttribute)routineEClass.getEStructuralFeatures().get(2);
 	}
@@ -264,6 +270,7 @@ public class SQLRoutinesPackageImpl extends EPackageImpl implements SQLRoutinesP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getRoutine_Deterministic() {
 		return (EAttribute)routineEClass.getEStructuralFeatures().get(3);
 	}
@@ -273,6 +280,7 @@ public class SQLRoutinesPackageImpl extends EPackageImpl implements SQLRoutinesP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getRoutine_SqlDataAccess() {
 		return (EAttribute)routineEClass.getEStructuralFeatures().get(4);
 	}
@@ -282,6 +290,7 @@ public class SQLRoutinesPackageImpl extends EPackageImpl implements SQLRoutinesP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getRoutine_CreationTS() {
 		return (EAttribute)routineEClass.getEStructuralFeatures().get(5);
 	}
@@ -291,6 +300,7 @@ public class SQLRoutinesPackageImpl extends EPackageImpl implements SQLRoutinesP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getRoutine_LastAlteredTS() {
 		return (EAttribute)routineEClass.getEStructuralFeatures().get(6);
 	}
@@ -300,6 +310,7 @@ public class SQLRoutinesPackageImpl extends EPackageImpl implements SQLRoutinesP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getRoutine_AuthorizationID() {
 		return (EAttribute)routineEClass.getEStructuralFeatures().get(7);
 	}
@@ -309,6 +320,7 @@ public class SQLRoutinesPackageImpl extends EPackageImpl implements SQLRoutinesP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getRoutine_Security() {
 		return (EAttribute)routineEClass.getEStructuralFeatures().get(8);
 	}
@@ -318,6 +330,7 @@ public class SQLRoutinesPackageImpl extends EPackageImpl implements SQLRoutinesP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getRoutine_ExternalName() {
 		return (EAttribute)routineEClass.getEStructuralFeatures().get(9);
 	}
@@ -327,6 +340,7 @@ public class SQLRoutinesPackageImpl extends EPackageImpl implements SQLRoutinesP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getRoutine_Parameters() {
 		return (EReference)routineEClass.getEStructuralFeatures().get(10);
 	}
@@ -336,6 +350,7 @@ public class SQLRoutinesPackageImpl extends EPackageImpl implements SQLRoutinesP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getRoutine_Source() {
 		return (EReference)routineEClass.getEStructuralFeatures().get(11);
 	}
@@ -345,6 +360,7 @@ public class SQLRoutinesPackageImpl extends EPackageImpl implements SQLRoutinesP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getRoutine_Schema() {
 		return (EReference)routineEClass.getEStructuralFeatures().get(12);
 	}
@@ -354,6 +370,7 @@ public class SQLRoutinesPackageImpl extends EPackageImpl implements SQLRoutinesP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getSource() {
 		return sourceEClass;
 	}
@@ -363,6 +380,7 @@ public class SQLRoutinesPackageImpl extends EPackageImpl implements SQLRoutinesP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getSource_Body() {
 		return (EAttribute)sourceEClass.getEStructuralFeatures().get(0);
 	}
@@ -372,6 +390,7 @@ public class SQLRoutinesPackageImpl extends EPackageImpl implements SQLRoutinesP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getParameter() {
 		return parameterEClass;
 	}
@@ -381,6 +400,7 @@ public class SQLRoutinesPackageImpl extends EPackageImpl implements SQLRoutinesP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getParameter_Mode() {
 		return (EAttribute)parameterEClass.getEStructuralFeatures().get(0);
 	}
@@ -390,6 +410,7 @@ public class SQLRoutinesPackageImpl extends EPackageImpl implements SQLRoutinesP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getParameter_Locator() {
 		return (EAttribute)parameterEClass.getEStructuralFeatures().get(1);
 	}
@@ -399,6 +420,7 @@ public class SQLRoutinesPackageImpl extends EPackageImpl implements SQLRoutinesP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getParameter_Routine() {
 		return (EReference)parameterEClass.getEStructuralFeatures().get(2);
 	}
@@ -408,6 +430,7 @@ public class SQLRoutinesPackageImpl extends EPackageImpl implements SQLRoutinesP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getParameter_StringTypeOption() {
 		return (EReference)parameterEClass.getEStructuralFeatures().get(3);
 	}
@@ -417,6 +440,7 @@ public class SQLRoutinesPackageImpl extends EPackageImpl implements SQLRoutinesP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getProcedure() {
 		return procedureEClass;
 	}
@@ -426,6 +450,7 @@ public class SQLRoutinesPackageImpl extends EPackageImpl implements SQLRoutinesP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getProcedure_MaxResultSets() {
 		return (EAttribute)procedureEClass.getEStructuralFeatures().get(0);
 	}
@@ -435,6 +460,7 @@ public class SQLRoutinesPackageImpl extends EPackageImpl implements SQLRoutinesP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getProcedure_OldSavePoint() {
 		return (EAttribute)procedureEClass.getEStructuralFeatures().get(1);
 	}
@@ -444,6 +470,7 @@ public class SQLRoutinesPackageImpl extends EPackageImpl implements SQLRoutinesP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getProcedure_ResultSet() {
 		return (EReference)procedureEClass.getEStructuralFeatures().get(2);
 	}
@@ -453,6 +480,7 @@ public class SQLRoutinesPackageImpl extends EPackageImpl implements SQLRoutinesP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getFunction() {
 		return functionEClass;
 	}
@@ -462,6 +490,7 @@ public class SQLRoutinesPackageImpl extends EPackageImpl implements SQLRoutinesP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getFunction_NullCall() {
 		return (EAttribute)functionEClass.getEStructuralFeatures().get(0);
 	}
@@ -471,6 +500,7 @@ public class SQLRoutinesPackageImpl extends EPackageImpl implements SQLRoutinesP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getFunction_Static() {
 		return (EAttribute)functionEClass.getEStructuralFeatures().get(1);
 	}
@@ -480,6 +510,7 @@ public class SQLRoutinesPackageImpl extends EPackageImpl implements SQLRoutinesP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getFunction_TransformGroup() {
 		return (EAttribute)functionEClass.getEStructuralFeatures().get(2);
 	}
@@ -489,6 +520,7 @@ public class SQLRoutinesPackageImpl extends EPackageImpl implements SQLRoutinesP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getFunction_TypePreserving() {
 		return (EAttribute)functionEClass.getEStructuralFeatures().get(3);
 	}
@@ -498,6 +530,7 @@ public class SQLRoutinesPackageImpl extends EPackageImpl implements SQLRoutinesP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getFunction_Mutator() {
 		return (EAttribute)functionEClass.getEStructuralFeatures().get(4);
 	}
@@ -507,6 +540,7 @@ public class SQLRoutinesPackageImpl extends EPackageImpl implements SQLRoutinesP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getFunction_ReturnTable() {
 		return (EReference)functionEClass.getEStructuralFeatures().get(5);
 	}
@@ -516,6 +550,7 @@ public class SQLRoutinesPackageImpl extends EPackageImpl implements SQLRoutinesP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getFunction_ReturnScalar() {
 		return (EReference)functionEClass.getEStructuralFeatures().get(6);
 	}
@@ -525,6 +560,7 @@ public class SQLRoutinesPackageImpl extends EPackageImpl implements SQLRoutinesP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getFunction_ReturnCast() {
 		return (EReference)functionEClass.getEStructuralFeatures().get(7);
 	}
@@ -534,6 +570,7 @@ public class SQLRoutinesPackageImpl extends EPackageImpl implements SQLRoutinesP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getRoutineResultTable() {
 		return routineResultTableEClass;
 	}
@@ -543,6 +580,7 @@ public class SQLRoutinesPackageImpl extends EPackageImpl implements SQLRoutinesP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getMethod() {
 		return methodEClass;
 	}
@@ -552,6 +590,7 @@ public class SQLRoutinesPackageImpl extends EPackageImpl implements SQLRoutinesP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getMethod_Overriding() {
 		return (EAttribute)methodEClass.getEStructuralFeatures().get(0);
 	}
@@ -561,6 +600,7 @@ public class SQLRoutinesPackageImpl extends EPackageImpl implements SQLRoutinesP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getMethod_Constructor() {
 		return (EAttribute)methodEClass.getEStructuralFeatures().get(1);
 	}
@@ -570,6 +610,7 @@ public class SQLRoutinesPackageImpl extends EPackageImpl implements SQLRoutinesP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getUserDefinedFunction() {
 		return userDefinedFunctionEClass;
 	}
@@ -579,6 +620,7 @@ public class SQLRoutinesPackageImpl extends EPackageImpl implements SQLRoutinesP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getBuiltInFunction() {
 		return builtInFunctionEClass;
 	}
@@ -588,6 +630,7 @@ public class SQLRoutinesPackageImpl extends EPackageImpl implements SQLRoutinesP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EEnum getDataAccess() {
 		return dataAccessEEnum;
 	}
@@ -597,6 +640,7 @@ public class SQLRoutinesPackageImpl extends EPackageImpl implements SQLRoutinesP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EEnum getParameterMode() {
 		return parameterModeEEnum;
 	}
@@ -606,6 +650,7 @@ public class SQLRoutinesPackageImpl extends EPackageImpl implements SQLRoutinesP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SQLRoutinesFactory getSQLRoutinesFactory() {
 		return (SQLRoutinesFactory)getEFactoryInstance();
 	}
@@ -625,7 +670,9 @@ public class SQLRoutinesPackageImpl extends EPackageImpl implements SQLRoutinesP
 	 * @generated
 	 */
 	public void createPackageContents() {
-		if (isCreated) return;
+		if (isCreated) {
+			return;
+		}
 		isCreated = true;
 
 		// Create classes and their features
@@ -698,7 +745,9 @@ public class SQLRoutinesPackageImpl extends EPackageImpl implements SQLRoutinesP
 	 * @generated
 	 */
 	public void initializePackageContents() {
-		if (isInitialized) return;
+		if (isInitialized) {
+			return;
+		}
 		isInitialized = true;
 
 		// Initialize package
@@ -744,7 +793,7 @@ public class SQLRoutinesPackageImpl extends EPackageImpl implements SQLRoutinesP
 		initEClass(parameterEClass, Parameter.class, "Parameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getParameter_Mode(), this.getParameterMode(), "mode", null, 0, 1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getParameter_Locator(), ecorePackage.getEBoolean(), "locator", null, 0, 1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getParameter_Routine(), this.getRoutine(), this.getRoutine_Parameters(), "routine", null, 1, 1, Parameter.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getParameter_Routine(), this.getRoutine(), this.getRoutine_Parameters(), "routine", null, 0, 1, Parameter.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getParameter_StringTypeOption(), theSQLDataTypesPackage.getCharacterStringDataType(), null, "stringTypeOption", null, 0, 1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(procedureEClass, Procedure.class, "Procedure", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$

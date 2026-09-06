@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -22,17 +22,17 @@ import org.eclipse.emf.common.util.EList;
  * <!-- begin-model-doc -->
  * Reference: 5WD-02-Foundation-2002-12 4.17.4 Assertions,
  * 5WD-02-Foundation-2002-12 11.37 <assertion definition>
- * 
+ *
  * <!-- end-model-doc -->
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.constraints.Assertion#getSearchCondition <em>Search Condition</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.constraints.Assertion#getSchema <em>Schema</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.constraints.Assertion#getConstrainedTables <em>Constrained Tables</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.datatools.modelbase.sql.constraints.SQLConstraintsPackage#getAssertion()
  * @model

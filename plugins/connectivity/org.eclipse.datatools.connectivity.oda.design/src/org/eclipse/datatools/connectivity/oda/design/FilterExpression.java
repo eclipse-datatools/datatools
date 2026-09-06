@@ -8,7 +8,7 @@
  *
  * Contributors:
  *  Actuate Corporation - initial API and implementation
- *  
+ *
  *************************************************************************
  *
  * $Id: FilterExpression.java,v 1.1 2009/01/30 00:23:57 lchan Exp $
@@ -28,78 +28,76 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.FilterExpression#isNegatable <em>Negatable</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getFilterExpression()
- * @since 3.3 (DTP 1.8)
  * @model abstract="true"
  *        extendedMetaData="name='FilterExpression' kind='empty'"
  * @generated
  */
-public interface FilterExpression extends EObject
-{
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    String copyright = "Copyright (c) 2009 Actuate Corporation"; //$NON-NLS-1$
+public interface FilterExpression extends EObject {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	String copyright = "Copyright (c) 2005, 2010 Actuate Corporation"; //$NON-NLS-1$
 
-    /**
-     * Returns the value of the '<em><b>Negatable</b></em>' attribute.
-     * The default value is <code>"false"</code>.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * <!-- begin-model-doc -->
-     * Indicates whether the expression can be negated, i.e. applied with a NotExpression.  Default is false.
-     * <!-- end-model-doc -->
-     * @return the value of the '<em>Negatable</em>' attribute.
-     * @see #isSetNegatable()
-     * @see #unsetNegatable()
-     * @see #setNegatable(boolean)
-     * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getFilterExpression_Negatable()
-     * @model default="false" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
-     *        extendedMetaData="kind='attribute' name='negatable'"
-     * @generated
-     */
-    boolean isNegatable();
+	/**
+	 * Returns the value of the '<em><b>Negatable</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Indicates whether the expression can be negated, i.e. applied with a NotExpression.  Default is false.
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Negatable</em>' attribute.
+	 * @see #isSetNegatable()
+	 * @see #unsetNegatable()
+	 * @see #setNegatable(boolean)
+	 * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getFilterExpression_Negatable()
+	 * @model default="false" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
+	 *        extendedMetaData="kind='attribute' name='negatable'"
+	 * @generated
+	 */
+	boolean isNegatable();
 
-    /**
-     * Sets the value of the '{@link org.eclipse.datatools.connectivity.oda.design.FilterExpression#isNegatable <em>Negatable</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Negatable</em>' attribute.
-     * @see #isSetNegatable()
-     * @see #unsetNegatable()
-     * @see #isNegatable()
-     * @generated
-     */
-    void setNegatable( boolean value );
+	/**
+	 * Sets the value of the '{@link org.eclipse.datatools.connectivity.oda.design.FilterExpression#isNegatable <em>Negatable</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Negatable</em>' attribute.
+	 * @see #isSetNegatable()
+	 * @see #unsetNegatable()
+	 * @see #isNegatable()
+	 * @generated
+	 */
+	void setNegatable(boolean value);
 
-    /**
-     * Unsets the value of the '{@link org.eclipse.datatools.connectivity.oda.design.FilterExpression#isNegatable <em>Negatable</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #isSetNegatable()
-     * @see #isNegatable()
-     * @see #setNegatable(boolean)
-     * @generated
-     */
-    void unsetNegatable();
+	/**
+	 * Unsets the value of the '{@link org.eclipse.datatools.connectivity.oda.design.FilterExpression#isNegatable <em>Negatable</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetNegatable()
+	 * @see #isNegatable()
+	 * @see #setNegatable(boolean)
+	 * @generated
+	 */
+	void unsetNegatable();
 
-    /**
-     * Returns whether the value of the '{@link org.eclipse.datatools.connectivity.oda.design.FilterExpression#isNegatable <em>Negatable</em>}' attribute is set.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return whether the value of the '<em>Negatable</em>' attribute is set.
-     * @see #unsetNegatable()
-     * @see #isNegatable()
-     * @see #setNegatable(boolean)
-     * @generated
-     */
-    boolean isSetNegatable();
+	/**
+	 * Returns whether the value of the '{@link org.eclipse.datatools.connectivity.oda.design.FilterExpression#isNegatable <em>Negatable</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Negatable</em>' attribute is set.
+	 * @see #unsetNegatable()
+	 * @see #isNegatable()
+	 * @see #setNegatable(boolean)
+	 * @generated
+	 */
+	boolean isSetNegatable();
 
 } // FilterExpression

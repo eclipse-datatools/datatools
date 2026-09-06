@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -40,6 +40,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.tables.impl.TriggerImpl#getSchema <em>Schema</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.tables.impl.TriggerImpl#getSubjectTable <em>Subject Table</em>}</li>
@@ -57,7 +58,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.eclipse.datatools.modelbase.sql.tables.impl.TriggerImpl#getOldTable <em>Old Table</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.tables.impl.TriggerImpl#getNewTable <em>New Table</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -326,6 +326,7 @@ public class TriggerImpl extends SQLObjectImpl implements Trigger {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return SQLTablesPackage.Literals.TRIGGER;
 	}
@@ -335,13 +336,15 @@ public class TriggerImpl extends SQLObjectImpl implements Trigger {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Schema getSchema() {
 		if (schema != null && schema.eIsProxy()) {
 			InternalEObject oldSchema = (InternalEObject)schema;
 			schema = (Schema)eResolveProxy(oldSchema);
 			if (schema != oldSchema) {
-				if (eNotificationRequired())
+				if (eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SQLTablesPackage.TRIGGER__SCHEMA, oldSchema, schema));
+				}
 			}
 		}
 		return schema;
@@ -366,7 +369,11 @@ public class TriggerImpl extends SQLObjectImpl implements Trigger {
 		schema = newSchema;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLTablesPackage.TRIGGER__SCHEMA, oldSchema, newSchema);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			if (msgs == null) {
+				msgs = notification;
+			} else {
+				msgs.add(notification);
+			}
 		}
 		return msgs;
 	}
@@ -376,18 +383,24 @@ public class TriggerImpl extends SQLObjectImpl implements Trigger {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSchema(Schema newSchema) {
 		if (newSchema != schema) {
 			NotificationChain msgs = null;
-			if (schema != null)
+			if (schema != null) {
 				msgs = ((InternalEObject)schema).eInverseRemove(this, SQLSchemaPackage.SCHEMA__TRIGGERS, Schema.class, msgs);
-			if (newSchema != null)
+			}
+			if (newSchema != null) {
 				msgs = ((InternalEObject)newSchema).eInverseAdd(this, SQLSchemaPackage.SCHEMA__TRIGGERS, Schema.class, msgs);
+			}
 			msgs = basicSetSchema(newSchema, msgs);
-			if (msgs != null) msgs.dispatch();
+			if (msgs != null) {
+				msgs.dispatch();
+			}
 		}
-		else if (eNotificationRequired())
+		else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLTablesPackage.TRIGGER__SCHEMA, newSchema, newSchema));
+		}
 	}
 
 	/**
@@ -395,13 +408,15 @@ public class TriggerImpl extends SQLObjectImpl implements Trigger {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Table getSubjectTable() {
 		if (subjectTable != null && subjectTable.eIsProxy()) {
 			InternalEObject oldSubjectTable = (InternalEObject)subjectTable;
 			subjectTable = (Table)eResolveProxy(oldSubjectTable);
 			if (subjectTable != oldSubjectTable) {
-				if (eNotificationRequired())
+				if (eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SQLTablesPackage.TRIGGER__SUBJECT_TABLE, oldSubjectTable, subjectTable));
+				}
 			}
 		}
 		return subjectTable;
@@ -426,7 +441,11 @@ public class TriggerImpl extends SQLObjectImpl implements Trigger {
 		subjectTable = newSubjectTable;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLTablesPackage.TRIGGER__SUBJECT_TABLE, oldSubjectTable, newSubjectTable);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			if (msgs == null) {
+				msgs = notification;
+			} else {
+				msgs.add(notification);
+			}
 		}
 		return msgs;
 	}
@@ -436,18 +455,24 @@ public class TriggerImpl extends SQLObjectImpl implements Trigger {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSubjectTable(Table newSubjectTable) {
 		if (newSubjectTable != subjectTable) {
 			NotificationChain msgs = null;
-			if (subjectTable != null)
+			if (subjectTable != null) {
 				msgs = ((InternalEObject)subjectTable).eInverseRemove(this, SQLTablesPackage.TABLE__TRIGGERS, Table.class, msgs);
-			if (newSubjectTable != null)
+			}
+			if (newSubjectTable != null) {
 				msgs = ((InternalEObject)newSubjectTable).eInverseAdd(this, SQLTablesPackage.TABLE__TRIGGERS, Table.class, msgs);
+			}
 			msgs = basicSetSubjectTable(newSubjectTable, msgs);
-			if (msgs != null) msgs.dispatch();
+			if (msgs != null) {
+				msgs.dispatch();
+			}
 		}
-		else if (eNotificationRequired())
+		else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLTablesPackage.TRIGGER__SUBJECT_TABLE, newSubjectTable, newSubjectTable));
+		}
 	}
 
 	/**
@@ -455,6 +480,7 @@ public class TriggerImpl extends SQLObjectImpl implements Trigger {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList getActionStatement() {
 		if (actionStatement == null) {
 			actionStatement = new EObjectContainmentEList(SQLStatement.class, this, SQLTablesPackage.TRIGGER__ACTION_STATEMENT);
@@ -467,6 +493,7 @@ public class TriggerImpl extends SQLObjectImpl implements Trigger {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList getTriggerColumn() {
 		if (triggerColumn == null) {
 			triggerColumn = new EObjectResolvingEList(Column.class, this, SQLTablesPackage.TRIGGER__TRIGGER_COLUMN);
@@ -479,6 +506,7 @@ public class TriggerImpl extends SQLObjectImpl implements Trigger {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ActionGranularityType getActionGranularity() {
 		return actionGranularity;
 	}
@@ -488,11 +516,13 @@ public class TriggerImpl extends SQLObjectImpl implements Trigger {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setActionGranularity(ActionGranularityType newActionGranularity) {
 		ActionGranularityType oldActionGranularity = actionGranularity;
 		actionGranularity = newActionGranularity == null ? ACTION_GRANULARITY_EDEFAULT : newActionGranularity;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLTablesPackage.TRIGGER__ACTION_GRANULARITY, oldActionGranularity, actionGranularity));
+		}
 	}
 
 	/**
@@ -500,6 +530,7 @@ public class TriggerImpl extends SQLObjectImpl implements Trigger {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SearchCondition getWhen() {
 		return when;
 	}
@@ -514,7 +545,11 @@ public class TriggerImpl extends SQLObjectImpl implements Trigger {
 		when = newWhen;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLTablesPackage.TRIGGER__WHEN, oldWhen, newWhen);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			if (msgs == null) {
+				msgs = notification;
+			} else {
+				msgs.add(notification);
+			}
 		}
 		return msgs;
 	}
@@ -524,18 +559,24 @@ public class TriggerImpl extends SQLObjectImpl implements Trigger {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setWhen(SearchCondition newWhen) {
 		if (newWhen != when) {
 			NotificationChain msgs = null;
-			if (when != null)
+			if (when != null) {
 				msgs = ((InternalEObject)when).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLTablesPackage.TRIGGER__WHEN, null, msgs);
-			if (newWhen != null)
+			}
+			if (newWhen != null) {
 				msgs = ((InternalEObject)newWhen).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SQLTablesPackage.TRIGGER__WHEN, null, msgs);
+			}
 			msgs = basicSetWhen(newWhen, msgs);
-			if (msgs != null) msgs.dispatch();
+			if (msgs != null) {
+				msgs.dispatch();
+			}
 		}
-		else if (eNotificationRequired())
+		else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLTablesPackage.TRIGGER__WHEN, newWhen, newWhen));
+		}
 	}
 
 	/**
@@ -543,6 +584,7 @@ public class TriggerImpl extends SQLObjectImpl implements Trigger {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Date getTimeStamp() {
 		return timeStamp;
 	}
@@ -552,6 +594,7 @@ public class TriggerImpl extends SQLObjectImpl implements Trigger {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ActionTimeType getActionTime() {
 		return actionTime;
 	}
@@ -561,11 +604,13 @@ public class TriggerImpl extends SQLObjectImpl implements Trigger {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setActionTime(ActionTimeType newActionTime) {
 		ActionTimeType oldActionTime = actionTime;
 		actionTime = newActionTime == null ? ACTION_TIME_EDEFAULT : newActionTime;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLTablesPackage.TRIGGER__ACTION_TIME, oldActionTime, actionTime));
+		}
 	}
 
 	/**
@@ -573,6 +618,7 @@ public class TriggerImpl extends SQLObjectImpl implements Trigger {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isUpdateType() {
 		return updateType;
 	}
@@ -582,11 +628,13 @@ public class TriggerImpl extends SQLObjectImpl implements Trigger {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setUpdateType(boolean newUpdateType) {
 		boolean oldUpdateType = updateType;
 		updateType = newUpdateType;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLTablesPackage.TRIGGER__UPDATE_TYPE, oldUpdateType, updateType));
+		}
 	}
 
 	/**
@@ -594,6 +642,7 @@ public class TriggerImpl extends SQLObjectImpl implements Trigger {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isInsertType() {
 		return insertType;
 	}
@@ -603,11 +652,13 @@ public class TriggerImpl extends SQLObjectImpl implements Trigger {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setInsertType(boolean newInsertType) {
 		boolean oldInsertType = insertType;
 		insertType = newInsertType;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLTablesPackage.TRIGGER__INSERT_TYPE, oldInsertType, insertType));
+		}
 	}
 
 	/**
@@ -615,6 +666,7 @@ public class TriggerImpl extends SQLObjectImpl implements Trigger {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isDeleteType() {
 		return deleteType;
 	}
@@ -624,11 +676,13 @@ public class TriggerImpl extends SQLObjectImpl implements Trigger {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDeleteType(boolean newDeleteType) {
 		boolean oldDeleteType = deleteType;
 		deleteType = newDeleteType;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLTablesPackage.TRIGGER__DELETE_TYPE, oldDeleteType, deleteType));
+		}
 	}
 
 	/**
@@ -636,6 +690,7 @@ public class TriggerImpl extends SQLObjectImpl implements Trigger {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getOldRow() {
 		return oldRow;
 	}
@@ -645,11 +700,13 @@ public class TriggerImpl extends SQLObjectImpl implements Trigger {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOldRow(String newOldRow) {
 		String oldOldRow = oldRow;
 		oldRow = newOldRow;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLTablesPackage.TRIGGER__OLD_ROW, oldOldRow, oldRow));
+		}
 	}
 
 	/**
@@ -657,6 +714,7 @@ public class TriggerImpl extends SQLObjectImpl implements Trigger {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getNewRow() {
 		return newRow;
 	}
@@ -666,11 +724,13 @@ public class TriggerImpl extends SQLObjectImpl implements Trigger {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setNewRow(String newNewRow) {
 		String oldNewRow = newRow;
 		newRow = newNewRow;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLTablesPackage.TRIGGER__NEW_ROW, oldNewRow, newRow));
+		}
 	}
 
 	/**
@@ -678,6 +738,7 @@ public class TriggerImpl extends SQLObjectImpl implements Trigger {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getOldTable() {
 		return oldTable;
 	}
@@ -687,11 +748,13 @@ public class TriggerImpl extends SQLObjectImpl implements Trigger {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOldTable(String newOldTable) {
 		String oldOldTable = oldTable;
 		oldTable = newOldTable;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLTablesPackage.TRIGGER__OLD_TABLE, oldOldTable, oldTable));
+		}
 	}
 
 	/**
@@ -699,6 +762,7 @@ public class TriggerImpl extends SQLObjectImpl implements Trigger {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getNewTable() {
 		return newTable;
 	}
@@ -708,11 +772,13 @@ public class TriggerImpl extends SQLObjectImpl implements Trigger {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setNewTable(String newNewTable) {
 		String oldNewTable = newTable;
 		newTable = newNewTable;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLTablesPackage.TRIGGER__NEW_TABLE, oldNewTable, newTable));
+		}
 	}
 
 	/**
@@ -720,15 +786,18 @@ public class TriggerImpl extends SQLObjectImpl implements Trigger {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case SQLTablesPackage.TRIGGER__SCHEMA:
-				if (schema != null)
+				if (schema != null) {
 					msgs = ((InternalEObject)schema).eInverseRemove(this, SQLSchemaPackage.SCHEMA__TRIGGERS, Schema.class, msgs);
+				}
 				return basicSetSchema((Schema)otherEnd, msgs);
 			case SQLTablesPackage.TRIGGER__SUBJECT_TABLE:
-				if (subjectTable != null)
+				if (subjectTable != null) {
 					msgs = ((InternalEObject)subjectTable).eInverseRemove(this, SQLTablesPackage.TABLE__TRIGGERS, Table.class, msgs);
+				}
 				return basicSetSubjectTable((Table)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -739,6 +808,7 @@ public class TriggerImpl extends SQLObjectImpl implements Trigger {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case SQLTablesPackage.TRIGGER__SCHEMA:
@@ -758,13 +828,18 @@ public class TriggerImpl extends SQLObjectImpl implements Trigger {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SQLTablesPackage.TRIGGER__SCHEMA:
-				if (resolve) return getSchema();
+				if (resolve) {
+					return getSchema();
+				}
 				return basicGetSchema();
 			case SQLTablesPackage.TRIGGER__SUBJECT_TABLE:
-				if (resolve) return getSubjectTable();
+				if (resolve) {
+					return getSubjectTable();
+				}
 				return basicGetSubjectTable();
 			case SQLTablesPackage.TRIGGER__ACTION_STATEMENT:
 				return getActionStatement();
@@ -801,6 +876,7 @@ public class TriggerImpl extends SQLObjectImpl implements Trigger {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case SQLTablesPackage.TRIGGER__SCHEMA:
@@ -856,6 +932,7 @@ public class TriggerImpl extends SQLObjectImpl implements Trigger {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case SQLTablesPackage.TRIGGER__SCHEMA:
@@ -909,6 +986,7 @@ public class TriggerImpl extends SQLObjectImpl implements Trigger {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SQLTablesPackage.TRIGGER__SCHEMA:
@@ -950,8 +1028,11 @@ public class TriggerImpl extends SQLObjectImpl implements Trigger {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (actionGranularity: "); //$NON-NLS-1$

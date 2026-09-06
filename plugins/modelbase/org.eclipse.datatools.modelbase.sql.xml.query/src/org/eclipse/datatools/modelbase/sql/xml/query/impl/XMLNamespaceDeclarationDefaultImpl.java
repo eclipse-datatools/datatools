@@ -18,140 +18,151 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLNamespaceDeclarationDefaultImpl#isNoDefault <em>No Default</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
 public class XMLNamespaceDeclarationDefaultImpl extends XMLNamespaceDeclarationItemImpl implements XMLNamespaceDeclarationDefault {
 	/**
-     * The default value of the '{@link #isNoDefault() <em>No Default</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #isNoDefault() <em>No Default</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #isNoDefault()
-     * @generated
-     * @ordered
-     */
+	 * @see #isNoDefault()
+	 * @generated
+	 * @ordered
+	 */
     protected static final boolean NO_DEFAULT_EDEFAULT = false;
 
 	/**
-     * The cached value of the '{@link #isNoDefault() <em>No Default</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #isNoDefault() <em>No Default</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #isNoDefault()
-     * @generated
-     * @ordered
-     */
+	 * @see #isNoDefault()
+	 * @generated
+	 * @ordered
+	 */
     protected boolean noDefault = NO_DEFAULT_EDEFAULT;
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected XMLNamespaceDeclarationDefaultImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    protected EClass eStaticClass() {
-        return SQLXMLQueryModelPackage.Literals.XML_NAMESPACE_DECLARATION_DEFAULT;
-    }
+	 * @generated
+	 */
+    @Override
+	protected EClass eStaticClass() {
+		return SQLXMLQueryModelPackage.Literals.XML_NAMESPACE_DECLARATION_DEFAULT;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public boolean isNoDefault() {
-        return noDefault;
-    }
+	 * @generated
+	 */
+    @Override
+	public boolean isNoDefault() {
+		return noDefault;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setNoDefault(boolean newNoDefault) {
-        boolean oldNoDefault = noDefault;
-        noDefault = newNoDefault;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_DEFAULT__NO_DEFAULT, oldNoDefault, noDefault));
-    }
+	 * @generated
+	 */
+    @Override
+	public void setNoDefault(boolean newNoDefault) {
+		boolean oldNoDefault = noDefault;
+		noDefault = newNoDefault;
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_DEFAULT__NO_DEFAULT, oldNoDefault, noDefault));
+		}
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_DEFAULT__NO_DEFAULT:
-                return isNoDefault() ? Boolean.TRUE : Boolean.FALSE;
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_DEFAULT__NO_DEFAULT:
+				return isNoDefault() ? Boolean.TRUE : Boolean.FALSE;
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_DEFAULT__NO_DEFAULT:
-                setNoDefault(((Boolean)newValue).booleanValue());
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_DEFAULT__NO_DEFAULT:
+				setNoDefault(((Boolean)newValue).booleanValue());
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public void eUnset(int featureID) {
-        switch (featureID) {
-            case SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_DEFAULT__NO_DEFAULT:
-                setNoDefault(NO_DEFAULT_EDEFAULT);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_DEFAULT__NO_DEFAULT:
+				setNoDefault(NO_DEFAULT_EDEFAULT);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_DEFAULT__NO_DEFAULT:
-                return noDefault != NO_DEFAULT_EDEFAULT;
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_DEFAULT__NO_DEFAULT:
+				return noDefault != NO_DEFAULT_EDEFAULT;
+		}
+		return super.eIsSet(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public String toString() {
-        if (eIsProxy()) return super.toString();
+	 * @generated
+	 */
+    @Override
+	public String toString() {
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (noDefault: ");
-        result.append(noDefault);
-        result.append(')');
-        return result.toString();
-    }
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (noDefault: ");
+		result.append(noDefault);
+		result.append(')');
+		return result.toString();
+	}
 
 } //XMLNamespaceDeclarationDefaultImpl

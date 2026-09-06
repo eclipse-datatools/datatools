@@ -19,15 +19,15 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.impl.SybaseASAForeignKeyImpl#isCheckOnCommit <em>Check On Commit</em>}</li>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.impl.SybaseASAForeignKeyImpl#isNullable <em>Nullable</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class SybaseASAForeignKeyImpl extends SybaseASABaseForeignKeyImpl implements SybaseASAForeignKey 
+public class SybaseASAForeignKeyImpl extends SybaseASABaseForeignKeyImpl implements SybaseASAForeignKey
 {
     /**
 	 * The default value of the '{@link #isCheckOnCommit() <em>Check On Commit</em>}' attribute.
@@ -84,6 +84,7 @@ public class SybaseASAForeignKeyImpl extends SybaseASABaseForeignKeyImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass()
     {
 		return SybaseasasqlmodelPackage.Literals.SYBASE_ASA_FOREIGN_KEY;
@@ -94,6 +95,7 @@ public class SybaseASAForeignKeyImpl extends SybaseASABaseForeignKeyImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isCheckOnCommit()
     {
 		return checkOnCommit;
@@ -104,12 +106,14 @@ public class SybaseASAForeignKeyImpl extends SybaseASABaseForeignKeyImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCheckOnCommit(boolean newCheckOnCommit)
     {
 		boolean oldCheckOnCommit = checkOnCommit;
 		checkOnCommit = newCheckOnCommit;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasasqlmodelPackage.SYBASE_ASA_FOREIGN_KEY__CHECK_ON_COMMIT, oldCheckOnCommit, checkOnCommit));
+		}
 	}
 
     /**
@@ -117,6 +121,7 @@ public class SybaseASAForeignKeyImpl extends SybaseASABaseForeignKeyImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isNullable()
     {
 		return nullable;
@@ -127,12 +132,14 @@ public class SybaseASAForeignKeyImpl extends SybaseASABaseForeignKeyImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setNullable(boolean newNullable)
     {
 		boolean oldNullable = nullable;
 		nullable = newNullable;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasasqlmodelPackage.SYBASE_ASA_FOREIGN_KEY__NULLABLE, oldNullable, nullable));
+		}
 	}
 
     /**
@@ -140,6 +147,7 @@ public class SybaseASAForeignKeyImpl extends SybaseASABaseForeignKeyImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
     {
 		switch (featureID) {
@@ -156,6 +164,7 @@ public class SybaseASAForeignKeyImpl extends SybaseASABaseForeignKeyImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue)
     {
 		switch (featureID) {
@@ -174,6 +183,7 @@ public class SybaseASAForeignKeyImpl extends SybaseASABaseForeignKeyImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID)
     {
 		switch (featureID) {
@@ -192,6 +202,7 @@ public class SybaseASAForeignKeyImpl extends SybaseASABaseForeignKeyImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID)
     {
 		switch (featureID) {
@@ -208,9 +219,12 @@ public class SybaseASAForeignKeyImpl extends SybaseASABaseForeignKeyImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString()
     {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (checkOnCommit: ");

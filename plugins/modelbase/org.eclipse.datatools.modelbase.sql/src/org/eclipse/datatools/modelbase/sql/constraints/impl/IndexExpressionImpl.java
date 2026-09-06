@@ -19,10 +19,10 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.constraints.impl.IndexExpressionImpl#getSql <em>Sql</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -61,6 +61,7 @@ public class IndexExpressionImpl extends SQLObjectImpl implements IndexExpressio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return SQLConstraintsPackage.Literals.INDEX_EXPRESSION;
 	}
@@ -70,6 +71,7 @@ public class IndexExpressionImpl extends SQLObjectImpl implements IndexExpressio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getSql() {
 		return sql;
 	}
@@ -79,11 +81,13 @@ public class IndexExpressionImpl extends SQLObjectImpl implements IndexExpressio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSql(String newSql) {
 		String oldSql = sql;
 		sql = newSql;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLConstraintsPackage.INDEX_EXPRESSION__SQL, oldSql, sql));
+		}
 	}
 
 	/**
@@ -91,6 +95,7 @@ public class IndexExpressionImpl extends SQLObjectImpl implements IndexExpressio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SQLConstraintsPackage.INDEX_EXPRESSION__SQL:
@@ -104,6 +109,7 @@ public class IndexExpressionImpl extends SQLObjectImpl implements IndexExpressio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case SQLConstraintsPackage.INDEX_EXPRESSION__SQL:
@@ -118,6 +124,7 @@ public class IndexExpressionImpl extends SQLObjectImpl implements IndexExpressio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case SQLConstraintsPackage.INDEX_EXPRESSION__SQL:
@@ -132,6 +139,7 @@ public class IndexExpressionImpl extends SQLObjectImpl implements IndexExpressio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SQLConstraintsPackage.INDEX_EXPRESSION__SQL:
@@ -145,8 +153,11 @@ public class IndexExpressionImpl extends SQLObjectImpl implements IndexExpressio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (sql: "); //$NON-NLS-1$

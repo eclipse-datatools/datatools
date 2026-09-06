@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.impl.SybaseASEIndexImpl#getMaxRowPerPage <em>Max Row Per Page</em>}</li>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.impl.SybaseASEIndexImpl#getReversePageGap <em>Reverse Page Gap</em>}</li>
@@ -44,796 +45,842 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.impl.SybaseASEIndexImpl#isSuspect <em>Suspect</em>}</li>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.impl.SybaseASEIndexImpl#getCacheInfo <em>Cache Info</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class SybaseASEIndexImpl extends IndexImpl implements SybaseASEIndex 
+public class SybaseASEIndexImpl extends IndexImpl implements SybaseASEIndex
 {
 	/**
-     * The default value of the '{@link #getMaxRowPerPage() <em>Max Row Per Page</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getMaxRowPerPage() <em>Max Row Per Page</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getMaxRowPerPage()
-     * @generated
-     * @ordered
-     */
+	 * @see #getMaxRowPerPage()
+	 * @generated
+	 * @ordered
+	 */
 	protected static final int MAX_ROW_PER_PAGE_EDEFAULT = -1;
 
 	/**
-     * The cached value of the '{@link #getMaxRowPerPage() <em>Max Row Per Page</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getMaxRowPerPage() <em>Max Row Per Page</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getMaxRowPerPage()
-     * @generated
-     * @ordered
-     */
+	 * @see #getMaxRowPerPage()
+	 * @generated
+	 * @ordered
+	 */
 	protected int maxRowPerPage = MAX_ROW_PER_PAGE_EDEFAULT;
 
 	/**
-     * The default value of the '{@link #getReversePageGap() <em>Reverse Page Gap</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getReversePageGap() <em>Reverse Page Gap</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getReversePageGap()
-     * @generated
-     * @ordered
-     */
+	 * @see #getReversePageGap()
+	 * @generated
+	 * @ordered
+	 */
 	protected static final int REVERSE_PAGE_GAP_EDEFAULT = -1;
 
 	/**
-     * The cached value of the '{@link #getReversePageGap() <em>Reverse Page Gap</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getReversePageGap() <em>Reverse Page Gap</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getReversePageGap()
-     * @generated
-     * @ordered
-     */
+	 * @see #getReversePageGap()
+	 * @generated
+	 * @ordered
+	 */
 	protected int reversePageGap = REVERSE_PAGE_GAP_EDEFAULT;
 
 	/**
-     * The default value of the '{@link #isIgnoreDuplicateKey() <em>Ignore Duplicate Key</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #isIgnoreDuplicateKey() <em>Ignore Duplicate Key</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #isIgnoreDuplicateKey()
-     * @generated
-     * @ordered
-     */
+	 * @see #isIgnoreDuplicateKey()
+	 * @generated
+	 * @ordered
+	 */
 	protected static final boolean IGNORE_DUPLICATE_KEY_EDEFAULT = false;
 
 	/**
-     * The cached value of the '{@link #isIgnoreDuplicateKey() <em>Ignore Duplicate Key</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #isIgnoreDuplicateKey() <em>Ignore Duplicate Key</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #isIgnoreDuplicateKey()
-     * @generated
-     * @ordered
-     */
+	 * @see #isIgnoreDuplicateKey()
+	 * @generated
+	 * @ordered
+	 */
 	protected boolean ignoreDuplicateKey = IGNORE_DUPLICATE_KEY_EDEFAULT;
 
 	/**
-     * The default value of the '{@link #isSortedData() <em>Sorted Data</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #isSortedData() <em>Sorted Data</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #isSortedData()
-     * @generated
-     * @ordered
-     */
+	 * @see #isSortedData()
+	 * @generated
+	 * @ordered
+	 */
 	protected static final boolean SORTED_DATA_EDEFAULT = false;
 
 	/**
-     * The cached value of the '{@link #isSortedData() <em>Sorted Data</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #isSortedData() <em>Sorted Data</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #isSortedData()
-     * @generated
-     * @ordered
-     */
+	 * @see #isSortedData()
+	 * @generated
+	 * @ordered
+	 */
 	protected boolean sortedData = SORTED_DATA_EDEFAULT;
 
 	/**
-     * The default value of the '{@link #isIgnoreDuplicateRow() <em>Ignore Duplicate Row</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #isIgnoreDuplicateRow() <em>Ignore Duplicate Row</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #isIgnoreDuplicateRow()
-     * @generated
-     * @ordered
-     */
+	 * @see #isIgnoreDuplicateRow()
+	 * @generated
+	 * @ordered
+	 */
 	protected static final boolean IGNORE_DUPLICATE_ROW_EDEFAULT = false;
 
 	/**
-     * The cached value of the '{@link #isIgnoreDuplicateRow() <em>Ignore Duplicate Row</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #isIgnoreDuplicateRow() <em>Ignore Duplicate Row</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #isIgnoreDuplicateRow()
-     * @generated
-     * @ordered
-     */
+	 * @see #isIgnoreDuplicateRow()
+	 * @generated
+	 * @ordered
+	 */
 	protected boolean ignoreDuplicateRow = IGNORE_DUPLICATE_ROW_EDEFAULT;
 
 	/**
-     * The cached value of the '{@link #getSegment() <em>Segment</em>}' reference.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getSegment() <em>Segment</em>}' reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getSegment()
-     * @generated
-     * @ordered
-     */
+	 * @see #getSegment()
+	 * @generated
+	 * @ordered
+	 */
 	protected SybaseASESegment segment;
 
 	/**
-     * The default value of the '{@link #isLocalIndex() <em>Local Index</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #isLocalIndex() <em>Local Index</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #isLocalIndex()
-     * @generated
-     * @ordered
-     */
+	 * @see #isLocalIndex()
+	 * @generated
+	 * @ordered
+	 */
 	protected static final boolean LOCAL_INDEX_EDEFAULT = false;
 
 	/**
-     * The cached value of the '{@link #isLocalIndex() <em>Local Index</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #isLocalIndex() <em>Local Index</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #isLocalIndex()
-     * @generated
-     * @ordered
-     */
+	 * @see #isLocalIndex()
+	 * @generated
+	 * @ordered
+	 */
 	protected boolean localIndex = LOCAL_INDEX_EDEFAULT;
 
 	/**
-     * The cached value of the '{@link #getPartitions() <em>Partitions</em>}' containment reference list.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getPartitions() <em>Partitions</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getPartitions()
-     * @generated
-     * @ordered
-     */
+	 * @see #getPartitions()
+	 * @generated
+	 * @ordered
+	 */
 	protected EList partitions;
 
 	/**
-     * The default value of the '{@link #getConsumerNum() <em>Consumer Num</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getConsumerNum() <em>Consumer Num</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getConsumerNum()
-     * @generated
-     * @ordered
-     */
+	 * @see #getConsumerNum()
+	 * @generated
+	 * @ordered
+	 */
 	protected static final int CONSUMER_NUM_EDEFAULT = -1;
 
 	/**
-     * The cached value of the '{@link #getConsumerNum() <em>Consumer Num</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getConsumerNum() <em>Consumer Num</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getConsumerNum()
-     * @generated
-     * @ordered
-     */
+	 * @see #getConsumerNum()
+	 * @generated
+	 * @ordered
+	 */
 	protected int consumerNum = CONSUMER_NUM_EDEFAULT;
 
 	/**
-     * The default value of the '{@link #getStatisticsStep() <em>Statistics Step</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getStatisticsStep() <em>Statistics Step</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getStatisticsStep()
-     * @generated
-     * @ordered
-     */
+	 * @see #getStatisticsStep()
+	 * @generated
+	 * @ordered
+	 */
 	protected static final int STATISTICS_STEP_EDEFAULT = -1;
 
 	/**
-     * The cached value of the '{@link #getStatisticsStep() <em>Statistics Step</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getStatisticsStep() <em>Statistics Step</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getStatisticsStep()
-     * @generated
-     * @ordered
-     */
+	 * @see #getStatisticsStep()
+	 * @generated
+	 * @ordered
+	 */
 	protected int statisticsStep = STATISTICS_STEP_EDEFAULT;
 
 	/**
-     * The default value of the '{@link #isAllowDuplicateRow() <em>Allow Duplicate Row</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #isAllowDuplicateRow() <em>Allow Duplicate Row</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #isAllowDuplicateRow()
-     * @generated
-     * @ordered
-     */
+	 * @see #isAllowDuplicateRow()
+	 * @generated
+	 * @ordered
+	 */
 	protected static final boolean ALLOW_DUPLICATE_ROW_EDEFAULT = false;
 
 	/**
-     * The cached value of the '{@link #isAllowDuplicateRow() <em>Allow Duplicate Row</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #isAllowDuplicateRow() <em>Allow Duplicate Row</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #isAllowDuplicateRow()
-     * @generated
-     * @ordered
-     */
+	 * @see #isAllowDuplicateRow()
+	 * @generated
+	 * @ordered
+	 */
 	protected boolean allowDuplicateRow = ALLOW_DUPLICATE_ROW_EDEFAULT;
 
 	/**
-     * The default value of the '{@link #isSuspect() <em>Suspect</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #isSuspect() <em>Suspect</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #isSuspect()
-     * @generated
-     * @ordered
-     */
+	 * @see #isSuspect()
+	 * @generated
+	 * @ordered
+	 */
 	protected static final boolean SUSPECT_EDEFAULT = false;
 
 	/**
-     * The cached value of the '{@link #isSuspect() <em>Suspect</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #isSuspect() <em>Suspect</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #isSuspect()
-     * @generated
-     * @ordered
-     */
+	 * @see #isSuspect()
+	 * @generated
+	 * @ordered
+	 */
 	protected boolean suspect = SUSPECT_EDEFAULT;
 
 	/**
-     * The cached value of the '{@link #getCacheInfo() <em>Cache Info</em>}' containment reference.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getCacheInfo() <em>Cache Info</em>}' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getCacheInfo()
-     * @generated
-     * @ordered
-     */
+	 * @see #getCacheInfo()
+	 * @generated
+	 * @ordered
+	 */
 	protected CacheInfo cacheInfo;
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected SybaseASEIndexImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	protected EClass eStaticClass() {
-        return SybaseasesqlmodelPackage.Literals.SYBASE_ASE_INDEX;
-    }
+		return SybaseasesqlmodelPackage.Literals.SYBASE_ASE_INDEX;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public int getMaxRowPerPage() {
-        return maxRowPerPage;
-    }
+		return maxRowPerPage;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public void setMaxRowPerPage(int newMaxRowPerPage) {
-        int oldMaxRowPerPage = maxRowPerPage;
-        maxRowPerPage = newMaxRowPerPage;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__MAX_ROW_PER_PAGE, oldMaxRowPerPage, maxRowPerPage));
-    }
+		int oldMaxRowPerPage = maxRowPerPage;
+		maxRowPerPage = newMaxRowPerPage;
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__MAX_ROW_PER_PAGE, oldMaxRowPerPage, maxRowPerPage));
+		}
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public int getReversePageGap() {
-        return reversePageGap;
-    }
+		return reversePageGap;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public void setReversePageGap(int newReversePageGap) {
-        int oldReversePageGap = reversePageGap;
-        reversePageGap = newReversePageGap;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__REVERSE_PAGE_GAP, oldReversePageGap, reversePageGap));
-    }
+		int oldReversePageGap = reversePageGap;
+		reversePageGap = newReversePageGap;
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__REVERSE_PAGE_GAP, oldReversePageGap, reversePageGap));
+		}
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public boolean isIgnoreDuplicateKey() {
-        return ignoreDuplicateKey;
-    }
+		return ignoreDuplicateKey;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public void setIgnoreDuplicateKey(boolean newIgnoreDuplicateKey) {
-        boolean oldIgnoreDuplicateKey = ignoreDuplicateKey;
-        ignoreDuplicateKey = newIgnoreDuplicateKey;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__IGNORE_DUPLICATE_KEY, oldIgnoreDuplicateKey, ignoreDuplicateKey));
-    }
+		boolean oldIgnoreDuplicateKey = ignoreDuplicateKey;
+		ignoreDuplicateKey = newIgnoreDuplicateKey;
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__IGNORE_DUPLICATE_KEY, oldIgnoreDuplicateKey, ignoreDuplicateKey));
+		}
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public boolean isSortedData() {
-        return sortedData;
-    }
+		return sortedData;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public void setSortedData(boolean newSortedData) {
-        boolean oldSortedData = sortedData;
-        sortedData = newSortedData;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__SORTED_DATA, oldSortedData, sortedData));
-    }
+		boolean oldSortedData = sortedData;
+		sortedData = newSortedData;
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__SORTED_DATA, oldSortedData, sortedData));
+		}
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public boolean isIgnoreDuplicateRow() {
-        return ignoreDuplicateRow;
-    }
+		return ignoreDuplicateRow;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public void setIgnoreDuplicateRow(boolean newIgnoreDuplicateRow) {
-        boolean oldIgnoreDuplicateRow = ignoreDuplicateRow;
-        ignoreDuplicateRow = newIgnoreDuplicateRow;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__IGNORE_DUPLICATE_ROW, oldIgnoreDuplicateRow, ignoreDuplicateRow));
-    }
+		boolean oldIgnoreDuplicateRow = ignoreDuplicateRow;
+		ignoreDuplicateRow = newIgnoreDuplicateRow;
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__IGNORE_DUPLICATE_ROW, oldIgnoreDuplicateRow, ignoreDuplicateRow));
+		}
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public SybaseASESegment getSegment() {
-        if (segment != null && segment.eIsProxy())
-        {
-            InternalEObject oldSegment = (InternalEObject)segment;
-            segment = (SybaseASESegment)eResolveProxy(oldSegment);
-            if (segment != oldSegment)
-            {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__SEGMENT, oldSegment, segment));
-            }
-        }
-        return segment;
-    }
+		if (segment != null && segment.eIsProxy()) {
+			InternalEObject oldSegment = (InternalEObject)segment;
+			segment = (SybaseASESegment)eResolveProxy(oldSegment);
+			if (segment != oldSegment) {
+				if (eNotificationRequired()) {
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__SEGMENT, oldSegment, segment));
+				}
+			}
+		}
+		return segment;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public SybaseASESegment basicGetSegment() {
-        return segment;
-    }
+		return segment;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public void setSegment(SybaseASESegment newSegment) {
-        SybaseASESegment oldSegment = segment;
-        segment = newSegment;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__SEGMENT, oldSegment, segment));
-    }
+		SybaseASESegment oldSegment = segment;
+		segment = newSegment;
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__SEGMENT, oldSegment, segment));
+		}
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public boolean isLocalIndex() {
-        return localIndex;
-    }
+		return localIndex;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public void setLocalIndex(boolean newLocalIndex) {
-        boolean oldLocalIndex = localIndex;
-        localIndex = newLocalIndex;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__LOCAL_INDEX, oldLocalIndex, localIndex));
-    }
+		boolean oldLocalIndex = localIndex;
+		localIndex = newLocalIndex;
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__LOCAL_INDEX, oldLocalIndex, localIndex));
+		}
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public EList getPartitions() {
-        if (partitions == null)
-        {
-            partitions = new EObjectContainmentEList(PartitionSegmentPair.class, this, SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__PARTITIONS);
-        }
-        return partitions;
-    }
+		if (partitions == null) {
+			partitions = new EObjectContainmentEList(PartitionSegmentPair.class, this, SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__PARTITIONS);
+		}
+		return partitions;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public int getConsumerNum() {
-        return consumerNum;
-    }
+		return consumerNum;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public void setConsumerNum(int newConsumerNum) {
-        int oldConsumerNum = consumerNum;
-        consumerNum = newConsumerNum;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__CONSUMER_NUM, oldConsumerNum, consumerNum));
-    }
+		int oldConsumerNum = consumerNum;
+		consumerNum = newConsumerNum;
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__CONSUMER_NUM, oldConsumerNum, consumerNum));
+		}
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public int getStatisticsStep() {
-        return statisticsStep;
-    }
+		return statisticsStep;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public void setStatisticsStep(int newStatisticsStep) {
-        int oldStatisticsStep = statisticsStep;
-        statisticsStep = newStatisticsStep;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__STATISTICS_STEP, oldStatisticsStep, statisticsStep));
-    }
+		int oldStatisticsStep = statisticsStep;
+		statisticsStep = newStatisticsStep;
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__STATISTICS_STEP, oldStatisticsStep, statisticsStep));
+		}
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public boolean isAllowDuplicateRow() {
-        return allowDuplicateRow;
-    }
+		return allowDuplicateRow;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public void setAllowDuplicateRow(boolean newAllowDuplicateRow) {
-        boolean oldAllowDuplicateRow = allowDuplicateRow;
-        allowDuplicateRow = newAllowDuplicateRow;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__ALLOW_DUPLICATE_ROW, oldAllowDuplicateRow, allowDuplicateRow));
-    }
+		boolean oldAllowDuplicateRow = allowDuplicateRow;
+		allowDuplicateRow = newAllowDuplicateRow;
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__ALLOW_DUPLICATE_ROW, oldAllowDuplicateRow, allowDuplicateRow));
+		}
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public boolean isSuspect() {
-        return suspect;
-    }
+		return suspect;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public void setSuspect(boolean newSuspect) {
-        boolean oldSuspect = suspect;
-        suspect = newSuspect;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__SUSPECT, oldSuspect, suspect));
-    }
+		boolean oldSuspect = suspect;
+		suspect = newSuspect;
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__SUSPECT, oldSuspect, suspect));
+		}
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public CacheInfo getCacheInfo() {
-        return cacheInfo;
-    }
+		return cacheInfo;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public NotificationChain basicSetCacheInfo(CacheInfo newCacheInfo, NotificationChain msgs) {
-        CacheInfo oldCacheInfo = cacheInfo;
-        cacheInfo = newCacheInfo;
-        if (eNotificationRequired())
-        {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__CACHE_INFO, oldCacheInfo, newCacheInfo);
-            if (msgs == null) msgs = notification; else msgs.add(notification);
-        }
-        return msgs;
-    }
+		CacheInfo oldCacheInfo = cacheInfo;
+		cacheInfo = newCacheInfo;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__CACHE_INFO, oldCacheInfo, newCacheInfo);
+			if (msgs == null) {
+				msgs = notification;
+			} else {
+				msgs.add(notification);
+			}
+		}
+		return msgs;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public void setCacheInfo(CacheInfo newCacheInfo) {
-        if (newCacheInfo != cacheInfo)
-        {
-            NotificationChain msgs = null;
-            if (cacheInfo != null)
-                msgs = ((InternalEObject)cacheInfo).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__CACHE_INFO, null, msgs);
-            if (newCacheInfo != null)
-                msgs = ((InternalEObject)newCacheInfo).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__CACHE_INFO, null, msgs);
-            msgs = basicSetCacheInfo(newCacheInfo, msgs);
-            if (msgs != null) msgs.dispatch();
-        }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__CACHE_INFO, newCacheInfo, newCacheInfo));
-    }
+		if (newCacheInfo != cacheInfo) {
+			NotificationChain msgs = null;
+			if (cacheInfo != null) {
+				msgs = ((InternalEObject)cacheInfo).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__CACHE_INFO, null, msgs);
+			}
+			if (newCacheInfo != null) {
+				msgs = ((InternalEObject)newCacheInfo).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__CACHE_INFO, null, msgs);
+			}
+			msgs = basicSetCacheInfo(newCacheInfo, msgs);
+			if (msgs != null) {
+				msgs.dispatch();
+			}
+		}
+		else if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__CACHE_INFO, newCacheInfo, newCacheInfo));
+		}
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID)
-        {
-            case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__PARTITIONS:
-                return ((InternalEList)getPartitions()).basicRemove(otherEnd, msgs);
-            case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__CACHE_INFO:
-                return basicSetCacheInfo(null, msgs);
-        }
-        return super.eInverseRemove(otherEnd, featureID, msgs);
-    }
+	 * @generated
+	 */
+    @Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__PARTITIONS:
+				return ((InternalEList)getPartitions()).basicRemove(otherEnd, msgs);
+			case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__CACHE_INFO:
+				return basicSetCacheInfo(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID)
-        {
-            case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__MAX_ROW_PER_PAGE:
-                return Integer.valueOf(getMaxRowPerPage());
-            case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__REVERSE_PAGE_GAP:
-                return Integer.valueOf(getReversePageGap());
-            case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__IGNORE_DUPLICATE_KEY:
-                return isIgnoreDuplicateKey() ? Boolean.TRUE : Boolean.FALSE;
-            case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__SORTED_DATA:
-                return isSortedData() ? Boolean.TRUE : Boolean.FALSE;
-            case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__IGNORE_DUPLICATE_ROW:
-                return isIgnoreDuplicateRow() ? Boolean.TRUE : Boolean.FALSE;
-            case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__SEGMENT:
-                if (resolve) return getSegment();
-                return basicGetSegment();
-            case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__LOCAL_INDEX:
-                return isLocalIndex() ? Boolean.TRUE : Boolean.FALSE;
-            case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__PARTITIONS:
-                return getPartitions();
-            case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__CONSUMER_NUM:
-                return Integer.valueOf(getConsumerNum());
-            case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__STATISTICS_STEP:
-                return Integer.valueOf(getStatisticsStep());
-            case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__ALLOW_DUPLICATE_ROW:
-                return isAllowDuplicateRow() ? Boolean.TRUE : Boolean.FALSE;
-            case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__SUSPECT:
-                return isSuspect() ? Boolean.TRUE : Boolean.FALSE;
-            case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__CACHE_INFO:
-                return getCacheInfo();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__MAX_ROW_PER_PAGE:
+				return new Integer(getMaxRowPerPage());
+			case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__REVERSE_PAGE_GAP:
+				return new Integer(getReversePageGap());
+			case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__IGNORE_DUPLICATE_KEY:
+				return isIgnoreDuplicateKey() ? Boolean.TRUE : Boolean.FALSE;
+			case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__SORTED_DATA:
+				return isSortedData() ? Boolean.TRUE : Boolean.FALSE;
+			case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__IGNORE_DUPLICATE_ROW:
+				return isIgnoreDuplicateRow() ? Boolean.TRUE : Boolean.FALSE;
+			case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__SEGMENT:
+				if (resolve) {
+					return getSegment();
+				}
+				return basicGetSegment();
+			case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__LOCAL_INDEX:
+				return isLocalIndex() ? Boolean.TRUE : Boolean.FALSE;
+			case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__PARTITIONS:
+				return getPartitions();
+			case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__CONSUMER_NUM:
+				return new Integer(getConsumerNum());
+			case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__STATISTICS_STEP:
+				return new Integer(getStatisticsStep());
+			case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__ALLOW_DUPLICATE_ROW:
+				return isAllowDuplicateRow() ? Boolean.TRUE : Boolean.FALSE;
+			case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__SUSPECT:
+				return isSuspect() ? Boolean.TRUE : Boolean.FALSE;
+			case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__CACHE_INFO:
+				return getCacheInfo();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
-        switch (featureID)
-        {
-            case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__MAX_ROW_PER_PAGE:
-                setMaxRowPerPage(((Integer)newValue).intValue());
-                return;
-            case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__REVERSE_PAGE_GAP:
-                setReversePageGap(((Integer)newValue).intValue());
-                return;
-            case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__IGNORE_DUPLICATE_KEY:
-                setIgnoreDuplicateKey(((Boolean)newValue).booleanValue());
-                return;
-            case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__SORTED_DATA:
-                setSortedData(((Boolean)newValue).booleanValue());
-                return;
-            case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__IGNORE_DUPLICATE_ROW:
-                setIgnoreDuplicateRow(((Boolean)newValue).booleanValue());
-                return;
-            case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__SEGMENT:
-                setSegment((SybaseASESegment)newValue);
-                return;
-            case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__LOCAL_INDEX:
-                setLocalIndex(((Boolean)newValue).booleanValue());
-                return;
-            case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__PARTITIONS:
-                getPartitions().clear();
-                getPartitions().addAll((Collection)newValue);
-                return;
-            case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__CONSUMER_NUM:
-                setConsumerNum(((Integer)newValue).intValue());
-                return;
-            case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__STATISTICS_STEP:
-                setStatisticsStep(((Integer)newValue).intValue());
-                return;
-            case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__ALLOW_DUPLICATE_ROW:
-                setAllowDuplicateRow(((Boolean)newValue).booleanValue());
-                return;
-            case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__SUSPECT:
-                setSuspect(((Boolean)newValue).booleanValue());
-                return;
-            case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__CACHE_INFO:
-                setCacheInfo((CacheInfo)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__MAX_ROW_PER_PAGE:
+				setMaxRowPerPage(((Integer)newValue).intValue());
+				return;
+			case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__REVERSE_PAGE_GAP:
+				setReversePageGap(((Integer)newValue).intValue());
+				return;
+			case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__IGNORE_DUPLICATE_KEY:
+				setIgnoreDuplicateKey(((Boolean)newValue).booleanValue());
+				return;
+			case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__SORTED_DATA:
+				setSortedData(((Boolean)newValue).booleanValue());
+				return;
+			case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__IGNORE_DUPLICATE_ROW:
+				setIgnoreDuplicateRow(((Boolean)newValue).booleanValue());
+				return;
+			case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__SEGMENT:
+				setSegment((SybaseASESegment)newValue);
+				return;
+			case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__LOCAL_INDEX:
+				setLocalIndex(((Boolean)newValue).booleanValue());
+				return;
+			case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__PARTITIONS:
+				getPartitions().clear();
+				getPartitions().addAll((Collection)newValue);
+				return;
+			case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__CONSUMER_NUM:
+				setConsumerNum(((Integer)newValue).intValue());
+				return;
+			case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__STATISTICS_STEP:
+				setStatisticsStep(((Integer)newValue).intValue());
+				return;
+			case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__ALLOW_DUPLICATE_ROW:
+				setAllowDuplicateRow(((Boolean)newValue).booleanValue());
+				return;
+			case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__SUSPECT:
+				setSuspect(((Boolean)newValue).booleanValue());
+				return;
+			case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__CACHE_INFO:
+				setCacheInfo((CacheInfo)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public void eUnset(int featureID) {
-        switch (featureID)
-        {
-            case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__MAX_ROW_PER_PAGE:
-                setMaxRowPerPage(MAX_ROW_PER_PAGE_EDEFAULT);
-                return;
-            case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__REVERSE_PAGE_GAP:
-                setReversePageGap(REVERSE_PAGE_GAP_EDEFAULT);
-                return;
-            case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__IGNORE_DUPLICATE_KEY:
-                setIgnoreDuplicateKey(IGNORE_DUPLICATE_KEY_EDEFAULT);
-                return;
-            case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__SORTED_DATA:
-                setSortedData(SORTED_DATA_EDEFAULT);
-                return;
-            case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__IGNORE_DUPLICATE_ROW:
-                setIgnoreDuplicateRow(IGNORE_DUPLICATE_ROW_EDEFAULT);
-                return;
-            case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__SEGMENT:
-                setSegment((SybaseASESegment)null);
-                return;
-            case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__LOCAL_INDEX:
-                setLocalIndex(LOCAL_INDEX_EDEFAULT);
-                return;
-            case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__PARTITIONS:
-                getPartitions().clear();
-                return;
-            case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__CONSUMER_NUM:
-                setConsumerNum(CONSUMER_NUM_EDEFAULT);
-                return;
-            case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__STATISTICS_STEP:
-                setStatisticsStep(STATISTICS_STEP_EDEFAULT);
-                return;
-            case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__ALLOW_DUPLICATE_ROW:
-                setAllowDuplicateRow(ALLOW_DUPLICATE_ROW_EDEFAULT);
-                return;
-            case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__SUSPECT:
-                setSuspect(SUSPECT_EDEFAULT);
-                return;
-            case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__CACHE_INFO:
-                setCacheInfo((CacheInfo)null);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__MAX_ROW_PER_PAGE:
+				setMaxRowPerPage(MAX_ROW_PER_PAGE_EDEFAULT);
+				return;
+			case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__REVERSE_PAGE_GAP:
+				setReversePageGap(REVERSE_PAGE_GAP_EDEFAULT);
+				return;
+			case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__IGNORE_DUPLICATE_KEY:
+				setIgnoreDuplicateKey(IGNORE_DUPLICATE_KEY_EDEFAULT);
+				return;
+			case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__SORTED_DATA:
+				setSortedData(SORTED_DATA_EDEFAULT);
+				return;
+			case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__IGNORE_DUPLICATE_ROW:
+				setIgnoreDuplicateRow(IGNORE_DUPLICATE_ROW_EDEFAULT);
+				return;
+			case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__SEGMENT:
+				setSegment((SybaseASESegment)null);
+				return;
+			case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__LOCAL_INDEX:
+				setLocalIndex(LOCAL_INDEX_EDEFAULT);
+				return;
+			case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__PARTITIONS:
+				getPartitions().clear();
+				return;
+			case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__CONSUMER_NUM:
+				setConsumerNum(CONSUMER_NUM_EDEFAULT);
+				return;
+			case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__STATISTICS_STEP:
+				setStatisticsStep(STATISTICS_STEP_EDEFAULT);
+				return;
+			case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__ALLOW_DUPLICATE_ROW:
+				setAllowDuplicateRow(ALLOW_DUPLICATE_ROW_EDEFAULT);
+				return;
+			case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__SUSPECT:
+				setSuspect(SUSPECT_EDEFAULT);
+				return;
+			case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__CACHE_INFO:
+				setCacheInfo((CacheInfo)null);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public boolean eIsSet(int featureID) {
-        switch (featureID)
-        {
-            case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__MAX_ROW_PER_PAGE:
-                return maxRowPerPage != MAX_ROW_PER_PAGE_EDEFAULT;
-            case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__REVERSE_PAGE_GAP:
-                return reversePageGap != REVERSE_PAGE_GAP_EDEFAULT;
-            case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__IGNORE_DUPLICATE_KEY:
-                return ignoreDuplicateKey != IGNORE_DUPLICATE_KEY_EDEFAULT;
-            case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__SORTED_DATA:
-                return sortedData != SORTED_DATA_EDEFAULT;
-            case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__IGNORE_DUPLICATE_ROW:
-                return ignoreDuplicateRow != IGNORE_DUPLICATE_ROW_EDEFAULT;
-            case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__SEGMENT:
-                return segment != null;
-            case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__LOCAL_INDEX:
-                return localIndex != LOCAL_INDEX_EDEFAULT;
-            case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__PARTITIONS:
-                return partitions != null && !partitions.isEmpty();
-            case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__CONSUMER_NUM:
-                return consumerNum != CONSUMER_NUM_EDEFAULT;
-            case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__STATISTICS_STEP:
-                return statisticsStep != STATISTICS_STEP_EDEFAULT;
-            case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__ALLOW_DUPLICATE_ROW:
-                return allowDuplicateRow != ALLOW_DUPLICATE_ROW_EDEFAULT;
-            case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__SUSPECT:
-                return suspect != SUSPECT_EDEFAULT;
-            case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__CACHE_INFO:
-                return cacheInfo != null;
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__MAX_ROW_PER_PAGE:
+				return maxRowPerPage != MAX_ROW_PER_PAGE_EDEFAULT;
+			case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__REVERSE_PAGE_GAP:
+				return reversePageGap != REVERSE_PAGE_GAP_EDEFAULT;
+			case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__IGNORE_DUPLICATE_KEY:
+				return ignoreDuplicateKey != IGNORE_DUPLICATE_KEY_EDEFAULT;
+			case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__SORTED_DATA:
+				return sortedData != SORTED_DATA_EDEFAULT;
+			case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__IGNORE_DUPLICATE_ROW:
+				return ignoreDuplicateRow != IGNORE_DUPLICATE_ROW_EDEFAULT;
+			case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__SEGMENT:
+				return segment != null;
+			case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__LOCAL_INDEX:
+				return localIndex != LOCAL_INDEX_EDEFAULT;
+			case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__PARTITIONS:
+				return partitions != null && !partitions.isEmpty();
+			case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__CONSUMER_NUM:
+				return consumerNum != CONSUMER_NUM_EDEFAULT;
+			case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__STATISTICS_STEP:
+				return statisticsStep != STATISTICS_STEP_EDEFAULT;
+			case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__ALLOW_DUPLICATE_ROW:
+				return allowDuplicateRow != ALLOW_DUPLICATE_ROW_EDEFAULT;
+			case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__SUSPECT:
+				return suspect != SUSPECT_EDEFAULT;
+			case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__CACHE_INFO:
+				return cacheInfo != null;
+		}
+		return super.eIsSet(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public String toString() {
-        if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (maxRowPerPage: "); //$NON-NLS-1$
-        result.append(maxRowPerPage);
-        result.append(", reversePageGap: "); //$NON-NLS-1$
-        result.append(reversePageGap);
-        result.append(", ignoreDuplicateKey: "); //$NON-NLS-1$
-        result.append(ignoreDuplicateKey);
-        result.append(", sortedData: "); //$NON-NLS-1$
-        result.append(sortedData);
-        result.append(", ignoreDuplicateRow: "); //$NON-NLS-1$
-        result.append(ignoreDuplicateRow);
-        result.append(", localIndex: "); //$NON-NLS-1$
-        result.append(localIndex);
-        result.append(", consumerNum: "); //$NON-NLS-1$
-        result.append(consumerNum);
-        result.append(", statisticsStep: "); //$NON-NLS-1$
-        result.append(statisticsStep);
-        result.append(", allowDuplicateRow: "); //$NON-NLS-1$
-        result.append(allowDuplicateRow);
-        result.append(", suspect: "); //$NON-NLS-1$
-        result.append(suspect);
-        result.append(')');
-        return result.toString();
-    }
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (maxRowPerPage: "); //$NON-NLS-1$
+		result.append(maxRowPerPage);
+		result.append(", reversePageGap: "); //$NON-NLS-1$
+		result.append(reversePageGap);
+		result.append(", ignoreDuplicateKey: "); //$NON-NLS-1$
+		result.append(ignoreDuplicateKey);
+		result.append(", sortedData: "); //$NON-NLS-1$
+		result.append(sortedData);
+		result.append(", ignoreDuplicateRow: "); //$NON-NLS-1$
+		result.append(ignoreDuplicateRow);
+		result.append(", localIndex: "); //$NON-NLS-1$
+		result.append(localIndex);
+		result.append(", consumerNum: "); //$NON-NLS-1$
+		result.append(consumerNum);
+		result.append(", statisticsStep: "); //$NON-NLS-1$
+		result.append(statisticsStep);
+		result.append(", allowDuplicateRow: "); //$NON-NLS-1$
+		result.append(allowDuplicateRow);
+		result.append(", suspect: "); //$NON-NLS-1$
+		result.append(suspect);
+		result.append(')');
+		return result.toString();
+	}
 
 //    public Schema getSchema()
 //    {

@@ -21,150 +21,167 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.query.impl.TableQueryLateralImpl#getQuery <em>Query</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
 public class TableQueryLateralImpl extends TableExpressionImpl implements TableQueryLateral {
     /**
-     * The cached value of the '{@link #getQuery() <em>Query</em>}' containment reference.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getQuery() <em>Query</em>}' containment reference.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getQuery()
-     * @generated
-     * @ordered
-     */
+	 * @see #getQuery()
+	 * @generated
+	 * @ordered
+	 */
     protected QueryExpressionBody query;
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected TableQueryLateralImpl() {
-        super();
-    }
+		super();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    protected EClass eStaticClass() {
-        return SQLQueryModelPackage.Literals.TABLE_QUERY_LATERAL;
-    }
+	 * @generated
+	 */
+    @Override
+	protected EClass eStaticClass() {
+		return SQLQueryModelPackage.Literals.TABLE_QUERY_LATERAL;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public QueryExpressionBody getQuery() {
-        return query;
-    }
+	 * @generated
+	 */
+    @Override
+	public QueryExpressionBody getQuery() {
+		return query;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public NotificationChain basicSetQuery(QueryExpressionBody newQuery, NotificationChain msgs) {
-        QueryExpressionBody oldQuery = query;
-        query = newQuery;
-        if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.TABLE_QUERY_LATERAL__QUERY, oldQuery, newQuery);
-            if (msgs == null) msgs = notification; else msgs.add(notification);
-        }
-        return msgs;
-    }
+		QueryExpressionBody oldQuery = query;
+		query = newQuery;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.TABLE_QUERY_LATERAL__QUERY, oldQuery, newQuery);
+			if (msgs == null) {
+				msgs = notification;
+			} else {
+				msgs.add(notification);
+			}
+		}
+		return msgs;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setQuery(QueryExpressionBody newQuery) {
-        if (newQuery != query) {
-            NotificationChain msgs = null;
-            if (query != null)
-                msgs = ((InternalEObject)query).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLQueryModelPackage.TABLE_QUERY_LATERAL__QUERY, null, msgs);
-            if (newQuery != null)
-                msgs = ((InternalEObject)newQuery).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SQLQueryModelPackage.TABLE_QUERY_LATERAL__QUERY, null, msgs);
-            msgs = basicSetQuery(newQuery, msgs);
-            if (msgs != null) msgs.dispatch();
-        }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.TABLE_QUERY_LATERAL__QUERY, newQuery, newQuery));
-    }
+	 * @generated
+	 */
+    @Override
+	public void setQuery(QueryExpressionBody newQuery) {
+		if (newQuery != query) {
+			NotificationChain msgs = null;
+			if (query != null) {
+				msgs = ((InternalEObject)query).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLQueryModelPackage.TABLE_QUERY_LATERAL__QUERY, null, msgs);
+			}
+			if (newQuery != null) {
+				msgs = ((InternalEObject)newQuery).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SQLQueryModelPackage.TABLE_QUERY_LATERAL__QUERY, null, msgs);
+			}
+			msgs = basicSetQuery(newQuery, msgs);
+			if (msgs != null) {
+				msgs.dispatch();
+			}
+		}
+		else if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.TABLE_QUERY_LATERAL__QUERY, newQuery, newQuery));
+		}
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case SQLQueryModelPackage.TABLE_QUERY_LATERAL__QUERY:
-                return basicSetQuery(null, msgs);
-        }
-        return super.eInverseRemove(otherEnd, featureID, msgs);
-    }
+	 * @generated
+	 */
+    @Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SQLQueryModelPackage.TABLE_QUERY_LATERAL__QUERY:
+				return basicSetQuery(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case SQLQueryModelPackage.TABLE_QUERY_LATERAL__QUERY:
-                return getQuery();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+	 * @generated
+	 */
+    @Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+			case SQLQueryModelPackage.TABLE_QUERY_LATERAL__QUERY:
+				return getQuery();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case SQLQueryModelPackage.TABLE_QUERY_LATERAL__QUERY:
-                setQuery((QueryExpressionBody)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+	 * @generated
+	 */
+    @Override
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
+			case SQLQueryModelPackage.TABLE_QUERY_LATERAL__QUERY:
+				setQuery((QueryExpressionBody)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public void eUnset(int featureID) {
-        switch (featureID) {
-            case SQLQueryModelPackage.TABLE_QUERY_LATERAL__QUERY:
-                setQuery((QueryExpressionBody)null);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+	 * @generated
+	 */
+    @Override
+	public void eUnset(int featureID) {
+		switch (featureID) {
+			case SQLQueryModelPackage.TABLE_QUERY_LATERAL__QUERY:
+				setQuery((QueryExpressionBody)null);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case SQLQueryModelPackage.TABLE_QUERY_LATERAL__QUERY:
-                return query != null;
-        }
-        return super.eIsSet(featureID);
-    }
+	 * @generated
+	 */
+    @Override
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+			case SQLQueryModelPackage.TABLE_QUERY_LATERAL__QUERY:
+				return query != null;
+		}
+		return super.eIsSet(featureID);
+	}
 
 } //TableQueryLateralImpl

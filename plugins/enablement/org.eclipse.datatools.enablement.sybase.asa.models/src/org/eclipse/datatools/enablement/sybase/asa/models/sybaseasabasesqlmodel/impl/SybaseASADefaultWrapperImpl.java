@@ -23,13 +23,13 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl.SybaseASADefaultWrapperImpl#getValue <em>Value</em>}</li>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl.SybaseASADefaultWrapperImpl#isIsLiteral <em>Is Literal</em>}</li>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl.SybaseASADefaultWrapperImpl#getPartitionSize <em>Partition Size</em>}</li>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl.SybaseASADefaultWrapperImpl#getType <em>Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -116,9 +116,9 @@ public class SybaseASADefaultWrapperImpl extends EObjectImpl implements SybaseAS
     protected TypeOfDefault type = TYPE_EDEFAULT;
 
     protected boolean isComputed;
-    
+
     protected String rawValue;
-    
+
     /**
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -132,8 +132,8 @@ public class SybaseASADefaultWrapperImpl extends EObjectImpl implements SybaseAS
     public SybaseASADefaultWrapperImpl(String value, boolean isComputed)
     {
         this.value = value;
-        
-        // The raw string is slightly different from the value. For example, 
+
+        // The raw string is slightly different from the value. For example,
         this.rawValue = value;
         this.isComputed = isComputed;
         parse();
@@ -144,7 +144,8 @@ public class SybaseASADefaultWrapperImpl extends EObjectImpl implements SybaseAS
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    protected EClass eStaticClass()
+    @Override
+	protected EClass eStaticClass()
     {
 		return SybaseasabasesqlmodelPackage.Literals.SYBASE_ASA_DEFAULT_WRAPPER;
 	}
@@ -154,7 +155,8 @@ public class SybaseASADefaultWrapperImpl extends EObjectImpl implements SybaseAS
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public String getValue()
+    @Override
+	public String getValue()
     {
 		return value;
 	}
@@ -164,12 +166,14 @@ public class SybaseASADefaultWrapperImpl extends EObjectImpl implements SybaseAS
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public void setValue(String newValue)
+    @Override
+	public void setValue(String newValue)
     {
 		String oldValue = value;
 		value = newValue;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_DEFAULT_WRAPPER__VALUE, oldValue, value));
+		}
 	}
 
     /**
@@ -177,7 +181,8 @@ public class SybaseASADefaultWrapperImpl extends EObjectImpl implements SybaseAS
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public boolean isIsLiteral()
+    @Override
+	public boolean isIsLiteral()
     {
 		return isLiteral;
 	}
@@ -187,12 +192,14 @@ public class SybaseASADefaultWrapperImpl extends EObjectImpl implements SybaseAS
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public void setIsLiteral(boolean newIsLiteral)
+    @Override
+	public void setIsLiteral(boolean newIsLiteral)
     {
 		boolean oldIsLiteral = isLiteral;
 		isLiteral = newIsLiteral;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_DEFAULT_WRAPPER__IS_LITERAL, oldIsLiteral, isLiteral));
+		}
 	}
 
     /**
@@ -200,7 +207,8 @@ public class SybaseASADefaultWrapperImpl extends EObjectImpl implements SybaseAS
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public int getPartitionSize()
+    @Override
+	public int getPartitionSize()
     {
 		return partitionSize;
 	}
@@ -210,12 +218,14 @@ public class SybaseASADefaultWrapperImpl extends EObjectImpl implements SybaseAS
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public void setPartitionSize(int newPartitionSize)
+    @Override
+	public void setPartitionSize(int newPartitionSize)
     {
 		int oldPartitionSize = partitionSize;
 		partitionSize = newPartitionSize;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_DEFAULT_WRAPPER__PARTITION_SIZE, oldPartitionSize, partitionSize));
+		}
 	}
 
     /**
@@ -223,7 +233,8 @@ public class SybaseASADefaultWrapperImpl extends EObjectImpl implements SybaseAS
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public TypeOfDefault getType()
+    @Override
+	public TypeOfDefault getType()
     {
 		return type;
 	}
@@ -233,18 +244,21 @@ public class SybaseASADefaultWrapperImpl extends EObjectImpl implements SybaseAS
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public void setType(TypeOfDefault newType)
+    @Override
+	public void setType(TypeOfDefault newType)
     {
 		TypeOfDefault oldType = type;
 		type = newType == null ? TYPE_EDEFAULT : newType;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_DEFAULT_WRAPPER__TYPE, oldType, type));
+		}
 	}
 
     /**
      * Parses the string value and assign to other database memebers accordingly
      */
-    public void parse()
+    @Override
+	public void parse()
     {
         if(value == null || value.trim().equals(""))
         {
@@ -270,7 +284,7 @@ public class SybaseASADefaultWrapperImpl extends EObjectImpl implements SybaseAS
                 }
                 catch (Exception e)
                 {
-                    
+
                 }
             }
         }
@@ -302,13 +316,14 @@ public class SybaseASADefaultWrapperImpl extends EObjectImpl implements SybaseAS
         }
         return content;
     }
-    
+
     /**
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public Object eGet(int featureID, boolean resolve, boolean coreType)
+    @Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType)
     {
 		switch (featureID) {
 			case SybaseasabasesqlmodelPackage.SYBASE_ASA_DEFAULT_WRAPPER__VALUE:
@@ -316,7 +331,7 @@ public class SybaseASADefaultWrapperImpl extends EObjectImpl implements SybaseAS
 			case SybaseasabasesqlmodelPackage.SYBASE_ASA_DEFAULT_WRAPPER__IS_LITERAL:
 				return isIsLiteral() ? Boolean.TRUE : Boolean.FALSE;
 			case SybaseasabasesqlmodelPackage.SYBASE_ASA_DEFAULT_WRAPPER__PARTITION_SIZE:
-				return Integer.valueOf(getPartitionSize());
+				return new Integer(getPartitionSize());
 			case SybaseasabasesqlmodelPackage.SYBASE_ASA_DEFAULT_WRAPPER__TYPE:
 				return getType();
 		}
@@ -328,7 +343,8 @@ public class SybaseASADefaultWrapperImpl extends EObjectImpl implements SybaseAS
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public void eSet(int featureID, Object newValue)
+    @Override
+	public void eSet(int featureID, Object newValue)
     {
 		switch (featureID) {
 			case SybaseasabasesqlmodelPackage.SYBASE_ASA_DEFAULT_WRAPPER__VALUE:
@@ -352,7 +368,8 @@ public class SybaseASADefaultWrapperImpl extends EObjectImpl implements SybaseAS
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public void eUnset(int featureID)
+    @Override
+	public void eUnset(int featureID)
     {
 		switch (featureID) {
 			case SybaseasabasesqlmodelPackage.SYBASE_ASA_DEFAULT_WRAPPER__VALUE:
@@ -376,7 +393,8 @@ public class SybaseASADefaultWrapperImpl extends EObjectImpl implements SybaseAS
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public boolean eIsSet(int featureID)
+    @Override
+	public boolean eIsSet(int featureID)
     {
 		switch (featureID) {
 			case SybaseasabasesqlmodelPackage.SYBASE_ASA_DEFAULT_WRAPPER__VALUE:
@@ -396,9 +414,12 @@ public class SybaseASADefaultWrapperImpl extends EObjectImpl implements SybaseAS
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public String toString()
+    @Override
+	public String toString()
     {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (value: ");
@@ -413,32 +434,27 @@ public class SybaseASADefaultWrapperImpl extends EObjectImpl implements SybaseAS
 		return result.toString();
 	}
 
-    public boolean isSystemDefault()
+    @Override
+	public boolean isSystemDefault()
     {
         List systemDefaults = new ArrayList();
-        for (int i = 0; i < STRING_TYPE_SYSTEM_DEFAULTS.length; i++)
-        {
-            systemDefaults.add(STRING_TYPE_SYSTEM_DEFAULTS[i]);
+        for (String element : STRING_TYPE_SYSTEM_DEFAULTS) {
+            systemDefaults.add(element);
         }
-        for (int i = 0; i < NUMERIC_TYPE_SYSTEM_DEFAULTS.length; i++)
-        {
-            systemDefaults.add(NUMERIC_TYPE_SYSTEM_DEFAULTS[i]);
+        for (String element : NUMERIC_TYPE_SYSTEM_DEFAULTS) {
+            systemDefaults.add(element);
         }
-        for (int i = 0; i < TIME_TYPE_SYSTEM_DEFAULTS.length; i++)
-        {
-            systemDefaults.add(TIME_TYPE_SYSTEM_DEFAULTS[i]);
+        for (String element : TIME_TYPE_SYSTEM_DEFAULTS) {
+            systemDefaults.add(element);
         }
-        for (int i = 0; i < DATE_TYPE_SYSTEM_DEFAULTS.length; i++)
-        {
-            systemDefaults.add(DATE_TYPE_SYSTEM_DEFAULTS[i]);
+        for (String element : DATE_TYPE_SYSTEM_DEFAULTS) {
+            systemDefaults.add(element);
         }
-        for (int i = 0; i < TS_TYPE_SYSTEM_DEFAULTS.length; i++)
-        {
-            systemDefaults.add(TS_TYPE_SYSTEM_DEFAULTS[i]);
+        for (String element : TS_TYPE_SYSTEM_DEFAULTS) {
+            systemDefaults.add(element);
         }
-        for (int i = 0; i < BINARY_TYPE_SYSTEM_DEFAULTS.length; i++)
-        {
-            systemDefaults.add(BINARY_TYPE_SYSTEM_DEFAULTS[i]);
+        for (String element : BINARY_TYPE_SYSTEM_DEFAULTS) {
+            systemDefaults.add(element);
         }
         if(systemDefaults.contains(value))
         {
@@ -453,9 +469,10 @@ public class SybaseASADefaultWrapperImpl extends EObjectImpl implements SybaseAS
         return false;
     }
 
-    public String getRawValue()
+    @Override
+	public String getRawValue()
     {
         return rawValue;
     }
-    
+
 } //SybaseASADefaultWrapperImpl

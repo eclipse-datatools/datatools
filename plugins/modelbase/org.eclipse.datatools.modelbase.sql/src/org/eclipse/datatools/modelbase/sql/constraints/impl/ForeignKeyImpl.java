@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -35,6 +35,7 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.constraints.impl.ForeignKeyImpl#getMatch <em>Match</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.constraints.impl.ForeignKeyImpl#getOnUpdate <em>On Update</em>}</li>
@@ -44,7 +45,6 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  *   <li>{@link org.eclipse.datatools.modelbase.sql.constraints.impl.ForeignKeyImpl#getUniqueIndex <em>Unique Index</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.constraints.impl.ForeignKeyImpl#getReferencedTable <em>Referenced Table</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -163,6 +163,7 @@ public class ForeignKeyImpl extends ReferenceConstraintImpl implements ForeignKe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return SQLConstraintsPackage.Literals.FOREIGN_KEY;
 	}
@@ -172,6 +173,7 @@ public class ForeignKeyImpl extends ReferenceConstraintImpl implements ForeignKe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public MatchType getMatch() {
 		return match;
 	}
@@ -181,11 +183,13 @@ public class ForeignKeyImpl extends ReferenceConstraintImpl implements ForeignKe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMatch(MatchType newMatch) {
 		MatchType oldMatch = match;
 		match = newMatch == null ? MATCH_EDEFAULT : newMatch;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLConstraintsPackage.FOREIGN_KEY__MATCH, oldMatch, match));
+		}
 	}
 
 	/**
@@ -193,6 +197,7 @@ public class ForeignKeyImpl extends ReferenceConstraintImpl implements ForeignKe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ReferentialActionType getOnUpdate() {
 		return onUpdate;
 	}
@@ -202,11 +207,13 @@ public class ForeignKeyImpl extends ReferenceConstraintImpl implements ForeignKe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOnUpdate(ReferentialActionType newOnUpdate) {
 		ReferentialActionType oldOnUpdate = onUpdate;
 		onUpdate = newOnUpdate == null ? ON_UPDATE_EDEFAULT : newOnUpdate;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLConstraintsPackage.FOREIGN_KEY__ON_UPDATE, oldOnUpdate, onUpdate));
+		}
 	}
 
 	/**
@@ -214,6 +221,7 @@ public class ForeignKeyImpl extends ReferenceConstraintImpl implements ForeignKe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ReferentialActionType getOnDelete() {
 		return onDelete;
 	}
@@ -223,11 +231,13 @@ public class ForeignKeyImpl extends ReferenceConstraintImpl implements ForeignKe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOnDelete(ReferentialActionType newOnDelete) {
 		ReferentialActionType oldOnDelete = onDelete;
 		onDelete = newOnDelete == null ? ON_DELETE_EDEFAULT : newOnDelete;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLConstraintsPackage.FOREIGN_KEY__ON_DELETE, oldOnDelete, onDelete));
+		}
 	}
 
 	/**
@@ -235,13 +245,15 @@ public class ForeignKeyImpl extends ReferenceConstraintImpl implements ForeignKe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public UniqueConstraint getUniqueConstraint() {
 		if (uniqueConstraint != null && uniqueConstraint.eIsProxy()) {
 			InternalEObject oldUniqueConstraint = (InternalEObject)uniqueConstraint;
 			uniqueConstraint = (UniqueConstraint)eResolveProxy(oldUniqueConstraint);
 			if (uniqueConstraint != oldUniqueConstraint) {
-				if (eNotificationRequired())
+				if (eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SQLConstraintsPackage.FOREIGN_KEY__UNIQUE_CONSTRAINT, oldUniqueConstraint, uniqueConstraint));
+				}
 			}
 		}
 		return uniqueConstraint;
@@ -266,7 +278,11 @@ public class ForeignKeyImpl extends ReferenceConstraintImpl implements ForeignKe
 		uniqueConstraint = newUniqueConstraint;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLConstraintsPackage.FOREIGN_KEY__UNIQUE_CONSTRAINT, oldUniqueConstraint, newUniqueConstraint);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			if (msgs == null) {
+				msgs = notification;
+			} else {
+				msgs.add(notification);
+			}
 		}
 		return msgs;
 	}
@@ -276,18 +292,24 @@ public class ForeignKeyImpl extends ReferenceConstraintImpl implements ForeignKe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setUniqueConstraint(UniqueConstraint newUniqueConstraint) {
 		if (newUniqueConstraint != uniqueConstraint) {
 			NotificationChain msgs = null;
-			if (uniqueConstraint != null)
+			if (uniqueConstraint != null) {
 				msgs = ((InternalEObject)uniqueConstraint).eInverseRemove(this, SQLConstraintsPackage.UNIQUE_CONSTRAINT__FOREIGN_KEY, UniqueConstraint.class, msgs);
-			if (newUniqueConstraint != null)
+			}
+			if (newUniqueConstraint != null) {
 				msgs = ((InternalEObject)newUniqueConstraint).eInverseAdd(this, SQLConstraintsPackage.UNIQUE_CONSTRAINT__FOREIGN_KEY, UniqueConstraint.class, msgs);
+			}
 			msgs = basicSetUniqueConstraint(newUniqueConstraint, msgs);
-			if (msgs != null) msgs.dispatch();
+			if (msgs != null) {
+				msgs.dispatch();
+			}
 		}
-		else if (eNotificationRequired())
+		else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLConstraintsPackage.FOREIGN_KEY__UNIQUE_CONSTRAINT, newUniqueConstraint, newUniqueConstraint));
+		}
 	}
 
 	/**
@@ -295,6 +317,7 @@ public class ForeignKeyImpl extends ReferenceConstraintImpl implements ForeignKe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList getReferencedMembers() {
 		if (referencedMembers == null) {
 			referencedMembers = new EObjectResolvingEList(Column.class, this, SQLConstraintsPackage.FOREIGN_KEY__REFERENCED_MEMBERS);
@@ -307,13 +330,15 @@ public class ForeignKeyImpl extends ReferenceConstraintImpl implements ForeignKe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Index getUniqueIndex() {
 		if (uniqueIndex != null && uniqueIndex.eIsProxy()) {
 			InternalEObject oldUniqueIndex = (InternalEObject)uniqueIndex;
 			uniqueIndex = (Index)eResolveProxy(oldUniqueIndex);
 			if (uniqueIndex != oldUniqueIndex) {
-				if (eNotificationRequired())
+				if (eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SQLConstraintsPackage.FOREIGN_KEY__UNIQUE_INDEX, oldUniqueIndex, uniqueIndex));
+				}
 			}
 		}
 		return uniqueIndex;
@@ -338,7 +363,11 @@ public class ForeignKeyImpl extends ReferenceConstraintImpl implements ForeignKe
 		uniqueIndex = newUniqueIndex;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLConstraintsPackage.FOREIGN_KEY__UNIQUE_INDEX, oldUniqueIndex, newUniqueIndex);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			if (msgs == null) {
+				msgs = notification;
+			} else {
+				msgs.add(notification);
+			}
 		}
 		return msgs;
 	}
@@ -348,18 +377,24 @@ public class ForeignKeyImpl extends ReferenceConstraintImpl implements ForeignKe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setUniqueIndex(Index newUniqueIndex) {
 		if (newUniqueIndex != uniqueIndex) {
 			NotificationChain msgs = null;
-			if (uniqueIndex != null)
+			if (uniqueIndex != null) {
 				msgs = ((InternalEObject)uniqueIndex).eInverseRemove(this, SQLConstraintsPackage.INDEX__FOREIGN_KEY, Index.class, msgs);
-			if (newUniqueIndex != null)
+			}
+			if (newUniqueIndex != null) {
 				msgs = ((InternalEObject)newUniqueIndex).eInverseAdd(this, SQLConstraintsPackage.INDEX__FOREIGN_KEY, Index.class, msgs);
+			}
 			msgs = basicSetUniqueIndex(newUniqueIndex, msgs);
-			if (msgs != null) msgs.dispatch();
+			if (msgs != null) {
+				msgs.dispatch();
+			}
 		}
-		else if (eNotificationRequired())
+		else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLConstraintsPackage.FOREIGN_KEY__UNIQUE_INDEX, newUniqueIndex, newUniqueIndex));
+		}
 	}
 
 	/**
@@ -367,13 +402,15 @@ public class ForeignKeyImpl extends ReferenceConstraintImpl implements ForeignKe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public BaseTable getReferencedTable() {
 		if (referencedTable != null && referencedTable.eIsProxy()) {
 			InternalEObject oldReferencedTable = (InternalEObject)referencedTable;
 			referencedTable = (BaseTable)eResolveProxy(oldReferencedTable);
 			if (referencedTable != oldReferencedTable) {
-				if (eNotificationRequired())
+				if (eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SQLConstraintsPackage.FOREIGN_KEY__REFERENCED_TABLE, oldReferencedTable, referencedTable));
+				}
 			}
 		}
 		return referencedTable;
@@ -398,7 +435,11 @@ public class ForeignKeyImpl extends ReferenceConstraintImpl implements ForeignKe
 		referencedTable = newReferencedTable;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLConstraintsPackage.FOREIGN_KEY__REFERENCED_TABLE, oldReferencedTable, newReferencedTable);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			if (msgs == null) {
+				msgs = notification;
+			} else {
+				msgs.add(notification);
+			}
 		}
 		return msgs;
 	}
@@ -408,18 +449,24 @@ public class ForeignKeyImpl extends ReferenceConstraintImpl implements ForeignKe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setReferencedTable(BaseTable newReferencedTable) {
 		if (newReferencedTable != referencedTable) {
 			NotificationChain msgs = null;
-			if (referencedTable != null)
+			if (referencedTable != null) {
 				msgs = ((InternalEObject)referencedTable).eInverseRemove(this, SQLTablesPackage.BASE_TABLE__REFERENCING_FOREIGN_KEYS, BaseTable.class, msgs);
-			if (newReferencedTable != null)
+			}
+			if (newReferencedTable != null) {
 				msgs = ((InternalEObject)newReferencedTable).eInverseAdd(this, SQLTablesPackage.BASE_TABLE__REFERENCING_FOREIGN_KEYS, BaseTable.class, msgs);
+			}
 			msgs = basicSetReferencedTable(newReferencedTable, msgs);
-			if (msgs != null) msgs.dispatch();
+			if (msgs != null) {
+				msgs.dispatch();
+			}
 		}
-		else if (eNotificationRequired())
+		else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLConstraintsPackage.FOREIGN_KEY__REFERENCED_TABLE, newReferencedTable, newReferencedTable));
+		}
 	}
 
 	/**
@@ -427,19 +474,23 @@ public class ForeignKeyImpl extends ReferenceConstraintImpl implements ForeignKe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case SQLConstraintsPackage.FOREIGN_KEY__UNIQUE_CONSTRAINT:
-				if (uniqueConstraint != null)
+				if (uniqueConstraint != null) {
 					msgs = ((InternalEObject)uniqueConstraint).eInverseRemove(this, SQLConstraintsPackage.UNIQUE_CONSTRAINT__FOREIGN_KEY, UniqueConstraint.class, msgs);
+				}
 				return basicSetUniqueConstraint((UniqueConstraint)otherEnd, msgs);
 			case SQLConstraintsPackage.FOREIGN_KEY__UNIQUE_INDEX:
-				if (uniqueIndex != null)
+				if (uniqueIndex != null) {
 					msgs = ((InternalEObject)uniqueIndex).eInverseRemove(this, SQLConstraintsPackage.INDEX__FOREIGN_KEY, Index.class, msgs);
+				}
 				return basicSetUniqueIndex((Index)otherEnd, msgs);
 			case SQLConstraintsPackage.FOREIGN_KEY__REFERENCED_TABLE:
-				if (referencedTable != null)
+				if (referencedTable != null) {
 					msgs = ((InternalEObject)referencedTable).eInverseRemove(this, SQLTablesPackage.BASE_TABLE__REFERENCING_FOREIGN_KEYS, BaseTable.class, msgs);
+				}
 				return basicSetReferencedTable((BaseTable)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -450,6 +501,7 @@ public class ForeignKeyImpl extends ReferenceConstraintImpl implements ForeignKe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case SQLConstraintsPackage.FOREIGN_KEY__UNIQUE_CONSTRAINT:
@@ -467,6 +519,7 @@ public class ForeignKeyImpl extends ReferenceConstraintImpl implements ForeignKe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SQLConstraintsPackage.FOREIGN_KEY__MATCH:
@@ -476,15 +529,21 @@ public class ForeignKeyImpl extends ReferenceConstraintImpl implements ForeignKe
 			case SQLConstraintsPackage.FOREIGN_KEY__ON_DELETE:
 				return getOnDelete();
 			case SQLConstraintsPackage.FOREIGN_KEY__UNIQUE_CONSTRAINT:
-				if (resolve) return getUniqueConstraint();
+				if (resolve) {
+					return getUniqueConstraint();
+				}
 				return basicGetUniqueConstraint();
 			case SQLConstraintsPackage.FOREIGN_KEY__REFERENCED_MEMBERS:
 				return getReferencedMembers();
 			case SQLConstraintsPackage.FOREIGN_KEY__UNIQUE_INDEX:
-				if (resolve) return getUniqueIndex();
+				if (resolve) {
+					return getUniqueIndex();
+				}
 				return basicGetUniqueIndex();
 			case SQLConstraintsPackage.FOREIGN_KEY__REFERENCED_TABLE:
-				if (resolve) return getReferencedTable();
+				if (resolve) {
+					return getReferencedTable();
+				}
 				return basicGetReferencedTable();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -495,6 +554,7 @@ public class ForeignKeyImpl extends ReferenceConstraintImpl implements ForeignKe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case SQLConstraintsPackage.FOREIGN_KEY__MATCH:
@@ -528,6 +588,7 @@ public class ForeignKeyImpl extends ReferenceConstraintImpl implements ForeignKe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case SQLConstraintsPackage.FOREIGN_KEY__MATCH:
@@ -560,6 +621,7 @@ public class ForeignKeyImpl extends ReferenceConstraintImpl implements ForeignKe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SQLConstraintsPackage.FOREIGN_KEY__MATCH:
@@ -585,8 +647,11 @@ public class ForeignKeyImpl extends ReferenceConstraintImpl implements ForeignKe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (match: "); //$NON-NLS-1$

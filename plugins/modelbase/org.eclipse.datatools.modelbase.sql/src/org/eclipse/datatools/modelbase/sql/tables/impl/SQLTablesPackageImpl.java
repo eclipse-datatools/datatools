@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -164,20 +164,10 @@ public class SQLTablesPackageImpl extends EPackageImpl implements SQLTablesPacka
 	private static boolean isInited = false;
 
 	/**
-	 * Creates, registers, and initializes the <b>Package</b> for this
-	 * model, and for any others upon which it depends.  Simple
-	 * dependencies are satisfied by calling this method on all
-	 * dependent packages before doing anything else.  This method drives
-	 * initialization for interdependent packages directly, in parallel
-	 * with this package, itself.
-	 * <p>Of this package and its interdependencies, all packages which
-	 * have not yet been registered by their URI values are first created
-	 * and registered.  The packages are then initialized in two steps:
-	 * meta-model objects for all of the packages are created before any
-	 * are initialized, since one package's meta-model objects may refer to
-	 * those of another.
-	 * <p>Invocation of this method will not affect any packages that have
-	 * already been initialized.
+	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
+	 *
+	 * <p>This method is used to initialize {@link SQLTablesPackage#eINSTANCE} when that field is accessed.
+	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #eNS_URI
@@ -186,10 +176,13 @@ public class SQLTablesPackageImpl extends EPackageImpl implements SQLTablesPacka
 	 * @generated
 	 */
 	public static SQLTablesPackage init() {
-		if (isInited) return (SQLTablesPackage)EPackage.Registry.INSTANCE.getEPackage(SQLTablesPackage.eNS_URI);
+		if (isInited) {
+			return (SQLTablesPackage)EPackage.Registry.INSTANCE.getEPackage(SQLTablesPackage.eNS_URI);
+		}
 
 		// Obtain or create and register package
-		SQLTablesPackageImpl theSQLTablesPackage = (SQLTablesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(eNS_URI) instanceof SQLTablesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(eNS_URI) : new SQLTablesPackageImpl());
+		Object registeredSQLTablesPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		SQLTablesPackageImpl theSQLTablesPackage = registeredSQLTablesPackage instanceof SQLTablesPackageImpl ? (SQLTablesPackageImpl)registeredSQLTablesPackage : new SQLTablesPackageImpl();
 
 		isInited = true;
 
@@ -197,13 +190,20 @@ public class SQLTablesPackageImpl extends EPackageImpl implements SQLTablesPacka
 		EcorePackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
-		SQLSchemaPackageImpl theSQLSchemaPackage = (SQLSchemaPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SQLSchemaPackage.eNS_URI) instanceof SQLSchemaPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SQLSchemaPackage.eNS_URI) : SQLSchemaPackage.eINSTANCE);
-		SQLConstraintsPackageImpl theSQLConstraintsPackage = (SQLConstraintsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SQLConstraintsPackage.eNS_URI) instanceof SQLConstraintsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SQLConstraintsPackage.eNS_URI) : SQLConstraintsPackage.eINSTANCE);
-		SQLDataTypesPackageImpl theSQLDataTypesPackage = (SQLDataTypesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SQLDataTypesPackage.eNS_URI) instanceof SQLDataTypesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SQLDataTypesPackage.eNS_URI) : SQLDataTypesPackage.eINSTANCE);
-		SQLExpressionsPackageImpl theSQLExpressionsPackage = (SQLExpressionsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SQLExpressionsPackage.eNS_URI) instanceof SQLExpressionsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SQLExpressionsPackage.eNS_URI) : SQLExpressionsPackage.eINSTANCE);
-		SQLRoutinesPackageImpl theSQLRoutinesPackage = (SQLRoutinesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SQLRoutinesPackage.eNS_URI) instanceof SQLRoutinesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SQLRoutinesPackage.eNS_URI) : SQLRoutinesPackage.eINSTANCE);
-		SQLStatementsPackageImpl theSQLStatementsPackage = (SQLStatementsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SQLStatementsPackage.eNS_URI) instanceof SQLStatementsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SQLStatementsPackage.eNS_URI) : SQLStatementsPackage.eINSTANCE);
-		SQLAccessControlPackageImpl theSQLAccessControlPackage = (SQLAccessControlPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SQLAccessControlPackage.eNS_URI) instanceof SQLAccessControlPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SQLAccessControlPackage.eNS_URI) : SQLAccessControlPackage.eINSTANCE);
+		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(SQLSchemaPackage.eNS_URI);
+		SQLSchemaPackageImpl theSQLSchemaPackage = (SQLSchemaPackageImpl)(registeredPackage instanceof SQLSchemaPackageImpl ? registeredPackage : SQLSchemaPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(SQLConstraintsPackage.eNS_URI);
+		SQLConstraintsPackageImpl theSQLConstraintsPackage = (SQLConstraintsPackageImpl)(registeredPackage instanceof SQLConstraintsPackageImpl ? registeredPackage : SQLConstraintsPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(SQLDataTypesPackage.eNS_URI);
+		SQLDataTypesPackageImpl theSQLDataTypesPackage = (SQLDataTypesPackageImpl)(registeredPackage instanceof SQLDataTypesPackageImpl ? registeredPackage : SQLDataTypesPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(SQLExpressionsPackage.eNS_URI);
+		SQLExpressionsPackageImpl theSQLExpressionsPackage = (SQLExpressionsPackageImpl)(registeredPackage instanceof SQLExpressionsPackageImpl ? registeredPackage : SQLExpressionsPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(SQLRoutinesPackage.eNS_URI);
+		SQLRoutinesPackageImpl theSQLRoutinesPackage = (SQLRoutinesPackageImpl)(registeredPackage instanceof SQLRoutinesPackageImpl ? registeredPackage : SQLRoutinesPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(SQLStatementsPackage.eNS_URI);
+		SQLStatementsPackageImpl theSQLStatementsPackage = (SQLStatementsPackageImpl)(registeredPackage instanceof SQLStatementsPackageImpl ? registeredPackage : SQLStatementsPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(SQLAccessControlPackage.eNS_URI);
+		SQLAccessControlPackageImpl theSQLAccessControlPackage = (SQLAccessControlPackageImpl)(registeredPackage instanceof SQLAccessControlPackageImpl ? registeredPackage : SQLAccessControlPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theSQLTablesPackage.createPackageContents();
@@ -228,6 +228,8 @@ public class SQLTablesPackageImpl extends EPackageImpl implements SQLTablesPacka
 		// Mark meta-data to indicate it can't be changed
 		theSQLTablesPackage.freeze();
 
+		// Update the registry and return the package
+		EPackage.Registry.INSTANCE.put(SQLTablesPackage.eNS_URI, theSQLTablesPackage);
 		return theSQLTablesPackage;
 	}
 
@@ -236,6 +238,7 @@ public class SQLTablesPackageImpl extends EPackageImpl implements SQLTablesPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getViewTable() {
 		return viewTableEClass;
 	}
@@ -245,6 +248,7 @@ public class SQLTablesPackageImpl extends EPackageImpl implements SQLTablesPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getViewTable_CheckType() {
 		return (EAttribute)viewTableEClass.getEStructuralFeatures().get(0);
 	}
@@ -254,6 +258,7 @@ public class SQLTablesPackageImpl extends EPackageImpl implements SQLTablesPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getTemporaryTable() {
 		return temporaryTableEClass;
 	}
@@ -263,6 +268,7 @@ public class SQLTablesPackageImpl extends EPackageImpl implements SQLTablesPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getTemporaryTable_Local() {
 		return (EAttribute)temporaryTableEClass.getEStructuralFeatures().get(0);
 	}
@@ -272,6 +278,7 @@ public class SQLTablesPackageImpl extends EPackageImpl implements SQLTablesPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getTemporaryTable_DeleteOnCommit() {
 		return (EAttribute)temporaryTableEClass.getEStructuralFeatures().get(1);
 	}
@@ -281,6 +288,7 @@ public class SQLTablesPackageImpl extends EPackageImpl implements SQLTablesPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getTable() {
 		return tableEClass;
 	}
@@ -290,6 +298,7 @@ public class SQLTablesPackageImpl extends EPackageImpl implements SQLTablesPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTable_Columns() {
 		return (EReference)tableEClass.getEStructuralFeatures().get(0);
 	}
@@ -299,6 +308,7 @@ public class SQLTablesPackageImpl extends EPackageImpl implements SQLTablesPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTable_Supertable() {
 		return (EReference)tableEClass.getEStructuralFeatures().get(1);
 	}
@@ -308,6 +318,7 @@ public class SQLTablesPackageImpl extends EPackageImpl implements SQLTablesPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTable_Subtables() {
 		return (EReference)tableEClass.getEStructuralFeatures().get(2);
 	}
@@ -317,6 +328,7 @@ public class SQLTablesPackageImpl extends EPackageImpl implements SQLTablesPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTable_Schema() {
 		return (EReference)tableEClass.getEStructuralFeatures().get(3);
 	}
@@ -326,6 +338,7 @@ public class SQLTablesPackageImpl extends EPackageImpl implements SQLTablesPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTable_Udt() {
 		return (EReference)tableEClass.getEStructuralFeatures().get(4);
 	}
@@ -335,6 +348,7 @@ public class SQLTablesPackageImpl extends EPackageImpl implements SQLTablesPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTable_Triggers() {
 		return (EReference)tableEClass.getEStructuralFeatures().get(5);
 	}
@@ -344,6 +358,7 @@ public class SQLTablesPackageImpl extends EPackageImpl implements SQLTablesPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTable_Index() {
 		return (EReference)tableEClass.getEStructuralFeatures().get(6);
 	}
@@ -353,6 +368,7 @@ public class SQLTablesPackageImpl extends EPackageImpl implements SQLTablesPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getTable_SelfRefColumnGeneration() {
 		return (EAttribute)tableEClass.getEStructuralFeatures().get(7);
 	}
@@ -362,6 +378,7 @@ public class SQLTablesPackageImpl extends EPackageImpl implements SQLTablesPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getTable_Insertable() {
 		return (EAttribute)tableEClass.getEStructuralFeatures().get(8);
 	}
@@ -371,6 +388,7 @@ public class SQLTablesPackageImpl extends EPackageImpl implements SQLTablesPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getTable_Updatable() {
 		return (EAttribute)tableEClass.getEStructuralFeatures().get(9);
 	}
@@ -380,6 +398,7 @@ public class SQLTablesPackageImpl extends EPackageImpl implements SQLTablesPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getPersistentTable() {
 		return persistentTableEClass;
 	}
@@ -389,6 +408,7 @@ public class SQLTablesPackageImpl extends EPackageImpl implements SQLTablesPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getDerivedTable() {
 		return derivedTableEClass;
 	}
@@ -398,6 +418,7 @@ public class SQLTablesPackageImpl extends EPackageImpl implements SQLTablesPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getDerivedTable_QueryExpression() {
 		return (EReference)derivedTableEClass.getEStructuralFeatures().get(0);
 	}
@@ -407,6 +428,7 @@ public class SQLTablesPackageImpl extends EPackageImpl implements SQLTablesPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getBaseTable() {
 		return baseTableEClass;
 	}
@@ -416,6 +438,7 @@ public class SQLTablesPackageImpl extends EPackageImpl implements SQLTablesPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getBaseTable_Constraints() {
 		return (EReference)baseTableEClass.getEStructuralFeatures().get(0);
 	}
@@ -425,6 +448,7 @@ public class SQLTablesPackageImpl extends EPackageImpl implements SQLTablesPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getBaseTable_ReferencingForeignKeys() {
 		return (EReference)baseTableEClass.getEStructuralFeatures().get(1);
 	}
@@ -434,6 +458,7 @@ public class SQLTablesPackageImpl extends EPackageImpl implements SQLTablesPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getColumn() {
 		return columnEClass;
 	}
@@ -443,6 +468,7 @@ public class SQLTablesPackageImpl extends EPackageImpl implements SQLTablesPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getColumn_Table() {
 		return (EReference)columnEClass.getEStructuralFeatures().get(0);
 	}
@@ -452,6 +478,7 @@ public class SQLTablesPackageImpl extends EPackageImpl implements SQLTablesPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getColumn_IdentitySpecifier() {
 		return (EReference)columnEClass.getEStructuralFeatures().get(1);
 	}
@@ -461,6 +488,7 @@ public class SQLTablesPackageImpl extends EPackageImpl implements SQLTablesPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getColumn_GenerateExpression() {
 		return (EReference)columnEClass.getEStructuralFeatures().get(2);
 	}
@@ -470,6 +498,7 @@ public class SQLTablesPackageImpl extends EPackageImpl implements SQLTablesPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getColumn_ImplementationDependent() {
 		return (EAttribute)columnEClass.getEStructuralFeatures().get(3);
 	}
@@ -479,6 +508,7 @@ public class SQLTablesPackageImpl extends EPackageImpl implements SQLTablesPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getColumn_Nullable() {
 		return (EAttribute)columnEClass.getEStructuralFeatures().get(4);
 	}
@@ -488,6 +518,7 @@ public class SQLTablesPackageImpl extends EPackageImpl implements SQLTablesPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getColumn_DefaultValue() {
 		return (EAttribute)columnEClass.getEStructuralFeatures().get(5);
 	}
@@ -497,6 +528,7 @@ public class SQLTablesPackageImpl extends EPackageImpl implements SQLTablesPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getColumn_ScopeCheck() {
 		return (EAttribute)columnEClass.getEStructuralFeatures().get(6);
 	}
@@ -506,6 +538,7 @@ public class SQLTablesPackageImpl extends EPackageImpl implements SQLTablesPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getColumn_ScopeChecked() {
 		return (EAttribute)columnEClass.getEStructuralFeatures().get(7);
 	}
@@ -515,6 +548,7 @@ public class SQLTablesPackageImpl extends EPackageImpl implements SQLTablesPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getTrigger() {
 		return triggerEClass;
 	}
@@ -524,6 +558,7 @@ public class SQLTablesPackageImpl extends EPackageImpl implements SQLTablesPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTrigger_Schema() {
 		return (EReference)triggerEClass.getEStructuralFeatures().get(0);
 	}
@@ -533,6 +568,7 @@ public class SQLTablesPackageImpl extends EPackageImpl implements SQLTablesPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTrigger_SubjectTable() {
 		return (EReference)triggerEClass.getEStructuralFeatures().get(1);
 	}
@@ -542,6 +578,7 @@ public class SQLTablesPackageImpl extends EPackageImpl implements SQLTablesPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTrigger_ActionStatement() {
 		return (EReference)triggerEClass.getEStructuralFeatures().get(2);
 	}
@@ -551,6 +588,7 @@ public class SQLTablesPackageImpl extends EPackageImpl implements SQLTablesPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTrigger_TriggerColumn() {
 		return (EReference)triggerEClass.getEStructuralFeatures().get(3);
 	}
@@ -560,6 +598,7 @@ public class SQLTablesPackageImpl extends EPackageImpl implements SQLTablesPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getTrigger_ActionGranularity() {
 		return (EAttribute)triggerEClass.getEStructuralFeatures().get(4);
 	}
@@ -569,6 +608,7 @@ public class SQLTablesPackageImpl extends EPackageImpl implements SQLTablesPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTrigger_When() {
 		return (EReference)triggerEClass.getEStructuralFeatures().get(5);
 	}
@@ -578,6 +618,7 @@ public class SQLTablesPackageImpl extends EPackageImpl implements SQLTablesPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getTrigger_TimeStamp() {
 		return (EAttribute)triggerEClass.getEStructuralFeatures().get(6);
 	}
@@ -587,6 +628,7 @@ public class SQLTablesPackageImpl extends EPackageImpl implements SQLTablesPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getTrigger_ActionTime() {
 		return (EAttribute)triggerEClass.getEStructuralFeatures().get(7);
 	}
@@ -596,6 +638,7 @@ public class SQLTablesPackageImpl extends EPackageImpl implements SQLTablesPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getTrigger_UpdateType() {
 		return (EAttribute)triggerEClass.getEStructuralFeatures().get(8);
 	}
@@ -605,6 +648,7 @@ public class SQLTablesPackageImpl extends EPackageImpl implements SQLTablesPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getTrigger_InsertType() {
 		return (EAttribute)triggerEClass.getEStructuralFeatures().get(9);
 	}
@@ -614,6 +658,7 @@ public class SQLTablesPackageImpl extends EPackageImpl implements SQLTablesPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getTrigger_DeleteType() {
 		return (EAttribute)triggerEClass.getEStructuralFeatures().get(10);
 	}
@@ -623,6 +668,7 @@ public class SQLTablesPackageImpl extends EPackageImpl implements SQLTablesPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getTrigger_OldRow() {
 		return (EAttribute)triggerEClass.getEStructuralFeatures().get(11);
 	}
@@ -632,6 +678,7 @@ public class SQLTablesPackageImpl extends EPackageImpl implements SQLTablesPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getTrigger_NewRow() {
 		return (EAttribute)triggerEClass.getEStructuralFeatures().get(12);
 	}
@@ -641,6 +688,7 @@ public class SQLTablesPackageImpl extends EPackageImpl implements SQLTablesPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getTrigger_OldTable() {
 		return (EAttribute)triggerEClass.getEStructuralFeatures().get(13);
 	}
@@ -650,6 +698,7 @@ public class SQLTablesPackageImpl extends EPackageImpl implements SQLTablesPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getTrigger_NewTable() {
 		return (EAttribute)triggerEClass.getEStructuralFeatures().get(14);
 	}
@@ -659,6 +708,7 @@ public class SQLTablesPackageImpl extends EPackageImpl implements SQLTablesPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EEnum getCheckType() {
 		return checkTypeEEnum;
 	}
@@ -668,6 +718,7 @@ public class SQLTablesPackageImpl extends EPackageImpl implements SQLTablesPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EEnum getReferenceType() {
 		return referenceTypeEEnum;
 	}
@@ -677,6 +728,7 @@ public class SQLTablesPackageImpl extends EPackageImpl implements SQLTablesPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EEnum getActionTimeType() {
 		return actionTimeTypeEEnum;
 	}
@@ -686,6 +738,7 @@ public class SQLTablesPackageImpl extends EPackageImpl implements SQLTablesPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EEnum getActionGranularityType() {
 		return actionGranularityTypeEEnum;
 	}
@@ -695,6 +748,7 @@ public class SQLTablesPackageImpl extends EPackageImpl implements SQLTablesPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SQLTablesFactory getSQLTablesFactory() {
 		return (SQLTablesFactory)getEFactoryInstance();
 	}
@@ -714,7 +768,9 @@ public class SQLTablesPackageImpl extends EPackageImpl implements SQLTablesPacka
 	 * @generated
 	 */
 	public void createPackageContents() {
-		if (isCreated) return;
+		if (isCreated) {
+			return;
+		}
 		isCreated = true;
 
 		// Create classes and their features
@@ -795,7 +851,9 @@ public class SQLTablesPackageImpl extends EPackageImpl implements SQLTablesPacka
 	 * @generated
 	 */
 	public void initializePackageContents() {
-		if (isInitialized) return;
+		if (isInitialized) {
+			return;
+		}
 		isInitialized = true;
 
 		// Initialize package

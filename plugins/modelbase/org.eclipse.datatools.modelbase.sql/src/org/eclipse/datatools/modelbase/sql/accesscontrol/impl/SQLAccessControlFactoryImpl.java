@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -38,7 +38,7 @@ public class SQLAccessControlFactoryImpl extends EFactoryImpl implements SQLAcce
 	 */
 	public static SQLAccessControlFactory init() {
 		try {
-			SQLAccessControlFactory theSQLAccessControlFactory = (SQLAccessControlFactory)EPackage.Registry.INSTANCE.getEFactory("http:///org/eclipse/datatools/modelbase/sql/accesscontrol.ecore"); //$NON-NLS-1$ 
+			SQLAccessControlFactory theSQLAccessControlFactory = (SQLAccessControlFactory)EPackage.Registry.INSTANCE.getEFactory(SQLAccessControlPackage.eNS_URI);
 			if (theSQLAccessControlFactory != null) {
 				return theSQLAccessControlFactory;
 			}
@@ -64,6 +64,7 @@ public class SQLAccessControlFactoryImpl extends EFactoryImpl implements SQLAcce
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case SQLAccessControlPackage.PRIVILEGE: return createPrivilege();
@@ -81,6 +82,7 @@ public class SQLAccessControlFactoryImpl extends EFactoryImpl implements SQLAcce
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Privilege createPrivilege() {
 		PrivilegeImpl privilege = new PrivilegeImpl();
 		return privilege;
@@ -91,6 +93,7 @@ public class SQLAccessControlFactoryImpl extends EFactoryImpl implements SQLAcce
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Group createGroup() {
 		GroupImpl group = new GroupImpl();
 		return group;
@@ -101,6 +104,7 @@ public class SQLAccessControlFactoryImpl extends EFactoryImpl implements SQLAcce
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public User createUser() {
 		UserImpl user = new UserImpl();
 		return user;
@@ -111,6 +115,7 @@ public class SQLAccessControlFactoryImpl extends EFactoryImpl implements SQLAcce
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Role createRole() {
 		RoleImpl role = new RoleImpl();
 		return role;
@@ -121,6 +126,7 @@ public class SQLAccessControlFactoryImpl extends EFactoryImpl implements SQLAcce
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public RoleAuthorization createRoleAuthorization() {
 		RoleAuthorizationImpl roleAuthorization = new RoleAuthorizationImpl();
 		return roleAuthorization;
@@ -131,6 +137,7 @@ public class SQLAccessControlFactoryImpl extends EFactoryImpl implements SQLAcce
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SQLAccessControlPackage getSQLAccessControlPackage() {
 		return (SQLAccessControlPackage)getEPackage();
 	}
@@ -141,6 +148,7 @@ public class SQLAccessControlFactoryImpl extends EFactoryImpl implements SQLAcce
 	 * @deprecated
 	 * @generated
 	 */
+	@Deprecated
 	public static SQLAccessControlPackage getPackage() {
 		return SQLAccessControlPackage.eINSTANCE;
 	}

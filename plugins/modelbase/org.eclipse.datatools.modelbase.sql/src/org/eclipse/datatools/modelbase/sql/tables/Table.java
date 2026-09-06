@@ -4,8 +4,8 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
- * Contributors:  
+ *
+ * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
 package org.eclipse.datatools.modelbase.sql.tables;
@@ -26,6 +26,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.tables.Table#getColumns <em>Columns</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.tables.Table#getSupertable <em>Supertable</em>}</li>
@@ -38,7 +39,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.eclipse.datatools.modelbase.sql.tables.Table#isInsertable <em>Insertable</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.tables.Table#isUpdatable <em>Updatable</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.datatools.modelbase.sql.tables.SQLTablesPackage#getTable()
  * @model abstract="true"

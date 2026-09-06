@@ -48,8 +48,8 @@ public class ASAReferenceConstraintDeltaDdlGenProvider extends ReferenceConstrai
         ReferenceConstraint rc = (ReferenceConstraint)e;
         
         // the referenced members are changed. Need to drop the old one and create a new one.
-        if (feature.getFeatureID() == SQLConstraintsPackage.REFERENCE_CONSTRAINT__MEMBERS
-                || feature == SybaseasabasesqlmodelPackage.eINSTANCE.getSybaseASABaseUniqueConstraint_Clustered())
+        if (feature.getFeatureID() == SQLConstraintsPackage.REFERENCE_CONSTRAINT__MEMBERS ||
+        		feature == SQLConstraintsPackage.eINSTANCE.getUniqueConstraint_Clustered())
         {
             Database database = (Database) ContainmentServiceImpl.INSTANCE.getRootElement(rc);
             DatabaseDefinition def = DatabaseDefinitionRegistryImpl.INSTANCE.getDefinition(database);

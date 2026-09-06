@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *   Ingres Corporation - initial API and implementation
  *
@@ -117,61 +117,121 @@ public class IngressqlmodelSwitch {
 			case IngressqlmodelPackage.INGRES_SYNONYM: {
 				IngresSynonym ingresSynonym = (IngresSynonym)theEObject;
 				Object result = caseIngresSynonym(ingresSynonym);
-				if (result == null) result = caseSQLObject(ingresSynonym);
-				if (result == null) result = caseENamedElement(ingresSynonym);
-				if (result == null) result = caseEModelElement(ingresSynonym);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = caseSQLObject(ingresSynonym);
+				}
+				if (result == null) {
+					result = caseENamedElement(ingresSynonym);
+				}
+				if (result == null) {
+					result = caseEModelElement(ingresSynonym);
+				}
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case IngressqlmodelPackage.INGRES_DB_EVENT: {
 				IngresDBEvent ingresDBEvent = (IngresDBEvent)theEObject;
 				Object result = caseIngresDBEvent(ingresDBEvent);
-				if (result == null) result = caseSQLObject(ingresDBEvent);
-				if (result == null) result = caseENamedElement(ingresDBEvent);
-				if (result == null) result = caseEModelElement(ingresDBEvent);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = caseSQLObject(ingresDBEvent);
+				}
+				if (result == null) {
+					result = caseENamedElement(ingresDBEvent);
+				}
+				if (result == null) {
+					result = caseEModelElement(ingresDBEvent);
+				}
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case IngressqlmodelPackage.INGRES_SCHEMA: {
 				IngresSchema ingresSchema = (IngresSchema)theEObject;
 				Object result = caseIngresSchema(ingresSchema);
-				if (result == null) result = caseSchema(ingresSchema);
-				if (result == null) result = caseSQLObject(ingresSchema);
-				if (result == null) result = caseENamedElement(ingresSchema);
-				if (result == null) result = caseEModelElement(ingresSchema);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = caseSchema(ingresSchema);
+				}
+				if (result == null) {
+					result = caseSQLObject(ingresSchema);
+				}
+				if (result == null) {
+					result = caseENamedElement(ingresSchema);
+				}
+				if (result == null) {
+					result = caseEModelElement(ingresSchema);
+				}
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case IngressqlmodelPackage.INGRES_VIEW_TABLE: {
 				IngresViewTable ingresViewTable = (IngresViewTable)theEObject;
 				Object result = caseIngresViewTable(ingresViewTable);
-				if (result == null) result = caseViewTable(ingresViewTable);
-				if (result == null) result = caseDerivedTable(ingresViewTable);
-				if (result == null) result = caseTable(ingresViewTable);
-				if (result == null) result = caseSQLObject(ingresViewTable);
-				if (result == null) result = caseENamedElement(ingresViewTable);
-				if (result == null) result = caseEModelElement(ingresViewTable);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = caseViewTable(ingresViewTable);
+				}
+				if (result == null) {
+					result = caseDerivedTable(ingresViewTable);
+				}
+				if (result == null) {
+					result = caseTable(ingresViewTable);
+				}
+				if (result == null) {
+					result = caseSQLObject(ingresViewTable);
+				}
+				if (result == null) {
+					result = caseENamedElement(ingresViewTable);
+				}
+				if (result == null) {
+					result = caseEModelElement(ingresViewTable);
+				}
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case IngressqlmodelPackage.INGRES_TRIGGER: {
 				IngresTrigger ingresTrigger = (IngresTrigger)theEObject;
 				Object result = caseIngresTrigger(ingresTrigger);
-				if (result == null) result = caseTrigger(ingresTrigger);
-				if (result == null) result = caseSQLObject(ingresTrigger);
-				if (result == null) result = caseENamedElement(ingresTrigger);
-				if (result == null) result = caseEModelElement(ingresTrigger);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = caseTrigger(ingresTrigger);
+				}
+				if (result == null) {
+					result = caseSQLObject(ingresTrigger);
+				}
+				if (result == null) {
+					result = caseENamedElement(ingresTrigger);
+				}
+				if (result == null) {
+					result = caseEModelElement(ingresTrigger);
+				}
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case IngressqlmodelPackage.INGRES_IDENTITY_SPECIFIER: {
 				IngresIdentitySpecifier ingresIdentitySpecifier = (IngresIdentitySpecifier)theEObject;
 				Object result = caseIngresIdentitySpecifier(ingresIdentitySpecifier);
-				if (result == null) result = caseIdentitySpecifier(ingresIdentitySpecifier);
-				if (result == null) result = caseSQLObject(ingresIdentitySpecifier);
-				if (result == null) result = caseENamedElement(ingresIdentitySpecifier);
-				if (result == null) result = caseEModelElement(ingresIdentitySpecifier);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = caseIdentitySpecifier(ingresIdentitySpecifier);
+				}
+				if (result == null) {
+					result = caseSQLObject(ingresIdentitySpecifier);
+				}
+				if (result == null) {
+					result = caseENamedElement(ingresIdentitySpecifier);
+				}
+				if (result == null) {
+					result = caseEModelElement(ingresIdentitySpecifier);
+				}
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			default: return defaultCase(theEObject);

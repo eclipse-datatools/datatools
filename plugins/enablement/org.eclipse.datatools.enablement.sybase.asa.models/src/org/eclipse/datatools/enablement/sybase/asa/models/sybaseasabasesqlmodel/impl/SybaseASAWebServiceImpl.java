@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl.SybaseASAWebServiceImpl#getService_id <em>Service id</em>}</li>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl.SybaseASAWebServiceImpl#getService_type <em>Service type</em>}</li>
@@ -33,11 +34,10 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *   <li>{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl.SybaseASAWebServiceImpl#getStatement <em>Statement</em>}</li>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl.SybaseASAWebServiceImpl#getDatabase <em>Database</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class SybaseASAWebServiceImpl extends SQLObjectImpl implements SybaseASAWebService 
+public class SybaseASAWebServiceImpl extends SQLObjectImpl implements SybaseASAWebService
 {
     /**
 	 * The default value of the '{@link #getService_id() <em>Service id</em>}' attribute.
@@ -224,6 +224,7 @@ public class SybaseASAWebServiceImpl extends SQLObjectImpl implements SybaseASAW
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass()
     {
 		return SybaseasabasesqlmodelPackage.Literals.SYBASE_ASA_WEB_SERVICE;
@@ -234,6 +235,7 @@ public class SybaseASAWebServiceImpl extends SQLObjectImpl implements SybaseASAW
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public long getService_id()
     {
 		return service_id;
@@ -244,12 +246,14 @@ public class SybaseASAWebServiceImpl extends SQLObjectImpl implements SybaseASAW
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setService_id(long newService_id)
     {
 		long oldService_id = service_id;
 		service_id = newService_id;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_WEB_SERVICE__SERVICE_ID, oldService_id, service_id));
+		}
 	}
 
     /**
@@ -257,6 +261,7 @@ public class SybaseASAWebServiceImpl extends SQLObjectImpl implements SybaseASAW
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getService_type()
     {
 		return service_type;
@@ -267,12 +272,14 @@ public class SybaseASAWebServiceImpl extends SQLObjectImpl implements SybaseASAW
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setService_type(String newService_type)
     {
 		String oldService_type = service_type;
 		service_type = newService_type;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_WEB_SERVICE__SERVICE_TYPE, oldService_type, service_type));
+		}
 	}
 
     /**
@@ -280,6 +287,7 @@ public class SybaseASAWebServiceImpl extends SQLObjectImpl implements SybaseASAW
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getAuth_required()
     {
 		return auth_required;
@@ -290,12 +298,14 @@ public class SybaseASAWebServiceImpl extends SQLObjectImpl implements SybaseASAW
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setAuth_required(String newAuth_required)
     {
 		String oldAuth_required = auth_required;
 		auth_required = newAuth_required;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_WEB_SERVICE__AUTH_REQUIRED, oldAuth_required, auth_required));
+		}
 	}
 
     /**
@@ -303,6 +313,7 @@ public class SybaseASAWebServiceImpl extends SQLObjectImpl implements SybaseASAW
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getSecure_required()
     {
 		return secure_required;
@@ -313,12 +324,14 @@ public class SybaseASAWebServiceImpl extends SQLObjectImpl implements SybaseASAW
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSecure_required(String newSecure_required)
     {
 		String oldSecure_required = secure_required;
 		secure_required = newSecure_required;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_WEB_SERVICE__SECURE_REQUIRED, oldSecure_required, secure_required));
+		}
 	}
 
     /**
@@ -326,6 +339,7 @@ public class SybaseASAWebServiceImpl extends SQLObjectImpl implements SybaseASAW
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getUrl_path()
     {
 		return url_path;
@@ -336,12 +350,14 @@ public class SybaseASAWebServiceImpl extends SQLObjectImpl implements SybaseASAW
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setUrl_path(String newUrl_path)
     {
 		String oldUrl_path = url_path;
 		url_path = newUrl_path;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_WEB_SERVICE__URL_PATH, oldUrl_path, url_path));
+		}
 	}
 
     /**
@@ -349,6 +365,7 @@ public class SybaseASAWebServiceImpl extends SQLObjectImpl implements SybaseASAW
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getUser_name()
     {
 		return user_name;
@@ -359,12 +376,14 @@ public class SybaseASAWebServiceImpl extends SQLObjectImpl implements SybaseASAW
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setUser_name(String newUser_name)
     {
 		String oldUser_name = user_name;
 		user_name = newUser_name;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_WEB_SERVICE__USER_NAME, oldUser_name, user_name));
+		}
 	}
 
     /**
@@ -372,6 +391,7 @@ public class SybaseASAWebServiceImpl extends SQLObjectImpl implements SybaseASAW
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getParameter()
     {
 		return parameter;
@@ -382,12 +402,14 @@ public class SybaseASAWebServiceImpl extends SQLObjectImpl implements SybaseASAW
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setParameter(String newParameter)
     {
 		String oldParameter = parameter;
 		parameter = newParameter;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_WEB_SERVICE__PARAMETER, oldParameter, parameter));
+		}
 	}
 
     /**
@@ -395,6 +417,7 @@ public class SybaseASAWebServiceImpl extends SQLObjectImpl implements SybaseASAW
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getStatement()
     {
 		return statement;
@@ -405,12 +428,14 @@ public class SybaseASAWebServiceImpl extends SQLObjectImpl implements SybaseASAW
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setStatement(String newStatement)
     {
 		String oldStatement = statement;
 		statement = newStatement;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_WEB_SERVICE__STATEMENT, oldStatement, statement));
+		}
 	}
 
     /**
@@ -418,14 +443,16 @@ public class SybaseASAWebServiceImpl extends SQLObjectImpl implements SybaseASAW
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SybaseASABaseDatabase getDatabase()
     {
 		if (database != null && database.eIsProxy()) {
 			InternalEObject oldDatabase = (InternalEObject)database;
 			database = (SybaseASABaseDatabase)eResolveProxy(oldDatabase);
 			if (database != oldDatabase) {
-				if (eNotificationRequired())
+				if (eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SybaseasabasesqlmodelPackage.SYBASE_ASA_WEB_SERVICE__DATABASE, oldDatabase, database));
+				}
 			}
 		}
 		return database;
@@ -452,7 +479,11 @@ public class SybaseASAWebServiceImpl extends SQLObjectImpl implements SybaseASAW
 		database = newDatabase;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_WEB_SERVICE__DATABASE, oldDatabase, newDatabase);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			if (msgs == null) {
+				msgs = notification;
+			} else {
+				msgs.add(notification);
+			}
 		}
 		return msgs;
 	}
@@ -462,19 +493,25 @@ public class SybaseASAWebServiceImpl extends SQLObjectImpl implements SybaseASAW
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDatabase(SybaseASABaseDatabase newDatabase)
     {
 		if (newDatabase != database) {
 			NotificationChain msgs = null;
-			if (database != null)
+			if (database != null) {
 				msgs = ((InternalEObject)database).eInverseRemove(this, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_DATABASE__WEB_SERVICES, SybaseASABaseDatabase.class, msgs);
-			if (newDatabase != null)
+			}
+			if (newDatabase != null) {
 				msgs = ((InternalEObject)newDatabase).eInverseAdd(this, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_DATABASE__WEB_SERVICES, SybaseASABaseDatabase.class, msgs);
+			}
 			msgs = basicSetDatabase(newDatabase, msgs);
-			if (msgs != null) msgs.dispatch();
+			if (msgs != null) {
+				msgs.dispatch();
+			}
 		}
-		else if (eNotificationRequired())
+		else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_WEB_SERVICE__DATABASE, newDatabase, newDatabase));
+		}
 	}
 
     /**
@@ -482,12 +519,14 @@ public class SybaseASAWebServiceImpl extends SQLObjectImpl implements SybaseASAW
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
     {
 		switch (featureID) {
 			case SybaseasabasesqlmodelPackage.SYBASE_ASA_WEB_SERVICE__DATABASE:
-				if (database != null)
+				if (database != null) {
 					msgs = ((InternalEObject)database).eInverseRemove(this, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_DATABASE__WEB_SERVICES, SybaseASABaseDatabase.class, msgs);
+				}
 				return basicSetDatabase((SybaseASABaseDatabase)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -498,6 +537,7 @@ public class SybaseASAWebServiceImpl extends SQLObjectImpl implements SybaseASAW
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
     {
 		switch (featureID) {
@@ -512,11 +552,12 @@ public class SybaseASAWebServiceImpl extends SQLObjectImpl implements SybaseASAW
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
     {
 		switch (featureID) {
 			case SybaseasabasesqlmodelPackage.SYBASE_ASA_WEB_SERVICE__SERVICE_ID:
-				return Long.valueOf(getService_id());
+				return new Long(getService_id());
 			case SybaseasabasesqlmodelPackage.SYBASE_ASA_WEB_SERVICE__SERVICE_TYPE:
 				return getService_type();
 			case SybaseasabasesqlmodelPackage.SYBASE_ASA_WEB_SERVICE__AUTH_REQUIRED:
@@ -532,7 +573,9 @@ public class SybaseASAWebServiceImpl extends SQLObjectImpl implements SybaseASAW
 			case SybaseasabasesqlmodelPackage.SYBASE_ASA_WEB_SERVICE__STATEMENT:
 				return getStatement();
 			case SybaseasabasesqlmodelPackage.SYBASE_ASA_WEB_SERVICE__DATABASE:
-				if (resolve) return getDatabase();
+				if (resolve) {
+					return getDatabase();
+				}
 				return basicGetDatabase();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -543,6 +586,7 @@ public class SybaseASAWebServiceImpl extends SQLObjectImpl implements SybaseASAW
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue)
     {
 		switch (featureID) {
@@ -582,6 +626,7 @@ public class SybaseASAWebServiceImpl extends SQLObjectImpl implements SybaseASAW
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID)
     {
 		switch (featureID) {
@@ -621,6 +666,7 @@ public class SybaseASAWebServiceImpl extends SQLObjectImpl implements SybaseASAW
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID)
     {
 		switch (featureID) {
@@ -651,9 +697,12 @@ public class SybaseASAWebServiceImpl extends SQLObjectImpl implements SybaseASAW
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString()
     {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (service_id: ");

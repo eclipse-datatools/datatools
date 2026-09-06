@@ -19,12 +19,19 @@ import org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.part
 import org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.partition.SybaseASERangePartition;
 import org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.partition.SybaseASERoundrobinPartition;
 import org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybasesqlmodelPackage;
+import org.eclipse.datatools.modelbase.sql.accesscontrol.SQLAccessControlPackage;
+import org.eclipse.datatools.modelbase.sql.constraints.SQLConstraintsPackage;
+import org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage;
+import org.eclipse.datatools.modelbase.sql.expressions.SQLExpressionsPackage;
+import org.eclipse.datatools.modelbase.sql.routines.SQLRoutinesPackage;
 import org.eclipse.datatools.modelbase.sql.schema.SQLSchemaPackage;
+import org.eclipse.datatools.modelbase.sql.statements.SQLStatementsPackage;
 import org.eclipse.datatools.modelbase.sql.tables.SQLTablesPackage;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 /**
@@ -33,7 +40,7 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
  * <!-- end-user-doc -->
  * @generated
  */
-public class PartitionPackageImpl extends EPackageImpl implements PartitionPackage 
+public class PartitionPackageImpl extends EPackageImpl implements PartitionPackage
 {
 	/**
 	 * <!-- begin-user-doc -->
@@ -118,20 +125,10 @@ public class PartitionPackageImpl extends EPackageImpl implements PartitionPacka
 	private static boolean isInited = false;
 
 	/**
-	 * Creates, registers, and initializes the <b>Package</b> for this
-	 * model, and for any others upon which it depends.  Simple
-	 * dependencies are satisfied by calling this method on all
-	 * dependent packages before doing anything else.  This method drives
-	 * initialization for interdependent packages directly, in parallel
-	 * with this package, itself.
-	 * <p>Of this package and its interdependencies, all packages which
-	 * have not yet been registered by their URI values are first created
-	 * and registered.  The packages are then initialized in two steps:
-	 * meta-model objects for all of the packages are created before any
-	 * are initialized, since one package's meta-model objects may refer to
-	 * those of another.
-	 * <p>Invocation of this method will not affect any packages that have
-	 * already been initialized.
+	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
+	 *
+	 * <p>This method is used to initialize {@link PartitionPackage#eINSTANCE} when that field is accessed.
+	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #eNS_URI
@@ -140,18 +137,31 @@ public class PartitionPackageImpl extends EPackageImpl implements PartitionPacka
 	 * @generated
 	 */
 	public static PartitionPackage init() {
-		if (isInited) return (PartitionPackage)EPackage.Registry.INSTANCE.getEPackage(PartitionPackage.eNS_URI);
+		if (isInited) {
+			return (PartitionPackage)EPackage.Registry.INSTANCE.getEPackage(PartitionPackage.eNS_URI);
+		}
 
 		// Obtain or create and register package
-		PartitionPackageImpl thePartitionPackage = (PartitionPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(eNS_URI) instanceof PartitionPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(eNS_URI) : new PartitionPackageImpl());
+		Object registeredPartitionPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		PartitionPackageImpl thePartitionPackage = registeredPartitionPackage instanceof PartitionPackageImpl ? (PartitionPackageImpl)registeredPartitionPackage : new PartitionPackageImpl();
 
 		isInited = true;
 
 		// Initialize simple dependencies
+		EcorePackage.eINSTANCE.eClass();
+		SQLSchemaPackage.eINSTANCE.eClass();
+		SQLConstraintsPackage.eINSTANCE.eClass();
+		SQLDataTypesPackage.eINSTANCE.eClass();
+		SQLExpressionsPackage.eINSTANCE.eClass();
+		SQLRoutinesPackage.eINSTANCE.eClass();
+		SQLStatementsPackage.eINSTANCE.eClass();
+		SQLTablesPackage.eINSTANCE.eClass();
+		SQLAccessControlPackage.eINSTANCE.eClass();
 		SybasesqlmodelPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
-		SybaseasesqlmodelPackageImpl theSybaseasesqlmodelPackage = (SybaseasesqlmodelPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SybaseasesqlmodelPackage.eNS_URI) instanceof SybaseasesqlmodelPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SybaseasesqlmodelPackage.eNS_URI) : SybaseasesqlmodelPackage.eINSTANCE);
+		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(SybaseasesqlmodelPackage.eNS_URI);
+		SybaseasesqlmodelPackageImpl theSybaseasesqlmodelPackage = (SybaseasesqlmodelPackageImpl)(registeredPackage instanceof SybaseasesqlmodelPackageImpl ? registeredPackage : SybaseasesqlmodelPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		thePartitionPackage.createPackageContents();
@@ -164,6 +174,8 @@ public class PartitionPackageImpl extends EPackageImpl implements PartitionPacka
 		// Mark meta-data to indicate it can't be changed
 		thePartitionPackage.freeze();
 
+		// Update the registry and return the package
+		EPackage.Registry.INSTANCE.put(PartitionPackage.eNS_URI, thePartitionPackage);
 		return thePartitionPackage;
 	}
 
@@ -172,6 +184,7 @@ public class PartitionPackageImpl extends EPackageImpl implements PartitionPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getSybaseASEPartition() {
 		return sybaseASEPartitionEClass;
 	}
@@ -181,6 +194,7 @@ public class PartitionPackageImpl extends EPackageImpl implements PartitionPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getSybaseASERangePartition() {
 		return sybaseASERangePartitionEClass;
 	}
@@ -190,6 +204,7 @@ public class PartitionPackageImpl extends EPackageImpl implements PartitionPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getSybaseASERangePartition_Columns() {
 		return (EReference)sybaseASERangePartitionEClass.getEStructuralFeatures().get(0);
 	}
@@ -199,6 +214,7 @@ public class PartitionPackageImpl extends EPackageImpl implements PartitionPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getSybaseASERangePartition_RangePartitionItems() {
 		return (EReference)sybaseASERangePartitionEClass.getEStructuralFeatures().get(1);
 	}
@@ -208,6 +224,7 @@ public class PartitionPackageImpl extends EPackageImpl implements PartitionPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getSybaseASEHashPartition() {
 		return sybaseASEHashPartitionEClass;
 	}
@@ -217,6 +234,7 @@ public class PartitionPackageImpl extends EPackageImpl implements PartitionPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getSybaseASEHashPartition_Columns() {
 		return (EReference)sybaseASEHashPartitionEClass.getEStructuralFeatures().get(0);
 	}
@@ -226,6 +244,7 @@ public class PartitionPackageImpl extends EPackageImpl implements PartitionPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getSybaseASEHashPartition_PartitionSegmentPairs() {
 		return (EReference)sybaseASEHashPartitionEClass.getEStructuralFeatures().get(1);
 	}
@@ -235,6 +254,7 @@ public class PartitionPackageImpl extends EPackageImpl implements PartitionPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getSybaseASEHashPartition_PartitionNumInSegments() {
 		return (EReference)sybaseASEHashPartitionEClass.getEStructuralFeatures().get(2);
 	}
@@ -244,6 +264,7 @@ public class PartitionPackageImpl extends EPackageImpl implements PartitionPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getSybaseASEListPartition() {
 		return sybaseASEListPartitionEClass;
 	}
@@ -253,6 +274,7 @@ public class PartitionPackageImpl extends EPackageImpl implements PartitionPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getSybaseASEListPartition_Column() {
 		return (EReference)sybaseASEListPartitionEClass.getEStructuralFeatures().get(0);
 	}
@@ -262,6 +284,7 @@ public class PartitionPackageImpl extends EPackageImpl implements PartitionPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getSybaseASEListPartition_ListPartitionItems() {
 		return (EReference)sybaseASEListPartitionEClass.getEStructuralFeatures().get(1);
 	}
@@ -271,6 +294,7 @@ public class PartitionPackageImpl extends EPackageImpl implements PartitionPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getSybaseASERoundrobinPartition() {
 		return sybaseASERoundrobinPartitionEClass;
 	}
@@ -280,6 +304,7 @@ public class PartitionPackageImpl extends EPackageImpl implements PartitionPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getSybaseASERoundrobinPartition_PartitionSegmentPairs() {
 		return (EReference)sybaseASERoundrobinPartitionEClass.getEStructuralFeatures().get(0);
 	}
@@ -289,6 +314,7 @@ public class PartitionPackageImpl extends EPackageImpl implements PartitionPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getSybaseASERoundrobinPartition_PartitionNumInSegments() {
 		return (EReference)sybaseASERoundrobinPartitionEClass.getEStructuralFeatures().get(1);
 	}
@@ -298,6 +324,7 @@ public class PartitionPackageImpl extends EPackageImpl implements PartitionPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getPartitionSegmentPair() {
 		return partitionSegmentPairEClass;
 	}
@@ -307,6 +334,7 @@ public class PartitionPackageImpl extends EPackageImpl implements PartitionPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getPartitionSegmentPair_PartitionName() {
 		return (EAttribute)partitionSegmentPairEClass.getEStructuralFeatures().get(0);
 	}
@@ -316,6 +344,7 @@ public class PartitionPackageImpl extends EPackageImpl implements PartitionPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getPartitionSegmentPair_Segment() {
 		return (EReference)partitionSegmentPairEClass.getEStructuralFeatures().get(1);
 	}
@@ -325,6 +354,7 @@ public class PartitionPackageImpl extends EPackageImpl implements PartitionPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getPartitionNumInSegments() {
 		return partitionNumInSegmentsEClass;
 	}
@@ -334,6 +364,7 @@ public class PartitionPackageImpl extends EPackageImpl implements PartitionPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getPartitionNumInSegments_PartitionNumb() {
 		return (EAttribute)partitionNumInSegmentsEClass.getEStructuralFeatures().get(0);
 	}
@@ -343,6 +374,7 @@ public class PartitionPackageImpl extends EPackageImpl implements PartitionPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getPartitionNumInSegments_Segment() {
 		return (EReference)partitionNumInSegmentsEClass.getEStructuralFeatures().get(1);
 	}
@@ -352,6 +384,7 @@ public class PartitionPackageImpl extends EPackageImpl implements PartitionPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getListRangePartitionItem() {
 		return listRangePartitionItemEClass;
 	}
@@ -361,6 +394,7 @@ public class PartitionPackageImpl extends EPackageImpl implements PartitionPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getListRangePartitionItem_PartitionName() {
 		return (EAttribute)listRangePartitionItemEClass.getEStructuralFeatures().get(0);
 	}
@@ -370,6 +404,7 @@ public class PartitionPackageImpl extends EPackageImpl implements PartitionPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getListRangePartitionItem_Values() {
 		return (EAttribute)listRangePartitionItemEClass.getEStructuralFeatures().get(1);
 	}
@@ -379,6 +414,7 @@ public class PartitionPackageImpl extends EPackageImpl implements PartitionPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getListRangePartitionItem_Segment() {
 		return (EReference)listRangePartitionItemEClass.getEStructuralFeatures().get(2);
 	}
@@ -388,6 +424,7 @@ public class PartitionPackageImpl extends EPackageImpl implements PartitionPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public PartitionFactory getPartitionFactory() {
 		return (PartitionFactory)getEFactoryInstance();
 	}
@@ -407,7 +444,9 @@ public class PartitionPackageImpl extends EPackageImpl implements PartitionPacka
 	 * @generated
 	 */
 	public void createPackageContents() {
-		if (isCreated) return;
+		if (isCreated) {
+			return;
+		}
 		isCreated = true;
 
 		// Create classes and their features
@@ -459,7 +498,9 @@ public class PartitionPackageImpl extends EPackageImpl implements PartitionPacka
 	 * @generated
 	 */
 	public void initializePackageContents() {
-		if (isInitialized) return;
+		if (isInitialized) {
+			return;
+		}
 		isInitialized = true;
 
 		// Initialize package

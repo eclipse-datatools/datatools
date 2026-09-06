@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -28,10 +28,10 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.datatypes.impl.RowDataTypeImpl#getFields <em>Fields</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -60,6 +60,7 @@ public class RowDataTypeImpl extends ConstructedDataTypeImpl implements RowDataT
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return SQLDataTypesPackage.Literals.ROW_DATA_TYPE;
 	}
@@ -69,6 +70,7 @@ public class RowDataTypeImpl extends ConstructedDataTypeImpl implements RowDataT
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList getFields() {
 		if (fields == null) {
 			fields = new EObjectContainmentEList(Field.class, this, SQLDataTypesPackage.ROW_DATA_TYPE__FIELDS);
@@ -81,6 +83,7 @@ public class RowDataTypeImpl extends ConstructedDataTypeImpl implements RowDataT
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case SQLDataTypesPackage.ROW_DATA_TYPE__FIELDS:
@@ -94,6 +97,7 @@ public class RowDataTypeImpl extends ConstructedDataTypeImpl implements RowDataT
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SQLDataTypesPackage.ROW_DATA_TYPE__FIELDS:
@@ -107,6 +111,7 @@ public class RowDataTypeImpl extends ConstructedDataTypeImpl implements RowDataT
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case SQLDataTypesPackage.ROW_DATA_TYPE__FIELDS:
@@ -122,6 +127,7 @@ public class RowDataTypeImpl extends ConstructedDataTypeImpl implements RowDataT
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case SQLDataTypesPackage.ROW_DATA_TYPE__FIELDS:
@@ -136,6 +142,7 @@ public class RowDataTypeImpl extends ConstructedDataTypeImpl implements RowDataT
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SQLDataTypesPackage.ROW_DATA_TYPE__FIELDS:

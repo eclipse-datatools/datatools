@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.IndexDefinitionImpl#getPercentFreeTerminology <em>Percent Free Terminology</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.IndexDefinitionImpl#isPercentFreeChangeable <em>Percent Free Changeable</em>}</li>
@@ -33,7 +34,6 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.IndexDefinitionImpl#isIncludedColumnsSupported <em>Included Columns Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.IndexDefinitionImpl#getMaximumIdentifierLength <em>Maximum Identifier Length</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -192,6 +192,7 @@ public class IndexDefinitionImpl extends EObjectImpl implements IndexDefinition 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return DatabaseDefinitionPackage.Literals.INDEX_DEFINITION;
 	}
@@ -201,6 +202,7 @@ public class IndexDefinitionImpl extends EObjectImpl implements IndexDefinition 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public PercentFreeTerminology getPercentFreeTerminology() {
 		return percentFreeTerminology;
 	}
@@ -210,11 +212,13 @@ public class IndexDefinitionImpl extends EObjectImpl implements IndexDefinition 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPercentFreeTerminology(PercentFreeTerminology newPercentFreeTerminology) {
 		PercentFreeTerminology oldPercentFreeTerminology = percentFreeTerminology;
 		percentFreeTerminology = newPercentFreeTerminology == null ? PERCENT_FREE_TERMINOLOGY_EDEFAULT : newPercentFreeTerminology;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.INDEX_DEFINITION__PERCENT_FREE_TERMINOLOGY, oldPercentFreeTerminology, percentFreeTerminology));
+		}
 	}
 
 	/**
@@ -222,6 +226,7 @@ public class IndexDefinitionImpl extends EObjectImpl implements IndexDefinition 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isPercentFreeChangeable() {
 		return percentFreeChangeable;
 	}
@@ -231,11 +236,13 @@ public class IndexDefinitionImpl extends EObjectImpl implements IndexDefinition 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPercentFreeChangeable(boolean newPercentFreeChangeable) {
 		boolean oldPercentFreeChangeable = percentFreeChangeable;
 		percentFreeChangeable = newPercentFreeChangeable;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.INDEX_DEFINITION__PERCENT_FREE_CHANGEABLE, oldPercentFreeChangeable, percentFreeChangeable));
+		}
 	}
 
 	/**
@@ -243,6 +250,7 @@ public class IndexDefinitionImpl extends EObjectImpl implements IndexDefinition 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isClusteringSupported() {
 		return clusteringSupported;
 	}
@@ -252,11 +260,13 @@ public class IndexDefinitionImpl extends EObjectImpl implements IndexDefinition 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setClusteringSupported(boolean newClusteringSupported) {
 		boolean oldClusteringSupported = clusteringSupported;
 		clusteringSupported = newClusteringSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.INDEX_DEFINITION__CLUSTERING_SUPPORTED, oldClusteringSupported, clusteringSupported));
+		}
 	}
 
 	/**
@@ -264,6 +274,7 @@ public class IndexDefinitionImpl extends EObjectImpl implements IndexDefinition 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isClusterChangeable() {
 		return clusterChangeable;
 	}
@@ -273,11 +284,13 @@ public class IndexDefinitionImpl extends EObjectImpl implements IndexDefinition 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setClusterChangeable(boolean newClusterChangeable) {
 		boolean oldClusterChangeable = clusterChangeable;
 		clusterChangeable = newClusterChangeable;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.INDEX_DEFINITION__CLUSTER_CHANGEABLE, oldClusterChangeable, clusterChangeable));
+		}
 	}
 
 	/**
@@ -285,6 +298,7 @@ public class IndexDefinitionImpl extends EObjectImpl implements IndexDefinition 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isFillFactorSupported() {
 		return fillFactorSupported;
 	}
@@ -294,11 +308,13 @@ public class IndexDefinitionImpl extends EObjectImpl implements IndexDefinition 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setFillFactorSupported(boolean newFillFactorSupported) {
 		boolean oldFillFactorSupported = fillFactorSupported;
 		fillFactorSupported = newFillFactorSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.INDEX_DEFINITION__FILL_FACTOR_SUPPORTED, oldFillFactorSupported, fillFactorSupported));
+		}
 	}
 
 	/**
@@ -306,6 +322,7 @@ public class IndexDefinitionImpl extends EObjectImpl implements IndexDefinition 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isIncludedColumnsSupported() {
 		return includedColumnsSupported;
 	}
@@ -315,11 +332,13 @@ public class IndexDefinitionImpl extends EObjectImpl implements IndexDefinition 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIncludedColumnsSupported(boolean newIncludedColumnsSupported) {
 		boolean oldIncludedColumnsSupported = includedColumnsSupported;
 		includedColumnsSupported = newIncludedColumnsSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.INDEX_DEFINITION__INCLUDED_COLUMNS_SUPPORTED, oldIncludedColumnsSupported, includedColumnsSupported));
+		}
 	}
 
 	/**
@@ -327,6 +346,7 @@ public class IndexDefinitionImpl extends EObjectImpl implements IndexDefinition 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getMaximumIdentifierLength() {
 		return maximumIdentifierLength;
 	}
@@ -336,11 +356,13 @@ public class IndexDefinitionImpl extends EObjectImpl implements IndexDefinition 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMaximumIdentifierLength(int newMaximumIdentifierLength) {
 		int oldMaximumIdentifierLength = maximumIdentifierLength;
 		maximumIdentifierLength = newMaximumIdentifierLength;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.INDEX_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH, oldMaximumIdentifierLength, maximumIdentifierLength));
+		}
 	}
 
 	/**
@@ -348,6 +370,7 @@ public class IndexDefinitionImpl extends EObjectImpl implements IndexDefinition 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.INDEX_DEFINITION__PERCENT_FREE_TERMINOLOGY:
@@ -363,7 +386,7 @@ public class IndexDefinitionImpl extends EObjectImpl implements IndexDefinition 
 			case DatabaseDefinitionPackage.INDEX_DEFINITION__INCLUDED_COLUMNS_SUPPORTED:
 				return isIncludedColumnsSupported() ? Boolean.TRUE : Boolean.FALSE;
 			case DatabaseDefinitionPackage.INDEX_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH:
-				return Integer.valueOf(getMaximumIdentifierLength());
+				return new Integer(getMaximumIdentifierLength());
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -373,6 +396,7 @@ public class IndexDefinitionImpl extends EObjectImpl implements IndexDefinition 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.INDEX_DEFINITION__PERCENT_FREE_TERMINOLOGY:
@@ -405,6 +429,7 @@ public class IndexDefinitionImpl extends EObjectImpl implements IndexDefinition 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.INDEX_DEFINITION__PERCENT_FREE_TERMINOLOGY:
@@ -437,6 +462,7 @@ public class IndexDefinitionImpl extends EObjectImpl implements IndexDefinition 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.INDEX_DEFINITION__PERCENT_FREE_TERMINOLOGY:
@@ -462,8 +488,11 @@ public class IndexDefinitionImpl extends EObjectImpl implements IndexDefinition 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (percentFreeTerminology: "); //$NON-NLS-1$

@@ -19,140 +19,151 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.query.impl.PredicateInImpl#isNotIn <em>Not In</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
 public abstract class PredicateInImpl extends PredicateImpl implements PredicateIn {
 	/**
-     * The default value of the '{@link #isNotIn() <em>Not In</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #isNotIn() <em>Not In</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #isNotIn()
-     * @generated
-     * @ordered
-     */
+	 * @see #isNotIn()
+	 * @generated
+	 * @ordered
+	 */
     protected static final boolean NOT_IN_EDEFAULT = false;
 
 	/**
-     * The cached value of the '{@link #isNotIn() <em>Not In</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #isNotIn() <em>Not In</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #isNotIn()
-     * @generated
-     * @ordered
-     */
+	 * @see #isNotIn()
+	 * @generated
+	 * @ordered
+	 */
     protected boolean notIn = NOT_IN_EDEFAULT;
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected PredicateInImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    protected EClass eStaticClass() {
-        return SQLQueryModelPackage.Literals.PREDICATE_IN;
-    }
+	 * @generated
+	 */
+    @Override
+	protected EClass eStaticClass() {
+		return SQLQueryModelPackage.Literals.PREDICATE_IN;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public boolean isNotIn() {
-        return notIn;
-    }
+	 * @generated
+	 */
+    @Override
+	public boolean isNotIn() {
+		return notIn;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setNotIn(boolean newNotIn) {
-        boolean oldNotIn = notIn;
-        notIn = newNotIn;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.PREDICATE_IN__NOT_IN, oldNotIn, notIn));
-    }
+	 * @generated
+	 */
+    @Override
+	public void setNotIn(boolean newNotIn) {
+		boolean oldNotIn = notIn;
+		notIn = newNotIn;
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.PREDICATE_IN__NOT_IN, oldNotIn, notIn));
+		}
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case SQLQueryModelPackage.PREDICATE_IN__NOT_IN:
-                return isNotIn() ? Boolean.TRUE : Boolean.FALSE;
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case SQLQueryModelPackage.PREDICATE_IN__NOT_IN:
+				return isNotIn() ? Boolean.TRUE : Boolean.FALSE;
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case SQLQueryModelPackage.PREDICATE_IN__NOT_IN:
-                setNotIn(((Boolean)newValue).booleanValue());
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case SQLQueryModelPackage.PREDICATE_IN__NOT_IN:
+				setNotIn(((Boolean)newValue).booleanValue());
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public void eUnset(int featureID) {
-        switch (featureID) {
-            case SQLQueryModelPackage.PREDICATE_IN__NOT_IN:
-                setNotIn(NOT_IN_EDEFAULT);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case SQLQueryModelPackage.PREDICATE_IN__NOT_IN:
+				setNotIn(NOT_IN_EDEFAULT);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case SQLQueryModelPackage.PREDICATE_IN__NOT_IN:
-                return notIn != NOT_IN_EDEFAULT;
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case SQLQueryModelPackage.PREDICATE_IN__NOT_IN:
+				return notIn != NOT_IN_EDEFAULT;
+		}
+		return super.eIsSet(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public String toString() {
-        if (eIsProxy()) return super.toString();
+	 * @generated
+	 */
+    @Override
+	public String toString() {
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (notIn: ");
-        result.append(notIn);
-        result.append(')');
-        return result.toString();
-    }
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (notIn: ");
+		result.append(notIn);
+		result.append(')');
+		return result.toString();
+	}
 
 } //SQLPredicateInImpl

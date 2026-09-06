@@ -23,15 +23,15 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl.SybaseASABaseDBSpaceImpl#getFileName <em>File Name</em>}</li>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl.SybaseASABaseDBSpaceImpl#getDatabase <em>Database</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class SybaseASABaseDBSpaceImpl extends SQLObjectImpl implements SybaseASABaseDBSpace 
+public class SybaseASABaseDBSpaceImpl extends SQLObjectImpl implements SybaseASABaseDBSpace
 {
     /**
 	 * The default value of the '{@link #getFileName() <em>File Name</em>}' attribute.
@@ -68,6 +68,7 @@ public class SybaseASABaseDBSpaceImpl extends SQLObjectImpl implements SybaseASA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass()
     {
 		return SybaseasabasesqlmodelPackage.Literals.SYBASE_ASA_BASE_DB_SPACE;
@@ -78,6 +79,7 @@ public class SybaseASABaseDBSpaceImpl extends SQLObjectImpl implements SybaseASA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getFileName()
     {
 		return fileName;
@@ -88,12 +90,14 @@ public class SybaseASABaseDBSpaceImpl extends SQLObjectImpl implements SybaseASA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setFileName(String newFileName)
     {
 		String oldFileName = fileName;
 		fileName = newFileName;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_DB_SPACE__FILE_NAME, oldFileName, fileName));
+		}
 	}
 
     /**
@@ -101,10 +105,13 @@ public class SybaseASABaseDBSpaceImpl extends SQLObjectImpl implements SybaseASA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SybaseASABaseDatabase getDatabase()
     {
-		if (eContainerFeatureID != SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_DB_SPACE__DATABASE) return null;
-		return (SybaseASABaseDatabase)eContainer();
+		if (eContainerFeatureID() != SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_DB_SPACE__DATABASE) {
+			return null;
+		}
+		return (SybaseASABaseDatabase)eInternalContainer();
 	}
 
     /**
@@ -123,21 +130,28 @@ public class SybaseASABaseDBSpaceImpl extends SQLObjectImpl implements SybaseASA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDatabase(SybaseASABaseDatabase newDatabase)
     {
-		if (newDatabase != eInternalContainer() || (eContainerFeatureID != SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_DB_SPACE__DATABASE && newDatabase != null)) {
-			if (EcoreUtil.isAncestor(this, newDatabase))
+		if (newDatabase != eInternalContainer() || (eContainerFeatureID() != SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_DB_SPACE__DATABASE && newDatabase != null)) {
+			if (EcoreUtil.isAncestor(this, newDatabase)) {
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			}
 			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
+			if (eInternalContainer() != null) {
 				msgs = eBasicRemoveFromContainer(msgs);
-			if (newDatabase != null)
+			}
+			if (newDatabase != null) {
 				msgs = ((InternalEObject)newDatabase).eInverseAdd(this, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_DATABASE__DB_SPACES, SybaseASABaseDatabase.class, msgs);
+			}
 			msgs = basicSetDatabase(newDatabase, msgs);
-			if (msgs != null) msgs.dispatch();
+			if (msgs != null) {
+				msgs.dispatch();
+			}
 		}
-		else if (eNotificationRequired())
+		else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_DB_SPACE__DATABASE, newDatabase, newDatabase));
+		}
 	}
 
     /**
@@ -145,12 +159,14 @@ public class SybaseASABaseDBSpaceImpl extends SQLObjectImpl implements SybaseASA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
     {
 		switch (featureID) {
 			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_DB_SPACE__DATABASE:
-				if (eInternalContainer() != null)
+				if (eInternalContainer() != null) {
 					msgs = eBasicRemoveFromContainer(msgs);
+				}
 				return basicSetDatabase((SybaseASABaseDatabase)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -161,6 +177,7 @@ public class SybaseASABaseDBSpaceImpl extends SQLObjectImpl implements SybaseASA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
     {
 		switch (featureID) {
@@ -175,9 +192,10 @@ public class SybaseASABaseDBSpaceImpl extends SQLObjectImpl implements SybaseASA
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs)
+    @Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs)
     {
-		switch (eContainerFeatureID) {
+		switch (eContainerFeatureID()) {
 			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_DB_SPACE__DATABASE:
 				return eInternalContainer().eInverseRemove(this, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_DATABASE__DB_SPACES, SybaseASABaseDatabase.class, msgs);
 		}
@@ -189,6 +207,7 @@ public class SybaseASABaseDBSpaceImpl extends SQLObjectImpl implements SybaseASA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
     {
 		switch (featureID) {
@@ -205,6 +224,7 @@ public class SybaseASABaseDBSpaceImpl extends SQLObjectImpl implements SybaseASA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue)
     {
 		switch (featureID) {
@@ -223,6 +243,7 @@ public class SybaseASABaseDBSpaceImpl extends SQLObjectImpl implements SybaseASA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID)
     {
 		switch (featureID) {
@@ -241,6 +262,7 @@ public class SybaseASABaseDBSpaceImpl extends SQLObjectImpl implements SybaseASA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID)
     {
 		switch (featureID) {
@@ -257,9 +279,12 @@ public class SybaseASABaseDBSpaceImpl extends SQLObjectImpl implements SybaseASA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString()
     {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (fileName: ");

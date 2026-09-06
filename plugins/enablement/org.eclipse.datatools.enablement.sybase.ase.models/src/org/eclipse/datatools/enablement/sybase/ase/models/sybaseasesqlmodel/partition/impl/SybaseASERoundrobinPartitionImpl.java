@@ -25,15 +25,15 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.partition.impl.SybaseASERoundrobinPartitionImpl#getPartitionSegmentPairs <em>Partition Segment Pairs</em>}</li>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.partition.impl.SybaseASERoundrobinPartitionImpl#getPartitionNumInSegments <em>Partition Num In Segments</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class SybaseASERoundrobinPartitionImpl extends SybaseASEPartitionImpl implements SybaseASERoundrobinPartition 
+public class SybaseASERoundrobinPartitionImpl extends SybaseASEPartitionImpl implements SybaseASERoundrobinPartition
 {
 	/**
 	 * The cached value of the '{@link #getPartitionSegmentPairs() <em>Partition Segment Pairs</em>}' reference list.
@@ -69,6 +69,7 @@ public class SybaseASERoundrobinPartitionImpl extends SybaseASEPartitionImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return PartitionPackage.Literals.SYBASE_ASE_ROUNDROBIN_PARTITION;
 	}
@@ -78,6 +79,7 @@ public class SybaseASERoundrobinPartitionImpl extends SybaseASEPartitionImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList getPartitionSegmentPairs() {
 		if (partitionSegmentPairs == null) {
 			partitionSegmentPairs = new EObjectResolvingEList(PartitionSegmentPair.class, this, PartitionPackage.SYBASE_ASE_ROUNDROBIN_PARTITION__PARTITION_SEGMENT_PAIRS);
@@ -90,13 +92,15 @@ public class SybaseASERoundrobinPartitionImpl extends SybaseASEPartitionImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public PartitionNumInSegments getPartitionNumInSegments() {
 		if (partitionNumInSegments != null && partitionNumInSegments.eIsProxy()) {
 			InternalEObject oldPartitionNumInSegments = (InternalEObject)partitionNumInSegments;
 			partitionNumInSegments = (PartitionNumInSegments)eResolveProxy(oldPartitionNumInSegments);
 			if (partitionNumInSegments != oldPartitionNumInSegments) {
-				if (eNotificationRequired())
+				if (eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PartitionPackage.SYBASE_ASE_ROUNDROBIN_PARTITION__PARTITION_NUM_IN_SEGMENTS, oldPartitionNumInSegments, partitionNumInSegments));
+				}
 			}
 		}
 		return partitionNumInSegments;
@@ -116,11 +120,13 @@ public class SybaseASERoundrobinPartitionImpl extends SybaseASEPartitionImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPartitionNumInSegments(PartitionNumInSegments newPartitionNumInSegments) {
 		PartitionNumInSegments oldPartitionNumInSegments = partitionNumInSegments;
 		partitionNumInSegments = newPartitionNumInSegments;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, PartitionPackage.SYBASE_ASE_ROUNDROBIN_PARTITION__PARTITION_NUM_IN_SEGMENTS, oldPartitionNumInSegments, partitionNumInSegments));
+		}
 	}
 
 	/**
@@ -128,12 +134,15 @@ public class SybaseASERoundrobinPartitionImpl extends SybaseASEPartitionImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case PartitionPackage.SYBASE_ASE_ROUNDROBIN_PARTITION__PARTITION_SEGMENT_PAIRS:
 				return getPartitionSegmentPairs();
 			case PartitionPackage.SYBASE_ASE_ROUNDROBIN_PARTITION__PARTITION_NUM_IN_SEGMENTS:
-				if (resolve) return getPartitionNumInSegments();
+				if (resolve) {
+					return getPartitionNumInSegments();
+				}
 				return basicGetPartitionNumInSegments();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -144,6 +153,7 @@ public class SybaseASERoundrobinPartitionImpl extends SybaseASEPartitionImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case PartitionPackage.SYBASE_ASE_ROUNDROBIN_PARTITION__PARTITION_SEGMENT_PAIRS:
@@ -162,6 +172,7 @@ public class SybaseASERoundrobinPartitionImpl extends SybaseASEPartitionImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case PartitionPackage.SYBASE_ASE_ROUNDROBIN_PARTITION__PARTITION_SEGMENT_PAIRS:
@@ -179,6 +190,7 @@ public class SybaseASERoundrobinPartitionImpl extends SybaseASEPartitionImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case PartitionPackage.SYBASE_ASE_ROUNDROBIN_PARTITION__PARTITION_SEGMENT_PAIRS:

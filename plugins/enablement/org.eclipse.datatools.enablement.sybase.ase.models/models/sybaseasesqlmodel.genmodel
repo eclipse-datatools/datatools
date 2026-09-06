@@ -4,8 +4,9 @@
     editDirectory="" editorDirectory="" modelPluginID="org.eclipse.datatools.enablement.sybase.ase.models"
     runtimeJar="true" modelName="Sybaseasesqlmodel" modelPluginClass="" editPluginClass="org.eclipse.datatools.enablement.sybase.ase.models.provider.SybaseasesqlmodelEditPlugin"
     editorPluginClass="org.eclipse.datatools.enablement.sybase.ase.models.presentation.SybaseasesqlmodelEditorPlugin"
-    nonNLSMarkers="true" testsDirectory="" testSuiteClass="org.eclipse.datatools.enablement.sybase.ase.models.tests.SybaseasesqlmodelAllTests"
-    importerID="org.eclipse.emf.importer.ecore" usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.genmodel#//sqlmodel ../../org.eclipse.datatools.enablement.sybase.models/models/sybasesqlmodel.genmodel#//sybasesqlmodel">
+    updateClasspath="false" nonNLSMarkers="true" testsDirectory="" testSuiteClass="org.eclipse.datatools.enablement.sybase.ase.models.tests.SybaseasesqlmodelAllTests"
+    importerID="org.eclipse.emf.importer.ecore" usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.genmodel#//sqlmodel ../../org.eclipse.datatools.enablement.sybase.models/models/sybasesqlmodel.genmodel#//sybasesqlmodel"
+    importOrganizing="true" cleanup="true">
   <foreignModel>sybaseasesqlmodel.ecore</foreignModel>
   <genPackages prefix="Sybaseasesqlmodel" basePackage="org.eclipse.datatools.enablement.sybase.ase.models"
       disposableProviderFactory="true" ecorePackage="sybaseasesqlmodel.ecore#/">

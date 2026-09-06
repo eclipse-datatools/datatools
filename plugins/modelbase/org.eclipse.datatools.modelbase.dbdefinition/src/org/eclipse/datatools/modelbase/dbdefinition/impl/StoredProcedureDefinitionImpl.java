@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -35,6 +35,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.StoredProcedureDefinitionImpl#getPredefinedDataTypeDefinitions <em>Predefined Data Type Definitions</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.StoredProcedureDefinitionImpl#isNullInputActionSupported <em>Null Input Action Supported</em>}</li>
@@ -53,7 +54,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.StoredProcedureDefinitionImpl#getProcedureType <em>Procedure Type</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.StoredProcedureDefinitionImpl#getMaximumIdentifierLength <em>Maximum Identifier Length</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -342,6 +342,7 @@ public class StoredProcedureDefinitionImpl extends EObjectImpl implements Stored
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return DatabaseDefinitionPackage.Literals.STORED_PROCEDURE_DEFINITION;
 	}
@@ -351,6 +352,7 @@ public class StoredProcedureDefinitionImpl extends EObjectImpl implements Stored
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList getPredefinedDataTypeDefinitions() {
 		if (predefinedDataTypeDefinitions == null) {
 			predefinedDataTypeDefinitions = new EObjectContainmentEList(PredefinedDataTypeDefinition.class, this, DatabaseDefinitionPackage.STORED_PROCEDURE_DEFINITION__PREDEFINED_DATA_TYPE_DEFINITIONS);
@@ -363,6 +365,7 @@ public class StoredProcedureDefinitionImpl extends EObjectImpl implements Stored
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isNullInputActionSupported() {
 		return nullInputActionSupported;
 	}
@@ -372,11 +375,13 @@ public class StoredProcedureDefinitionImpl extends EObjectImpl implements Stored
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setNullInputActionSupported(boolean newNullInputActionSupported) {
 		boolean oldNullInputActionSupported = nullInputActionSupported;
 		nullInputActionSupported = newNullInputActionSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.STORED_PROCEDURE_DEFINITION__NULL_INPUT_ACTION_SUPPORTED, oldNullInputActionSupported, nullInputActionSupported));
+		}
 	}
 
 	/**
@@ -384,6 +389,7 @@ public class StoredProcedureDefinitionImpl extends EObjectImpl implements Stored
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isPackageGenerationSupported() {
 		return packageGenerationSupported;
 	}
@@ -393,11 +399,13 @@ public class StoredProcedureDefinitionImpl extends EObjectImpl implements Stored
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPackageGenerationSupported(boolean newPackageGenerationSupported) {
 		boolean oldPackageGenerationSupported = packageGenerationSupported;
 		packageGenerationSupported = newPackageGenerationSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.STORED_PROCEDURE_DEFINITION__PACKAGE_GENERATION_SUPPORTED, oldPackageGenerationSupported, packageGenerationSupported));
+		}
 	}
 
 	/**
@@ -405,6 +413,7 @@ public class StoredProcedureDefinitionImpl extends EObjectImpl implements Stored
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isDetermininsticSupported() {
 		return determininsticSupported;
 	}
@@ -414,11 +423,13 @@ public class StoredProcedureDefinitionImpl extends EObjectImpl implements Stored
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDetermininsticSupported(boolean newDetermininsticSupported) {
 		boolean oldDetermininsticSupported = determininsticSupported;
 		determininsticSupported = newDetermininsticSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.STORED_PROCEDURE_DEFINITION__DETERMININSTIC_SUPPORTED, oldDetermininsticSupported, determininsticSupported));
+		}
 	}
 
 	/**
@@ -426,6 +437,7 @@ public class StoredProcedureDefinitionImpl extends EObjectImpl implements Stored
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isReturnedNullSupported() {
 		return returnedNullSupported;
 	}
@@ -435,11 +447,13 @@ public class StoredProcedureDefinitionImpl extends EObjectImpl implements Stored
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setReturnedNullSupported(boolean newReturnedNullSupported) {
 		boolean oldReturnedNullSupported = returnedNullSupported;
 		returnedNullSupported = newReturnedNullSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.STORED_PROCEDURE_DEFINITION__RETURNED_NULL_SUPPORTED, oldReturnedNullSupported, returnedNullSupported));
+		}
 	}
 
 	/**
@@ -447,6 +461,7 @@ public class StoredProcedureDefinitionImpl extends EObjectImpl implements Stored
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isReturnedTypeDeclarationConstraintSupported() {
 		return returnedTypeDeclarationConstraintSupported;
 	}
@@ -456,11 +471,13 @@ public class StoredProcedureDefinitionImpl extends EObjectImpl implements Stored
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setReturnedTypeDeclarationConstraintSupported(boolean newReturnedTypeDeclarationConstraintSupported) {
 		boolean oldReturnedTypeDeclarationConstraintSupported = returnedTypeDeclarationConstraintSupported;
 		returnedTypeDeclarationConstraintSupported = newReturnedTypeDeclarationConstraintSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.STORED_PROCEDURE_DEFINITION__RETURNED_TYPE_DECLARATION_CONSTRAINT_SUPPORTED, oldReturnedTypeDeclarationConstraintSupported, returnedTypeDeclarationConstraintSupported));
+		}
 	}
 
 	/**
@@ -468,6 +485,7 @@ public class StoredProcedureDefinitionImpl extends EObjectImpl implements Stored
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isParameterInitValueSupported() {
 		return parameterInitValueSupported;
 	}
@@ -477,11 +495,13 @@ public class StoredProcedureDefinitionImpl extends EObjectImpl implements Stored
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setParameterInitValueSupported(boolean newParameterInitValueSupported) {
 		boolean oldParameterInitValueSupported = parameterInitValueSupported;
 		parameterInitValueSupported = newParameterInitValueSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.STORED_PROCEDURE_DEFINITION__PARAMETER_INIT_VALUE_SUPPORTED, oldParameterInitValueSupported, parameterInitValueSupported));
+		}
 	}
 
 	/**
@@ -489,6 +509,7 @@ public class StoredProcedureDefinitionImpl extends EObjectImpl implements Stored
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isParameterStyleSupported() {
 		return parameterStyleSupported;
 	}
@@ -498,11 +519,13 @@ public class StoredProcedureDefinitionImpl extends EObjectImpl implements Stored
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setParameterStyleSupported(boolean newParameterStyleSupported) {
 		boolean oldParameterStyleSupported = parameterStyleSupported;
 		parameterStyleSupported = newParameterStyleSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.STORED_PROCEDURE_DEFINITION__PARAMETER_STYLE_SUPPORTED, oldParameterStyleSupported, parameterStyleSupported));
+		}
 	}
 
 	/**
@@ -510,6 +533,7 @@ public class StoredProcedureDefinitionImpl extends EObjectImpl implements Stored
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isReturnTypeSupported() {
 		return returnTypeSupported;
 	}
@@ -519,11 +543,13 @@ public class StoredProcedureDefinitionImpl extends EObjectImpl implements Stored
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setReturnTypeSupported(boolean newReturnTypeSupported) {
 		boolean oldReturnTypeSupported = returnTypeSupported;
 		returnTypeSupported = newReturnTypeSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.STORED_PROCEDURE_DEFINITION__RETURN_TYPE_SUPPORTED, oldReturnTypeSupported, returnTypeSupported));
+		}
 	}
 
 	/**
@@ -531,6 +557,7 @@ public class StoredProcedureDefinitionImpl extends EObjectImpl implements Stored
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isParameterDeclarationConstraintSupported() {
 		return parameterDeclarationConstraintSupported;
 	}
@@ -540,11 +567,13 @@ public class StoredProcedureDefinitionImpl extends EObjectImpl implements Stored
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setParameterDeclarationConstraintSupported(boolean newParameterDeclarationConstraintSupported) {
 		boolean oldParameterDeclarationConstraintSupported = parameterDeclarationConstraintSupported;
 		parameterDeclarationConstraintSupported = newParameterDeclarationConstraintSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.STORED_PROCEDURE_DEFINITION__PARAMETER_DECLARATION_CONSTRAINT_SUPPORTED, oldParameterDeclarationConstraintSupported, parameterDeclarationConstraintSupported));
+		}
 	}
 
 	/**
@@ -552,6 +581,7 @@ public class StoredProcedureDefinitionImpl extends EObjectImpl implements Stored
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getMaximumActionBodyLength() {
 		return maximumActionBodyLength;
 	}
@@ -561,11 +591,13 @@ public class StoredProcedureDefinitionImpl extends EObjectImpl implements Stored
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMaximumActionBodyLength(int newMaximumActionBodyLength) {
 		int oldMaximumActionBodyLength = maximumActionBodyLength;
 		maximumActionBodyLength = newMaximumActionBodyLength;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.STORED_PROCEDURE_DEFINITION__MAXIMUM_ACTION_BODY_LENGTH, oldMaximumActionBodyLength, maximumActionBodyLength));
+		}
 	}
 
 	/**
@@ -573,6 +605,7 @@ public class StoredProcedureDefinitionImpl extends EObjectImpl implements Stored
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList getParameterStyle() {
 		if (parameterStyle == null) {
 			parameterStyle = new EDataTypeUniqueEList(ParameterStyle.class, this, DatabaseDefinitionPackage.STORED_PROCEDURE_DEFINITION__PARAMETER_STYLE);
@@ -585,6 +618,7 @@ public class StoredProcedureDefinitionImpl extends EObjectImpl implements Stored
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList getLanguageType() {
 		if (languageType == null) {
 			languageType = new EDataTypeUniqueEList(LanguageType.class, this, DatabaseDefinitionPackage.STORED_PROCEDURE_DEFINITION__LANGUAGE_TYPE);
@@ -597,6 +631,7 @@ public class StoredProcedureDefinitionImpl extends EObjectImpl implements Stored
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList getFunctionLanguageType() {
 		if (functionLanguageType == null) {
 			functionLanguageType = new EDataTypeUniqueEList(LanguageType.class, this, DatabaseDefinitionPackage.STORED_PROCEDURE_DEFINITION__FUNCTION_LANGUAGE_TYPE);
@@ -609,6 +644,7 @@ public class StoredProcedureDefinitionImpl extends EObjectImpl implements Stored
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList getProcedureType() {
 		if (procedureType == null) {
 			procedureType = new EDataTypeUniqueEList(ProcedureType.class, this, DatabaseDefinitionPackage.STORED_PROCEDURE_DEFINITION__PROCEDURE_TYPE);
@@ -621,6 +657,7 @@ public class StoredProcedureDefinitionImpl extends EObjectImpl implements Stored
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getMaximumIdentifierLength() {
 		return maximumIdentifierLength;
 	}
@@ -630,11 +667,13 @@ public class StoredProcedureDefinitionImpl extends EObjectImpl implements Stored
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMaximumIdentifierLength(int newMaximumIdentifierLength) {
 		int oldMaximumIdentifierLength = maximumIdentifierLength;
 		maximumIdentifierLength = newMaximumIdentifierLength;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.STORED_PROCEDURE_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH, oldMaximumIdentifierLength, maximumIdentifierLength));
+		}
 	}
 
 	/**
@@ -642,6 +681,7 @@ public class StoredProcedureDefinitionImpl extends EObjectImpl implements Stored
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.STORED_PROCEDURE_DEFINITION__PREDEFINED_DATA_TYPE_DEFINITIONS:
@@ -655,6 +695,7 @@ public class StoredProcedureDefinitionImpl extends EObjectImpl implements Stored
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.STORED_PROCEDURE_DEFINITION__PREDEFINED_DATA_TYPE_DEFINITIONS:
@@ -678,7 +719,7 @@ public class StoredProcedureDefinitionImpl extends EObjectImpl implements Stored
 			case DatabaseDefinitionPackage.STORED_PROCEDURE_DEFINITION__PARAMETER_DECLARATION_CONSTRAINT_SUPPORTED:
 				return isParameterDeclarationConstraintSupported() ? Boolean.TRUE : Boolean.FALSE;
 			case DatabaseDefinitionPackage.STORED_PROCEDURE_DEFINITION__MAXIMUM_ACTION_BODY_LENGTH:
-				return Integer.valueOf(getMaximumActionBodyLength());
+				return new Integer(getMaximumActionBodyLength());
 			case DatabaseDefinitionPackage.STORED_PROCEDURE_DEFINITION__PARAMETER_STYLE:
 				return getParameterStyle();
 			case DatabaseDefinitionPackage.STORED_PROCEDURE_DEFINITION__LANGUAGE_TYPE:
@@ -688,7 +729,7 @@ public class StoredProcedureDefinitionImpl extends EObjectImpl implements Stored
 			case DatabaseDefinitionPackage.STORED_PROCEDURE_DEFINITION__PROCEDURE_TYPE:
 				return getProcedureType();
 			case DatabaseDefinitionPackage.STORED_PROCEDURE_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH:
-				return Integer.valueOf(getMaximumIdentifierLength());
+				return new Integer(getMaximumIdentifierLength());
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -698,6 +739,7 @@ public class StoredProcedureDefinitionImpl extends EObjectImpl implements Stored
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.STORED_PROCEDURE_DEFINITION__PREDEFINED_DATA_TYPE_DEFINITIONS:
@@ -762,6 +804,7 @@ public class StoredProcedureDefinitionImpl extends EObjectImpl implements Stored
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.STORED_PROCEDURE_DEFINITION__PREDEFINED_DATA_TYPE_DEFINITIONS:
@@ -821,6 +864,7 @@ public class StoredProcedureDefinitionImpl extends EObjectImpl implements Stored
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.STORED_PROCEDURE_DEFINITION__PREDEFINED_DATA_TYPE_DEFINITIONS:
@@ -864,8 +908,11 @@ public class StoredProcedureDefinitionImpl extends EObjectImpl implements Stored
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (nullInputActionSupported: "); //$NON-NLS-1$

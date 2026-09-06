@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.datatypes.impl.CharacterSetImpl#getRepertoire <em>Repertoire</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.datatypes.impl.CharacterSetImpl#getDefaultCollation <em>Default Collation</em>}</li>
@@ -35,7 +36,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *   <li>{@link org.eclipse.datatools.modelbase.sql.datatypes.impl.CharacterSetImpl#getCharacterStringDataType <em>Character String Data Type</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.datatypes.impl.CharacterSetImpl#getSchema <em>Schema</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -134,6 +134,7 @@ public class CharacterSetImpl extends SQLObjectImpl implements CharacterSet {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return SQLDataTypesPackage.Literals.CHARACTER_SET;
 	}
@@ -143,6 +144,7 @@ public class CharacterSetImpl extends SQLObjectImpl implements CharacterSet {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getRepertoire() {
 		return repertoire;
 	}
@@ -152,11 +154,13 @@ public class CharacterSetImpl extends SQLObjectImpl implements CharacterSet {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRepertoire(String newRepertoire) {
 		String oldRepertoire = repertoire;
 		repertoire = newRepertoire;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLDataTypesPackage.CHARACTER_SET__REPERTOIRE, oldRepertoire, repertoire));
+		}
 	}
 
 	/**
@@ -164,6 +168,7 @@ public class CharacterSetImpl extends SQLObjectImpl implements CharacterSet {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getDefaultCollation() {
 		return defaultCollation;
 	}
@@ -173,11 +178,13 @@ public class CharacterSetImpl extends SQLObjectImpl implements CharacterSet {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDefaultCollation(String newDefaultCollation) {
 		String oldDefaultCollation = defaultCollation;
 		defaultCollation = newDefaultCollation;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLDataTypesPackage.CHARACTER_SET__DEFAULT_COLLATION, oldDefaultCollation, defaultCollation));
+		}
 	}
 
 	/**
@@ -185,6 +192,7 @@ public class CharacterSetImpl extends SQLObjectImpl implements CharacterSet {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getEncoding() {
 		return encoding;
 	}
@@ -194,11 +202,13 @@ public class CharacterSetImpl extends SQLObjectImpl implements CharacterSet {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setEncoding(String newEncoding) {
 		String oldEncoding = encoding;
 		encoding = newEncoding;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLDataTypesPackage.CHARACTER_SET__ENCODING, oldEncoding, encoding));
+		}
 	}
 
 	/**
@@ -206,13 +216,15 @@ public class CharacterSetImpl extends SQLObjectImpl implements CharacterSet {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public CharacterStringDataType getCharacterStringDataType() {
 		if (characterStringDataType != null && characterStringDataType.eIsProxy()) {
 			InternalEObject oldCharacterStringDataType = (InternalEObject)characterStringDataType;
 			characterStringDataType = (CharacterStringDataType)eResolveProxy(oldCharacterStringDataType);
 			if (characterStringDataType != oldCharacterStringDataType) {
-				if (eNotificationRequired())
+				if (eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SQLDataTypesPackage.CHARACTER_SET__CHARACTER_STRING_DATA_TYPE, oldCharacterStringDataType, characterStringDataType));
+				}
 			}
 		}
 		return characterStringDataType;
@@ -237,7 +249,11 @@ public class CharacterSetImpl extends SQLObjectImpl implements CharacterSet {
 		characterStringDataType = newCharacterStringDataType;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLDataTypesPackage.CHARACTER_SET__CHARACTER_STRING_DATA_TYPE, oldCharacterStringDataType, newCharacterStringDataType);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			if (msgs == null) {
+				msgs = notification;
+			} else {
+				msgs.add(notification);
+			}
 		}
 		return msgs;
 	}
@@ -247,18 +263,24 @@ public class CharacterSetImpl extends SQLObjectImpl implements CharacterSet {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCharacterStringDataType(CharacterStringDataType newCharacterStringDataType) {
 		if (newCharacterStringDataType != characterStringDataType) {
 			NotificationChain msgs = null;
-			if (characterStringDataType != null)
+			if (characterStringDataType != null) {
 				msgs = ((InternalEObject)characterStringDataType).eInverseRemove(this, SQLDataTypesPackage.CHARACTER_STRING_DATA_TYPE__CHARACTER_SET, CharacterStringDataType.class, msgs);
-			if (newCharacterStringDataType != null)
+			}
+			if (newCharacterStringDataType != null) {
 				msgs = ((InternalEObject)newCharacterStringDataType).eInverseAdd(this, SQLDataTypesPackage.CHARACTER_STRING_DATA_TYPE__CHARACTER_SET, CharacterStringDataType.class, msgs);
+			}
 			msgs = basicSetCharacterStringDataType(newCharacterStringDataType, msgs);
-			if (msgs != null) msgs.dispatch();
+			if (msgs != null) {
+				msgs.dispatch();
+			}
 		}
-		else if (eNotificationRequired())
+		else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLDataTypesPackage.CHARACTER_SET__CHARACTER_STRING_DATA_TYPE, newCharacterStringDataType, newCharacterStringDataType));
+		}
 	}
 
 	/**
@@ -266,13 +288,15 @@ public class CharacterSetImpl extends SQLObjectImpl implements CharacterSet {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Schema getSchema() {
 		if (schema != null && schema.eIsProxy()) {
 			InternalEObject oldSchema = (InternalEObject)schema;
 			schema = (Schema)eResolveProxy(oldSchema);
 			if (schema != oldSchema) {
-				if (eNotificationRequired())
+				if (eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SQLDataTypesPackage.CHARACTER_SET__SCHEMA, oldSchema, schema));
+				}
 			}
 		}
 		return schema;
@@ -297,7 +321,11 @@ public class CharacterSetImpl extends SQLObjectImpl implements CharacterSet {
 		schema = newSchema;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLDataTypesPackage.CHARACTER_SET__SCHEMA, oldSchema, newSchema);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			if (msgs == null) {
+				msgs = notification;
+			} else {
+				msgs.add(notification);
+			}
 		}
 		return msgs;
 	}
@@ -307,18 +335,24 @@ public class CharacterSetImpl extends SQLObjectImpl implements CharacterSet {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSchema(Schema newSchema) {
 		if (newSchema != schema) {
 			NotificationChain msgs = null;
-			if (schema != null)
+			if (schema != null) {
 				msgs = ((InternalEObject)schema).eInverseRemove(this, SQLSchemaPackage.SCHEMA__CHAR_SETS, Schema.class, msgs);
-			if (newSchema != null)
+			}
+			if (newSchema != null) {
 				msgs = ((InternalEObject)newSchema).eInverseAdd(this, SQLSchemaPackage.SCHEMA__CHAR_SETS, Schema.class, msgs);
+			}
 			msgs = basicSetSchema(newSchema, msgs);
-			if (msgs != null) msgs.dispatch();
+			if (msgs != null) {
+				msgs.dispatch();
+			}
 		}
-		else if (eNotificationRequired())
+		else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLDataTypesPackage.CHARACTER_SET__SCHEMA, newSchema, newSchema));
+		}
 	}
 
 	/**
@@ -326,15 +360,18 @@ public class CharacterSetImpl extends SQLObjectImpl implements CharacterSet {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case SQLDataTypesPackage.CHARACTER_SET__CHARACTER_STRING_DATA_TYPE:
-				if (characterStringDataType != null)
+				if (characterStringDataType != null) {
 					msgs = ((InternalEObject)characterStringDataType).eInverseRemove(this, SQLDataTypesPackage.CHARACTER_STRING_DATA_TYPE__CHARACTER_SET, CharacterStringDataType.class, msgs);
+				}
 				return basicSetCharacterStringDataType((CharacterStringDataType)otherEnd, msgs);
 			case SQLDataTypesPackage.CHARACTER_SET__SCHEMA:
-				if (schema != null)
+				if (schema != null) {
 					msgs = ((InternalEObject)schema).eInverseRemove(this, SQLSchemaPackage.SCHEMA__CHAR_SETS, Schema.class, msgs);
+				}
 				return basicSetSchema((Schema)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -345,6 +382,7 @@ public class CharacterSetImpl extends SQLObjectImpl implements CharacterSet {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case SQLDataTypesPackage.CHARACTER_SET__CHARACTER_STRING_DATA_TYPE:
@@ -360,6 +398,7 @@ public class CharacterSetImpl extends SQLObjectImpl implements CharacterSet {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SQLDataTypesPackage.CHARACTER_SET__REPERTOIRE:
@@ -369,10 +408,14 @@ public class CharacterSetImpl extends SQLObjectImpl implements CharacterSet {
 			case SQLDataTypesPackage.CHARACTER_SET__ENCODING:
 				return getEncoding();
 			case SQLDataTypesPackage.CHARACTER_SET__CHARACTER_STRING_DATA_TYPE:
-				if (resolve) return getCharacterStringDataType();
+				if (resolve) {
+					return getCharacterStringDataType();
+				}
 				return basicGetCharacterStringDataType();
 			case SQLDataTypesPackage.CHARACTER_SET__SCHEMA:
-				if (resolve) return getSchema();
+				if (resolve) {
+					return getSchema();
+				}
 				return basicGetSchema();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -383,6 +426,7 @@ public class CharacterSetImpl extends SQLObjectImpl implements CharacterSet {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case SQLDataTypesPackage.CHARACTER_SET__REPERTOIRE:
@@ -409,6 +453,7 @@ public class CharacterSetImpl extends SQLObjectImpl implements CharacterSet {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case SQLDataTypesPackage.CHARACTER_SET__REPERTOIRE:
@@ -435,6 +480,7 @@ public class CharacterSetImpl extends SQLObjectImpl implements CharacterSet {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SQLDataTypesPackage.CHARACTER_SET__REPERTOIRE:
@@ -456,8 +502,11 @@ public class CharacterSetImpl extends SQLObjectImpl implements CharacterSet {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (repertoire: "); //$NON-NLS-1$

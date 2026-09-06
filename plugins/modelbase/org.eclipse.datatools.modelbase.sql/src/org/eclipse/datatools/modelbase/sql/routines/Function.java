@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -22,6 +22,7 @@ package org.eclipse.datatools.modelbase.sql.routines;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.routines.Function#isNullCall <em>Null Call</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.routines.Function#isStatic <em>Static</em>}</li>
@@ -32,7 +33,6 @@ package org.eclipse.datatools.modelbase.sql.routines;
  *   <li>{@link org.eclipse.datatools.modelbase.sql.routines.Function#getReturnScalar <em>Return Scalar</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.routines.Function#getReturnCast <em>Return Cast</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.datatools.modelbase.sql.routines.SQLRoutinesPackage#getFunction()
  * @model
@@ -47,17 +47,17 @@ public interface Function extends Routine {
 	 * From 5WD-02-Foundation-2002-12
 	 * 11.50 <SQL-invoked routine>
 	 * <null-call clause> ::= RETURNS NULL ON NULL INPUT | CALLED ON NULL INPUT
-	 * 
+	 *
 	 * If PROCEDURE is specified, then:
 	 * - <null-call clause> shall not be specified.
-	 * 
-	 * if <null-call clause> is not specified, then 
+	 *
+	 * if <null-call clause> is not specified, then
 	 * - CALLED ON NULL INPUT is implicit.
-	 * 
+	 *
 	 * If the SQL-invoked routine is an SQL-invoked function, then:
 	 * - The SQL-invoked routine descriptor includes an indication of whether the SQL-invoked routine
 	 * is a null-call function.
-	 * 
+	 *
 	 * 4.27 SQL-invoked routines
 	 * A null-call function is an SQL-invoked function that is defined to return the null value if any of its input arguments is the null value. A null-call function is an SQL-invoked function whose <null-call clause> specifies
 	 * "RETURNS NULL ON NULL INPUT".
@@ -87,9 +87,9 @@ public interface Function extends Routine {
 	 * <!-- begin-model-doc -->
 	 * From 5WD-02-Foundation-2002-12
 	 * 11.50 <SQL-invoked routine>
-	 * 
+	 *
 	 * <dispatch clause> ::= STATIC DISPATCH
-	 * 
+	 *
 	 * If R is an SQL-invoked regular function and the <SQL parameter declaration list> contains an
 	 * <SQL parameter declaration> that specifies a <data type> that is one of:
 	 * 1) A user-defined type.
@@ -123,16 +123,16 @@ public interface Function extends Routine {
 	 * <!-- begin-model-doc -->
 	 * From 5WD-02-Foundation-2002-12
 	 * 4.7.5 Transforms for user-defined types
-	 * 
+	 *
 	 * Transforms are SQL-invoked functions that are automatically invoked when values of user-defined types are
 	 * transferred from SQL-environment to host languages or vice-versa.
-	 * 
+	 *
 	 * A transform is associated with a user-defined type. A transform identifies a list of transform groups of up to
 	 * two SQL-invoked functions, called the transform functions, each identified by a group name. The group name
 	 * of a transform group is an <identifier> such that no two transform groups for a transform have the same group
 	 * name. The two transform functions are:
 	 * - from-sql function : This SQL-invoked function maps the user-defined type value into a value of an SQL
-	 *   pre-defined type, and gets invoked whenever a user-defined type value is passed to a host language 
+	 *   pre-defined type, and gets invoked whenever a user-defined type value is passed to a host language
 	 *   program or an external routine.
 	 * - to-sql function : This SQL-invoked function maps a value of an SQL predefined type to a value of a
 	 *   user-defined type and gets invoked whenever a user-defined type value is supplied by a host language

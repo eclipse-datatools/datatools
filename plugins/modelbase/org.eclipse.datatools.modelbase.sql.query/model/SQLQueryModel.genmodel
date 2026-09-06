@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.datatools.modelbase.sql.query/src"
-    creationCommands="false" editDirectory="" editorDirectory="" modelPluginID="org.eclipse.datatools.modelbase.sql.query"
+    creationCommands="false" editorDirectory="" modelPluginID="org.eclipse.datatools.modelbase.sql.query"
     runtimeJar="true" modelName="SQLQueryModel" editPluginClass="org.eclipse.datatools.modelbase.sql.query.provider.SQLQueryEditPlugin"
     editorPluginClass="org.eclipse.datatools.modelbase.sql.query.presentation.SQLQueryEditorPlugin"
-    testsDirectory="" importerID="org.eclipse.emf.importer.rose" usedGenPackages="../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.genmodel#//sqlmodel ../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore">
+    updateClasspath="false" testsDirectory="" importerID="org.eclipse.emf.importer.rose"
+    usedGenPackages="../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.genmodel#//sqlmodel ../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore"
+    importOrganizing="true" cleanup="true">
   <foreignModel>SQLQueryModel.mdl</foreignModel>
   <foreignModel>ECORE_MODEL_PLUGIN_PATH</foreignModel>
   <foreignModel>../..</foreignModel>

@@ -61,7 +61,7 @@ public final class EventType extends AbstractEnumerator {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #CONNECT_LITERAL
-	 * @model literal="\"Connect\""
+	 * @model literal="\\\"Connect\\\""
 	 * @generated
 	 * @ordered
 	 */
@@ -121,7 +121,7 @@ public final class EventType extends AbstractEnumerator {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #DISCONEECT_LITERAL
-	 * @model literal="\"Disconnect\""
+	 * @model literal="\\\"Disconnect\\\""
 	 * @generated
 	 * @ordered
 	 */
@@ -211,7 +211,7 @@ public final class EventType extends AbstractEnumerator {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #RAISERROR_LITERAL
-	 * @model literal="\"RAISERROR\""
+	 * @model literal="\\\"RAISERROR\\\""
 	 * @generated
 	 * @ordered
 	 */
@@ -275,7 +275,7 @@ public final class EventType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final EventType CONNECT_LITERAL = new EventType(CONNECT, "CONNECT", "\"Connect\"");
+	public static final EventType CONNECT_LITERAL = new EventType(CONNECT, "CONNECT", "\\\"Connect\\\"");
 
     /**
 	 * The '<em><b>CONNECTFAILED</b></em>' literal object.
@@ -315,7 +315,7 @@ public final class EventType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final EventType DISCONEECT_LITERAL = new EventType(DISCONEECT, "DISCONEECT", "\"Disconnect\"");
+	public static final EventType DISCONEECT_LITERAL = new EventType(DISCONEECT, "DISCONEECT", "\\\"Disconnect\\\"");
 
     /**
 	 * The '<em><b>GLOBALAUTOINCREMENT</b></em>' literal object.
@@ -375,7 +375,7 @@ public final class EventType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final EventType RAISERROR_LITERAL = new EventType(RAISERROR, "RAISERROR", "\"RAISERROR\"");
+	public static final EventType RAISERROR_LITERAL = new EventType(RAISERROR, "RAISERROR", "\\\"RAISERROR\\\"");
 
     /**
 	 * The '<em><b>SERVERIDLE</b></em>' literal object.
@@ -434,12 +434,13 @@ public final class EventType extends AbstractEnumerator {
 	 * Returns the '<em><b>Event Type</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static EventType get(String literal)
     {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			EventType result = VALUES_ARRAY[i];
+		for (EventType result : VALUES_ARRAY) {
 			if (result.toString().equals(literal)) {
 				return result;
 			}
@@ -451,12 +452,13 @@ public final class EventType extends AbstractEnumerator {
 	 * Returns the '<em><b>Event Type</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static EventType getByName(String name)
     {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			EventType result = VALUES_ARRAY[i];
+		for (EventType result : VALUES_ARRAY) {
 			if (result.getName().equals(name)) {
 				return result;
 			}
@@ -468,6 +470,8 @@ public final class EventType extends AbstractEnumerator {
 	 * Returns the '<em><b>Event Type</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static EventType get(int value)

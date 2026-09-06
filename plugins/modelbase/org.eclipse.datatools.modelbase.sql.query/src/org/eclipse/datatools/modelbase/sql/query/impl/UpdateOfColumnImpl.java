@@ -22,166 +22,185 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.query.impl.UpdateOfColumnImpl#getUpdatabilityExpr <em>Updatability Expr</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
 public class UpdateOfColumnImpl extends SQLQueryObjectImpl implements UpdateOfColumn {
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected UpdateOfColumnImpl() {
-        super();
-    }
+		super();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    protected EClass eStaticClass() {
-        return SQLQueryModelPackage.Literals.UPDATE_OF_COLUMN;
-    }
+	 * @generated
+	 */
+    @Override
+	protected EClass eStaticClass() {
+		return SQLQueryModelPackage.Literals.UPDATE_OF_COLUMN;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public UpdatabilityExpression getUpdatabilityExpr() {
-        if (eContainerFeatureID() != SQLQueryModelPackage.UPDATE_OF_COLUMN__UPDATABILITY_EXPR) return null;
-        return (UpdatabilityExpression)eContainer();
-    }
+	 * @generated
+	 */
+    @Override
+	public UpdatabilityExpression getUpdatabilityExpr() {
+		if (eContainerFeatureID() != SQLQueryModelPackage.UPDATE_OF_COLUMN__UPDATABILITY_EXPR) {
+			return null;
+		}
+		return (UpdatabilityExpression)eInternalContainer();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public NotificationChain basicSetUpdatabilityExpr(UpdatabilityExpression newUpdatabilityExpr, NotificationChain msgs) {
-        msgs = eBasicSetContainer((InternalEObject)newUpdatabilityExpr, SQLQueryModelPackage.UPDATE_OF_COLUMN__UPDATABILITY_EXPR, msgs);
-        return msgs;
-    }
+		msgs = eBasicSetContainer((InternalEObject)newUpdatabilityExpr, SQLQueryModelPackage.UPDATE_OF_COLUMN__UPDATABILITY_EXPR, msgs);
+		return msgs;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setUpdatabilityExpr(UpdatabilityExpression newUpdatabilityExpr) {
-        if (newUpdatabilityExpr != eInternalContainer() || (eContainerFeatureID() != SQLQueryModelPackage.UPDATE_OF_COLUMN__UPDATABILITY_EXPR && newUpdatabilityExpr != null)) {
-            if (EcoreUtil.isAncestor(this, newUpdatabilityExpr))
-                throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
-            NotificationChain msgs = null;
-            if (eInternalContainer() != null)
-                msgs = eBasicRemoveFromContainer(msgs);
-            if (newUpdatabilityExpr != null)
-                msgs = ((InternalEObject)newUpdatabilityExpr).eInverseAdd(this, SQLQueryModelPackage.UPDATABILITY_EXPRESSION__UPDATE_OF_COLUMN_LIST, UpdatabilityExpression.class, msgs);
-            msgs = basicSetUpdatabilityExpr(newUpdatabilityExpr, msgs);
-            if (msgs != null) msgs.dispatch();
-        }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.UPDATE_OF_COLUMN__UPDATABILITY_EXPR, newUpdatabilityExpr, newUpdatabilityExpr));
-    }
+	 * @generated
+	 */
+    @Override
+	public void setUpdatabilityExpr(UpdatabilityExpression newUpdatabilityExpr) {
+		if (newUpdatabilityExpr != eInternalContainer() || (eContainerFeatureID() != SQLQueryModelPackage.UPDATE_OF_COLUMN__UPDATABILITY_EXPR && newUpdatabilityExpr != null)) {
+			if (EcoreUtil.isAncestor(this, newUpdatabilityExpr)) {
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			}
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null) {
+				msgs = eBasicRemoveFromContainer(msgs);
+			}
+			if (newUpdatabilityExpr != null) {
+				msgs = ((InternalEObject)newUpdatabilityExpr).eInverseAdd(this, SQLQueryModelPackage.UPDATABILITY_EXPRESSION__UPDATE_OF_COLUMN_LIST, UpdatabilityExpression.class, msgs);
+			}
+			msgs = basicSetUpdatabilityExpr(newUpdatabilityExpr, msgs);
+			if (msgs != null) {
+				msgs.dispatch();
+			}
+		}
+		else if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.UPDATE_OF_COLUMN__UPDATABILITY_EXPR, newUpdatabilityExpr, newUpdatabilityExpr));
+		}
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case SQLQueryModelPackage.UPDATE_OF_COLUMN__UPDATABILITY_EXPR:
-                if (eInternalContainer() != null)
-                    msgs = eBasicRemoveFromContainer(msgs);
-                return basicSetUpdatabilityExpr((UpdatabilityExpression)otherEnd, msgs);
-        }
-        return super.eInverseAdd(otherEnd, featureID, msgs);
-    }
+	 * @generated
+	 */
+    @Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SQLQueryModelPackage.UPDATE_OF_COLUMN__UPDATABILITY_EXPR:
+				if (eInternalContainer() != null) {
+					msgs = eBasicRemoveFromContainer(msgs);
+				}
+				return basicSetUpdatabilityExpr((UpdatabilityExpression)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case SQLQueryModelPackage.UPDATE_OF_COLUMN__UPDATABILITY_EXPR:
-                return basicSetUpdatabilityExpr(null, msgs);
-        }
-        return super.eInverseRemove(otherEnd, featureID, msgs);
-    }
+	 * @generated
+	 */
+    @Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SQLQueryModelPackage.UPDATE_OF_COLUMN__UPDATABILITY_EXPR:
+				return basicSetUpdatabilityExpr(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-        switch (eContainerFeatureID()) {
-            case SQLQueryModelPackage.UPDATE_OF_COLUMN__UPDATABILITY_EXPR:
-                return eInternalContainer().eInverseRemove(this, SQLQueryModelPackage.UPDATABILITY_EXPRESSION__UPDATE_OF_COLUMN_LIST, UpdatabilityExpression.class, msgs);
-        }
-        return super.eBasicRemoveFromContainerFeature(msgs);
-    }
+	 * @generated
+	 */
+    @Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID()) {
+			case SQLQueryModelPackage.UPDATE_OF_COLUMN__UPDATABILITY_EXPR:
+				return eInternalContainer().eInverseRemove(this, SQLQueryModelPackage.UPDATABILITY_EXPRESSION__UPDATE_OF_COLUMN_LIST, UpdatabilityExpression.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case SQLQueryModelPackage.UPDATE_OF_COLUMN__UPDATABILITY_EXPR:
-                return getUpdatabilityExpr();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+	 * @generated
+	 */
+    @Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+			case SQLQueryModelPackage.UPDATE_OF_COLUMN__UPDATABILITY_EXPR:
+				return getUpdatabilityExpr();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case SQLQueryModelPackage.UPDATE_OF_COLUMN__UPDATABILITY_EXPR:
-                setUpdatabilityExpr((UpdatabilityExpression)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+	 * @generated
+	 */
+    @Override
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
+			case SQLQueryModelPackage.UPDATE_OF_COLUMN__UPDATABILITY_EXPR:
+				setUpdatabilityExpr((UpdatabilityExpression)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public void eUnset(int featureID) {
-        switch (featureID) {
-            case SQLQueryModelPackage.UPDATE_OF_COLUMN__UPDATABILITY_EXPR:
-                setUpdatabilityExpr((UpdatabilityExpression)null);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+	 * @generated
+	 */
+    @Override
+	public void eUnset(int featureID) {
+		switch (featureID) {
+			case SQLQueryModelPackage.UPDATE_OF_COLUMN__UPDATABILITY_EXPR:
+				setUpdatabilityExpr((UpdatabilityExpression)null);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case SQLQueryModelPackage.UPDATE_OF_COLUMN__UPDATABILITY_EXPR:
-                return getUpdatabilityExpr() != null;
-        }
-        return super.eIsSet(featureID);
-    }
+	 * @generated
+	 */
+    @Override
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+			case SQLQueryModelPackage.UPDATE_OF_COLUMN__UPDATABILITY_EXPR:
+				return getUpdatabilityExpr() != null;
+		}
+		return super.eIsSet(featureID);
+	}
 
 } //UpdateOfColumnImpl

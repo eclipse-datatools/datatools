@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -20,10 +20,10 @@ import org.eclipse.datatools.modelbase.sql.tables.Table;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.derby.Synonym#getTable <em>Table</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.datatools.modelbase.derby.DerbyModelPackage#getSynonym()
  * @model

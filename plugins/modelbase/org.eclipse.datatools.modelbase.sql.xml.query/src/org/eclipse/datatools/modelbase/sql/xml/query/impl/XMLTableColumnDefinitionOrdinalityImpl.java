@@ -14,28 +14,27 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>XML Table Column Definition Ordinality</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */
 public class XMLTableColumnDefinitionOrdinalityImpl extends XMLTableColumnDefinitionItemImpl implements XMLTableColumnDefinitionOrdinality {
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected XMLTableColumnDefinitionOrdinalityImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    protected EClass eStaticClass() {
-        return SQLXMLQueryModelPackage.Literals.XML_TABLE_COLUMN_DEFINITION_ORDINALITY;
-    }
+	 * @generated
+	 */
+    @Override
+	protected EClass eStaticClass() {
+		return SQLXMLQueryModelPackage.Literals.XML_TABLE_COLUMN_DEFINITION_ORDINALITY;
+	}
 
 } //XMLTableColumnDefinitionOrdinalityImpl

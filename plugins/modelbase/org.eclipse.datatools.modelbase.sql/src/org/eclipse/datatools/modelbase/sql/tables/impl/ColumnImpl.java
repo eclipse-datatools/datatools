@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -37,6 +37,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.tables.impl.ColumnImpl#getTable <em>Table</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.tables.impl.ColumnImpl#getIdentitySpecifier <em>Identity Specifier</em>}</li>
@@ -47,7 +48,6 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  *   <li>{@link org.eclipse.datatools.modelbase.sql.tables.impl.ColumnImpl#getScopeCheck <em>Scope Check</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.tables.impl.ColumnImpl#isScopeChecked <em>Scope Checked</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -186,6 +186,7 @@ public class ColumnImpl extends TypedElementImpl implements Column {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return SQLTablesPackage.Literals.COLUMN;
 	}
@@ -195,9 +196,12 @@ public class ColumnImpl extends TypedElementImpl implements Column {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Table getTable() {
-		if (eContainerFeatureID != SQLTablesPackage.COLUMN__TABLE) return null;
-		return (Table)eContainer();
+		if (eContainerFeatureID() != SQLTablesPackage.COLUMN__TABLE) {
+			return null;
+		}
+		return (Table)eInternalContainer();
 	}
 
 	/**
@@ -215,20 +219,27 @@ public class ColumnImpl extends TypedElementImpl implements Column {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTable(Table newTable) {
-		if (newTable != eInternalContainer() || (eContainerFeatureID != SQLTablesPackage.COLUMN__TABLE && newTable != null)) {
-			if (EcoreUtil.isAncestor(this, newTable))
+		if (newTable != eInternalContainer() || (eContainerFeatureID() != SQLTablesPackage.COLUMN__TABLE && newTable != null)) {
+			if (EcoreUtil.isAncestor(this, newTable)) {
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
+			}
 			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
+			if (eInternalContainer() != null) {
 				msgs = eBasicRemoveFromContainer(msgs);
-			if (newTable != null)
+			}
+			if (newTable != null) {
 				msgs = ((InternalEObject)newTable).eInverseAdd(this, SQLTablesPackage.TABLE__COLUMNS, Table.class, msgs);
+			}
 			msgs = basicSetTable(newTable, msgs);
-			if (msgs != null) msgs.dispatch();
+			if (msgs != null) {
+				msgs.dispatch();
+			}
 		}
-		else if (eNotificationRequired())
+		else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLTablesPackage.COLUMN__TABLE, newTable, newTable));
+		}
 	}
 
 	/**
@@ -236,6 +247,7 @@ public class ColumnImpl extends TypedElementImpl implements Column {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IdentitySpecifier getIdentitySpecifier() {
 		return identitySpecifier;
 	}
@@ -250,7 +262,11 @@ public class ColumnImpl extends TypedElementImpl implements Column {
 		identitySpecifier = newIdentitySpecifier;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLTablesPackage.COLUMN__IDENTITY_SPECIFIER, oldIdentitySpecifier, newIdentitySpecifier);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			if (msgs == null) {
+				msgs = notification;
+			} else {
+				msgs.add(notification);
+			}
 		}
 		return msgs;
 	}
@@ -260,18 +276,24 @@ public class ColumnImpl extends TypedElementImpl implements Column {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIdentitySpecifier(IdentitySpecifier newIdentitySpecifier) {
 		if (newIdentitySpecifier != identitySpecifier) {
 			NotificationChain msgs = null;
-			if (identitySpecifier != null)
+			if (identitySpecifier != null) {
 				msgs = ((InternalEObject)identitySpecifier).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLTablesPackage.COLUMN__IDENTITY_SPECIFIER, null, msgs);
-			if (newIdentitySpecifier != null)
+			}
+			if (newIdentitySpecifier != null) {
 				msgs = ((InternalEObject)newIdentitySpecifier).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SQLTablesPackage.COLUMN__IDENTITY_SPECIFIER, null, msgs);
+			}
 			msgs = basicSetIdentitySpecifier(newIdentitySpecifier, msgs);
-			if (msgs != null) msgs.dispatch();
+			if (msgs != null) {
+				msgs.dispatch();
+			}
 		}
-		else if (eNotificationRequired())
+		else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLTablesPackage.COLUMN__IDENTITY_SPECIFIER, newIdentitySpecifier, newIdentitySpecifier));
+		}
 	}
 
 	/**
@@ -279,6 +301,7 @@ public class ColumnImpl extends TypedElementImpl implements Column {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ValueExpression getGenerateExpression() {
 		return generateExpression;
 	}
@@ -293,7 +316,11 @@ public class ColumnImpl extends TypedElementImpl implements Column {
 		generateExpression = newGenerateExpression;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLTablesPackage.COLUMN__GENERATE_EXPRESSION, oldGenerateExpression, newGenerateExpression);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			if (msgs == null) {
+				msgs = notification;
+			} else {
+				msgs.add(notification);
+			}
 		}
 		return msgs;
 	}
@@ -303,18 +330,24 @@ public class ColumnImpl extends TypedElementImpl implements Column {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setGenerateExpression(ValueExpression newGenerateExpression) {
 		if (newGenerateExpression != generateExpression) {
 			NotificationChain msgs = null;
-			if (generateExpression != null)
+			if (generateExpression != null) {
 				msgs = ((InternalEObject)generateExpression).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLTablesPackage.COLUMN__GENERATE_EXPRESSION, null, msgs);
-			if (newGenerateExpression != null)
+			}
+			if (newGenerateExpression != null) {
 				msgs = ((InternalEObject)newGenerateExpression).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SQLTablesPackage.COLUMN__GENERATE_EXPRESSION, null, msgs);
+			}
 			msgs = basicSetGenerateExpression(newGenerateExpression, msgs);
-			if (msgs != null) msgs.dispatch();
+			if (msgs != null) {
+				msgs.dispatch();
+			}
 		}
-		else if (eNotificationRequired())
+		else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLTablesPackage.COLUMN__GENERATE_EXPRESSION, newGenerateExpression, newGenerateExpression));
+		}
 	}
 
 	/**
@@ -322,6 +355,7 @@ public class ColumnImpl extends TypedElementImpl implements Column {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isImplementationDependent() {
 		return implementationDependent;
 	}
@@ -331,11 +365,13 @@ public class ColumnImpl extends TypedElementImpl implements Column {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setImplementationDependent(boolean newImplementationDependent) {
 		boolean oldImplementationDependent = implementationDependent;
 		implementationDependent = newImplementationDependent;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLTablesPackage.COLUMN__IMPLEMENTATION_DEPENDENT, oldImplementationDependent, implementationDependent));
+		}
 	}
 
 	/**
@@ -343,6 +379,7 @@ public class ColumnImpl extends TypedElementImpl implements Column {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isNullable() {
 		return nullable;
 	}
@@ -352,11 +389,13 @@ public class ColumnImpl extends TypedElementImpl implements Column {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setNullable(boolean newNullable) {
 		boolean oldNullable = nullable;
 		nullable = newNullable;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLTablesPackage.COLUMN__NULLABLE, oldNullable, nullable));
+		}
 	}
 
 	/**
@@ -364,6 +403,7 @@ public class ColumnImpl extends TypedElementImpl implements Column {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getDefaultValue() {
 		return defaultValue;
 	}
@@ -373,11 +413,13 @@ public class ColumnImpl extends TypedElementImpl implements Column {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDefaultValue(String newDefaultValue) {
 		String oldDefaultValue = defaultValue;
 		defaultValue = newDefaultValue;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLTablesPackage.COLUMN__DEFAULT_VALUE, oldDefaultValue, defaultValue));
+		}
 	}
 
 	/**
@@ -385,6 +427,7 @@ public class ColumnImpl extends TypedElementImpl implements Column {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ReferentialActionType getScopeCheck() {
 		return scopeCheck;
 	}
@@ -394,11 +437,13 @@ public class ColumnImpl extends TypedElementImpl implements Column {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setScopeCheck(ReferentialActionType newScopeCheck) {
 		ReferentialActionType oldScopeCheck = scopeCheck;
 		scopeCheck = newScopeCheck == null ? SCOPE_CHECK_EDEFAULT : newScopeCheck;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLTablesPackage.COLUMN__SCOPE_CHECK, oldScopeCheck, scopeCheck));
+		}
 	}
 
 	/**
@@ -406,6 +451,7 @@ public class ColumnImpl extends TypedElementImpl implements Column {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isScopeChecked() {
 		return scopeChecked;
 	}
@@ -415,17 +461,20 @@ public class ColumnImpl extends TypedElementImpl implements Column {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setScopeChecked(boolean newScopeChecked) {
 		boolean oldScopeChecked = scopeChecked;
 		scopeChecked = newScopeChecked;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLTablesPackage.COLUMN__SCOPE_CHECKED, oldScopeChecked, scopeChecked));
+		}
 	}
 
 				/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 */
+	@Override
 	public boolean isPartOfForeignKey() {
 		Table table = this.getTable();
 		if ( (table != null) && (table instanceof BaseTable) ) {
@@ -447,6 +496,7 @@ public class ColumnImpl extends TypedElementImpl implements Column {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 */
+	@Override
 	public boolean isPartOfUniqueConstraint() {
 		Table table = this.getTable();
 		if ( (table != null) && (table instanceof BaseTable) ) {
@@ -468,6 +518,7 @@ public class ColumnImpl extends TypedElementImpl implements Column {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 */
+	@Override
 	public boolean isPartOfPrimaryKey() {
 		Table table = this.getTable();
 		if ( (table != null) && (table instanceof BaseTable) ) {
@@ -487,11 +538,13 @@ public class ColumnImpl extends TypedElementImpl implements Column {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case SQLTablesPackage.COLUMN__TABLE:
-				if (eInternalContainer() != null)
+				if (eInternalContainer() != null) {
 					msgs = eBasicRemoveFromContainer(msgs);
+				}
 				return basicSetTable((Table)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -502,6 +555,7 @@ public class ColumnImpl extends TypedElementImpl implements Column {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case SQLTablesPackage.COLUMN__TABLE:
@@ -519,8 +573,9 @@ public class ColumnImpl extends TypedElementImpl implements Column {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID) {
+		switch (eContainerFeatureID()) {
 			case SQLTablesPackage.COLUMN__TABLE:
 				return eInternalContainer().eInverseRemove(this, SQLTablesPackage.TABLE__COLUMNS, Table.class, msgs);
 		}
@@ -532,6 +587,7 @@ public class ColumnImpl extends TypedElementImpl implements Column {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SQLTablesPackage.COLUMN__TABLE:
@@ -559,6 +615,7 @@ public class ColumnImpl extends TypedElementImpl implements Column {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case SQLTablesPackage.COLUMN__TABLE:
@@ -594,6 +651,7 @@ public class ColumnImpl extends TypedElementImpl implements Column {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case SQLTablesPackage.COLUMN__TABLE:
@@ -629,6 +687,7 @@ public class ColumnImpl extends TypedElementImpl implements Column {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SQLTablesPackage.COLUMN__TABLE:
@@ -656,8 +715,11 @@ public class ColumnImpl extends TypedElementImpl implements Column {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (implementationDependent: "); //$NON-NLS-1$

@@ -21,25 +21,25 @@ import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
  */
 public interface SQLQueryObject extends SQLObject{
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @model kind="operation"
-     * @generated
-     */
+	 * @model kind="operation"
+	 * @generated
+	 */
     String getSQL();
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @model
-     * @generated
-     */
+	 * @model
+	 * @generated
+	 */
   void setSQL(String sqlText);
 
     /** Returns the associated {@link SQLQuerySourceInfo} */
-    SQLQuerySourceInfo getSourceInfo(); 
-    
+    SQLQuerySourceInfo getSourceInfo();
+
     /** Sets the {@link SQLQuerySourceInfo} */
-    void setSourceInfo(SQLQuerySourceInfo sourceInfo); 
-    
+    void setSourceInfo(SQLQuerySourceInfo sourceInfo);
+
 } // SQLQueryObject

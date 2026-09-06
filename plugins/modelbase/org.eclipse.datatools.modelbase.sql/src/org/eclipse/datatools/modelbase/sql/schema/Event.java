@@ -13,11 +13,12 @@ package org.eclipse.datatools.modelbase.sql.schema;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * Reference: 5WD-02-Foundation-2002-12 
+ * Reference: 5WD-02-Foundation-2002-12
  * <!-- end-model-doc -->
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.schema.Event#getFor <em>For</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.schema.Event#getCondition <em>Condition</em>}</li>
@@ -25,7 +26,6 @@ package org.eclipse.datatools.modelbase.sql.schema;
  *   <li>{@link org.eclipse.datatools.modelbase.sql.schema.Event#isEnabled <em>Enabled</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.schema.Event#getDatabase <em>Database</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.datatools.modelbase.sql.schema.SQLSchemaPackage#getEvent()
  * @model

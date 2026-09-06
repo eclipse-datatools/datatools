@@ -17,8 +17,6 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Sybase Base Table</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */
@@ -37,6 +35,7 @@ public class SybaseBaseTableImpl extends BaseTableImpl implements SybaseBaseTabl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return SybasesqlmodelPackage.Literals.SYBASE_BASE_TABLE;
 	}
@@ -46,6 +45,7 @@ public class SybaseBaseTableImpl extends BaseTableImpl implements SybaseBaseTabl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSystem() {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
@@ -57,6 +57,7 @@ public class SybaseBaseTableImpl extends BaseTableImpl implements SybaseBaseTabl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public List getCheckConstraints() {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT

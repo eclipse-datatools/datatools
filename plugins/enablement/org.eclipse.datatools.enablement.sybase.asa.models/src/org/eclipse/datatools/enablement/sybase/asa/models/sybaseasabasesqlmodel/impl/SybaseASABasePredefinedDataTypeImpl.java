@@ -22,14 +22,14 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl.SybaseASABasePredefinedDataTypeImpl#getDatabase <em>Database</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class SybaseASABasePredefinedDataTypeImpl extends PredefinedDataTypeImpl implements SybaseASABasePredefinedDataType 
+public class SybaseASABasePredefinedDataTypeImpl extends PredefinedDataTypeImpl implements SybaseASABasePredefinedDataType
 {
     /**
 	 * The cached value of the '{@link #getDatabase() <em>Database</em>}' reference.
@@ -56,6 +56,7 @@ public class SybaseASABasePredefinedDataTypeImpl extends PredefinedDataTypeImpl 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass()
     {
 		return SybaseasabasesqlmodelPackage.Literals.SYBASE_ASA_BASE_PREDEFINED_DATA_TYPE;
@@ -66,14 +67,16 @@ public class SybaseASABasePredefinedDataTypeImpl extends PredefinedDataTypeImpl 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SybaseASABaseDatabase getDatabase()
     {
 		if (database != null && database.eIsProxy()) {
 			InternalEObject oldDatabase = (InternalEObject)database;
 			database = (SybaseASABaseDatabase)eResolveProxy(oldDatabase);
 			if (database != oldDatabase) {
-				if (eNotificationRequired())
+				if (eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_PREDEFINED_DATA_TYPE__DATABASE, oldDatabase, database));
+				}
 			}
 		}
 		return database;
@@ -100,7 +103,11 @@ public class SybaseASABasePredefinedDataTypeImpl extends PredefinedDataTypeImpl 
 		database = newDatabase;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_PREDEFINED_DATA_TYPE__DATABASE, oldDatabase, newDatabase);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			if (msgs == null) {
+				msgs = notification;
+			} else {
+				msgs.add(notification);
+			}
 		}
 		return msgs;
 	}
@@ -110,19 +117,25 @@ public class SybaseASABasePredefinedDataTypeImpl extends PredefinedDataTypeImpl 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDatabase(SybaseASABaseDatabase newDatabase)
     {
 		if (newDatabase != database) {
 			NotificationChain msgs = null;
-			if (database != null)
+			if (database != null) {
 				msgs = ((InternalEObject)database).eInverseRemove(this, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_DATABASE__DATA_TYPES, SybaseASABaseDatabase.class, msgs);
-			if (newDatabase != null)
+			}
+			if (newDatabase != null) {
 				msgs = ((InternalEObject)newDatabase).eInverseAdd(this, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_DATABASE__DATA_TYPES, SybaseASABaseDatabase.class, msgs);
+			}
 			msgs = basicSetDatabase(newDatabase, msgs);
-			if (msgs != null) msgs.dispatch();
+			if (msgs != null) {
+				msgs.dispatch();
+			}
 		}
-		else if (eNotificationRequired())
+		else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_PREDEFINED_DATA_TYPE__DATABASE, newDatabase, newDatabase));
+		}
 	}
 
     /**
@@ -130,12 +143,14 @@ public class SybaseASABasePredefinedDataTypeImpl extends PredefinedDataTypeImpl 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
     {
 		switch (featureID) {
 			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_PREDEFINED_DATA_TYPE__DATABASE:
-				if (database != null)
+				if (database != null) {
 					msgs = ((InternalEObject)database).eInverseRemove(this, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_DATABASE__DATA_TYPES, SybaseASABaseDatabase.class, msgs);
+				}
 				return basicSetDatabase((SybaseASABaseDatabase)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -146,6 +161,7 @@ public class SybaseASABasePredefinedDataTypeImpl extends PredefinedDataTypeImpl 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
     {
 		switch (featureID) {
@@ -160,11 +176,14 @@ public class SybaseASABasePredefinedDataTypeImpl extends PredefinedDataTypeImpl 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
     {
 		switch (featureID) {
 			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_PREDEFINED_DATA_TYPE__DATABASE:
-				if (resolve) return getDatabase();
+				if (resolve) {
+					return getDatabase();
+				}
 				return basicGetDatabase();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -175,6 +194,7 @@ public class SybaseASABasePredefinedDataTypeImpl extends PredefinedDataTypeImpl 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue)
     {
 		switch (featureID) {
@@ -190,6 +210,7 @@ public class SybaseASABasePredefinedDataTypeImpl extends PredefinedDataTypeImpl 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID)
     {
 		switch (featureID) {
@@ -205,6 +226,7 @@ public class SybaseASABasePredefinedDataTypeImpl extends PredefinedDataTypeImpl 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID)
     {
 		switch (featureID) {

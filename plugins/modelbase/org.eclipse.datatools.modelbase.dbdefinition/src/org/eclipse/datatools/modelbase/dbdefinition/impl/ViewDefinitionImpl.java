@@ -19,13 +19,13 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.ViewDefinitionImpl#getMaximumIdentifierLength <em>Maximum Identifier Length</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.ViewDefinitionImpl#isIndexSupported <em>Index Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.ViewDefinitionImpl#isCheckOptionSupported <em>Check Option Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.ViewDefinitionImpl#isCheckOptionLevelsSupported <em>Check Option Levels Supported</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -124,6 +124,7 @@ public class ViewDefinitionImpl extends EObjectImpl implements ViewDefinition {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return DatabaseDefinitionPackage.Literals.VIEW_DEFINITION;
 	}
@@ -133,6 +134,7 @@ public class ViewDefinitionImpl extends EObjectImpl implements ViewDefinition {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getMaximumIdentifierLength() {
 		return maximumIdentifierLength;
 	}
@@ -142,11 +144,13 @@ public class ViewDefinitionImpl extends EObjectImpl implements ViewDefinition {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMaximumIdentifierLength(int newMaximumIdentifierLength) {
 		int oldMaximumIdentifierLength = maximumIdentifierLength;
 		maximumIdentifierLength = newMaximumIdentifierLength;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.VIEW_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH, oldMaximumIdentifierLength, maximumIdentifierLength));
+		}
 	}
 
 	/**
@@ -154,6 +158,7 @@ public class ViewDefinitionImpl extends EObjectImpl implements ViewDefinition {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isIndexSupported() {
 		return indexSupported;
 	}
@@ -163,11 +168,13 @@ public class ViewDefinitionImpl extends EObjectImpl implements ViewDefinition {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIndexSupported(boolean newIndexSupported) {
 		boolean oldIndexSupported = indexSupported;
 		indexSupported = newIndexSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.VIEW_DEFINITION__INDEX_SUPPORTED, oldIndexSupported, indexSupported));
+		}
 	}
 
 	/**
@@ -175,6 +182,7 @@ public class ViewDefinitionImpl extends EObjectImpl implements ViewDefinition {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isCheckOptionSupported() {
 		return checkOptionSupported;
 	}
@@ -184,11 +192,13 @@ public class ViewDefinitionImpl extends EObjectImpl implements ViewDefinition {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCheckOptionSupported(boolean newCheckOptionSupported) {
 		boolean oldCheckOptionSupported = checkOptionSupported;
 		checkOptionSupported = newCheckOptionSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.VIEW_DEFINITION__CHECK_OPTION_SUPPORTED, oldCheckOptionSupported, checkOptionSupported));
+		}
 	}
 
 	/**
@@ -196,6 +206,7 @@ public class ViewDefinitionImpl extends EObjectImpl implements ViewDefinition {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isCheckOptionLevelsSupported() {
 		return checkOptionLevelsSupported;
 	}
@@ -205,11 +216,13 @@ public class ViewDefinitionImpl extends EObjectImpl implements ViewDefinition {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCheckOptionLevelsSupported(boolean newCheckOptionLevelsSupported) {
 		boolean oldCheckOptionLevelsSupported = checkOptionLevelsSupported;
 		checkOptionLevelsSupported = newCheckOptionLevelsSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.VIEW_DEFINITION__CHECK_OPTION_LEVELS_SUPPORTED, oldCheckOptionLevelsSupported, checkOptionLevelsSupported));
+		}
 	}
 
 	/**
@@ -217,10 +230,11 @@ public class ViewDefinitionImpl extends EObjectImpl implements ViewDefinition {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.VIEW_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH:
-				return Integer.valueOf(getMaximumIdentifierLength());
+				return new Integer(getMaximumIdentifierLength());
 			case DatabaseDefinitionPackage.VIEW_DEFINITION__INDEX_SUPPORTED:
 				return isIndexSupported() ? Boolean.TRUE : Boolean.FALSE;
 			case DatabaseDefinitionPackage.VIEW_DEFINITION__CHECK_OPTION_SUPPORTED:
@@ -236,6 +250,7 @@ public class ViewDefinitionImpl extends EObjectImpl implements ViewDefinition {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.VIEW_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH:
@@ -259,6 +274,7 @@ public class ViewDefinitionImpl extends EObjectImpl implements ViewDefinition {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.VIEW_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH:
@@ -282,6 +298,7 @@ public class ViewDefinitionImpl extends EObjectImpl implements ViewDefinition {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.VIEW_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH:
@@ -301,8 +318,11 @@ public class ViewDefinitionImpl extends EObjectImpl implements ViewDefinition {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (maximumIdentifierLength: "); //$NON-NLS-1$

@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -22,12 +22,13 @@ import org.eclipse.emf.ecore.ENamedElement;
  * <!-- begin-model-doc -->
  * The base object to be used for any Relation Database concept, representing the placeholder for the name and alias.  This object will extend ENamedElement in the generated code.  The string attribute name will be inherited
  * from ENamedElement.
- * 
+ *
  * Note: In the RDB sense, only table and view objects can be represented by aliases, but DB2 defines also database and network aliases, and even for nicknames that refer to data tables or views located on federated systems.
  * <!-- end-model-doc -->
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.schema.SQLObject#getDependencies <em>Dependencies</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.schema.SQLObject#getDescription <em>Description</em>}</li>
@@ -36,7 +37,6 @@ import org.eclipse.emf.ecore.ENamedElement;
  *   <li>{@link org.eclipse.datatools.modelbase.sql.schema.SQLObject#getExtensions <em>Extensions</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.schema.SQLObject#getPrivileges <em>Privileges</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.datatools.modelbase.sql.schema.SQLSchemaPackage#getSQLObject()
  * @model abstract="true"
@@ -211,6 +211,7 @@ public interface SQLObject extends ENamedElement {
 	 * @model
 	 * @generated
 	 */
+	@Override
 	EAnnotation getEAnnotation(String source);
 
 } // SQLObject

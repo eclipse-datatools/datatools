@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -36,7 +36,7 @@ public class SQLExpressionsFactoryImpl extends EFactoryImpl implements SQLExpres
 	 */
 	public static SQLExpressionsFactory init() {
 		try {
-			SQLExpressionsFactory theSQLExpressionsFactory = (SQLExpressionsFactory)EPackage.Registry.INSTANCE.getEFactory("http:///org/eclipse/datatools/modelbase/sql/expressions.ecore"); //$NON-NLS-1$ 
+			SQLExpressionsFactory theSQLExpressionsFactory = (SQLExpressionsFactory)EPackage.Registry.INSTANCE.getEFactory(SQLExpressionsPackage.eNS_URI);
 			if (theSQLExpressionsFactory != null) {
 				return theSQLExpressionsFactory;
 			}
@@ -62,6 +62,7 @@ public class SQLExpressionsFactoryImpl extends EFactoryImpl implements SQLExpres
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case SQLExpressionsPackage.QUERY_EXPRESSION_DEFAULT: return createQueryExpressionDefault();
@@ -77,6 +78,7 @@ public class SQLExpressionsFactoryImpl extends EFactoryImpl implements SQLExpres
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public QueryExpressionDefault createQueryExpressionDefault() {
 		QueryExpressionDefaultImpl queryExpressionDefault = new QueryExpressionDefaultImpl();
 		return queryExpressionDefault;
@@ -87,6 +89,7 @@ public class SQLExpressionsFactoryImpl extends EFactoryImpl implements SQLExpres
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SearchConditionDefault createSearchConditionDefault() {
 		SearchConditionDefaultImpl searchConditionDefault = new SearchConditionDefaultImpl();
 		return searchConditionDefault;
@@ -97,6 +100,7 @@ public class SQLExpressionsFactoryImpl extends EFactoryImpl implements SQLExpres
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ValueExpressionDefault createValueExpressionDefault() {
 		ValueExpressionDefaultImpl valueExpressionDefault = new ValueExpressionDefaultImpl();
 		return valueExpressionDefault;
@@ -107,6 +111,7 @@ public class SQLExpressionsFactoryImpl extends EFactoryImpl implements SQLExpres
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SQLExpressionsPackage getSQLExpressionsPackage() {
 		return (SQLExpressionsPackage)getEPackage();
 	}
@@ -117,6 +122,7 @@ public class SQLExpressionsFactoryImpl extends EFactoryImpl implements SQLExpres
 	 * @deprecated
 	 * @generated
 	 */
+	@Deprecated
 	public static SQLExpressionsPackage getPackage() {
 		return SQLExpressionsPackage.eINSTANCE;
 	}

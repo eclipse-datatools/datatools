@@ -27,200 +27,214 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLValueFunctionConcatImpl#getReturningOption <em>Returning Option</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLValueFunctionConcatImpl#getConcatContentList <em>Concat Content List</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
 public class XMLValueFunctionConcatImpl extends XMLValueFunctionImpl implements XMLValueFunctionConcat {
 	/**
-     * The default value of the '{@link #getReturningOption() <em>Returning Option</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getReturningOption() <em>Returning Option</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getReturningOption()
-     * @generated
-     * @ordered
-     */
+	 * @see #getReturningOption()
+	 * @generated
+	 * @ordered
+	 */
     protected static final XMLReturningType RETURNING_OPTION_EDEFAULT = XMLReturningType.RETURNING_CONTENT_LITERAL;
 
 	/**
-     * The cached value of the '{@link #getReturningOption() <em>Returning Option</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getReturningOption() <em>Returning Option</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getReturningOption()
-     * @generated
-     * @ordered
-     */
+	 * @see #getReturningOption()
+	 * @generated
+	 * @ordered
+	 */
     protected XMLReturningType returningOption = RETURNING_OPTION_EDEFAULT;
 
 	/**
-     * The cached value of the '{@link #getConcatContentList() <em>Concat Content List</em>}' containment reference list.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getConcatContentList() <em>Concat Content List</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getConcatContentList()
-     * @generated
-     * @ordered
-     */
+	 * @see #getConcatContentList()
+	 * @generated
+	 * @ordered
+	 */
     protected EList concatContentList;
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected XMLValueFunctionConcatImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    protected EClass eStaticClass() {
-        return SQLXMLQueryModelPackage.Literals.XML_VALUE_FUNCTION_CONCAT;
-    }
+	 * @generated
+	 */
+    @Override
+	protected EClass eStaticClass() {
+		return SQLXMLQueryModelPackage.Literals.XML_VALUE_FUNCTION_CONCAT;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public XMLReturningType getReturningOption() {
-        return returningOption;
-    }
+	 * @generated
+	 */
+    @Override
+	public XMLReturningType getReturningOption() {
+		return returningOption;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setReturningOption(XMLReturningType newReturningOption) {
-        XMLReturningType oldReturningOption = returningOption;
-        returningOption = newReturningOption == null ? RETURNING_OPTION_EDEFAULT : newReturningOption;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_CONCAT__RETURNING_OPTION, oldReturningOption, returningOption));
-    }
+	 * @generated
+	 */
+    @Override
+	public void setReturningOption(XMLReturningType newReturningOption) {
+		XMLReturningType oldReturningOption = returningOption;
+		returningOption = newReturningOption == null ? RETURNING_OPTION_EDEFAULT : newReturningOption;
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_CONCAT__RETURNING_OPTION, oldReturningOption, returningOption));
+		}
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public EList getConcatContentList() {
-        if (concatContentList == null) {
-            concatContentList = new EObjectContainmentWithInverseEList(XMLValueFunctionConcatContentItem.class, this, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_CONCAT__CONCAT_CONTENT_LIST, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_CONCAT_CONTENT_ITEM__VALUE_FUNCTION_CONCAT);
-        }
-        return concatContentList;
-    }
+	 * @generated
+	 */
+    @Override
+	public EList getConcatContentList() {
+		if (concatContentList == null) {
+			concatContentList = new EObjectContainmentWithInverseEList(XMLValueFunctionConcatContentItem.class, this, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_CONCAT__CONCAT_CONTENT_LIST, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_CONCAT_CONTENT_ITEM__VALUE_FUNCTION_CONCAT);
+		}
+		return concatContentList;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_CONCAT__CONCAT_CONTENT_LIST:
-                return ((InternalEList)getConcatContentList()).basicAdd(otherEnd, msgs);
-        }
-        return super.eInverseAdd(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_CONCAT__CONCAT_CONTENT_LIST:
+				return ((InternalEList)getConcatContentList()).basicAdd(otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_CONCAT__CONCAT_CONTENT_LIST:
-                return ((InternalEList)getConcatContentList()).basicRemove(otherEnd, msgs);
-        }
-        return super.eInverseRemove(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_CONCAT__CONCAT_CONTENT_LIST:
+				return ((InternalEList)getConcatContentList()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_CONCAT__RETURNING_OPTION:
-                return getReturningOption();
-            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_CONCAT__CONCAT_CONTENT_LIST:
-                return getConcatContentList();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_CONCAT__RETURNING_OPTION:
+				return getReturningOption();
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_CONCAT__CONCAT_CONTENT_LIST:
+				return getConcatContentList();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_CONCAT__RETURNING_OPTION:
-                setReturningOption((XMLReturningType)newValue);
-                return;
-            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_CONCAT__CONCAT_CONTENT_LIST:
-                getConcatContentList().clear();
-                getConcatContentList().addAll((Collection)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_CONCAT__RETURNING_OPTION:
+				setReturningOption((XMLReturningType)newValue);
+				return;
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_CONCAT__CONCAT_CONTENT_LIST:
+				getConcatContentList().clear();
+				getConcatContentList().addAll((Collection)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public void eUnset(int featureID) {
-        switch (featureID) {
-            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_CONCAT__RETURNING_OPTION:
-                setReturningOption(RETURNING_OPTION_EDEFAULT);
-                return;
-            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_CONCAT__CONCAT_CONTENT_LIST:
-                getConcatContentList().clear();
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_CONCAT__RETURNING_OPTION:
+				setReturningOption(RETURNING_OPTION_EDEFAULT);
+				return;
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_CONCAT__CONCAT_CONTENT_LIST:
+				getConcatContentList().clear();
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_CONCAT__RETURNING_OPTION:
-                return returningOption != RETURNING_OPTION_EDEFAULT;
-            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_CONCAT__CONCAT_CONTENT_LIST:
-                return concatContentList != null && !concatContentList.isEmpty();
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_CONCAT__RETURNING_OPTION:
+				return returningOption != RETURNING_OPTION_EDEFAULT;
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_CONCAT__CONCAT_CONTENT_LIST:
+				return concatContentList != null && !concatContentList.isEmpty();
+		}
+		return super.eIsSet(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public String toString() {
-        if (eIsProxy()) return super.toString();
+	 * @generated
+	 */
+    @Override
+	public String toString() {
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (returningOption: ");
-        result.append(returningOption);
-        result.append(')');
-        return result.toString();
-    }
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (returningOption: ");
+		result.append(returningOption);
+		result.append(')');
+		return result.toString();
+	}
 
 } //XMLValueFunctionConcatImpl

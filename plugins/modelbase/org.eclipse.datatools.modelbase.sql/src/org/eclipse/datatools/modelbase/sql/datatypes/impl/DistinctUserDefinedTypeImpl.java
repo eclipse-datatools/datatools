@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -25,10 +25,10 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.datatypes.impl.DistinctUserDefinedTypeImpl#getPredefinedRepresentation <em>Predefined Representation</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -57,6 +57,7 @@ public class DistinctUserDefinedTypeImpl extends UserDefinedTypeImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return SQLDataTypesPackage.Literals.DISTINCT_USER_DEFINED_TYPE;
 	}
@@ -66,6 +67,7 @@ public class DistinctUserDefinedTypeImpl extends UserDefinedTypeImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public PredefinedDataType getPredefinedRepresentation() {
 		return predefinedRepresentation;
 	}
@@ -80,7 +82,11 @@ public class DistinctUserDefinedTypeImpl extends UserDefinedTypeImpl implements 
 		predefinedRepresentation = newPredefinedRepresentation;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLDataTypesPackage.DISTINCT_USER_DEFINED_TYPE__PREDEFINED_REPRESENTATION, oldPredefinedRepresentation, newPredefinedRepresentation);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			if (msgs == null) {
+				msgs = notification;
+			} else {
+				msgs.add(notification);
+			}
 		}
 		return msgs;
 	}
@@ -90,18 +96,24 @@ public class DistinctUserDefinedTypeImpl extends UserDefinedTypeImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPredefinedRepresentation(PredefinedDataType newPredefinedRepresentation) {
 		if (newPredefinedRepresentation != predefinedRepresentation) {
 			NotificationChain msgs = null;
-			if (predefinedRepresentation != null)
+			if (predefinedRepresentation != null) {
 				msgs = ((InternalEObject)predefinedRepresentation).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLDataTypesPackage.DISTINCT_USER_DEFINED_TYPE__PREDEFINED_REPRESENTATION, null, msgs);
-			if (newPredefinedRepresentation != null)
+			}
+			if (newPredefinedRepresentation != null) {
 				msgs = ((InternalEObject)newPredefinedRepresentation).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SQLDataTypesPackage.DISTINCT_USER_DEFINED_TYPE__PREDEFINED_REPRESENTATION, null, msgs);
+			}
 			msgs = basicSetPredefinedRepresentation(newPredefinedRepresentation, msgs);
-			if (msgs != null) msgs.dispatch();
+			if (msgs != null) {
+				msgs.dispatch();
+			}
 		}
-		else if (eNotificationRequired())
+		else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLDataTypesPackage.DISTINCT_USER_DEFINED_TYPE__PREDEFINED_REPRESENTATION, newPredefinedRepresentation, newPredefinedRepresentation));
+		}
 	}
 
 	/**
@@ -109,6 +121,7 @@ public class DistinctUserDefinedTypeImpl extends UserDefinedTypeImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case SQLDataTypesPackage.DISTINCT_USER_DEFINED_TYPE__PREDEFINED_REPRESENTATION:
@@ -122,6 +135,7 @@ public class DistinctUserDefinedTypeImpl extends UserDefinedTypeImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SQLDataTypesPackage.DISTINCT_USER_DEFINED_TYPE__PREDEFINED_REPRESENTATION:
@@ -135,6 +149,7 @@ public class DistinctUserDefinedTypeImpl extends UserDefinedTypeImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case SQLDataTypesPackage.DISTINCT_USER_DEFINED_TYPE__PREDEFINED_REPRESENTATION:
@@ -149,6 +164,7 @@ public class DistinctUserDefinedTypeImpl extends UserDefinedTypeImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case SQLDataTypesPackage.DISTINCT_USER_DEFINED_TYPE__PREDEFINED_REPRESENTATION:
@@ -163,6 +179,7 @@ public class DistinctUserDefinedTypeImpl extends UserDefinedTypeImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SQLDataTypesPackage.DISTINCT_USER_DEFINED_TYPE__PREDEFINED_REPRESENTATION:

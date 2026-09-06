@@ -25,7 +25,7 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
  * <!-- end-user-doc -->
  * @generated
  */
-public class SybaseasasqlmodelFactoryImpl extends EFactoryImpl implements SybaseasasqlmodelFactory 
+public class SybaseasasqlmodelFactoryImpl extends EFactoryImpl implements SybaseasasqlmodelFactory
 {
     /**
 	 * Creates the default factory implementation.
@@ -36,7 +36,7 @@ public class SybaseasasqlmodelFactoryImpl extends EFactoryImpl implements Sybase
 	public static SybaseasasqlmodelFactory init()
     {
 		try {
-			SybaseasasqlmodelFactory theSybaseasasqlmodelFactory = (SybaseasasqlmodelFactory)EPackage.Registry.INSTANCE.getEFactory("http:///org/eclipse/datatools/connectivity/sqm/sybase/asa/sybaseasasqlmodel.ecore"); 
+			SybaseasasqlmodelFactory theSybaseasasqlmodelFactory = (SybaseasasqlmodelFactory)EPackage.Registry.INSTANCE.getEFactory(SybaseasasqlmodelPackage.eNS_URI);
 			if (theSybaseasasqlmodelFactory != null) {
 				return theSybaseasasqlmodelFactory;
 			}
@@ -63,6 +63,7 @@ public class SybaseasasqlmodelFactoryImpl extends EFactoryImpl implements Sybase
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EObject create(EClass eClass)
     {
 		switch (eClass.getClassifierID()) {
@@ -81,6 +82,7 @@ public class SybaseasasqlmodelFactoryImpl extends EFactoryImpl implements Sybase
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SybaseASADatabase createSybaseASADatabase()
     {
 		SybaseASADatabaseImpl sybaseASADatabase = new SybaseASADatabaseImpl();
@@ -92,6 +94,7 @@ public class SybaseasasqlmodelFactoryImpl extends EFactoryImpl implements Sybase
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SybaseASATable createSybaseASATable()
     {
 		SybaseASATableImpl sybaseASATable = new SybaseASATableImpl();
@@ -103,6 +106,7 @@ public class SybaseasasqlmodelFactoryImpl extends EFactoryImpl implements Sybase
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SybaseASAForeignKey createSybaseASAForeignKey()
     {
 		SybaseASAForeignKeyImpl sybaseASAForeignKey = new SybaseASAForeignKeyImpl();
@@ -114,6 +118,7 @@ public class SybaseasasqlmodelFactoryImpl extends EFactoryImpl implements Sybase
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SybaseASAIndex createSybaseASAIndex()
     {
 		SybaseASAIndexImpl sybaseASAIndex = new SybaseASAIndexImpl();
@@ -125,6 +130,7 @@ public class SybaseasasqlmodelFactoryImpl extends EFactoryImpl implements Sybase
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SybaseASATempTable createSybaseASATempTable()
     {
 		SybaseASATempTableImpl sybaseASATempTable = new SybaseASATempTableImpl();
@@ -136,6 +142,7 @@ public class SybaseasasqlmodelFactoryImpl extends EFactoryImpl implements Sybase
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SybaseasasqlmodelPackage getSybaseasasqlmodelPackage()
     {
 		return (SybaseasasqlmodelPackage)getEPackage();
@@ -147,6 +154,7 @@ public class SybaseasasqlmodelFactoryImpl extends EFactoryImpl implements Sybase
 	 * @deprecated
 	 * @generated
 	 */
+	@Deprecated
 	public static SybaseasasqlmodelPackage getPackage()
     {
 		return SybaseasasqlmodelPackage.eINSTANCE;

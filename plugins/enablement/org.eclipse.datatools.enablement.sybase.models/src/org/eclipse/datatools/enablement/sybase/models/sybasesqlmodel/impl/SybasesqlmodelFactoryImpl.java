@@ -37,7 +37,7 @@ public class SybasesqlmodelFactoryImpl extends EFactoryImpl implements Sybasesql
 	 */
 	public static SybasesqlmodelFactory init() {
 		try {
-			SybasesqlmodelFactory theSybasesqlmodelFactory = (SybasesqlmodelFactory)EPackage.Registry.INSTANCE.getEFactory("http:///org/eclipse/datatools/enablement/sybase/sybasesqlmodel.ecore"); 
+			SybasesqlmodelFactory theSybasesqlmodelFactory = (SybasesqlmodelFactory)EPackage.Registry.INSTANCE.getEFactory(SybasesqlmodelPackage.eNS_URI);
 			if (theSybasesqlmodelFactory != null) {
 				return theSybasesqlmodelFactory;
 			}
@@ -63,6 +63,7 @@ public class SybasesqlmodelFactoryImpl extends EFactoryImpl implements Sybasesql
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case SybasesqlmodelPackage.SYBASE_PARAMETER: return createSybaseParameter();
@@ -81,6 +82,7 @@ public class SybasesqlmodelFactoryImpl extends EFactoryImpl implements Sybasesql
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
 			case SybasesqlmodelPackage.JDBC_PARAMETER_TYPE:
@@ -95,6 +97,7 @@ public class SybasesqlmodelFactoryImpl extends EFactoryImpl implements Sybasesql
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
 			case SybasesqlmodelPackage.JDBC_PARAMETER_TYPE:
@@ -109,6 +112,7 @@ public class SybasesqlmodelFactoryImpl extends EFactoryImpl implements Sybasesql
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SybaseParameter createSybaseParameter() {
 		SybaseParameterImpl sybaseParameter = new SybaseParameterImpl();
 		return sybaseParameter;
@@ -119,6 +123,7 @@ public class SybasesqlmodelFactoryImpl extends EFactoryImpl implements Sybasesql
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SybaseBaseTable createSybaseBaseTable() {
 		SybaseBaseTableImpl sybaseBaseTable = new SybaseBaseTableImpl();
 		return sybaseBaseTable;
@@ -129,6 +134,7 @@ public class SybasesqlmodelFactoryImpl extends EFactoryImpl implements Sybasesql
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SybaseViewTable createSybaseViewTable() {
 		SybaseViewTableImpl sybaseViewTable = new SybaseViewTableImpl();
 		return sybaseViewTable;
@@ -139,6 +145,7 @@ public class SybasesqlmodelFactoryImpl extends EFactoryImpl implements Sybasesql
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SybaseAuthorizationIdentifier createSybaseAuthorizationIdentifier() {
 		SybaseAuthorizationIdentifierImpl sybaseAuthorizationIdentifier = new SybaseAuthorizationIdentifierImpl();
 		return sybaseAuthorizationIdentifier;
@@ -149,6 +156,7 @@ public class SybasesqlmodelFactoryImpl extends EFactoryImpl implements Sybasesql
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SybaseIndexMember createSybaseIndexMember() {
 		SybaseIndexMemberImpl sybaseIndexMember = new SybaseIndexMemberImpl();
 		return sybaseIndexMember;
@@ -159,6 +167,7 @@ public class SybasesqlmodelFactoryImpl extends EFactoryImpl implements Sybasesql
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SybasePrivilege createSybasePrivilege() {
 		SybasePrivilegeImpl sybasePrivilege = new SybasePrivilegeImpl();
 		return sybasePrivilege;
@@ -171,7 +180,9 @@ public class SybasesqlmodelFactoryImpl extends EFactoryImpl implements Sybasesql
 	 */
 	public JDBCParameterType createJDBCParameterTypeFromString(EDataType eDataType, String initialValue) {
 		JDBCParameterType result = JDBCParameterType.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		if (result == null) {
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		}
 		return result;
 	}
 
@@ -189,6 +200,7 @@ public class SybasesqlmodelFactoryImpl extends EFactoryImpl implements Sybasesql
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SybasesqlmodelPackage getSybasesqlmodelPackage() {
 		return (SybasesqlmodelPackage)getEPackage();
 	}
@@ -199,6 +211,7 @@ public class SybasesqlmodelFactoryImpl extends EFactoryImpl implements Sybasesql
 	 * @deprecated
 	 * @generated
 	 */
+	@Deprecated
 	public static SybasesqlmodelPackage getPackage() {
 		return SybasesqlmodelPackage.eINSTANCE;
 	}

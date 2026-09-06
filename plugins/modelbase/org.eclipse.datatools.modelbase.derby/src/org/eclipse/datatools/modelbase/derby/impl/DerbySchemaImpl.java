@@ -15,8 +15,6 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Derby Schema</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */
@@ -35,6 +33,7 @@ public class DerbySchemaImpl extends SchemaImpl implements DerbySchema {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return DerbyModelPackage.Literals.DERBY_SCHEMA;
 	}

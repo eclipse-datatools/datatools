@@ -8,7 +8,7 @@
  *
  * Contributors:
  *  Actuate Corporation  - initial API and implementation
- *  
+ *
  *************************************************************************
  *
  * $Id: DataAccessDesign.java,v 1.4 2006/02/07 05:52:28 lchan Exp $
@@ -27,73 +27,72 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.DataAccessDesign#getDataSetDesign <em>Data Set Design</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getDataAccessDesign()
  * @model extendedMetaData="name='DataAccessDesign' kind='elementOnly'"
  * @generated
  */
-public interface DataAccessDesign extends EObject
-{
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
+public interface DataAccessDesign extends EObject {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	String copyright = "Copyright (c) 2005, 2010 Actuate Corporation"; //$NON-NLS-1$
 
-    /**
-     * Returns the ODA data source element ID
-     * that supports this data set's access.  
-     * Could be null, if no data set design is defined.
-     * @see #getDataSourceDesign()
-     * @generated NOT
-     */
-    public String getOdaExtensionDataSourceId();
+	/**
+	 * Returns the ODA data source element ID
+	 * that supports this data set's access.
+	 * Could be null, if no data set design is defined.
+	 * @see #getDataSourceDesign()
+	 * @generated NOT
+	 */
+	public String getOdaExtensionDataSourceId();
 
-    /**
-     * Returns the value of the '<em><b>Data Set Design</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Data Set Design</em>' containment reference.
-     * @see #setDataSetDesign(DataSetDesign)
-     * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getDataAccessDesign_DataSetDesign()
-     * @model containment="true"
-     *        extendedMetaData="kind='element' name='dataSetDesign' namespace='##targetNamespace'"
-     * @generated
-     */
-    DataSetDesign getDataSetDesign();
+	/**
+	 * Returns the value of the '<em><b>Data Set Design</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Data Set Design</em>' containment reference.
+	 * @see #setDataSetDesign(DataSetDesign)
+	 * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getDataAccessDesign_DataSetDesign()
+	 * @model containment="true"
+	 *        extendedMetaData="kind='element' name='dataSetDesign' namespace='##targetNamespace'"
+	 * @generated
+	 */
+	DataSetDesign getDataSetDesign();
 
-    /**
-     * Sets the value of the '{@link org.eclipse.datatools.connectivity.oda.design.DataAccessDesign#getDataSetDesign <em>Data Set Design</em>}' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Data Set Design</em>' containment reference.
-     * @see #getDataSetDesign()
-     * @generated
-     */
-    void setDataSetDesign( DataSetDesign value );
+	/**
+	 * Sets the value of the '{@link org.eclipse.datatools.connectivity.oda.design.DataAccessDesign#getDataSetDesign <em>Data Set Design</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Data Set Design</em>' containment reference.
+	 * @see #getDataSetDesign()
+	 * @generated
+	 */
+	void setDataSetDesign(DataSetDesign value);
 
-    /**
-     * Sets the value of the '{@link org.eclipse.datatools.connectivity.oda.design.DataAccessDesign#getDataSetDesign <em>Data Set Design</em>}' containment reference
-     * with a new data set design associated with given
-     * data source design.
-     * @param dataSourceDesign
-     * @see #setDataSetDesign()
-     * @generated NOT
-     */
-    void setNewDataSetDesign( DataSourceDesign dataSourceDesign );
+	/**
+	 * Sets the value of the '{@link org.eclipse.datatools.connectivity.oda.design.DataAccessDesign#getDataSetDesign <em>Data Set Design</em>}' containment reference
+	 * with a new data set design associated with given
+	 * data source design.
+	 * @param dataSourceDesign
+	 * @see #setDataSetDesign()
+	 * @generated NOT
+	 */
+	void setNewDataSetDesign(DataSourceDesign dataSourceDesign);
 
-    /**
-     * Returns the value of the Data Source Design associated
-     * with the Data Set.
-     * @return the value of the '<em>Data Source Design</em>' containment reference.
-     * @see #setNewDataSetDesign()
-     * @generated NOT
-     */
-    DataSourceDesign getDataSourceDesign();
+	/**
+	 * Returns the value of the Data Source Design associated
+	 * with the Data Set.
+	 * @return the value of the '<em>Data Source Design</em>' containment reference.
+	 * @see #setNewDataSetDesign()
+	 * @generated NOT
+	 */
+	DataSourceDesign getDataSourceDesign();
 
 } // DataAccessDesign

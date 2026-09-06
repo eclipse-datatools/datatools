@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -28,10 +28,10 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.datatypes.impl.CollectionDataTypeImpl#getElementType <em>Element Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -59,6 +59,7 @@ public abstract class CollectionDataTypeImpl extends ConstructedDataTypeImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return SQLDataTypesPackage.Literals.COLLECTION_DATA_TYPE;
 	}
@@ -68,6 +69,7 @@ public abstract class CollectionDataTypeImpl extends ConstructedDataTypeImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ElementType getElementType() {
 		return elementType;
 	}
@@ -82,7 +84,11 @@ public abstract class CollectionDataTypeImpl extends ConstructedDataTypeImpl imp
 		elementType = newElementType;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLDataTypesPackage.COLLECTION_DATA_TYPE__ELEMENT_TYPE, oldElementType, newElementType);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			if (msgs == null) {
+				msgs = notification;
+			} else {
+				msgs.add(notification);
+			}
 		}
 		return msgs;
 	}
@@ -92,18 +98,24 @@ public abstract class CollectionDataTypeImpl extends ConstructedDataTypeImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setElementType(ElementType newElementType) {
 		if (newElementType != elementType) {
 			NotificationChain msgs = null;
-			if (elementType != null)
+			if (elementType != null) {
 				msgs = ((InternalEObject)elementType).eInverseRemove(this, SQLDataTypesPackage.ELEMENT_TYPE__COLLECTION_DATA_TYPE, ElementType.class, msgs);
-			if (newElementType != null)
+			}
+			if (newElementType != null) {
 				msgs = ((InternalEObject)newElementType).eInverseAdd(this, SQLDataTypesPackage.ELEMENT_TYPE__COLLECTION_DATA_TYPE, ElementType.class, msgs);
+			}
 			msgs = basicSetElementType(newElementType, msgs);
-			if (msgs != null) msgs.dispatch();
+			if (msgs != null) {
+				msgs.dispatch();
+			}
 		}
-		else if (eNotificationRequired())
+		else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLDataTypesPackage.COLLECTION_DATA_TYPE__ELEMENT_TYPE, newElementType, newElementType));
+		}
 	}
 
 	/**
@@ -111,11 +123,13 @@ public abstract class CollectionDataTypeImpl extends ConstructedDataTypeImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case SQLDataTypesPackage.COLLECTION_DATA_TYPE__ELEMENT_TYPE:
-				if (elementType != null)
+				if (elementType != null) {
 					msgs = ((InternalEObject)elementType).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLDataTypesPackage.COLLECTION_DATA_TYPE__ELEMENT_TYPE, null, msgs);
+				}
 				return basicSetElementType((ElementType)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -126,6 +140,7 @@ public abstract class CollectionDataTypeImpl extends ConstructedDataTypeImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case SQLDataTypesPackage.COLLECTION_DATA_TYPE__ELEMENT_TYPE:
@@ -139,6 +154,7 @@ public abstract class CollectionDataTypeImpl extends ConstructedDataTypeImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SQLDataTypesPackage.COLLECTION_DATA_TYPE__ELEMENT_TYPE:
@@ -152,6 +168,7 @@ public abstract class CollectionDataTypeImpl extends ConstructedDataTypeImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case SQLDataTypesPackage.COLLECTION_DATA_TYPE__ELEMENT_TYPE:
@@ -166,6 +183,7 @@ public abstract class CollectionDataTypeImpl extends ConstructedDataTypeImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case SQLDataTypesPackage.COLLECTION_DATA_TYPE__ELEMENT_TYPE:
@@ -180,6 +198,7 @@ public abstract class CollectionDataTypeImpl extends ConstructedDataTypeImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SQLDataTypesPackage.COLLECTION_DATA_TYPE__ELEMENT_TYPE:
@@ -187,33 +206,34 @@ public abstract class CollectionDataTypeImpl extends ConstructedDataTypeImpl imp
 		}
 		return super.eIsSet(featureID);
 	}
-	
-	
+
+
 	/**
 	 * Sets the value of the '{@link org.eclipse.datatools.modelbase.sql.datatypes.CollectionDataType#getElementType <em>Element Type</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Element Type</em>' containment reference.
-	 * @deprecated As of release DTP 1.8, this method has been replaced by 
+	 * @deprecated As of release DTP 1.8, this method has been replaced by
 	 * {@link #getElementType} and {@link #setElementType(ElementType newElementType)}
 	 */
-	@Deprecated 
+	@Override
+	@Deprecated
 	public EList getElement() {
-		class InternalEList extends BasicEList {	
+		class InternalEList extends BasicEList {
 			@Override
 			public boolean add(Object object) {
 				getElementType().setDataType((DataType)object);
 				return true;
 			}
 		}
-		
+
 		InternalEList list = new InternalEList();
 		if ( (getElementType() != null) &&  (getElementType().getDataType() != null) ) {
 			list.add(getElementType().getDataType());
 		}
 		return list;
-		
-		
+
+
 	}
 
 } //CollectionDataTypeImpl

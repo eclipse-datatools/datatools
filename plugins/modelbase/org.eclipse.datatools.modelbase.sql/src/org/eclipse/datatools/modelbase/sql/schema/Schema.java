@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -20,11 +20,12 @@ import org.eclipse.emf.common.util.EList;
  *
  * <!-- begin-model-doc -->
  * Reference: 5WD-02-Foundation-2002-12 4.20 SQL-schemas
- * 
+ *
  * <!-- end-model-doc -->
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.schema.Schema#getTriggers <em>Triggers</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.schema.Schema#getIndices <em>Indices</em>}</li>
@@ -38,7 +39,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.eclipse.datatools.modelbase.sql.schema.Schema#getRoutines <em>Routines</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.schema.Schema#getOwner <em>Owner</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.datatools.modelbase.sql.schema.SQLSchemaPackage#getSchema()
  * @model
@@ -49,7 +49,7 @@ public interface Schema extends SQLObject {
 	 * Returns the value of the '<em><b>Triggers</b></em>' reference list.
 	 * The list contents are of type {@link org.eclipse.datatools.modelbase.sql.tables.Trigger}.
 	 * It is bidirectional and its opposite is '{@link org.eclipse.datatools.modelbase.sql.tables.Trigger#getSchema <em>Schema</em>}'.
-	 * <!-- begin-user-doc --> 
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Triggers</em>' reference list isn't clear,
 	 * there really should be more of a description here...
@@ -248,7 +248,7 @@ public interface Schema extends SQLObject {
    /**
     * Get a list of procedures belonging to this schema.
     * <p>
-    * @return the procedures contained within the schema. If 
+    * @return the procedures contained within the schema. If
     * there are none, then an empty list is returned.
     */
    public EList getProcedures();
@@ -256,7 +256,7 @@ public interface Schema extends SQLObject {
    /**
     * Get a list of user-defined functions belonging to this schema.
     * <p>
-    * @return the user-defined functions contained within the schema.  If 
+    * @return the user-defined functions contained within the schema.  If
     * there are none, then an empty list is returned.
     */
    public EList getUDFs();
@@ -264,7 +264,7 @@ public interface Schema extends SQLObject {
    /**
     * Get a list of built-in (aka system) functions belonging to this schema.
     * <p>
-    * @return the built-in functions contained within the schema. If 
+    * @return the built-in functions contained within the schema. If
     * there are none, then an empty list is returned.
     */
    public EList getBuiltInFunctions();

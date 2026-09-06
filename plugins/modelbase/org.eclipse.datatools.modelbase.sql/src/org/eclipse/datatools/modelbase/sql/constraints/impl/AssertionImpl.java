@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -32,12 +32,12 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.constraints.impl.AssertionImpl#getSearchCondition <em>Search Condition</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.constraints.impl.AssertionImpl#getSchema <em>Schema</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.constraints.impl.AssertionImpl#getConstrainedTables <em>Constrained Tables</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -86,6 +86,7 @@ public class AssertionImpl extends ConstraintImpl implements Assertion {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return SQLConstraintsPackage.Literals.ASSERTION;
 	}
@@ -95,6 +96,7 @@ public class AssertionImpl extends ConstraintImpl implements Assertion {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SearchCondition getSearchCondition() {
 		return searchCondition;
 	}
@@ -109,7 +111,11 @@ public class AssertionImpl extends ConstraintImpl implements Assertion {
 		searchCondition = newSearchCondition;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLConstraintsPackage.ASSERTION__SEARCH_CONDITION, oldSearchCondition, newSearchCondition);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			if (msgs == null) {
+				msgs = notification;
+			} else {
+				msgs.add(notification);
+			}
 		}
 		return msgs;
 	}
@@ -119,18 +125,24 @@ public class AssertionImpl extends ConstraintImpl implements Assertion {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSearchCondition(SearchCondition newSearchCondition) {
 		if (newSearchCondition != searchCondition) {
 			NotificationChain msgs = null;
-			if (searchCondition != null)
+			if (searchCondition != null) {
 				msgs = ((InternalEObject)searchCondition).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLConstraintsPackage.ASSERTION__SEARCH_CONDITION, null, msgs);
-			if (newSearchCondition != null)
+			}
+			if (newSearchCondition != null) {
 				msgs = ((InternalEObject)newSearchCondition).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SQLConstraintsPackage.ASSERTION__SEARCH_CONDITION, null, msgs);
+			}
 			msgs = basicSetSearchCondition(newSearchCondition, msgs);
-			if (msgs != null) msgs.dispatch();
+			if (msgs != null) {
+				msgs.dispatch();
+			}
 		}
-		else if (eNotificationRequired())
+		else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLConstraintsPackage.ASSERTION__SEARCH_CONDITION, newSearchCondition, newSearchCondition));
+		}
 	}
 
 	/**
@@ -138,13 +150,15 @@ public class AssertionImpl extends ConstraintImpl implements Assertion {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Schema getSchema() {
 		if (schema != null && schema.eIsProxy()) {
 			InternalEObject oldSchema = (InternalEObject)schema;
 			schema = (Schema)eResolveProxy(oldSchema);
 			if (schema != oldSchema) {
-				if (eNotificationRequired())
+				if (eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SQLConstraintsPackage.ASSERTION__SCHEMA, oldSchema, schema));
+				}
 			}
 		}
 		return schema;
@@ -169,7 +183,11 @@ public class AssertionImpl extends ConstraintImpl implements Assertion {
 		schema = newSchema;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLConstraintsPackage.ASSERTION__SCHEMA, oldSchema, newSchema);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			if (msgs == null) {
+				msgs = notification;
+			} else {
+				msgs.add(notification);
+			}
 		}
 		return msgs;
 	}
@@ -179,18 +197,24 @@ public class AssertionImpl extends ConstraintImpl implements Assertion {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSchema(Schema newSchema) {
 		if (newSchema != schema) {
 			NotificationChain msgs = null;
-			if (schema != null)
+			if (schema != null) {
 				msgs = ((InternalEObject)schema).eInverseRemove(this, SQLSchemaPackage.SCHEMA__ASSERTIONS, Schema.class, msgs);
-			if (newSchema != null)
+			}
+			if (newSchema != null) {
 				msgs = ((InternalEObject)newSchema).eInverseAdd(this, SQLSchemaPackage.SCHEMA__ASSERTIONS, Schema.class, msgs);
+			}
 			msgs = basicSetSchema(newSchema, msgs);
-			if (msgs != null) msgs.dispatch();
+			if (msgs != null) {
+				msgs.dispatch();
+			}
 		}
-		else if (eNotificationRequired())
+		else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLConstraintsPackage.ASSERTION__SCHEMA, newSchema, newSchema));
+		}
 	}
 
 	/**
@@ -198,6 +222,7 @@ public class AssertionImpl extends ConstraintImpl implements Assertion {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList getConstrainedTables() {
 		if (constrainedTables == null) {
 			constrainedTables = new EObjectResolvingEList(BaseTable.class, this, SQLConstraintsPackage.ASSERTION__CONSTRAINED_TABLES);
@@ -210,11 +235,13 @@ public class AssertionImpl extends ConstraintImpl implements Assertion {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case SQLConstraintsPackage.ASSERTION__SCHEMA:
-				if (schema != null)
+				if (schema != null) {
 					msgs = ((InternalEObject)schema).eInverseRemove(this, SQLSchemaPackage.SCHEMA__ASSERTIONS, Schema.class, msgs);
+				}
 				return basicSetSchema((Schema)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -225,6 +252,7 @@ public class AssertionImpl extends ConstraintImpl implements Assertion {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case SQLConstraintsPackage.ASSERTION__SEARCH_CONDITION:
@@ -240,12 +268,15 @@ public class AssertionImpl extends ConstraintImpl implements Assertion {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SQLConstraintsPackage.ASSERTION__SEARCH_CONDITION:
 				return getSearchCondition();
 			case SQLConstraintsPackage.ASSERTION__SCHEMA:
-				if (resolve) return getSchema();
+				if (resolve) {
+					return getSchema();
+				}
 				return basicGetSchema();
 			case SQLConstraintsPackage.ASSERTION__CONSTRAINED_TABLES:
 				return getConstrainedTables();
@@ -258,6 +289,7 @@ public class AssertionImpl extends ConstraintImpl implements Assertion {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case SQLConstraintsPackage.ASSERTION__SEARCH_CONDITION:
@@ -279,6 +311,7 @@ public class AssertionImpl extends ConstraintImpl implements Assertion {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case SQLConstraintsPackage.ASSERTION__SEARCH_CONDITION:
@@ -299,6 +332,7 @@ public class AssertionImpl extends ConstraintImpl implements Assertion {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SQLConstraintsPackage.ASSERTION__SEARCH_CONDITION:

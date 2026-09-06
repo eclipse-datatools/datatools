@@ -25,133 +25,141 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.query.impl.QueryValuesImpl#getValuesRowList <em>Values Row List</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
 public class QueryValuesImpl extends QueryExpressionBodyImpl implements QueryValues {
 	/**
-     * The cached value of the '{@link #getValuesRowList() <em>Values Row List</em>}' containment reference list.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getValuesRowList() <em>Values Row List</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getValuesRowList()
-     * @generated
-     * @ordered
-     */
+	 * @see #getValuesRowList()
+	 * @generated
+	 * @ordered
+	 */
     protected EList valuesRowList;
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected QueryValuesImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    protected EClass eStaticClass() {
-        return SQLQueryModelPackage.Literals.QUERY_VALUES;
-    }
+	 * @generated
+	 */
+    @Override
+	protected EClass eStaticClass() {
+		return SQLQueryModelPackage.Literals.QUERY_VALUES;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public EList getValuesRowList() {
-        if (valuesRowList == null) {
-            valuesRowList = new EObjectContainmentWithInverseEList(ValuesRow.class, this, SQLQueryModelPackage.QUERY_VALUES__VALUES_ROW_LIST, SQLQueryModelPackage.VALUES_ROW__QUERY_VALUES);
-        }
-        return valuesRowList;
-    }
+	 * @generated
+	 */
+    @Override
+	public EList getValuesRowList() {
+		if (valuesRowList == null) {
+			valuesRowList = new EObjectContainmentWithInverseEList(ValuesRow.class, this, SQLQueryModelPackage.QUERY_VALUES__VALUES_ROW_LIST, SQLQueryModelPackage.VALUES_ROW__QUERY_VALUES);
+		}
+		return valuesRowList;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case SQLQueryModelPackage.QUERY_VALUES__VALUES_ROW_LIST:
-                return ((InternalEList)getValuesRowList()).basicAdd(otherEnd, msgs);
-        }
-        return super.eInverseAdd(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case SQLQueryModelPackage.QUERY_VALUES__VALUES_ROW_LIST:
+				return ((InternalEList)getValuesRowList()).basicAdd(otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case SQLQueryModelPackage.QUERY_VALUES__VALUES_ROW_LIST:
-                return ((InternalEList)getValuesRowList()).basicRemove(otherEnd, msgs);
-        }
-        return super.eInverseRemove(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case SQLQueryModelPackage.QUERY_VALUES__VALUES_ROW_LIST:
+				return ((InternalEList)getValuesRowList()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case SQLQueryModelPackage.QUERY_VALUES__VALUES_ROW_LIST:
-                return getValuesRowList();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case SQLQueryModelPackage.QUERY_VALUES__VALUES_ROW_LIST:
+				return getValuesRowList();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case SQLQueryModelPackage.QUERY_VALUES__VALUES_ROW_LIST:
-                getValuesRowList().clear();
-                getValuesRowList().addAll((Collection)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case SQLQueryModelPackage.QUERY_VALUES__VALUES_ROW_LIST:
+				getValuesRowList().clear();
+				getValuesRowList().addAll((Collection)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public void eUnset(int featureID) {
-        switch (featureID) {
-            case SQLQueryModelPackage.QUERY_VALUES__VALUES_ROW_LIST:
-                getValuesRowList().clear();
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case SQLQueryModelPackage.QUERY_VALUES__VALUES_ROW_LIST:
+				getValuesRowList().clear();
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case SQLQueryModelPackage.QUERY_VALUES__VALUES_ROW_LIST:
-                return valuesRowList != null && !valuesRowList.isEmpty();
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case SQLQueryModelPackage.QUERY_VALUES__VALUES_ROW_LIST:
+				return valuesRowList != null && !valuesRowList.isEmpty();
+		}
+		return super.eIsSet(featureID);
+	}
 
 } //SQLQueryValuesImpl

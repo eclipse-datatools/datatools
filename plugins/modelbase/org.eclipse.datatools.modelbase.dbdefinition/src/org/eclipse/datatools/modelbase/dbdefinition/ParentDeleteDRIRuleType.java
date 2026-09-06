@@ -174,11 +174,12 @@ public final class ParentDeleteDRIRuleType extends AbstractEnumerator {
 	 * Returns the '<em><b>Parent Delete DRI Rule Type</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static ParentDeleteDRIRuleType get(String literal) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			ParentDeleteDRIRuleType result = VALUES_ARRAY[i];
+		for (ParentDeleteDRIRuleType result : VALUES_ARRAY) {
 			if (result.toString().equals(literal)) {
 				return result;
 			}
@@ -190,11 +191,12 @@ public final class ParentDeleteDRIRuleType extends AbstractEnumerator {
 	 * Returns the '<em><b>Parent Delete DRI Rule Type</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static ParentDeleteDRIRuleType getByName(String name) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			ParentDeleteDRIRuleType result = VALUES_ARRAY[i];
+		for (ParentDeleteDRIRuleType result : VALUES_ARRAY) {
 			if (result.getName().equals(name)) {
 				return result;
 			}
@@ -206,6 +208,8 @@ public final class ParentDeleteDRIRuleType extends AbstractEnumerator {
 	 * Returns the '<em><b>Parent Delete DRI Rule Type</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static ParentDeleteDRIRuleType get(int value) {

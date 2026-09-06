@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -23,12 +23,12 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.constraints.impl.ConstraintImpl#isDeferrable <em>Deferrable</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.constraints.impl.ConstraintImpl#isInitiallyDeferred <em>Initially Deferred</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.constraints.impl.ConstraintImpl#isEnforced <em>Enforced</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -107,6 +107,7 @@ public abstract class ConstraintImpl extends SQLObjectImpl implements Constraint
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return SQLConstraintsPackage.Literals.CONSTRAINT;
 	}
@@ -116,6 +117,7 @@ public abstract class ConstraintImpl extends SQLObjectImpl implements Constraint
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isDeferrable() {
 		return deferrable;
 	}
@@ -125,11 +127,13 @@ public abstract class ConstraintImpl extends SQLObjectImpl implements Constraint
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDeferrable(boolean newDeferrable) {
 		boolean oldDeferrable = deferrable;
 		deferrable = newDeferrable;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLConstraintsPackage.CONSTRAINT__DEFERRABLE, oldDeferrable, deferrable));
+		}
 	}
 
 	/**
@@ -137,6 +141,7 @@ public abstract class ConstraintImpl extends SQLObjectImpl implements Constraint
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isInitiallyDeferred() {
 		return initiallyDeferred;
 	}
@@ -146,11 +151,13 @@ public abstract class ConstraintImpl extends SQLObjectImpl implements Constraint
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setInitiallyDeferred(boolean newInitiallyDeferred) {
 		boolean oldInitiallyDeferred = initiallyDeferred;
 		initiallyDeferred = newInitiallyDeferred;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLConstraintsPackage.CONSTRAINT__INITIALLY_DEFERRED, oldInitiallyDeferred, initiallyDeferred));
+		}
 	}
 
 	/**
@@ -158,6 +165,7 @@ public abstract class ConstraintImpl extends SQLObjectImpl implements Constraint
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isEnforced() {
 		return enforced;
 	}
@@ -167,11 +175,13 @@ public abstract class ConstraintImpl extends SQLObjectImpl implements Constraint
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setEnforced(boolean newEnforced) {
 		boolean oldEnforced = enforced;
 		enforced = newEnforced;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLConstraintsPackage.CONSTRAINT__ENFORCED, oldEnforced, enforced));
+		}
 	}
 
 	/**
@@ -179,6 +189,7 @@ public abstract class ConstraintImpl extends SQLObjectImpl implements Constraint
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SQLConstraintsPackage.CONSTRAINT__DEFERRABLE:
@@ -196,6 +207,7 @@ public abstract class ConstraintImpl extends SQLObjectImpl implements Constraint
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case SQLConstraintsPackage.CONSTRAINT__DEFERRABLE:
@@ -216,6 +228,7 @@ public abstract class ConstraintImpl extends SQLObjectImpl implements Constraint
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case SQLConstraintsPackage.CONSTRAINT__DEFERRABLE:
@@ -236,6 +249,7 @@ public abstract class ConstraintImpl extends SQLObjectImpl implements Constraint
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SQLConstraintsPackage.CONSTRAINT__DEFERRABLE:
@@ -253,8 +267,11 @@ public abstract class ConstraintImpl extends SQLObjectImpl implements Constraint
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (deferrable: "); //$NON-NLS-1$

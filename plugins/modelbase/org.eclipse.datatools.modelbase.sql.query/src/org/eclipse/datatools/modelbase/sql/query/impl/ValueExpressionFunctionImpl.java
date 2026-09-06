@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.query.impl.ValueExpressionFunctionImpl#isSpecialRegister <em>Special Register</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.query.impl.ValueExpressionFunctionImpl#isDistinct <em>Distinct</em>}</li>
@@ -35,361 +36,386 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.eclipse.datatools.modelbase.sql.query.impl.ValueExpressionFunctionImpl#getParameterList <em>Parameter List</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.query.impl.ValueExpressionFunctionImpl#getFunction <em>Function</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
 public class ValueExpressionFunctionImpl extends ValueExpressionAtomicImpl implements ValueExpressionFunction {
 	/**
-     * The default value of the '{@link #isSpecialRegister() <em>Special Register</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #isSpecialRegister() <em>Special Register</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #isSpecialRegister()
-     * @generated
-     * @ordered
-     */
+	 * @see #isSpecialRegister()
+	 * @generated
+	 * @ordered
+	 */
     protected static final boolean SPECIAL_REGISTER_EDEFAULT = false;
 
 	/**
-     * The cached value of the '{@link #isSpecialRegister() <em>Special Register</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #isSpecialRegister() <em>Special Register</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #isSpecialRegister()
-     * @generated
-     * @ordered
-     */
+	 * @see #isSpecialRegister()
+	 * @generated
+	 * @ordered
+	 */
     protected boolean specialRegister = SPECIAL_REGISTER_EDEFAULT;
 
 	/**
-     * The default value of the '{@link #isDistinct() <em>Distinct</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #isDistinct() <em>Distinct</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #isDistinct()
-     * @generated
-     * @ordered
-     */
+	 * @see #isDistinct()
+	 * @generated
+	 * @ordered
+	 */
     protected static final boolean DISTINCT_EDEFAULT = false;
 
 	/**
-     * The cached value of the '{@link #isDistinct() <em>Distinct</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #isDistinct() <em>Distinct</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #isDistinct()
-     * @generated
-     * @ordered
-     */
+	 * @see #isDistinct()
+	 * @generated
+	 * @ordered
+	 */
     protected boolean distinct = DISTINCT_EDEFAULT;
 
 	/**
-     * The default value of the '{@link #isColumnFunction() <em>Column Function</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #isColumnFunction() <em>Column Function</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #isColumnFunction()
-     * @generated
-     * @ordered
-     */
+	 * @see #isColumnFunction()
+	 * @generated
+	 * @ordered
+	 */
     protected static final boolean COLUMN_FUNCTION_EDEFAULT = false;
 
 	/**
-     * The cached value of the '{@link #isColumnFunction() <em>Column Function</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #isColumnFunction() <em>Column Function</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #isColumnFunction()
-     * @generated
-     * @ordered
-     */
+	 * @see #isColumnFunction()
+	 * @generated
+	 * @ordered
+	 */
     protected boolean columnFunction = COLUMN_FUNCTION_EDEFAULT;
 
 	/**
-     * The cached value of the '{@link #getParameterList() <em>Parameter List</em>}' containment reference list.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getParameterList() <em>Parameter List</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getParameterList()
-     * @generated
-     * @ordered
-     */
+	 * @see #getParameterList()
+	 * @generated
+	 * @ordered
+	 */
     protected EList parameterList;
 
 	/**
-     * The cached value of the '{@link #getFunction() <em>Function</em>}' reference.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getFunction() <em>Function</em>}' reference.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getFunction()
-     * @generated
-     * @ordered
-     */
+	 * @see #getFunction()
+	 * @generated
+	 * @ordered
+	 */
     protected Function function;
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected ValueExpressionFunctionImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    protected EClass eStaticClass() {
-        return SQLQueryModelPackage.Literals.VALUE_EXPRESSION_FUNCTION;
-    }
+	 * @generated
+	 */
+    @Override
+	protected EClass eStaticClass() {
+		return SQLQueryModelPackage.Literals.VALUE_EXPRESSION_FUNCTION;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public boolean isSpecialRegister() {
-        return specialRegister;
-    }
+	 * @generated
+	 */
+    @Override
+	public boolean isSpecialRegister() {
+		return specialRegister;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setSpecialRegister(boolean newSpecialRegister) {
-        boolean oldSpecialRegister = specialRegister;
-        specialRegister = newSpecialRegister;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.VALUE_EXPRESSION_FUNCTION__SPECIAL_REGISTER, oldSpecialRegister, specialRegister));
-    }
+	 * @generated
+	 */
+    @Override
+	public void setSpecialRegister(boolean newSpecialRegister) {
+		boolean oldSpecialRegister = specialRegister;
+		specialRegister = newSpecialRegister;
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.VALUE_EXPRESSION_FUNCTION__SPECIAL_REGISTER, oldSpecialRegister, specialRegister));
+		}
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public boolean isDistinct() {
-        return distinct;
-    }
+	 * @generated
+	 */
+    @Override
+	public boolean isDistinct() {
+		return distinct;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setDistinct(boolean newDistinct) {
-        boolean oldDistinct = distinct;
-        distinct = newDistinct;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.VALUE_EXPRESSION_FUNCTION__DISTINCT, oldDistinct, distinct));
-    }
+	 * @generated
+	 */
+    @Override
+	public void setDistinct(boolean newDistinct) {
+		boolean oldDistinct = distinct;
+		distinct = newDistinct;
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.VALUE_EXPRESSION_FUNCTION__DISTINCT, oldDistinct, distinct));
+		}
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public boolean isColumnFunction() {
-        return columnFunction;
-    }
+	 * @generated
+	 */
+    @Override
+	public boolean isColumnFunction() {
+		return columnFunction;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setColumnFunction(boolean newColumnFunction) {
-        boolean oldColumnFunction = columnFunction;
-        columnFunction = newColumnFunction;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.VALUE_EXPRESSION_FUNCTION__COLUMN_FUNCTION, oldColumnFunction, columnFunction));
-    }
+	 * @generated
+	 */
+    @Override
+	public void setColumnFunction(boolean newColumnFunction) {
+		boolean oldColumnFunction = columnFunction;
+		columnFunction = newColumnFunction;
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.VALUE_EXPRESSION_FUNCTION__COLUMN_FUNCTION, oldColumnFunction, columnFunction));
+		}
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public EList getParameterList() {
-        if (parameterList == null) {
-            parameterList = new EObjectContainmentWithInverseEList(QueryValueExpression.class, this, SQLQueryModelPackage.VALUE_EXPRESSION_FUNCTION__PARAMETER_LIST, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_FUNCTION);
-        }
-        return parameterList;
-    }
+	 * @generated
+	 */
+    @Override
+	public EList getParameterList() {
+		if (parameterList == null) {
+			parameterList = new EObjectContainmentWithInverseEList(QueryValueExpression.class, this, SQLQueryModelPackage.VALUE_EXPRESSION_FUNCTION__PARAMETER_LIST, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_FUNCTION);
+		}
+		return parameterList;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public Function getFunction() {
-        if (function != null && function.eIsProxy()) {
-            InternalEObject oldFunction = (InternalEObject)function;
-            function = (Function)eResolveProxy(oldFunction);
-            if (function != oldFunction) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, SQLQueryModelPackage.VALUE_EXPRESSION_FUNCTION__FUNCTION, oldFunction, function));
-            }
-        }
-        return function;
-    }
+	 * @generated
+	 */
+    @Override
+	public Function getFunction() {
+		if (function != null && function.eIsProxy()) {
+			InternalEObject oldFunction = (InternalEObject)function;
+			function = (Function)eResolveProxy(oldFunction);
+			if (function != oldFunction) {
+				if (eNotificationRequired()) {
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SQLQueryModelPackage.VALUE_EXPRESSION_FUNCTION__FUNCTION, oldFunction, function));
+				}
+			}
+		}
+		return function;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public Function basicGetFunction() {
-        return function;
-    }
+		return function;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setFunction(Function newFunction) {
-        Function oldFunction = function;
-        function = newFunction;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.VALUE_EXPRESSION_FUNCTION__FUNCTION, oldFunction, function));
-    }
+	 * @generated
+	 */
+    @Override
+	public void setFunction(Function newFunction) {
+		Function oldFunction = function;
+		function = newFunction;
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.VALUE_EXPRESSION_FUNCTION__FUNCTION, oldFunction, function));
+		}
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case SQLQueryModelPackage.VALUE_EXPRESSION_FUNCTION__PARAMETER_LIST:
-                return ((InternalEList)getParameterList()).basicAdd(otherEnd, msgs);
-        }
-        return super.eInverseAdd(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case SQLQueryModelPackage.VALUE_EXPRESSION_FUNCTION__PARAMETER_LIST:
+				return ((InternalEList)getParameterList()).basicAdd(otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case SQLQueryModelPackage.VALUE_EXPRESSION_FUNCTION__PARAMETER_LIST:
-                return ((InternalEList)getParameterList()).basicRemove(otherEnd, msgs);
-        }
-        return super.eInverseRemove(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case SQLQueryModelPackage.VALUE_EXPRESSION_FUNCTION__PARAMETER_LIST:
+				return ((InternalEList)getParameterList()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case SQLQueryModelPackage.VALUE_EXPRESSION_FUNCTION__SPECIAL_REGISTER:
-                return isSpecialRegister() ? Boolean.TRUE : Boolean.FALSE;
-            case SQLQueryModelPackage.VALUE_EXPRESSION_FUNCTION__DISTINCT:
-                return isDistinct() ? Boolean.TRUE : Boolean.FALSE;
-            case SQLQueryModelPackage.VALUE_EXPRESSION_FUNCTION__COLUMN_FUNCTION:
-                return isColumnFunction() ? Boolean.TRUE : Boolean.FALSE;
-            case SQLQueryModelPackage.VALUE_EXPRESSION_FUNCTION__PARAMETER_LIST:
-                return getParameterList();
-            case SQLQueryModelPackage.VALUE_EXPRESSION_FUNCTION__FUNCTION:
-                if (resolve) return getFunction();
-                return basicGetFunction();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case SQLQueryModelPackage.VALUE_EXPRESSION_FUNCTION__SPECIAL_REGISTER:
+				return isSpecialRegister() ? Boolean.TRUE : Boolean.FALSE;
+			case SQLQueryModelPackage.VALUE_EXPRESSION_FUNCTION__DISTINCT:
+				return isDistinct() ? Boolean.TRUE : Boolean.FALSE;
+			case SQLQueryModelPackage.VALUE_EXPRESSION_FUNCTION__COLUMN_FUNCTION:
+				return isColumnFunction() ? Boolean.TRUE : Boolean.FALSE;
+			case SQLQueryModelPackage.VALUE_EXPRESSION_FUNCTION__PARAMETER_LIST:
+				return getParameterList();
+			case SQLQueryModelPackage.VALUE_EXPRESSION_FUNCTION__FUNCTION:
+				if (resolve) {
+					return getFunction();
+				}
+				return basicGetFunction();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case SQLQueryModelPackage.VALUE_EXPRESSION_FUNCTION__SPECIAL_REGISTER:
-                setSpecialRegister(((Boolean)newValue).booleanValue());
-                return;
-            case SQLQueryModelPackage.VALUE_EXPRESSION_FUNCTION__DISTINCT:
-                setDistinct(((Boolean)newValue).booleanValue());
-                return;
-            case SQLQueryModelPackage.VALUE_EXPRESSION_FUNCTION__COLUMN_FUNCTION:
-                setColumnFunction(((Boolean)newValue).booleanValue());
-                return;
-            case SQLQueryModelPackage.VALUE_EXPRESSION_FUNCTION__PARAMETER_LIST:
-                getParameterList().clear();
-                getParameterList().addAll((Collection)newValue);
-                return;
-            case SQLQueryModelPackage.VALUE_EXPRESSION_FUNCTION__FUNCTION:
-                setFunction((Function)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case SQLQueryModelPackage.VALUE_EXPRESSION_FUNCTION__SPECIAL_REGISTER:
+				setSpecialRegister(((Boolean)newValue).booleanValue());
+				return;
+			case SQLQueryModelPackage.VALUE_EXPRESSION_FUNCTION__DISTINCT:
+				setDistinct(((Boolean)newValue).booleanValue());
+				return;
+			case SQLQueryModelPackage.VALUE_EXPRESSION_FUNCTION__COLUMN_FUNCTION:
+				setColumnFunction(((Boolean)newValue).booleanValue());
+				return;
+			case SQLQueryModelPackage.VALUE_EXPRESSION_FUNCTION__PARAMETER_LIST:
+				getParameterList().clear();
+				getParameterList().addAll((Collection)newValue);
+				return;
+			case SQLQueryModelPackage.VALUE_EXPRESSION_FUNCTION__FUNCTION:
+				setFunction((Function)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public void eUnset(int featureID) {
-        switch (featureID) {
-            case SQLQueryModelPackage.VALUE_EXPRESSION_FUNCTION__SPECIAL_REGISTER:
-                setSpecialRegister(SPECIAL_REGISTER_EDEFAULT);
-                return;
-            case SQLQueryModelPackage.VALUE_EXPRESSION_FUNCTION__DISTINCT:
-                setDistinct(DISTINCT_EDEFAULT);
-                return;
-            case SQLQueryModelPackage.VALUE_EXPRESSION_FUNCTION__COLUMN_FUNCTION:
-                setColumnFunction(COLUMN_FUNCTION_EDEFAULT);
-                return;
-            case SQLQueryModelPackage.VALUE_EXPRESSION_FUNCTION__PARAMETER_LIST:
-                getParameterList().clear();
-                return;
-            case SQLQueryModelPackage.VALUE_EXPRESSION_FUNCTION__FUNCTION:
-                setFunction((Function)null);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case SQLQueryModelPackage.VALUE_EXPRESSION_FUNCTION__SPECIAL_REGISTER:
+				setSpecialRegister(SPECIAL_REGISTER_EDEFAULT);
+				return;
+			case SQLQueryModelPackage.VALUE_EXPRESSION_FUNCTION__DISTINCT:
+				setDistinct(DISTINCT_EDEFAULT);
+				return;
+			case SQLQueryModelPackage.VALUE_EXPRESSION_FUNCTION__COLUMN_FUNCTION:
+				setColumnFunction(COLUMN_FUNCTION_EDEFAULT);
+				return;
+			case SQLQueryModelPackage.VALUE_EXPRESSION_FUNCTION__PARAMETER_LIST:
+				getParameterList().clear();
+				return;
+			case SQLQueryModelPackage.VALUE_EXPRESSION_FUNCTION__FUNCTION:
+				setFunction((Function)null);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case SQLQueryModelPackage.VALUE_EXPRESSION_FUNCTION__SPECIAL_REGISTER:
-                return specialRegister != SPECIAL_REGISTER_EDEFAULT;
-            case SQLQueryModelPackage.VALUE_EXPRESSION_FUNCTION__DISTINCT:
-                return distinct != DISTINCT_EDEFAULT;
-            case SQLQueryModelPackage.VALUE_EXPRESSION_FUNCTION__COLUMN_FUNCTION:
-                return columnFunction != COLUMN_FUNCTION_EDEFAULT;
-            case SQLQueryModelPackage.VALUE_EXPRESSION_FUNCTION__PARAMETER_LIST:
-                return parameterList != null && !parameterList.isEmpty();
-            case SQLQueryModelPackage.VALUE_EXPRESSION_FUNCTION__FUNCTION:
-                return function != null;
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case SQLQueryModelPackage.VALUE_EXPRESSION_FUNCTION__SPECIAL_REGISTER:
+				return specialRegister != SPECIAL_REGISTER_EDEFAULT;
+			case SQLQueryModelPackage.VALUE_EXPRESSION_FUNCTION__DISTINCT:
+				return distinct != DISTINCT_EDEFAULT;
+			case SQLQueryModelPackage.VALUE_EXPRESSION_FUNCTION__COLUMN_FUNCTION:
+				return columnFunction != COLUMN_FUNCTION_EDEFAULT;
+			case SQLQueryModelPackage.VALUE_EXPRESSION_FUNCTION__PARAMETER_LIST:
+				return parameterList != null && !parameterList.isEmpty();
+			case SQLQueryModelPackage.VALUE_EXPRESSION_FUNCTION__FUNCTION:
+				return function != null;
+		}
+		return super.eIsSet(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public String toString() {
-        if (eIsProxy()) return super.toString();
+	 * @generated
+	 */
+    @Override
+	public String toString() {
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (specialRegister: ");
-        result.append(specialRegister);
-        result.append(", distinct: ");
-        result.append(distinct);
-        result.append(", columnFunction: ");
-        result.append(columnFunction);
-        result.append(')');
-        return result.toString();
-    }
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (specialRegister: ");
+		result.append(specialRegister);
+		result.append(", distinct: ");
+		result.append(distinct);
+		result.append(", columnFunction: ");
+		result.append(columnFunction);
+		result.append(')');
+		return result.toString();
+	}
 
 } //SQLValueExpressionFunctionImpl

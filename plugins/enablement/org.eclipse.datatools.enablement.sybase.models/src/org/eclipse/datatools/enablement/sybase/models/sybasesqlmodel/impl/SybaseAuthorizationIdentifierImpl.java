@@ -21,10 +21,10 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.impl.SybaseAuthorizationIdentifierImpl#getSqlContainer <em>Sql Container</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -53,6 +53,7 @@ public class SybaseAuthorizationIdentifierImpl extends AuthorizationIdentifierIm
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return SybasesqlmodelPackage.Literals.SYBASE_AUTHORIZATION_IDENTIFIER;
 	}
@@ -62,13 +63,15 @@ public class SybaseAuthorizationIdentifierImpl extends AuthorizationIdentifierIm
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SQLObject getSqlContainer() {
 		if (sqlContainer != null && sqlContainer.eIsProxy()) {
 			InternalEObject oldSqlContainer = (InternalEObject)sqlContainer;
 			sqlContainer = (SQLObject)eResolveProxy(oldSqlContainer);
 			if (sqlContainer != oldSqlContainer) {
-				if (eNotificationRequired())
+				if (eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SybasesqlmodelPackage.SYBASE_AUTHORIZATION_IDENTIFIER__SQL_CONTAINER, oldSqlContainer, sqlContainer));
+				}
 			}
 		}
 		return sqlContainer;
@@ -88,11 +91,13 @@ public class SybaseAuthorizationIdentifierImpl extends AuthorizationIdentifierIm
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSqlContainer(SQLObject newSqlContainer) {
 		SQLObject oldSqlContainer = sqlContainer;
 		sqlContainer = newSqlContainer;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SybasesqlmodelPackage.SYBASE_AUTHORIZATION_IDENTIFIER__SQL_CONTAINER, oldSqlContainer, sqlContainer));
+		}
 	}
 
 	/**
@@ -100,10 +105,13 @@ public class SybaseAuthorizationIdentifierImpl extends AuthorizationIdentifierIm
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SybasesqlmodelPackage.SYBASE_AUTHORIZATION_IDENTIFIER__SQL_CONTAINER:
-				if (resolve) return getSqlContainer();
+				if (resolve) {
+					return getSqlContainer();
+				}
 				return basicGetSqlContainer();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -114,6 +122,7 @@ public class SybaseAuthorizationIdentifierImpl extends AuthorizationIdentifierIm
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case SybasesqlmodelPackage.SYBASE_AUTHORIZATION_IDENTIFIER__SQL_CONTAINER:
@@ -128,6 +137,7 @@ public class SybaseAuthorizationIdentifierImpl extends AuthorizationIdentifierIm
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case SybasesqlmodelPackage.SYBASE_AUTHORIZATION_IDENTIFIER__SQL_CONTAINER:
@@ -142,6 +152,7 @@ public class SybaseAuthorizationIdentifierImpl extends AuthorizationIdentifierIm
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SybasesqlmodelPackage.SYBASE_AUTHORIZATION_IDENTIFIER__SQL_CONTAINER:

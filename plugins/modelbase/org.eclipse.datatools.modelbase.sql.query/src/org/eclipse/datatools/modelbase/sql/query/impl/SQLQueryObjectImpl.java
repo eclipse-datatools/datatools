@@ -17,68 +17,70 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Object</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */
 public abstract class SQLQueryObjectImpl extends SQLObjectImpl implements SQLQueryObject {
     private SQLQuerySourceInfo sourceInfo = null;
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected SQLQueryObjectImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    protected EClass eStaticClass() {
-        return SQLQueryModelPackage.Literals.SQL_QUERY_OBJECT;
-    }
+	 * @generated
+	 */
+    @Override
+	protected EClass eStaticClass() {
+		return SQLQueryModelPackage.Literals.SQL_QUERY_OBJECT;
+	}
 
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated NOT
      */
-    public String getSQL() {
+    @Override
+	public String getSQL() {
         SQLQuerySourceWriter sw = new SQLQuerySourceWriter();
         return sw.getSQL(this);
     }
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
-  public void setSQL(String sqlText) {
-        // TODO: implement this method
-        // Ensure that you remove @generated or mark it @generated NOT
-        throw new UnsupportedOperationException();
-    }
+	 * @generated
+	 */
+  @Override
+public void setSQL(String sqlText) {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
 
     /**
      * @inheritDoc org.eclipse.datatools.modelbase.sql.query.SQLQueryObject#getSourceInfo()
      * @generated NOT
      */
-    public SQLQuerySourceInfo getSourceInfo()
+    @Override
+	public SQLQuerySourceInfo getSourceInfo()
     {
         if (this.sourceInfo == null)
         {
             this.sourceInfo = new SQLQuerySourceInfo(this);
-        } 
+        }
         else if (this.sourceInfo.getQueryObjectBackReference() != this)
         {
             // the weak reference might have been garbage collected, but it might be needed
             this.sourceInfo.setQueryObjectBackReference(this);
         }
-        
+
         return this.sourceInfo;
     }
 
@@ -87,7 +89,8 @@ public abstract class SQLQueryObjectImpl extends SQLObjectImpl implements SQLQue
      * @param sourceInfo The sourceInfo to set.
      * @generated NOT
      */
-    public void setSourceInfo(SQLQuerySourceInfo sourceInfo)
+    @Override
+	public void setSourceInfo(SQLQuerySourceInfo sourceInfo)
     {
         this.sourceInfo = sourceInfo;
         if (sourceInfo != null)
@@ -95,5 +98,5 @@ public abstract class SQLQueryObjectImpl extends SQLObjectImpl implements SQLQue
             this.sourceInfo.setQueryObjectBackReference(this);
         }
     }
-    
+
 } //SQLQueryObjectImpl

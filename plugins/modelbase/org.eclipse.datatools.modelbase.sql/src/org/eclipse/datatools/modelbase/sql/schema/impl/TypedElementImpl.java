@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -27,11 +27,11 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.schema.impl.TypedElementImpl#getContainedType <em>Contained Type</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.schema.impl.TypedElementImpl#getReferencedType <em>Referenced Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -70,6 +70,7 @@ public abstract class TypedElementImpl extends SQLObjectImpl implements TypedEle
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return SQLSchemaPackage.Literals.TYPED_ELEMENT;
 	}
@@ -79,6 +80,7 @@ public abstract class TypedElementImpl extends SQLObjectImpl implements TypedEle
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SQLDataType getContainedType() {
 		return containedType;
 	}
@@ -93,7 +95,11 @@ public abstract class TypedElementImpl extends SQLObjectImpl implements TypedEle
 		containedType = newContainedType;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLSchemaPackage.TYPED_ELEMENT__CONTAINED_TYPE, oldContainedType, newContainedType);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			if (msgs == null) {
+				msgs = notification;
+			} else {
+				msgs.add(notification);
+			}
 		}
 		return msgs;
 	}
@@ -103,18 +109,24 @@ public abstract class TypedElementImpl extends SQLObjectImpl implements TypedEle
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setContainedType(SQLDataType newContainedType) {
 		if (newContainedType != containedType) {
 			NotificationChain msgs = null;
-			if (containedType != null)
+			if (containedType != null) {
 				msgs = ((InternalEObject)containedType).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLSchemaPackage.TYPED_ELEMENT__CONTAINED_TYPE, null, msgs);
-			if (newContainedType != null)
+			}
+			if (newContainedType != null) {
 				msgs = ((InternalEObject)newContainedType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SQLSchemaPackage.TYPED_ELEMENT__CONTAINED_TYPE, null, msgs);
+			}
 			msgs = basicSetContainedType(newContainedType, msgs);
-			if (msgs != null) msgs.dispatch();
+			if (msgs != null) {
+				msgs.dispatch();
+			}
 		}
-		else if (eNotificationRequired())
+		else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLSchemaPackage.TYPED_ELEMENT__CONTAINED_TYPE, newContainedType, newContainedType));
+		}
 	}
 
 	/**
@@ -122,13 +134,15 @@ public abstract class TypedElementImpl extends SQLObjectImpl implements TypedEle
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public UserDefinedType getReferencedType() {
 		if (referencedType != null && referencedType.eIsProxy()) {
 			InternalEObject oldReferencedType = (InternalEObject)referencedType;
 			referencedType = (UserDefinedType)eResolveProxy(oldReferencedType);
 			if (referencedType != oldReferencedType) {
-				if (eNotificationRequired())
+				if (eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SQLSchemaPackage.TYPED_ELEMENT__REFERENCED_TYPE, oldReferencedType, referencedType));
+				}
 			}
 		}
 		return referencedType;
@@ -148,17 +162,20 @@ public abstract class TypedElementImpl extends SQLObjectImpl implements TypedEle
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setReferencedType(UserDefinedType newReferencedType) {
 		UserDefinedType oldReferencedType = referencedType;
 		referencedType = newReferencedType;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLSchemaPackage.TYPED_ELEMENT__REFERENCED_TYPE, oldReferencedType, referencedType));
+		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 */
+	@Override
 	public void setDataType(DataType newType) {
 		if (newType == null) {
 			this.setReferencedType(null);
@@ -182,13 +199,15 @@ public abstract class TypedElementImpl extends SQLObjectImpl implements TypedEle
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 */
+	@Override
 	public DataType getDataType() {
-		if (this.containedType != null)
+		if (this.containedType != null) {
 			return this.getContainedType();
-		else if (this.referencedType != null)
+		} else if (this.referencedType != null) {
 			return this.getReferencedType();
-		else
+		} else {
 			return null;
+		}
 	}
 
 	/**
@@ -196,6 +215,7 @@ public abstract class TypedElementImpl extends SQLObjectImpl implements TypedEle
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case SQLSchemaPackage.TYPED_ELEMENT__CONTAINED_TYPE:
@@ -209,12 +229,15 @@ public abstract class TypedElementImpl extends SQLObjectImpl implements TypedEle
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SQLSchemaPackage.TYPED_ELEMENT__CONTAINED_TYPE:
 				return getContainedType();
 			case SQLSchemaPackage.TYPED_ELEMENT__REFERENCED_TYPE:
-				if (resolve) return getReferencedType();
+				if (resolve) {
+					return getReferencedType();
+				}
 				return basicGetReferencedType();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -225,6 +248,7 @@ public abstract class TypedElementImpl extends SQLObjectImpl implements TypedEle
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case SQLSchemaPackage.TYPED_ELEMENT__CONTAINED_TYPE:
@@ -242,6 +266,7 @@ public abstract class TypedElementImpl extends SQLObjectImpl implements TypedEle
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case SQLSchemaPackage.TYPED_ELEMENT__CONTAINED_TYPE:
@@ -259,6 +284,7 @@ public abstract class TypedElementImpl extends SQLObjectImpl implements TypedEle
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SQLSchemaPackage.TYPED_ELEMENT__CONTAINED_TYPE:

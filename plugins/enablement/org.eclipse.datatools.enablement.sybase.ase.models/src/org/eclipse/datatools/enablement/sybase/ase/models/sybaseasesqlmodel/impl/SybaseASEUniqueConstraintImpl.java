@@ -22,225 +22,241 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.impl.SybaseASEUniqueConstraintImpl#getSystemGenedIndex <em>System Gened Index</em>}</li>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.impl.SybaseASEUniqueConstraintImpl#isSystemGenedName <em>System Gened Name</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class SybaseASEUniqueConstraintImpl extends UniqueConstraintImpl implements SybaseASEUniqueConstraint 
+public class SybaseASEUniqueConstraintImpl extends UniqueConstraintImpl implements SybaseASEUniqueConstraint
 {
 	/**
-     * The cached value of the '{@link #getSystemGenedIndex() <em>System Gened Index</em>}' containment reference.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getSystemGenedIndex() <em>System Gened Index</em>}' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getSystemGenedIndex()
-     * @generated
-     * @ordered
-     */
+	 * @see #getSystemGenedIndex()
+	 * @generated
+	 * @ordered
+	 */
 	protected SybaseASEIndex systemGenedIndex;
 
 	/**
-     * The default value of the '{@link #isSystemGenedName() <em>System Gened Name</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #isSystemGenedName() <em>System Gened Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #isSystemGenedName()
-     * @generated
-     * @ordered
-     */
+	 * @see #isSystemGenedName()
+	 * @generated
+	 * @ordered
+	 */
 	protected static final boolean SYSTEM_GENED_NAME_EDEFAULT = false;
 
 	/**
-     * The cached value of the '{@link #isSystemGenedName() <em>System Gened Name</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #isSystemGenedName() <em>System Gened Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #isSystemGenedName()
-     * @generated
-     * @ordered
-     */
+	 * @see #isSystemGenedName()
+	 * @generated
+	 * @ordered
+	 */
 	protected boolean systemGenedName = SYSTEM_GENED_NAME_EDEFAULT;
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected SybaseASEUniqueConstraintImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	protected EClass eStaticClass() {
-        return SybaseasesqlmodelPackage.Literals.SYBASE_ASE_UNIQUE_CONSTRAINT;
-    }
+		return SybaseasesqlmodelPackage.Literals.SYBASE_ASE_UNIQUE_CONSTRAINT;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public SybaseASEIndex getSystemGenedIndex() {
-        return systemGenedIndex;
-    }
+		return systemGenedIndex;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public NotificationChain basicSetSystemGenedIndex(SybaseASEIndex newSystemGenedIndex, NotificationChain msgs) {
-        SybaseASEIndex oldSystemGenedIndex = systemGenedIndex;
-        systemGenedIndex = newSystemGenedIndex;
-        if (eNotificationRequired())
-        {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SybaseasesqlmodelPackage.SYBASE_ASE_UNIQUE_CONSTRAINT__SYSTEM_GENED_INDEX, oldSystemGenedIndex, newSystemGenedIndex);
-            if (msgs == null) msgs = notification; else msgs.add(notification);
-        }
-        return msgs;
-    }
+		SybaseASEIndex oldSystemGenedIndex = systemGenedIndex;
+		systemGenedIndex = newSystemGenedIndex;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SybaseasesqlmodelPackage.SYBASE_ASE_UNIQUE_CONSTRAINT__SYSTEM_GENED_INDEX, oldSystemGenedIndex, newSystemGenedIndex);
+			if (msgs == null) {
+				msgs = notification;
+			} else {
+				msgs.add(notification);
+			}
+		}
+		return msgs;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public void setSystemGenedIndex(SybaseASEIndex newSystemGenedIndex) {
-        if (newSystemGenedIndex != systemGenedIndex)
-        {
-            NotificationChain msgs = null;
-            if (systemGenedIndex != null)
-                msgs = ((InternalEObject)systemGenedIndex).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SybaseasesqlmodelPackage.SYBASE_ASE_UNIQUE_CONSTRAINT__SYSTEM_GENED_INDEX, null, msgs);
-            if (newSystemGenedIndex != null)
-                msgs = ((InternalEObject)newSystemGenedIndex).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SybaseasesqlmodelPackage.SYBASE_ASE_UNIQUE_CONSTRAINT__SYSTEM_GENED_INDEX, null, msgs);
-            msgs = basicSetSystemGenedIndex(newSystemGenedIndex, msgs);
-            if (msgs != null) msgs.dispatch();
-        }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SybaseasesqlmodelPackage.SYBASE_ASE_UNIQUE_CONSTRAINT__SYSTEM_GENED_INDEX, newSystemGenedIndex, newSystemGenedIndex));
-    }
+		if (newSystemGenedIndex != systemGenedIndex) {
+			NotificationChain msgs = null;
+			if (systemGenedIndex != null) {
+				msgs = ((InternalEObject)systemGenedIndex).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SybaseasesqlmodelPackage.SYBASE_ASE_UNIQUE_CONSTRAINT__SYSTEM_GENED_INDEX, null, msgs);
+			}
+			if (newSystemGenedIndex != null) {
+				msgs = ((InternalEObject)newSystemGenedIndex).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SybaseasesqlmodelPackage.SYBASE_ASE_UNIQUE_CONSTRAINT__SYSTEM_GENED_INDEX, null, msgs);
+			}
+			msgs = basicSetSystemGenedIndex(newSystemGenedIndex, msgs);
+			if (msgs != null) {
+				msgs.dispatch();
+			}
+		}
+		else if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasesqlmodelPackage.SYBASE_ASE_UNIQUE_CONSTRAINT__SYSTEM_GENED_INDEX, newSystemGenedIndex, newSystemGenedIndex));
+		}
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public boolean isSystemGenedName() {
-        return systemGenedName;
-    }
+		return systemGenedName;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public void setSystemGenedName(boolean newSystemGenedName) {
-        boolean oldSystemGenedName = systemGenedName;
-        systemGenedName = newSystemGenedName;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SybaseasesqlmodelPackage.SYBASE_ASE_UNIQUE_CONSTRAINT__SYSTEM_GENED_NAME, oldSystemGenedName, systemGenedName));
-    }
+		boolean oldSystemGenedName = systemGenedName;
+		systemGenedName = newSystemGenedName;
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasesqlmodelPackage.SYBASE_ASE_UNIQUE_CONSTRAINT__SYSTEM_GENED_NAME, oldSystemGenedName, systemGenedName));
+		}
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID)
-        {
-            case SybaseasesqlmodelPackage.SYBASE_ASE_UNIQUE_CONSTRAINT__SYSTEM_GENED_INDEX:
-                return basicSetSystemGenedIndex(null, msgs);
-        }
-        return super.eInverseRemove(otherEnd, featureID, msgs);
-    }
+	 * @generated
+	 */
+    @Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SybaseasesqlmodelPackage.SYBASE_ASE_UNIQUE_CONSTRAINT__SYSTEM_GENED_INDEX:
+				return basicSetSystemGenedIndex(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID)
-        {
-            case SybaseasesqlmodelPackage.SYBASE_ASE_UNIQUE_CONSTRAINT__SYSTEM_GENED_INDEX:
-                return getSystemGenedIndex();
-            case SybaseasesqlmodelPackage.SYBASE_ASE_UNIQUE_CONSTRAINT__SYSTEM_GENED_NAME:
-                return isSystemGenedName() ? Boolean.TRUE : Boolean.FALSE;
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case SybaseasesqlmodelPackage.SYBASE_ASE_UNIQUE_CONSTRAINT__SYSTEM_GENED_INDEX:
+				return getSystemGenedIndex();
+			case SybaseasesqlmodelPackage.SYBASE_ASE_UNIQUE_CONSTRAINT__SYSTEM_GENED_NAME:
+				return isSystemGenedName() ? Boolean.TRUE : Boolean.FALSE;
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
-        switch (featureID)
-        {
-            case SybaseasesqlmodelPackage.SYBASE_ASE_UNIQUE_CONSTRAINT__SYSTEM_GENED_INDEX:
-                setSystemGenedIndex((SybaseASEIndex)newValue);
-                return;
-            case SybaseasesqlmodelPackage.SYBASE_ASE_UNIQUE_CONSTRAINT__SYSTEM_GENED_NAME:
-                setSystemGenedName(((Boolean)newValue).booleanValue());
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case SybaseasesqlmodelPackage.SYBASE_ASE_UNIQUE_CONSTRAINT__SYSTEM_GENED_INDEX:
+				setSystemGenedIndex((SybaseASEIndex)newValue);
+				return;
+			case SybaseasesqlmodelPackage.SYBASE_ASE_UNIQUE_CONSTRAINT__SYSTEM_GENED_NAME:
+				setSystemGenedName(((Boolean)newValue).booleanValue());
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public void eUnset(int featureID) {
-        switch (featureID)
-        {
-            case SybaseasesqlmodelPackage.SYBASE_ASE_UNIQUE_CONSTRAINT__SYSTEM_GENED_INDEX:
-                setSystemGenedIndex((SybaseASEIndex)null);
-                return;
-            case SybaseasesqlmodelPackage.SYBASE_ASE_UNIQUE_CONSTRAINT__SYSTEM_GENED_NAME:
-                setSystemGenedName(SYSTEM_GENED_NAME_EDEFAULT);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case SybaseasesqlmodelPackage.SYBASE_ASE_UNIQUE_CONSTRAINT__SYSTEM_GENED_INDEX:
+				setSystemGenedIndex((SybaseASEIndex)null);
+				return;
+			case SybaseasesqlmodelPackage.SYBASE_ASE_UNIQUE_CONSTRAINT__SYSTEM_GENED_NAME:
+				setSystemGenedName(SYSTEM_GENED_NAME_EDEFAULT);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public boolean eIsSet(int featureID) {
-        switch (featureID)
-        {
-            case SybaseasesqlmodelPackage.SYBASE_ASE_UNIQUE_CONSTRAINT__SYSTEM_GENED_INDEX:
-                return systemGenedIndex != null;
-            case SybaseasesqlmodelPackage.SYBASE_ASE_UNIQUE_CONSTRAINT__SYSTEM_GENED_NAME:
-                return systemGenedName != SYSTEM_GENED_NAME_EDEFAULT;
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case SybaseasesqlmodelPackage.SYBASE_ASE_UNIQUE_CONSTRAINT__SYSTEM_GENED_INDEX:
+				return systemGenedIndex != null;
+			case SybaseasesqlmodelPackage.SYBASE_ASE_UNIQUE_CONSTRAINT__SYSTEM_GENED_NAME:
+				return systemGenedName != SYSTEM_GENED_NAME_EDEFAULT;
+		}
+		return super.eIsSet(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public String toString() {
-        if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (systemGenedName: "); //$NON-NLS-1$
-        result.append(systemGenedName);
-        result.append(')');
-        return result.toString();
-    }
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (systemGenedName: "); //$NON-NLS-1$
+		result.append(systemGenedName);
+		result.append(')');
+		return result.toString();
+	}
 
 } //SybaseASEUniqueConstraintImpl

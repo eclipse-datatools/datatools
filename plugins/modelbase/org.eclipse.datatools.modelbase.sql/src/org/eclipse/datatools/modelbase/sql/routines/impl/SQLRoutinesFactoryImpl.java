@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -44,7 +44,7 @@ public class SQLRoutinesFactoryImpl extends EFactoryImpl implements SQLRoutinesF
 	 */
 	public static SQLRoutinesFactory init() {
 		try {
-			SQLRoutinesFactory theSQLRoutinesFactory = (SQLRoutinesFactory)EPackage.Registry.INSTANCE.getEFactory("http:///org/eclipse/datatools/modelbase/sql/routines.ecore"); //$NON-NLS-1$ 
+			SQLRoutinesFactory theSQLRoutinesFactory = (SQLRoutinesFactory)EPackage.Registry.INSTANCE.getEFactory(SQLRoutinesPackage.eNS_URI);
 			if (theSQLRoutinesFactory != null) {
 				return theSQLRoutinesFactory;
 			}
@@ -70,6 +70,7 @@ public class SQLRoutinesFactoryImpl extends EFactoryImpl implements SQLRoutinesF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case SQLRoutinesPackage.SOURCE: return createSource();
@@ -90,6 +91,7 @@ public class SQLRoutinesFactoryImpl extends EFactoryImpl implements SQLRoutinesF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
 			case SQLRoutinesPackage.DATA_ACCESS:
@@ -106,6 +108,7 @@ public class SQLRoutinesFactoryImpl extends EFactoryImpl implements SQLRoutinesF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
 			case SQLRoutinesPackage.DATA_ACCESS:
@@ -122,6 +125,7 @@ public class SQLRoutinesFactoryImpl extends EFactoryImpl implements SQLRoutinesF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Source createSource() {
 		SourceImpl source = new SourceImpl();
 		return source;
@@ -132,6 +136,7 @@ public class SQLRoutinesFactoryImpl extends EFactoryImpl implements SQLRoutinesF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Parameter createParameter() {
 		ParameterImpl parameter = new ParameterImpl();
 		return parameter;
@@ -142,6 +147,7 @@ public class SQLRoutinesFactoryImpl extends EFactoryImpl implements SQLRoutinesF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Procedure createProcedure() {
 		ProcedureImpl procedure = new ProcedureImpl();
 		return procedure;
@@ -152,6 +158,7 @@ public class SQLRoutinesFactoryImpl extends EFactoryImpl implements SQLRoutinesF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Function createFunction() {
 		FunctionImpl function = new FunctionImpl();
 		return function;
@@ -162,6 +169,7 @@ public class SQLRoutinesFactoryImpl extends EFactoryImpl implements SQLRoutinesF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public RoutineResultTable createRoutineResultTable() {
 		RoutineResultTableImpl routineResultTable = new RoutineResultTableImpl();
 		return routineResultTable;
@@ -172,6 +180,7 @@ public class SQLRoutinesFactoryImpl extends EFactoryImpl implements SQLRoutinesF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Method createMethod() {
 		MethodImpl method = new MethodImpl();
 		return method;
@@ -182,6 +191,7 @@ public class SQLRoutinesFactoryImpl extends EFactoryImpl implements SQLRoutinesF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public UserDefinedFunction createUserDefinedFunction() {
 		UserDefinedFunctionImpl userDefinedFunction = new UserDefinedFunctionImpl();
 		return userDefinedFunction;
@@ -192,6 +202,7 @@ public class SQLRoutinesFactoryImpl extends EFactoryImpl implements SQLRoutinesF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public BuiltInFunction createBuiltInFunction() {
 		BuiltInFunctionImpl builtInFunction = new BuiltInFunctionImpl();
 		return builtInFunction;
@@ -204,7 +215,9 @@ public class SQLRoutinesFactoryImpl extends EFactoryImpl implements SQLRoutinesF
 	 */
 	public DataAccess createDataAccessFromString(EDataType eDataType, String initialValue) {
 		DataAccess result = DataAccess.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		if (result == null) {
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		}
 		return result;
 	}
 
@@ -224,7 +237,9 @@ public class SQLRoutinesFactoryImpl extends EFactoryImpl implements SQLRoutinesF
 	 */
 	public ParameterMode createParameterModeFromString(EDataType eDataType, String initialValue) {
 		ParameterMode result = ParameterMode.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		if (result == null) {
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		}
 		return result;
 	}
 
@@ -242,6 +257,7 @@ public class SQLRoutinesFactoryImpl extends EFactoryImpl implements SQLRoutinesF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SQLRoutinesPackage getSQLRoutinesPackage() {
 		return (SQLRoutinesPackage)getEPackage();
 	}
@@ -252,6 +268,7 @@ public class SQLRoutinesFactoryImpl extends EFactoryImpl implements SQLRoutinesF
 	 * @deprecated
 	 * @generated
 	 */
+	@Deprecated
 	public static SQLRoutinesPackage getPackage() {
 		return SQLRoutinesPackage.eINSTANCE;
 	}

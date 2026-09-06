@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -28,10 +28,10 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.accesscontrol.impl.GroupImpl#getUser <em>User</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -60,6 +60,7 @@ public class GroupImpl extends AuthorizationIdentifierImpl implements Group {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return SQLAccessControlPackage.Literals.GROUP;
 	}
@@ -69,6 +70,7 @@ public class GroupImpl extends AuthorizationIdentifierImpl implements Group {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList getUser() {
 		if (user == null) {
 			user = new EObjectWithInverseResolvingEList.ManyInverse(User.class, this, SQLAccessControlPackage.GROUP__USER, SQLAccessControlPackage.USER__GROUP);
@@ -81,6 +83,7 @@ public class GroupImpl extends AuthorizationIdentifierImpl implements Group {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case SQLAccessControlPackage.GROUP__USER:
@@ -94,6 +97,7 @@ public class GroupImpl extends AuthorizationIdentifierImpl implements Group {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case SQLAccessControlPackage.GROUP__USER:
@@ -107,6 +111,7 @@ public class GroupImpl extends AuthorizationIdentifierImpl implements Group {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SQLAccessControlPackage.GROUP__USER:
@@ -120,6 +125,7 @@ public class GroupImpl extends AuthorizationIdentifierImpl implements Group {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case SQLAccessControlPackage.GROUP__USER:
@@ -135,6 +141,7 @@ public class GroupImpl extends AuthorizationIdentifierImpl implements Group {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case SQLAccessControlPackage.GROUP__USER:
@@ -149,6 +156,7 @@ public class GroupImpl extends AuthorizationIdentifierImpl implements Group {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SQLAccessControlPackage.GROUP__USER:

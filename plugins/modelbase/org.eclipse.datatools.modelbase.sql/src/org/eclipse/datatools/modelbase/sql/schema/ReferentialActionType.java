@@ -18,7 +18,7 @@ import org.eclipse.emf.common.util.AbstractEnumerator;
  * and utility methods for working with them.
  * <!-- end-user-doc -->
  * <!-- begin-model-doc -->
- * Reference: 5WD-02-Foundation-2002-12 
+ * Reference: 5WD-02-Foundation-2002-12
  * <!-- end-model-doc -->
  * @see org.eclipse.datatools.modelbase.sql.schema.SQLSchemaPackage#getReferentialActionType()
  * @model
@@ -177,11 +177,12 @@ public final class ReferentialActionType extends AbstractEnumerator {
 	 * Returns the '<em><b>Referential Action Type</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static ReferentialActionType get(String literal) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			ReferentialActionType result = VALUES_ARRAY[i];
+		for (ReferentialActionType result : VALUES_ARRAY) {
 			if (result.toString().equals(literal)) {
 				return result;
 			}
@@ -193,11 +194,12 @@ public final class ReferentialActionType extends AbstractEnumerator {
 	 * Returns the '<em><b>Referential Action Type</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static ReferentialActionType getByName(String name) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			ReferentialActionType result = VALUES_ARRAY[i];
+		for (ReferentialActionType result : VALUES_ARRAY) {
 			if (result.getName().equals(name)) {
 				return result;
 			}
@@ -209,6 +211,8 @@ public final class ReferentialActionType extends AbstractEnumerator {
 	 * Returns the '<em><b>Referential Action Type</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static ReferentialActionType get(int value) {

@@ -8,7 +8,7 @@
  *
  * Contributors:
  *  Actuate Corporation - initial API and implementation
- *  
+ *
  *************************************************************************
  *
  * $Id: SortSpecification.java,v 1.2 2009/07/23 21:43:17 lchan Exp $
@@ -24,46 +24,43 @@ import org.eclipse.emf.ecore.EObject;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * Specification of zero or more sort keys.  An empty collection explicitly indicates that the result set 
- * has no sort keys defined.
+ * Specification of zero or more sort keys.  An empty collection explicitly indicates that the result set has no sort keys defined.
  * <!-- end-model-doc -->
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.SortSpecification#getSortKeys <em>Sort Keys</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getSortSpecification()
- * @since 3.3 (DTP 1.8)
  * @model extendedMetaData="name='SortSpecification' kind='elementOnly'"
  * @generated
  */
-public interface SortSpecification extends EObject
-{
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    String copyright = "Copyright (c) 2009 Actuate Corporation"; //$NON-NLS-1$
+public interface SortSpecification extends EObject {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	String copyright = "Copyright (c) 2005, 2010 Actuate Corporation"; //$NON-NLS-1$
 
-    /**
-     * Returns the value of the '<em><b>Sort Keys</b></em>' containment reference list.
-     * The list contents are of type {@link org.eclipse.datatools.connectivity.oda.design.SortKey}.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Sort Keys</em>' containment reference list isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Sort Keys</em>' containment reference list.
-     * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getSortSpecification_SortKeys()
-     * @model containment="true"
-     *        extendedMetaData="kind='element' name='sortKeys' namespace='##targetNamespace'"
-     * @generated
-     */
-    EList<SortKey> getSortKeys();
+	/**
+	 * Returns the value of the '<em><b>Sort Keys</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.datatools.connectivity.oda.design.SortKey}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Sort Keys</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Sort Keys</em>' containment reference list.
+	 * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getSortSpecification_SortKeys()
+	 * @model containment="true"
+	 *        extendedMetaData="kind='element' name='sortKeys' namespace='##targetNamespace'"
+	 * @generated
+	 */
+	EList<SortKey> getSortKeys();
 
 } // SortSpecification

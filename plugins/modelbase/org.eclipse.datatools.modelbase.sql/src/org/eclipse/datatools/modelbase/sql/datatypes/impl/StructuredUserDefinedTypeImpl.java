@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -32,6 +32,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.datatypes.impl.StructuredUserDefinedTypeImpl#isInstantiable <em>Instantiable</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.datatypes.impl.StructuredUserDefinedTypeImpl#isFinal <em>Final</em>}</li>
@@ -40,7 +41,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.eclipse.datatools.modelbase.sql.datatypes.impl.StructuredUserDefinedTypeImpl#getAttributes <em>Attributes</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.datatypes.impl.StructuredUserDefinedTypeImpl#getMethods <em>Methods</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -139,6 +139,7 @@ public class StructuredUserDefinedTypeImpl extends UserDefinedTypeImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return SQLDataTypesPackage.Literals.STRUCTURED_USER_DEFINED_TYPE;
 	}
@@ -148,6 +149,7 @@ public class StructuredUserDefinedTypeImpl extends UserDefinedTypeImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isInstantiable() {
 		return instantiable;
 	}
@@ -157,11 +159,13 @@ public class StructuredUserDefinedTypeImpl extends UserDefinedTypeImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setInstantiable(boolean newInstantiable) {
 		boolean oldInstantiable = instantiable;
 		instantiable = newInstantiable;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLDataTypesPackage.STRUCTURED_USER_DEFINED_TYPE__INSTANTIABLE, oldInstantiable, instantiable));
+		}
 	}
 
 	/**
@@ -169,6 +173,7 @@ public class StructuredUserDefinedTypeImpl extends UserDefinedTypeImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isFinal() {
 		return final_;
 	}
@@ -178,11 +183,13 @@ public class StructuredUserDefinedTypeImpl extends UserDefinedTypeImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setFinal(boolean newFinal) {
 		boolean oldFinal = final_;
 		final_ = newFinal;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLDataTypesPackage.STRUCTURED_USER_DEFINED_TYPE__FINAL, oldFinal, final_));
+		}
 	}
 
 	/**
@@ -190,13 +197,15 @@ public class StructuredUserDefinedTypeImpl extends UserDefinedTypeImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public StructuredUserDefinedType getSuper() {
 		if (super_ != null && super_.eIsProxy()) {
 			InternalEObject oldSuper = (InternalEObject)super_;
 			super_ = (StructuredUserDefinedType)eResolveProxy(oldSuper);
 			if (super_ != oldSuper) {
-				if (eNotificationRequired())
+				if (eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SQLDataTypesPackage.STRUCTURED_USER_DEFINED_TYPE__SUPER, oldSuper, super_));
+				}
 			}
 		}
 		return super_;
@@ -221,7 +230,11 @@ public class StructuredUserDefinedTypeImpl extends UserDefinedTypeImpl implement
 		super_ = newSuper;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLDataTypesPackage.STRUCTURED_USER_DEFINED_TYPE__SUPER, oldSuper, newSuper);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			if (msgs == null) {
+				msgs = notification;
+			} else {
+				msgs.add(notification);
+			}
 		}
 		return msgs;
 	}
@@ -231,18 +244,24 @@ public class StructuredUserDefinedTypeImpl extends UserDefinedTypeImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSuper(StructuredUserDefinedType newSuper) {
 		if (newSuper != super_) {
 			NotificationChain msgs = null;
-			if (super_ != null)
+			if (super_ != null) {
 				msgs = ((InternalEObject)super_).eInverseRemove(this, SQLDataTypesPackage.STRUCTURED_USER_DEFINED_TYPE__SUB, StructuredUserDefinedType.class, msgs);
-			if (newSuper != null)
+			}
+			if (newSuper != null) {
 				msgs = ((InternalEObject)newSuper).eInverseAdd(this, SQLDataTypesPackage.STRUCTURED_USER_DEFINED_TYPE__SUB, StructuredUserDefinedType.class, msgs);
+			}
 			msgs = basicSetSuper(newSuper, msgs);
-			if (msgs != null) msgs.dispatch();
+			if (msgs != null) {
+				msgs.dispatch();
+			}
 		}
-		else if (eNotificationRequired())
+		else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLDataTypesPackage.STRUCTURED_USER_DEFINED_TYPE__SUPER, newSuper, newSuper));
+		}
 	}
 
 	/**
@@ -250,6 +269,7 @@ public class StructuredUserDefinedTypeImpl extends UserDefinedTypeImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList getSub() {
 		if (sub == null) {
 			sub = new EObjectWithInverseResolvingEList(StructuredUserDefinedType.class, this, SQLDataTypesPackage.STRUCTURED_USER_DEFINED_TYPE__SUB, SQLDataTypesPackage.STRUCTURED_USER_DEFINED_TYPE__SUPER);
@@ -262,6 +282,7 @@ public class StructuredUserDefinedTypeImpl extends UserDefinedTypeImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList getAttributes() {
 		if (attributes == null) {
 			attributes = new EObjectContainmentEList(AttributeDefinition.class, this, SQLDataTypesPackage.STRUCTURED_USER_DEFINED_TYPE__ATTRIBUTES);
@@ -274,6 +295,7 @@ public class StructuredUserDefinedTypeImpl extends UserDefinedTypeImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList getMethods() {
 		if (methods == null) {
 			methods = new EObjectContainmentEList(Method.class, this, SQLDataTypesPackage.STRUCTURED_USER_DEFINED_TYPE__METHODS);
@@ -286,11 +308,13 @@ public class StructuredUserDefinedTypeImpl extends UserDefinedTypeImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case SQLDataTypesPackage.STRUCTURED_USER_DEFINED_TYPE__SUPER:
-				if (super_ != null)
+				if (super_ != null) {
 					msgs = ((InternalEObject)super_).eInverseRemove(this, SQLDataTypesPackage.STRUCTURED_USER_DEFINED_TYPE__SUB, StructuredUserDefinedType.class, msgs);
+				}
 				return basicSetSuper((StructuredUserDefinedType)otherEnd, msgs);
 			case SQLDataTypesPackage.STRUCTURED_USER_DEFINED_TYPE__SUB:
 				return ((InternalEList)getSub()).basicAdd(otherEnd, msgs);
@@ -303,6 +327,7 @@ public class StructuredUserDefinedTypeImpl extends UserDefinedTypeImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case SQLDataTypesPackage.STRUCTURED_USER_DEFINED_TYPE__SUPER:
@@ -322,6 +347,7 @@ public class StructuredUserDefinedTypeImpl extends UserDefinedTypeImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SQLDataTypesPackage.STRUCTURED_USER_DEFINED_TYPE__INSTANTIABLE:
@@ -329,7 +355,9 @@ public class StructuredUserDefinedTypeImpl extends UserDefinedTypeImpl implement
 			case SQLDataTypesPackage.STRUCTURED_USER_DEFINED_TYPE__FINAL:
 				return isFinal() ? Boolean.TRUE : Boolean.FALSE;
 			case SQLDataTypesPackage.STRUCTURED_USER_DEFINED_TYPE__SUPER:
-				if (resolve) return getSuper();
+				if (resolve) {
+					return getSuper();
+				}
 				return basicGetSuper();
 			case SQLDataTypesPackage.STRUCTURED_USER_DEFINED_TYPE__SUB:
 				return getSub();
@@ -346,6 +374,7 @@ public class StructuredUserDefinedTypeImpl extends UserDefinedTypeImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case SQLDataTypesPackage.STRUCTURED_USER_DEFINED_TYPE__INSTANTIABLE:
@@ -378,6 +407,7 @@ public class StructuredUserDefinedTypeImpl extends UserDefinedTypeImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case SQLDataTypesPackage.STRUCTURED_USER_DEFINED_TYPE__INSTANTIABLE:
@@ -407,6 +437,7 @@ public class StructuredUserDefinedTypeImpl extends UserDefinedTypeImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SQLDataTypesPackage.STRUCTURED_USER_DEFINED_TYPE__INSTANTIABLE:
@@ -430,8 +461,11 @@ public class StructuredUserDefinedTypeImpl extends UserDefinedTypeImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (instantiable: "); //$NON-NLS-1$

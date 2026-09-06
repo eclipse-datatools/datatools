@@ -25,175 +25,180 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.partition.impl.SybaseASEListPartitionImpl#getColumn <em>Column</em>}</li>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.partition.impl.SybaseASEListPartitionImpl#getListPartitionItems <em>List Partition Items</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class SybaseASEListPartitionImpl extends SybaseASEPartitionImpl implements SybaseASEListPartition 
+public class SybaseASEListPartitionImpl extends SybaseASEPartitionImpl implements SybaseASEListPartition
 {
 	/**
-     * The cached value of the '{@link #getColumn() <em>Column</em>}' reference.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getColumn() <em>Column</em>}' reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getColumn()
-     * @generated
-     * @ordered
-     */
+	 * @see #getColumn()
+	 * @generated
+	 * @ordered
+	 */
 	protected SybaseASEColumn column;
 
 	/**
-     * The cached value of the '{@link #getListPartitionItems() <em>List Partition Items</em>}' reference list.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getListPartitionItems() <em>List Partition Items</em>}' reference list.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getListPartitionItems()
-     * @generated
-     * @ordered
-     */
+	 * @see #getListPartitionItems()
+	 * @generated
+	 * @ordered
+	 */
 	protected EList listPartitionItems;
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected SybaseASEListPartitionImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	protected EClass eStaticClass() {
-        return PartitionPackage.Literals.SYBASE_ASE_LIST_PARTITION;
-    }
+		return PartitionPackage.Literals.SYBASE_ASE_LIST_PARTITION;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public SybaseASEColumn getColumn() {
-        if (column != null && column.eIsProxy())
-        {
-            InternalEObject oldColumn = (InternalEObject)column;
-            column = (SybaseASEColumn)eResolveProxy(oldColumn);
-            if (column != oldColumn)
-            {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, PartitionPackage.SYBASE_ASE_LIST_PARTITION__COLUMN, oldColumn, column));
-            }
-        }
-        return column;
-    }
+		if (column != null && column.eIsProxy()) {
+			InternalEObject oldColumn = (InternalEObject)column;
+			column = (SybaseASEColumn)eResolveProxy(oldColumn);
+			if (column != oldColumn) {
+				if (eNotificationRequired()) {
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PartitionPackage.SYBASE_ASE_LIST_PARTITION__COLUMN, oldColumn, column));
+				}
+			}
+		}
+		return column;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public SybaseASEColumn basicGetColumn() {
-        return column;
-    }
+		return column;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public void setColumn(SybaseASEColumn newColumn) {
-        SybaseASEColumn oldColumn = column;
-        column = newColumn;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, PartitionPackage.SYBASE_ASE_LIST_PARTITION__COLUMN, oldColumn, column));
-    }
+		SybaseASEColumn oldColumn = column;
+		column = newColumn;
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, PartitionPackage.SYBASE_ASE_LIST_PARTITION__COLUMN, oldColumn, column));
+		}
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public EList getListPartitionItems() {
-        if (listPartitionItems == null)
-        {
-            listPartitionItems = new EObjectResolvingEList(ListRangePartitionItem.class, this, PartitionPackage.SYBASE_ASE_LIST_PARTITION__LIST_PARTITION_ITEMS);
-        }
-        return listPartitionItems;
-    }
+		if (listPartitionItems == null) {
+			listPartitionItems = new EObjectResolvingEList(ListRangePartitionItem.class, this, PartitionPackage.SYBASE_ASE_LIST_PARTITION__LIST_PARTITION_ITEMS);
+		}
+		return listPartitionItems;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID)
-        {
-            case PartitionPackage.SYBASE_ASE_LIST_PARTITION__COLUMN:
-                if (resolve) return getColumn();
-                return basicGetColumn();
-            case PartitionPackage.SYBASE_ASE_LIST_PARTITION__LIST_PARTITION_ITEMS:
-                return getListPartitionItems();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case PartitionPackage.SYBASE_ASE_LIST_PARTITION__COLUMN:
+				if (resolve) {
+					return getColumn();
+				}
+				return basicGetColumn();
+			case PartitionPackage.SYBASE_ASE_LIST_PARTITION__LIST_PARTITION_ITEMS:
+				return getListPartitionItems();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
-        switch (featureID)
-        {
-            case PartitionPackage.SYBASE_ASE_LIST_PARTITION__COLUMN:
-                setColumn((SybaseASEColumn)newValue);
-                return;
-            case PartitionPackage.SYBASE_ASE_LIST_PARTITION__LIST_PARTITION_ITEMS:
-                getListPartitionItems().clear();
-                getListPartitionItems().addAll((Collection)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case PartitionPackage.SYBASE_ASE_LIST_PARTITION__COLUMN:
+				setColumn((SybaseASEColumn)newValue);
+				return;
+			case PartitionPackage.SYBASE_ASE_LIST_PARTITION__LIST_PARTITION_ITEMS:
+				getListPartitionItems().clear();
+				getListPartitionItems().addAll((Collection)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public void eUnset(int featureID) {
-        switch (featureID)
-        {
-            case PartitionPackage.SYBASE_ASE_LIST_PARTITION__COLUMN:
-                setColumn((SybaseASEColumn)null);
-                return;
-            case PartitionPackage.SYBASE_ASE_LIST_PARTITION__LIST_PARTITION_ITEMS:
-                getListPartitionItems().clear();
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case PartitionPackage.SYBASE_ASE_LIST_PARTITION__COLUMN:
+				setColumn((SybaseASEColumn)null);
+				return;
+			case PartitionPackage.SYBASE_ASE_LIST_PARTITION__LIST_PARTITION_ITEMS:
+				getListPartitionItems().clear();
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public boolean eIsSet(int featureID) {
-        switch (featureID)
-        {
-            case PartitionPackage.SYBASE_ASE_LIST_PARTITION__COLUMN:
-                return column != null;
-            case PartitionPackage.SYBASE_ASE_LIST_PARTITION__LIST_PARTITION_ITEMS:
-                return listPartitionItems != null && !listPartitionItems.isEmpty();
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case PartitionPackage.SYBASE_ASE_LIST_PARTITION__COLUMN:
+				return column != null;
+			case PartitionPackage.SYBASE_ASE_LIST_PARTITION__LIST_PARTITION_ITEMS:
+				return listPartitionItems != null && !listPartitionItems.isEmpty();
+		}
+		return super.eIsSet(featureID);
+	}
 
 } //SybaseASEListPartitionImpl

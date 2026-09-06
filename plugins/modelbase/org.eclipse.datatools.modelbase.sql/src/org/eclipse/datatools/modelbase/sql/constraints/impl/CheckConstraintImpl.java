@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -25,10 +25,10 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.constraints.impl.CheckConstraintImpl#getSearchCondition <em>Search Condition</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -57,6 +57,7 @@ public class CheckConstraintImpl extends TableConstraintImpl implements CheckCon
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return SQLConstraintsPackage.Literals.CHECK_CONSTRAINT;
 	}
@@ -66,6 +67,7 @@ public class CheckConstraintImpl extends TableConstraintImpl implements CheckCon
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SearchCondition getSearchCondition() {
 		return searchCondition;
 	}
@@ -80,7 +82,11 @@ public class CheckConstraintImpl extends TableConstraintImpl implements CheckCon
 		searchCondition = newSearchCondition;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLConstraintsPackage.CHECK_CONSTRAINT__SEARCH_CONDITION, oldSearchCondition, newSearchCondition);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			if (msgs == null) {
+				msgs = notification;
+			} else {
+				msgs.add(notification);
+			}
 		}
 		return msgs;
 	}
@@ -90,18 +96,24 @@ public class CheckConstraintImpl extends TableConstraintImpl implements CheckCon
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSearchCondition(SearchCondition newSearchCondition) {
 		if (newSearchCondition != searchCondition) {
 			NotificationChain msgs = null;
-			if (searchCondition != null)
+			if (searchCondition != null) {
 				msgs = ((InternalEObject)searchCondition).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLConstraintsPackage.CHECK_CONSTRAINT__SEARCH_CONDITION, null, msgs);
-			if (newSearchCondition != null)
+			}
+			if (newSearchCondition != null) {
 				msgs = ((InternalEObject)newSearchCondition).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SQLConstraintsPackage.CHECK_CONSTRAINT__SEARCH_CONDITION, null, msgs);
+			}
 			msgs = basicSetSearchCondition(newSearchCondition, msgs);
-			if (msgs != null) msgs.dispatch();
+			if (msgs != null) {
+				msgs.dispatch();
+			}
 		}
-		else if (eNotificationRequired())
+		else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLConstraintsPackage.CHECK_CONSTRAINT__SEARCH_CONDITION, newSearchCondition, newSearchCondition));
+		}
 	}
 
 	/**
@@ -109,6 +121,7 @@ public class CheckConstraintImpl extends TableConstraintImpl implements CheckCon
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case SQLConstraintsPackage.CHECK_CONSTRAINT__SEARCH_CONDITION:
@@ -122,6 +135,7 @@ public class CheckConstraintImpl extends TableConstraintImpl implements CheckCon
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SQLConstraintsPackage.CHECK_CONSTRAINT__SEARCH_CONDITION:
@@ -135,6 +149,7 @@ public class CheckConstraintImpl extends TableConstraintImpl implements CheckCon
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case SQLConstraintsPackage.CHECK_CONSTRAINT__SEARCH_CONDITION:
@@ -149,6 +164,7 @@ public class CheckConstraintImpl extends TableConstraintImpl implements CheckCon
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case SQLConstraintsPackage.CHECK_CONSTRAINT__SEARCH_CONDITION:
@@ -163,6 +179,7 @@ public class CheckConstraintImpl extends TableConstraintImpl implements CheckCon
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SQLConstraintsPackage.CHECK_CONSTRAINT__SEARCH_CONDITION:

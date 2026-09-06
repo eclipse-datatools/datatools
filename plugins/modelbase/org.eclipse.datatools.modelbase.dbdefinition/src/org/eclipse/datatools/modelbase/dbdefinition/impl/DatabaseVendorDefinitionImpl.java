@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -49,6 +49,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseVendorDefinitionImpl#getPredefinedDataTypeDefinitions <em>Predefined Data Type Definitions</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseVendorDefinitionImpl#getTableSpaceDefinition <em>Table Space Definition</em>}</li>
@@ -104,7 +105,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseVendorDefinitionImpl#isConstructedDataTypeSupported <em>Constructed Data Type Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseVendorDefinitionImpl#isUDFSupported <em>UDF Supported</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -993,6 +993,7 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return DatabaseDefinitionPackage.Literals.DATABASE_VENDOR_DEFINITION;
 	}
@@ -1002,6 +1003,7 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getVendor() {
 		return vendor;
 	}
@@ -1011,11 +1013,13 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setVendor(String newVendor) {
 		String oldVendor = vendor;
 		vendor = newVendor;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__VENDOR, oldVendor, vendor));
+		}
 	}
 
 	/**
@@ -1023,6 +1027,7 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getVersion() {
 		return version;
 	}
@@ -1032,11 +1037,13 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setVersion(String newVersion) {
 		String oldVersion = version;
 		version = newVersion;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__VERSION, oldVersion, version));
+		}
 	}
 
 	/**
@@ -1044,6 +1051,7 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isConstraintsSupported() {
 		return constraintsSupported;
 	}
@@ -1053,11 +1061,13 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setConstraintsSupported(boolean newConstraintsSupported) {
 		boolean oldConstraintsSupported = constraintsSupported;
 		constraintsSupported = newConstraintsSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__CONSTRAINTS_SUPPORTED, oldConstraintsSupported, constraintsSupported));
+		}
 	}
 
 	/**
@@ -1065,6 +1075,7 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getMaximumIdentifierLength() {
 		return maximumIdentifierLength;
 	}
@@ -1074,11 +1085,13 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMaximumIdentifierLength(int newMaximumIdentifierLength) {
 		int oldMaximumIdentifierLength = maximumIdentifierLength;
 		maximumIdentifierLength = newMaximumIdentifierLength;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH, oldMaximumIdentifierLength, maximumIdentifierLength));
+		}
 	}
 
 	/**
@@ -1086,6 +1099,7 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isTriggerSupported() {
 		return triggerSupported;
 	}
@@ -1095,11 +1109,13 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTriggerSupported(boolean newTriggerSupported) {
 		boolean oldTriggerSupported = triggerSupported;
 		triggerSupported = newTriggerSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__TRIGGER_SUPPORTED, oldTriggerSupported, triggerSupported));
+		}
 	}
 
 	/**
@@ -1107,6 +1123,7 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSnapshotViewSupported() {
 		return snapshotViewSupported;
 	}
@@ -1116,11 +1133,13 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSnapshotViewSupported(boolean newSnapshotViewSupported) {
 		boolean oldSnapshotViewSupported = snapshotViewSupported;
 		snapshotViewSupported = newSnapshotViewSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SNAPSHOT_VIEW_SUPPORTED, oldSnapshotViewSupported, snapshotViewSupported));
+		}
 	}
 
 	/**
@@ -1128,6 +1147,7 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isJoinSupported() {
 		return joinSupported;
 	}
@@ -1137,11 +1157,13 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setJoinSupported(boolean newJoinSupported) {
 		boolean oldJoinSupported = joinSupported;
 		joinSupported = newJoinSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__JOIN_SUPPORTED, oldJoinSupported, joinSupported));
+		}
 	}
 
 	/**
@@ -1149,6 +1171,7 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isViewTriggerSupported() {
 		return viewTriggerSupported;
 	}
@@ -1158,11 +1181,13 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setViewTriggerSupported(boolean newViewTriggerSupported) {
 		boolean oldViewTriggerSupported = viewTriggerSupported;
 		viewTriggerSupported = newViewTriggerSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__VIEW_TRIGGER_SUPPORTED, oldViewTriggerSupported, viewTriggerSupported));
+		}
 	}
 
 	/**
@@ -1170,6 +1195,7 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isTablespacesSupported() {
 		return tablespacesSupported;
 	}
@@ -1179,11 +1205,13 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTablespacesSupported(boolean newTablespacesSupported) {
 		boolean oldTablespacesSupported = tablespacesSupported;
 		tablespacesSupported = newTablespacesSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__TABLESPACES_SUPPORTED, oldTablespacesSupported, tablespacesSupported));
+		}
 	}
 
 	/**
@@ -1191,6 +1219,7 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getMaximumCommentLength() {
 		return maximumCommentLength;
 	}
@@ -1200,11 +1229,13 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMaximumCommentLength(int newMaximumCommentLength) {
 		int oldMaximumCommentLength = maximumCommentLength;
 		maximumCommentLength = newMaximumCommentLength;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__MAXIMUM_COMMENT_LENGTH, oldMaximumCommentLength, maximumCommentLength));
+		}
 	}
 
 	/**
@@ -1212,6 +1243,7 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSequenceSupported() {
 		return sequenceSupported;
 	}
@@ -1221,11 +1253,13 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSequenceSupported(boolean newSequenceSupported) {
 		boolean oldSequenceSupported = sequenceSupported;
 		sequenceSupported = newSequenceSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SEQUENCE_SUPPORTED, oldSequenceSupported, sequenceSupported));
+		}
 	}
 
 	/**
@@ -1233,6 +1267,7 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isMQTSupported() {
 		return mQTSupported;
 	}
@@ -1242,11 +1277,13 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMQTSupported(boolean newMQTSupported) {
 		boolean oldMQTSupported = mQTSupported;
 		mQTSupported = newMQTSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__MQT_SUPPORTED, oldMQTSupported, mQTSupported));
+		}
 	}
 
 	/**
@@ -1254,6 +1291,7 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSchemaSupported() {
 		return schemaSupported;
 	}
@@ -1263,11 +1301,13 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSchemaSupported(boolean newSchemaSupported) {
 		boolean oldSchemaSupported = schemaSupported;
 		schemaSupported = newSchemaSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SCHEMA_SUPPORTED, oldSchemaSupported, schemaSupported));
+		}
 	}
 
 	/**
@@ -1275,6 +1315,7 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isAliasSupported() {
 		return aliasSupported;
 	}
@@ -1284,11 +1325,13 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setAliasSupported(boolean newAliasSupported) {
 		boolean oldAliasSupported = aliasSupported;
 		aliasSupported = newAliasSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__ALIAS_SUPPORTED, oldAliasSupported, aliasSupported));
+		}
 	}
 
 	/**
@@ -1296,6 +1339,7 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSynonymSupported() {
 		return synonymSupported;
 	}
@@ -1305,11 +1349,13 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSynonymSupported(boolean newSynonymSupported) {
 		boolean oldSynonymSupported = synonymSupported;
 		synonymSupported = newSynonymSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SYNONYM_SUPPORTED, oldSynonymSupported, synonymSupported));
+		}
 	}
 
 	/**
@@ -1317,6 +1363,7 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isUserDefinedTypeSupported() {
 		return userDefinedTypeSupported;
 	}
@@ -1326,11 +1373,13 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setUserDefinedTypeSupported(boolean newUserDefinedTypeSupported) {
 		boolean oldUserDefinedTypeSupported = userDefinedTypeSupported;
 		userDefinedTypeSupported = newUserDefinedTypeSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__USER_DEFINED_TYPE_SUPPORTED, oldUserDefinedTypeSupported, userDefinedTypeSupported));
+		}
 	}
 
 	/**
@@ -1338,6 +1387,7 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isDomainSupported() {
 		return domainSupported;
 	}
@@ -1347,11 +1397,13 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDomainSupported(boolean newDomainSupported) {
 		boolean oldDomainSupported = domainSupported;
 		domainSupported = newDomainSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__DOMAIN_SUPPORTED, oldDomainSupported, domainSupported));
+		}
 	}
 
 	/**
@@ -1359,6 +1411,7 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSQLStatementSupported() {
 		return sqlStatementSupported;
 	}
@@ -1368,11 +1421,13 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSQLStatementSupported(boolean newSQLStatementSupported) {
 		boolean oldSQLStatementSupported = sqlStatementSupported;
 		sqlStatementSupported = newSQLStatementSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SQL_STATEMENT_SUPPORTED, oldSQLStatementSupported, sqlStatementSupported));
+		}
 	}
 
 	/**
@@ -1380,6 +1435,7 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isNicknameSupported() {
 		return nicknameSupported;
 	}
@@ -1389,11 +1445,13 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setNicknameSupported(boolean newNicknameSupported) {
 		boolean oldNicknameSupported = nicknameSupported;
 		nicknameSupported = newNicknameSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__NICKNAME_SUPPORTED, oldNicknameSupported, nicknameSupported));
+		}
 	}
 
 	/**
@@ -1401,6 +1459,7 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isQuotedDMLSupported() {
 		return quotedDMLSupported;
 	}
@@ -1410,11 +1469,13 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setQuotedDMLSupported(boolean newQuotedDMLSupported) {
 		boolean oldQuotedDMLSupported = quotedDMLSupported;
 		quotedDMLSupported = newQuotedDMLSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__QUOTED_DML_SUPPORTED, oldQuotedDMLSupported, quotedDMLSupported));
+		}
 	}
 
 	/**
@@ -1422,6 +1483,7 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isQuotedDDLSupported() {
 		return quotedDDLSupported;
 	}
@@ -1431,11 +1493,13 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setQuotedDDLSupported(boolean newQuotedDDLSupported) {
 		boolean oldQuotedDDLSupported = quotedDDLSupported;
 		quotedDDLSupported = newQuotedDDLSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__QUOTED_DDL_SUPPORTED, oldQuotedDDLSupported, quotedDDLSupported));
+		}
 	}
 
 	/**
@@ -1443,6 +1507,7 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isXmlSupported() {
 		return xmlSupported;
 	}
@@ -1452,11 +1517,13 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setXmlSupported(boolean newXmlSupported) {
 		boolean oldXmlSupported = xmlSupported;
 		xmlSupported = newXmlSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__XML_SUPPORTED, oldXmlSupported, xmlSupported));
+		}
 	}
 
 	/**
@@ -1464,6 +1531,7 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isMQTIndexSupported() {
 		return mQTIndexSupported;
 	}
@@ -1473,11 +1541,13 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMQTIndexSupported(boolean newMQTIndexSupported) {
 		boolean oldMQTIndexSupported = mQTIndexSupported;
 		mQTIndexSupported = newMQTIndexSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__MQT_INDEX_SUPPORTED, oldMQTIndexSupported, mQTIndexSupported));
+		}
 	}
 
 	/**
@@ -1485,6 +1555,7 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isEventSupported() {
 		return eventSupported;
 	}
@@ -1494,11 +1565,13 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setEventSupported(boolean newEventSupported) {
 		boolean oldEventSupported = eventSupported;
 		eventSupported = newEventSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__EVENT_SUPPORTED, oldEventSupported, eventSupported));
+		}
 	}
 
 	/**
@@ -1506,6 +1579,7 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSqlUDFSupported() {
 		return sqlUDFSupported;
 	}
@@ -1515,11 +1589,13 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSqlUDFSupported(boolean newSqlUDFSupported) {
 		boolean oldSqlUDFSupported = sqlUDFSupported;
 		sqlUDFSupported = newSqlUDFSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SQL_UDF_SUPPORTED, oldSqlUDFSupported, sqlUDFSupported));
+		}
 	}
 
 	/**
@@ -1527,6 +1603,7 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isStoredProcedureSupported() {
 		return storedProcedureSupported;
 	}
@@ -1536,11 +1613,13 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setStoredProcedureSupported(boolean newStoredProcedureSupported) {
 		boolean oldStoredProcedureSupported = storedProcedureSupported;
 		storedProcedureSupported = newStoredProcedureSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__STORED_PROCEDURE_SUPPORTED, oldStoredProcedureSupported, storedProcedureSupported));
+		}
 	}
 
 	/**
@@ -1548,6 +1627,7 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isPackageSupported() {
 		return packageSupported;
 	}
@@ -1557,11 +1637,13 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPackageSupported(boolean newPackageSupported) {
 		boolean oldPackageSupported = packageSupported;
 		packageSupported = newPackageSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__PACKAGE_SUPPORTED, oldPackageSupported, packageSupported));
+		}
 	}
 
 	/**
@@ -1569,6 +1651,7 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isAuthorizationIdentifierSupported() {
 		return authorizationIdentifierSupported;
 	}
@@ -1578,11 +1661,13 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setAuthorizationIdentifierSupported(boolean newAuthorizationIdentifierSupported) {
 		boolean oldAuthorizationIdentifierSupported = authorizationIdentifierSupported;
 		authorizationIdentifierSupported = newAuthorizationIdentifierSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__AUTHORIZATION_IDENTIFIER_SUPPORTED, oldAuthorizationIdentifierSupported, authorizationIdentifierSupported));
+		}
 	}
 
 	/**
@@ -1590,6 +1675,7 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isRoleSupported() {
 		return roleSupported;
 	}
@@ -1599,11 +1685,13 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRoleSupported(boolean newRoleSupported) {
 		boolean oldRoleSupported = roleSupported;
 		roleSupported = newRoleSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__ROLE_SUPPORTED, oldRoleSupported, roleSupported));
+		}
 	}
 
 	/**
@@ -1611,6 +1699,7 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isGroupSupported() {
 		return groupSupported;
 	}
@@ -1620,11 +1709,13 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setGroupSupported(boolean newGroupSupported) {
 		boolean oldGroupSupported = groupSupported;
 		groupSupported = newGroupSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__GROUP_SUPPORTED, oldGroupSupported, groupSupported));
+		}
 	}
 
 	/**
@@ -1632,6 +1723,7 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isUserSupported() {
 		return userSupported;
 	}
@@ -1641,11 +1733,13 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setUserSupported(boolean newUserSupported) {
 		boolean oldUserSupported = userSupported;
 		userSupported = newUserSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__USER_SUPPORTED, oldUserSupported, userSupported));
+		}
 	}
 
 	/**
@@ -1653,6 +1747,7 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isRoleAuthorizationSupported() {
 		return roleAuthorizationSupported;
 	}
@@ -1662,11 +1757,13 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRoleAuthorizationSupported(boolean newRoleAuthorizationSupported) {
 		boolean oldRoleAuthorizationSupported = roleAuthorizationSupported;
 		roleAuthorizationSupported = newRoleAuthorizationSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__ROLE_AUTHORIZATION_SUPPORTED, oldRoleAuthorizationSupported, roleAuthorizationSupported));
+		}
 	}
 
 	/**
@@ -1674,6 +1771,7 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isConstructedDataTypeSupported() {
 		return constructedDataTypeSupported;
 	}
@@ -1683,11 +1781,13 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setConstructedDataTypeSupported(boolean newConstructedDataTypeSupported) {
 		boolean oldConstructedDataTypeSupported = constructedDataTypeSupported;
 		constructedDataTypeSupported = newConstructedDataTypeSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__CONSTRUCTED_DATA_TYPE_SUPPORTED, oldConstructedDataTypeSupported, constructedDataTypeSupported));
+		}
 	}
 
 	/**
@@ -1695,6 +1795,7 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isUDFSupported() {
 		return uDFSupported;
 	}
@@ -1704,11 +1805,13 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setUDFSupported(boolean newUDFSupported) {
 		boolean oldUDFSupported = uDFSupported;
 		uDFSupported = newUDFSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__UDF_SUPPORTED, oldUDFSupported, uDFSupported));
+		}
 	}
 
 	/**
@@ -1716,6 +1819,7 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__PREDEFINED_DATA_TYPE_DEFINITIONS:
@@ -1765,6 +1869,7 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__PREDEFINED_DATA_TYPE_DEFINITIONS:
@@ -1812,7 +1917,7 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__CONSTRAINTS_SUPPORTED:
 				return isConstraintsSupported() ? Boolean.TRUE : Boolean.FALSE;
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH:
-				return Integer.valueOf(getMaximumIdentifierLength());
+				return new Integer(getMaximumIdentifierLength());
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__TRIGGER_SUPPORTED:
 				return isTriggerSupported() ? Boolean.TRUE : Boolean.FALSE;
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SNAPSHOT_VIEW_SUPPORTED:
@@ -1824,7 +1929,7 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__TABLESPACES_SUPPORTED:
 				return isTablespacesSupported() ? Boolean.TRUE : Boolean.FALSE;
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__MAXIMUM_COMMENT_LENGTH:
-				return Integer.valueOf(getMaximumCommentLength());
+				return new Integer(getMaximumCommentLength());
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SEQUENCE_SUPPORTED:
 				return isSequenceSupported() ? Boolean.TRUE : Boolean.FALSE;
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__MQT_SUPPORTED:
@@ -1882,6 +1987,7 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__PREDEFINED_DATA_TYPE_DEFINITIONS:
@@ -2055,6 +2161,7 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__PREDEFINED_DATA_TYPE_DEFINITIONS:
@@ -2225,6 +2332,7 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__PREDEFINED_DATA_TYPE_DEFINITIONS:
@@ -2342,6 +2450,7 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList getPredefinedDataTypeDefinitions() {
 		if (predefinedDataTypeDefinitions == null) {
 			predefinedDataTypeDefinitions = new EObjectContainmentEList(PredefinedDataTypeDefinition.class, this, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__PREDEFINED_DATA_TYPE_DEFINITIONS);
@@ -2354,6 +2463,7 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TableSpaceDefinition getTableSpaceDefinition() {
 		return tableSpaceDefinition;
 	}
@@ -2368,7 +2478,11 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 		tableSpaceDefinition = newTableSpaceDefinition;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__TABLE_SPACE_DEFINITION, oldTableSpaceDefinition, newTableSpaceDefinition);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			if (msgs == null) {
+				msgs = notification;
+			} else {
+				msgs.add(notification);
+			}
 		}
 		return msgs;
 	}
@@ -2378,18 +2492,24 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTableSpaceDefinition(TableSpaceDefinition newTableSpaceDefinition) {
 		if (newTableSpaceDefinition != tableSpaceDefinition) {
 			NotificationChain msgs = null;
-			if (tableSpaceDefinition != null)
+			if (tableSpaceDefinition != null) {
 				msgs = ((InternalEObject)tableSpaceDefinition).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__TABLE_SPACE_DEFINITION, null, msgs);
-			if (newTableSpaceDefinition != null)
+			}
+			if (newTableSpaceDefinition != null) {
 				msgs = ((InternalEObject)newTableSpaceDefinition).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__TABLE_SPACE_DEFINITION, null, msgs);
+			}
 			msgs = basicSetTableSpaceDefinition(newTableSpaceDefinition, msgs);
-			if (msgs != null) msgs.dispatch();
+			if (msgs != null) {
+				msgs.dispatch();
+			}
 		}
-		else if (eNotificationRequired())
+		else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__TABLE_SPACE_DEFINITION, newTableSpaceDefinition, newTableSpaceDefinition));
+		}
 	}
 
 	/**
@@ -2397,6 +2517,7 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public StoredProcedureDefinition getStoredProcedureDefinition() {
 		return storedProcedureDefinition;
 	}
@@ -2411,7 +2532,11 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 		storedProcedureDefinition = newStoredProcedureDefinition;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__STORED_PROCEDURE_DEFINITION, oldStoredProcedureDefinition, newStoredProcedureDefinition);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			if (msgs == null) {
+				msgs = notification;
+			} else {
+				msgs.add(notification);
+			}
 		}
 		return msgs;
 	}
@@ -2421,18 +2546,24 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setStoredProcedureDefinition(StoredProcedureDefinition newStoredProcedureDefinition) {
 		if (newStoredProcedureDefinition != storedProcedureDefinition) {
 			NotificationChain msgs = null;
-			if (storedProcedureDefinition != null)
+			if (storedProcedureDefinition != null) {
 				msgs = ((InternalEObject)storedProcedureDefinition).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__STORED_PROCEDURE_DEFINITION, null, msgs);
-			if (newStoredProcedureDefinition != null)
+			}
+			if (newStoredProcedureDefinition != null) {
 				msgs = ((InternalEObject)newStoredProcedureDefinition).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__STORED_PROCEDURE_DEFINITION, null, msgs);
+			}
 			msgs = basicSetStoredProcedureDefinition(newStoredProcedureDefinition, msgs);
-			if (msgs != null) msgs.dispatch();
+			if (msgs != null) {
+				msgs.dispatch();
+			}
 		}
-		else if (eNotificationRequired())
+		else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__STORED_PROCEDURE_DEFINITION, newStoredProcedureDefinition, newStoredProcedureDefinition));
+		}
 	}
 
 	/**
@@ -2440,6 +2571,7 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TriggerDefinition getTriggerDefinition() {
 		return triggerDefinition;
 	}
@@ -2454,7 +2586,11 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 		triggerDefinition = newTriggerDefinition;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__TRIGGER_DEFINITION, oldTriggerDefinition, newTriggerDefinition);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			if (msgs == null) {
+				msgs = notification;
+			} else {
+				msgs.add(notification);
+			}
 		}
 		return msgs;
 	}
@@ -2464,18 +2600,24 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTriggerDefinition(TriggerDefinition newTriggerDefinition) {
 		if (newTriggerDefinition != triggerDefinition) {
 			NotificationChain msgs = null;
-			if (triggerDefinition != null)
+			if (triggerDefinition != null) {
 				msgs = ((InternalEObject)triggerDefinition).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__TRIGGER_DEFINITION, null, msgs);
-			if (newTriggerDefinition != null)
+			}
+			if (newTriggerDefinition != null) {
 				msgs = ((InternalEObject)newTriggerDefinition).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__TRIGGER_DEFINITION, null, msgs);
+			}
 			msgs = basicSetTriggerDefinition(newTriggerDefinition, msgs);
-			if (msgs != null) msgs.dispatch();
+			if (msgs != null) {
+				msgs.dispatch();
+			}
 		}
-		else if (eNotificationRequired())
+		else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__TRIGGER_DEFINITION, newTriggerDefinition, newTriggerDefinition));
+		}
 	}
 
 	/**
@@ -2483,6 +2625,7 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ColumnDefinition getColumnDefinition() {
 		return columnDefinition;
 	}
@@ -2497,7 +2640,11 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 		columnDefinition = newColumnDefinition;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__COLUMN_DEFINITION, oldColumnDefinition, newColumnDefinition);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			if (msgs == null) {
+				msgs = notification;
+			} else {
+				msgs.add(notification);
+			}
 		}
 		return msgs;
 	}
@@ -2507,18 +2654,24 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setColumnDefinition(ColumnDefinition newColumnDefinition) {
 		if (newColumnDefinition != columnDefinition) {
 			NotificationChain msgs = null;
-			if (columnDefinition != null)
+			if (columnDefinition != null) {
 				msgs = ((InternalEObject)columnDefinition).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__COLUMN_DEFINITION, null, msgs);
-			if (newColumnDefinition != null)
+			}
+			if (newColumnDefinition != null) {
 				msgs = ((InternalEObject)newColumnDefinition).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__COLUMN_DEFINITION, null, msgs);
+			}
 			msgs = basicSetColumnDefinition(newColumnDefinition, msgs);
-			if (msgs != null) msgs.dispatch();
+			if (msgs != null) {
+				msgs.dispatch();
+			}
 		}
-		else if (eNotificationRequired())
+		else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__COLUMN_DEFINITION, newColumnDefinition, newColumnDefinition));
+		}
 	}
 
 	/**
@@ -2526,6 +2679,7 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ConstraintDefinition getConstraintDefinition() {
 		return constraintDefinition;
 	}
@@ -2540,7 +2694,11 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 		constraintDefinition = newConstraintDefinition;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__CONSTRAINT_DEFINITION, oldConstraintDefinition, newConstraintDefinition);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			if (msgs == null) {
+				msgs = notification;
+			} else {
+				msgs.add(notification);
+			}
 		}
 		return msgs;
 	}
@@ -2550,18 +2708,24 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setConstraintDefinition(ConstraintDefinition newConstraintDefinition) {
 		if (newConstraintDefinition != constraintDefinition) {
 			NotificationChain msgs = null;
-			if (constraintDefinition != null)
+			if (constraintDefinition != null) {
 				msgs = ((InternalEObject)constraintDefinition).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__CONSTRAINT_DEFINITION, null, msgs);
-			if (newConstraintDefinition != null)
+			}
+			if (newConstraintDefinition != null) {
 				msgs = ((InternalEObject)newConstraintDefinition).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__CONSTRAINT_DEFINITION, null, msgs);
+			}
 			msgs = basicSetConstraintDefinition(newConstraintDefinition, msgs);
-			if (msgs != null) msgs.dispatch();
+			if (msgs != null) {
+				msgs.dispatch();
+			}
 		}
-		else if (eNotificationRequired())
+		else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__CONSTRAINT_DEFINITION, newConstraintDefinition, newConstraintDefinition));
+		}
 	}
 
 	/**
@@ -2569,6 +2733,7 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList getExtendedDefinitions() {
 		if (extendedDefinitions == null) {
 			extendedDefinitions = new EObjectContainmentEList(ExtendedDefinition.class, this, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__EXTENDED_DEFINITIONS);
@@ -2581,6 +2746,7 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IndexDefinition getIndexDefinition() {
 		return indexDefinition;
 	}
@@ -2595,7 +2761,11 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 		indexDefinition = newIndexDefinition;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__INDEX_DEFINITION, oldIndexDefinition, newIndexDefinition);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			if (msgs == null) {
+				msgs = notification;
+			} else {
+				msgs.add(notification);
+			}
 		}
 		return msgs;
 	}
@@ -2605,18 +2775,24 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIndexDefinition(IndexDefinition newIndexDefinition) {
 		if (newIndexDefinition != indexDefinition) {
 			NotificationChain msgs = null;
-			if (indexDefinition != null)
+			if (indexDefinition != null) {
 				msgs = ((InternalEObject)indexDefinition).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__INDEX_DEFINITION, null, msgs);
-			if (newIndexDefinition != null)
+			}
+			if (newIndexDefinition != null) {
 				msgs = ((InternalEObject)newIndexDefinition).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__INDEX_DEFINITION, null, msgs);
+			}
 			msgs = basicSetIndexDefinition(newIndexDefinition, msgs);
-			if (msgs != null) msgs.dispatch();
+			if (msgs != null) {
+				msgs.dispatch();
+			}
 		}
-		else if (eNotificationRequired())
+		else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__INDEX_DEFINITION, newIndexDefinition, newIndexDefinition));
+		}
 	}
 
 	/**
@@ -2624,6 +2800,7 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TableDefinition getTableDefinition() {
 		return tableDefinition;
 	}
@@ -2638,7 +2815,11 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 		tableDefinition = newTableDefinition;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__TABLE_DEFINITION, oldTableDefinition, newTableDefinition);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			if (msgs == null) {
+				msgs = notification;
+			} else {
+				msgs.add(notification);
+			}
 		}
 		return msgs;
 	}
@@ -2648,18 +2829,24 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTableDefinition(TableDefinition newTableDefinition) {
 		if (newTableDefinition != tableDefinition) {
 			NotificationChain msgs = null;
-			if (tableDefinition != null)
+			if (tableDefinition != null) {
 				msgs = ((InternalEObject)tableDefinition).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__TABLE_DEFINITION, null, msgs);
-			if (newTableDefinition != null)
+			}
+			if (newTableDefinition != null) {
 				msgs = ((InternalEObject)newTableDefinition).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__TABLE_DEFINITION, null, msgs);
+			}
 			msgs = basicSetTableDefinition(newTableDefinition, msgs);
-			if (msgs != null) msgs.dispatch();
+			if (msgs != null) {
+				msgs.dispatch();
+			}
 		}
-		else if (eNotificationRequired())
+		else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__TABLE_DEFINITION, newTableDefinition, newTableDefinition));
+		}
 	}
 
 	/**
@@ -2667,6 +2854,7 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SequenceDefinition getSequenceDefinition() {
 		return sequenceDefinition;
 	}
@@ -2681,7 +2869,11 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 		sequenceDefinition = newSequenceDefinition;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SEQUENCE_DEFINITION, oldSequenceDefinition, newSequenceDefinition);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			if (msgs == null) {
+				msgs = notification;
+			} else {
+				msgs.add(notification);
+			}
 		}
 		return msgs;
 	}
@@ -2691,18 +2883,24 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSequenceDefinition(SequenceDefinition newSequenceDefinition) {
 		if (newSequenceDefinition != sequenceDefinition) {
 			NotificationChain msgs = null;
-			if (sequenceDefinition != null)
+			if (sequenceDefinition != null) {
 				msgs = ((InternalEObject)sequenceDefinition).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SEQUENCE_DEFINITION, null, msgs);
-			if (newSequenceDefinition != null)
+			}
+			if (newSequenceDefinition != null) {
 				msgs = ((InternalEObject)newSequenceDefinition).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SEQUENCE_DEFINITION, null, msgs);
+			}
 			msgs = basicSetSequenceDefinition(newSequenceDefinition, msgs);
-			if (msgs != null) msgs.dispatch();
+			if (msgs != null) {
+				msgs.dispatch();
+			}
 		}
-		else if (eNotificationRequired())
+		else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SEQUENCE_DEFINITION, newSequenceDefinition, newSequenceDefinition));
+		}
 	}
 
 	/**
@@ -2710,6 +2908,7 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public UserDefinedTypeDefinition getUdtDefinition() {
 		return udtDefinition;
 	}
@@ -2724,7 +2923,11 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 		udtDefinition = newUdtDefinition;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__UDT_DEFINITION, oldUdtDefinition, newUdtDefinition);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			if (msgs == null) {
+				msgs = notification;
+			} else {
+				msgs.add(notification);
+			}
 		}
 		return msgs;
 	}
@@ -2734,18 +2937,24 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setUdtDefinition(UserDefinedTypeDefinition newUdtDefinition) {
 		if (newUdtDefinition != udtDefinition) {
 			NotificationChain msgs = null;
-			if (udtDefinition != null)
+			if (udtDefinition != null) {
 				msgs = ((InternalEObject)udtDefinition).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__UDT_DEFINITION, null, msgs);
-			if (newUdtDefinition != null)
+			}
+			if (newUdtDefinition != null) {
 				msgs = ((InternalEObject)newUdtDefinition).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__UDT_DEFINITION, null, msgs);
+			}
 			msgs = basicSetUdtDefinition(newUdtDefinition, msgs);
-			if (msgs != null) msgs.dispatch();
+			if (msgs != null) {
+				msgs.dispatch();
+			}
 		}
-		else if (eNotificationRequired())
+		else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__UDT_DEFINITION, newUdtDefinition, newUdtDefinition));
+		}
 	}
 
 	/**
@@ -2753,6 +2962,7 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public QueryDefinition getQueryDefinition() {
 		return queryDefinition;
 	}
@@ -2767,7 +2977,11 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 		queryDefinition = newQueryDefinition;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__QUERY_DEFINITION, oldQueryDefinition, newQueryDefinition);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			if (msgs == null) {
+				msgs = notification;
+			} else {
+				msgs.add(notification);
+			}
 		}
 		return msgs;
 	}
@@ -2777,18 +2991,24 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setQueryDefinition(QueryDefinition newQueryDefinition) {
 		if (newQueryDefinition != queryDefinition) {
 			NotificationChain msgs = null;
-			if (queryDefinition != null)
+			if (queryDefinition != null) {
 				msgs = ((InternalEObject)queryDefinition).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__QUERY_DEFINITION, null, msgs);
-			if (newQueryDefinition != null)
+			}
+			if (newQueryDefinition != null) {
 				msgs = ((InternalEObject)newQueryDefinition).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__QUERY_DEFINITION, null, msgs);
+			}
 			msgs = basicSetQueryDefinition(newQueryDefinition, msgs);
-			if (msgs != null) msgs.dispatch();
+			if (msgs != null) {
+				msgs.dispatch();
+			}
 		}
-		else if (eNotificationRequired())
+		else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__QUERY_DEFINITION, newQueryDefinition, newQueryDefinition));
+		}
 	}
 
 	/**
@@ -2796,6 +3016,7 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SQLSyntaxDefinition getSQLSyntaxDefinition() {
 		return sqlSyntaxDefinition;
 	}
@@ -2810,7 +3031,11 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 		sqlSyntaxDefinition = newSQLSyntaxDefinition;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SQL_SYNTAX_DEFINITION, oldSQLSyntaxDefinition, newSQLSyntaxDefinition);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			if (msgs == null) {
+				msgs = notification;
+			} else {
+				msgs.add(notification);
+			}
 		}
 		return msgs;
 	}
@@ -2820,18 +3045,24 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSQLSyntaxDefinition(SQLSyntaxDefinition newSQLSyntaxDefinition) {
 		if (newSQLSyntaxDefinition != sqlSyntaxDefinition) {
 			NotificationChain msgs = null;
-			if (sqlSyntaxDefinition != null)
+			if (sqlSyntaxDefinition != null) {
 				msgs = ((InternalEObject)sqlSyntaxDefinition).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SQL_SYNTAX_DEFINITION, null, msgs);
-			if (newSQLSyntaxDefinition != null)
+			}
+			if (newSQLSyntaxDefinition != null) {
 				msgs = ((InternalEObject)newSQLSyntaxDefinition).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SQL_SYNTAX_DEFINITION, null, msgs);
+			}
 			msgs = basicSetSQLSyntaxDefinition(newSQLSyntaxDefinition, msgs);
-			if (msgs != null) msgs.dispatch();
+			if (msgs != null) {
+				msgs.dispatch();
+			}
 		}
-		else if (eNotificationRequired())
+		else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SQL_SYNTAX_DEFINITION, newSQLSyntaxDefinition, newSQLSyntaxDefinition));
+		}
 	}
 
 	/**
@@ -2839,6 +3070,7 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NicknameDefinition getNicknameDefinition() {
 		return nicknameDefinition;
 	}
@@ -2853,7 +3085,11 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 		nicknameDefinition = newNicknameDefinition;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__NICKNAME_DEFINITION, oldNicknameDefinition, newNicknameDefinition);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			if (msgs == null) {
+				msgs = notification;
+			} else {
+				msgs.add(notification);
+			}
 		}
 		return msgs;
 	}
@@ -2863,18 +3099,24 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setNicknameDefinition(NicknameDefinition newNicknameDefinition) {
 		if (newNicknameDefinition != nicknameDefinition) {
 			NotificationChain msgs = null;
-			if (nicknameDefinition != null)
+			if (nicknameDefinition != null) {
 				msgs = ((InternalEObject)nicknameDefinition).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__NICKNAME_DEFINITION, null, msgs);
-			if (newNicknameDefinition != null)
+			}
+			if (newNicknameDefinition != null) {
 				msgs = ((InternalEObject)newNicknameDefinition).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__NICKNAME_DEFINITION, null, msgs);
+			}
 			msgs = basicSetNicknameDefinition(newNicknameDefinition, msgs);
-			if (msgs != null) msgs.dispatch();
+			if (msgs != null) {
+				msgs.dispatch();
+			}
 		}
-		else if (eNotificationRequired())
+		else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__NICKNAME_DEFINITION, newNicknameDefinition, newNicknameDefinition));
+		}
 	}
 
 	/**
@@ -2882,6 +3124,7 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SchemaDefinition getSchemaDefinition() {
 		return schemaDefinition;
 	}
@@ -2896,7 +3139,11 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 		schemaDefinition = newSchemaDefinition;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SCHEMA_DEFINITION, oldSchemaDefinition, newSchemaDefinition);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			if (msgs == null) {
+				msgs = notification;
+			} else {
+				msgs.add(notification);
+			}
 		}
 		return msgs;
 	}
@@ -2906,18 +3153,24 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSchemaDefinition(SchemaDefinition newSchemaDefinition) {
 		if (newSchemaDefinition != schemaDefinition) {
 			NotificationChain msgs = null;
-			if (schemaDefinition != null)
+			if (schemaDefinition != null) {
 				msgs = ((InternalEObject)schemaDefinition).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SCHEMA_DEFINITION, null, msgs);
-			if (newSchemaDefinition != null)
+			}
+			if (newSchemaDefinition != null) {
 				msgs = ((InternalEObject)newSchemaDefinition).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SCHEMA_DEFINITION, null, msgs);
+			}
 			msgs = basicSetSchemaDefinition(newSchemaDefinition, msgs);
-			if (msgs != null) msgs.dispatch();
+			if (msgs != null) {
+				msgs.dispatch();
+			}
 		}
-		else if (eNotificationRequired())
+		else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SCHEMA_DEFINITION, newSchemaDefinition, newSchemaDefinition));
+		}
 	}
 
 	/**
@@ -2925,6 +3178,7 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ViewDefinition getViewDefinition() {
 		return viewDefinition;
 	}
@@ -2939,7 +3193,11 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 		viewDefinition = newViewDefinition;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__VIEW_DEFINITION, oldViewDefinition, newViewDefinition);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			if (msgs == null) {
+				msgs = notification;
+			} else {
+				msgs.add(notification);
+			}
 		}
 		return msgs;
 	}
@@ -2949,18 +3207,24 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setViewDefinition(ViewDefinition newViewDefinition) {
 		if (newViewDefinition != viewDefinition) {
 			NotificationChain msgs = null;
-			if (viewDefinition != null)
+			if (viewDefinition != null) {
 				msgs = ((InternalEObject)viewDefinition).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__VIEW_DEFINITION, null, msgs);
-			if (newViewDefinition != null)
+			}
+			if (newViewDefinition != null) {
 				msgs = ((InternalEObject)newViewDefinition).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__VIEW_DEFINITION, null, msgs);
+			}
 			msgs = basicSetViewDefinition(newViewDefinition, msgs);
-			if (msgs != null) msgs.dispatch();
+			if (msgs != null) {
+				msgs.dispatch();
+			}
 		}
-		else if (eNotificationRequired())
+		else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__VIEW_DEFINITION, newViewDefinition, newViewDefinition));
+		}
 	}
 
 	/**
@@ -2968,6 +3232,7 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public DebuggerDefinition getDebuggerDefinition() {
 		return debuggerDefinition;
 	}
@@ -2982,7 +3247,11 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 		debuggerDefinition = newDebuggerDefinition;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__DEBUGGER_DEFINITION, oldDebuggerDefinition, newDebuggerDefinition);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			if (msgs == null) {
+				msgs = notification;
+			} else {
+				msgs.add(notification);
+			}
 		}
 		return msgs;
 	}
@@ -2992,18 +3261,24 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDebuggerDefinition(DebuggerDefinition newDebuggerDefinition) {
 		if (newDebuggerDefinition != debuggerDefinition) {
 			NotificationChain msgs = null;
-			if (debuggerDefinition != null)
+			if (debuggerDefinition != null) {
 				msgs = ((InternalEObject)debuggerDefinition).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__DEBUGGER_DEFINITION, null, msgs);
-			if (newDebuggerDefinition != null)
+			}
+			if (newDebuggerDefinition != null) {
 				msgs = ((InternalEObject)newDebuggerDefinition).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__DEBUGGER_DEFINITION, null, msgs);
+			}
 			msgs = basicSetDebuggerDefinition(newDebuggerDefinition, msgs);
-			if (msgs != null) msgs.dispatch();
+			if (msgs != null) {
+				msgs.dispatch();
+			}
 		}
-		else if (eNotificationRequired())
+		else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__DEBUGGER_DEFINITION, newDebuggerDefinition, newDebuggerDefinition));
+		}
 	}
 
 	/**
@@ -3011,6 +3286,7 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList getPrivilegedElementDefinitions() {
 		if (privilegedElementDefinitions == null) {
 			privilegedElementDefinitions = new EObjectContainmentEList(PrivilegedElementDefinition.class, this, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__PRIVILEGED_ELEMENT_DEFINITIONS);
@@ -3023,6 +3299,7 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ConstructedDataTypeDefinition getConstructedDataTypeDefinition() {
 		return constructedDataTypeDefinition;
 	}
@@ -3037,7 +3314,11 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 		constructedDataTypeDefinition = newConstructedDataTypeDefinition;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__CONSTRUCTED_DATA_TYPE_DEFINITION, oldConstructedDataTypeDefinition, newConstructedDataTypeDefinition);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			if (msgs == null) {
+				msgs = notification;
+			} else {
+				msgs.add(notification);
+			}
 		}
 		return msgs;
 	}
@@ -3047,18 +3328,24 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setConstructedDataTypeDefinition(ConstructedDataTypeDefinition newConstructedDataTypeDefinition) {
 		if (newConstructedDataTypeDefinition != constructedDataTypeDefinition) {
 			NotificationChain msgs = null;
-			if (constructedDataTypeDefinition != null)
+			if (constructedDataTypeDefinition != null) {
 				msgs = ((InternalEObject)constructedDataTypeDefinition).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__CONSTRUCTED_DATA_TYPE_DEFINITION, null, msgs);
-			if (newConstructedDataTypeDefinition != null)
+			}
+			if (newConstructedDataTypeDefinition != null) {
 				msgs = ((InternalEObject)newConstructedDataTypeDefinition).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__CONSTRUCTED_DATA_TYPE_DEFINITION, null, msgs);
+			}
 			msgs = basicSetConstructedDataTypeDefinition(newConstructedDataTypeDefinition, msgs);
-			if (msgs != null) msgs.dispatch();
+			if (msgs != null) {
+				msgs.dispatch();
+			}
 		}
-		else if (eNotificationRequired())
+		else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__CONSTRUCTED_DATA_TYPE_DEFINITION, newConstructedDataTypeDefinition, newConstructedDataTypeDefinition));
+		}
 	}
 
 	/**
@@ -3066,8 +3353,11 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (vendor: "); //$NON-NLS-1$

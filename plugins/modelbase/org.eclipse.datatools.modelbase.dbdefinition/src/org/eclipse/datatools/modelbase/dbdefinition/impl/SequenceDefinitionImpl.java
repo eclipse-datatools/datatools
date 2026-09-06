@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.SequenceDefinitionImpl#getPredefinedDataTypeDefinitions <em>Predefined Data Type Definitions</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.SequenceDefinitionImpl#getDefaultDataTypeDefinition <em>Default Data Type Definition</em>}</li>
@@ -40,7 +41,6 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.SequenceDefinitionImpl#getNoCacheString <em>No Cache String</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.SequenceDefinitionImpl#getCacheDefaultValue <em>Cache Default Value</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -219,6 +219,7 @@ public class SequenceDefinitionImpl extends EObjectImpl implements SequenceDefin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return DatabaseDefinitionPackage.Literals.SEQUENCE_DEFINITION;
 	}
@@ -228,6 +229,7 @@ public class SequenceDefinitionImpl extends EObjectImpl implements SequenceDefin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList getPredefinedDataTypeDefinitions() {
 		if (predefinedDataTypeDefinitions == null) {
 			predefinedDataTypeDefinitions = new EObjectResolvingEList(PredefinedDataTypeDefinition.class, this, DatabaseDefinitionPackage.SEQUENCE_DEFINITION__PREDEFINED_DATA_TYPE_DEFINITIONS);
@@ -240,6 +242,7 @@ public class SequenceDefinitionImpl extends EObjectImpl implements SequenceDefin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isTypeEnumerationSupported() {
 		return typeEnumerationSupported;
 	}
@@ -249,11 +252,13 @@ public class SequenceDefinitionImpl extends EObjectImpl implements SequenceDefin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTypeEnumerationSupported(boolean newTypeEnumerationSupported) {
 		boolean oldTypeEnumerationSupported = typeEnumerationSupported;
 		typeEnumerationSupported = newTypeEnumerationSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.SEQUENCE_DEFINITION__TYPE_ENUMERATION_SUPPORTED, oldTypeEnumerationSupported, typeEnumerationSupported));
+		}
 	}
 
 	/**
@@ -261,6 +266,7 @@ public class SequenceDefinitionImpl extends EObjectImpl implements SequenceDefin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isCacheSupported() {
 		return cacheSupported;
 	}
@@ -270,11 +276,13 @@ public class SequenceDefinitionImpl extends EObjectImpl implements SequenceDefin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCacheSupported(boolean newCacheSupported) {
 		boolean oldCacheSupported = cacheSupported;
 		cacheSupported = newCacheSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.SEQUENCE_DEFINITION__CACHE_SUPPORTED, oldCacheSupported, cacheSupported));
+		}
 	}
 
 	/**
@@ -282,6 +290,7 @@ public class SequenceDefinitionImpl extends EObjectImpl implements SequenceDefin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isOrderSupported() {
 		return orderSupported;
 	}
@@ -291,11 +300,13 @@ public class SequenceDefinitionImpl extends EObjectImpl implements SequenceDefin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOrderSupported(boolean newOrderSupported) {
 		boolean oldOrderSupported = orderSupported;
 		orderSupported = newOrderSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.SEQUENCE_DEFINITION__ORDER_SUPPORTED, oldOrderSupported, orderSupported));
+		}
 	}
 
 	/**
@@ -303,6 +314,7 @@ public class SequenceDefinitionImpl extends EObjectImpl implements SequenceDefin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getNoMaximumValueString() {
 		return noMaximumValueString;
 	}
@@ -312,11 +324,13 @@ public class SequenceDefinitionImpl extends EObjectImpl implements SequenceDefin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setNoMaximumValueString(String newNoMaximumValueString) {
 		String oldNoMaximumValueString = noMaximumValueString;
 		noMaximumValueString = newNoMaximumValueString;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.SEQUENCE_DEFINITION__NO_MAXIMUM_VALUE_STRING, oldNoMaximumValueString, noMaximumValueString));
+		}
 	}
 
 	/**
@@ -324,6 +338,7 @@ public class SequenceDefinitionImpl extends EObjectImpl implements SequenceDefin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getNoMinimumValueString() {
 		return noMinimumValueString;
 	}
@@ -333,11 +348,13 @@ public class SequenceDefinitionImpl extends EObjectImpl implements SequenceDefin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setNoMinimumValueString(String newNoMinimumValueString) {
 		String oldNoMinimumValueString = noMinimumValueString;
 		noMinimumValueString = newNoMinimumValueString;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.SEQUENCE_DEFINITION__NO_MINIMUM_VALUE_STRING, oldNoMinimumValueString, noMinimumValueString));
+		}
 	}
 
 	/**
@@ -345,6 +362,7 @@ public class SequenceDefinitionImpl extends EObjectImpl implements SequenceDefin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getNoCacheString() {
 		return noCacheString;
 	}
@@ -354,11 +372,13 @@ public class SequenceDefinitionImpl extends EObjectImpl implements SequenceDefin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setNoCacheString(String newNoCacheString) {
 		String oldNoCacheString = noCacheString;
 		noCacheString = newNoCacheString;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.SEQUENCE_DEFINITION__NO_CACHE_STRING, oldNoCacheString, noCacheString));
+		}
 	}
 
 	/**
@@ -366,6 +386,7 @@ public class SequenceDefinitionImpl extends EObjectImpl implements SequenceDefin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getCacheDefaultValue() {
 		return cacheDefaultValue;
 	}
@@ -375,11 +396,13 @@ public class SequenceDefinitionImpl extends EObjectImpl implements SequenceDefin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCacheDefaultValue(int newCacheDefaultValue) {
 		int oldCacheDefaultValue = cacheDefaultValue;
 		cacheDefaultValue = newCacheDefaultValue;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.SEQUENCE_DEFINITION__CACHE_DEFAULT_VALUE, oldCacheDefaultValue, cacheDefaultValue));
+		}
 	}
 
 	/**
@@ -387,12 +410,15 @@ public class SequenceDefinitionImpl extends EObjectImpl implements SequenceDefin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.SEQUENCE_DEFINITION__PREDEFINED_DATA_TYPE_DEFINITIONS:
 				return getPredefinedDataTypeDefinitions();
 			case DatabaseDefinitionPackage.SEQUENCE_DEFINITION__DEFAULT_DATA_TYPE_DEFINITION:
-				if (resolve) return getDefaultDataTypeDefinition();
+				if (resolve) {
+					return getDefaultDataTypeDefinition();
+				}
 				return basicGetDefaultDataTypeDefinition();
 			case DatabaseDefinitionPackage.SEQUENCE_DEFINITION__TYPE_ENUMERATION_SUPPORTED:
 				return isTypeEnumerationSupported() ? Boolean.TRUE : Boolean.FALSE;
@@ -407,7 +433,7 @@ public class SequenceDefinitionImpl extends EObjectImpl implements SequenceDefin
 			case DatabaseDefinitionPackage.SEQUENCE_DEFINITION__NO_CACHE_STRING:
 				return getNoCacheString();
 			case DatabaseDefinitionPackage.SEQUENCE_DEFINITION__CACHE_DEFAULT_VALUE:
-				return Integer.valueOf(getCacheDefaultValue());
+				return new Integer(getCacheDefaultValue());
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -417,6 +443,7 @@ public class SequenceDefinitionImpl extends EObjectImpl implements SequenceDefin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.SEQUENCE_DEFINITION__PREDEFINED_DATA_TYPE_DEFINITIONS:
@@ -456,6 +483,7 @@ public class SequenceDefinitionImpl extends EObjectImpl implements SequenceDefin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.SEQUENCE_DEFINITION__PREDEFINED_DATA_TYPE_DEFINITIONS:
@@ -494,6 +522,7 @@ public class SequenceDefinitionImpl extends EObjectImpl implements SequenceDefin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.SEQUENCE_DEFINITION__PREDEFINED_DATA_TYPE_DEFINITIONS:
@@ -523,13 +552,15 @@ public class SequenceDefinitionImpl extends EObjectImpl implements SequenceDefin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public PredefinedDataTypeDefinition getDefaultDataTypeDefinition() {
 		if (defaultDataTypeDefinition != null && defaultDataTypeDefinition.eIsProxy()) {
 			InternalEObject oldDefaultDataTypeDefinition = (InternalEObject)defaultDataTypeDefinition;
 			defaultDataTypeDefinition = (PredefinedDataTypeDefinition)eResolveProxy(oldDefaultDataTypeDefinition);
 			if (defaultDataTypeDefinition != oldDefaultDataTypeDefinition) {
-				if (eNotificationRequired())
+				if (eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DatabaseDefinitionPackage.SEQUENCE_DEFINITION__DEFAULT_DATA_TYPE_DEFINITION, oldDefaultDataTypeDefinition, defaultDataTypeDefinition));
+				}
 			}
 		}
 		return defaultDataTypeDefinition;
@@ -549,11 +580,13 @@ public class SequenceDefinitionImpl extends EObjectImpl implements SequenceDefin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDefaultDataTypeDefinition(PredefinedDataTypeDefinition newDefaultDataTypeDefinition) {
 		PredefinedDataTypeDefinition oldDefaultDataTypeDefinition = defaultDataTypeDefinition;
 		defaultDataTypeDefinition = newDefaultDataTypeDefinition;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.SEQUENCE_DEFINITION__DEFAULT_DATA_TYPE_DEFINITION, oldDefaultDataTypeDefinition, defaultDataTypeDefinition));
+		}
 	}
 
 	/**
@@ -561,8 +594,11 @@ public class SequenceDefinitionImpl extends EObjectImpl implements SequenceDefin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (typeEnumerationSupported: "); //$NON-NLS-1$

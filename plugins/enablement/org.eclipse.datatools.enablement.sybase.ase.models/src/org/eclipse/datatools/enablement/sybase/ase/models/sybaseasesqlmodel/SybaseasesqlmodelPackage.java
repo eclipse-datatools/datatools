@@ -2025,6 +2025,15 @@ public interface SybaseasesqlmodelPackage extends EPackage
 	int SYBASE_ASE_FUNC_BASED_INDEX_MEMBER__COLUMN = SybasesqlmodelPackage.SYBASE_INDEX_MEMBER__COLUMN;
 
     /**
+	 * The feature id for the '<em><b>Expression</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYBASE_ASE_FUNC_BASED_INDEX_MEMBER__EXPRESSION = SybasesqlmodelPackage.SYBASE_INDEX_MEMBER__EXPRESSION;
+
+				/**
 	 * The feature id for the '<em><b>Column Expression</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3056,6 +3065,15 @@ public interface SybaseasesqlmodelPackage extends EPackage
 	int SYBASE_ASE_UNIQUE_CONSTRAINT__MEMBERS = SQLConstraintsPackage.UNIQUE_CONSTRAINT__MEMBERS;
 
     /**
+	 * The feature id for the '<em><b>Clustered</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYBASE_ASE_UNIQUE_CONSTRAINT__CLUSTERED = SQLConstraintsPackage.UNIQUE_CONSTRAINT__CLUSTERED;
+
+				/**
 	 * The feature id for the '<em><b>Foreign Key</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3219,6 +3237,15 @@ public interface SybaseasesqlmodelPackage extends EPackage
 	int SYBASE_ASE_PRIMARY_KEY__MEMBERS = SQLConstraintsPackage.PRIMARY_KEY__MEMBERS;
 
     /**
+	 * The feature id for the '<em><b>Clustered</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYBASE_ASE_PRIMARY_KEY__CLUSTERED = SQLConstraintsPackage.PRIMARY_KEY__CLUSTERED;
+
+				/**
 	 * The feature id for the '<em><b>Foreign Key</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6227,9 +6254,11 @@ public interface SybaseasesqlmodelPackage extends EPackage
      * <!-- end-user-doc -->
 	 * @see org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.impl.SybaseASEPrivilegeImpl
 	 * @see org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.impl.SybaseasesqlmodelPackageImpl#getSybaseASEPrivilege()
+	 * @deprecated
 	 * @generated
 	 */
-    int SYBASE_ASE_PRIVILEGE = 31;
+    @Deprecated
+	int SYBASE_ASE_PRIVILEGE = 31;
 
     /**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -6379,10 +6408,12 @@ public interface SybaseasesqlmodelPackage extends EPackage
 	 * The number of structural features of the '<em>Sybase ASE Privilege</em>' class.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+	 * @deprecated
 	 * @generated
 	 * @ordered
 	 */
-    int SYBASE_ASE_PRIVILEGE_FEATURE_COUNT = SybasesqlmodelPackage.SYBASE_PRIVILEGE_FEATURE_COUNT + 0;
+    @Deprecated
+	int SYBASE_ASE_PRIVILEGE_FEATURE_COUNT = SybasesqlmodelPackage.SYBASE_PRIVILEGE_FEATURE_COUNT + 0;
 
     /**
 	 * The meta object id for the '{@link org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.impl.SybaseASETriggerImpl <em>Sybase ASE Trigger</em>}' class.
@@ -8241,9 +8272,11 @@ public interface SybaseasesqlmodelPackage extends EPackage
      * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Sybase ASE Privilege</em>'.
 	 * @see org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseASEPrivilege
+	 * @deprecated
 	 * @generated
 	 */
-    EClass getSybaseASEPrivilege();
+    @Deprecated
+	EClass getSybaseASEPrivilege();
 
     /**
 	 * Returns the meta object for class '{@link org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseASETrigger <em>Sybase ASE Trigger</em>}'.
@@ -8368,7 +8401,7 @@ public interface SybaseasesqlmodelPackage extends EPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	interface Literals 
+	interface Literals
 	{
         /**
 		 * The meta object literal for the '{@link org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.impl.SybaseASESchemaImpl <em>Sybase ASE Schema</em>}' class.
@@ -9590,9 +9623,11 @@ public interface SybaseasesqlmodelPackage extends EPackage
          * <!-- end-user-doc -->
 		 * @see org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.impl.SybaseASEPrivilegeImpl
 		 * @see org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.impl.SybaseasesqlmodelPackageImpl#getSybaseASEPrivilege()
+		 * @deprecated
 		 * @generated
 		 */
-        EClass SYBASE_ASE_PRIVILEGE = eINSTANCE.getSybaseASEPrivilege();
+        @Deprecated
+		EClass SYBASE_ASE_PRIVILEGE = eINSTANCE.getSybaseASEPrivilege();
 
         /**
 		 * The meta object literal for the '{@link org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.impl.SybaseASETriggerImpl <em>Sybase ASE Trigger</em>}' class.

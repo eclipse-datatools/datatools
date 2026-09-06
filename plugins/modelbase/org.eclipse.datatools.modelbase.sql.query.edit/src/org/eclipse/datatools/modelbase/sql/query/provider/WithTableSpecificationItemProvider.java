@@ -16,11 +16,6 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
-import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
-import org.eclipse.emf.edit.provider.IItemLabelProvider;
-import org.eclipse.emf.edit.provider.IItemPropertySource;
-import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
-import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
@@ -30,59 +25,54 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * @generated
  */
 public class WithTableSpecificationItemProvider
-	extends SQLQueryObjectItemProvider
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+	extends SQLQueryObjectItemProvider {
     /**
-     * This constructs an instance from a factory and a notifier.
-     * <!-- begin-user-doc -->
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public WithTableSpecificationItemProvider(AdapterFactory adapterFactory) {
-        super(adapterFactory);
-    }
+		super(adapterFactory);
+	}
 
     /**
-     * This returns the property descriptors for the adapted class.
-     * <!-- begin-user-doc -->
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public List getPropertyDescriptors(Object object) {
-        if (itemPropertyDescriptors == null) {
-            super.getPropertyDescriptors(object);
+		if (itemPropertyDescriptors == null) {
+			super.getPropertyDescriptors(object);
 
-            addWithTableReferencesPropertyDescriptor(object);
-        }
-        return itemPropertyDescriptors;
-    }
+			addWithTableReferencesPropertyDescriptor(object);
+		}
+		return itemPropertyDescriptors;
+	}
 
     /**
-     * This adds a property descriptor for the With Table References feature.
-     * <!-- begin-user-doc -->
+	 * This adds a property descriptor for the With Table References feature.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected void addWithTableReferencesPropertyDescriptor(Object object) {
-        itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
-                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                 getResourceLocator(),
-                 getString("_UI_WithTableSpecification_withTableReferences_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_WithTableSpecification_withTableReferences_feature", "_UI_WithTableSpecification_type"),
-                 SQLQueryModelPackage.Literals.WITH_TABLE_SPECIFICATION__WITH_TABLE_REFERENCES,
-                 true,
-                 false,
-                 false,
-                 null,
-                 null,
-                 null));
-    }
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_WithTableSpecification_withTableReferences_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_WithTableSpecification_withTableReferences_feature", "_UI_WithTableSpecification_type"),
+				 SQLQueryModelPackage.Literals.WITH_TABLE_SPECIFICATION__WITH_TABLE_REFERENCES,
+				 true,
+				 false,
+				 false,
+				 null,
+				 null,
+				 null));
+	}
 
     /**
      * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
@@ -92,6 +82,7 @@ public class WithTableSpecificationItemProvider
 	 * <!-- end-user-doc -->
      * @generated NOT
      */
+	@Override
 	public Collection getChildrenFeatures(Object object) {
         if (childrenFeatures == null) {
             super.getChildrenFeatures(object);
@@ -102,57 +93,61 @@ public class WithTableSpecificationItemProvider
     }
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	protected EStructuralFeature getChildFeature(Object object, Object child) {
-        // Check the type of the specified child object and return the proper feature to use for
-        // adding (see {@link AddCommand}) it as a child.
+		// Check the type of the specified child object and return the proper feature to use for
+		// adding (see {@link AddCommand}) it as a child.
 
-        return super.getChildFeature(object, child);
-    }
+		return super.getChildFeature(object, child);
+	}
 
     /**
-     * This returns WithTableSpecification.gif.
-     * <!-- begin-user-doc -->
+	 * This returns WithTableSpecification.gif.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public Object getImage(Object object) {
-        return overlayImage(object, getResourceLocator().getImage("full/obj16/WithTableSpecification"));
-    }
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/WithTableSpecification"));
+	}
 
     /**
-     * This returns the label text for the adapted class.
-     * <!-- begin-user-doc -->
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public String getText(Object object) {
-        String label = ((WithTableSpecification)object).getName();
-        return label == null || label.length() == 0 ?
-            getString("_UI_WithTableSpecification_type") :
-            getString("_UI_WithTableSpecification_type") + " " + label;
-    }
+		String label = ((WithTableSpecification)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_WithTableSpecification_type") :
+			getString("_UI_WithTableSpecification_type") + " " + label;
+	}
 
     /**
-     * This handles model notifications by calling {@link #updateChildren} to update any cached
-     * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-     * <!-- begin-user-doc -->
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public void notifyChanged(Notification notification) {
-        updateChildren(notification);
+		updateChildren(notification);
 
-        switch (notification.getFeatureID(WithTableSpecification.class)) {
-            case SQLQueryModelPackage.WITH_TABLE_SPECIFICATION__WITH_TABLE_QUERY_EXPR:
-            case SQLQueryModelPackage.WITH_TABLE_SPECIFICATION__COLUMN_NAME_LIST:
-                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-                return;
-        }
-        super.notifyChanged(notification);
-    }
+		switch (notification.getFeatureID(WithTableSpecification.class)) {
+			case SQLQueryModelPackage.WITH_TABLE_SPECIFICATION__WITH_TABLE_QUERY_EXPR:
+			case SQLQueryModelPackage.WITH_TABLE_SPECIFICATION__COLUMN_NAME_LIST:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
+		}
+		super.notifyChanged(notification);
+	}
 
 }

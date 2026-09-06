@@ -27,11 +27,11 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.schema.impl.CatalogImpl#getDatabase <em>Database</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.schema.impl.CatalogImpl#getSchemas <em>Schemas</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -70,6 +70,7 @@ public class CatalogImpl extends SQLObjectImpl implements Catalog {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return SQLSchemaPackage.Literals.CATALOG;
 	}
@@ -79,13 +80,15 @@ public class CatalogImpl extends SQLObjectImpl implements Catalog {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Database getDatabase() {
 		if (database != null && database.eIsProxy()) {
 			InternalEObject oldDatabase = (InternalEObject)database;
 			database = (Database)eResolveProxy(oldDatabase);
 			if (database != oldDatabase) {
-				if (eNotificationRequired())
+				if (eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SQLSchemaPackage.CATALOG__DATABASE, oldDatabase, database));
+				}
 			}
 		}
 		return database;
@@ -110,7 +113,11 @@ public class CatalogImpl extends SQLObjectImpl implements Catalog {
 		database = newDatabase;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLSchemaPackage.CATALOG__DATABASE, oldDatabase, newDatabase);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			if (msgs == null) {
+				msgs = notification;
+			} else {
+				msgs.add(notification);
+			}
 		}
 		return msgs;
 	}
@@ -120,18 +127,24 @@ public class CatalogImpl extends SQLObjectImpl implements Catalog {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDatabase(Database newDatabase) {
 		if (newDatabase != database) {
 			NotificationChain msgs = null;
-			if (database != null)
+			if (database != null) {
 				msgs = ((InternalEObject)database).eInverseRemove(this, SQLSchemaPackage.DATABASE__CATALOGS, Database.class, msgs);
-			if (newDatabase != null)
+			}
+			if (newDatabase != null) {
 				msgs = ((InternalEObject)newDatabase).eInverseAdd(this, SQLSchemaPackage.DATABASE__CATALOGS, Database.class, msgs);
+			}
 			msgs = basicSetDatabase(newDatabase, msgs);
-			if (msgs != null) msgs.dispatch();
+			if (msgs != null) {
+				msgs.dispatch();
+			}
 		}
-		else if (eNotificationRequired())
+		else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLSchemaPackage.CATALOG__DATABASE, newDatabase, newDatabase));
+		}
 	}
 
 	/**
@@ -139,6 +152,7 @@ public class CatalogImpl extends SQLObjectImpl implements Catalog {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList getSchemas() {
 		if (schemas == null) {
 			schemas = new EObjectWithInverseResolvingEList(Schema.class, this, SQLSchemaPackage.CATALOG__SCHEMAS, SQLSchemaPackage.SCHEMA__CATALOG);
@@ -151,11 +165,13 @@ public class CatalogImpl extends SQLObjectImpl implements Catalog {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case SQLSchemaPackage.CATALOG__DATABASE:
-				if (database != null)
+				if (database != null) {
 					msgs = ((InternalEObject)database).eInverseRemove(this, SQLSchemaPackage.DATABASE__CATALOGS, Database.class, msgs);
+				}
 				return basicSetDatabase((Database)otherEnd, msgs);
 			case SQLSchemaPackage.CATALOG__SCHEMAS:
 				return ((InternalEList)getSchemas()).basicAdd(otherEnd, msgs);
@@ -168,6 +184,7 @@ public class CatalogImpl extends SQLObjectImpl implements Catalog {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case SQLSchemaPackage.CATALOG__DATABASE:
@@ -183,10 +200,13 @@ public class CatalogImpl extends SQLObjectImpl implements Catalog {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SQLSchemaPackage.CATALOG__DATABASE:
-				if (resolve) return getDatabase();
+				if (resolve) {
+					return getDatabase();
+				}
 				return basicGetDatabase();
 			case SQLSchemaPackage.CATALOG__SCHEMAS:
 				return getSchemas();
@@ -199,6 +219,7 @@ public class CatalogImpl extends SQLObjectImpl implements Catalog {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case SQLSchemaPackage.CATALOG__DATABASE:
@@ -217,6 +238,7 @@ public class CatalogImpl extends SQLObjectImpl implements Catalog {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case SQLSchemaPackage.CATALOG__DATABASE:
@@ -234,6 +256,7 @@ public class CatalogImpl extends SQLObjectImpl implements Catalog {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SQLSchemaPackage.CATALOG__DATABASE:

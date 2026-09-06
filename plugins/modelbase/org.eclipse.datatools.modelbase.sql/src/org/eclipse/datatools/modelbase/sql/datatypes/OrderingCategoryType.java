@@ -19,7 +19,7 @@ import org.eclipse.emf.common.util.AbstractEnumerator;
  * <!-- end-user-doc -->
  * <!-- begin-model-doc -->
  * Reference: 5WD-02-Foundation-2002-12 4.7 User-defined types
- * 
+ *
  * <!-- end-model-doc -->
  * @see org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage#getOrderingCategoryType()
  * @model
@@ -126,11 +126,12 @@ public final class OrderingCategoryType extends AbstractEnumerator {
 	 * Returns the '<em><b>Ordering Category Type</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static OrderingCategoryType get(String literal) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			OrderingCategoryType result = VALUES_ARRAY[i];
+		for (OrderingCategoryType result : VALUES_ARRAY) {
 			if (result.toString().equals(literal)) {
 				return result;
 			}
@@ -142,11 +143,12 @@ public final class OrderingCategoryType extends AbstractEnumerator {
 	 * Returns the '<em><b>Ordering Category Type</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static OrderingCategoryType getByName(String name) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			OrderingCategoryType result = VALUES_ARRAY[i];
+		for (OrderingCategoryType result : VALUES_ARRAY) {
 			if (result.getName().equals(name)) {
 				return result;
 			}
@@ -158,6 +160,8 @@ public final class OrderingCategoryType extends AbstractEnumerator {
 	 * Returns the '<em><b>Ordering Category Type</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static OrderingCategoryType get(int value) {
