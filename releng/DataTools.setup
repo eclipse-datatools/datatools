@@ -167,6 +167,16 @@
         name="org.eclipse.oomph.version.feature.group"/>
   </setupTask>
   <setupTask
+      xsi:type="setup.p2:P2Task"
+      label="EMF">
+    <requirement
+        name="org.eclipse.emf.ecore.editor.feature.group"/>
+    <requirement
+        name="org.eclipse.emf.codegen.ecore.ui.feature.group"/>
+    <requirement
+        name="org.eclipse.xsd.ecore.converter.feature.group"/>
+  </setupTask>
+  <setupTask
       xsi:type="git:GitCloneTask"
       id="git.clone.datatools.github"
       locationQualifier="datatools"

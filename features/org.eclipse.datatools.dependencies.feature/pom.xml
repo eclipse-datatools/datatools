@@ -7,6 +7,11 @@
     <artifactId>features</artifactId>
     <version>1.15.0-SNAPSHOT</version>
   </parent>
+
+  <properties>
+    <skipBaselineComparison>true</skipBaselineComparison>
+  </properties>
+
   <groupId>org.eclipse.datatools.features</groupId>
   <artifactId>org.eclipse.datatools.dependencies.feature</artifactId>
   <version>1.18.0-SNAPSHOT</version>

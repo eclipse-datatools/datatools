@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde version="3.8"?>
-<target name="Generated from DTP" sequenceNumber="34">
+<target name="Generated from DTP">
   <locations>
     <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
       <unit id="a.jre.javase" version="0.0.0"/>
@@ -144,7 +144,7 @@
       <repository location="https://download.eclipse.org/modeling/mdt/ocl/updates/releases/latest"/>
       <repository location="https://download.eclipse.org/tools/gef/classic/releases/latest"/>
       <repository location="https://download.eclipse.org/tools/orbit/simrel/orbit-aggregation/milestone/latest"/>
-      <repository location="https://download.eclipse.org/eclipse/updates/4.40-I-builds"/>
+      <repository location="https://download.eclipse.org/eclipse/updates/4.40/R-4.40-202606010713"/>
     </location>
   </locations>
 </target>
