@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<genmodel:GenModel xmi:version="2.0"
-    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.datatools.enablement.sybase.ase.models/src"
-    editDirectory="/org.eclipse.datatools.enablement.sybase.ase.models.edit/src" editorDirectory="/org.eclipse.datatools.enablement.sybase.ase.models.editor/src"
-    modelPluginID="org.eclipse.datatools.enablement.sybase.ase.models" runtimeJar="true"
-    modelName="Sybaseasesqlmodel" modelPluginClass="" editPluginClass="org.eclipse.datatools.enablement.sybase.ase.models.provider.SybaseasesqlmodelEditPlugin"
+    editDirectory="" editorDirectory="" modelPluginID="org.eclipse.datatools.enablement.sybase.ase.models"
+    runtimeJar="true" modelName="Sybaseasesqlmodel" modelPluginClass="" editPluginClass="org.eclipse.datatools.enablement.sybase.ase.models.provider.SybaseasesqlmodelEditPlugin"
     editorPluginClass="org.eclipse.datatools.enablement.sybase.ase.models.presentation.SybaseasesqlmodelEditorPlugin"
-    nonNLSMarkers="true" testsDirectory="/org.eclipse.datatools.enablement.sybase.ase.models.tests/src"
-    testSuiteClass="org.eclipse.datatools.enablement.sybase.ase.models.tests.SybaseasesqlmodelAllTests"
-    importerID="org.eclipse.emf.importer.ecore" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.genmodel#//sqlmodel ../../org.eclipse.datatools.enablement.sybase/models/sybasesqlmodel.genmodel#//sybasesqlmodel">
+    nonNLSMarkers="true" testsDirectory="" testSuiteClass="org.eclipse.datatools.enablement.sybase.ase.models.tests.SybaseasesqlmodelAllTests"
+    importerID="org.eclipse.emf.importer.ecore" usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.genmodel#//sqlmodel ../../org.eclipse.datatools.enablement.sybase/models/sybasesqlmodel.genmodel#//sybasesqlmodel">
   <foreignModel>sybaseasesqlmodel.ecore</foreignModel>
   <genPackages prefix="Sybaseasesqlmodel" basePackage="org.eclipse.datatools.enablement.sybase.ase.models"
       disposableProviderFactory="true" ecorePackage="sybaseasesqlmodel.ecore#/">

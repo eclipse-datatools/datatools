@@ -23,7 +23,8 @@
   <extension point="org.eclipse.emf.ecore.generated_package">
     <package 
        uri = "http://www.eclipse.org/datatools/connectivity/oda/design" 
-       class = "org.eclipse.datatools.connectivity.oda.design.DesignPackage" />
+       class = "org.eclipse.datatools.connectivity.oda.design.DesignPackage"
+       genModel = "model/odaDesignSession.genmodel" />
   </extension>
 
   <extension point="org.eclipse.emf.ecore.extension_parser">

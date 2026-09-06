@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<genmodel:GenModel xmi:version="2.0"
-    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="Copyright (c) 2008 Ingres Corporation and others.&#xD;&#xA;All rights reserved. This program and the accompanying materials&#xD;&#xA;are made available under the terms of the Eclipse Public License 2.0&#xD;&#xA;which accompanies this distribution, and is available at&#xD;&#xA;https://www.eclipse.org/legal/epl-2.0/&#xD;&#xA;&#xD;&#xA;Contributors:&#xD;&#xA;  Ingres Corporation - initial API and implementation"
-    modelDirectory="/org.eclipse.datatools.enablement.ingres/src" modelPluginID="org.eclipse.datatools.enablement.ingres"
-    redirection="" modelName="Ingressqlmodel" editPluginClass="org.eclipse.datatools.enablement.ingres.models.ingressqlmodel.provider.IngressqlmodelEditPlugin"
+    modelDirectory="/org.eclipse.datatools.enablement.ingres/src" editDirectory=""
+    editorDirectory="" modelPluginID="org.eclipse.datatools.enablement.ingres" redirection=""
+    modelName="Ingressqlmodel" editPluginClass="org.eclipse.datatools.enablement.ingres.models.ingressqlmodel.provider.IngressqlmodelEditPlugin"
     editorPluginClass="org.eclipse.datatools.enablement.ingres.models.ingressqlmodel.presentation.IngressqlmodelEditorPlugin"
-    rootImplementsInterface="" runtimeCompatibility="true" importerID="org.eclipse.emf.importer.ecore"
-    providerRootExtendsClass="" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore platform:/plugin/org.eclipse.datatools.modelbase.sql/model/sqlmodel.genmodel#//sqlmodel">
+    rootImplementsInterface="" runtimeCompatibility="true" testsDirectory="" importerID="org.eclipse.emf.importer.ecore"
+    providerRootExtendsClass="" usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.genmodel#//sqlmodel">
   <foreignModel>ingressqlmodel.ecore</foreignModel>
   <genPackages prefix="Ingressqlmodel" basePackage="org.eclipse.datatools.enablement.ingres.models"
       disposableProviderFactory="true" ecorePackage="ingressqlmodel.ecore#/">
