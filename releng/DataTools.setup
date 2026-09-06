@@ -124,8 +124,8 @@
   </setupTask>
   <setupTask
       xsi:type="jdt:JRETask"
-      version="JavaSE-21"
-      location="${jre.location-21}">
+      version="JavaSE-25"
+      location="${jre.location-25}">
     <description>Define the JRE needed to compile and run the Java projects of ${scope.project.label}</description>
   </setupTask>
   <setupTask
@@ -197,6 +197,12 @@
         <value>remoteURI</value>
       </detail>
     </annotation>
+    <configSections
+        name="branch">
+      <properties
+          key="autoSetupRebase"
+          value="always"/>
+    </configSections>
     <description>The Data Tools Platform .github repository.</description>
   </setupTask>
   <setupTask
@@ -218,6 +224,12 @@
         <value>remoteURI</value>
       </detail>
     </annotation>
+    <configSections
+        name="branch">
+      <properties
+          key="autoSetupRebase"
+          value="always"/>
+    </configSections>
     <description>The main Data Tools Platform repository.</description>
   </setupTask>
   <setupTask
@@ -470,36 +482,6 @@
   <setupTask
       xsi:type="setup:CompoundTask"
       name="maven">
-    <setupTask
-        xsi:type="setup:StringSubstitutionTask"
-        name="maven.build.java.home"
-        value="${jre.location-21}">
-      <description>The location used to specify JAVA_HOME in the External Tools Configurations.</description>
-    </setupTask>
-    <setupTask
-        xsi:type="setup:VariableTask"
-        filter="(osgi.os=win32)"
-        type="FILE"
-        name="maven.build.command"
-        defaultValue="mvn.cmd"
-        label="Maven Command">
-      <description>The absolute path location of the mvn command that will execute mvn on your operating system; it is used in the External Tools Configurations. You may leave the default if you don't intend to do Maven builds.</description>
-    </setupTask>
-    <setupTask
-        xsi:type="setup:VariableTask"
-        filter="(!(osgi.os=win32))"
-        type="FILE"
-        name="maven.build.command"
-        defaultValue="mvn"
-        label="Maven Command">
-      <description>The absolute path location of the mvn command that will execute mvn on your operating system; it is used in the External Tools Configurations. You may leave the default if you don't intend to do Maven builds.</description>
-    </setupTask>
-    <setupTask
-        xsi:type="setup:StringSubstitutionTask"
-        name="maven.build.command"
-        value="${maven.build.command}">
-      <description>The location of the mvn command that will execute mvn on your operating system; it is used in the External Tools Configurations.</description>
-    </setupTask>
     <setupTask
         xsi:type="setup:VariableTask"
         filter="(osgi.os=win32)"
