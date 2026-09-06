@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ecore:EPackage xmi:version="2.0"
-    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="sybaseasasqlmodel"
-    nsURI="http:///org/eclipse/datatools/connectivity/sqm/sybase/asa/sybaseasasqlmodel.ecore"
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="sybaseasasqlmodel" nsURI="http:///org/eclipse/datatools/connectivity/sqm/sybase/asa/sybaseasasqlmodel.ecore"
     nsPrefix="SybaseASAModel">
   <eClassifiers xsi:type="ecore:EClass" name="SybaseASADatabase" eSuperTypes="sybaseasabasesqlmodel.ecore#//SybaseASABaseDatabase">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="ASECompatible" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
@@ -23,7 +21,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="virtual" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SybaseASATempTable" eSuperTypes="sybaseasabasesqlmodel.ecore#//SybaseASABaseTempTable">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="pctfree" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="pctfree" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"
         defaultValueLiteral="-1"/>
   </eClassifiers>
 </ecore:EPackage>

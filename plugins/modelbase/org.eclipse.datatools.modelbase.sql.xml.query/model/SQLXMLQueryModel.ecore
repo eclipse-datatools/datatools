@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ecore:EPackage xmi:version="2.0"
-    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="query"
-    nsURI="http:///org/eclipse/datatools/modelbase/sql/xml/query/SQLXMLQueryModel.ecore"
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="query" nsURI="http:///org/eclipse/datatools/modelbase/sql/xml/query/SQLXMLQueryModel.ecore"
     nsPrefix="org.eclipse.datatools.modelbase.sql.xml.query">
   <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
     <details key="documentation" value="The documentation for this model is adapted from &quot;Information technology -- Database languages -- SQL, Part 14: XML-Related Specifications (SQL/XML)&quot; WG3:WLG-010preview H2-2005-xxx, FDIS ISO/IEC 9075-14:2005 (E) draft published May, 2005.&#xD;&#xA;"/>
@@ -185,25 +183,25 @@
       <details key="documentation" value="Represents an XQuery expression.  The content of this element is a literal string which specifies an XML Query.  See ISO SQL/XML sec. 6.17."/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="xqueryExprContent" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="predicateExists" lowerBound="1"
-        eType="#//XMLPredicateExists" transient="true" eOpposite="#//XMLPredicateExists/xqueryExpr"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="valueFunctionQuery" lowerBound="1"
-        eType="#//XMLValueFunctionQuery" transient="true" eOpposite="#//XMLValueFunctionQuery/xqueryExpr"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="predicateExists" eType="#//XMLPredicateExists"
+        transient="true" eOpposite="#//XMLPredicateExists/xqueryExpr"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="valueFunctionQuery" eType="#//XMLValueFunctionQuery"
+        transient="true" eOpposite="#//XMLValueFunctionQuery/xqueryExpr"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="XMLQueryArgumentList" eSuperTypes="../../org.eclipse.datatools.modelbase.sql.query/model/SQLQueryModel.ecore#//SQLQueryObject">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="Represents an XML Query argument list.  See ISO SQL/XML sec. 6.17.  &lt;note>The list is modelled as an explicit object rather than just as a list of XMLQueryArgument objects attached to the parent so that the list as whole can have an optional passing mechanism clause.&lt;/note>"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="passingMechanism" eType="#//XMLPassingType"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="predicateExists" lowerBound="1"
-        eType="#//XMLPredicateExists" transient="true" eOpposite="#//XMLPredicateExists/xqueryArgList"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="predicateExists" eType="#//XMLPredicateExists"
+        transient="true" eOpposite="#//XMLPredicateExists/xqueryArgList"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="xqueryArgListChildren"
         lowerBound="1" upperBound="-1" eType="#//XMLQueryArgumentItem" containment="true"
         eOpposite="#//XMLQueryArgumentItem/xqueryArgList"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="valueFunctionQuery" lowerBound="1"
-        eType="#//XMLValueFunctionQuery" transient="true" eOpposite="#//XMLValueFunctionQuery/xqueryArgList"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="tableFunction" lowerBound="1"
-        eType="#//XMLTableFunction" transient="true" eOpposite="#//XMLTableFunction/xqueryArgList"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="valueFunctionQuery" eType="#//XMLValueFunctionQuery"
+        transient="true" eOpposite="#//XMLValueFunctionQuery/xqueryArgList"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tableFunction" eType="#//XMLTableFunction"
+        transient="true" eOpposite="#//XMLTableFunction/xqueryArgList"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="XMLQueryArgumentItem" eSuperTypes="../../org.eclipse.datatools.modelbase.sql.query/model/SQLQueryModel.ecore#//QueryValueExpression">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -304,10 +302,9 @@
     <eLiterals name="NONE" value="5"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="XMLValueFunctionForestContentItem" eSuperTypes="../../org.eclipse.datatools.modelbase.sql.query/model/SQLQueryModel.ecore#//QueryValueExpression">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="valueFunctionForest" lowerBound="1"
-        eType="#//XMLValueFunctionForest" transient="true" eOpposite="#//XMLValueFunctionForest/forestContentList"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="valueExpr" lowerBound="1"
-        eType="ecore:EClass ../../org.eclipse.datatools.modelbase.sql.query/model/SQLQueryModel.ecore#//QueryValueExpression"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="valueFunctionForest" eType="#//XMLValueFunctionForest"
+        transient="true" eOpposite="#//XMLValueFunctionForest/forestContentList"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="valueExpr" eType="ecore:EClass ../../org.eclipse.datatools.modelbase.sql.query/model/SQLQueryModel.ecore#//QueryValueExpression"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="XMLValueFunctionParseContent" eSuperTypes="../../org.eclipse.datatools.modelbase.sql.query/model/SQLQueryModel.ecore#//QueryValueExpression">
@@ -365,8 +362,8 @@
     <eLiterals name="NONE" value="3"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="XMLTableColumnDefinitionItem" eSuperTypes="../../org.eclipse.datatools.modelbase.sql.query/model/SQLQueryModel.ecore#//SQLQueryObject">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="tableFunction" lowerBound="1"
-        eType="#//XMLTableFunction" transient="true" eOpposite="#//XMLTableFunction/columnDefList"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tableFunction" eType="#//XMLTableFunction"
+        transient="true" eOpposite="#//XMLTableFunction/columnDefList"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="XMLTableColumnDefinitionRegular" eSuperTypes="#//XMLTableColumnDefinitionItem">
     <eStructuralFeatures xsi:type="ecore:EReference" name="dataType" eType="ecore:EClass ../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//datatypes/DataType"
@@ -415,16 +412,16 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="namespaceDecltemList" lowerBound="1"
         upperBound="-1" eType="#//XMLNamespaceDeclarationItem" containment="true"
         eOpposite="#//XMLNamespaceDeclarationItem/namespacesDecl"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="valueFunctionElement" lowerBound="1"
-        eType="#//XMLValueFunctionElement" transient="true" eOpposite="#//XMLValueFunctionElement/namespacesDecl"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="valueFunctionForest" lowerBound="1"
-        eType="#//XMLValueFunctionForest" transient="true" eOpposite="#//XMLValueFunctionForest/namespacesDecl"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="tableFunction" lowerBound="1"
-        eType="#//XMLTableFunction" transient="true" eOpposite="#//XMLTableFunction/namespacesDecl"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="valueFunctionElement" eType="#//XMLValueFunctionElement"
+        transient="true" eOpposite="#//XMLValueFunctionElement/namespacesDecl"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="valueFunctionForest" eType="#//XMLValueFunctionForest"
+        transient="true" eOpposite="#//XMLValueFunctionForest/namespacesDecl"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tableFunction" eType="#//XMLTableFunction"
+        transient="true" eOpposite="#//XMLTableFunction/namespacesDecl"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="XMLAttributesDeclaration">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="valueFunctionElement" lowerBound="1"
-        eType="#//XMLValueFunctionElement" transient="true" eOpposite="#//XMLValueFunctionElement/attributesDecl"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="valueFunctionElement" eType="#//XMLValueFunctionElement"
+        transient="true" eOpposite="#//XMLValueFunctionElement/attributesDecl"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="attributeDeclItem" lowerBound="1"
         upperBound="-1" eType="#//XMLAttributeDeclarationItem" containment="true"
         eOpposite="#//XMLAttributeDeclarationItem/attributesDecl"/>
@@ -432,8 +429,8 @@
   <eClassifiers xsi:type="ecore:EClass" name="XMLValueFunctionElementContentList"
       eSuperTypes="../../org.eclipse.datatools.modelbase.sql.query/model/SQLQueryModel.ecore#//SQLQueryObject">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="nullHandlingOption" eType="#//XMLNullHandlingType"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="valueFunctionElement" lowerBound="1"
-        eType="#//XMLValueFunctionElement" transient="true" eOpposite="#//XMLValueFunctionElement/elementContentList"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="valueFunctionElement" eType="#//XMLValueFunctionElement"
+        transient="true" eOpposite="#//XMLValueFunctionElement/elementContentList"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="elementContentListChildren"
         upperBound="-1" eType="#//XMLValueFunctionElementContentItem" containment="true"
         eOpposite="#//XMLValueFunctionElementContentItem/elementContentList"/>

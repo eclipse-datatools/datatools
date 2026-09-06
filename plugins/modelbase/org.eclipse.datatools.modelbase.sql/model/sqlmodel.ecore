@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ecore:EPackage xmi:version="2.0"
-    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="sqlmodel"
-    nsURI="http:///SQLModel.ecore" nsPrefix="SQLModel">
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="sqlmodel" nsURI="http:///SQLModel.ecore" nsPrefix="SQLModel">
   <eSubpackages name="schema" nsURI="http:///org/eclipse/datatools/modelbase/sql/schema.ecore"
       nsPrefix="SQLSchema">
     <eClassifiers xsi:type="ecore:EClass" name="IdentitySpecifier" eSuperTypes="#//schema/SQLObject">
@@ -800,8 +798,8 @@
           <details key="documentation" value="5WD-02-Foundation-2002-12&#xD;&#xA;4.29.4 Locators&#xD;&#xA;A host parameter, a host variable, an SQL parameter of an external routine, or the value returned by an external&#xD;&#xA;function may be specified to be a locator by specifying AS LOCATOR . A locator is an SQL-session object,&#xD;&#xA;rather than SQL-data, that can be used to reference an SQL-data instance. A locator is either a large object&#xD;&#xA;locator, a user-defined type locator, an array locator, or a multiset locator. &#xD;&#xA;&#xD;&#xA;A large object locator is one of the following:&#xD;&#xA;- Binary large object locator, a value of which identifies a binary large object.&#xD;&#xA;- Character large object locator, a value of which identifies a large object character string.&#xD;&#xA;- National character large object locator, a value of which identifies a national large object character string.&#xD;&#xA;&#xD;&#xA;A user-defined type locator identifies a value of the user-defined type specified by the locator specification.&#xD;&#xA;An array locator identifies a value of the array type specified by the locator specification. A multiset locator&#xD;&#xA;identifies a value of the multiset type specified by the locator specification."/>
         </eAnnotations>
       </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="routine" lowerBound="1"
-          eType="#//routines/Routine" transient="true" eOpposite="#//routines/Routine/parameters"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="routine" eType="#//routines/Routine"
+          transient="true" eOpposite="#//routines/Routine/parameters"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="stringTypeOption" eType="#//datatypes/CharacterStringDataType"
           containment="true"/>
     </eClassifiers>

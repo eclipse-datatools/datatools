@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ecore:EPackage xmi:version="2.0"
-    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="query"
-    nsURI="http:///org/eclipse/datatools/modelbase/sql/query/SQLQueryModel.ecore"
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="query" nsURI="http:///org/eclipse/datatools/modelbase/sql/query/SQLQueryModel.ecore"
     nsPrefix="org.eclipse.datatools.modelbase.sql.query">
   <eClassifiers xsi:type="ecore:EClass" name="QueryStatement" abstract="true" eSuperTypes="#//SQLQueryObject ../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//statements/SQLDataStatement"/>
   <eClassifiers xsi:type="ecore:EClass" name="QueryDeleteStatement" eSuperTypes="#//QueryChangeStatement">
@@ -96,10 +94,10 @@
         transient="true" eOpposite="#//QueryCombined/rightQuery"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="predicateExists" eType="#//PredicateExists"
         transient="true" eOpposite="#//PredicateExists/queryExpr"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="updateSourceQuery" lowerBound="1"
-        eType="#//UpdateSourceQuery" transient="true" eOpposite="#//UpdateSourceQuery/queryExpr"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="updateSourceQuery" eType="#//UpdateSourceQuery"
+        transient="true" eOpposite="#//UpdateSourceQuery/queryExpr"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="withTableSpecification"
-        lowerBound="1" eType="#//WithTableSpecification" transient="true" eOpposite="#//WithTableSpecification/withTableQueryExpr"/>
+        eType="#//WithTableSpecification" transient="true" eOpposite="#//WithTableSpecification/withTableQueryExpr"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="queryNest" eType="#//QueryNested"
         transient="true" eOpposite="#//QueryNested/nestedQuery"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="sortSpecList" upperBound="-1"
@@ -172,12 +170,12 @@
         transient="true" eOpposite="#//ValueExpressionNested/nestedValueExpr"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="updateSourceExprList" eType="#//UpdateSourceExprList"
         transient="true" eOpposite="#//UpdateSourceExprList/valueExprList"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="tableFunction" lowerBound="1"
-        eType="#//TableFunction" transient="true" eOpposite="#//TableFunction/parameterList"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="valueExprRow" lowerBound="1"
-        eType="#//ValueExpressionRow" transient="true" eOpposite="#//ValueExpressionRow/valueExprList"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="callStatement" lowerBound="1"
-        eType="#//CallStatement" transient="true" eOpposite="#//CallStatement/argumentList"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tableFunction" eType="#//TableFunction"
+        transient="true" eOpposite="#//TableFunction/parameterList"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="valueExprRow" eType="#//ValueExpressionRow"
+        transient="true" eOpposite="#//ValueExpressionRow/valueExprList"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="callStatement" eType="#//CallStatement"
+        transient="true" eOpposite="#//CallStatement/argumentList"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="QueryExpressionRoot" eSuperTypes="#//SQLQueryObject ../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//expressions/QueryExpression">
     <eStructuralFeatures xsi:type="ecore:EReference" name="insertStatement" eType="#//QueryInsertStatement"
@@ -204,18 +202,18 @@
         transient="true" eOpposite="#//QueryInsertStatement/sourceValuesRowList"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="exprList" lowerBound="1"
         upperBound="-1" eType="#//QueryValueExpression" containment="true" eOpposite="#//QueryValueExpression/valuesRow"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="queryValues" lowerBound="1"
-        eType="#//QueryValues" transient="true" eOpposite="#//QueryValues/valuesRowList"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="queryValues" eType="#//QueryValues"
+        transient="true" eOpposite="#//QueryValues/valuesRowList"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="QueryValues" eSuperTypes="#//QueryExpressionBody">
     <eStructuralFeatures xsi:type="ecore:EReference" name="valuesRowList" lowerBound="1"
         upperBound="-1" eType="#//ValuesRow" containment="true" eOpposite="#//ValuesRow/queryValues"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TableReference" abstract="true" eSuperTypes="#//SQLQueryObject">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="tableJoinedRight" lowerBound="1"
-        eType="#//TableJoined" transient="true" eOpposite="#//TableJoined/tableRefRight"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="tableJoinedLeft" lowerBound="1"
-        eType="#//TableJoined" transient="true" eOpposite="#//TableJoined/tableRefLeft"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tableJoinedRight" eType="#//TableJoined"
+        transient="true" eOpposite="#//TableJoined/tableRefRight"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tableJoinedLeft" eType="#//TableJoined"
+        transient="true" eOpposite="#//TableJoined/tableRefLeft"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="querySelect" eType="#//QuerySelect"
         transient="true" eOpposite="#//QuerySelect/fromClause"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="nest" eType="#//TableNested"
@@ -605,8 +603,7 @@
         transient="true" eOpposite="#//QueryDeleteStatement/targetTable"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="insertStatement" eType="#//QueryInsertStatement"
         transient="true" eOpposite="#//QueryInsertStatement/targetTable"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="databaseTable" lowerBound="1"
-        eType="ecore:EClass ../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//tables/Table"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="databaseTable" eType="ecore:EClass ../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//tables/Table"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="derivedColumnList" upperBound="-1"
         eType="#//ValueExpressionColumn" eOpposite="#//ValueExpressionColumn/tableInDatabase">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -632,7 +629,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="tableCorrelation" eType="#//TableCorrelation"
         transient="true" eOpposite="#//TableCorrelation/columnNameList"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="withTableSpecification"
-        lowerBound="1" eType="#//WithTableSpecification" transient="true" eOpposite="#//WithTableSpecification/columnNameList"/>
+        eType="#//WithTableSpecification" transient="true" eOpposite="#//WithTableSpecification/columnNameList"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TableNested" eSuperTypes="#//TableReference">
     <eStructuralFeatures xsi:type="ecore:EReference" name="nestedTableRef" lowerBound="1"
