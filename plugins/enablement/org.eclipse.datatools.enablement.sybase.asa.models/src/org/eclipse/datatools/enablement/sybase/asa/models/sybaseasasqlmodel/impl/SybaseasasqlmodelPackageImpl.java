@@ -14,6 +14,15 @@ import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.Syba
 import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.SybaseASATempTable;
 import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.SybaseasasqlmodelFactory;
 import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.SybaseasasqlmodelPackage;
+import org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybasesqlmodelPackage;
+import org.eclipse.datatools.modelbase.sql.accesscontrol.SQLAccessControlPackage;
+import org.eclipse.datatools.modelbase.sql.constraints.SQLConstraintsPackage;
+import org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage;
+import org.eclipse.datatools.modelbase.sql.expressions.SQLExpressionsPackage;
+import org.eclipse.datatools.modelbase.sql.routines.SQLRoutinesPackage;
+import org.eclipse.datatools.modelbase.sql.schema.SQLSchemaPackage;
+import org.eclipse.datatools.modelbase.sql.statements.SQLStatementsPackage;
+import org.eclipse.datatools.modelbase.sql.tables.SQLTablesPackage;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
@@ -26,7 +35,7 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
  * <!-- end-user-doc -->
  * @generated
  */
-public class SybaseasasqlmodelPackageImpl extends EPackageImpl implements SybaseasasqlmodelPackage 
+public class SybaseasasqlmodelPackageImpl extends EPackageImpl implements SybaseasasqlmodelPackage
 {
     /**
 	 * <!-- begin-user-doc -->
@@ -91,20 +100,10 @@ public class SybaseasasqlmodelPackageImpl extends EPackageImpl implements Sybase
 	private static boolean isInited = false;
 
     /**
-	 * Creates, registers, and initializes the <b>Package</b> for this
-	 * model, and for any others upon which it depends.  Simple
-	 * dependencies are satisfied by calling this method on all
-	 * dependent packages before doing anything else.  This method drives
-	 * initialization for interdependent packages directly, in parallel
-	 * with this package, itself.
-	 * <p>Of this package and its interdependencies, all packages which
-	 * have not yet been registered by their URI values are first created
-	 * and registered.  The packages are then initialized in two steps:
-	 * meta-model objects for all of the packages are created before any
-	 * are initialized, since one package's meta-model objects may refer to
-	 * those of another.
-	 * <p>Invocation of this method will not affect any packages that have
-	 * already been initialized.
+	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
+	 *
+	 * <p>This method is used to initialize {@link SybaseasasqlmodelPackage#eINSTANCE} when that field is accessed.
+	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #eNS_URI
@@ -114,15 +113,28 @@ public class SybaseasasqlmodelPackageImpl extends EPackageImpl implements Sybase
 	 */
 	public static SybaseasasqlmodelPackage init()
     {
-		if (isInited) return (SybaseasasqlmodelPackage)EPackage.Registry.INSTANCE.getEPackage(SybaseasasqlmodelPackage.eNS_URI);
+		if (isInited) {
+			return (SybaseasasqlmodelPackage)EPackage.Registry.INSTANCE.getEPackage(SybaseasasqlmodelPackage.eNS_URI);
+		}
 
 		// Obtain or create and register package
-		SybaseasasqlmodelPackageImpl theSybaseasasqlmodelPackage = (SybaseasasqlmodelPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(eNS_URI) instanceof SybaseasasqlmodelPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(eNS_URI) : new SybaseasasqlmodelPackageImpl());
+		Object registeredSybaseasasqlmodelPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		SybaseasasqlmodelPackageImpl theSybaseasasqlmodelPackage = registeredSybaseasasqlmodelPackage instanceof SybaseasasqlmodelPackageImpl ? (SybaseasasqlmodelPackageImpl)registeredSybaseasasqlmodelPackage : new SybaseasasqlmodelPackageImpl();
 
 		isInited = true;
 
 		// Initialize simple dependencies
+		EcorePackage.eINSTANCE.eClass();
+		SQLSchemaPackage.eINSTANCE.eClass();
+		SQLConstraintsPackage.eINSTANCE.eClass();
+		SQLDataTypesPackage.eINSTANCE.eClass();
+		SQLExpressionsPackage.eINSTANCE.eClass();
+		SQLRoutinesPackage.eINSTANCE.eClass();
+		SQLStatementsPackage.eINSTANCE.eClass();
+		SQLTablesPackage.eINSTANCE.eClass();
+		SQLAccessControlPackage.eINSTANCE.eClass();
 		SybaseasabasesqlmodelPackage.eINSTANCE.eClass();
+		SybasesqlmodelPackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
 		theSybaseasasqlmodelPackage.createPackageContents();
@@ -133,6 +145,8 @@ public class SybaseasasqlmodelPackageImpl extends EPackageImpl implements Sybase
 		// Mark meta-data to indicate it can't be changed
 		theSybaseasasqlmodelPackage.freeze();
 
+		// Update the registry and return the package
+		EPackage.Registry.INSTANCE.put(SybaseasasqlmodelPackage.eNS_URI, theSybaseasasqlmodelPackage);
 		return theSybaseasasqlmodelPackage;
 	}
 
@@ -141,6 +155,7 @@ public class SybaseasasqlmodelPackageImpl extends EPackageImpl implements Sybase
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getSybaseASADatabase()
     {
 		return sybaseASADatabaseEClass;
@@ -151,6 +166,7 @@ public class SybaseasasqlmodelPackageImpl extends EPackageImpl implements Sybase
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getSybaseASADatabase_ASECompatible()
     {
 		return (EAttribute)sybaseASADatabaseEClass.getEStructuralFeatures().get(0);
@@ -161,6 +177,7 @@ public class SybaseasasqlmodelPackageImpl extends EPackageImpl implements Sybase
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getSybaseASATable()
     {
 		return sybaseASATableEClass;
@@ -171,6 +188,7 @@ public class SybaseasasqlmodelPackageImpl extends EPackageImpl implements Sybase
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getSybaseASATable_Pctfree()
     {
 		return (EAttribute)sybaseASATableEClass.getEStructuralFeatures().get(0);
@@ -181,6 +199,7 @@ public class SybaseasasqlmodelPackageImpl extends EPackageImpl implements Sybase
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getSybaseASAForeignKey()
     {
 		return sybaseASAForeignKeyEClass;
@@ -191,6 +210,7 @@ public class SybaseasasqlmodelPackageImpl extends EPackageImpl implements Sybase
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getSybaseASAForeignKey_CheckOnCommit()
     {
 		return (EAttribute)sybaseASAForeignKeyEClass.getEStructuralFeatures().get(0);
@@ -201,6 +221,7 @@ public class SybaseasasqlmodelPackageImpl extends EPackageImpl implements Sybase
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getSybaseASAForeignKey_Nullable()
     {
 		return (EAttribute)sybaseASAForeignKeyEClass.getEStructuralFeatures().get(1);
@@ -211,6 +232,7 @@ public class SybaseasasqlmodelPackageImpl extends EPackageImpl implements Sybase
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getSybaseASAIndex()
     {
 		return sybaseASAIndexEClass;
@@ -221,6 +243,7 @@ public class SybaseasasqlmodelPackageImpl extends EPackageImpl implements Sybase
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getSybaseASAIndex_Virtual()
     {
 		return (EAttribute)sybaseASAIndexEClass.getEStructuralFeatures().get(0);
@@ -231,6 +254,7 @@ public class SybaseasasqlmodelPackageImpl extends EPackageImpl implements Sybase
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getSybaseASATempTable()
     {
 		return sybaseASATempTableEClass;
@@ -241,6 +265,7 @@ public class SybaseasasqlmodelPackageImpl extends EPackageImpl implements Sybase
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getSybaseASATempTable_Pctfree()
     {
 		return (EAttribute)sybaseASATempTableEClass.getEStructuralFeatures().get(0);
@@ -251,6 +276,7 @@ public class SybaseasasqlmodelPackageImpl extends EPackageImpl implements Sybase
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SybaseasasqlmodelFactory getSybaseasasqlmodelFactory()
     {
 		return (SybaseasasqlmodelFactory)getEFactoryInstance();
@@ -272,7 +298,9 @@ public class SybaseasasqlmodelPackageImpl extends EPackageImpl implements Sybase
 	 */
 	public void createPackageContents()
     {
-		if (isCreated) return;
+		if (isCreated) {
+			return;
+		}
 		isCreated = true;
 
 		// Create classes and their features
@@ -309,7 +337,9 @@ public class SybaseasasqlmodelPackageImpl extends EPackageImpl implements Sybase
 	 */
 	public void initializePackageContents()
     {
-		if (isInitialized) return;
+		if (isInitialized) {
+			return;
+		}
 		isInitialized = true;
 
 		// Initialize package

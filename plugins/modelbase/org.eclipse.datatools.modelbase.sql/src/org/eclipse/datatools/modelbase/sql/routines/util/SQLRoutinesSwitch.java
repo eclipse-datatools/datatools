@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -108,92 +108,184 @@ public class SQLRoutinesSwitch {
 			case SQLRoutinesPackage.ROUTINE: {
 				Routine routine = (Routine)theEObject;
 				Object result = caseRoutine(routine);
-				if (result == null) result = caseSQLObject(routine);
-				if (result == null) result = caseENamedElement(routine);
-				if (result == null) result = caseEModelElement(routine);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = caseSQLObject(routine);
+				}
+				if (result == null) {
+					result = caseENamedElement(routine);
+				}
+				if (result == null) {
+					result = caseEModelElement(routine);
+				}
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case SQLRoutinesPackage.SOURCE: {
 				Source source = (Source)theEObject;
 				Object result = caseSource(source);
-				if (result == null) result = caseSQLObject(source);
-				if (result == null) result = caseENamedElement(source);
-				if (result == null) result = caseEModelElement(source);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = caseSQLObject(source);
+				}
+				if (result == null) {
+					result = caseENamedElement(source);
+				}
+				if (result == null) {
+					result = caseEModelElement(source);
+				}
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case SQLRoutinesPackage.PARAMETER: {
 				Parameter parameter = (Parameter)theEObject;
 				Object result = caseParameter(parameter);
-				if (result == null) result = caseTypedElement(parameter);
-				if (result == null) result = caseSQLObject(parameter);
-				if (result == null) result = caseENamedElement(parameter);
-				if (result == null) result = caseEModelElement(parameter);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = caseTypedElement(parameter);
+				}
+				if (result == null) {
+					result = caseSQLObject(parameter);
+				}
+				if (result == null) {
+					result = caseENamedElement(parameter);
+				}
+				if (result == null) {
+					result = caseEModelElement(parameter);
+				}
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case SQLRoutinesPackage.PROCEDURE: {
 				Procedure procedure = (Procedure)theEObject;
 				Object result = caseProcedure(procedure);
-				if (result == null) result = caseRoutine(procedure);
-				if (result == null) result = caseSQLObject(procedure);
-				if (result == null) result = caseENamedElement(procedure);
-				if (result == null) result = caseEModelElement(procedure);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = caseRoutine(procedure);
+				}
+				if (result == null) {
+					result = caseSQLObject(procedure);
+				}
+				if (result == null) {
+					result = caseENamedElement(procedure);
+				}
+				if (result == null) {
+					result = caseEModelElement(procedure);
+				}
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case SQLRoutinesPackage.FUNCTION: {
 				Function function = (Function)theEObject;
 				Object result = caseFunction(function);
-				if (result == null) result = caseRoutine(function);
-				if (result == null) result = caseSQLObject(function);
-				if (result == null) result = caseENamedElement(function);
-				if (result == null) result = caseEModelElement(function);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = caseRoutine(function);
+				}
+				if (result == null) {
+					result = caseSQLObject(function);
+				}
+				if (result == null) {
+					result = caseENamedElement(function);
+				}
+				if (result == null) {
+					result = caseEModelElement(function);
+				}
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case SQLRoutinesPackage.ROUTINE_RESULT_TABLE: {
 				RoutineResultTable routineResultTable = (RoutineResultTable)theEObject;
 				Object result = caseRoutineResultTable(routineResultTable);
-				if (result == null) result = caseTable(routineResultTable);
-				if (result == null) result = caseSQLObject(routineResultTable);
-				if (result == null) result = caseENamedElement(routineResultTable);
-				if (result == null) result = caseEModelElement(routineResultTable);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = caseTable(routineResultTable);
+				}
+				if (result == null) {
+					result = caseSQLObject(routineResultTable);
+				}
+				if (result == null) {
+					result = caseENamedElement(routineResultTable);
+				}
+				if (result == null) {
+					result = caseEModelElement(routineResultTable);
+				}
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case SQLRoutinesPackage.METHOD: {
 				Method method = (Method)theEObject;
 				Object result = caseMethod(method);
-				if (result == null) result = caseFunction(method);
-				if (result == null) result = caseRoutine(method);
-				if (result == null) result = caseSQLObject(method);
-				if (result == null) result = caseENamedElement(method);
-				if (result == null) result = caseEModelElement(method);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = caseFunction(method);
+				}
+				if (result == null) {
+					result = caseRoutine(method);
+				}
+				if (result == null) {
+					result = caseSQLObject(method);
+				}
+				if (result == null) {
+					result = caseENamedElement(method);
+				}
+				if (result == null) {
+					result = caseEModelElement(method);
+				}
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case SQLRoutinesPackage.USER_DEFINED_FUNCTION: {
 				UserDefinedFunction userDefinedFunction = (UserDefinedFunction)theEObject;
 				Object result = caseUserDefinedFunction(userDefinedFunction);
-				if (result == null) result = caseFunction(userDefinedFunction);
-				if (result == null) result = caseRoutine(userDefinedFunction);
-				if (result == null) result = caseSQLObject(userDefinedFunction);
-				if (result == null) result = caseENamedElement(userDefinedFunction);
-				if (result == null) result = caseEModelElement(userDefinedFunction);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = caseFunction(userDefinedFunction);
+				}
+				if (result == null) {
+					result = caseRoutine(userDefinedFunction);
+				}
+				if (result == null) {
+					result = caseSQLObject(userDefinedFunction);
+				}
+				if (result == null) {
+					result = caseENamedElement(userDefinedFunction);
+				}
+				if (result == null) {
+					result = caseEModelElement(userDefinedFunction);
+				}
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case SQLRoutinesPackage.BUILT_IN_FUNCTION: {
 				BuiltInFunction builtInFunction = (BuiltInFunction)theEObject;
 				Object result = caseBuiltInFunction(builtInFunction);
-				if (result == null) result = caseFunction(builtInFunction);
-				if (result == null) result = caseRoutine(builtInFunction);
-				if (result == null) result = caseSQLObject(builtInFunction);
-				if (result == null) result = caseENamedElement(builtInFunction);
-				if (result == null) result = caseEModelElement(builtInFunction);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = caseFunction(builtInFunction);
+				}
+				if (result == null) {
+					result = caseRoutine(builtInFunction);
+				}
+				if (result == null) {
+					result = caseSQLObject(builtInFunction);
+				}
+				if (result == null) {
+					result = caseENamedElement(builtInFunction);
+				}
+				if (result == null) {
+					result = caseEModelElement(builtInFunction);
+				}
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			default: return defaultCase(theEObject);

@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -22,6 +22,7 @@ package org.eclipse.datatools.modelbase.sql.datatypes;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.datatypes.CharacterStringDataType#getLength <em>Length</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.datatypes.CharacterStringDataType#getCoercibility <em>Coercibility</em>}</li>
@@ -29,7 +30,6 @@ package org.eclipse.datatools.modelbase.sql.datatypes;
  *   <li>{@link org.eclipse.datatools.modelbase.sql.datatypes.CharacterStringDataType#getCollationName <em>Collation Name</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.datatypes.CharacterStringDataType#getCharacterSet <em>Character Set</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage#getCharacterStringDataType()
  * @model

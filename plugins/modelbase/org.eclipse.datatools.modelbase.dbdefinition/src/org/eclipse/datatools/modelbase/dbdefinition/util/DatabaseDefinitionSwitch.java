@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -117,133 +117,177 @@ public class DatabaseDefinitionSwitch {
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION: {
 				DatabaseVendorDefinition databaseVendorDefinition = (DatabaseVendorDefinition)theEObject;
 				Object result = caseDatabaseVendorDefinition(databaseVendorDefinition);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION: {
 				PredefinedDataTypeDefinition predefinedDataTypeDefinition = (PredefinedDataTypeDefinition)theEObject;
 				Object result = casePredefinedDataTypeDefinition(predefinedDataTypeDefinition);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case DatabaseDefinitionPackage.TABLE_SPACE_DEFINITION: {
 				TableSpaceDefinition tableSpaceDefinition = (TableSpaceDefinition)theEObject;
 				Object result = caseTableSpaceDefinition(tableSpaceDefinition);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case DatabaseDefinitionPackage.STORED_PROCEDURE_DEFINITION: {
 				StoredProcedureDefinition storedProcedureDefinition = (StoredProcedureDefinition)theEObject;
 				Object result = caseStoredProcedureDefinition(storedProcedureDefinition);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case DatabaseDefinitionPackage.TRIGGER_DEFINITION: {
 				TriggerDefinition triggerDefinition = (TriggerDefinition)theEObject;
 				Object result = caseTriggerDefinition(triggerDefinition);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case DatabaseDefinitionPackage.COLUMN_DEFINITION: {
 				ColumnDefinition columnDefinition = (ColumnDefinition)theEObject;
 				Object result = caseColumnDefinition(columnDefinition);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case DatabaseDefinitionPackage.CONSTRAINT_DEFINITION: {
 				ConstraintDefinition constraintDefinition = (ConstraintDefinition)theEObject;
 				Object result = caseConstraintDefinition(constraintDefinition);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case DatabaseDefinitionPackage.INDEX_DEFINITION: {
 				IndexDefinition indexDefinition = (IndexDefinition)theEObject;
 				Object result = caseIndexDefinition(indexDefinition);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case DatabaseDefinitionPackage.EXTENDED_DEFINITION: {
 				ExtendedDefinition extendedDefinition = (ExtendedDefinition)theEObject;
 				Object result = caseExtendedDefinition(extendedDefinition);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case DatabaseDefinitionPackage.TABLE_DEFINITION: {
 				TableDefinition tableDefinition = (TableDefinition)theEObject;
 				Object result = caseTableDefinition(tableDefinition);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case DatabaseDefinitionPackage.SEQUENCE_DEFINITION: {
 				SequenceDefinition sequenceDefinition = (SequenceDefinition)theEObject;
 				Object result = caseSequenceDefinition(sequenceDefinition);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case DatabaseDefinitionPackage.USER_DEFINED_TYPE_DEFINITION: {
 				UserDefinedTypeDefinition userDefinedTypeDefinition = (UserDefinedTypeDefinition)theEObject;
 				Object result = caseUserDefinedTypeDefinition(userDefinedTypeDefinition);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case DatabaseDefinitionPackage.QUERY_DEFINITION: {
 				QueryDefinition queryDefinition = (QueryDefinition)theEObject;
 				Object result = caseQueryDefinition(queryDefinition);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case DatabaseDefinitionPackage.SQL_SYNTAX_DEFINITION: {
 				SQLSyntaxDefinition sqlSyntaxDefinition = (SQLSyntaxDefinition)theEObject;
 				Object result = caseSQLSyntaxDefinition(sqlSyntaxDefinition);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case DatabaseDefinitionPackage.NICKNAME_DEFINITION: {
 				NicknameDefinition nicknameDefinition = (NicknameDefinition)theEObject;
 				Object result = caseNicknameDefinition(nicknameDefinition);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case DatabaseDefinitionPackage.SCHEMA_DEFINITION: {
 				SchemaDefinition schemaDefinition = (SchemaDefinition)theEObject;
 				Object result = caseSchemaDefinition(schemaDefinition);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case DatabaseDefinitionPackage.VIEW_DEFINITION: {
 				ViewDefinition viewDefinition = (ViewDefinition)theEObject;
 				Object result = caseViewDefinition(viewDefinition);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case DatabaseDefinitionPackage.FIELD_QUALIFIER_DEFINITION: {
 				FieldQualifierDefinition fieldQualifierDefinition = (FieldQualifierDefinition)theEObject;
 				Object result = caseFieldQualifierDefinition(fieldQualifierDefinition);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case DatabaseDefinitionPackage.DEBUGGER_DEFINITION: {
 				DebuggerDefinition debuggerDefinition = (DebuggerDefinition)theEObject;
 				Object result = caseDebuggerDefinition(debuggerDefinition);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case DatabaseDefinitionPackage.PRIVILEGED_ELEMENT_DEFINITION: {
 				PrivilegedElementDefinition privilegedElementDefinition = (PrivilegedElementDefinition)theEObject;
 				Object result = casePrivilegedElementDefinition(privilegedElementDefinition);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case DatabaseDefinitionPackage.PRIVILEGE_DEFINITION: {
 				PrivilegeDefinition privilegeDefinition = (PrivilegeDefinition)theEObject;
 				Object result = casePrivilegeDefinition(privilegeDefinition);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case DatabaseDefinitionPackage.CONSTRUCTED_DATA_TYPE_DEFINITION: {
 				ConstructedDataTypeDefinition constructedDataTypeDefinition = (ConstructedDataTypeDefinition)theEObject;
 				Object result = caseConstructedDataTypeDefinition(constructedDataTypeDefinition);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			default: return defaultCase(theEObject);

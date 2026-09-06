@@ -8,7 +8,7 @@
  *
  * Contributors:
  *  Actuate Corporation  - initial API and implementation
- *  
+ *
  *************************************************************************
  *
  * $Id: DesignResourceFactoryImpl.java,v 1.2 2007/04/11 02:59:53 lchan Exp $
@@ -27,52 +27,43 @@ import org.eclipse.emf.ecore.xmi.XMLResource;
  * @see org.eclipse.datatools.connectivity.oda.design.util.DesignResourceImpl
  * @generated
  */
-public class DesignResourceFactoryImpl extends ResourceFactoryImpl
-{
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public static final String copyright = "Copyright (c) 2005, 2009 Actuate Corporation"; //$NON-NLS-1$
+public class DesignResourceFactoryImpl extends ResourceFactoryImpl {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final String copyright = "Copyright (c) 2005, 2010 Actuate Corporation"; //$NON-NLS-1$
 
-    /**
-     * Creates an instance of the resource factory.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public DesignResourceFactoryImpl()
-    {
-        super();
-    }
+	/**
+	 * Creates an instance of the resource factory.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DesignResourceFactoryImpl() {
+		super();
+	}
 
-    /**
-     * Creates an instance of the resource.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public Resource createResource( URI uri )
-    {
-        XMLResource result = new DesignResourceImpl( uri );
-        result.getDefaultSaveOptions().put(
-                XMLResource.OPTION_EXTENDED_META_DATA, Boolean.TRUE );
-        result.getDefaultLoadOptions().put(
-                XMLResource.OPTION_EXTENDED_META_DATA, Boolean.TRUE );
+	/**
+	 * Creates an instance of the resource.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Resource createResource(URI uri) {
+		XMLResource result = new DesignResourceImpl(uri);
+		result.getDefaultSaveOptions().put(XMLResource.OPTION_EXTENDED_META_DATA, Boolean.TRUE);
+		result.getDefaultLoadOptions().put(XMLResource.OPTION_EXTENDED_META_DATA, Boolean.TRUE);
 
-        result.getDefaultSaveOptions().put( XMLResource.OPTION_SCHEMA_LOCATION,
-                Boolean.TRUE );
+		result.getDefaultSaveOptions().put(XMLResource.OPTION_SCHEMA_LOCATION, Boolean.TRUE);
 
-        result.getDefaultLoadOptions().put(
-                XMLResource.OPTION_USE_ENCODED_ATTRIBUTE_STYLE, Boolean.TRUE );
-        result.getDefaultSaveOptions().put(
-                XMLResource.OPTION_USE_ENCODED_ATTRIBUTE_STYLE, Boolean.TRUE );
+		result.getDefaultLoadOptions().put(XMLResource.OPTION_USE_ENCODED_ATTRIBUTE_STYLE, Boolean.TRUE);
+		result.getDefaultSaveOptions().put(XMLResource.OPTION_USE_ENCODED_ATTRIBUTE_STYLE, Boolean.TRUE);
 
-        result.getDefaultLoadOptions().put(
-                XMLResource.OPTION_USE_LEXICAL_HANDLER, Boolean.TRUE );
-        return result;
-    }
+		result.getDefaultLoadOptions().put(XMLResource.OPTION_USE_LEXICAL_HANDLER, Boolean.TRUE);
+		return result;
+	}
 
 } //DesignResourceFactoryImpl

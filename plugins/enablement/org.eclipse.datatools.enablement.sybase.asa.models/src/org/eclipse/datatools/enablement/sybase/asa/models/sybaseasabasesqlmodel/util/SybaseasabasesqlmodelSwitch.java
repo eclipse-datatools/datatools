@@ -96,7 +96,7 @@ import org.eclipse.emf.ecore.EObject;
  * @see org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseasabasesqlmodelPackage
  * @generated
  */
-public class SybaseasabasesqlmodelSwitch 
+public class SybaseasabasesqlmodelSwitch
 {
     /**
 	 * The cached model package
@@ -165,324 +165,690 @@ public class SybaseasabasesqlmodelSwitch
 			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_EVENT: {
 				SybaseASABaseEvent sybaseASABaseEvent = (SybaseASABaseEvent)theEObject;
 				Object result = caseSybaseASABaseEvent(sybaseASABaseEvent);
-				if (result == null) result = caseEvent(sybaseASABaseEvent);
-				if (result == null) result = caseSQLObject(sybaseASABaseEvent);
-				if (result == null) result = caseENamedElement(sybaseASABaseEvent);
-				if (result == null) result = caseEModelElement(sybaseASABaseEvent);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = caseEvent(sybaseASABaseEvent);
+				}
+				if (result == null) {
+					result = caseSQLObject(sybaseASABaseEvent);
+				}
+				if (result == null) {
+					result = caseENamedElement(sybaseASABaseEvent);
+				}
+				if (result == null) {
+					result = caseEModelElement(sybaseASABaseEvent);
+				}
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_DATABASE: {
 				SybaseASABaseDatabase sybaseASABaseDatabase = (SybaseASABaseDatabase)theEObject;
 				Object result = caseSybaseASABaseDatabase(sybaseASABaseDatabase);
-				if (result == null) result = caseDatabase(sybaseASABaseDatabase);
-				if (result == null) result = caseSQLObject(sybaseASABaseDatabase);
-				if (result == null) result = caseENamedElement(sybaseASABaseDatabase);
-				if (result == null) result = caseEModelElement(sybaseASABaseDatabase);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = caseDatabase(sybaseASABaseDatabase);
+				}
+				if (result == null) {
+					result = caseSQLObject(sybaseASABaseDatabase);
+				}
+				if (result == null) {
+					result = caseENamedElement(sybaseASABaseDatabase);
+				}
+				if (result == null) {
+					result = caseEModelElement(sybaseASABaseDatabase);
+				}
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case SybaseasabasesqlmodelPackage.SYBASE_ASA_WEB_SERVICE: {
 				SybaseASAWebService sybaseASAWebService = (SybaseASAWebService)theEObject;
 				Object result = caseSybaseASAWebService(sybaseASAWebService);
-				if (result == null) result = caseSQLObject(sybaseASAWebService);
-				if (result == null) result = caseENamedElement(sybaseASAWebService);
-				if (result == null) result = caseEModelElement(sybaseASAWebService);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = caseSQLObject(sybaseASAWebService);
+				}
+				if (result == null) {
+					result = caseENamedElement(sybaseASAWebService);
+				}
+				if (result == null) {
+					result = caseEModelElement(sybaseASAWebService);
+				}
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case SybaseasabasesqlmodelPackage.ENCRYPTION_INFO: {
 				EncryptionInfo encryptionInfo = (EncryptionInfo)theEObject;
 				Object result = caseEncryptionInfo(encryptionInfo);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_USER_DEFINED_TYPE: {
 				SybaseASABaseUserDefinedType sybaseASABaseUserDefinedType = (SybaseASABaseUserDefinedType)theEObject;
 				Object result = caseSybaseASABaseUserDefinedType(sybaseASABaseUserDefinedType);
-				if (result == null) result = caseDomain(sybaseASABaseUserDefinedType);
-				if (result == null) result = caseDistinctUserDefinedType(sybaseASABaseUserDefinedType);
-				if (result == null) result = caseUserDefinedType(sybaseASABaseUserDefinedType);
-				if (result == null) result = caseDataType(sybaseASABaseUserDefinedType);
-				if (result == null) result = caseSQLObject(sybaseASABaseUserDefinedType);
-				if (result == null) result = caseENamedElement(sybaseASABaseUserDefinedType);
-				if (result == null) result = caseEModelElement(sybaseASABaseUserDefinedType);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = caseDomain(sybaseASABaseUserDefinedType);
+				}
+				if (result == null) {
+					result = caseDistinctUserDefinedType(sybaseASABaseUserDefinedType);
+				}
+				if (result == null) {
+					result = caseUserDefinedType(sybaseASABaseUserDefinedType);
+				}
+				if (result == null) {
+					result = caseDataType(sybaseASABaseUserDefinedType);
+				}
+				if (result == null) {
+					result = caseSQLObject(sybaseASABaseUserDefinedType);
+				}
+				if (result == null) {
+					result = caseENamedElement(sybaseASABaseUserDefinedType);
+				}
+				if (result == null) {
+					result = caseEModelElement(sybaseASABaseUserDefinedType);
+				}
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_PREDEFINED_DATA_TYPE: {
 				SybaseASABasePredefinedDataType sybaseASABasePredefinedDataType = (SybaseASABasePredefinedDataType)theEObject;
 				Object result = caseSybaseASABasePredefinedDataType(sybaseASABasePredefinedDataType);
-				if (result == null) result = casePredefinedDataType(sybaseASABasePredefinedDataType);
-				if (result == null) result = caseSQLDataType(sybaseASABasePredefinedDataType);
-				if (result == null) result = caseDataType(sybaseASABasePredefinedDataType);
-				if (result == null) result = caseSQLObject(sybaseASABasePredefinedDataType);
-				if (result == null) result = caseENamedElement(sybaseASABasePredefinedDataType);
-				if (result == null) result = caseEModelElement(sybaseASABasePredefinedDataType);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = casePredefinedDataType(sybaseASABasePredefinedDataType);
+				}
+				if (result == null) {
+					result = caseSQLDataType(sybaseASABasePredefinedDataType);
+				}
+				if (result == null) {
+					result = caseDataType(sybaseASABasePredefinedDataType);
+				}
+				if (result == null) {
+					result = caseSQLObject(sybaseASABasePredefinedDataType);
+				}
+				if (result == null) {
+					result = caseENamedElement(sybaseASABasePredefinedDataType);
+				}
+				if (result == null) {
+					result = caseEModelElement(sybaseASABasePredefinedDataType);
+				}
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TABLE: {
 				SybaseASABaseTable sybaseASABaseTable = (SybaseASABaseTable)theEObject;
 				Object result = caseSybaseASABaseTable(sybaseASABaseTable);
-				if (result == null) result = casePersistentTable(sybaseASABaseTable);
-				if (result == null) result = caseSybaseBaseTable(sybaseASABaseTable);
-				if (result == null) result = caseBaseTable(sybaseASABaseTable);
-				if (result == null) result = caseSybaseAuthorizedObject(sybaseASABaseTable);
-				if (result == null) result = caseTable(sybaseASABaseTable);
-				if (result == null) result = caseSQLObject(sybaseASABaseTable);
-				if (result == null) result = caseENamedElement(sybaseASABaseTable);
-				if (result == null) result = caseEModelElement(sybaseASABaseTable);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = casePersistentTable(sybaseASABaseTable);
+				}
+				if (result == null) {
+					result = caseSybaseBaseTable(sybaseASABaseTable);
+				}
+				if (result == null) {
+					result = caseBaseTable(sybaseASABaseTable);
+				}
+				if (result == null) {
+					result = caseSybaseAuthorizedObject(sybaseASABaseTable);
+				}
+				if (result == null) {
+					result = caseTable(sybaseASABaseTable);
+				}
+				if (result == null) {
+					result = caseSQLObject(sybaseASABaseTable);
+				}
+				if (result == null) {
+					result = caseENamedElement(sybaseASABaseTable);
+				}
+				if (result == null) {
+					result = caseEModelElement(sybaseASABaseTable);
+				}
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_COLUMN: {
 				SybaseASABaseColumn sybaseASABaseColumn = (SybaseASABaseColumn)theEObject;
 				Object result = caseSybaseASABaseColumn(sybaseASABaseColumn);
-				if (result == null) result = caseColumn(sybaseASABaseColumn);
-				if (result == null) result = caseSybaseAuthorizedObject(sybaseASABaseColumn);
-				if (result == null) result = caseTypedElement(sybaseASABaseColumn);
-				if (result == null) result = caseSQLObject(sybaseASABaseColumn);
-				if (result == null) result = caseENamedElement(sybaseASABaseColumn);
-				if (result == null) result = caseEModelElement(sybaseASABaseColumn);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = caseColumn(sybaseASABaseColumn);
+				}
+				if (result == null) {
+					result = caseSybaseAuthorizedObject(sybaseASABaseColumn);
+				}
+				if (result == null) {
+					result = caseTypedElement(sybaseASABaseColumn);
+				}
+				if (result == null) {
+					result = caseSQLObject(sybaseASABaseColumn);
+				}
+				if (result == null) {
+					result = caseENamedElement(sybaseASABaseColumn);
+				}
+				if (result == null) {
+					result = caseEModelElement(sybaseASABaseColumn);
+				}
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_UNIQUE_CONSTRAINT: {
 				SybaseASABaseUniqueConstraint sybaseASABaseUniqueConstraint = (SybaseASABaseUniqueConstraint)theEObject;
 				Object result = caseSybaseASABaseUniqueConstraint(sybaseASABaseUniqueConstraint);
-				if (result == null) result = caseUniqueConstraint(sybaseASABaseUniqueConstraint);
-				if (result == null) result = caseReferenceConstraint(sybaseASABaseUniqueConstraint);
-				if (result == null) result = caseTableConstraint(sybaseASABaseUniqueConstraint);
-				if (result == null) result = caseConstraint(sybaseASABaseUniqueConstraint);
-				if (result == null) result = caseSQLObject(sybaseASABaseUniqueConstraint);
-				if (result == null) result = caseENamedElement(sybaseASABaseUniqueConstraint);
-				if (result == null) result = caseEModelElement(sybaseASABaseUniqueConstraint);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = caseUniqueConstraint(sybaseASABaseUniqueConstraint);
+				}
+				if (result == null) {
+					result = caseReferenceConstraint(sybaseASABaseUniqueConstraint);
+				}
+				if (result == null) {
+					result = caseTableConstraint(sybaseASABaseUniqueConstraint);
+				}
+				if (result == null) {
+					result = caseConstraint(sybaseASABaseUniqueConstraint);
+				}
+				if (result == null) {
+					result = caseSQLObject(sybaseASABaseUniqueConstraint);
+				}
+				if (result == null) {
+					result = caseENamedElement(sybaseASABaseUniqueConstraint);
+				}
+				if (result == null) {
+					result = caseEModelElement(sybaseASABaseUniqueConstraint);
+				}
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_PRIMARY_KEY: {
 				SybaseASABasePrimaryKey sybaseASABasePrimaryKey = (SybaseASABasePrimaryKey)theEObject;
 				Object result = caseSybaseASABasePrimaryKey(sybaseASABasePrimaryKey);
-				if (result == null) result = caseSybaseASABaseUniqueConstraint(sybaseASABasePrimaryKey);
-				if (result == null) result = casePrimaryKey(sybaseASABasePrimaryKey);
-				if (result == null) result = caseUniqueConstraint(sybaseASABasePrimaryKey);
-				if (result == null) result = caseReferenceConstraint(sybaseASABasePrimaryKey);
-				if (result == null) result = caseTableConstraint(sybaseASABasePrimaryKey);
-				if (result == null) result = caseConstraint(sybaseASABasePrimaryKey);
-				if (result == null) result = caseSQLObject(sybaseASABasePrimaryKey);
-				if (result == null) result = caseENamedElement(sybaseASABasePrimaryKey);
-				if (result == null) result = caseEModelElement(sybaseASABasePrimaryKey);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = caseSybaseASABaseUniqueConstraint(sybaseASABasePrimaryKey);
+				}
+				if (result == null) {
+					result = casePrimaryKey(sybaseASABasePrimaryKey);
+				}
+				if (result == null) {
+					result = caseUniqueConstraint(sybaseASABasePrimaryKey);
+				}
+				if (result == null) {
+					result = caseReferenceConstraint(sybaseASABasePrimaryKey);
+				}
+				if (result == null) {
+					result = caseTableConstraint(sybaseASABasePrimaryKey);
+				}
+				if (result == null) {
+					result = caseConstraint(sybaseASABasePrimaryKey);
+				}
+				if (result == null) {
+					result = caseSQLObject(sybaseASABasePrimaryKey);
+				}
+				if (result == null) {
+					result = caseENamedElement(sybaseASABasePrimaryKey);
+				}
+				if (result == null) {
+					result = caseEModelElement(sybaseASABasePrimaryKey);
+				}
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_FOREIGN_KEY: {
 				SybaseASABaseForeignKey sybaseASABaseForeignKey = (SybaseASABaseForeignKey)theEObject;
 				Object result = caseSybaseASABaseForeignKey(sybaseASABaseForeignKey);
-				if (result == null) result = caseForeignKey(sybaseASABaseForeignKey);
-				if (result == null) result = caseReferenceConstraint(sybaseASABaseForeignKey);
-				if (result == null) result = caseTableConstraint(sybaseASABaseForeignKey);
-				if (result == null) result = caseConstraint(sybaseASABaseForeignKey);
-				if (result == null) result = caseSQLObject(sybaseASABaseForeignKey);
-				if (result == null) result = caseENamedElement(sybaseASABaseForeignKey);
-				if (result == null) result = caseEModelElement(sybaseASABaseForeignKey);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = caseForeignKey(sybaseASABaseForeignKey);
+				}
+				if (result == null) {
+					result = caseReferenceConstraint(sybaseASABaseForeignKey);
+				}
+				if (result == null) {
+					result = caseTableConstraint(sybaseASABaseForeignKey);
+				}
+				if (result == null) {
+					result = caseConstraint(sybaseASABaseForeignKey);
+				}
+				if (result == null) {
+					result = caseSQLObject(sybaseASABaseForeignKey);
+				}
+				if (result == null) {
+					result = caseENamedElement(sybaseASABaseForeignKey);
+				}
+				if (result == null) {
+					result = caseEModelElement(sybaseASABaseForeignKey);
+				}
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_INDEX: {
 				SybaseASABaseIndex sybaseASABaseIndex = (SybaseASABaseIndex)theEObject;
 				Object result = caseSybaseASABaseIndex(sybaseASABaseIndex);
-				if (result == null) result = caseIndex(sybaseASABaseIndex);
-				if (result == null) result = caseSQLObject(sybaseASABaseIndex);
-				if (result == null) result = caseENamedElement(sybaseASABaseIndex);
-				if (result == null) result = caseEModelElement(sybaseASABaseIndex);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = caseIndex(sybaseASABaseIndex);
+				}
+				if (result == null) {
+					result = caseSQLObject(sybaseASABaseIndex);
+				}
+				if (result == null) {
+					result = caseENamedElement(sybaseASABaseIndex);
+				}
+				if (result == null) {
+					result = caseEModelElement(sybaseASABaseIndex);
+				}
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_DB_SPACE: {
 				SybaseASABaseDBSpace sybaseASABaseDBSpace = (SybaseASABaseDBSpace)theEObject;
 				Object result = caseSybaseASABaseDBSpace(sybaseASABaseDBSpace);
-				if (result == null) result = caseSQLObject(sybaseASABaseDBSpace);
-				if (result == null) result = caseENamedElement(sybaseASABaseDBSpace);
-				if (result == null) result = caseEModelElement(sybaseASABaseDBSpace);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = caseSQLObject(sybaseASABaseDBSpace);
+				}
+				if (result == null) {
+					result = caseENamedElement(sybaseASABaseDBSpace);
+				}
+				if (result == null) {
+					result = caseEModelElement(sybaseASABaseDBSpace);
+				}
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_VIEW_TABLE: {
 				SybaseASABaseViewTable sybaseASABaseViewTable = (SybaseASABaseViewTable)theEObject;
 				Object result = caseSybaseASABaseViewTable(sybaseASABaseViewTable);
-				if (result == null) result = caseSybaseViewTable(sybaseASABaseViewTable);
-				if (result == null) result = caseViewTable(sybaseASABaseViewTable);
-				if (result == null) result = caseSybaseAuthorizedObject(sybaseASABaseViewTable);
-				if (result == null) result = caseDerivedTable(sybaseASABaseViewTable);
-				if (result == null) result = caseSQLObject(sybaseASABaseViewTable);
-				if (result == null) result = caseTable(sybaseASABaseViewTable);
-				if (result == null) result = caseENamedElement(sybaseASABaseViewTable);
-				if (result == null) result = caseEModelElement(sybaseASABaseViewTable);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = caseSybaseViewTable(sybaseASABaseViewTable);
+				}
+				if (result == null) {
+					result = caseViewTable(sybaseASABaseViewTable);
+				}
+				if (result == null) {
+					result = caseSybaseAuthorizedObject(sybaseASABaseViewTable);
+				}
+				if (result == null) {
+					result = caseDerivedTable(sybaseASABaseViewTable);
+				}
+				if (result == null) {
+					result = caseTable(sybaseASABaseViewTable);
+				}
+				if (result == null) {
+					result = caseSQLObject(sybaseASABaseViewTable);
+				}
+				if (result == null) {
+					result = caseENamedElement(sybaseASABaseViewTable);
+				}
+				if (result == null) {
+					result = caseEModelElement(sybaseASABaseViewTable);
+				}
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_FUNCTION: {
 				SybaseASABaseFunction sybaseASABaseFunction = (SybaseASABaseFunction)theEObject;
 				Object result = caseSybaseASABaseFunction(sybaseASABaseFunction);
-				if (result == null) result = caseUserDefinedFunction(sybaseASABaseFunction);
-				if (result == null) result = caseSybaseRoutine(sybaseASABaseFunction);
-				if (result == null) result = caseFunction(sybaseASABaseFunction);
-				if (result == null) result = caseRoutine(sybaseASABaseFunction);
-				if (result == null) result = caseSybaseAuthorizedObject(sybaseASABaseFunction);
-				if (result == null) result = caseSQLObject(sybaseASABaseFunction);
-				if (result == null) result = caseENamedElement(sybaseASABaseFunction);
-				if (result == null) result = caseEModelElement(sybaseASABaseFunction);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = caseUserDefinedFunction(sybaseASABaseFunction);
+				}
+				if (result == null) {
+					result = caseSybaseRoutine(sybaseASABaseFunction);
+				}
+				if (result == null) {
+					result = caseFunction(sybaseASABaseFunction);
+				}
+				if (result == null) {
+					result = caseSybaseAuthorizedObject(sybaseASABaseFunction);
+				}
+				if (result == null) {
+					result = caseRoutine(sybaseASABaseFunction);
+				}
+				if (result == null) {
+					result = caseSQLObject(sybaseASABaseFunction);
+				}
+				if (result == null) {
+					result = caseENamedElement(sybaseASABaseFunction);
+				}
+				if (result == null) {
+					result = caseEModelElement(sybaseASABaseFunction);
+				}
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_PROCEDURE: {
 				SybaseASABaseProcedure sybaseASABaseProcedure = (SybaseASABaseProcedure)theEObject;
 				Object result = caseSybaseASABaseProcedure(sybaseASABaseProcedure);
-				if (result == null) result = caseProcedure(sybaseASABaseProcedure);
-				if (result == null) result = caseSybaseRoutine(sybaseASABaseProcedure);
-				if (result == null) result = caseRoutine(sybaseASABaseProcedure);
-				if (result == null) result = caseSybaseAuthorizedObject(sybaseASABaseProcedure);
-				if (result == null) result = caseSQLObject(sybaseASABaseProcedure);
-				if (result == null) result = caseENamedElement(sybaseASABaseProcedure);
-				if (result == null) result = caseEModelElement(sybaseASABaseProcedure);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = caseProcedure(sybaseASABaseProcedure);
+				}
+				if (result == null) {
+					result = caseSybaseRoutine(sybaseASABaseProcedure);
+				}
+				if (result == null) {
+					result = caseRoutine(sybaseASABaseProcedure);
+				}
+				if (result == null) {
+					result = caseSybaseAuthorizedObject(sybaseASABaseProcedure);
+				}
+				if (result == null) {
+					result = caseSQLObject(sybaseASABaseProcedure);
+				}
+				if (result == null) {
+					result = caseENamedElement(sybaseASABaseProcedure);
+				}
+				if (result == null) {
+					result = caseEModelElement(sybaseASABaseProcedure);
+				}
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TEMP_TABLE: {
 				SybaseASABaseTempTable sybaseASABaseTempTable = (SybaseASABaseTempTable)theEObject;
 				Object result = caseSybaseASABaseTempTable(sybaseASABaseTempTable);
-				if (result == null) result = caseTemporaryTable(sybaseASABaseTempTable);
-				if (result == null) result = caseSybaseBaseTable(sybaseASABaseTempTable);
-				if (result == null) result = caseBaseTable(sybaseASABaseTempTable);
-				if (result == null) result = caseSybaseAuthorizedObject(sybaseASABaseTempTable);
-				if (result == null) result = caseTable(sybaseASABaseTempTable);
-				if (result == null) result = caseSQLObject(sybaseASABaseTempTable);
-				if (result == null) result = caseENamedElement(sybaseASABaseTempTable);
-				if (result == null) result = caseEModelElement(sybaseASABaseTempTable);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = caseTemporaryTable(sybaseASABaseTempTable);
+				}
+				if (result == null) {
+					result = caseSybaseBaseTable(sybaseASABaseTempTable);
+				}
+				if (result == null) {
+					result = caseBaseTable(sybaseASABaseTempTable);
+				}
+				if (result == null) {
+					result = caseSybaseAuthorizedObject(sybaseASABaseTempTable);
+				}
+				if (result == null) {
+					result = caseTable(sybaseASABaseTempTable);
+				}
+				if (result == null) {
+					result = caseSQLObject(sybaseASABaseTempTable);
+				}
+				if (result == null) {
+					result = caseENamedElement(sybaseASABaseTempTable);
+				}
+				if (result == null) {
+					result = caseEModelElement(sybaseASABaseTempTable);
+				}
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TRIGGER: {
 				SybaseASABaseTrigger sybaseASABaseTrigger = (SybaseASABaseTrigger)theEObject;
 				Object result = caseSybaseASABaseTrigger(sybaseASABaseTrigger);
-				if (result == null) result = caseTrigger(sybaseASABaseTrigger);
-				if (result == null) result = caseSQLObject(sybaseASABaseTrigger);
-				if (result == null) result = caseENamedElement(sybaseASABaseTrigger);
-				if (result == null) result = caseEModelElement(sybaseASABaseTrigger);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = caseTrigger(sybaseASABaseTrigger);
+				}
+				if (result == null) {
+					result = caseSQLObject(sybaseASABaseTrigger);
+				}
+				if (result == null) {
+					result = caseENamedElement(sybaseASABaseTrigger);
+				}
+				if (result == null) {
+					result = caseEModelElement(sybaseASABaseTrigger);
+				}
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_PROXY_TABLE: {
 				SybaseASABaseProxyTable sybaseASABaseProxyTable = (SybaseASABaseProxyTable)theEObject;
 				Object result = caseSybaseASABaseProxyTable(sybaseASABaseProxyTable);
-				if (result == null) result = caseSybaseASABaseTable(sybaseASABaseProxyTable);
-				if (result == null) result = casePersistentTable(sybaseASABaseProxyTable);
-				if (result == null) result = caseSybaseBaseTable(sybaseASABaseProxyTable);
-				if (result == null) result = caseBaseTable(sybaseASABaseProxyTable);
-				if (result == null) result = caseSybaseAuthorizedObject(sybaseASABaseProxyTable);
-				if (result == null) result = caseTable(sybaseASABaseProxyTable);
-				if (result == null) result = caseSQLObject(sybaseASABaseProxyTable);
-				if (result == null) result = caseENamedElement(sybaseASABaseProxyTable);
-				if (result == null) result = caseEModelElement(sybaseASABaseProxyTable);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = caseSybaseASABaseTable(sybaseASABaseProxyTable);
+				}
+				if (result == null) {
+					result = casePersistentTable(sybaseASABaseProxyTable);
+				}
+				if (result == null) {
+					result = caseSybaseBaseTable(sybaseASABaseProxyTable);
+				}
+				if (result == null) {
+					result = caseBaseTable(sybaseASABaseProxyTable);
+				}
+				if (result == null) {
+					result = caseSybaseAuthorizedObject(sybaseASABaseProxyTable);
+				}
+				if (result == null) {
+					result = caseTable(sybaseASABaseProxyTable);
+				}
+				if (result == null) {
+					result = caseSQLObject(sybaseASABaseProxyTable);
+				}
+				if (result == null) {
+					result = caseENamedElement(sybaseASABaseProxyTable);
+				}
+				if (result == null) {
+					result = caseEModelElement(sybaseASABaseProxyTable);
+				}
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_COLUMN_CHECK_CONSTRAINT: {
 				SybaseASABaseColumnCheckConstraint sybaseASABaseColumnCheckConstraint = (SybaseASABaseColumnCheckConstraint)theEObject;
 				Object result = caseSybaseASABaseColumnCheckConstraint(sybaseASABaseColumnCheckConstraint);
-				if (result == null) result = caseCheckConstraint(sybaseASABaseColumnCheckConstraint);
-				if (result == null) result = caseTableConstraint(sybaseASABaseColumnCheckConstraint);
-				if (result == null) result = caseConstraint(sybaseASABaseColumnCheckConstraint);
-				if (result == null) result = caseSQLObject(sybaseASABaseColumnCheckConstraint);
-				if (result == null) result = caseENamedElement(sybaseASABaseColumnCheckConstraint);
-				if (result == null) result = caseEModelElement(sybaseASABaseColumnCheckConstraint);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = caseCheckConstraint(sybaseASABaseColumnCheckConstraint);
+				}
+				if (result == null) {
+					result = caseTableConstraint(sybaseASABaseColumnCheckConstraint);
+				}
+				if (result == null) {
+					result = caseConstraint(sybaseASABaseColumnCheckConstraint);
+				}
+				if (result == null) {
+					result = caseSQLObject(sybaseASABaseColumnCheckConstraint);
+				}
+				if (result == null) {
+					result = caseENamedElement(sybaseASABaseColumnCheckConstraint);
+				}
+				if (result == null) {
+					result = caseEModelElement(sybaseASABaseColumnCheckConstraint);
+				}
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case SybaseasabasesqlmodelPackage.SCHEDULE: {
 				Schedule schedule = (Schedule)theEObject;
 				Object result = caseSchedule(schedule);
-				if (result == null) result = caseSQLObject(schedule);
-				if (result == null) result = caseENamedElement(schedule);
-				if (result == null) result = caseEModelElement(schedule);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = caseSQLObject(schedule);
+				}
+				if (result == null) {
+					result = caseENamedElement(schedule);
+				}
+				if (result == null) {
+					result = caseEModelElement(schedule);
+				}
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_REMOTE_PROCEDURE: {
 				SybaseASABaseRemoteProcedure sybaseASABaseRemoteProcedure = (SybaseASABaseRemoteProcedure)theEObject;
 				Object result = caseSybaseASABaseRemoteProcedure(sybaseASABaseRemoteProcedure);
-				if (result == null) result = caseSybaseASABaseProcedure(sybaseASABaseRemoteProcedure);
-				if (result == null) result = caseProcedure(sybaseASABaseRemoteProcedure);
-				if (result == null) result = caseSybaseRoutine(sybaseASABaseRemoteProcedure);
-				if (result == null) result = caseRoutine(sybaseASABaseRemoteProcedure);
-				if (result == null) result = caseSybaseAuthorizedObject(sybaseASABaseRemoteProcedure);
-				if (result == null) result = caseSQLObject(sybaseASABaseRemoteProcedure);
-				if (result == null) result = caseENamedElement(sybaseASABaseRemoteProcedure);
-				if (result == null) result = caseEModelElement(sybaseASABaseRemoteProcedure);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = caseSybaseASABaseProcedure(sybaseASABaseRemoteProcedure);
+				}
+				if (result == null) {
+					result = caseProcedure(sybaseASABaseRemoteProcedure);
+				}
+				if (result == null) {
+					result = caseSybaseRoutine(sybaseASABaseRemoteProcedure);
+				}
+				if (result == null) {
+					result = caseRoutine(sybaseASABaseRemoteProcedure);
+				}
+				if (result == null) {
+					result = caseSybaseAuthorizedObject(sybaseASABaseRemoteProcedure);
+				}
+				if (result == null) {
+					result = caseSQLObject(sybaseASABaseRemoteProcedure);
+				}
+				if (result == null) {
+					result = caseENamedElement(sybaseASABaseRemoteProcedure);
+				}
+				if (result == null) {
+					result = caseEModelElement(sybaseASABaseRemoteProcedure);
+				}
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_PARAMETER: {
 				SybaseASABaseParameter sybaseASABaseParameter = (SybaseASABaseParameter)theEObject;
 				Object result = caseSybaseASABaseParameter(sybaseASABaseParameter);
-				if (result == null) result = caseParameter(sybaseASABaseParameter);
-				if (result == null) result = caseSybaseParameter(sybaseASABaseParameter);
-				if (result == null) result = caseTypedElement(sybaseASABaseParameter);
-				if (result == null) result = caseSQLObject(sybaseASABaseParameter);
-				if (result == null) result = caseENamedElement(sybaseASABaseParameter);
-				if (result == null) result = caseEModelElement(sybaseASABaseParameter);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = caseSybaseParameter(sybaseASABaseParameter);
+				}
+				if (result == null) {
+					result = caseParameter(sybaseASABaseParameter);
+				}
+				if (result == null) {
+					result = caseTypedElement(sybaseASABaseParameter);
+				}
+				if (result == null) {
+					result = caseSQLObject(sybaseASABaseParameter);
+				}
+				if (result == null) {
+					result = caseENamedElement(sybaseASABaseParameter);
+				}
+				if (result == null) {
+					result = caseEModelElement(sybaseASABaseParameter);
+				}
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_GROUP: {
 				SybaseASABaseGroup sybaseASABaseGroup = (SybaseASABaseGroup)theEObject;
 				Object result = caseSybaseASABaseGroup(sybaseASABaseGroup);
-				if (result == null) result = caseUser(sybaseASABaseGroup);
-				if (result == null) result = caseGroup(sybaseASABaseGroup);
-				if (result == null) result = caseSybaseAuthorizationIdentifier(sybaseASABaseGroup);
-				if (result == null) result = caseAuthorizationIdentifier(sybaseASABaseGroup);
-				if (result == null) result = caseSQLObject(sybaseASABaseGroup);
-				if (result == null) result = caseENamedElement(sybaseASABaseGroup);
-				if (result == null) result = caseEModelElement(sybaseASABaseGroup);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = caseUser(sybaseASABaseGroup);
+				}
+				if (result == null) {
+					result = caseGroup(sybaseASABaseGroup);
+				}
+				if (result == null) {
+					result = caseSybaseAuthorizationIdentifier(sybaseASABaseGroup);
+				}
+				if (result == null) {
+					result = caseAuthorizationIdentifier(sybaseASABaseGroup);
+				}
+				if (result == null) {
+					result = caseSQLObject(sybaseASABaseGroup);
+				}
+				if (result == null) {
+					result = caseENamedElement(sybaseASABaseGroup);
+				}
+				if (result == null) {
+					result = caseEModelElement(sybaseASABaseGroup);
+				}
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_USER: {
 				SybaseASABaseUser sybaseASABaseUser = (SybaseASABaseUser)theEObject;
 				Object result = caseSybaseASABaseUser(sybaseASABaseUser);
-				if (result == null) result = caseUser(sybaseASABaseUser);
-				if (result == null) result = caseSybaseAuthorizationIdentifier(sybaseASABaseUser);
-				if (result == null) result = caseAuthorizationIdentifier(sybaseASABaseUser);
-				if (result == null) result = caseSQLObject(sybaseASABaseUser);
-				if (result == null) result = caseENamedElement(sybaseASABaseUser);
-				if (result == null) result = caseEModelElement(sybaseASABaseUser);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = caseUser(sybaseASABaseUser);
+				}
+				if (result == null) {
+					result = caseSybaseAuthorizationIdentifier(sybaseASABaseUser);
+				}
+				if (result == null) {
+					result = caseAuthorizationIdentifier(sybaseASABaseUser);
+				}
+				if (result == null) {
+					result = caseSQLObject(sybaseASABaseUser);
+				}
+				if (result == null) {
+					result = caseENamedElement(sybaseASABaseUser);
+				}
+				if (result == null) {
+					result = caseEModelElement(sybaseASABaseUser);
+				}
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_SCHEMA: {
 				SybaseASABaseSchema sybaseASABaseSchema = (SybaseASABaseSchema)theEObject;
 				Object result = caseSybaseASABaseSchema(sybaseASABaseSchema);
-				if (result == null) result = caseSchema(sybaseASABaseSchema);
-				if (result == null) result = caseSQLObject(sybaseASABaseSchema);
-				if (result == null) result = caseENamedElement(sybaseASABaseSchema);
-				if (result == null) result = caseEModelElement(sybaseASABaseSchema);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = caseSchema(sybaseASABaseSchema);
+				}
+				if (result == null) {
+					result = caseSQLObject(sybaseASABaseSchema);
+				}
+				if (result == null) {
+					result = caseENamedElement(sybaseASABaseSchema);
+				}
+				if (result == null) {
+					result = caseEModelElement(sybaseASABaseSchema);
+				}
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case SybaseasabasesqlmodelPackage.SYBASE_ASA_DEFAULT_WRAPPER: {
 				SybaseASADefaultWrapper sybaseASADefaultWrapper = (SybaseASADefaultWrapper)theEObject;
 				Object result = caseSybaseASADefaultWrapper(sybaseASADefaultWrapper);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case SybaseasabasesqlmodelPackage.EVENT_CONDITION: {
 				EventCondition eventCondition = (EventCondition)theEObject;
 				Object result = caseEventCondition(eventCondition);
-				if (result == null) result = caseSQLObject(eventCondition);
-				if (result == null) result = caseENamedElement(eventCondition);
-				if (result == null) result = caseEModelElement(eventCondition);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = caseSQLObject(eventCondition);
+				}
+				if (result == null) {
+					result = caseENamedElement(eventCondition);
+				}
+				if (result == null) {
+					result = caseEModelElement(eventCondition);
+				}
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			default: return defaultCase(theEObject);

@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -20,17 +20,17 @@ import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
  *
  * <!-- begin-model-doc -->
  * Reference: 5WD-02-Foundation-2002-12 4.17 Integrity constraints
- * 
+ *
  * <!-- end-model-doc -->
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.constraints.Constraint#isDeferrable <em>Deferrable</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.constraints.Constraint#isInitiallyDeferred <em>Initially Deferred</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.constraints.Constraint#isEnforced <em>Enforced</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.datatools.modelbase.sql.constraints.SQLConstraintsPackage#getConstraint()
  * @model abstract="true"
@@ -43,7 +43,7 @@ public interface Constraint extends SQLObject {
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * If True allows you to specify when the DBMS should check the constraint for violation (statement end or transaction end).  If False it will always be after statement end.
-	 * 
+	 *
 	 * Could also be named deferralMode with values DEFERRABLE and NOT DEFERRABLE.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Deferrable</em>' attribute.
@@ -71,9 +71,9 @@ public interface Constraint extends SQLObject {
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * If True isDeferrable must be True and constraint check time will be DEFERRED.  If False constraint check time will be IMMEDIATE.
-	 * 
+	 *
 	 * Could also be named (initial)ConstraintCheckTime with values INITIALLY DEFERRED and INITIALLY IMMEDIATE.  Default value would be INITIALLY IMMEDIATE.
-	 * 
+	 *
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Initially Deferred</em>' attribute.
 	 * @see #setInitiallyDeferred(boolean)

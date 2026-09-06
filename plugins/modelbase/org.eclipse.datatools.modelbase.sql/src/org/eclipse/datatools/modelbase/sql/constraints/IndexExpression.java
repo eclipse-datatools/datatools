@@ -19,10 +19,10 @@ import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.constraints.IndexExpression#getSql <em>Sql</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.datatools.modelbase.sql.constraints.SQLConstraintsPackage#getIndexExpression()
  * @model

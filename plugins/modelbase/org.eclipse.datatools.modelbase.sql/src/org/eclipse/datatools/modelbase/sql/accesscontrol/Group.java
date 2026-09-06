@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -23,10 +23,10 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.accesscontrol.Group#getUser <em>User</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.datatools.modelbase.sql.accesscontrol.SQLAccessControlPackage#getGroup()
  * @model

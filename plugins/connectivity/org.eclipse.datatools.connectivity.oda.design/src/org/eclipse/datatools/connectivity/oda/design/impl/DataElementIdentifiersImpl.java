@@ -8,7 +8,7 @@
  *
  * Contributors:
  *  Actuate Corporation - initial API and implementation
- *  
+ *
  *************************************************************************
  *
  * $Id$
@@ -34,155 +34,136 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.impl.DataElementIdentifiersImpl#getIdentifiers <em>Identifiers</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class DataElementIdentifiersImpl extends EObjectImpl implements
-        DataElementIdentifiers
-{
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public static final String copyright = "Copyright (c) 2010 Actuate Corporation"; //$NON-NLS-1$
+public class DataElementIdentifiersImpl extends EObjectImpl implements DataElementIdentifiers {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final String copyright = "Copyright (c) 2005, 2010 Actuate Corporation"; //$NON-NLS-1$
 
-    /**
-     * The cached value of the '{@link #getIdentifiers() <em>Identifiers</em>}' containment reference list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getIdentifiers()
-     * @generated
-     * @ordered
-     */
-    protected EList<DataElementIdentifier> m_identifiers;
+	/**
+	 * The cached value of the '{@link #getIdentifiers() <em>Identifiers</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getIdentifiers()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<DataElementIdentifier> identifiers;
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected DataElementIdentifiersImpl()
-    {
-        super();
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected DataElementIdentifiersImpl() {
+		super();
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    protected EClass eStaticClass()
-    {
-        return DesignPackage.Literals.DATA_ELEMENT_IDENTIFIERS;
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return DesignPackage.Literals.DATA_ELEMENT_IDENTIFIERS;
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EList<DataElementIdentifier> getIdentifiers()
-    {
-        if( m_identifiers == null )
-        {
-            m_identifiers = new EObjectContainmentEList<DataElementIdentifier>(
-                    DataElementIdentifier.class, this,
-                    DesignPackage.DATA_ELEMENT_IDENTIFIERS__IDENTIFIERS );
-        }
-        return m_identifiers;
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<DataElementIdentifier> getIdentifiers() {
+		if (identifiers == null) {
+			identifiers = new EObjectContainmentEList<>(DataElementIdentifier.class, this,
+					DesignPackage.DATA_ELEMENT_IDENTIFIERS__IDENTIFIERS);
+		}
+		return identifiers;
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public NotificationChain eInverseRemove( InternalEObject otherEnd,
-            int featureID, NotificationChain msgs )
-    {
-        switch( featureID )
-        {
-        case DesignPackage.DATA_ELEMENT_IDENTIFIERS__IDENTIFIERS:
-            return ((InternalEList<?>) getIdentifiers()).basicRemove( otherEnd,
-                    msgs );
-        }
-        return super.eInverseRemove( otherEnd, featureID, msgs );
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+		case DesignPackage.DATA_ELEMENT_IDENTIFIERS__IDENTIFIERS:
+			return ((InternalEList<?>) getIdentifiers()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public Object eGet( int featureID, boolean resolve, boolean coreType )
-    {
-        switch( featureID )
-        {
-        case DesignPackage.DATA_ELEMENT_IDENTIFIERS__IDENTIFIERS:
-            return getIdentifiers();
-        }
-        return super.eGet( featureID, resolve, coreType );
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+		case DesignPackage.DATA_ELEMENT_IDENTIFIERS__IDENTIFIERS:
+			return getIdentifiers();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @SuppressWarnings("unchecked")
-    @Override
-    public void eSet( int featureID, Object newValue )
-    {
-        switch( featureID )
-        {
-        case DesignPackage.DATA_ELEMENT_IDENTIFIERS__IDENTIFIERS:
-            getIdentifiers().clear();
-            getIdentifiers().addAll(
-                    (Collection<? extends DataElementIdentifier>) newValue );
-            return;
-        }
-        super.eSet( featureID, newValue );
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
+		case DesignPackage.DATA_ELEMENT_IDENTIFIERS__IDENTIFIERS:
+			getIdentifiers().clear();
+			getIdentifiers().addAll((Collection<? extends DataElementIdentifier>) newValue);
+			return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public void eUnset( int featureID )
-    {
-        switch( featureID )
-        {
-        case DesignPackage.DATA_ELEMENT_IDENTIFIERS__IDENTIFIERS:
-            getIdentifiers().clear();
-            return;
-        }
-        super.eUnset( featureID );
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eUnset(int featureID) {
+		switch (featureID) {
+		case DesignPackage.DATA_ELEMENT_IDENTIFIERS__IDENTIFIERS:
+			getIdentifiers().clear();
+			return;
+		}
+		super.eUnset(featureID);
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public boolean eIsSet( int featureID )
-    {
-        switch( featureID )
-        {
-        case DesignPackage.DATA_ELEMENT_IDENTIFIERS__IDENTIFIERS:
-            return m_identifiers != null && !m_identifiers.isEmpty();
-        }
-        return super.eIsSet( featureID );
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+		case DesignPackage.DATA_ELEMENT_IDENTIFIERS__IDENTIFIERS:
+			return identifiers != null && !identifiers.isEmpty();
+		}
+		return super.eIsSet(featureID);
+	}
 
 } //DataElementIdentifiersImpl

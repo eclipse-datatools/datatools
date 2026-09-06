@@ -174,11 +174,12 @@ public final class ParentUpdateDRIRuleType extends AbstractEnumerator {
 	 * Returns the '<em><b>Parent Update DRI Rule Type</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static ParentUpdateDRIRuleType get(String literal) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			ParentUpdateDRIRuleType result = VALUES_ARRAY[i];
+		for (ParentUpdateDRIRuleType result : VALUES_ARRAY) {
 			if (result.toString().equals(literal)) {
 				return result;
 			}
@@ -190,11 +191,12 @@ public final class ParentUpdateDRIRuleType extends AbstractEnumerator {
 	 * Returns the '<em><b>Parent Update DRI Rule Type</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static ParentUpdateDRIRuleType getByName(String name) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			ParentUpdateDRIRuleType result = VALUES_ARRAY[i];
+		for (ParentUpdateDRIRuleType result : VALUES_ARRAY) {
 			if (result.getName().equals(name)) {
 				return result;
 			}
@@ -206,6 +208,8 @@ public final class ParentUpdateDRIRuleType extends AbstractEnumerator {
 	 * Returns the '<em><b>Parent Update DRI Rule Type</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static ParentUpdateDRIRuleType get(int value) {

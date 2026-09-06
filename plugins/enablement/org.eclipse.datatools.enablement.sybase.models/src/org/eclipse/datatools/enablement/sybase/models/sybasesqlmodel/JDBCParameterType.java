@@ -203,11 +203,12 @@ public final class JDBCParameterType extends AbstractEnumerator {
 	 * Returns the '<em><b>JDBC Parameter Type</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static JDBCParameterType get(String literal) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			JDBCParameterType result = VALUES_ARRAY[i];
+		for (JDBCParameterType result : VALUES_ARRAY) {
 			if (result.toString().equals(literal)) {
 				return result;
 			}
@@ -219,11 +220,12 @@ public final class JDBCParameterType extends AbstractEnumerator {
 	 * Returns the '<em><b>JDBC Parameter Type</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static JDBCParameterType getByName(String name) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			JDBCParameterType result = VALUES_ARRAY[i];
+		for (JDBCParameterType result : VALUES_ARRAY) {
 			if (result.getName().equals(name)) {
 				return result;
 			}
@@ -235,6 +237,8 @@ public final class JDBCParameterType extends AbstractEnumerator {
 	 * Returns the '<em><b>JDBC Parameter Type</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static JDBCParameterType get(int value) {
@@ -246,7 +250,7 @@ public final class JDBCParameterType extends AbstractEnumerator {
 			case OUT: return OUT_LITERAL;
 			case RETURN: return RETURN_LITERAL;
 		}
-		return null;	
+		return null;
 	}
 
 	/**

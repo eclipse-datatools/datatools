@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -21,11 +21,12 @@ import org.eclipse.emf.common.util.EList;
  *
  * <!-- begin-model-doc -->
  * Reference: 5WD-02-Foundation-2002-12 4.17 Integrity constraints, Reference, 5WD-02-Foundation-2002-12 11.8 <referencial constraint definition>
- * 
+ *
  * <!-- end-model-doc -->
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.constraints.ForeignKey#getMatch <em>Match</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.constraints.ForeignKey#getOnUpdate <em>On Update</em>}</li>
@@ -35,7 +36,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.eclipse.datatools.modelbase.sql.constraints.ForeignKey#getUniqueIndex <em>Unique Index</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.constraints.ForeignKey#getReferencedTable <em>Referenced Table</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.datatools.modelbase.sql.constraints.SQLConstraintsPackage#getForeignKey()
  * @model

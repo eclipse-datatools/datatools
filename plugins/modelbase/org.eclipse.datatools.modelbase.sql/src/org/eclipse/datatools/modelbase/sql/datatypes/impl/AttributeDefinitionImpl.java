@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -24,12 +24,12 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.datatypes.impl.AttributeDefinitionImpl#getScopeCheck <em>Scope Check</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.datatypes.impl.AttributeDefinitionImpl#isScopeChecked <em>Scope Checked</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.datatypes.impl.AttributeDefinitionImpl#getDefaultValue <em>Default Value</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -108,6 +108,7 @@ public class AttributeDefinitionImpl extends TypedElementImpl implements Attribu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return SQLDataTypesPackage.Literals.ATTRIBUTE_DEFINITION;
 	}
@@ -117,6 +118,7 @@ public class AttributeDefinitionImpl extends TypedElementImpl implements Attribu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ReferentialActionType getScopeCheck() {
 		return scopeCheck;
 	}
@@ -126,11 +128,13 @@ public class AttributeDefinitionImpl extends TypedElementImpl implements Attribu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setScopeCheck(ReferentialActionType newScopeCheck) {
 		ReferentialActionType oldScopeCheck = scopeCheck;
 		scopeCheck = newScopeCheck == null ? SCOPE_CHECK_EDEFAULT : newScopeCheck;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLDataTypesPackage.ATTRIBUTE_DEFINITION__SCOPE_CHECK, oldScopeCheck, scopeCheck));
+		}
 	}
 
 	/**
@@ -138,6 +142,7 @@ public class AttributeDefinitionImpl extends TypedElementImpl implements Attribu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isScopeChecked() {
 		return scopeChecked;
 	}
@@ -147,11 +152,13 @@ public class AttributeDefinitionImpl extends TypedElementImpl implements Attribu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setScopeChecked(boolean newScopeChecked) {
 		boolean oldScopeChecked = scopeChecked;
 		scopeChecked = newScopeChecked;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLDataTypesPackage.ATTRIBUTE_DEFINITION__SCOPE_CHECKED, oldScopeChecked, scopeChecked));
+		}
 	}
 
 	/**
@@ -159,6 +166,7 @@ public class AttributeDefinitionImpl extends TypedElementImpl implements Attribu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getDefaultValue() {
 		return defaultValue;
 	}
@@ -168,11 +176,13 @@ public class AttributeDefinitionImpl extends TypedElementImpl implements Attribu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDefaultValue(String newDefaultValue) {
 		String oldDefaultValue = defaultValue;
 		defaultValue = newDefaultValue;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLDataTypesPackage.ATTRIBUTE_DEFINITION__DEFAULT_VALUE, oldDefaultValue, defaultValue));
+		}
 	}
 
 	/**
@@ -180,6 +190,7 @@ public class AttributeDefinitionImpl extends TypedElementImpl implements Attribu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SQLDataTypesPackage.ATTRIBUTE_DEFINITION__SCOPE_CHECK:
@@ -197,6 +208,7 @@ public class AttributeDefinitionImpl extends TypedElementImpl implements Attribu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case SQLDataTypesPackage.ATTRIBUTE_DEFINITION__SCOPE_CHECK:
@@ -217,6 +229,7 @@ public class AttributeDefinitionImpl extends TypedElementImpl implements Attribu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case SQLDataTypesPackage.ATTRIBUTE_DEFINITION__SCOPE_CHECK:
@@ -237,6 +250,7 @@ public class AttributeDefinitionImpl extends TypedElementImpl implements Attribu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SQLDataTypesPackage.ATTRIBUTE_DEFINITION__SCOPE_CHECK:
@@ -254,8 +268,11 @@ public class AttributeDefinitionImpl extends TypedElementImpl implements Attribu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (scopeCheck: "); //$NON-NLS-1$

@@ -15,10 +15,10 @@ import org.eclipse.datatools.modelbase.sql.constraints.Index;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseIndex#getDbSpace <em>Db Space</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseasabasesqlmodelPackage#getSybaseASABaseIndex()
  * @model

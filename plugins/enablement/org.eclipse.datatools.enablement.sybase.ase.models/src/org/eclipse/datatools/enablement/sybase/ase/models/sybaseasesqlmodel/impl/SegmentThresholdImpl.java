@@ -19,199 +19,209 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.impl.SegmentThresholdImpl#getProcedureName <em>Procedure Name</em>}</li>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.impl.SegmentThresholdImpl#getFreeSpace <em>Free Space</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class SegmentThresholdImpl extends SQLObjectImpl implements SegmentThreshold 
+public class SegmentThresholdImpl extends SQLObjectImpl implements SegmentThreshold
 {
 	/**
-     * The default value of the '{@link #getProcedureName() <em>Procedure Name</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getProcedureName() <em>Procedure Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getProcedureName()
-     * @generated
-     * @ordered
-     */
+	 * @see #getProcedureName()
+	 * @generated
+	 * @ordered
+	 */
 	protected static final String PROCEDURE_NAME_EDEFAULT = null;
 
 	/**
-     * The cached value of the '{@link #getProcedureName() <em>Procedure Name</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getProcedureName() <em>Procedure Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getProcedureName()
-     * @generated
-     * @ordered
-     */
+	 * @see #getProcedureName()
+	 * @generated
+	 * @ordered
+	 */
 	protected String procedureName = PROCEDURE_NAME_EDEFAULT;
 
 	/**
-     * The default value of the '{@link #getFreeSpace() <em>Free Space</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getFreeSpace() <em>Free Space</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getFreeSpace()
-     * @generated
-     * @ordered
-     */
+	 * @see #getFreeSpace()
+	 * @generated
+	 * @ordered
+	 */
 	protected static final int FREE_SPACE_EDEFAULT = 0;
 
 	/**
-     * The cached value of the '{@link #getFreeSpace() <em>Free Space</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getFreeSpace() <em>Free Space</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getFreeSpace()
-     * @generated
-     * @ordered
-     */
+	 * @see #getFreeSpace()
+	 * @generated
+	 * @ordered
+	 */
 	protected int freeSpace = FREE_SPACE_EDEFAULT;
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected SegmentThresholdImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	protected EClass eStaticClass() {
-        return SybaseasesqlmodelPackage.Literals.SEGMENT_THRESHOLD;
-    }
+		return SybaseasesqlmodelPackage.Literals.SEGMENT_THRESHOLD;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public String getProcedureName() {
-        return procedureName;
-    }
+		return procedureName;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public void setProcedureName(String newProcedureName) {
-        String oldProcedureName = procedureName;
-        procedureName = newProcedureName;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SybaseasesqlmodelPackage.SEGMENT_THRESHOLD__PROCEDURE_NAME, oldProcedureName, procedureName));
-    }
+		String oldProcedureName = procedureName;
+		procedureName = newProcedureName;
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasesqlmodelPackage.SEGMENT_THRESHOLD__PROCEDURE_NAME, oldProcedureName, procedureName));
+		}
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public int getFreeSpace() {
-        return freeSpace;
-    }
+		return freeSpace;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public void setFreeSpace(int newFreeSpace) {
-        int oldFreeSpace = freeSpace;
-        freeSpace = newFreeSpace;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SybaseasesqlmodelPackage.SEGMENT_THRESHOLD__FREE_SPACE, oldFreeSpace, freeSpace));
-    }
+		int oldFreeSpace = freeSpace;
+		freeSpace = newFreeSpace;
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasesqlmodelPackage.SEGMENT_THRESHOLD__FREE_SPACE, oldFreeSpace, freeSpace));
+		}
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID)
-        {
-            case SybaseasesqlmodelPackage.SEGMENT_THRESHOLD__PROCEDURE_NAME:
-                return getProcedureName();
-            case SybaseasesqlmodelPackage.SEGMENT_THRESHOLD__FREE_SPACE:
-                return Integer.valueOf(getFreeSpace());
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case SybaseasesqlmodelPackage.SEGMENT_THRESHOLD__PROCEDURE_NAME:
+				return getProcedureName();
+			case SybaseasesqlmodelPackage.SEGMENT_THRESHOLD__FREE_SPACE:
+				return new Integer(getFreeSpace());
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
-        switch (featureID)
-        {
-            case SybaseasesqlmodelPackage.SEGMENT_THRESHOLD__PROCEDURE_NAME:
-                setProcedureName((String)newValue);
-                return;
-            case SybaseasesqlmodelPackage.SEGMENT_THRESHOLD__FREE_SPACE:
-                setFreeSpace(((Integer)newValue).intValue());
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case SybaseasesqlmodelPackage.SEGMENT_THRESHOLD__PROCEDURE_NAME:
+				setProcedureName((String)newValue);
+				return;
+			case SybaseasesqlmodelPackage.SEGMENT_THRESHOLD__FREE_SPACE:
+				setFreeSpace(((Integer)newValue).intValue());
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public void eUnset(int featureID) {
-        switch (featureID)
-        {
-            case SybaseasesqlmodelPackage.SEGMENT_THRESHOLD__PROCEDURE_NAME:
-                setProcedureName(PROCEDURE_NAME_EDEFAULT);
-                return;
-            case SybaseasesqlmodelPackage.SEGMENT_THRESHOLD__FREE_SPACE:
-                setFreeSpace(FREE_SPACE_EDEFAULT);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case SybaseasesqlmodelPackage.SEGMENT_THRESHOLD__PROCEDURE_NAME:
+				setProcedureName(PROCEDURE_NAME_EDEFAULT);
+				return;
+			case SybaseasesqlmodelPackage.SEGMENT_THRESHOLD__FREE_SPACE:
+				setFreeSpace(FREE_SPACE_EDEFAULT);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public boolean eIsSet(int featureID) {
-        switch (featureID)
-        {
-            case SybaseasesqlmodelPackage.SEGMENT_THRESHOLD__PROCEDURE_NAME:
-                return PROCEDURE_NAME_EDEFAULT == null ? procedureName != null : !PROCEDURE_NAME_EDEFAULT.equals(procedureName);
-            case SybaseasesqlmodelPackage.SEGMENT_THRESHOLD__FREE_SPACE:
-                return freeSpace != FREE_SPACE_EDEFAULT;
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case SybaseasesqlmodelPackage.SEGMENT_THRESHOLD__PROCEDURE_NAME:
+				return PROCEDURE_NAME_EDEFAULT == null ? procedureName != null : !PROCEDURE_NAME_EDEFAULT.equals(procedureName);
+			case SybaseasesqlmodelPackage.SEGMENT_THRESHOLD__FREE_SPACE:
+				return freeSpace != FREE_SPACE_EDEFAULT;
+		}
+		return super.eIsSet(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public String toString() {
-        if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (procedureName: "); //$NON-NLS-1$
-        result.append(procedureName);
-        result.append(", freeSpace: "); //$NON-NLS-1$
-        result.append(freeSpace);
-        result.append(')');
-        return result.toString();
-    }
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (procedureName: "); //$NON-NLS-1$
+		result.append(procedureName);
+		result.append(", freeSpace: "); //$NON-NLS-1$
+		result.append(freeSpace);
+		result.append(')');
+		return result.toString();
+	}
 
 } //SegmentThresholdImpl

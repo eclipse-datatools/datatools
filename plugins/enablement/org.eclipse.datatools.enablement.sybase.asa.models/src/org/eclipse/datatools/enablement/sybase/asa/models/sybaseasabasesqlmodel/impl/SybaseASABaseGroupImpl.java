@@ -32,15 +32,15 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl.SybaseASABaseGroupImpl#getUser <em>User</em>}</li>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl.SybaseASABaseGroupImpl#getSqlContainer <em>Sql Container</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class SybaseASABaseGroupImpl extends UserImpl implements SybaseASABaseGroup 
+public class SybaseASABaseGroupImpl extends UserImpl implements SybaseASABaseGroup
 {
     /**
 	 * The cached value of the '{@link #getUser() <em>User</em>}' reference list.
@@ -77,6 +77,7 @@ public class SybaseASABaseGroupImpl extends UserImpl implements SybaseASABaseGro
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass()
     {
 		return SybaseasabasesqlmodelPackage.Literals.SYBASE_ASA_BASE_GROUP;
@@ -87,6 +88,7 @@ public class SybaseASABaseGroupImpl extends UserImpl implements SybaseASABaseGro
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList getUser()
     {
 		if (user == null) {
@@ -100,14 +102,16 @@ public class SybaseASABaseGroupImpl extends UserImpl implements SybaseASABaseGro
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public SQLObject getSqlContainer()
+    @Override
+	public SQLObject getSqlContainer()
     {
 		if (sqlContainer != null && sqlContainer.eIsProxy()) {
 			InternalEObject oldSqlContainer = (InternalEObject)sqlContainer;
 			sqlContainer = (SQLObject)eResolveProxy(oldSqlContainer);
 			if (sqlContainer != oldSqlContainer) {
-				if (eNotificationRequired())
+				if (eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_GROUP__SQL_CONTAINER, oldSqlContainer, sqlContainer));
+				}
 			}
 		}
 		return sqlContainer;
@@ -128,12 +132,14 @@ public class SybaseASABaseGroupImpl extends UserImpl implements SybaseASABaseGro
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public void setSqlContainer(SQLObject newSqlContainer)
+    @Override
+	public void setSqlContainer(SQLObject newSqlContainer)
     {
 		SQLObject oldSqlContainer = sqlContainer;
 		sqlContainer = newSqlContainer;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_GROUP__SQL_CONTAINER, oldSqlContainer, sqlContainer));
+		}
 	}
 
     /**
@@ -141,6 +147,7 @@ public class SybaseASABaseGroupImpl extends UserImpl implements SybaseASABaseGro
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_GROUP__USER:
@@ -154,6 +161,7 @@ public class SybaseASABaseGroupImpl extends UserImpl implements SybaseASABaseGro
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_GROUP__USER:
@@ -167,13 +175,16 @@ public class SybaseASABaseGroupImpl extends UserImpl implements SybaseASABaseGro
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
     {
 		switch (featureID) {
 			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_GROUP__USER:
 				return getUser();
 			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_GROUP__SQL_CONTAINER:
-				if (resolve) return getSqlContainer();
+				if (resolve) {
+					return getSqlContainer();
+				}
 				return basicGetSqlContainer();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -184,6 +195,7 @@ public class SybaseASABaseGroupImpl extends UserImpl implements SybaseASABaseGro
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue)
     {
 		switch (featureID) {
@@ -203,6 +215,7 @@ public class SybaseASABaseGroupImpl extends UserImpl implements SybaseASABaseGro
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID)
     {
 		switch (featureID) {
@@ -221,6 +234,7 @@ public class SybaseASABaseGroupImpl extends UserImpl implements SybaseASABaseGro
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID)
     {
 		switch (featureID) {
@@ -237,6 +251,7 @@ public class SybaseASABaseGroupImpl extends UserImpl implements SybaseASABaseGro
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class baseClass)
     {
 		if (baseClass == Group.class) {
@@ -259,6 +274,7 @@ public class SybaseASABaseGroupImpl extends UserImpl implements SybaseASABaseGro
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class baseClass)
     {
 		if (baseClass == Group.class) {

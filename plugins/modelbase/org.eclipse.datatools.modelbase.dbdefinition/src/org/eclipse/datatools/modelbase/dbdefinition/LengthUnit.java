@@ -148,11 +148,12 @@ public final class LengthUnit extends AbstractEnumerator {
 	 * Returns the '<em><b>Length Unit</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static LengthUnit get(String literal) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			LengthUnit result = VALUES_ARRAY[i];
+		for (LengthUnit result : VALUES_ARRAY) {
 			if (result.toString().equals(literal)) {
 				return result;
 			}
@@ -164,11 +165,12 @@ public final class LengthUnit extends AbstractEnumerator {
 	 * Returns the '<em><b>Length Unit</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static LengthUnit getByName(String name) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			LengthUnit result = VALUES_ARRAY[i];
+		for (LengthUnit result : VALUES_ARRAY) {
 			if (result.getName().equals(name)) {
 				return result;
 			}
@@ -180,6 +182,8 @@ public final class LengthUnit extends AbstractEnumerator {
 	 * Returns the '<em><b>Length Unit</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static LengthUnit get(int value) {

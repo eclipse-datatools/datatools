@@ -19,199 +19,209 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.impl.DeviceItemImpl#getDeviceName <em>Device Name</em>}</li>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.impl.DeviceItemImpl#getSize <em>Size</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class DeviceItemImpl extends SQLObjectImpl implements DeviceItem 
+public class DeviceItemImpl extends SQLObjectImpl implements DeviceItem
 {
 	/**
-     * The default value of the '{@link #getDeviceName() <em>Device Name</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getDeviceName() <em>Device Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getDeviceName()
-     * @generated
-     * @ordered
-     */
+	 * @see #getDeviceName()
+	 * @generated
+	 * @ordered
+	 */
 	protected static final String DEVICE_NAME_EDEFAULT = null;
 
 	/**
-     * The cached value of the '{@link #getDeviceName() <em>Device Name</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getDeviceName() <em>Device Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getDeviceName()
-     * @generated
-     * @ordered
-     */
+	 * @see #getDeviceName()
+	 * @generated
+	 * @ordered
+	 */
 	protected String deviceName = DEVICE_NAME_EDEFAULT;
 
 	/**
-     * The default value of the '{@link #getSize() <em>Size</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getSize() <em>Size</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getSize()
-     * @generated
-     * @ordered
-     */
+	 * @see #getSize()
+	 * @generated
+	 * @ordered
+	 */
 	protected static final int SIZE_EDEFAULT = 0;
 
 	/**
-     * The cached value of the '{@link #getSize() <em>Size</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getSize() <em>Size</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getSize()
-     * @generated
-     * @ordered
-     */
+	 * @see #getSize()
+	 * @generated
+	 * @ordered
+	 */
 	protected int size = SIZE_EDEFAULT;
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected DeviceItemImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	protected EClass eStaticClass() {
-        return SybaseasesqlmodelPackage.Literals.DEVICE_ITEM;
-    }
+		return SybaseasesqlmodelPackage.Literals.DEVICE_ITEM;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public String getDeviceName() {
-        return deviceName;
-    }
+		return deviceName;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public void setDeviceName(String newDeviceName) {
-        String oldDeviceName = deviceName;
-        deviceName = newDeviceName;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SybaseasesqlmodelPackage.DEVICE_ITEM__DEVICE_NAME, oldDeviceName, deviceName));
-    }
+		String oldDeviceName = deviceName;
+		deviceName = newDeviceName;
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasesqlmodelPackage.DEVICE_ITEM__DEVICE_NAME, oldDeviceName, deviceName));
+		}
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public int getSize() {
-        return size;
-    }
+		return size;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public void setSize(int newSize) {
-        int oldSize = size;
-        size = newSize;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SybaseasesqlmodelPackage.DEVICE_ITEM__SIZE, oldSize, size));
-    }
+		int oldSize = size;
+		size = newSize;
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasesqlmodelPackage.DEVICE_ITEM__SIZE, oldSize, size));
+		}
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID)
-        {
-            case SybaseasesqlmodelPackage.DEVICE_ITEM__DEVICE_NAME:
-                return getDeviceName();
-            case SybaseasesqlmodelPackage.DEVICE_ITEM__SIZE:
-                return Integer.valueOf(getSize());
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case SybaseasesqlmodelPackage.DEVICE_ITEM__DEVICE_NAME:
+				return getDeviceName();
+			case SybaseasesqlmodelPackage.DEVICE_ITEM__SIZE:
+				return new Integer(getSize());
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
-        switch (featureID)
-        {
-            case SybaseasesqlmodelPackage.DEVICE_ITEM__DEVICE_NAME:
-                setDeviceName((String)newValue);
-                return;
-            case SybaseasesqlmodelPackage.DEVICE_ITEM__SIZE:
-                setSize(((Integer)newValue).intValue());
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case SybaseasesqlmodelPackage.DEVICE_ITEM__DEVICE_NAME:
+				setDeviceName((String)newValue);
+				return;
+			case SybaseasesqlmodelPackage.DEVICE_ITEM__SIZE:
+				setSize(((Integer)newValue).intValue());
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public void eUnset(int featureID) {
-        switch (featureID)
-        {
-            case SybaseasesqlmodelPackage.DEVICE_ITEM__DEVICE_NAME:
-                setDeviceName(DEVICE_NAME_EDEFAULT);
-                return;
-            case SybaseasesqlmodelPackage.DEVICE_ITEM__SIZE:
-                setSize(SIZE_EDEFAULT);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case SybaseasesqlmodelPackage.DEVICE_ITEM__DEVICE_NAME:
+				setDeviceName(DEVICE_NAME_EDEFAULT);
+				return;
+			case SybaseasesqlmodelPackage.DEVICE_ITEM__SIZE:
+				setSize(SIZE_EDEFAULT);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public boolean eIsSet(int featureID) {
-        switch (featureID)
-        {
-            case SybaseasesqlmodelPackage.DEVICE_ITEM__DEVICE_NAME:
-                return DEVICE_NAME_EDEFAULT == null ? deviceName != null : !DEVICE_NAME_EDEFAULT.equals(deviceName);
-            case SybaseasesqlmodelPackage.DEVICE_ITEM__SIZE:
-                return size != SIZE_EDEFAULT;
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case SybaseasesqlmodelPackage.DEVICE_ITEM__DEVICE_NAME:
+				return DEVICE_NAME_EDEFAULT == null ? deviceName != null : !DEVICE_NAME_EDEFAULT.equals(deviceName);
+			case SybaseasesqlmodelPackage.DEVICE_ITEM__SIZE:
+				return size != SIZE_EDEFAULT;
+		}
+		return super.eIsSet(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public String toString() {
-        if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (deviceName: "); //$NON-NLS-1$
-        result.append(deviceName);
-        result.append(", size: "); //$NON-NLS-1$
-        result.append(size);
-        result.append(')');
-        return result.toString();
-    }
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (deviceName: "); //$NON-NLS-1$
+		result.append(deviceName);
+		result.append(", size: "); //$NON-NLS-1$
+		result.append(size);
+		result.append(')');
+		return result.toString();
+	}
 
 } //DeviceItemImpl

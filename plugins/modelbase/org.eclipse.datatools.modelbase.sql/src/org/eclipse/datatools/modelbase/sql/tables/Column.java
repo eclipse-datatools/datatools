@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -22,11 +22,12 @@ import org.eclipse.datatools.modelbase.sql.schema.TypedElement;
  *
  * <!-- begin-model-doc -->
  * Reference: 5WD-02-Foundation-2002-12 4.13 Columns, fields, and attributes
- * 
+ *
  * <!-- end-model-doc -->
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.tables.Column#getTable <em>Table</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.tables.Column#getIdentitySpecifier <em>Identity Specifier</em>}</li>
@@ -37,7 +38,6 @@ import org.eclipse.datatools.modelbase.sql.schema.TypedElement;
  *   <li>{@link org.eclipse.datatools.modelbase.sql.tables.Column#getScopeCheck <em>Scope Check</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.tables.Column#isScopeChecked <em>Scope Checked</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.datatools.modelbase.sql.tables.SQLTablesPackage#getColumn()
  * @model

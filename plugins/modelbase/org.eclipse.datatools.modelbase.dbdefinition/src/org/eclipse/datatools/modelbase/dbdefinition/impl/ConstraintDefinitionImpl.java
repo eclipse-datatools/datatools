@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.ConstraintDefinitionImpl#isDeferrableConstraintSupported <em>Deferrable Constraint Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.ConstraintDefinitionImpl#isInformationalConstraintSupported <em>Informational Constraint Supported</em>}</li>
@@ -45,7 +46,6 @@ import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.ConstraintDefinitionImpl#getMaximumForeignKeyIdentifierLength <em>Maximum Foreign Key Identifier Length</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.ConstraintDefinitionImpl#getMaximumCheckConstraintIdentifierLength <em>Maximum Check Constraint Identifier Length</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -294,6 +294,7 @@ public class ConstraintDefinitionImpl extends EObjectImpl implements ConstraintD
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return DatabaseDefinitionPackage.Literals.CONSTRAINT_DEFINITION;
 	}
@@ -303,6 +304,7 @@ public class ConstraintDefinitionImpl extends EObjectImpl implements ConstraintD
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isDeferrableConstraintSupported() {
 		return deferrableConstraintSupported;
 	}
@@ -312,11 +314,13 @@ public class ConstraintDefinitionImpl extends EObjectImpl implements ConstraintD
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDeferrableConstraintSupported(boolean newDeferrableConstraintSupported) {
 		boolean oldDeferrableConstraintSupported = deferrableConstraintSupported;
 		deferrableConstraintSupported = newDeferrableConstraintSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.CONSTRAINT_DEFINITION__DEFERRABLE_CONSTRAINT_SUPPORTED, oldDeferrableConstraintSupported, deferrableConstraintSupported));
+		}
 	}
 
 	/**
@@ -324,6 +328,7 @@ public class ConstraintDefinitionImpl extends EObjectImpl implements ConstraintD
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isInformationalConstraintSupported() {
 		return informationalConstraintSupported;
 	}
@@ -333,11 +338,13 @@ public class ConstraintDefinitionImpl extends EObjectImpl implements ConstraintD
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setInformationalConstraintSupported(boolean newInformationalConstraintSupported) {
 		boolean oldInformationalConstraintSupported = informationalConstraintSupported;
 		informationalConstraintSupported = newInformationalConstraintSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.CONSTRAINT_DEFINITION__INFORMATIONAL_CONSTRAINT_SUPPORTED, oldInformationalConstraintSupported, informationalConstraintSupported));
+		}
 	}
 
 	/**
@@ -345,6 +352,7 @@ public class ConstraintDefinitionImpl extends EObjectImpl implements ConstraintD
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isClusteredPrimaryKeySupported() {
 		return clusteredPrimaryKeySupported;
 	}
@@ -354,11 +362,13 @@ public class ConstraintDefinitionImpl extends EObjectImpl implements ConstraintD
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setClusteredPrimaryKeySupported(boolean newClusteredPrimaryKeySupported) {
 		boolean oldClusteredPrimaryKeySupported = clusteredPrimaryKeySupported;
 		clusteredPrimaryKeySupported = newClusteredPrimaryKeySupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.CONSTRAINT_DEFINITION__CLUSTERED_PRIMARY_KEY_SUPPORTED, oldClusteredPrimaryKeySupported, clusteredPrimaryKeySupported));
+		}
 	}
 
 	/**
@@ -366,6 +376,7 @@ public class ConstraintDefinitionImpl extends EObjectImpl implements ConstraintD
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isClusteredUniqueConstraintSupported() {
 		return clusteredUniqueConstraintSupported;
 	}
@@ -375,11 +386,13 @@ public class ConstraintDefinitionImpl extends EObjectImpl implements ConstraintD
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setClusteredUniqueConstraintSupported(boolean newClusteredUniqueConstraintSupported) {
 		boolean oldClusteredUniqueConstraintSupported = clusteredUniqueConstraintSupported;
 		clusteredUniqueConstraintSupported = newClusteredUniqueConstraintSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.CONSTRAINT_DEFINITION__CLUSTERED_UNIQUE_CONSTRAINT_SUPPORTED, oldClusteredUniqueConstraintSupported, clusteredUniqueConstraintSupported));
+		}
 	}
 
 	/**
@@ -387,6 +400,7 @@ public class ConstraintDefinitionImpl extends EObjectImpl implements ConstraintD
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isPrimaryKeyNullable() {
 		return primaryKeyNullable;
 	}
@@ -396,11 +410,13 @@ public class ConstraintDefinitionImpl extends EObjectImpl implements ConstraintD
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPrimaryKeyNullable(boolean newPrimaryKeyNullable) {
 		boolean oldPrimaryKeyNullable = primaryKeyNullable;
 		primaryKeyNullable = newPrimaryKeyNullable;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.CONSTRAINT_DEFINITION__PRIMARY_KEY_NULLABLE, oldPrimaryKeyNullable, primaryKeyNullable));
+		}
 	}
 
 	/**
@@ -408,6 +424,7 @@ public class ConstraintDefinitionImpl extends EObjectImpl implements ConstraintD
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isUniqueKeyNullable() {
 		return uniqueKeyNullable;
 	}
@@ -417,11 +434,13 @@ public class ConstraintDefinitionImpl extends EObjectImpl implements ConstraintD
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setUniqueKeyNullable(boolean newUniqueKeyNullable) {
 		boolean oldUniqueKeyNullable = uniqueKeyNullable;
 		uniqueKeyNullable = newUniqueKeyNullable;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.CONSTRAINT_DEFINITION__UNIQUE_KEY_NULLABLE, oldUniqueKeyNullable, uniqueKeyNullable));
+		}
 	}
 
 	/**
@@ -429,6 +448,7 @@ public class ConstraintDefinitionImpl extends EObjectImpl implements ConstraintD
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getMaximumCheckExpressionLength() {
 		return maximumCheckExpressionLength;
 	}
@@ -438,11 +458,13 @@ public class ConstraintDefinitionImpl extends EObjectImpl implements ConstraintD
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMaximumCheckExpressionLength(int newMaximumCheckExpressionLength) {
 		int oldMaximumCheckExpressionLength = maximumCheckExpressionLength;
 		maximumCheckExpressionLength = newMaximumCheckExpressionLength;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.CONSTRAINT_DEFINITION__MAXIMUM_CHECK_EXPRESSION_LENGTH, oldMaximumCheckExpressionLength, maximumCheckExpressionLength));
+		}
 	}
 
 	/**
@@ -450,6 +472,7 @@ public class ConstraintDefinitionImpl extends EObjectImpl implements ConstraintD
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList getParentUpdateDRIRuleType() {
 		if (parentUpdateDRIRuleType == null) {
 			parentUpdateDRIRuleType = new EDataTypeUniqueEList(ParentUpdateDRIRuleType.class, this, DatabaseDefinitionPackage.CONSTRAINT_DEFINITION__PARENT_UPDATE_DRI_RULE_TYPE);
@@ -462,6 +485,7 @@ public class ConstraintDefinitionImpl extends EObjectImpl implements ConstraintD
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList getParentDeleteDRIRuleType() {
 		if (parentDeleteDRIRuleType == null) {
 			parentDeleteDRIRuleType = new EDataTypeUniqueEList(ParentDeleteDRIRuleType.class, this, DatabaseDefinitionPackage.CONSTRAINT_DEFINITION__PARENT_DELETE_DRI_RULE_TYPE);
@@ -474,6 +498,7 @@ public class ConstraintDefinitionImpl extends EObjectImpl implements ConstraintD
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList getCheckOption() {
 		if (checkOption == null) {
 			checkOption = new EDataTypeUniqueEList(CheckOption.class, this, DatabaseDefinitionPackage.CONSTRAINT_DEFINITION__CHECK_OPTION);
@@ -486,6 +511,7 @@ public class ConstraintDefinitionImpl extends EObjectImpl implements ConstraintD
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getMaximumPrimaryKeyIdentifierLength() {
 		return maximumPrimaryKeyIdentifierLength;
 	}
@@ -495,11 +521,13 @@ public class ConstraintDefinitionImpl extends EObjectImpl implements ConstraintD
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMaximumPrimaryKeyIdentifierLength(int newMaximumPrimaryKeyIdentifierLength) {
 		int oldMaximumPrimaryKeyIdentifierLength = maximumPrimaryKeyIdentifierLength;
 		maximumPrimaryKeyIdentifierLength = newMaximumPrimaryKeyIdentifierLength;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.CONSTRAINT_DEFINITION__MAXIMUM_PRIMARY_KEY_IDENTIFIER_LENGTH, oldMaximumPrimaryKeyIdentifierLength, maximumPrimaryKeyIdentifierLength));
+		}
 	}
 
 	/**
@@ -507,6 +535,7 @@ public class ConstraintDefinitionImpl extends EObjectImpl implements ConstraintD
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getMaximumForeignKeyIdentifierLength() {
 		return maximumForeignKeyIdentifierLength;
 	}
@@ -516,11 +545,13 @@ public class ConstraintDefinitionImpl extends EObjectImpl implements ConstraintD
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMaximumForeignKeyIdentifierLength(int newMaximumForeignKeyIdentifierLength) {
 		int oldMaximumForeignKeyIdentifierLength = maximumForeignKeyIdentifierLength;
 		maximumForeignKeyIdentifierLength = newMaximumForeignKeyIdentifierLength;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.CONSTRAINT_DEFINITION__MAXIMUM_FOREIGN_KEY_IDENTIFIER_LENGTH, oldMaximumForeignKeyIdentifierLength, maximumForeignKeyIdentifierLength));
+		}
 	}
 
 	/**
@@ -528,6 +559,7 @@ public class ConstraintDefinitionImpl extends EObjectImpl implements ConstraintD
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getMaximumCheckConstraintIdentifierLength() {
 		return maximumCheckConstraintIdentifierLength;
 	}
@@ -537,11 +569,13 @@ public class ConstraintDefinitionImpl extends EObjectImpl implements ConstraintD
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMaximumCheckConstraintIdentifierLength(int newMaximumCheckConstraintIdentifierLength) {
 		int oldMaximumCheckConstraintIdentifierLength = maximumCheckConstraintIdentifierLength;
 		maximumCheckConstraintIdentifierLength = newMaximumCheckConstraintIdentifierLength;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.CONSTRAINT_DEFINITION__MAXIMUM_CHECK_CONSTRAINT_IDENTIFIER_LENGTH, oldMaximumCheckConstraintIdentifierLength, maximumCheckConstraintIdentifierLength));
+		}
 	}
 
 	/**
@@ -549,6 +583,7 @@ public class ConstraintDefinitionImpl extends EObjectImpl implements ConstraintD
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.CONSTRAINT_DEFINITION__DEFERRABLE_CONSTRAINT_SUPPORTED:
@@ -564,7 +599,7 @@ public class ConstraintDefinitionImpl extends EObjectImpl implements ConstraintD
 			case DatabaseDefinitionPackage.CONSTRAINT_DEFINITION__UNIQUE_KEY_NULLABLE:
 				return isUniqueKeyNullable() ? Boolean.TRUE : Boolean.FALSE;
 			case DatabaseDefinitionPackage.CONSTRAINT_DEFINITION__MAXIMUM_CHECK_EXPRESSION_LENGTH:
-				return Integer.valueOf(getMaximumCheckExpressionLength());
+				return new Integer(getMaximumCheckExpressionLength());
 			case DatabaseDefinitionPackage.CONSTRAINT_DEFINITION__PARENT_UPDATE_DRI_RULE_TYPE:
 				return getParentUpdateDRIRuleType();
 			case DatabaseDefinitionPackage.CONSTRAINT_DEFINITION__PARENT_DELETE_DRI_RULE_TYPE:
@@ -572,11 +607,11 @@ public class ConstraintDefinitionImpl extends EObjectImpl implements ConstraintD
 			case DatabaseDefinitionPackage.CONSTRAINT_DEFINITION__CHECK_OPTION:
 				return getCheckOption();
 			case DatabaseDefinitionPackage.CONSTRAINT_DEFINITION__MAXIMUM_PRIMARY_KEY_IDENTIFIER_LENGTH:
-				return Integer.valueOf(getMaximumPrimaryKeyIdentifierLength());
+				return new Integer(getMaximumPrimaryKeyIdentifierLength());
 			case DatabaseDefinitionPackage.CONSTRAINT_DEFINITION__MAXIMUM_FOREIGN_KEY_IDENTIFIER_LENGTH:
-				return Integer.valueOf(getMaximumForeignKeyIdentifierLength());
+				return new Integer(getMaximumForeignKeyIdentifierLength());
 			case DatabaseDefinitionPackage.CONSTRAINT_DEFINITION__MAXIMUM_CHECK_CONSTRAINT_IDENTIFIER_LENGTH:
-				return Integer.valueOf(getMaximumCheckConstraintIdentifierLength());
+				return new Integer(getMaximumCheckConstraintIdentifierLength());
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -586,6 +621,7 @@ public class ConstraintDefinitionImpl extends EObjectImpl implements ConstraintD
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.CONSTRAINT_DEFINITION__DEFERRABLE_CONSTRAINT_SUPPORTED:
@@ -639,6 +675,7 @@ public class ConstraintDefinitionImpl extends EObjectImpl implements ConstraintD
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.CONSTRAINT_DEFINITION__DEFERRABLE_CONSTRAINT_SUPPORTED:
@@ -689,6 +726,7 @@ public class ConstraintDefinitionImpl extends EObjectImpl implements ConstraintD
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.CONSTRAINT_DEFINITION__DEFERRABLE_CONSTRAINT_SUPPORTED:
@@ -726,8 +764,11 @@ public class ConstraintDefinitionImpl extends EObjectImpl implements ConstraintD
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (deferrableConstraintSupported: "); //$NON-NLS-1$

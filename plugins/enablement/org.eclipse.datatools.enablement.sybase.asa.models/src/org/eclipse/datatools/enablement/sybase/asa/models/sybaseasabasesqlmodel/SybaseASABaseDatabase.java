@@ -17,6 +17,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseDatabase#getDataTypes <em>Data Types</em>}</li>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseDatabase#getWebServices <em>Web Services</em>}</li>
@@ -34,7 +35,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseDatabase#getJavaSupport <em>Java Support</em>}</li>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseDatabase#getPasswordCaseSensitive <em>Password Case Sensitive</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseasabasesqlmodelPackage#getSybaseASABaseDatabase()
  * @model
@@ -417,9 +417,9 @@ public interface SybaseASABaseDatabase extends Database, SQLObject
 	 * @generated
 	 */
 	boolean isBaseOnASA10();
-	
+
 	/**
-	 * 
+	 *
 	 * @NOT generated
 	 */
 	EList getDatabaseSchemas();

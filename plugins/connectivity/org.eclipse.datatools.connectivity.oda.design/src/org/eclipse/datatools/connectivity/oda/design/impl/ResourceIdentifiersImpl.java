@@ -8,7 +8,7 @@
  *
  * Contributors:
  *  Actuate Corporation - initial API and implementation
- *  
+ *
  *************************************************************************
  *
  * $Id: ResourceIdentifiersImpl.java,v 1.1 2008/07/23 04:12:27 lchan Exp $
@@ -31,299 +31,276 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.impl.ResourceIdentifiersImpl#getApplResourceBaseURIString <em>Appl Resource Base URI String</em>}</li>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.impl.ResourceIdentifiersImpl#getDesignResourceBaseURIString <em>Design Resource Base URI String</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
- * @since DTP 1.7
  */
-public class ResourceIdentifiersImpl extends EObjectImpl implements
-        ResourceIdentifiers
-{
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public static final String copyright = "Copyright (c) 2008, 2009 Actuate Corporation"; //$NON-NLS-1$
+public class ResourceIdentifiersImpl extends EObjectImpl implements ResourceIdentifiers {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final String copyright = "Copyright (c) 2005, 2010 Actuate Corporation"; //$NON-NLS-1$
 
-    /**
-     * The default value of the '{@link #getApplResourceBaseURIString() <em>Appl Resource Base URI String</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getApplResourceBaseURIString()
-     * @generated
-     * @ordered
-     */
-    protected static final String APPL_RESOURCE_BASE_URI_STRING_EDEFAULT = null;
+	/**
+	 * The default value of the '{@link #getApplResourceBaseURIString() <em>Appl Resource Base URI String</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getApplResourceBaseURIString()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String APPL_RESOURCE_BASE_URI_STRING_EDEFAULT = null;
 
-    /**
-     * The cached value of the '{@link #getApplResourceBaseURIString() <em>Appl Resource Base URI String</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getApplResourceBaseURIString()
-     * @generated
-     * @ordered
-     */
-    protected String m_applResourceBaseURIString = APPL_RESOURCE_BASE_URI_STRING_EDEFAULT;
+	/**
+	 * The cached value of the '{@link #getApplResourceBaseURIString() <em>Appl Resource Base URI String</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getApplResourceBaseURIString()
+	 * @generated
+	 * @ordered
+	 */
+	protected String applResourceBaseURIString = APPL_RESOURCE_BASE_URI_STRING_EDEFAULT;
 
-    /**
-     * The default value of the '{@link #getDesignResourceBaseURIString() <em>Design Resource Base URI String</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getDesignResourceBaseURIString()
-     * @generated
-     * @ordered
-     */
-    protected static final String DESIGN_RESOURCE_BASE_URI_STRING_EDEFAULT = null;
+	/**
+	 * The default value of the '{@link #getDesignResourceBaseURIString() <em>Design Resource Base URI String</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDesignResourceBaseURIString()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String DESIGN_RESOURCE_BASE_URI_STRING_EDEFAULT = null;
 
-    /**
-     * The cached value of the '{@link #getDesignResourceBaseURIString() <em>Design Resource Base URI String</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getDesignResourceBaseURIString()
-     * @generated
-     * @ordered
-     */
-    protected String m_designResourceBaseURIString = DESIGN_RESOURCE_BASE_URI_STRING_EDEFAULT;
+	/**
+	 * The cached value of the '{@link #getDesignResourceBaseURIString() <em>Design Resource Base URI String</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDesignResourceBaseURIString()
+	 * @generated
+	 * @ordered
+	 */
+	protected String designResourceBaseURIString = DESIGN_RESOURCE_BASE_URI_STRING_EDEFAULT;
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected ResourceIdentifiersImpl()
-    {
-        super();
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ResourceIdentifiersImpl() {
+		super();
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    protected EClass eStaticClass()
-    {
-        return DesignPackage.Literals.RESOURCE_IDENTIFIERS;
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return DesignPackage.Literals.RESOURCE_IDENTIFIERS;
+	}
 
-    /* (non-Javadoc)
-     * @see org.eclipse.datatools.connectivity.oda.design.ResourceIdentifiers#getApplResourceBaseURI()
-     * @generated NOT
-     */
-    public URI getApplResourceBaseURI()
-    {
-        String uriString = getApplResourceBaseURIString();
-        return convertToURI( uriString );
-    }
+	/* (non-Javadoc)
+	 * @see org.eclipse.datatools.connectivity.oda.design.ResourceIdentifiers#getApplResourceBaseURI()
+	 * @generated NOT
+	 */
+	@Override
+	public URI getApplResourceBaseURI() {
+		String uriString = getApplResourceBaseURIString();
+		return convertToURI(uriString);
+	}
 
-    /* (non-Javadoc)
-     * @see org.eclipse.datatools.connectivity.oda.design.ResourceIdentifiers#setApplResourceBaseURI(java.net.URI)
-     */
-    public void setApplResourceBaseURI( URI baseURI )
-    {
-        String baseURIString = (baseURI != null) ? baseURI.toString() : null;
-        setApplResourceBaseURIString( baseURIString );
-    }
+	/* (non-Javadoc)
+	 * @see org.eclipse.datatools.connectivity.oda.design.ResourceIdentifiers#setApplResourceBaseURI(java.net.URI)
+	 */
+	@Override
+	public void setApplResourceBaseURI(URI baseURI) {
+		String baseURIString = (baseURI != null) ? baseURI.toString() : null;
+		setApplResourceBaseURIString(baseURIString);
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public String getApplResourceBaseURIString()
-    {
-        return m_applResourceBaseURIString;
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getApplResourceBaseURIString() {
+		return applResourceBaseURIString;
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setApplResourceBaseURIString(
-            String newApplResourceBaseURIString )
-    {
-        String oldApplResourceBaseURIString = m_applResourceBaseURIString;
-        m_applResourceBaseURIString = newApplResourceBaseURIString;
-        if( eNotificationRequired() )
-            eNotify( new ENotificationImpl(
-                    this,
-                    Notification.SET,
-                    DesignPackage.RESOURCE_IDENTIFIERS__APPL_RESOURCE_BASE_URI_STRING,
-                    oldApplResourceBaseURIString, m_applResourceBaseURIString ) );
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setApplResourceBaseURIString(String newApplResourceBaseURIString) {
+		String oldApplResourceBaseURIString = applResourceBaseURIString;
+		applResourceBaseURIString = newApplResourceBaseURIString;
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					DesignPackage.RESOURCE_IDENTIFIERS__APPL_RESOURCE_BASE_URI_STRING, oldApplResourceBaseURIString,
+					applResourceBaseURIString));
+		}
+	}
 
-    /* (non-Javadoc)
-     * @see org.eclipse.datatools.connectivity.oda.design.ResourceIdentifiers#getDesignResourceBaseURI()
-     * @generated NOT
-     */
-    public URI getDesignResourceBaseURI()
-    {
-        String uriString = getDesignResourceBaseURIString();
-        return convertToURI( uriString );
-    }
+	/* (non-Javadoc)
+	 * @see org.eclipse.datatools.connectivity.oda.design.ResourceIdentifiers#getDesignResourceBaseURI()
+	 * @generated NOT
+	 */
+	@Override
+	public URI getDesignResourceBaseURI() {
+		String uriString = getDesignResourceBaseURIString();
+		return convertToURI(uriString);
+	}
 
-    /* (non-Javadoc)
-     * @see org.eclipse.datatools.connectivity.oda.design.ResourceIdentifiers#setDesignResourceBaseURI(java.net.URI)
-     */
-    public void setDesignResourceBaseURI( URI baseURI )
-    {
-        String baseURIString = (baseURI != null) ? baseURI.toString() : null;
-        setDesignResourceBaseURIString( baseURIString );
-    }
+	/* (non-Javadoc)
+	 * @see org.eclipse.datatools.connectivity.oda.design.ResourceIdentifiers#setDesignResourceBaseURI(java.net.URI)
+	 */
+	@Override
+	public void setDesignResourceBaseURI(URI baseURI) {
+		String baseURIString = (baseURI != null) ? baseURI.toString() : null;
+		setDesignResourceBaseURIString(baseURIString);
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public String getDesignResourceBaseURIString()
-    {
-        return m_designResourceBaseURIString;
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getDesignResourceBaseURIString() {
+		return designResourceBaseURIString;
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setDesignResourceBaseURIString(
-            String newDesignResourceBaseURIString )
-    {
-        String oldDesignResourceBaseURIString = m_designResourceBaseURIString;
-        m_designResourceBaseURIString = newDesignResourceBaseURIString;
-        if( eNotificationRequired() )
-            eNotify( new ENotificationImpl(
-                    this,
-                    Notification.SET,
-                    DesignPackage.RESOURCE_IDENTIFIERS__DESIGN_RESOURCE_BASE_URI_STRING,
-                    oldDesignResourceBaseURIString,
-                    m_designResourceBaseURIString ) );
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setDesignResourceBaseURIString(String newDesignResourceBaseURIString) {
+		String oldDesignResourceBaseURIString = designResourceBaseURIString;
+		designResourceBaseURIString = newDesignResourceBaseURIString;
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					DesignPackage.RESOURCE_IDENTIFIERS__DESIGN_RESOURCE_BASE_URI_STRING, oldDesignResourceBaseURIString,
+					designResourceBaseURIString));
+		}
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public Object eGet( int featureID, boolean resolve, boolean coreType )
-    {
-        switch( featureID )
-        {
-        case DesignPackage.RESOURCE_IDENTIFIERS__APPL_RESOURCE_BASE_URI_STRING:
-            return getApplResourceBaseURIString();
-        case DesignPackage.RESOURCE_IDENTIFIERS__DESIGN_RESOURCE_BASE_URI_STRING:
-            return getDesignResourceBaseURIString();
-        }
-        return super.eGet( featureID, resolve, coreType );
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+		case DesignPackage.RESOURCE_IDENTIFIERS__APPL_RESOURCE_BASE_URI_STRING:
+			return getApplResourceBaseURIString();
+		case DesignPackage.RESOURCE_IDENTIFIERS__DESIGN_RESOURCE_BASE_URI_STRING:
+			return getDesignResourceBaseURIString();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public void eSet( int featureID, Object newValue )
-    {
-        switch( featureID )
-        {
-        case DesignPackage.RESOURCE_IDENTIFIERS__APPL_RESOURCE_BASE_URI_STRING:
-            setApplResourceBaseURIString( (String) newValue );
-            return;
-        case DesignPackage.RESOURCE_IDENTIFIERS__DESIGN_RESOURCE_BASE_URI_STRING:
-            setDesignResourceBaseURIString( (String) newValue );
-            return;
-        }
-        super.eSet( featureID, newValue );
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
+		case DesignPackage.RESOURCE_IDENTIFIERS__APPL_RESOURCE_BASE_URI_STRING:
+			setApplResourceBaseURIString((String) newValue);
+			return;
+		case DesignPackage.RESOURCE_IDENTIFIERS__DESIGN_RESOURCE_BASE_URI_STRING:
+			setDesignResourceBaseURIString((String) newValue);
+			return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public void eUnset( int featureID )
-    {
-        switch( featureID )
-        {
-        case DesignPackage.RESOURCE_IDENTIFIERS__APPL_RESOURCE_BASE_URI_STRING:
-            setApplResourceBaseURIString( APPL_RESOURCE_BASE_URI_STRING_EDEFAULT );
-            return;
-        case DesignPackage.RESOURCE_IDENTIFIERS__DESIGN_RESOURCE_BASE_URI_STRING:
-            setDesignResourceBaseURIString( DESIGN_RESOURCE_BASE_URI_STRING_EDEFAULT );
-            return;
-        }
-        super.eUnset( featureID );
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eUnset(int featureID) {
+		switch (featureID) {
+		case DesignPackage.RESOURCE_IDENTIFIERS__APPL_RESOURCE_BASE_URI_STRING:
+			setApplResourceBaseURIString(APPL_RESOURCE_BASE_URI_STRING_EDEFAULT);
+			return;
+		case DesignPackage.RESOURCE_IDENTIFIERS__DESIGN_RESOURCE_BASE_URI_STRING:
+			setDesignResourceBaseURIString(DESIGN_RESOURCE_BASE_URI_STRING_EDEFAULT);
+			return;
+		}
+		super.eUnset(featureID);
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public boolean eIsSet( int featureID )
-    {
-        switch( featureID )
-        {
-        case DesignPackage.RESOURCE_IDENTIFIERS__APPL_RESOURCE_BASE_URI_STRING:
-            return APPL_RESOURCE_BASE_URI_STRING_EDEFAULT == null ? m_applResourceBaseURIString != null
-                    : !APPL_RESOURCE_BASE_URI_STRING_EDEFAULT
-                            .equals( m_applResourceBaseURIString );
-        case DesignPackage.RESOURCE_IDENTIFIERS__DESIGN_RESOURCE_BASE_URI_STRING:
-            return DESIGN_RESOURCE_BASE_URI_STRING_EDEFAULT == null ? m_designResourceBaseURIString != null
-                    : !DESIGN_RESOURCE_BASE_URI_STRING_EDEFAULT
-                            .equals( m_designResourceBaseURIString );
-        }
-        return super.eIsSet( featureID );
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+		case DesignPackage.RESOURCE_IDENTIFIERS__APPL_RESOURCE_BASE_URI_STRING:
+			return APPL_RESOURCE_BASE_URI_STRING_EDEFAULT == null ? applResourceBaseURIString != null
+					: !APPL_RESOURCE_BASE_URI_STRING_EDEFAULT.equals(applResourceBaseURIString);
+		case DesignPackage.RESOURCE_IDENTIFIERS__DESIGN_RESOURCE_BASE_URI_STRING:
+			return DESIGN_RESOURCE_BASE_URI_STRING_EDEFAULT == null ? designResourceBaseURIString != null
+					: !DESIGN_RESOURCE_BASE_URI_STRING_EDEFAULT.equals(designResourceBaseURIString);
+		}
+		return super.eIsSet(featureID);
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public String toString()
-    {
-        if( eIsProxy() )
-            return super.toString();
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
-        StringBuffer result = new StringBuffer( super.toString() );
-        result.append( " (applResourceBaseURIString: " ); //$NON-NLS-1$
-        result.append( m_applResourceBaseURIString );
-        result.append( ", designResourceBaseURIString: " ); //$NON-NLS-1$
-        result.append( m_designResourceBaseURIString );
-        result.append( ')' );
-        return result.toString();
-    }
+		StringBuilder result = new StringBuilder(super.toString());
+		result.append(" (applResourceBaseURIString: "); //$NON-NLS-1$
+		result.append(applResourceBaseURIString);
+		result.append(", designResourceBaseURIString: "); //$NON-NLS-1$
+		result.append(designResourceBaseURIString);
+		result.append(')');
+		return result.toString();
+	}
 
-    /**
-     * @generated NOT
-     */
-    private URI convertToURI( String uriString )
-    {
-        if( uriString == null )
-            return null;
+	/**
+	 * @generated NOT
+	 */
+	private URI convertToURI(String uriString) {
+		if (uriString == null) {
+			return null;
+		}
 
-        try
-        {
-            return new URI( uriString );
-        }
-        catch( URISyntaxException ex )
-        {
-            ex.printStackTrace();
-        }
+		try {
+			return new URI(uriString);
+		} catch (URISyntaxException ex) {
+			ex.printStackTrace();
+		}
 
-        return null;
-    }
+		return null;
+	}
 
 } //ResourceIdentifiersImpl

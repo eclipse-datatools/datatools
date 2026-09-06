@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -34,6 +34,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.accesscontrol.impl.PrivilegeImpl#isGrantable <em>Grantable</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.accesscontrol.impl.PrivilegeImpl#getAction <em>Action</em>}</li>
@@ -43,7 +44,6 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  *   <li>{@link org.eclipse.datatools.modelbase.sql.accesscontrol.impl.PrivilegeImpl#getActionObjects <em>Action Objects</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.accesscontrol.impl.PrivilegeImpl#getObject <em>Object</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -152,6 +152,7 @@ public class PrivilegeImpl extends SQLObjectImpl implements Privilege {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return SQLAccessControlPackage.Literals.PRIVILEGE;
 	}
@@ -161,6 +162,7 @@ public class PrivilegeImpl extends SQLObjectImpl implements Privilege {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isGrantable() {
 		return grantable;
 	}
@@ -170,11 +172,13 @@ public class PrivilegeImpl extends SQLObjectImpl implements Privilege {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setGrantable(boolean newGrantable) {
 		boolean oldGrantable = grantable;
 		grantable = newGrantable;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLAccessControlPackage.PRIVILEGE__GRANTABLE, oldGrantable, grantable));
+		}
 	}
 
 	/**
@@ -182,6 +186,7 @@ public class PrivilegeImpl extends SQLObjectImpl implements Privilege {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getAction() {
 		return action;
 	}
@@ -191,11 +196,13 @@ public class PrivilegeImpl extends SQLObjectImpl implements Privilege {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setAction(String newAction) {
 		String oldAction = action;
 		action = newAction;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLAccessControlPackage.PRIVILEGE__ACTION, oldAction, action));
+		}
 	}
 
 	/**
@@ -203,6 +210,7 @@ public class PrivilegeImpl extends SQLObjectImpl implements Privilege {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isWithHierarchy() {
 		return withHierarchy;
 	}
@@ -212,11 +220,13 @@ public class PrivilegeImpl extends SQLObjectImpl implements Privilege {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setWithHierarchy(boolean newWithHierarchy) {
 		boolean oldWithHierarchy = withHierarchy;
 		withHierarchy = newWithHierarchy;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLAccessControlPackage.PRIVILEGE__WITH_HIERARCHY, oldWithHierarchy, withHierarchy));
+		}
 	}
 
 	/**
@@ -224,13 +234,15 @@ public class PrivilegeImpl extends SQLObjectImpl implements Privilege {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public AuthorizationIdentifier getGrantor() {
 		if (grantor != null && grantor.eIsProxy()) {
 			InternalEObject oldGrantor = (InternalEObject)grantor;
 			grantor = (AuthorizationIdentifier)eResolveProxy(oldGrantor);
 			if (grantor != oldGrantor) {
-				if (eNotificationRequired())
+				if (eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SQLAccessControlPackage.PRIVILEGE__GRANTOR, oldGrantor, grantor));
+				}
 			}
 		}
 		return grantor;
@@ -255,7 +267,11 @@ public class PrivilegeImpl extends SQLObjectImpl implements Privilege {
 		grantor = newGrantor;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLAccessControlPackage.PRIVILEGE__GRANTOR, oldGrantor, newGrantor);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			if (msgs == null) {
+				msgs = notification;
+			} else {
+				msgs.add(notification);
+			}
 		}
 		return msgs;
 	}
@@ -265,18 +281,24 @@ public class PrivilegeImpl extends SQLObjectImpl implements Privilege {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setGrantor(AuthorizationIdentifier newGrantor) {
 		if (newGrantor != grantor) {
 			NotificationChain msgs = null;
-			if (grantor != null)
+			if (grantor != null) {
 				msgs = ((InternalEObject)grantor).eInverseRemove(this, SQLAccessControlPackage.AUTHORIZATION_IDENTIFIER__GRANTED_PRIVILEGE, AuthorizationIdentifier.class, msgs);
-			if (newGrantor != null)
+			}
+			if (newGrantor != null) {
 				msgs = ((InternalEObject)newGrantor).eInverseAdd(this, SQLAccessControlPackage.AUTHORIZATION_IDENTIFIER__GRANTED_PRIVILEGE, AuthorizationIdentifier.class, msgs);
+			}
 			msgs = basicSetGrantor(newGrantor, msgs);
-			if (msgs != null) msgs.dispatch();
+			if (msgs != null) {
+				msgs.dispatch();
+			}
 		}
-		else if (eNotificationRequired())
+		else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLAccessControlPackage.PRIVILEGE__GRANTOR, newGrantor, newGrantor));
+		}
 	}
 
 	/**
@@ -284,9 +306,12 @@ public class PrivilegeImpl extends SQLObjectImpl implements Privilege {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public AuthorizationIdentifier getGrantee() {
-		if (eContainerFeatureID != SQLAccessControlPackage.PRIVILEGE__GRANTEE) return null;
-		return (AuthorizationIdentifier)eContainer();
+		if (eContainerFeatureID() != SQLAccessControlPackage.PRIVILEGE__GRANTEE) {
+			return null;
+		}
+		return (AuthorizationIdentifier)eInternalContainer();
 	}
 
 	/**
@@ -304,20 +329,27 @@ public class PrivilegeImpl extends SQLObjectImpl implements Privilege {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setGrantee(AuthorizationIdentifier newGrantee) {
-		if (newGrantee != eInternalContainer() || (eContainerFeatureID != SQLAccessControlPackage.PRIVILEGE__GRANTEE && newGrantee != null)) {
-			if (EcoreUtil.isAncestor(this, newGrantee))
+		if (newGrantee != eInternalContainer() || (eContainerFeatureID() != SQLAccessControlPackage.PRIVILEGE__GRANTEE && newGrantee != null)) {
+			if (EcoreUtil.isAncestor(this, newGrantee)) {
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
+			}
 			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
+			if (eInternalContainer() != null) {
 				msgs = eBasicRemoveFromContainer(msgs);
-			if (newGrantee != null)
+			}
+			if (newGrantee != null) {
 				msgs = ((InternalEObject)newGrantee).eInverseAdd(this, SQLAccessControlPackage.AUTHORIZATION_IDENTIFIER__RECEIVED_PRIVILEGE, AuthorizationIdentifier.class, msgs);
+			}
 			msgs = basicSetGrantee(newGrantee, msgs);
-			if (msgs != null) msgs.dispatch();
+			if (msgs != null) {
+				msgs.dispatch();
+			}
 		}
-		else if (eNotificationRequired())
+		else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLAccessControlPackage.PRIVILEGE__GRANTEE, newGrantee, newGrantee));
+		}
 	}
 
 	/**
@@ -325,6 +357,7 @@ public class PrivilegeImpl extends SQLObjectImpl implements Privilege {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList getActionObjects() {
 		if (actionObjects == null) {
 			actionObjects = new EObjectResolvingEList(SQLObject.class, this, SQLAccessControlPackage.PRIVILEGE__ACTION_OBJECTS);
@@ -337,13 +370,15 @@ public class PrivilegeImpl extends SQLObjectImpl implements Privilege {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SQLObject getObject() {
 		if (object != null && object.eIsProxy()) {
 			InternalEObject oldObject = (InternalEObject)object;
 			object = (SQLObject)eResolveProxy(oldObject);
 			if (object != oldObject) {
-				if (eNotificationRequired())
+				if (eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SQLAccessControlPackage.PRIVILEGE__OBJECT, oldObject, object));
+				}
 			}
 		}
 		return object;
@@ -368,7 +403,11 @@ public class PrivilegeImpl extends SQLObjectImpl implements Privilege {
 		object = newObject;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLAccessControlPackage.PRIVILEGE__OBJECT, oldObject, newObject);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			if (msgs == null) {
+				msgs = notification;
+			} else {
+				msgs.add(notification);
+			}
 		}
 		return msgs;
 	}
@@ -378,18 +417,24 @@ public class PrivilegeImpl extends SQLObjectImpl implements Privilege {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setObject(SQLObject newObject) {
 		if (newObject != object) {
 			NotificationChain msgs = null;
-			if (object != null)
+			if (object != null) {
 				msgs = ((InternalEObject)object).eInverseRemove(this, SQLSchemaPackage.SQL_OBJECT__PRIVILEGES, SQLObject.class, msgs);
-			if (newObject != null)
+			}
+			if (newObject != null) {
 				msgs = ((InternalEObject)newObject).eInverseAdd(this, SQLSchemaPackage.SQL_OBJECT__PRIVILEGES, SQLObject.class, msgs);
+			}
 			msgs = basicSetObject(newObject, msgs);
-			if (msgs != null) msgs.dispatch();
+			if (msgs != null) {
+				msgs.dispatch();
+			}
 		}
-		else if (eNotificationRequired())
+		else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLAccessControlPackage.PRIVILEGE__OBJECT, newObject, newObject));
+		}
 	}
 
 	/**
@@ -397,19 +442,23 @@ public class PrivilegeImpl extends SQLObjectImpl implements Privilege {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case SQLAccessControlPackage.PRIVILEGE__GRANTOR:
-				if (grantor != null)
+				if (grantor != null) {
 					msgs = ((InternalEObject)grantor).eInverseRemove(this, SQLAccessControlPackage.AUTHORIZATION_IDENTIFIER__GRANTED_PRIVILEGE, AuthorizationIdentifier.class, msgs);
+				}
 				return basicSetGrantor((AuthorizationIdentifier)otherEnd, msgs);
 			case SQLAccessControlPackage.PRIVILEGE__GRANTEE:
-				if (eInternalContainer() != null)
+				if (eInternalContainer() != null) {
 					msgs = eBasicRemoveFromContainer(msgs);
+				}
 				return basicSetGrantee((AuthorizationIdentifier)otherEnd, msgs);
 			case SQLAccessControlPackage.PRIVILEGE__OBJECT:
-				if (object != null)
+				if (object != null) {
 					msgs = ((InternalEObject)object).eInverseRemove(this, SQLSchemaPackage.SQL_OBJECT__PRIVILEGES, SQLObject.class, msgs);
+				}
 				return basicSetObject((SQLObject)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -420,6 +469,7 @@ public class PrivilegeImpl extends SQLObjectImpl implements Privilege {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case SQLAccessControlPackage.PRIVILEGE__GRANTOR:
@@ -437,8 +487,9 @@ public class PrivilegeImpl extends SQLObjectImpl implements Privilege {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID) {
+		switch (eContainerFeatureID()) {
 			case SQLAccessControlPackage.PRIVILEGE__GRANTEE:
 				return eInternalContainer().eInverseRemove(this, SQLAccessControlPackage.AUTHORIZATION_IDENTIFIER__RECEIVED_PRIVILEGE, AuthorizationIdentifier.class, msgs);
 		}
@@ -450,6 +501,7 @@ public class PrivilegeImpl extends SQLObjectImpl implements Privilege {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SQLAccessControlPackage.PRIVILEGE__GRANTABLE:
@@ -459,14 +511,18 @@ public class PrivilegeImpl extends SQLObjectImpl implements Privilege {
 			case SQLAccessControlPackage.PRIVILEGE__WITH_HIERARCHY:
 				return isWithHierarchy() ? Boolean.TRUE : Boolean.FALSE;
 			case SQLAccessControlPackage.PRIVILEGE__GRANTOR:
-				if (resolve) return getGrantor();
+				if (resolve) {
+					return getGrantor();
+				}
 				return basicGetGrantor();
 			case SQLAccessControlPackage.PRIVILEGE__GRANTEE:
 				return getGrantee();
 			case SQLAccessControlPackage.PRIVILEGE__ACTION_OBJECTS:
 				return getActionObjects();
 			case SQLAccessControlPackage.PRIVILEGE__OBJECT:
-				if (resolve) return getObject();
+				if (resolve) {
+					return getObject();
+				}
 				return basicGetObject();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -477,6 +533,7 @@ public class PrivilegeImpl extends SQLObjectImpl implements Privilege {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case SQLAccessControlPackage.PRIVILEGE__GRANTABLE:
@@ -510,6 +567,7 @@ public class PrivilegeImpl extends SQLObjectImpl implements Privilege {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case SQLAccessControlPackage.PRIVILEGE__GRANTABLE:
@@ -542,6 +600,7 @@ public class PrivilegeImpl extends SQLObjectImpl implements Privilege {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SQLAccessControlPackage.PRIVILEGE__GRANTABLE:
@@ -567,8 +626,11 @@ public class PrivilegeImpl extends SQLObjectImpl implements Privilege {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (grantable: "); //$NON-NLS-1$

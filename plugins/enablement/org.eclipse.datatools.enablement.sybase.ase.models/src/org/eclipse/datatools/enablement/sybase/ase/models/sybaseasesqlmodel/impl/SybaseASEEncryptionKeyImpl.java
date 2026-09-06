@@ -22,194 +22,206 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.impl.SybaseASEEncryptionKeyImpl#getSchema <em>Schema</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class SybaseASEEncryptionKeyImpl extends SQLObjectImpl implements SybaseASEEncryptionKey 
+public class SybaseASEEncryptionKeyImpl extends SQLObjectImpl implements SybaseASEEncryptionKey
 {
 	/**
-     * The cached value of the '{@link #getSchema() <em>Schema</em>}' reference.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getSchema() <em>Schema</em>}' reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getSchema()
-     * @generated
-     * @ordered
-     */
+	 * @see #getSchema()
+	 * @generated
+	 * @ordered
+	 */
 	protected SybaseASESchema schema;
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected SybaseASEEncryptionKeyImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	protected EClass eStaticClass() {
-        return SybaseasesqlmodelPackage.Literals.SYBASE_ASE_ENCRYPTION_KEY;
-    }
+		return SybaseasesqlmodelPackage.Literals.SYBASE_ASE_ENCRYPTION_KEY;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public SybaseASESchema getSchema() {
-        if (schema != null && schema.eIsProxy())
-        {
-            InternalEObject oldSchema = (InternalEObject)schema;
-            schema = (SybaseASESchema)eResolveProxy(oldSchema);
-            if (schema != oldSchema)
-            {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, SybaseasesqlmodelPackage.SYBASE_ASE_ENCRYPTION_KEY__SCHEMA, oldSchema, schema));
-            }
-        }
-        return schema;
-    }
+		if (schema != null && schema.eIsProxy()) {
+			InternalEObject oldSchema = (InternalEObject)schema;
+			schema = (SybaseASESchema)eResolveProxy(oldSchema);
+			if (schema != oldSchema) {
+				if (eNotificationRequired()) {
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SybaseasesqlmodelPackage.SYBASE_ASE_ENCRYPTION_KEY__SCHEMA, oldSchema, schema));
+				}
+			}
+		}
+		return schema;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public SybaseASESchema basicGetSchema() {
-        return schema;
-    }
+		return schema;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public NotificationChain basicSetSchema(SybaseASESchema newSchema, NotificationChain msgs) {
-        SybaseASESchema oldSchema = schema;
-        schema = newSchema;
-        if (eNotificationRequired())
-        {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SybaseasesqlmodelPackage.SYBASE_ASE_ENCRYPTION_KEY__SCHEMA, oldSchema, newSchema);
-            if (msgs == null) msgs = notification; else msgs.add(notification);
-        }
-        return msgs;
-    }
+		SybaseASESchema oldSchema = schema;
+		schema = newSchema;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SybaseasesqlmodelPackage.SYBASE_ASE_ENCRYPTION_KEY__SCHEMA, oldSchema, newSchema);
+			if (msgs == null) {
+				msgs = notification;
+			} else {
+				msgs.add(notification);
+			}
+		}
+		return msgs;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public void setSchema(SybaseASESchema newSchema) {
-        if (newSchema != schema)
-        {
-            NotificationChain msgs = null;
-            if (schema != null)
-                msgs = ((InternalEObject)schema).eInverseRemove(this, SybaseasesqlmodelPackage.SYBASE_ASE_SCHEMA__ENCRYPTION_KEYS, SybaseASESchema.class, msgs);
-            if (newSchema != null)
-                msgs = ((InternalEObject)newSchema).eInverseAdd(this, SybaseasesqlmodelPackage.SYBASE_ASE_SCHEMA__ENCRYPTION_KEYS, SybaseASESchema.class, msgs);
-            msgs = basicSetSchema(newSchema, msgs);
-            if (msgs != null) msgs.dispatch();
-        }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SybaseasesqlmodelPackage.SYBASE_ASE_ENCRYPTION_KEY__SCHEMA, newSchema, newSchema));
-    }
+		if (newSchema != schema) {
+			NotificationChain msgs = null;
+			if (schema != null) {
+				msgs = ((InternalEObject)schema).eInverseRemove(this, SybaseasesqlmodelPackage.SYBASE_ASE_SCHEMA__ENCRYPTION_KEYS, SybaseASESchema.class, msgs);
+			}
+			if (newSchema != null) {
+				msgs = ((InternalEObject)newSchema).eInverseAdd(this, SybaseasesqlmodelPackage.SYBASE_ASE_SCHEMA__ENCRYPTION_KEYS, SybaseASESchema.class, msgs);
+			}
+			msgs = basicSetSchema(newSchema, msgs);
+			if (msgs != null) {
+				msgs.dispatch();
+			}
+		}
+		else if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasesqlmodelPackage.SYBASE_ASE_ENCRYPTION_KEY__SCHEMA, newSchema, newSchema));
+		}
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID)
-        {
-            case SybaseasesqlmodelPackage.SYBASE_ASE_ENCRYPTION_KEY__SCHEMA:
-                if (schema != null)
-                    msgs = ((InternalEObject)schema).eInverseRemove(this, SybaseasesqlmodelPackage.SYBASE_ASE_SCHEMA__ENCRYPTION_KEYS, SybaseASESchema.class, msgs);
-                return basicSetSchema((SybaseASESchema)otherEnd, msgs);
-        }
-        return super.eInverseAdd(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case SybaseasesqlmodelPackage.SYBASE_ASE_ENCRYPTION_KEY__SCHEMA:
+				if (schema != null) {
+					msgs = ((InternalEObject)schema).eInverseRemove(this, SybaseasesqlmodelPackage.SYBASE_ASE_SCHEMA__ENCRYPTION_KEYS, SybaseASESchema.class, msgs);
+				}
+				return basicSetSchema((SybaseASESchema)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID)
-        {
-            case SybaseasesqlmodelPackage.SYBASE_ASE_ENCRYPTION_KEY__SCHEMA:
-                return basicSetSchema(null, msgs);
-        }
-        return super.eInverseRemove(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case SybaseasesqlmodelPackage.SYBASE_ASE_ENCRYPTION_KEY__SCHEMA:
+				return basicSetSchema(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID)
-        {
-            case SybaseasesqlmodelPackage.SYBASE_ASE_ENCRYPTION_KEY__SCHEMA:
-                if (resolve) return getSchema();
-                return basicGetSchema();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case SybaseasesqlmodelPackage.SYBASE_ASE_ENCRYPTION_KEY__SCHEMA:
+				if (resolve) {
+					return getSchema();
+				}
+				return basicGetSchema();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
-        switch (featureID)
-        {
-            case SybaseasesqlmodelPackage.SYBASE_ASE_ENCRYPTION_KEY__SCHEMA:
-                setSchema((SybaseASESchema)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case SybaseasesqlmodelPackage.SYBASE_ASE_ENCRYPTION_KEY__SCHEMA:
+				setSchema((SybaseASESchema)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public void eUnset(int featureID) {
-        switch (featureID)
-        {
-            case SybaseasesqlmodelPackage.SYBASE_ASE_ENCRYPTION_KEY__SCHEMA:
-                setSchema((SybaseASESchema)null);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case SybaseasesqlmodelPackage.SYBASE_ASE_ENCRYPTION_KEY__SCHEMA:
+				setSchema((SybaseASESchema)null);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public boolean eIsSet(int featureID) {
-        switch (featureID)
-        {
-            case SybaseasesqlmodelPackage.SYBASE_ASE_ENCRYPTION_KEY__SCHEMA:
-                return schema != null;
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case SybaseasesqlmodelPackage.SYBASE_ASE_ENCRYPTION_KEY__SCHEMA:
+				return schema != null;
+		}
+		return super.eIsSet(featureID);
+	}
 
 } //SybaseASEEncryptionKeyImpl

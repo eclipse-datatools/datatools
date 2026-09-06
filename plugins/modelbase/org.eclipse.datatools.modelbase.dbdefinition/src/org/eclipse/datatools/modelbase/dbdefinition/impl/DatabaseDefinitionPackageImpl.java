@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -56,6 +56,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 /**
@@ -309,20 +310,10 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	private static boolean isInited = false;
 
 	/**
-	 * Creates, registers, and initializes the <b>Package</b> for this
-	 * model, and for any others upon which it depends.  Simple
-	 * dependencies are satisfied by calling this method on all
-	 * dependent packages before doing anything else.  This method drives
-	 * initialization for interdependent packages directly, in parallel
-	 * with this package, itself.
-	 * <p>Of this package and its interdependencies, all packages which
-	 * have not yet been registered by their URI values are first created
-	 * and registered.  The packages are then initialized in two steps:
-	 * meta-model objects for all of the packages are created before any
-	 * are initialized, since one package's meta-model objects may refer to
-	 * those of another.
-	 * <p>Invocation of this method will not affect any packages that have
-	 * already been initialized.
+	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
+	 *
+	 * <p>This method is used to initialize {@link DatabaseDefinitionPackage#eINSTANCE} when that field is accessed.
+	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #eNS_URI
@@ -331,10 +322,13 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * @generated
 	 */
 	public static DatabaseDefinitionPackage init() {
-		if (isInited) return (DatabaseDefinitionPackage)EPackage.Registry.INSTANCE.getEPackage(DatabaseDefinitionPackage.eNS_URI);
+		if (isInited) {
+			return (DatabaseDefinitionPackage)EPackage.Registry.INSTANCE.getEPackage(DatabaseDefinitionPackage.eNS_URI);
+		}
 
 		// Obtain or create and register package
-		DatabaseDefinitionPackageImpl theDatabaseDefinitionPackage = (DatabaseDefinitionPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(eNS_URI) instanceof DatabaseDefinitionPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(eNS_URI) : new DatabaseDefinitionPackageImpl());
+		Object registeredDatabaseDefinitionPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		DatabaseDefinitionPackageImpl theDatabaseDefinitionPackage = registeredDatabaseDefinitionPackage instanceof DatabaseDefinitionPackageImpl ? (DatabaseDefinitionPackageImpl)registeredDatabaseDefinitionPackage : new DatabaseDefinitionPackageImpl();
 
 		isInited = true;
 
@@ -347,6 +341,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 		SQLStatementsPackage.eINSTANCE.eClass();
 		SQLTablesPackage.eINSTANCE.eClass();
 		SQLAccessControlPackage.eINSTANCE.eClass();
+		EcorePackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
 		theDatabaseDefinitionPackage.createPackageContents();
@@ -357,6 +352,8 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 		// Mark meta-data to indicate it can't be changed
 		theDatabaseDefinitionPackage.freeze();
 
+		// Update the registry and return the package
+		EPackage.Registry.INSTANCE.put(DatabaseDefinitionPackage.eNS_URI, theDatabaseDefinitionPackage);
 		return theDatabaseDefinitionPackage;
 	}
 
@@ -365,6 +362,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getDatabaseVendorDefinition() {
 		return databaseVendorDefinitionEClass;
 	}
@@ -374,6 +372,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getDatabaseVendorDefinition_Vendor() {
 		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(19);
 	}
@@ -383,6 +382,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getDatabaseVendorDefinition_Version() {
 		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(20);
 	}
@@ -392,6 +392,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getDatabaseVendorDefinition_ConstraintsSupported() {
 		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(21);
 	}
@@ -401,6 +402,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getDatabaseVendorDefinition_MaximumIdentifierLength() {
 		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(22);
 	}
@@ -410,6 +412,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getDatabaseVendorDefinition_TriggerSupported() {
 		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(23);
 	}
@@ -419,6 +422,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getDatabaseVendorDefinition_SnapshotViewSupported() {
 		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(24);
 	}
@@ -428,6 +432,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getDatabaseVendorDefinition_JoinSupported() {
 		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(25);
 	}
@@ -437,6 +442,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getDatabaseVendorDefinition_ViewTriggerSupported() {
 		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(26);
 	}
@@ -446,6 +452,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getDatabaseVendorDefinition_TablespacesSupported() {
 		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(27);
 	}
@@ -455,6 +462,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getDatabaseVendorDefinition_MaximumCommentLength() {
 		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(28);
 	}
@@ -464,6 +472,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getDatabaseVendorDefinition_SequenceSupported() {
 		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(29);
 	}
@@ -473,6 +482,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getDatabaseVendorDefinition_MQTSupported() {
 		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(30);
 	}
@@ -482,6 +492,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getDatabaseVendorDefinition_SchemaSupported() {
 		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(31);
 	}
@@ -491,6 +502,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getDatabaseVendorDefinition_AliasSupported() {
 		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(32);
 	}
@@ -500,6 +512,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getDatabaseVendorDefinition_SynonymSupported() {
 		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(33);
 	}
@@ -509,6 +522,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getDatabaseVendorDefinition_UserDefinedTypeSupported() {
 		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(34);
 	}
@@ -518,6 +532,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getDatabaseVendorDefinition_DomainSupported() {
 		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(35);
 	}
@@ -527,6 +542,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getDatabaseVendorDefinition_SQLStatementSupported() {
 		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(36);
 	}
@@ -536,6 +552,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getDatabaseVendorDefinition_NicknameSupported() {
 		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(37);
 	}
@@ -545,6 +562,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getDatabaseVendorDefinition_QuotedDMLSupported() {
 		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(38);
 	}
@@ -554,6 +572,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getDatabaseVendorDefinition_QuotedDDLSupported() {
 		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(39);
 	}
@@ -563,6 +582,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getDatabaseVendorDefinition_XmlSupported() {
 		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(40);
 	}
@@ -572,6 +592,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getDatabaseVendorDefinition_MQTIndexSupported() {
 		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(41);
 	}
@@ -581,6 +602,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getDatabaseVendorDefinition_EventSupported() {
 		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(42);
 	}
@@ -590,6 +612,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getDatabaseVendorDefinition_SqlUDFSupported() {
 		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(43);
 	}
@@ -599,6 +622,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getDatabaseVendorDefinition_StoredProcedureSupported() {
 		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(44);
 	}
@@ -608,6 +632,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getDatabaseVendorDefinition_PackageSupported() {
 		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(45);
 	}
@@ -617,6 +642,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getDatabaseVendorDefinition_AuthorizationIdentifierSupported() {
 		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(46);
 	}
@@ -626,6 +652,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getDatabaseVendorDefinition_RoleSupported() {
 		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(47);
 	}
@@ -635,6 +662,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getDatabaseVendorDefinition_GroupSupported() {
 		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(48);
 	}
@@ -644,6 +672,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getDatabaseVendorDefinition_UserSupported() {
 		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(49);
 	}
@@ -653,6 +682,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getDatabaseVendorDefinition_RoleAuthorizationSupported() {
 		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(50);
 	}
@@ -662,6 +692,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getDatabaseVendorDefinition_ConstructedDataTypeSupported() {
 		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(51);
 	}
@@ -671,6 +702,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getDatabaseVendorDefinition_UDFSupported() {
 		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(52);
 	}
@@ -680,6 +712,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getDatabaseVendorDefinition_PredefinedDataTypeDefinitions() {
 		return (EReference)databaseVendorDefinitionEClass.getEStructuralFeatures().get(0);
 	}
@@ -689,6 +722,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getDatabaseVendorDefinition_TableSpaceDefinition() {
 		return (EReference)databaseVendorDefinitionEClass.getEStructuralFeatures().get(1);
 	}
@@ -698,6 +732,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getDatabaseVendorDefinition_StoredProcedureDefinition() {
 		return (EReference)databaseVendorDefinitionEClass.getEStructuralFeatures().get(2);
 	}
@@ -707,6 +742,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getDatabaseVendorDefinition_TriggerDefinition() {
 		return (EReference)databaseVendorDefinitionEClass.getEStructuralFeatures().get(3);
 	}
@@ -716,6 +752,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getDatabaseVendorDefinition_ColumnDefinition() {
 		return (EReference)databaseVendorDefinitionEClass.getEStructuralFeatures().get(4);
 	}
@@ -725,6 +762,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getDatabaseVendorDefinition_ConstraintDefinition() {
 		return (EReference)databaseVendorDefinitionEClass.getEStructuralFeatures().get(5);
 	}
@@ -734,6 +772,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getDatabaseVendorDefinition_ExtendedDefinitions() {
 		return (EReference)databaseVendorDefinitionEClass.getEStructuralFeatures().get(6);
 	}
@@ -743,6 +782,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getDatabaseVendorDefinition_IndexDefinition() {
 		return (EReference)databaseVendorDefinitionEClass.getEStructuralFeatures().get(7);
 	}
@@ -752,6 +792,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getDatabaseVendorDefinition_TableDefinition() {
 		return (EReference)databaseVendorDefinitionEClass.getEStructuralFeatures().get(8);
 	}
@@ -761,6 +802,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getDatabaseVendorDefinition_SequenceDefinition() {
 		return (EReference)databaseVendorDefinitionEClass.getEStructuralFeatures().get(9);
 	}
@@ -770,6 +812,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getDatabaseVendorDefinition_UdtDefinition() {
 		return (EReference)databaseVendorDefinitionEClass.getEStructuralFeatures().get(10);
 	}
@@ -779,6 +822,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getDatabaseVendorDefinition_QueryDefinition() {
 		return (EReference)databaseVendorDefinitionEClass.getEStructuralFeatures().get(11);
 	}
@@ -788,6 +832,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getDatabaseVendorDefinition_SQLSyntaxDefinition() {
 		return (EReference)databaseVendorDefinitionEClass.getEStructuralFeatures().get(12);
 	}
@@ -797,6 +842,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getDatabaseVendorDefinition_NicknameDefinition() {
 		return (EReference)databaseVendorDefinitionEClass.getEStructuralFeatures().get(13);
 	}
@@ -806,6 +852,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getDatabaseVendorDefinition_SchemaDefinition() {
 		return (EReference)databaseVendorDefinitionEClass.getEStructuralFeatures().get(14);
 	}
@@ -815,6 +862,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getDatabaseVendorDefinition_ViewDefinition() {
 		return (EReference)databaseVendorDefinitionEClass.getEStructuralFeatures().get(15);
 	}
@@ -824,6 +872,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getDatabaseVendorDefinition_DebuggerDefinition() {
 		return (EReference)databaseVendorDefinitionEClass.getEStructuralFeatures().get(16);
 	}
@@ -833,6 +882,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getDatabaseVendorDefinition_PrivilegedElementDefinitions() {
 		return (EReference)databaseVendorDefinitionEClass.getEStructuralFeatures().get(17);
 	}
@@ -842,6 +892,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getDatabaseVendorDefinition_ConstructedDataTypeDefinition() {
 		return (EReference)databaseVendorDefinitionEClass.getEStructuralFeatures().get(18);
 	}
@@ -851,6 +902,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getPredefinedDataTypeDefinition() {
 		return predefinedDataTypeDefinitionEClass;
 	}
@@ -860,6 +912,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getPredefinedDataTypeDefinition_LeadingFieldQualifierDefinition() {
 		return (EReference)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(0);
 	}
@@ -869,6 +922,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getPredefinedDataTypeDefinition_TrailingFieldQualifierDefinition() {
 		return (EReference)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(1);
 	}
@@ -878,6 +932,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getPredefinedDataTypeDefinition_DefaultTrailingFieldQualifierDefinition() {
 		return (EReference)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(2);
 	}
@@ -887,6 +942,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getPredefinedDataTypeDefinition_DefaultLeadingFieldQualifierDefinition() {
 		return (EReference)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(3);
 	}
@@ -896,6 +952,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getPredefinedDataTypeDefinition_LengthSupported() {
 		return (EAttribute)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(4);
 	}
@@ -905,6 +962,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getPredefinedDataTypeDefinition_ScaleSupported() {
 		return (EAttribute)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(5);
 	}
@@ -914,6 +972,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getPredefinedDataTypeDefinition_PrecisionSupported() {
 		return (EAttribute)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(6);
 	}
@@ -923,6 +982,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getPredefinedDataTypeDefinition_KeyConstraintSupported() {
 		return (EAttribute)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(7);
 	}
@@ -932,6 +992,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getPredefinedDataTypeDefinition_IdentitySupported() {
 		return (EAttribute)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(8);
 	}
@@ -941,6 +1002,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getPredefinedDataTypeDefinition_MultipleColumnsSupported() {
 		return (EAttribute)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(9);
 	}
@@ -950,6 +1012,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getPredefinedDataTypeDefinition_NullableSupported() {
 		return (EAttribute)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(10);
 	}
@@ -959,6 +1022,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getPredefinedDataTypeDefinition_DefaultSupported() {
 		return (EAttribute)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(11);
 	}
@@ -968,6 +1032,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getPredefinedDataTypeDefinition_ClusteringSupported() {
 		return (EAttribute)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(12);
 	}
@@ -977,6 +1042,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getPredefinedDataTypeDefinition_FillFactorSupported() {
 		return (EAttribute)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(13);
 	}
@@ -986,6 +1052,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getPredefinedDataTypeDefinition_BitDataSupported() {
 		return (EAttribute)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(14);
 	}
@@ -995,6 +1062,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getPredefinedDataTypeDefinition_MaximumValue() {
 		return (EAttribute)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(15);
 	}
@@ -1004,6 +1072,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getPredefinedDataTypeDefinition_MinimumValue() {
 		return (EAttribute)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(16);
 	}
@@ -1013,6 +1082,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getPredefinedDataTypeDefinition_MaximumLength() {
 		return (EAttribute)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(17);
 	}
@@ -1022,6 +1092,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getPredefinedDataTypeDefinition_MaximumPrecision() {
 		return (EAttribute)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(18);
 	}
@@ -1031,6 +1102,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getPredefinedDataTypeDefinition_MaximumScale() {
 		return (EAttribute)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(19);
 	}
@@ -1040,6 +1112,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getPredefinedDataTypeDefinition_MinimumScale() {
 		return (EAttribute)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(20);
 	}
@@ -1049,6 +1122,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getPredefinedDataTypeDefinition_DefaultValueTypes() {
 		return (EAttribute)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(21);
 	}
@@ -1058,6 +1132,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getPredefinedDataTypeDefinition_PrimitiveType() {
 		return (EAttribute)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(22);
 	}
@@ -1067,6 +1142,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getPredefinedDataTypeDefinition_Name() {
 		return (EAttribute)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(23);
 	}
@@ -1076,6 +1152,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getPredefinedDataTypeDefinition_JdbcEnumType() {
 		return (EAttribute)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(24);
 	}
@@ -1085,6 +1162,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getPredefinedDataTypeDefinition_CharacterSet() {
 		return (EAttribute)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(25);
 	}
@@ -1094,6 +1172,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getPredefinedDataTypeDefinition_EncodingScheme() {
 		return (EAttribute)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(26);
 	}
@@ -1103,6 +1182,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getPredefinedDataTypeDefinition_CharacterSetSuffix() {
 		return (EAttribute)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(27);
 	}
@@ -1112,6 +1192,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getPredefinedDataTypeDefinition_EncodingSchemeSuffix() {
 		return (EAttribute)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(28);
 	}
@@ -1121,6 +1202,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getPredefinedDataTypeDefinition_JavaClassName() {
 		return (EAttribute)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(29);
 	}
@@ -1130,6 +1212,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getPredefinedDataTypeDefinition_DefaultLength() {
 		return (EAttribute)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(30);
 	}
@@ -1139,6 +1222,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getPredefinedDataTypeDefinition_DefaultPrecision() {
 		return (EAttribute)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(31);
 	}
@@ -1148,6 +1232,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getPredefinedDataTypeDefinition_DefaultScale() {
 		return (EAttribute)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(32);
 	}
@@ -1157,6 +1242,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getPredefinedDataTypeDefinition_CutoffPrecision() {
 		return (EAttribute)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(33);
 	}
@@ -1166,6 +1252,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getPredefinedDataTypeDefinition_LengthUnit() {
 		return (EAttribute)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(34);
 	}
@@ -1175,6 +1262,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getPredefinedDataTypeDefinition_OrderingSupported() {
 		return (EAttribute)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(35);
 	}
@@ -1184,6 +1272,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getPredefinedDataTypeDefinition_GroupingSupported() {
 		return (EAttribute)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(36);
 	}
@@ -1193,6 +1282,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getPredefinedDataTypeDefinition_DisplayName() {
 		return (EAttribute)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(37);
 	}
@@ -1202,6 +1292,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getPredefinedDataTypeDefinition_DisplayNameSupported() {
 		return (EAttribute)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(38);
 	}
@@ -1211,6 +1302,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getPredefinedDataTypeDefinition_LeadingFieldQualifierSupported() {
 		return (EAttribute)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(39);
 	}
@@ -1220,6 +1312,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getPredefinedDataTypeDefinition_TrailingFieldQualifierSupported() {
 		return (EAttribute)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(40);
 	}
@@ -1229,6 +1322,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getPredefinedDataTypeDefinition_FieldQualifierSeparator() {
 		return (EAttribute)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(41);
 	}
@@ -1238,6 +1332,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getPredefinedDataTypeDefinition_LargeValueSpecifierSupported() {
 		return (EAttribute)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(42);
 	}
@@ -1247,6 +1342,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getPredefinedDataTypeDefinition_LargeValueSpecifierName() {
 		return (EAttribute)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(43);
 	}
@@ -1256,6 +1352,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getPredefinedDataTypeDefinition_LargeValueSpecifierLength() {
 		return (EAttribute)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(44);
 	}
@@ -1265,6 +1362,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getPredefinedDataTypeDefinition_LengthSemanticSupported() {
 		return (EAttribute)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(45);
 	}
@@ -1274,6 +1372,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getPredefinedDataTypeDefinition_LengthSemantic() {
 		return (EAttribute)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(46);
 	}
@@ -1283,6 +1382,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getPredefinedDataTypeDefinition_LanguageType() {
 		return (EAttribute)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(47);
 	}
@@ -1292,6 +1392,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getTableSpaceDefinition() {
 		return tableSpaceDefinitionEClass;
 	}
@@ -1301,6 +1402,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getTableSpaceDefinition_TypeSupported() {
 		return (EAttribute)tableSpaceDefinitionEClass.getEStructuralFeatures().get(0);
 	}
@@ -1310,6 +1412,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getTableSpaceDefinition_ExtentSizeSupported() {
 		return (EAttribute)tableSpaceDefinitionEClass.getEStructuralFeatures().get(1);
 	}
@@ -1319,6 +1422,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getTableSpaceDefinition_PrefetchSizeSupported() {
 		return (EAttribute)tableSpaceDefinitionEClass.getEStructuralFeatures().get(2);
 	}
@@ -1328,6 +1432,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getTableSpaceDefinition_ManagedBySupported() {
 		return (EAttribute)tableSpaceDefinitionEClass.getEStructuralFeatures().get(3);
 	}
@@ -1337,6 +1442,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getTableSpaceDefinition_PageSizeSupported() {
 		return (EAttribute)tableSpaceDefinitionEClass.getEStructuralFeatures().get(4);
 	}
@@ -1346,6 +1452,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getTableSpaceDefinition_BufferPoolSupported() {
 		return (EAttribute)tableSpaceDefinitionEClass.getEStructuralFeatures().get(5);
 	}
@@ -1355,6 +1462,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getTableSpaceDefinition_DefaultSupported() {
 		return (EAttribute)tableSpaceDefinitionEClass.getEStructuralFeatures().get(6);
 	}
@@ -1364,6 +1472,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getTableSpaceDefinition_ContainerMaximumSizeSupported() {
 		return (EAttribute)tableSpaceDefinitionEClass.getEStructuralFeatures().get(7);
 	}
@@ -1373,6 +1482,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getTableSpaceDefinition_ContainerInitialSizeSupported() {
 		return (EAttribute)tableSpaceDefinitionEClass.getEStructuralFeatures().get(8);
 	}
@@ -1382,6 +1492,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getTableSpaceDefinition_ContainerExtentSizeSupported() {
 		return (EAttribute)tableSpaceDefinitionEClass.getEStructuralFeatures().get(9);
 	}
@@ -1391,6 +1502,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getTableSpaceDefinition_TableSpaceType() {
 		return (EAttribute)tableSpaceDefinitionEClass.getEStructuralFeatures().get(10);
 	}
@@ -1400,6 +1512,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getTableSpaceDefinition_MaximumIdentifierLength() {
 		return (EAttribute)tableSpaceDefinitionEClass.getEStructuralFeatures().get(11);
 	}
@@ -1409,6 +1522,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getStoredProcedureDefinition() {
 		return storedProcedureDefinitionEClass;
 	}
@@ -1418,6 +1532,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getStoredProcedureDefinition_PredefinedDataTypeDefinitions() {
 		return (EReference)storedProcedureDefinitionEClass.getEStructuralFeatures().get(0);
 	}
@@ -1427,6 +1542,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getStoredProcedureDefinition_NullInputActionSupported() {
 		return (EAttribute)storedProcedureDefinitionEClass.getEStructuralFeatures().get(1);
 	}
@@ -1436,6 +1552,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getStoredProcedureDefinition_PackageGenerationSupported() {
 		return (EAttribute)storedProcedureDefinitionEClass.getEStructuralFeatures().get(2);
 	}
@@ -1445,6 +1562,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getStoredProcedureDefinition_DetermininsticSupported() {
 		return (EAttribute)storedProcedureDefinitionEClass.getEStructuralFeatures().get(3);
 	}
@@ -1454,6 +1572,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getStoredProcedureDefinition_ReturnedNullSupported() {
 		return (EAttribute)storedProcedureDefinitionEClass.getEStructuralFeatures().get(4);
 	}
@@ -1463,6 +1582,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getStoredProcedureDefinition_ReturnedTypeDeclarationConstraintSupported() {
 		return (EAttribute)storedProcedureDefinitionEClass.getEStructuralFeatures().get(5);
 	}
@@ -1472,6 +1592,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getStoredProcedureDefinition_ParameterInitValueSupported() {
 		return (EAttribute)storedProcedureDefinitionEClass.getEStructuralFeatures().get(6);
 	}
@@ -1481,6 +1602,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getStoredProcedureDefinition_ParameterStyleSupported() {
 		return (EAttribute)storedProcedureDefinitionEClass.getEStructuralFeatures().get(7);
 	}
@@ -1490,6 +1612,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getStoredProcedureDefinition_ReturnTypeSupported() {
 		return (EAttribute)storedProcedureDefinitionEClass.getEStructuralFeatures().get(8);
 	}
@@ -1499,6 +1622,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getStoredProcedureDefinition_ParameterDeclarationConstraintSupported() {
 		return (EAttribute)storedProcedureDefinitionEClass.getEStructuralFeatures().get(9);
 	}
@@ -1508,6 +1632,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getStoredProcedureDefinition_MaximumActionBodyLength() {
 		return (EAttribute)storedProcedureDefinitionEClass.getEStructuralFeatures().get(10);
 	}
@@ -1517,6 +1642,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getStoredProcedureDefinition_ParameterStyle() {
 		return (EAttribute)storedProcedureDefinitionEClass.getEStructuralFeatures().get(11);
 	}
@@ -1526,6 +1652,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getStoredProcedureDefinition_LanguageType() {
 		return (EAttribute)storedProcedureDefinitionEClass.getEStructuralFeatures().get(12);
 	}
@@ -1535,6 +1662,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getStoredProcedureDefinition_FunctionLanguageType() {
 		return (EAttribute)storedProcedureDefinitionEClass.getEStructuralFeatures().get(13);
 	}
@@ -1544,6 +1672,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getStoredProcedureDefinition_ProcedureType() {
 		return (EAttribute)storedProcedureDefinitionEClass.getEStructuralFeatures().get(14);
 	}
@@ -1553,6 +1682,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getStoredProcedureDefinition_MaximumIdentifierLength() {
 		return (EAttribute)storedProcedureDefinitionEClass.getEStructuralFeatures().get(15);
 	}
@@ -1562,6 +1692,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getTriggerDefinition() {
 		return triggerDefinitionEClass;
 	}
@@ -1571,6 +1702,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getTriggerDefinition_MaximumReferencePartLength() {
 		return (EAttribute)triggerDefinitionEClass.getEStructuralFeatures().get(0);
 	}
@@ -1580,6 +1712,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getTriggerDefinition_MaximumActionBodyLength() {
 		return (EAttribute)triggerDefinitionEClass.getEStructuralFeatures().get(1);
 	}
@@ -1589,6 +1722,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getTriggerDefinition_TypeSupported() {
 		return (EAttribute)triggerDefinitionEClass.getEStructuralFeatures().get(2);
 	}
@@ -1598,6 +1732,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getTriggerDefinition_WhenClauseSupported() {
 		return (EAttribute)triggerDefinitionEClass.getEStructuralFeatures().get(3);
 	}
@@ -1607,6 +1742,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getTriggerDefinition_GranularitySupported() {
 		return (EAttribute)triggerDefinitionEClass.getEStructuralFeatures().get(4);
 	}
@@ -1616,6 +1752,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getTriggerDefinition_ReferencesClauseSupported() {
 		return (EAttribute)triggerDefinitionEClass.getEStructuralFeatures().get(5);
 	}
@@ -1625,6 +1762,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getTriggerDefinition_PerColumnUpdateTriggerSupported() {
 		return (EAttribute)triggerDefinitionEClass.getEStructuralFeatures().get(6);
 	}
@@ -1634,6 +1772,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getTriggerDefinition_InsteadOfTriggerSupported() {
 		return (EAttribute)triggerDefinitionEClass.getEStructuralFeatures().get(7);
 	}
@@ -1643,6 +1782,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getTriggerDefinition_RowTriggerReferenceSupported() {
 		return (EAttribute)triggerDefinitionEClass.getEStructuralFeatures().get(8);
 	}
@@ -1652,6 +1792,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getTriggerDefinition_TableTriggerReferenceSupported() {
 		return (EAttribute)triggerDefinitionEClass.getEStructuralFeatures().get(9);
 	}
@@ -1661,6 +1802,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getTriggerDefinition_MaximumIdentifierLength() {
 		return (EAttribute)triggerDefinitionEClass.getEStructuralFeatures().get(10);
 	}
@@ -1670,6 +1812,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getColumnDefinition() {
 		return columnDefinitionEClass;
 	}
@@ -1679,6 +1822,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getColumnDefinition_IdentityColumnDataTypeDefinitions() {
 		return (EReference)columnDefinitionEClass.getEStructuralFeatures().get(0);
 	}
@@ -1688,6 +1832,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getColumnDefinition_IdentitySupported() {
 		return (EAttribute)columnDefinitionEClass.getEStructuralFeatures().get(1);
 	}
@@ -1697,6 +1842,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getColumnDefinition_ComputedSupported() {
 		return (EAttribute)columnDefinitionEClass.getEStructuralFeatures().get(2);
 	}
@@ -1706,6 +1852,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getColumnDefinition_IdentityStartValueSupported() {
 		return (EAttribute)columnDefinitionEClass.getEStructuralFeatures().get(3);
 	}
@@ -1715,6 +1862,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getColumnDefinition_IdentityIncrementSupported() {
 		return (EAttribute)columnDefinitionEClass.getEStructuralFeatures().get(4);
 	}
@@ -1724,6 +1872,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getColumnDefinition_IdentityMinimumSupported() {
 		return (EAttribute)columnDefinitionEClass.getEStructuralFeatures().get(5);
 	}
@@ -1733,6 +1882,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getColumnDefinition_IdentityMaximumSupported() {
 		return (EAttribute)columnDefinitionEClass.getEStructuralFeatures().get(6);
 	}
@@ -1742,6 +1892,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getColumnDefinition_IdentityCycleSupported() {
 		return (EAttribute)columnDefinitionEClass.getEStructuralFeatures().get(7);
 	}
@@ -1751,6 +1902,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getColumnDefinition_MaximumIdentifierLength() {
 		return (EAttribute)columnDefinitionEClass.getEStructuralFeatures().get(8);
 	}
@@ -1760,6 +1912,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getConstraintDefinition() {
 		return constraintDefinitionEClass;
 	}
@@ -1769,6 +1922,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getConstraintDefinition_DeferrableConstraintSupported() {
 		return (EAttribute)constraintDefinitionEClass.getEStructuralFeatures().get(0);
 	}
@@ -1778,6 +1932,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getConstraintDefinition_InformationalConstraintSupported() {
 		return (EAttribute)constraintDefinitionEClass.getEStructuralFeatures().get(1);
 	}
@@ -1787,6 +1942,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getConstraintDefinition_ClusteredPrimaryKeySupported() {
 		return (EAttribute)constraintDefinitionEClass.getEStructuralFeatures().get(2);
 	}
@@ -1796,6 +1952,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getConstraintDefinition_ClusteredUniqueConstraintSupported() {
 		return (EAttribute)constraintDefinitionEClass.getEStructuralFeatures().get(3);
 	}
@@ -1805,6 +1962,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getConstraintDefinition_PrimaryKeyNullable() {
 		return (EAttribute)constraintDefinitionEClass.getEStructuralFeatures().get(4);
 	}
@@ -1814,6 +1972,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getConstraintDefinition_UniqueKeyNullable() {
 		return (EAttribute)constraintDefinitionEClass.getEStructuralFeatures().get(5);
 	}
@@ -1823,6 +1982,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getConstraintDefinition_MaximumCheckExpressionLength() {
 		return (EAttribute)constraintDefinitionEClass.getEStructuralFeatures().get(6);
 	}
@@ -1832,6 +1992,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getConstraintDefinition_ParentUpdateDRIRuleType() {
 		return (EAttribute)constraintDefinitionEClass.getEStructuralFeatures().get(7);
 	}
@@ -1841,6 +2002,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getConstraintDefinition_ParentDeleteDRIRuleType() {
 		return (EAttribute)constraintDefinitionEClass.getEStructuralFeatures().get(8);
 	}
@@ -1850,6 +2012,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getConstraintDefinition_CheckOption() {
 		return (EAttribute)constraintDefinitionEClass.getEStructuralFeatures().get(9);
 	}
@@ -1859,6 +2022,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getConstraintDefinition_MaximumPrimaryKeyIdentifierLength() {
 		return (EAttribute)constraintDefinitionEClass.getEStructuralFeatures().get(10);
 	}
@@ -1868,6 +2032,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getConstraintDefinition_MaximumForeignKeyIdentifierLength() {
 		return (EAttribute)constraintDefinitionEClass.getEStructuralFeatures().get(11);
 	}
@@ -1877,6 +2042,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getConstraintDefinition_MaximumCheckConstraintIdentifierLength() {
 		return (EAttribute)constraintDefinitionEClass.getEStructuralFeatures().get(12);
 	}
@@ -1886,6 +2052,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getIndexDefinition() {
 		return indexDefinitionEClass;
 	}
@@ -1895,6 +2062,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getIndexDefinition_PercentFreeTerminology() {
 		return (EAttribute)indexDefinitionEClass.getEStructuralFeatures().get(0);
 	}
@@ -1904,6 +2072,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getIndexDefinition_PercentFreeChangeable() {
 		return (EAttribute)indexDefinitionEClass.getEStructuralFeatures().get(1);
 	}
@@ -1913,6 +2082,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getIndexDefinition_ClusteringSupported() {
 		return (EAttribute)indexDefinitionEClass.getEStructuralFeatures().get(2);
 	}
@@ -1922,6 +2092,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getIndexDefinition_ClusterChangeable() {
 		return (EAttribute)indexDefinitionEClass.getEStructuralFeatures().get(3);
 	}
@@ -1931,6 +2102,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getIndexDefinition_FillFactorSupported() {
 		return (EAttribute)indexDefinitionEClass.getEStructuralFeatures().get(4);
 	}
@@ -1940,6 +2112,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getIndexDefinition_IncludedColumnsSupported() {
 		return (EAttribute)indexDefinitionEClass.getEStructuralFeatures().get(5);
 	}
@@ -1949,6 +2122,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getIndexDefinition_MaximumIdentifierLength() {
 		return (EAttribute)indexDefinitionEClass.getEStructuralFeatures().get(6);
 	}
@@ -1958,6 +2132,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getExtendedDefinition() {
 		return extendedDefinitionEClass;
 	}
@@ -1967,6 +2142,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getExtendedDefinition_Name() {
 		return (EAttribute)extendedDefinitionEClass.getEStructuralFeatures().get(0);
 	}
@@ -1976,6 +2152,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getExtendedDefinition_Value() {
 		return (EAttribute)extendedDefinitionEClass.getEStructuralFeatures().get(1);
 	}
@@ -1985,6 +2162,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getTableDefinition() {
 		return tableDefinitionEClass;
 	}
@@ -1994,6 +2172,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getTableDefinition_AuditSupported() {
 		return (EAttribute)tableDefinitionEClass.getEStructuralFeatures().get(0);
 	}
@@ -2003,6 +2182,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getTableDefinition_DataCaptureSupported() {
 		return (EAttribute)tableDefinitionEClass.getEStructuralFeatures().get(1);
 	}
@@ -2012,6 +2192,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getTableDefinition_EditProcSupported() {
 		return (EAttribute)tableDefinitionEClass.getEStructuralFeatures().get(2);
 	}
@@ -2021,6 +2202,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getTableDefinition_EncodingSupported() {
 		return (EAttribute)tableDefinitionEClass.getEStructuralFeatures().get(3);
 	}
@@ -2030,6 +2212,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getTableDefinition_ValidProcSupported() {
 		return (EAttribute)tableDefinitionEClass.getEStructuralFeatures().get(4);
 	}
@@ -2039,6 +2222,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getTableDefinition_MaximumIdentifierLength() {
 		return (EAttribute)tableDefinitionEClass.getEStructuralFeatures().get(5);
 	}
@@ -2048,6 +2232,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getSequenceDefinition() {
 		return sequenceDefinitionEClass;
 	}
@@ -2057,6 +2242,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getSequenceDefinition_PredefinedDataTypeDefinitions() {
 		return (EReference)sequenceDefinitionEClass.getEStructuralFeatures().get(0);
 	}
@@ -2066,6 +2252,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getSequenceDefinition_TypeEnumerationSupported() {
 		return (EAttribute)sequenceDefinitionEClass.getEStructuralFeatures().get(2);
 	}
@@ -2075,6 +2262,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getSequenceDefinition_CacheSupported() {
 		return (EAttribute)sequenceDefinitionEClass.getEStructuralFeatures().get(3);
 	}
@@ -2084,6 +2272,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getSequenceDefinition_OrderSupported() {
 		return (EAttribute)sequenceDefinitionEClass.getEStructuralFeatures().get(4);
 	}
@@ -2093,6 +2282,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getSequenceDefinition_NoMaximumValueString() {
 		return (EAttribute)sequenceDefinitionEClass.getEStructuralFeatures().get(5);
 	}
@@ -2102,6 +2292,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getSequenceDefinition_NoMinimumValueString() {
 		return (EAttribute)sequenceDefinitionEClass.getEStructuralFeatures().get(6);
 	}
@@ -2111,6 +2302,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getSequenceDefinition_NoCacheString() {
 		return (EAttribute)sequenceDefinitionEClass.getEStructuralFeatures().get(7);
 	}
@@ -2120,6 +2312,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getSequenceDefinition_CacheDefaultValue() {
 		return (EAttribute)sequenceDefinitionEClass.getEStructuralFeatures().get(8);
 	}
@@ -2129,6 +2322,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getUserDefinedTypeDefinition() {
 		return userDefinedTypeDefinitionEClass;
 	}
@@ -2138,6 +2332,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getUserDefinedTypeDefinition_DefaultValueSupported() {
 		return (EAttribute)userDefinedTypeDefinitionEClass.getEStructuralFeatures().get(0);
 	}
@@ -2147,6 +2342,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getUserDefinedTypeDefinition_DistinctTypeSupported() {
 		return (EAttribute)userDefinedTypeDefinitionEClass.getEStructuralFeatures().get(1);
 	}
@@ -2156,6 +2352,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getUserDefinedTypeDefinition_StructuredTypeSupported() {
 		return (EAttribute)userDefinedTypeDefinitionEClass.getEStructuralFeatures().get(2);
 	}
@@ -2165,6 +2362,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getUserDefinedTypeDefinition_MaximumIdentifierLength() {
 		return (EAttribute)userDefinedTypeDefinitionEClass.getEStructuralFeatures().get(3);
 	}
@@ -2174,6 +2372,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getQueryDefinition() {
 		return queryDefinitionEClass;
 	}
@@ -2183,6 +2382,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getQueryDefinition_IdentifierQuoteString() {
 		return (EAttribute)queryDefinitionEClass.getEStructuralFeatures().get(0);
 	}
@@ -2192,6 +2392,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getQueryDefinition_HostVariableMarker() {
 		return (EAttribute)queryDefinitionEClass.getEStructuralFeatures().get(1);
 	}
@@ -2201,6 +2402,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getQueryDefinition_HostVariableMarkerSupported() {
 		return (EAttribute)queryDefinitionEClass.getEStructuralFeatures().get(2);
 	}
@@ -2210,6 +2412,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getQueryDefinition_CastExpressionSupported() {
 		return (EAttribute)queryDefinitionEClass.getEStructuralFeatures().get(3);
 	}
@@ -2219,6 +2422,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getQueryDefinition_DefaultKeywordForInsertValueSupported() {
 		return (EAttribute)queryDefinitionEClass.getEStructuralFeatures().get(4);
 	}
@@ -2228,6 +2432,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getQueryDefinition_ExtendedGroupingSupported() {
 		return (EAttribute)queryDefinitionEClass.getEStructuralFeatures().get(5);
 	}
@@ -2237,6 +2442,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getQueryDefinition_TableAliasInDeleteSupported() {
 		return (EAttribute)queryDefinitionEClass.getEStructuralFeatures().get(6);
 	}
@@ -2246,6 +2452,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getSQLSyntaxDefinition() {
 		return sqlSyntaxDefinitionEClass;
 	}
@@ -2255,6 +2462,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getSQLSyntaxDefinition_Keywords() {
 		return (EAttribute)sqlSyntaxDefinitionEClass.getEStructuralFeatures().get(0);
 	}
@@ -2264,6 +2472,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getSQLSyntaxDefinition_Operators() {
 		return (EAttribute)sqlSyntaxDefinitionEClass.getEStructuralFeatures().get(1);
 	}
@@ -2273,6 +2482,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getSQLSyntaxDefinition_TerminationCharacter() {
 		return (EAttribute)sqlSyntaxDefinitionEClass.getEStructuralFeatures().get(2);
 	}
@@ -2282,6 +2492,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getNicknameDefinition() {
 		return nicknameDefinitionEClass;
 	}
@@ -2291,6 +2502,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getNicknameDefinition_ConstraintSupported() {
 		return (EAttribute)nicknameDefinitionEClass.getEStructuralFeatures().get(0);
 	}
@@ -2300,6 +2512,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getNicknameDefinition_IndexSupported() {
 		return (EAttribute)nicknameDefinitionEClass.getEStructuralFeatures().get(1);
 	}
@@ -2309,6 +2522,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getNicknameDefinition_MaximumIdentifierLength() {
 		return (EAttribute)nicknameDefinitionEClass.getEStructuralFeatures().get(2);
 	}
@@ -2318,6 +2532,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getSchemaDefinition() {
 		return schemaDefinitionEClass;
 	}
@@ -2327,6 +2542,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getSchemaDefinition_MaximumIdentifierLength() {
 		return (EAttribute)schemaDefinitionEClass.getEStructuralFeatures().get(0);
 	}
@@ -2336,6 +2552,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getViewDefinition() {
 		return viewDefinitionEClass;
 	}
@@ -2345,6 +2562,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getViewDefinition_MaximumIdentifierLength() {
 		return (EAttribute)viewDefinitionEClass.getEStructuralFeatures().get(0);
 	}
@@ -2354,6 +2572,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getViewDefinition_IndexSupported() {
 		return (EAttribute)viewDefinitionEClass.getEStructuralFeatures().get(1);
 	}
@@ -2363,6 +2582,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getViewDefinition_CheckOptionSupported() {
 		return (EAttribute)viewDefinitionEClass.getEStructuralFeatures().get(2);
 	}
@@ -2372,6 +2592,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getViewDefinition_CheckOptionLevelsSupported() {
 		return (EAttribute)viewDefinitionEClass.getEStructuralFeatures().get(3);
 	}
@@ -2381,6 +2602,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getFieldQualifierDefinition() {
 		return fieldQualifierDefinitionEClass;
 	}
@@ -2390,6 +2612,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getFieldQualifierDefinition_ValidTrailingFieldQualifierDefinitions() {
 		return (EReference)fieldQualifierDefinitionEClass.getEStructuralFeatures().get(0);
 	}
@@ -2399,6 +2622,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getFieldQualifierDefinition_Name() {
 		return (EAttribute)fieldQualifierDefinitionEClass.getEStructuralFeatures().get(1);
 	}
@@ -2408,6 +2632,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getFieldQualifierDefinition_MaximumPrecision() {
 		return (EAttribute)fieldQualifierDefinitionEClass.getEStructuralFeatures().get(2);
 	}
@@ -2417,6 +2642,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getFieldQualifierDefinition_DefaultPrecision() {
 		return (EAttribute)fieldQualifierDefinitionEClass.getEStructuralFeatures().get(3);
 	}
@@ -2426,6 +2652,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getFieldQualifierDefinition_PrecisionSupported() {
 		return (EAttribute)fieldQualifierDefinitionEClass.getEStructuralFeatures().get(4);
 	}
@@ -2435,6 +2662,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getFieldQualifierDefinition_MaximumScale() {
 		return (EAttribute)fieldQualifierDefinitionEClass.getEStructuralFeatures().get(5);
 	}
@@ -2444,6 +2672,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getFieldQualifierDefinition_DefaultScale() {
 		return (EAttribute)fieldQualifierDefinitionEClass.getEStructuralFeatures().get(6);
 	}
@@ -2453,6 +2682,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getFieldQualifierDefinition_ScaleSupported() {
 		return (EAttribute)fieldQualifierDefinitionEClass.getEStructuralFeatures().get(7);
 	}
@@ -2462,6 +2692,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getDebuggerDefinition() {
 		return debuggerDefinitionEClass;
 	}
@@ -2471,6 +2702,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getDebuggerDefinition_ConditionSupported() {
 		return (EAttribute)debuggerDefinitionEClass.getEStructuralFeatures().get(0);
 	}
@@ -2480,6 +2712,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getPrivilegedElementDefinition() {
 		return privilegedElementDefinitionEClass;
 	}
@@ -2489,6 +2722,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getPrivilegedElementDefinition_PrivilegeDefinitions() {
 		return (EReference)privilegedElementDefinitionEClass.getEStructuralFeatures().get(0);
 	}
@@ -2498,6 +2732,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getPrivilegedElementDefinition_Name() {
 		return (EAttribute)privilegedElementDefinitionEClass.getEStructuralFeatures().get(1);
 	}
@@ -2507,6 +2742,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getPrivilegeDefinition() {
 		return privilegeDefinitionEClass;
 	}
@@ -2516,6 +2752,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getPrivilegeDefinition_ActionElementDefinitions() {
 		return (EReference)privilegeDefinitionEClass.getEStructuralFeatures().get(0);
 	}
@@ -2525,6 +2762,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getPrivilegeDefinition_Name() {
 		return (EAttribute)privilegeDefinitionEClass.getEStructuralFeatures().get(1);
 	}
@@ -2534,6 +2772,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getConstructedDataTypeDefinition() {
 		return constructedDataTypeDefinitionEClass;
 	}
@@ -2543,6 +2782,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getConstructedDataTypeDefinition_ArrayDatatypeSupported() {
 		return (EAttribute)constructedDataTypeDefinitionEClass.getEStructuralFeatures().get(0);
 	}
@@ -2552,6 +2792,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getConstructedDataTypeDefinition_MultisetDatatypeSupported() {
 		return (EAttribute)constructedDataTypeDefinitionEClass.getEStructuralFeatures().get(1);
 	}
@@ -2561,6 +2802,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getConstructedDataTypeDefinition_RowDatatypeSupported() {
 		return (EAttribute)constructedDataTypeDefinitionEClass.getEStructuralFeatures().get(2);
 	}
@@ -2570,6 +2812,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getConstructedDataTypeDefinition_ReferenceDatatypeSupported() {
 		return (EAttribute)constructedDataTypeDefinitionEClass.getEStructuralFeatures().get(3);
 	}
@@ -2579,6 +2822,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getConstructedDataTypeDefinition_CursorDatatypeSupported() {
 		return (EAttribute)constructedDataTypeDefinitionEClass.getEStructuralFeatures().get(4);
 	}
@@ -2588,6 +2832,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getSequenceDefinition_DefaultDataTypeDefinition() {
 		return (EReference)sequenceDefinitionEClass.getEStructuralFeatures().get(1);
 	}
@@ -2597,6 +2842,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EEnum getCheckOption() {
 		return checkOptionEEnum;
 	}
@@ -2606,6 +2852,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EEnum getLanguageType() {
 		return languageTypeEEnum;
 	}
@@ -2615,6 +2862,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EEnum getParameterStyle() {
 		return parameterStyleEEnum;
 	}
@@ -2624,6 +2872,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EEnum getParentDeleteDRIRuleType() {
 		return parentDeleteDRIRuleTypeEEnum;
 	}
@@ -2633,6 +2882,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EEnum getParentUpdateDRIRuleType() {
 		return parentUpdateDRIRuleTypeEEnum;
 	}
@@ -2642,6 +2892,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EEnum getProcedureType() {
 		return procedureTypeEEnum;
 	}
@@ -2651,6 +2902,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EEnum getTableSpaceType() {
 		return tableSpaceTypeEEnum;
 	}
@@ -2660,6 +2912,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EEnum getPercentFreeTerminology() {
 		return percentFreeTerminologyEEnum;
 	}
@@ -2669,6 +2922,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EEnum getLengthUnit() {
 		return lengthUnitEEnum;
 	}
@@ -2678,6 +2932,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public DatabaseDefinitionFactory getDatabaseDefinitionFactory() {
 		return (DatabaseDefinitionFactory)getEFactoryInstance();
 	}
@@ -2697,7 +2952,9 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * @generated
 	 */
 	public void createPackageContents() {
-		if (isCreated) return;
+		if (isCreated) {
+			return;
+		}
 		isCreated = true;
 
 		// Create classes and their features
@@ -2998,7 +3255,9 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * @generated
 	 */
 	public void initializePackageContents() {
-		if (isInitialized) return;
+		if (isInitialized) {
+			return;
+		}
 		isInitialized = true;
 
 		// Initialize package
@@ -3227,7 +3486,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 		initEAttribute(getUserDefinedTypeDefinition_MaximumIdentifierLength(), ecorePackage.getEInt(), "maximumIdentifierLength", null, 0, 1, UserDefinedTypeDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(queryDefinitionEClass, QueryDefinition.class, "QueryDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEAttribute(getQueryDefinition_IdentifierQuoteString(), ecorePackage.getEString(), "identifierQuoteString", "\\\"", 0, 1, QueryDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		initEAttribute(getQueryDefinition_IdentifierQuoteString(), ecorePackage.getEString(), "identifierQuoteString", "\\\"", 0, 1, QueryDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 		initEAttribute(getQueryDefinition_HostVariableMarker(), ecorePackage.getEString(), "hostVariableMarker", ":", 0, 1, QueryDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 		initEAttribute(getQueryDefinition_HostVariableMarkerSupported(), ecorePackage.getEBoolean(), "hostVariableMarkerSupported", "false", 0, 1, QueryDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 		initEAttribute(getQueryDefinition_CastExpressionSupported(), ecorePackage.getEBoolean(), "castExpressionSupported", "false", 0, 1, QueryDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$

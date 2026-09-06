@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -28,10 +28,10 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.accesscontrol.impl.RoleImpl#getRoleAuthorization <em>Role Authorization</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -60,6 +60,7 @@ public class RoleImpl extends AuthorizationIdentifierImpl implements Role {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return SQLAccessControlPackage.Literals.ROLE;
 	}
@@ -69,6 +70,7 @@ public class RoleImpl extends AuthorizationIdentifierImpl implements Role {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList getRoleAuthorization() {
 		if (roleAuthorization == null) {
 			roleAuthorization = new EObjectWithInverseResolvingEList(RoleAuthorization.class, this, SQLAccessControlPackage.ROLE__ROLE_AUTHORIZATION, SQLAccessControlPackage.ROLE_AUTHORIZATION__ROLE);
@@ -81,6 +83,7 @@ public class RoleImpl extends AuthorizationIdentifierImpl implements Role {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case SQLAccessControlPackage.ROLE__ROLE_AUTHORIZATION:
@@ -94,6 +97,7 @@ public class RoleImpl extends AuthorizationIdentifierImpl implements Role {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case SQLAccessControlPackage.ROLE__ROLE_AUTHORIZATION:
@@ -107,6 +111,7 @@ public class RoleImpl extends AuthorizationIdentifierImpl implements Role {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SQLAccessControlPackage.ROLE__ROLE_AUTHORIZATION:
@@ -120,6 +125,7 @@ public class RoleImpl extends AuthorizationIdentifierImpl implements Role {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case SQLAccessControlPackage.ROLE__ROLE_AUTHORIZATION:
@@ -135,6 +141,7 @@ public class RoleImpl extends AuthorizationIdentifierImpl implements Role {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case SQLAccessControlPackage.ROLE__ROLE_AUTHORIZATION:
@@ -149,6 +156,7 @@ public class RoleImpl extends AuthorizationIdentifierImpl implements Role {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SQLAccessControlPackage.ROLE__ROLE_AUTHORIZATION:

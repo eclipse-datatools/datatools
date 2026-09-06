@@ -23,12 +23,12 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl.EventConditionImpl#getOperator <em>Operator</em>}</li>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl.EventConditionImpl#getValue <em>Value</em>}</li>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl.EventConditionImpl#getEvent <em>Event</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -89,7 +89,8 @@ public class EventConditionImpl extends SQLObjectImpl implements EventCondition
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    protected EClass eStaticClass()
+    @Override
+	protected EClass eStaticClass()
     {
 		return SybaseasabasesqlmodelPackage.Literals.EVENT_CONDITION;
 	}
@@ -99,7 +100,8 @@ public class EventConditionImpl extends SQLObjectImpl implements EventCondition
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public String getOperator()
+    @Override
+	public String getOperator()
     {
 		return operator;
 	}
@@ -109,12 +111,14 @@ public class EventConditionImpl extends SQLObjectImpl implements EventCondition
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public void setOperator(String newOperator)
+    @Override
+	public void setOperator(String newOperator)
     {
 		String oldOperator = operator;
 		operator = newOperator;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.EVENT_CONDITION__OPERATOR, oldOperator, operator));
+		}
 	}
 
     /**
@@ -122,7 +126,8 @@ public class EventConditionImpl extends SQLObjectImpl implements EventCondition
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public int getValue()
+    @Override
+	public int getValue()
     {
 		return value;
 	}
@@ -132,12 +137,14 @@ public class EventConditionImpl extends SQLObjectImpl implements EventCondition
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public void setValue(int newValue)
+    @Override
+	public void setValue(int newValue)
     {
 		int oldValue = value;
 		value = newValue;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.EVENT_CONDITION__VALUE, oldValue, value));
+		}
 	}
 
     /**
@@ -145,10 +152,13 @@ public class EventConditionImpl extends SQLObjectImpl implements EventCondition
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public SybaseASABaseEvent getEvent()
+    @Override
+	public SybaseASABaseEvent getEvent()
     {
-		if (eContainerFeatureID != SybaseasabasesqlmodelPackage.EVENT_CONDITION__EVENT) return null;
-		return (SybaseASABaseEvent)eContainer();
+		if (eContainerFeatureID() != SybaseasabasesqlmodelPackage.EVENT_CONDITION__EVENT) {
+			return null;
+		}
+		return (SybaseASABaseEvent)eInternalContainer();
 	}
 
     /**
@@ -167,21 +177,28 @@ public class EventConditionImpl extends SQLObjectImpl implements EventCondition
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public void setEvent(SybaseASABaseEvent newEvent)
+    @Override
+	public void setEvent(SybaseASABaseEvent newEvent)
     {
-		if (newEvent != eInternalContainer() || (eContainerFeatureID != SybaseasabasesqlmodelPackage.EVENT_CONDITION__EVENT && newEvent != null)) {
-			if (EcoreUtil.isAncestor(this, newEvent))
+		if (newEvent != eInternalContainer() || (eContainerFeatureID() != SybaseasabasesqlmodelPackage.EVENT_CONDITION__EVENT && newEvent != null)) {
+			if (EcoreUtil.isAncestor(this, newEvent)) {
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			}
 			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
+			if (eInternalContainer() != null) {
 				msgs = eBasicRemoveFromContainer(msgs);
-			if (newEvent != null)
+			}
+			if (newEvent != null) {
 				msgs = ((InternalEObject)newEvent).eInverseAdd(this, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_EVENT__CONDITION_DETAILS, SybaseASABaseEvent.class, msgs);
+			}
 			msgs = basicSetEvent(newEvent, msgs);
-			if (msgs != null) msgs.dispatch();
+			if (msgs != null) {
+				msgs.dispatch();
+			}
 		}
-		else if (eNotificationRequired())
+		else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.EVENT_CONDITION__EVENT, newEvent, newEvent));
+		}
 	}
 
     /**
@@ -189,12 +206,14 @@ public class EventConditionImpl extends SQLObjectImpl implements EventCondition
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+    @Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
     {
 		switch (featureID) {
 			case SybaseasabasesqlmodelPackage.EVENT_CONDITION__EVENT:
-				if (eInternalContainer() != null)
+				if (eInternalContainer() != null) {
 					msgs = eBasicRemoveFromContainer(msgs);
+				}
 				return basicSetEvent((SybaseASABaseEvent)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -205,7 +224,8 @@ public class EventConditionImpl extends SQLObjectImpl implements EventCondition
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+    @Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
     {
 		switch (featureID) {
 			case SybaseasabasesqlmodelPackage.EVENT_CONDITION__EVENT:
@@ -219,9 +239,10 @@ public class EventConditionImpl extends SQLObjectImpl implements EventCondition
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs)
+    @Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs)
     {
-		switch (eContainerFeatureID) {
+		switch (eContainerFeatureID()) {
 			case SybaseasabasesqlmodelPackage.EVENT_CONDITION__EVENT:
 				return eInternalContainer().eInverseRemove(this, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_EVENT__CONDITION_DETAILS, SybaseASABaseEvent.class, msgs);
 		}
@@ -233,13 +254,14 @@ public class EventConditionImpl extends SQLObjectImpl implements EventCondition
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public Object eGet(int featureID, boolean resolve, boolean coreType)
+    @Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType)
     {
 		switch (featureID) {
 			case SybaseasabasesqlmodelPackage.EVENT_CONDITION__OPERATOR:
 				return getOperator();
 			case SybaseasabasesqlmodelPackage.EVENT_CONDITION__VALUE:
-				return Integer.valueOf(getValue());
+				return new Integer(getValue());
 			case SybaseasabasesqlmodelPackage.EVENT_CONDITION__EVENT:
 				return getEvent();
 		}
@@ -251,7 +273,8 @@ public class EventConditionImpl extends SQLObjectImpl implements EventCondition
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public void eSet(int featureID, Object newValue)
+    @Override
+	public void eSet(int featureID, Object newValue)
     {
 		switch (featureID) {
 			case SybaseasabasesqlmodelPackage.EVENT_CONDITION__OPERATOR:
@@ -272,7 +295,8 @@ public class EventConditionImpl extends SQLObjectImpl implements EventCondition
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public void eUnset(int featureID)
+    @Override
+	public void eUnset(int featureID)
     {
 		switch (featureID) {
 			case SybaseasabasesqlmodelPackage.EVENT_CONDITION__OPERATOR:
@@ -293,7 +317,8 @@ public class EventConditionImpl extends SQLObjectImpl implements EventCondition
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public boolean eIsSet(int featureID)
+    @Override
+	public boolean eIsSet(int featureID)
     {
 		switch (featureID) {
 			case SybaseasabasesqlmodelPackage.EVENT_CONDITION__OPERATOR:
@@ -311,9 +336,12 @@ public class EventConditionImpl extends SQLObjectImpl implements EventCondition
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public String toString()
+    @Override
+	public String toString()
     {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (operator: ");

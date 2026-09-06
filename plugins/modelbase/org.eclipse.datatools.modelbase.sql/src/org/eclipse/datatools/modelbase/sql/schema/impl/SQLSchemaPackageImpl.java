@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -191,20 +191,10 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 	private static boolean isInited = false;
 
 	/**
-	 * Creates, registers, and initializes the <b>Package</b> for this
-	 * model, and for any others upon which it depends.  Simple
-	 * dependencies are satisfied by calling this method on all
-	 * dependent packages before doing anything else.  This method drives
-	 * initialization for interdependent packages directly, in parallel
-	 * with this package, itself.
-	 * <p>Of this package and its interdependencies, all packages which
-	 * have not yet been registered by their URI values are first created
-	 * and registered.  The packages are then initialized in two steps:
-	 * meta-model objects for all of the packages are created before any
-	 * are initialized, since one package's meta-model objects may refer to
-	 * those of another.
-	 * <p>Invocation of this method will not affect any packages that have
-	 * already been initialized.
+	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
+	 *
+	 * <p>This method is used to initialize {@link SQLSchemaPackage#eINSTANCE} when that field is accessed.
+	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #eNS_URI
@@ -213,10 +203,13 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 	 * @generated
 	 */
 	public static SQLSchemaPackage init() {
-		if (isInited) return (SQLSchemaPackage)EPackage.Registry.INSTANCE.getEPackage(SQLSchemaPackage.eNS_URI);
+		if (isInited) {
+			return (SQLSchemaPackage)EPackage.Registry.INSTANCE.getEPackage(SQLSchemaPackage.eNS_URI);
+		}
 
 		// Obtain or create and register package
-		SQLSchemaPackageImpl theSQLSchemaPackage = (SQLSchemaPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(eNS_URI) instanceof SQLSchemaPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(eNS_URI) : new SQLSchemaPackageImpl());
+		Object registeredSQLSchemaPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		SQLSchemaPackageImpl theSQLSchemaPackage = registeredSQLSchemaPackage instanceof SQLSchemaPackageImpl ? (SQLSchemaPackageImpl)registeredSQLSchemaPackage : new SQLSchemaPackageImpl();
 
 		isInited = true;
 
@@ -224,13 +217,20 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 		EcorePackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
-		SQLConstraintsPackageImpl theSQLConstraintsPackage = (SQLConstraintsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SQLConstraintsPackage.eNS_URI) instanceof SQLConstraintsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SQLConstraintsPackage.eNS_URI) : SQLConstraintsPackage.eINSTANCE);
-		SQLDataTypesPackageImpl theSQLDataTypesPackage = (SQLDataTypesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SQLDataTypesPackage.eNS_URI) instanceof SQLDataTypesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SQLDataTypesPackage.eNS_URI) : SQLDataTypesPackage.eINSTANCE);
-		SQLExpressionsPackageImpl theSQLExpressionsPackage = (SQLExpressionsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SQLExpressionsPackage.eNS_URI) instanceof SQLExpressionsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SQLExpressionsPackage.eNS_URI) : SQLExpressionsPackage.eINSTANCE);
-		SQLRoutinesPackageImpl theSQLRoutinesPackage = (SQLRoutinesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SQLRoutinesPackage.eNS_URI) instanceof SQLRoutinesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SQLRoutinesPackage.eNS_URI) : SQLRoutinesPackage.eINSTANCE);
-		SQLStatementsPackageImpl theSQLStatementsPackage = (SQLStatementsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SQLStatementsPackage.eNS_URI) instanceof SQLStatementsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SQLStatementsPackage.eNS_URI) : SQLStatementsPackage.eINSTANCE);
-		SQLTablesPackageImpl theSQLTablesPackage = (SQLTablesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SQLTablesPackage.eNS_URI) instanceof SQLTablesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SQLTablesPackage.eNS_URI) : SQLTablesPackage.eINSTANCE);
-		SQLAccessControlPackageImpl theSQLAccessControlPackage = (SQLAccessControlPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SQLAccessControlPackage.eNS_URI) instanceof SQLAccessControlPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SQLAccessControlPackage.eNS_URI) : SQLAccessControlPackage.eINSTANCE);
+		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(SQLConstraintsPackage.eNS_URI);
+		SQLConstraintsPackageImpl theSQLConstraintsPackage = (SQLConstraintsPackageImpl)(registeredPackage instanceof SQLConstraintsPackageImpl ? registeredPackage : SQLConstraintsPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(SQLDataTypesPackage.eNS_URI);
+		SQLDataTypesPackageImpl theSQLDataTypesPackage = (SQLDataTypesPackageImpl)(registeredPackage instanceof SQLDataTypesPackageImpl ? registeredPackage : SQLDataTypesPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(SQLExpressionsPackage.eNS_URI);
+		SQLExpressionsPackageImpl theSQLExpressionsPackage = (SQLExpressionsPackageImpl)(registeredPackage instanceof SQLExpressionsPackageImpl ? registeredPackage : SQLExpressionsPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(SQLRoutinesPackage.eNS_URI);
+		SQLRoutinesPackageImpl theSQLRoutinesPackage = (SQLRoutinesPackageImpl)(registeredPackage instanceof SQLRoutinesPackageImpl ? registeredPackage : SQLRoutinesPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(SQLStatementsPackage.eNS_URI);
+		SQLStatementsPackageImpl theSQLStatementsPackage = (SQLStatementsPackageImpl)(registeredPackage instanceof SQLStatementsPackageImpl ? registeredPackage : SQLStatementsPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(SQLTablesPackage.eNS_URI);
+		SQLTablesPackageImpl theSQLTablesPackage = (SQLTablesPackageImpl)(registeredPackage instanceof SQLTablesPackageImpl ? registeredPackage : SQLTablesPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(SQLAccessControlPackage.eNS_URI);
+		SQLAccessControlPackageImpl theSQLAccessControlPackage = (SQLAccessControlPackageImpl)(registeredPackage instanceof SQLAccessControlPackageImpl ? registeredPackage : SQLAccessControlPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theSQLSchemaPackage.createPackageContents();
@@ -255,6 +255,8 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 		// Mark meta-data to indicate it can't be changed
 		theSQLSchemaPackage.freeze();
 
+		// Update the registry and return the package
+		EPackage.Registry.INSTANCE.put(SQLSchemaPackage.eNS_URI, theSQLSchemaPackage);
 		return theSQLSchemaPackage;
 	}
 
@@ -263,6 +265,7 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getIdentitySpecifier() {
 		return identitySpecifierEClass;
 	}
@@ -272,6 +275,7 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getIdentitySpecifier_GenerationType() {
 		return (EAttribute)identitySpecifierEClass.getEStructuralFeatures().get(0);
 	}
@@ -281,6 +285,7 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getIdentitySpecifier_StartValue() {
 		return (EAttribute)identitySpecifierEClass.getEStructuralFeatures().get(1);
 	}
@@ -290,6 +295,7 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getIdentitySpecifier_Increment() {
 		return (EAttribute)identitySpecifierEClass.getEStructuralFeatures().get(2);
 	}
@@ -299,6 +305,7 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getIdentitySpecifier_Minimum() {
 		return (EAttribute)identitySpecifierEClass.getEStructuralFeatures().get(3);
 	}
@@ -308,6 +315,7 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getIdentitySpecifier_Maximum() {
 		return (EAttribute)identitySpecifierEClass.getEStructuralFeatures().get(4);
 	}
@@ -317,6 +325,7 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getIdentitySpecifier_CycleOption() {
 		return (EAttribute)identitySpecifierEClass.getEStructuralFeatures().get(5);
 	}
@@ -326,6 +335,7 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getTypedElement() {
 		return typedElementEClass;
 	}
@@ -335,6 +345,7 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTypedElement_ContainedType() {
 		return (EReference)typedElementEClass.getEStructuralFeatures().get(0);
 	}
@@ -344,6 +355,7 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTypedElement_ReferencedType() {
 		return (EReference)typedElementEClass.getEStructuralFeatures().get(1);
 	}
@@ -353,6 +365,7 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getDependency() {
 		return dependencyEClass;
 	}
@@ -362,6 +375,7 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getDependency_TargetEnd() {
 		return (EReference)dependencyEClass.getEStructuralFeatures().get(0);
 	}
@@ -371,6 +385,7 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getDependency_DependencyType() {
 		return (EAttribute)dependencyEClass.getEStructuralFeatures().get(1);
 	}
@@ -380,6 +395,7 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getSchema() {
 		return schemaEClass;
 	}
@@ -389,6 +405,7 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getSchema_Triggers() {
 		return (EReference)schemaEClass.getEStructuralFeatures().get(0);
 	}
@@ -398,6 +415,7 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getSchema_Indices() {
 		return (EReference)schemaEClass.getEStructuralFeatures().get(1);
 	}
@@ -407,6 +425,7 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getSchema_Tables() {
 		return (EReference)schemaEClass.getEStructuralFeatures().get(2);
 	}
@@ -416,6 +435,7 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getSchema_Sequences() {
 		return (EReference)schemaEClass.getEStructuralFeatures().get(3);
 	}
@@ -425,6 +445,7 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getSchema_Database() {
 		return (EReference)schemaEClass.getEStructuralFeatures().get(4);
 	}
@@ -434,6 +455,7 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getSchema_Catalog() {
 		return (EReference)schemaEClass.getEStructuralFeatures().get(5);
 	}
@@ -443,6 +465,7 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getSchema_Assertions() {
 		return (EReference)schemaEClass.getEStructuralFeatures().get(6);
 	}
@@ -452,6 +475,7 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getSchema_UserDefinedTypes() {
 		return (EReference)schemaEClass.getEStructuralFeatures().get(7);
 	}
@@ -461,6 +485,7 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getSchema_CharSets() {
 		return (EReference)schemaEClass.getEStructuralFeatures().get(8);
 	}
@@ -470,6 +495,7 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getSchema_Routines() {
 		return (EReference)schemaEClass.getEStructuralFeatures().get(9);
 	}
@@ -479,6 +505,7 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getSchema_Owner() {
 		return (EReference)schemaEClass.getEStructuralFeatures().get(10);
 	}
@@ -488,6 +515,7 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getSQLObject() {
 		return sqlObjectEClass;
 	}
@@ -497,6 +525,7 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getSQLObject_Dependencies() {
 		return (EReference)sqlObjectEClass.getEStructuralFeatures().get(0);
 	}
@@ -506,6 +535,7 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getSQLObject_Description() {
 		return (EAttribute)sqlObjectEClass.getEStructuralFeatures().get(1);
 	}
@@ -515,6 +545,7 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getSQLObject_Label() {
 		return (EAttribute)sqlObjectEClass.getEStructuralFeatures().get(2);
 	}
@@ -524,6 +555,7 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getSQLObject_Comments() {
 		return (EReference)sqlObjectEClass.getEStructuralFeatures().get(3);
 	}
@@ -533,6 +565,7 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getSQLObject_Extensions() {
 		return (EReference)sqlObjectEClass.getEStructuralFeatures().get(4);
 	}
@@ -542,6 +575,7 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getSQLObject_Privileges() {
 		return (EReference)sqlObjectEClass.getEStructuralFeatures().get(5);
 	}
@@ -551,6 +585,7 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getSequence() {
 		return sequenceEClass;
 	}
@@ -560,6 +595,7 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getSequence_Identity() {
 		return (EReference)sequenceEClass.getEStructuralFeatures().get(0);
 	}
@@ -569,6 +605,7 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getSequence_Schema() {
 		return (EReference)sequenceEClass.getEStructuralFeatures().get(1);
 	}
@@ -578,6 +615,7 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getDatabase() {
 		return databaseEClass;
 	}
@@ -587,6 +625,7 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getDatabase_Vendor() {
 		return (EAttribute)databaseEClass.getEStructuralFeatures().get(0);
 	}
@@ -596,6 +635,7 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getDatabase_Version() {
 		return (EAttribute)databaseEClass.getEStructuralFeatures().get(1);
 	}
@@ -605,6 +645,7 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getDatabase_Schemas() {
 		return (EReference)databaseEClass.getEStructuralFeatures().get(2);
 	}
@@ -614,6 +655,7 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getDatabase_Events() {
 		return (EReference)databaseEClass.getEStructuralFeatures().get(3);
 	}
@@ -623,6 +665,7 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getDatabase_Catalogs() {
 		return (EReference)databaseEClass.getEStructuralFeatures().get(4);
 	}
@@ -632,6 +675,7 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getDatabase_AuthorizationIds() {
 		return (EReference)databaseEClass.getEStructuralFeatures().get(5);
 	}
@@ -641,6 +685,7 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getEvent() {
 		return eventEClass;
 	}
@@ -650,6 +695,7 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getEvent_For() {
 		return (EAttribute)eventEClass.getEStructuralFeatures().get(0);
 	}
@@ -659,6 +705,7 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getEvent_Condition() {
 		return (EAttribute)eventEClass.getEStructuralFeatures().get(1);
 	}
@@ -668,6 +715,7 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getEvent_Action() {
 		return (EAttribute)eventEClass.getEStructuralFeatures().get(2);
 	}
@@ -677,6 +725,7 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getEvent_Enabled() {
 		return (EAttribute)eventEClass.getEStructuralFeatures().get(3);
 	}
@@ -686,6 +735,7 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getEvent_Database() {
 		return (EReference)eventEClass.getEStructuralFeatures().get(4);
 	}
@@ -695,6 +745,7 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getComment() {
 		return commentEClass;
 	}
@@ -704,6 +755,7 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getComment_Description() {
 		return (EAttribute)commentEClass.getEStructuralFeatures().get(0);
 	}
@@ -713,6 +765,7 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getComment_SQLObject() {
 		return (EReference)commentEClass.getEStructuralFeatures().get(1);
 	}
@@ -722,6 +775,7 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getCatalog() {
 		return catalogEClass;
 	}
@@ -731,6 +785,7 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getCatalog_Database() {
 		return (EReference)catalogEClass.getEStructuralFeatures().get(0);
 	}
@@ -740,6 +795,7 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getCatalog_Schemas() {
 		return (EReference)catalogEClass.getEStructuralFeatures().get(1);
 	}
@@ -749,6 +805,7 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getObjectExtension() {
 		return objectExtensionEClass;
 	}
@@ -758,6 +815,7 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getObjectExtension_SQLObject() {
 		return (EReference)objectExtensionEClass.getEStructuralFeatures().get(0);
 	}
@@ -767,6 +825,7 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EEnum getGenerateType() {
 		return generateTypeEEnum;
 	}
@@ -776,6 +835,7 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EEnum getReferentialActionType() {
 		return referentialActionTypeEEnum;
 	}
@@ -785,6 +845,7 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EDataType getDate() {
 		return dateEDataType;
 	}
@@ -794,6 +855,7 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EDataType getList() {
 		return listEDataType;
 	}
@@ -803,6 +865,7 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SQLSchemaFactory getSQLSchemaFactory() {
 		return (SQLSchemaFactory)getEFactoryInstance();
 	}
@@ -822,7 +885,9 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 	 * @generated
 	 */
 	public void createPackageContents() {
-		if (isCreated) return;
+		if (isCreated) {
+			return;
+		}
 		isCreated = true;
 
 		// Create classes and their features
@@ -917,7 +982,9 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 	 * @generated
 	 */
 	public void initializePackageContents() {
-		if (isInitialized) return;
+		if (isInitialized) {
+			return;
+		}
 		isInitialized = true;
 
 		// Initialize package

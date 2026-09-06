@@ -8,7 +8,7 @@
  *
  * Contributors:
  *  Actuate Corporation - initial API and implementation
- *  
+ *
  *************************************************************************
  *
  * $Id$
@@ -29,40 +29,38 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.DataElementIdentifiers#getIdentifiers <em>Identifiers</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getDataElementIdentifiers()
  * @model extendedMetaData="name='DataElementIdentifiers' kind='elementOnly'"
  * @generated
- * @since 3.3.2
  */
-public interface DataElementIdentifiers extends EObject
-{
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    String copyright = "Copyright (c) 2010 Actuate Corporation"; //$NON-NLS-1$
+public interface DataElementIdentifiers extends EObject {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	String copyright = "Copyright (c) 2005, 2010 Actuate Corporation"; //$NON-NLS-1$
 
-    /**
-     * Returns the value of the '<em><b>Identifiers</b></em>' containment reference list.
-     * The list contents are of type {@link org.eclipse.datatools.connectivity.oda.design.DataElementIdentifier}.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Identifiers</em>' containment reference list isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Identifiers</em>' containment reference list.
-     * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getDataElementIdentifiers_Identifiers()
-     * @model containment="true" required="true"
-     *        extendedMetaData="kind='element' name='identifiers' namespace='##targetNamespace'"
-     * @generated
-     */
-    EList<DataElementIdentifier> getIdentifiers();
+	/**
+	 * Returns the value of the '<em><b>Identifiers</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.datatools.connectivity.oda.design.DataElementIdentifier}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Identifiers</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Identifiers</em>' containment reference list.
+	 * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getDataElementIdentifiers_Identifiers()
+	 * @model containment="true" required="true"
+	 *        extendedMetaData="kind='element' name='identifiers' namespace='##targetNamespace'"
+	 * @generated
+	 */
+	EList<DataElementIdentifier> getIdentifiers();
 
 } // DataElementIdentifiers

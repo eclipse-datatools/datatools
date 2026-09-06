@@ -11,4 +11,12 @@
             implPackageName="org.eclipse.datatools.modelbase.sql.xml.query.impl"/>
    </extension>
 
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated SQLXMLQueryModel -->
+      <package
+            uri="http:///org/eclipse/datatools/modelbase/sql/xml/query/SQLXMLQueryModel.ecore"
+            class="org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage"
+            genModel="model/SQLXMLQueryModel.genmodel"/>
+   </extension>
+
 </plugin>

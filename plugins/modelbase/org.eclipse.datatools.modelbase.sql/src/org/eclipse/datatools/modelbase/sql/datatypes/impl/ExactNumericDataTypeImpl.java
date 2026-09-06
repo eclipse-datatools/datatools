@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -22,10 +22,10 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.datatypes.impl.ExactNumericDataTypeImpl#getScale <em>Scale</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -64,6 +64,7 @@ public abstract class ExactNumericDataTypeImpl extends NumericalDataTypeImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return SQLDataTypesPackage.Literals.EXACT_NUMERIC_DATA_TYPE;
 	}
@@ -73,6 +74,7 @@ public abstract class ExactNumericDataTypeImpl extends NumericalDataTypeImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getScale() {
 		return scale;
 	}
@@ -82,11 +84,13 @@ public abstract class ExactNumericDataTypeImpl extends NumericalDataTypeImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setScale(int newScale) {
 		int oldScale = scale;
 		scale = newScale;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLDataTypesPackage.EXACT_NUMERIC_DATA_TYPE__SCALE, oldScale, scale));
+		}
 	}
 
 	/**
@@ -94,10 +98,11 @@ public abstract class ExactNumericDataTypeImpl extends NumericalDataTypeImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SQLDataTypesPackage.EXACT_NUMERIC_DATA_TYPE__SCALE:
-				return Integer.valueOf(getScale());
+				return new Integer(getScale());
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -107,6 +112,7 @@ public abstract class ExactNumericDataTypeImpl extends NumericalDataTypeImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case SQLDataTypesPackage.EXACT_NUMERIC_DATA_TYPE__SCALE:
@@ -121,6 +127,7 @@ public abstract class ExactNumericDataTypeImpl extends NumericalDataTypeImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case SQLDataTypesPackage.EXACT_NUMERIC_DATA_TYPE__SCALE:
@@ -135,6 +142,7 @@ public abstract class ExactNumericDataTypeImpl extends NumericalDataTypeImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SQLDataTypesPackage.EXACT_NUMERIC_DATA_TYPE__SCALE:
@@ -148,8 +156,11 @@ public abstract class ExactNumericDataTypeImpl extends NumericalDataTypeImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (scale: "); //$NON-NLS-1$

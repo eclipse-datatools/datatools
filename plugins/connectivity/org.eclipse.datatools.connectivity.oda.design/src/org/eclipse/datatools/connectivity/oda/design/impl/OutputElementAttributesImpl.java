@@ -8,7 +8,7 @@
  *
  * Contributors:
  *  Actuate Corporation - initial API and implementation
- *  
+ *
  *************************************************************************
  *
  * $Id: OutputElementAttributesImpl.java,v 1.5 2010/02/17 02:20:38 lchan Exp $
@@ -33,426 +33,394 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.impl.OutputElementAttributesImpl#getLabel <em>Label</em>}</li>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.impl.OutputElementAttributesImpl#getFormattingHints <em>Formatting Hints</em>}</li>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.impl.OutputElementAttributesImpl#getHelpText <em>Help Text</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class OutputElementAttributesImpl extends EObjectImpl implements
-        OutputElementAttributes
-{
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public static final String copyright = "Copyright (c) 2005, 2010 Actuate Corporation"; //$NON-NLS-1$
+public class OutputElementAttributesImpl extends EObjectImpl implements OutputElementAttributes {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final String copyright = "Copyright (c) 2005, 2010 Actuate Corporation"; //$NON-NLS-1$
 
-    /**
-     * The default value of the '{@link #getLabel() <em>Label</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getLabel()
-     * @generated
-     * @ordered
-     */
-    protected static final String LABEL_EDEFAULT = null;
+	/**
+	 * The default value of the '{@link #getLabel() <em>Label</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLabel()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String LABEL_EDEFAULT = null;
 
-    /**
-     * The cached value of the '{@link #getLabel() <em>Label</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getLabel()
-     * @generated
-     * @ordered
-     */
-    protected String m_label = LABEL_EDEFAULT;
+	/**
+	 * The cached value of the '{@link #getLabel() <em>Label</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLabel()
+	 * @generated
+	 * @ordered
+	 */
+	protected String label = LABEL_EDEFAULT;
 
-    /**
-     * The cached value of the '{@link #getFormattingHints() <em>Formatting Hints</em>}' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getFormattingHints()
-     * @generated
-     * @ordered
-     */
-    protected ValueFormatHints m_formattingHints;
+	/**
+	 * The cached value of the '{@link #getFormattingHints() <em>Formatting Hints</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFormattingHints()
+	 * @generated
+	 * @ordered
+	 */
+	protected ValueFormatHints formattingHints;
 
-    /**
-     * The default value of the '{@link #getHelpText() <em>Help Text</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getHelpText()
-     * @generated
-     * @ordered
-     */
-    protected static final String HELP_TEXT_EDEFAULT = null;
+	/**
+	 * The default value of the '{@link #getHelpText() <em>Help Text</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getHelpText()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String HELP_TEXT_EDEFAULT = null;
 
-    /**
-     * The cached value of the '{@link #getHelpText() <em>Help Text</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getHelpText()
-     * @generated
-     * @ordered
-     */
-    protected String m_helpText = HELP_TEXT_EDEFAULT;
+	/**
+	 * The cached value of the '{@link #getHelpText() <em>Help Text</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getHelpText()
+	 * @generated
+	 * @ordered
+	 */
+	protected String helpText = HELP_TEXT_EDEFAULT;
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected OutputElementAttributesImpl()
-    {
-        super();
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected OutputElementAttributesImpl() {
+		super();
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    protected EClass eStaticClass()
-    {
-        return DesignPackage.Literals.OUTPUT_ELEMENT_ATTRIBUTES;
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return DesignPackage.Literals.OUTPUT_ELEMENT_ATTRIBUTES;
+	}
 
-    /* (non-Javadoc)
-     * @see org.eclipse.datatools.connectivity.oda.design.OutputElementAttributes#getLabel()
-     * @generated NOT
-     */
-    public String getLabel()
-    {
-        return DesignUtil.getDefaultResourceString( getLabelGen() );
-    }
-    
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected String getLabelGen()
-    {
-        return m_label;
-    }
+	/* (non-Javadoc)
+	 * @see org.eclipse.datatools.connectivity.oda.design.OutputElementAttributes#getLabel()
+	 * @generated NOT
+	 */
+	@Override
+	public String getLabel() {
+		return DesignUtil.getDefaultResourceString(getLabelGen());
+	}
 
-    /* (non-Javadoc)
-     * @see org.eclipse.datatools.connectivity.oda.design.OutputElementAttributes#setLabel(java.lang.String)
-     * @generated NOT
-     */
-    public void setLabel( String newLabel )
-    {
-        String newAttrValue = DesignUtil.addDefaultToResourceAttribute( newLabel, getLabelGen() );
-        setLabelGen( newAttrValue );
-    }
-    
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected void setLabelGen( String newLabel )
-    {
-        String oldLabel = m_label;
-        m_label = newLabel;
-        if( eNotificationRequired() )
-            eNotify( new ENotificationImpl( this, Notification.SET,
-                    DesignPackage.OUTPUT_ELEMENT_ATTRIBUTES__LABEL, oldLabel,
-                    m_label ) );
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected String getLabelGen() {
+		return label;
+	}
 
-    /* (non-Javadoc)
-     * @see org.eclipse.datatools.connectivity.oda.design.OutputElementAttributes#getLabelKey()
-     * @generated NOT
-     */
-    public String getLabelKey()
-    {
-        return DesignUtil.getResourceKey( getLabelGen() );
-    }
+	/* (non-Javadoc)
+	 * @see org.eclipse.datatools.connectivity.oda.design.OutputElementAttributes#setLabel(java.lang.String)
+	 * @generated NOT
+	 */
+	@Override
+	public void setLabel(String newLabel) {
+		String newAttrValue = DesignUtil.addDefaultToResourceAttribute(newLabel, getLabelGen());
+		setLabelGen(newAttrValue);
+	}
 
-    /* (non-Javadoc)
-     * @see org.eclipse.datatools.connectivity.oda.design.OutputElementAttributes#setLabelKey(java.lang.String)
-     * @generated NOT
-     */
-    public void setLabelKey( String newLabelKey )
-    {
-        String newAttrValue = DesignUtil.addKeyToResourceAttribute( newLabelKey, getLabelGen() );
-        setLabelGen( newAttrValue );
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void setLabelGen(String newLabel) {
+		String oldLabel = label;
+		label = newLabel;
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, DesignPackage.OUTPUT_ELEMENT_ATTRIBUTES__LABEL,
+					oldLabel, label));
+		}
+	}
 
-    /**
-     * Returns a non-null ValueFormatHints.
-     * If none is defined, returns one with default values.
-     * @generated NOT
-     */
-    public ValueFormatHints getFormattingHints()
-    {
-        if( getFormattingHintsGen() != null )
-            return getFormattingHintsGen();
+	/* (non-Javadoc)
+	 * @see org.eclipse.datatools.connectivity.oda.design.OutputElementAttributes#getLabelKey()
+	 * @generated NOT
+	 */
+	@Override
+	public String getLabelKey() {
+		return DesignUtil.getResourceKey(getLabelGen());
+	}
 
-        return DesignFactory.eINSTANCE.createValueFormatHints();
-    }
+	/* (non-Javadoc)
+	 * @see org.eclipse.datatools.connectivity.oda.design.OutputElementAttributes#setLabelKey(java.lang.String)
+	 * @generated NOT
+	 */
+	@Override
+	public void setLabelKey(String newLabelKey) {
+		String newAttrValue = DesignUtil.addKeyToResourceAttribute(newLabelKey, getLabelGen());
+		setLabelGen(newAttrValue);
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public ValueFormatHints getFormattingHintsGen()
-    {
-        return m_formattingHints;
-    }
+	/**
+	 * Returns a non-null ValueFormatHints.
+	 * If none is defined, returns one with default values.
+	 * @generated NOT
+	 */
+	@Override
+	public ValueFormatHints getFormattingHints() {
+		if (getFormattingHintsGen() != null) {
+			return getFormattingHintsGen();
+		}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public NotificationChain basicSetFormattingHints(
-            ValueFormatHints newFormattingHints, NotificationChain msgs )
-    {
-        ValueFormatHints oldFormattingHints = m_formattingHints;
-        m_formattingHints = newFormattingHints;
-        if( eNotificationRequired() )
-        {
-            ENotificationImpl notification = new ENotificationImpl( this,
-                    Notification.SET,
-                    DesignPackage.OUTPUT_ELEMENT_ATTRIBUTES__FORMATTING_HINTS,
-                    oldFormattingHints, newFormattingHints );
-            if( msgs == null )
-                msgs = notification;
-            else
-                msgs.add( notification );
-        }
-        return msgs;
-    }
+		return DesignFactory.eINSTANCE.createValueFormatHints();
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setFormattingHints( ValueFormatHints newFormattingHints )
-    {
-        if( newFormattingHints != m_formattingHints )
-        {
-            NotificationChain msgs = null;
-            if( m_formattingHints != null )
-                msgs = ((InternalEObject) m_formattingHints)
-                        .eInverseRemove(
-                                this,
-                                EOPPOSITE_FEATURE_BASE
-                                        - DesignPackage.OUTPUT_ELEMENT_ATTRIBUTES__FORMATTING_HINTS,
-                                null, msgs );
-            if( newFormattingHints != null )
-                msgs = ((InternalEObject) newFormattingHints)
-                        .eInverseAdd(
-                                this,
-                                EOPPOSITE_FEATURE_BASE
-                                        - DesignPackage.OUTPUT_ELEMENT_ATTRIBUTES__FORMATTING_HINTS,
-                                null, msgs );
-            msgs = basicSetFormattingHints( newFormattingHints, msgs );
-            if( msgs != null )
-                msgs.dispatch();
-        }
-        else if( eNotificationRequired() )
-            eNotify( new ENotificationImpl( this, Notification.SET,
-                    DesignPackage.OUTPUT_ELEMENT_ATTRIBUTES__FORMATTING_HINTS,
-                    newFormattingHints, newFormattingHints ) );
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ValueFormatHints getFormattingHintsGen() {
+		return formattingHints;
+	}
 
-    /* (non-Javadoc)
-     * @see org.eclipse.datatools.connectivity.oda.design.OutputElementAttributes#getHelpText()
-     * @generated NOT
-     */
-    public String getHelpText()
-    {
-        return DesignUtil.getDefaultResourceString( getHelpTextGen() );
-    }
-    
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected String getHelpTextGen()
-    {
-        return m_helpText;
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetFormattingHints(ValueFormatHints newFormattingHints, NotificationChain msgs) {
+		ValueFormatHints oldFormattingHints = formattingHints;
+		formattingHints = newFormattingHints;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+					DesignPackage.OUTPUT_ELEMENT_ATTRIBUTES__FORMATTING_HINTS, oldFormattingHints, newFormattingHints);
+			if (msgs == null) {
+				msgs = notification;
+			} else {
+				msgs.add(notification);
+			}
+		}
+		return msgs;
+	}
 
-    /* (non-Javadoc)
-     * @see org.eclipse.datatools.connectivity.oda.design.OutputElementAttributes#setHelpText(java.lang.String)
-     * @generated NOT
-     */
-    public void setHelpText( String newHelpText )
-    {
-        String newAttrValue = DesignUtil.addDefaultToResourceAttribute( newHelpText, getHelpTextGen() );
-        setHelpTextGen( newAttrValue );
-    }
-    
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected void setHelpTextGen( String newHelpText )
-    {
-        String oldHelpText = m_helpText;
-        m_helpText = newHelpText;
-        if( eNotificationRequired() )
-            eNotify( new ENotificationImpl( this, Notification.SET,
-                    DesignPackage.OUTPUT_ELEMENT_ATTRIBUTES__HELP_TEXT,
-                    oldHelpText, m_helpText ) );
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setFormattingHints(ValueFormatHints newFormattingHints) {
+		if (newFormattingHints != formattingHints) {
+			NotificationChain msgs = null;
+			if (formattingHints != null) {
+				msgs = ((InternalEObject) formattingHints).eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE - DesignPackage.OUTPUT_ELEMENT_ATTRIBUTES__FORMATTING_HINTS, null, msgs);
+			}
+			if (newFormattingHints != null) {
+				msgs = ((InternalEObject) newFormattingHints).eInverseAdd(this,
+						EOPPOSITE_FEATURE_BASE - DesignPackage.OUTPUT_ELEMENT_ATTRIBUTES__FORMATTING_HINTS, null, msgs);
+			}
+			msgs = basicSetFormattingHints(newFormattingHints, msgs);
+			if (msgs != null) {
+				msgs.dispatch();
+			}
+		} else if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					DesignPackage.OUTPUT_ELEMENT_ATTRIBUTES__FORMATTING_HINTS, newFormattingHints, newFormattingHints));
+		}
+	}
 
-    /* (non-Javadoc)
-     * @see org.eclipse.datatools.connectivity.oda.design.OutputElementAttributes#getHelpTextKey()
-     * @generated NOT
-     */
-    public String getHelpTextKey()
-    {
-        return DesignUtil.getResourceKey( getHelpTextGen() );
-    }
+	/* (non-Javadoc)
+	 * @see org.eclipse.datatools.connectivity.oda.design.OutputElementAttributes#getHelpText()
+	 * @generated NOT
+	 */
+	@Override
+	public String getHelpText() {
+		return DesignUtil.getDefaultResourceString(getHelpTextGen());
+	}
 
-    /* (non-Javadoc)
-     * @see org.eclipse.datatools.connectivity.oda.design.OutputElementAttributes#setHelpTextKey(java.lang.String)
-     * @generated NOT
-     */
-    public void setHelpTextKey( String newHelpTextKey )
-    {
-        String newAttrValue = DesignUtil.addKeyToResourceAttribute( newHelpTextKey, getHelpTextGen() );
-        setHelpTextGen( newAttrValue );
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected String getHelpTextGen() {
+		return helpText;
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public NotificationChain eInverseRemove( InternalEObject otherEnd,
-            int featureID, NotificationChain msgs )
-    {
-        switch( featureID )
-        {
-        case DesignPackage.OUTPUT_ELEMENT_ATTRIBUTES__FORMATTING_HINTS:
-            return basicSetFormattingHints( null, msgs );
-        }
-        return super.eInverseRemove( otherEnd, featureID, msgs );
-    }
+	/* (non-Javadoc)
+	 * @see org.eclipse.datatools.connectivity.oda.design.OutputElementAttributes#setHelpText(java.lang.String)
+	 * @generated NOT
+	 */
+	@Override
+	public void setHelpText(String newHelpText) {
+		String newAttrValue = DesignUtil.addDefaultToResourceAttribute(newHelpText, getHelpTextGen());
+		setHelpTextGen(newAttrValue);
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated NOT
-     */
-    @Override
-    public Object eGet( int featureID, boolean resolve, boolean coreType )
-    {
-        switch( featureID )
-        {
-        case DesignPackage.OUTPUT_ELEMENT_ATTRIBUTES__LABEL:
-            return getLabelGen();
-        case DesignPackage.OUTPUT_ELEMENT_ATTRIBUTES__FORMATTING_HINTS:
-            return getFormattingHints();
-        case DesignPackage.OUTPUT_ELEMENT_ATTRIBUTES__HELP_TEXT:
-            return getHelpTextGen();
-        }
-        return super.eGet( featureID, resolve, coreType );
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void setHelpTextGen(String newHelpText) {
+		String oldHelpText = helpText;
+		helpText = newHelpText;
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, DesignPackage.OUTPUT_ELEMENT_ATTRIBUTES__HELP_TEXT,
+					oldHelpText, helpText));
+		}
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated NOT
-     */
-    @Override
-    public void eSet( int featureID, Object newValue )
-    {
-        switch( featureID )
-        {
-        case DesignPackage.OUTPUT_ELEMENT_ATTRIBUTES__LABEL:
-            setLabelGen( (String) newValue );
-            return;
-        case DesignPackage.OUTPUT_ELEMENT_ATTRIBUTES__FORMATTING_HINTS:
-            setFormattingHints( (ValueFormatHints) newValue );
-            return;
-        case DesignPackage.OUTPUT_ELEMENT_ATTRIBUTES__HELP_TEXT:
-            setHelpTextGen( (String) newValue );
-            return;
-        }
-        super.eSet( featureID, newValue );
-    }
+	/* (non-Javadoc)
+	 * @see org.eclipse.datatools.connectivity.oda.design.OutputElementAttributes#getHelpTextKey()
+	 * @generated NOT
+	 */
+	@Override
+	public String getHelpTextKey() {
+		return DesignUtil.getResourceKey(getHelpTextGen());
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated NOT
-     */
-    @Override
-    public void eUnset( int featureID )
-    {
-        switch( featureID )
-        {
-        case DesignPackage.OUTPUT_ELEMENT_ATTRIBUTES__LABEL:
-            setLabelGen( LABEL_EDEFAULT );
-            return;
-        case DesignPackage.OUTPUT_ELEMENT_ATTRIBUTES__FORMATTING_HINTS:
-            setFormattingHints( (ValueFormatHints) null );
-            return;
-        case DesignPackage.OUTPUT_ELEMENT_ATTRIBUTES__HELP_TEXT:
-            setHelpTextGen( HELP_TEXT_EDEFAULT );
-            return;
-        }
-        super.eUnset( featureID );
-    }
+	/* (non-Javadoc)
+	 * @see org.eclipse.datatools.connectivity.oda.design.OutputElementAttributes#setHelpTextKey(java.lang.String)
+	 * @generated NOT
+	 */
+	@Override
+	public void setHelpTextKey(String newHelpTextKey) {
+		String newAttrValue = DesignUtil.addKeyToResourceAttribute(newHelpTextKey, getHelpTextGen());
+		setHelpTextGen(newAttrValue);
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public boolean eIsSet( int featureID )
-    {
-        switch( featureID )
-        {
-        case DesignPackage.OUTPUT_ELEMENT_ATTRIBUTES__LABEL:
-            return LABEL_EDEFAULT == null ? m_label != null : !LABEL_EDEFAULT
-                    .equals( m_label );
-        case DesignPackage.OUTPUT_ELEMENT_ATTRIBUTES__FORMATTING_HINTS:
-            return m_formattingHints != null;
-        case DesignPackage.OUTPUT_ELEMENT_ATTRIBUTES__HELP_TEXT:
-            return HELP_TEXT_EDEFAULT == null ? m_helpText != null
-                    : !HELP_TEXT_EDEFAULT.equals( m_helpText );
-        }
-        return super.eIsSet( featureID );
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+		case DesignPackage.OUTPUT_ELEMENT_ATTRIBUTES__FORMATTING_HINTS:
+			return basicSetFormattingHints(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public String toString()
-    {
-        if( eIsProxy() )
-            return super.toString();
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+		case DesignPackage.OUTPUT_ELEMENT_ATTRIBUTES__LABEL:
+			return getLabelGen();
+		case DesignPackage.OUTPUT_ELEMENT_ATTRIBUTES__FORMATTING_HINTS:
+			return getFormattingHints();
+		case DesignPackage.OUTPUT_ELEMENT_ATTRIBUTES__HELP_TEXT:
+			return getHelpTextGen();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
-        StringBuffer result = new StringBuffer( super.toString() );
-        result.append( " (label: " ); //$NON-NLS-1$
-        result.append( m_label );
-        result.append( ", helpText: " ); //$NON-NLS-1$
-        result.append( m_helpText );
-        result.append( ')' );
-        return result.toString();
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
+		case DesignPackage.OUTPUT_ELEMENT_ATTRIBUTES__LABEL:
+			setLabelGen((String) newValue);
+			return;
+		case DesignPackage.OUTPUT_ELEMENT_ATTRIBUTES__FORMATTING_HINTS:
+			setFormattingHints((ValueFormatHints) newValue);
+			return;
+		case DesignPackage.OUTPUT_ELEMENT_ATTRIBUTES__HELP_TEXT:
+			setHelpTextGen((String) newValue);
+			return;
+		}
+		super.eSet(featureID, newValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public void eUnset(int featureID) {
+		switch (featureID) {
+		case DesignPackage.OUTPUT_ELEMENT_ATTRIBUTES__LABEL:
+			setLabelGen(LABEL_EDEFAULT);
+			return;
+		case DesignPackage.OUTPUT_ELEMENT_ATTRIBUTES__FORMATTING_HINTS:
+			setFormattingHints((ValueFormatHints) null);
+			return;
+		case DesignPackage.OUTPUT_ELEMENT_ATTRIBUTES__HELP_TEXT:
+			setHelpTextGen(HELP_TEXT_EDEFAULT);
+			return;
+		}
+		super.eUnset(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+		case DesignPackage.OUTPUT_ELEMENT_ATTRIBUTES__LABEL:
+			return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
+		case DesignPackage.OUTPUT_ELEMENT_ATTRIBUTES__FORMATTING_HINTS:
+			return formattingHints != null;
+		case DesignPackage.OUTPUT_ELEMENT_ATTRIBUTES__HELP_TEXT:
+			return HELP_TEXT_EDEFAULT == null ? helpText != null : !HELP_TEXT_EDEFAULT.equals(helpText);
+		}
+		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) {
+			return super.toString();
+		}
+
+		StringBuilder result = new StringBuilder(super.toString());
+		result.append(" (label: "); //$NON-NLS-1$
+		result.append(label);
+		result.append(", helpText: "); //$NON-NLS-1$
+		result.append(helpText);
+		result.append(')');
+		return result.toString();
+	}
 
 } //OutputElementAttributesImpl

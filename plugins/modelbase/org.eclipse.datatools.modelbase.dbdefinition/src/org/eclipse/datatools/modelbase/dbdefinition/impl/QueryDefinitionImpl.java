@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.QueryDefinitionImpl#getIdentifierQuoteString <em>Identifier Quote String</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.QueryDefinitionImpl#getHostVariableMarker <em>Host Variable Marker</em>}</li>
@@ -29,7 +30,6 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.QueryDefinitionImpl#isExtendedGroupingSupported <em>Extended Grouping Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.QueryDefinitionImpl#isTableAliasInDeleteSupported <em>Table Alias In Delete Supported</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -188,6 +188,7 @@ public class QueryDefinitionImpl extends EObjectImpl implements QueryDefinition 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return DatabaseDefinitionPackage.Literals.QUERY_DEFINITION;
 	}
@@ -197,6 +198,7 @@ public class QueryDefinitionImpl extends EObjectImpl implements QueryDefinition 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getIdentifierQuoteString() {
 		return identifierQuoteString;
 	}
@@ -206,11 +208,13 @@ public class QueryDefinitionImpl extends EObjectImpl implements QueryDefinition 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIdentifierQuoteString(String newIdentifierQuoteString) {
 		String oldIdentifierQuoteString = identifierQuoteString;
 		identifierQuoteString = newIdentifierQuoteString;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.QUERY_DEFINITION__IDENTIFIER_QUOTE_STRING, oldIdentifierQuoteString, identifierQuoteString));
+		}
 	}
 
 	/**
@@ -218,6 +222,7 @@ public class QueryDefinitionImpl extends EObjectImpl implements QueryDefinition 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getHostVariableMarker() {
 		return hostVariableMarker;
 	}
@@ -227,11 +232,13 @@ public class QueryDefinitionImpl extends EObjectImpl implements QueryDefinition 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setHostVariableMarker(String newHostVariableMarker) {
 		String oldHostVariableMarker = hostVariableMarker;
 		hostVariableMarker = newHostVariableMarker;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.QUERY_DEFINITION__HOST_VARIABLE_MARKER, oldHostVariableMarker, hostVariableMarker));
+		}
 	}
 
 	/**
@@ -239,6 +246,7 @@ public class QueryDefinitionImpl extends EObjectImpl implements QueryDefinition 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isHostVariableMarkerSupported() {
 		return hostVariableMarkerSupported;
 	}
@@ -248,11 +256,13 @@ public class QueryDefinitionImpl extends EObjectImpl implements QueryDefinition 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setHostVariableMarkerSupported(boolean newHostVariableMarkerSupported) {
 		boolean oldHostVariableMarkerSupported = hostVariableMarkerSupported;
 		hostVariableMarkerSupported = newHostVariableMarkerSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.QUERY_DEFINITION__HOST_VARIABLE_MARKER_SUPPORTED, oldHostVariableMarkerSupported, hostVariableMarkerSupported));
+		}
 	}
 
 	/**
@@ -260,6 +270,7 @@ public class QueryDefinitionImpl extends EObjectImpl implements QueryDefinition 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isCastExpressionSupported() {
 		return castExpressionSupported;
 	}
@@ -269,11 +280,13 @@ public class QueryDefinitionImpl extends EObjectImpl implements QueryDefinition 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCastExpressionSupported(boolean newCastExpressionSupported) {
 		boolean oldCastExpressionSupported = castExpressionSupported;
 		castExpressionSupported = newCastExpressionSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.QUERY_DEFINITION__CAST_EXPRESSION_SUPPORTED, oldCastExpressionSupported, castExpressionSupported));
+		}
 	}
 
 	/**
@@ -281,6 +294,7 @@ public class QueryDefinitionImpl extends EObjectImpl implements QueryDefinition 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isDefaultKeywordForInsertValueSupported() {
 		return defaultKeywordForInsertValueSupported;
 	}
@@ -290,11 +304,13 @@ public class QueryDefinitionImpl extends EObjectImpl implements QueryDefinition 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDefaultKeywordForInsertValueSupported(boolean newDefaultKeywordForInsertValueSupported) {
 		boolean oldDefaultKeywordForInsertValueSupported = defaultKeywordForInsertValueSupported;
 		defaultKeywordForInsertValueSupported = newDefaultKeywordForInsertValueSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.QUERY_DEFINITION__DEFAULT_KEYWORD_FOR_INSERT_VALUE_SUPPORTED, oldDefaultKeywordForInsertValueSupported, defaultKeywordForInsertValueSupported));
+		}
 	}
 
 	/**
@@ -302,6 +318,7 @@ public class QueryDefinitionImpl extends EObjectImpl implements QueryDefinition 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isExtendedGroupingSupported() {
 		return extendedGroupingSupported;
 	}
@@ -311,11 +328,13 @@ public class QueryDefinitionImpl extends EObjectImpl implements QueryDefinition 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setExtendedGroupingSupported(boolean newExtendedGroupingSupported) {
 		boolean oldExtendedGroupingSupported = extendedGroupingSupported;
 		extendedGroupingSupported = newExtendedGroupingSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.QUERY_DEFINITION__EXTENDED_GROUPING_SUPPORTED, oldExtendedGroupingSupported, extendedGroupingSupported));
+		}
 	}
 
 	/**
@@ -323,6 +342,7 @@ public class QueryDefinitionImpl extends EObjectImpl implements QueryDefinition 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isTableAliasInDeleteSupported() {
 		return tableAliasInDeleteSupported;
 	}
@@ -332,11 +352,13 @@ public class QueryDefinitionImpl extends EObjectImpl implements QueryDefinition 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTableAliasInDeleteSupported(boolean newTableAliasInDeleteSupported) {
 		boolean oldTableAliasInDeleteSupported = tableAliasInDeleteSupported;
 		tableAliasInDeleteSupported = newTableAliasInDeleteSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.QUERY_DEFINITION__TABLE_ALIAS_IN_DELETE_SUPPORTED, oldTableAliasInDeleteSupported, tableAliasInDeleteSupported));
+		}
 	}
 
 	/**
@@ -344,6 +366,7 @@ public class QueryDefinitionImpl extends EObjectImpl implements QueryDefinition 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.QUERY_DEFINITION__IDENTIFIER_QUOTE_STRING:
@@ -369,6 +392,7 @@ public class QueryDefinitionImpl extends EObjectImpl implements QueryDefinition 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.QUERY_DEFINITION__IDENTIFIER_QUOTE_STRING:
@@ -401,6 +425,7 @@ public class QueryDefinitionImpl extends EObjectImpl implements QueryDefinition 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.QUERY_DEFINITION__IDENTIFIER_QUOTE_STRING:
@@ -433,6 +458,7 @@ public class QueryDefinitionImpl extends EObjectImpl implements QueryDefinition 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.QUERY_DEFINITION__IDENTIFIER_QUOTE_STRING:
@@ -458,8 +484,11 @@ public class QueryDefinitionImpl extends EObjectImpl implements QueryDefinition 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (identifierQuoteString: "); //$NON-NLS-1$

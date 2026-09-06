@@ -19,10 +19,10 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.DebuggerDefinitionImpl#isConditionSupported <em>Condition Supported</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -61,6 +61,7 @@ public class DebuggerDefinitionImpl extends EObjectImpl implements DebuggerDefin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return DatabaseDefinitionPackage.Literals.DEBUGGER_DEFINITION;
 	}
@@ -70,6 +71,7 @@ public class DebuggerDefinitionImpl extends EObjectImpl implements DebuggerDefin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isConditionSupported() {
 		return conditionSupported;
 	}
@@ -79,11 +81,13 @@ public class DebuggerDefinitionImpl extends EObjectImpl implements DebuggerDefin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setConditionSupported(boolean newConditionSupported) {
 		boolean oldConditionSupported = conditionSupported;
 		conditionSupported = newConditionSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DEBUGGER_DEFINITION__CONDITION_SUPPORTED, oldConditionSupported, conditionSupported));
+		}
 	}
 
 	/**
@@ -91,6 +95,7 @@ public class DebuggerDefinitionImpl extends EObjectImpl implements DebuggerDefin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.DEBUGGER_DEFINITION__CONDITION_SUPPORTED:
@@ -104,6 +109,7 @@ public class DebuggerDefinitionImpl extends EObjectImpl implements DebuggerDefin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.DEBUGGER_DEFINITION__CONDITION_SUPPORTED:
@@ -118,6 +124,7 @@ public class DebuggerDefinitionImpl extends EObjectImpl implements DebuggerDefin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.DEBUGGER_DEFINITION__CONDITION_SUPPORTED:
@@ -132,6 +139,7 @@ public class DebuggerDefinitionImpl extends EObjectImpl implements DebuggerDefin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.DEBUGGER_DEFINITION__CONDITION_SUPPORTED:
@@ -145,8 +153,11 @@ public class DebuggerDefinitionImpl extends EObjectImpl implements DebuggerDefin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (conditionSupported: "); //$NON-NLS-1$

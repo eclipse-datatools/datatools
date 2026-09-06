@@ -21,15 +21,15 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl.SybaseASABaseViewTableImpl#isWithCheckOption <em>With Check Option</em>}</li>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl.SybaseASABaseViewTableImpl#getStatement <em>Statement</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class SybaseASABaseViewTableImpl extends SybaseViewTableImpl implements SybaseASABaseViewTable 
+public class SybaseASABaseViewTableImpl extends SybaseViewTableImpl implements SybaseASABaseViewTable
 {
     /**
 	 * The default value of the '{@link #isWithCheckOption() <em>With Check Option</em>}' attribute.
@@ -76,6 +76,7 @@ public class SybaseASABaseViewTableImpl extends SybaseViewTableImpl implements S
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass()
     {
 		return SybaseasabasesqlmodelPackage.Literals.SYBASE_ASA_BASE_VIEW_TABLE;
@@ -86,6 +87,7 @@ public class SybaseASABaseViewTableImpl extends SybaseViewTableImpl implements S
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isWithCheckOption()
     {
 		return withCheckOption;
@@ -96,12 +98,14 @@ public class SybaseASABaseViewTableImpl extends SybaseViewTableImpl implements S
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setWithCheckOption(boolean newWithCheckOption)
     {
 		boolean oldWithCheckOption = withCheckOption;
 		withCheckOption = newWithCheckOption;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_VIEW_TABLE__WITH_CHECK_OPTION, oldWithCheckOption, withCheckOption));
+		}
 	}
 
     /**
@@ -109,14 +113,16 @@ public class SybaseASABaseViewTableImpl extends SybaseViewTableImpl implements S
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SQLStatement getStatement()
     {
 		if (statement != null && statement.eIsProxy()) {
 			InternalEObject oldStatement = (InternalEObject)statement;
 			statement = (SQLStatement)eResolveProxy(oldStatement);
 			if (statement != oldStatement) {
-				if (eNotificationRequired())
+				if (eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_VIEW_TABLE__STATEMENT, oldStatement, statement));
+				}
 			}
 		}
 		return statement;
@@ -137,12 +143,14 @@ public class SybaseASABaseViewTableImpl extends SybaseViewTableImpl implements S
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setStatement(SQLStatement newStatement)
     {
 		SQLStatement oldStatement = statement;
 		statement = newStatement;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_VIEW_TABLE__STATEMENT, oldStatement, statement));
+		}
 	}
 
 	/**
@@ -150,6 +158,7 @@ public class SybaseASABaseViewTableImpl extends SybaseViewTableImpl implements S
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	@Override
 	public boolean isSystem() {
 		String owner = this.getSchema().getName();
 		return owner.equals("SYS") || owner.equals("dbo") || owner.equals("rs_systabgroup");
@@ -160,13 +169,16 @@ public class SybaseASABaseViewTableImpl extends SybaseViewTableImpl implements S
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
     {
 		switch (featureID) {
 			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_VIEW_TABLE__WITH_CHECK_OPTION:
 				return isWithCheckOption() ? Boolean.TRUE : Boolean.FALSE;
 			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_VIEW_TABLE__STATEMENT:
-				if (resolve) return getStatement();
+				if (resolve) {
+					return getStatement();
+				}
 				return basicGetStatement();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -177,6 +189,7 @@ public class SybaseASABaseViewTableImpl extends SybaseViewTableImpl implements S
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue)
     {
 		switch (featureID) {
@@ -195,6 +208,7 @@ public class SybaseASABaseViewTableImpl extends SybaseViewTableImpl implements S
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID)
     {
 		switch (featureID) {
@@ -213,6 +227,7 @@ public class SybaseASABaseViewTableImpl extends SybaseViewTableImpl implements S
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID)
     {
 		switch (featureID) {
@@ -229,9 +244,12 @@ public class SybaseASABaseViewTableImpl extends SybaseViewTableImpl implements S
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString()
     {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (withCheckOption: ");

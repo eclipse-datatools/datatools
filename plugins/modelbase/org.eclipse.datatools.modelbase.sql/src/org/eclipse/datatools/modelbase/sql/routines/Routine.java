@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -21,11 +21,12 @@ import org.eclipse.emf.common.util.EList;
  *
  * <!-- begin-model-doc -->
  * Reference: 5WD-02-Foundation-2002-12 4.27 SQL-invoked routines
- * 
+ *
  * <!-- end-model-doc -->
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.routines.Routine#getSpecificName <em>Specific Name</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.routines.Routine#getLanguage <em>Language</em>}</li>
@@ -41,7 +42,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.eclipse.datatools.modelbase.sql.routines.Routine#getSource <em>Source</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.routines.Routine#getSchema <em>Schema</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.datatools.modelbase.sql.routines.SQLRoutinesPackage#getRoutine()
  * @model abstract="true"
@@ -55,12 +55,12 @@ public interface Routine extends SQLObject {
 	 * <!-- begin-model-doc -->
 	 * From 5WD-02-Foundation-2002-12
 	 * 4.27 SQL-invoked routines
-	 * 
+	 *
 	 * An SQL-invoked routine is uniquely identified by a <specific name> , called the specific name of the SQLinvoked
 	 * routine.
-	 * 
-	 * Typically qualified with a schema name. 
-	 * 
+	 *
+	 * Typically qualified with a schema name.
+	 *
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Specific Name</em>' attribute.
 	 * @see #setSpecificName(String)
@@ -90,7 +90,7 @@ public interface Routine extends SQLObject {
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * Since there are many languages, rather than constrain ourselves to an enumerated list which is difficult to subclass in the EMF environment, we have chosen to use strings.
-	 * 
+	 *
 	 * JAVA
 	 * SQL
 	 * PERL
@@ -130,16 +130,16 @@ public interface Routine extends SQLObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * Paraphrased from 5WD-02-Foundation-2002-12 
+	 * Paraphrased from 5WD-02-Foundation-2002-12
 	 * The spec only calls for two. Though it seems like an easy choice for enumeration as in the language attribute, other vendors have different styles and since enumeration is not good to subclass within the EMF tooling framework, a string representation is used.
-	 * 
+	 *
 	 * 11.50 <SQL-invoked routine>
-	 * SQL 
+	 * SQL
 	 * GENERAL.
-	 * 
+	 *
 	 * Used in stored procedures, user defined functions, and methods.
-	 * 
-	 * 
+	 *
+	 *
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Parameter Style</em>' attribute.
 	 * @see #setParameterStyle(String)
@@ -166,7 +166,7 @@ public interface Routine extends SQLObject {
 	 * <!-- begin-model-doc -->
 	 * From 5WD-02-Foundation-2002-12
 	 * 4.27 SQL-invoked routines
-	 * 
+	 *
 	 * An SQL-invoked routine is either deterministic or possibly non-deterministic. An SQL-invoked function that
 	 * is deterministic always returns the identical return value for a given list of SQL argument values. An SQLinvoked
 	 * procedure that is deterministic always returns the identical values in its output and inout SQL parameters
@@ -203,9 +203,9 @@ public interface Routine extends SQLObject {
 	 * <!-- begin-model-doc -->
 	 * 5WD-02-Foundation-2002-12
 	 * 11.50 <SQL-invoked routine>
-	 * 
+	 *
 	 * <SQL-data access indication> ::= NO SQL | CONTAINS SQL | READS SQL DATA | MODIFIES SQL DATA
-	 * 
+	 *
 	 * (see DataAccess enumeration class)
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Sql Data Access</em>' attribute.
@@ -235,10 +235,10 @@ public interface Routine extends SQLObject {
 	 * <!-- begin-model-doc -->
 	 * From 5WD-02-Foundation-2002-12
 	 * 4.27 SQL-invoked routines
-	 * 
+	 *
 	 * An SQL-invoked routine is described by a routine descriptor. A routine descriptor includes:
 	 * - The creation timestamp.
-	 * 
+	 *
 	 * Because there is no provision in the spec as to the format of the timestamp, it is left to the individual implementers to determine the format.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Creation TS</em>' attribute.
@@ -266,10 +266,10 @@ public interface Routine extends SQLObject {
 	 * <!-- begin-model-doc -->
 	 * From 5WD-02-Foundation-2002-12
 	 * 4.27 SQL-invoked routines
-	 * 
+	 *
 	 * An SQL-invoked routine is described by a routine descriptor. A routine descriptor includes:
 	 * - The last-altered timestamp.
-	 * 
+	 *
 	 * Because there is no provision in the spec as to the format of the timestamp, it is left to the individual implementers to determine the format.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Last Altered TS</em>' attribute.
@@ -297,7 +297,7 @@ public interface Routine extends SQLObject {
 	 * <!-- begin-model-doc -->
 	 * From 5WD-02-Foundation-2002-12
 	 * 4.27 SQL-invoked routines
-	 * 
+	 *
 	 * An SQL-invoked routine has a routine authorization identifier, which is (directly or indirectly) the authorization
 	 * identifier of the owner of the schema that contains the SQL-invoked routine at the time that the SQL-invoked
 	 * routine is created.
@@ -327,15 +327,15 @@ public interface Routine extends SQLObject {
 	 * <!-- begin-model-doc -->
 	 * From the below, typical values would be: "DEFINER", "INVOKER", "IMPLEMENTATION DEFINED"
 	 * Since there are several implementation defined security designations, it is best to go with the string.
-	 * 
+	 *
 	 * From 5WD-02-Foundation-2002-12
 	 * 11.50 <SQL-invoked routine>
-	 * 
+	 *
 	 * <external security clause> ::=
 	 *   EXTERNAL SECURITY DEFINER
 	 *   | EXTERNAL SECURITY INVOKER
 	 *   | EXTERNAL SECURITY IMPLEMENTATION DEFINED
-	 * 
+	 *
 	 * 4.27 SQL-invoked routines
 	 * If the SQL-invoked routine is an SQL routine, then the identifiers are determined according to the SQL security
 	 * characteristic of the SQL-invoked routine:
@@ -344,7 +344,7 @@ public interface Routine extends SQLObject {
 	 *     identifier and the role name is set to null.
 	 *   * Otherwise, the role name is set to the routine authorization identifier and the user identifier is set to
 	 *     null.
-	 * - If the SQL security characteristic is INVOKER , then the identifiers remain unchanged.      
+	 * - If the SQL security characteristic is INVOKER , then the identifiers remain unchanged.
 	 * If the SQL-invoked routine is an external routine, then the identifiers are determined according to the external
 	 * security characteristic of the SQL-invoked routine:
 	 * - If the external security characteristic is DEFINER , then:
@@ -381,15 +381,15 @@ public interface Routine extends SQLObject {
 	 * <!-- begin-model-doc -->
 	 * From 5WD-02-Foundation-2002-12
 	 * from 11.50 SQL-invoked routine:
-	 * 
+	 *
 	 * The external name of the routine descriptor is <external routine name> .
 	 * <external body reference> ::= EXTERNAL [ NAME <external routine name> ] [ <parameter
 	 * style clause> ] [ <transform group specification> ] [ <external security clause> ]
-	 * 
+	 *
 	 * from 4.27 SQL-invoked routines
 	 * <external routine name> identifies a program written in some
 	 * standard programming language other than SQL .
-	 * 
+	 *
 	 * from 5.4 Names and identifiers
 	 * <external routine name> ::= <identifier> | <character string literal>
 	 * An <external routine name> identifies an external routine.

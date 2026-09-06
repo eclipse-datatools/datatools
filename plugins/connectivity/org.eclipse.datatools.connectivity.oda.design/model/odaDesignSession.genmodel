@@ -5,8 +5,9 @@
     templateDirectory="/org.eclipse.datatools.connectivity.oda.design/src/templates"
     runtimeJar="true" dynamicTemplates="true" modelName="OdaDesignSession" editPluginClass="org.eclipse.datatools.connectivity.oda.design.provider.OdaDesignSessionEditPlugin"
     editorPluginClass="org.eclipse.datatools.connectivity.oda.design.presentation.OdaDesignSessionEditorPlugin"
-    generateSchema="true" nonNLSMarkers="true" runtimeCompatibility="true" codeFormatting="true"
-    testsDirectory="" importerID="org.eclipse.xsd.ecore.importer" complianceLevel="5.0">
+    updateClasspath="false" generateSchema="true" nonNLSMarkers="true" runtimeCompatibility="true"
+    codeFormatting="true" testsDirectory="" importerID="org.eclipse.xsd.ecore.importer"
+    complianceLevel="5.0" importOrganizing="true" cleanup="true">
   <foreignModel>file:/E:/lchan/doc/DSRepository/ODA/func/odaDesignSession333.xsd</foreignModel>
   <genPackages prefix="Design" basePackage="org.eclipse.datatools.connectivity.oda"
       resource="XML" ecorePackage="org.eclipse.datatools.connectivity.oda.design.ecore#/">

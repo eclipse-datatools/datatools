@@ -17,6 +17,7 @@ import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.Schedule#isRecurring <em>Recurring</em>}</li>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.Schedule#getStartTime <em>Start Time</em>}</li>
@@ -28,7 +29,6 @@ import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
  *   <li>{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.Schedule#getIntervalMount <em>Interval Mount</em>}</li>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.Schedule#getEvent <em>Event</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseasabasesqlmodelPackage#getSchedule()
  * @model
@@ -147,7 +147,7 @@ public interface Schedule extends SQLObject
 	 * <!-- begin-model-doc -->
 	 * x01 = Sunday | x02 = Monday | x04 = Tuesday | x08 = Wednesday
 	 *  | x10 = Thursday | x20 = Friday | x40 = Saturday
-	 * 
+	 *
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Days Of Week</em>' attribute.
 	 * @see #setDaysOfWeek(int)
@@ -174,7 +174,7 @@ public interface Schedule extends SQLObject
 	 * <!-- begin-model-doc -->
 	 * x01 = first day | x02 = second day | ... x40000000 = 31st day
 	 *  | x80000000 = last day of month
-	 * 
+	 *
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Days Of Month</em>' attribute.
 	 * @see #setDaysOfMonth(int)

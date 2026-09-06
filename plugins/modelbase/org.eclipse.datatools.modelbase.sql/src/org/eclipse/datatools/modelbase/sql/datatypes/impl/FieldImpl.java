@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -24,11 +24,11 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.datatypes.impl.FieldImpl#getScopeCheck <em>Scope Check</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.datatypes.impl.FieldImpl#isScopeChecked <em>Scope Checked</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -87,6 +87,7 @@ public class FieldImpl extends TypedElementImpl implements Field {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return SQLDataTypesPackage.Literals.FIELD;
 	}
@@ -96,6 +97,7 @@ public class FieldImpl extends TypedElementImpl implements Field {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ReferentialActionType getScopeCheck() {
 		return scopeCheck;
 	}
@@ -105,11 +107,13 @@ public class FieldImpl extends TypedElementImpl implements Field {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setScopeCheck(ReferentialActionType newScopeCheck) {
 		ReferentialActionType oldScopeCheck = scopeCheck;
 		scopeCheck = newScopeCheck == null ? SCOPE_CHECK_EDEFAULT : newScopeCheck;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLDataTypesPackage.FIELD__SCOPE_CHECK, oldScopeCheck, scopeCheck));
+		}
 	}
 
 	/**
@@ -117,6 +121,7 @@ public class FieldImpl extends TypedElementImpl implements Field {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isScopeChecked() {
 		return scopeChecked;
 	}
@@ -126,11 +131,13 @@ public class FieldImpl extends TypedElementImpl implements Field {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setScopeChecked(boolean newScopeChecked) {
 		boolean oldScopeChecked = scopeChecked;
 		scopeChecked = newScopeChecked;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLDataTypesPackage.FIELD__SCOPE_CHECKED, oldScopeChecked, scopeChecked));
+		}
 	}
 
 	/**
@@ -138,6 +145,7 @@ public class FieldImpl extends TypedElementImpl implements Field {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SQLDataTypesPackage.FIELD__SCOPE_CHECK:
@@ -153,6 +161,7 @@ public class FieldImpl extends TypedElementImpl implements Field {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case SQLDataTypesPackage.FIELD__SCOPE_CHECK:
@@ -170,6 +179,7 @@ public class FieldImpl extends TypedElementImpl implements Field {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case SQLDataTypesPackage.FIELD__SCOPE_CHECK:
@@ -187,6 +197,7 @@ public class FieldImpl extends TypedElementImpl implements Field {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SQLDataTypesPackage.FIELD__SCOPE_CHECK:
@@ -202,8 +213,11 @@ public class FieldImpl extends TypedElementImpl implements Field {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (scopeCheck: "); //$NON-NLS-1$

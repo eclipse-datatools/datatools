@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.ColumnDefinitionImpl#getIdentityColumnDataTypeDefinitions <em>Identity Column Data Type Definitions</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.ColumnDefinitionImpl#isIdentitySupported <em>Identity Supported</em>}</li>
@@ -39,7 +40,6 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.ColumnDefinitionImpl#isIdentityCycleSupported <em>Identity Cycle Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.ColumnDefinitionImpl#getMaximumIdentifierLength <em>Maximum Identifier Length</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -228,6 +228,7 @@ public class ColumnDefinitionImpl extends EObjectImpl implements ColumnDefinitio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return DatabaseDefinitionPackage.Literals.COLUMN_DEFINITION;
 	}
@@ -237,6 +238,7 @@ public class ColumnDefinitionImpl extends EObjectImpl implements ColumnDefinitio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList getIdentityColumnDataTypeDefinitions() {
 		if (identityColumnDataTypeDefinitions == null) {
 			identityColumnDataTypeDefinitions = new EObjectResolvingEList(PredefinedDataTypeDefinition.class, this, DatabaseDefinitionPackage.COLUMN_DEFINITION__IDENTITY_COLUMN_DATA_TYPE_DEFINITIONS);
@@ -249,6 +251,7 @@ public class ColumnDefinitionImpl extends EObjectImpl implements ColumnDefinitio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isIdentitySupported() {
 		return identitySupported;
 	}
@@ -258,11 +261,13 @@ public class ColumnDefinitionImpl extends EObjectImpl implements ColumnDefinitio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIdentitySupported(boolean newIdentitySupported) {
 		boolean oldIdentitySupported = identitySupported;
 		identitySupported = newIdentitySupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.COLUMN_DEFINITION__IDENTITY_SUPPORTED, oldIdentitySupported, identitySupported));
+		}
 	}
 
 	/**
@@ -270,6 +275,7 @@ public class ColumnDefinitionImpl extends EObjectImpl implements ColumnDefinitio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isComputedSupported() {
 		return computedSupported;
 	}
@@ -279,11 +285,13 @@ public class ColumnDefinitionImpl extends EObjectImpl implements ColumnDefinitio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setComputedSupported(boolean newComputedSupported) {
 		boolean oldComputedSupported = computedSupported;
 		computedSupported = newComputedSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.COLUMN_DEFINITION__COMPUTED_SUPPORTED, oldComputedSupported, computedSupported));
+		}
 	}
 
 	/**
@@ -291,6 +299,7 @@ public class ColumnDefinitionImpl extends EObjectImpl implements ColumnDefinitio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isIdentityStartValueSupported() {
 		return identityStartValueSupported;
 	}
@@ -300,11 +309,13 @@ public class ColumnDefinitionImpl extends EObjectImpl implements ColumnDefinitio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIdentityStartValueSupported(boolean newIdentityStartValueSupported) {
 		boolean oldIdentityStartValueSupported = identityStartValueSupported;
 		identityStartValueSupported = newIdentityStartValueSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.COLUMN_DEFINITION__IDENTITY_START_VALUE_SUPPORTED, oldIdentityStartValueSupported, identityStartValueSupported));
+		}
 	}
 
 	/**
@@ -312,6 +323,7 @@ public class ColumnDefinitionImpl extends EObjectImpl implements ColumnDefinitio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isIdentityIncrementSupported() {
 		return identityIncrementSupported;
 	}
@@ -321,11 +333,13 @@ public class ColumnDefinitionImpl extends EObjectImpl implements ColumnDefinitio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIdentityIncrementSupported(boolean newIdentityIncrementSupported) {
 		boolean oldIdentityIncrementSupported = identityIncrementSupported;
 		identityIncrementSupported = newIdentityIncrementSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.COLUMN_DEFINITION__IDENTITY_INCREMENT_SUPPORTED, oldIdentityIncrementSupported, identityIncrementSupported));
+		}
 	}
 
 	/**
@@ -333,6 +347,7 @@ public class ColumnDefinitionImpl extends EObjectImpl implements ColumnDefinitio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isIdentityMinimumSupported() {
 		return identityMinimumSupported;
 	}
@@ -342,11 +357,13 @@ public class ColumnDefinitionImpl extends EObjectImpl implements ColumnDefinitio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIdentityMinimumSupported(boolean newIdentityMinimumSupported) {
 		boolean oldIdentityMinimumSupported = identityMinimumSupported;
 		identityMinimumSupported = newIdentityMinimumSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.COLUMN_DEFINITION__IDENTITY_MINIMUM_SUPPORTED, oldIdentityMinimumSupported, identityMinimumSupported));
+		}
 	}
 
 	/**
@@ -354,6 +371,7 @@ public class ColumnDefinitionImpl extends EObjectImpl implements ColumnDefinitio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isIdentityMaximumSupported() {
 		return identityMaximumSupported;
 	}
@@ -363,11 +381,13 @@ public class ColumnDefinitionImpl extends EObjectImpl implements ColumnDefinitio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIdentityMaximumSupported(boolean newIdentityMaximumSupported) {
 		boolean oldIdentityMaximumSupported = identityMaximumSupported;
 		identityMaximumSupported = newIdentityMaximumSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.COLUMN_DEFINITION__IDENTITY_MAXIMUM_SUPPORTED, oldIdentityMaximumSupported, identityMaximumSupported));
+		}
 	}
 
 	/**
@@ -375,6 +395,7 @@ public class ColumnDefinitionImpl extends EObjectImpl implements ColumnDefinitio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isIdentityCycleSupported() {
 		return identityCycleSupported;
 	}
@@ -384,11 +405,13 @@ public class ColumnDefinitionImpl extends EObjectImpl implements ColumnDefinitio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIdentityCycleSupported(boolean newIdentityCycleSupported) {
 		boolean oldIdentityCycleSupported = identityCycleSupported;
 		identityCycleSupported = newIdentityCycleSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.COLUMN_DEFINITION__IDENTITY_CYCLE_SUPPORTED, oldIdentityCycleSupported, identityCycleSupported));
+		}
 	}
 
 	/**
@@ -396,6 +419,7 @@ public class ColumnDefinitionImpl extends EObjectImpl implements ColumnDefinitio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getMaximumIdentifierLength() {
 		return maximumIdentifierLength;
 	}
@@ -405,11 +429,13 @@ public class ColumnDefinitionImpl extends EObjectImpl implements ColumnDefinitio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMaximumIdentifierLength(int newMaximumIdentifierLength) {
 		int oldMaximumIdentifierLength = maximumIdentifierLength;
 		maximumIdentifierLength = newMaximumIdentifierLength;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.COLUMN_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH, oldMaximumIdentifierLength, maximumIdentifierLength));
+		}
 	}
 
 	/**
@@ -417,6 +443,7 @@ public class ColumnDefinitionImpl extends EObjectImpl implements ColumnDefinitio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.COLUMN_DEFINITION__IDENTITY_COLUMN_DATA_TYPE_DEFINITIONS:
@@ -436,7 +463,7 @@ public class ColumnDefinitionImpl extends EObjectImpl implements ColumnDefinitio
 			case DatabaseDefinitionPackage.COLUMN_DEFINITION__IDENTITY_CYCLE_SUPPORTED:
 				return isIdentityCycleSupported() ? Boolean.TRUE : Boolean.FALSE;
 			case DatabaseDefinitionPackage.COLUMN_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH:
-				return Integer.valueOf(getMaximumIdentifierLength());
+				return new Integer(getMaximumIdentifierLength());
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -446,6 +473,7 @@ public class ColumnDefinitionImpl extends EObjectImpl implements ColumnDefinitio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.COLUMN_DEFINITION__IDENTITY_COLUMN_DATA_TYPE_DEFINITIONS:
@@ -485,6 +513,7 @@ public class ColumnDefinitionImpl extends EObjectImpl implements ColumnDefinitio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.COLUMN_DEFINITION__IDENTITY_COLUMN_DATA_TYPE_DEFINITIONS:
@@ -523,6 +552,7 @@ public class ColumnDefinitionImpl extends EObjectImpl implements ColumnDefinitio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.COLUMN_DEFINITION__IDENTITY_COLUMN_DATA_TYPE_DEFINITIONS:
@@ -552,8 +582,11 @@ public class ColumnDefinitionImpl extends EObjectImpl implements ColumnDefinitio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (identitySupported: "); //$NON-NLS-1$

@@ -2,7 +2,9 @@
 <genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.datatools.modelbase.derby/src" editDirectory=""
     editorDirectory="" modelPluginID="org.eclipse.datatools.modelbase.derby" modelName="Derby"
-    testsDirectory="" importerID="org.eclipse.emf.importer.rose" usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.genmodel#//sqlmodel">
+    updateClasspath="false" testsDirectory="" importerID="org.eclipse.emf.importer.rose"
+    usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.genmodel#//sqlmodel"
+    importOrganizing="true" cleanup="true">
   <foreignModel>derby.mdl</foreignModel>
   <foreignModel>CDM_EXTRACT_PATH</foreignModel>
   <foreignModel>../..</foreignModel>

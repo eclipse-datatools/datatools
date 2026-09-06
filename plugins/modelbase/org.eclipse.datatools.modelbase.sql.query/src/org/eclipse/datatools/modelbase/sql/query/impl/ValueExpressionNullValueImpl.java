@@ -14,28 +14,27 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>SQL Value Expression Null</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */
 public class ValueExpressionNullValueImpl extends ValueExpressionAtomicImpl implements ValueExpressionNullValue {
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected ValueExpressionNullValueImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    protected EClass eStaticClass() {
-        return SQLQueryModelPackage.Literals.VALUE_EXPRESSION_NULL_VALUE;
-    }
+	 * @generated
+	 */
+    @Override
+	protected EClass eStaticClass() {
+		return SQLQueryModelPackage.Literals.VALUE_EXPRESSION_NULL_VALUE;
+	}
 
 } //SQLValueExpressionNullImpl

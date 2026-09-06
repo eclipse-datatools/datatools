@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -19,19 +19,19 @@ import org.eclipse.datatools.modelbase.sql.schema.TypedElement;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * Reference: 5WD-02-Foundation-2002-12 4.27 SQL-invoked routines, 5WD-02-Foundation-2002-12 11.50 <SQL-invoked routine>,  Reference: 5WD-02-Foundation-2002-12 4.29.4 Locators  
+ * Reference: 5WD-02-Foundation-2002-12 4.27 SQL-invoked routines, 5WD-02-Foundation-2002-12 11.50 <SQL-invoked routine>,  Reference: 5WD-02-Foundation-2002-12 4.29.4 Locators
  * Reference: Information technology - Database languages - SQL - Part 14: XML-Related Specifications (SQL/XML) 12.7 <SQL-invoked routine>
  * <!-- end-model-doc -->
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.routines.Parameter#getMode <em>Mode</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.routines.Parameter#isLocator <em>Locator</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.routines.Parameter#getRoutine <em>Routine</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.routines.Parameter#getStringTypeOption <em>String Type Option</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.datatools.modelbase.sql.routines.SQLRoutinesPackage#getParameter()
  * @model
@@ -49,11 +49,11 @@ public interface Parameter extends TypedElement {
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * 5WD-02-Foundation-2002-12
-	 * 
+	 *
 	 * <SQL parameter declaration> ::= [ <parameter mode> ] [ <SQL parameter name> ] <parameter type> [ RESULT ]
-	 * 
+	 *
 	 * <parameter mode> ::= IN | OUT | INOUT
-	 * 
+	 *
 	 * For functions, defaults to IN.
 	 * See enumerated class ParameterMode
 	 * <!-- end-model-doc -->
@@ -87,13 +87,13 @@ public interface Parameter extends TypedElement {
 	 * A host parameter, a host variable, an SQL parameter of an external routine, or the value returned by an external
 	 * function may be specified to be a locator by specifying AS LOCATOR . A locator is an SQL-session object,
 	 * rather than SQL-data, that can be used to reference an SQL-data instance. A locator is either a large object
-	 * locator, a user-defined type locator, an array locator, or a multiset locator. 
-	 * 
+	 * locator, a user-defined type locator, an array locator, or a multiset locator.
+	 *
 	 * A large object locator is one of the following:
 	 * - Binary large object locator, a value of which identifies a binary large object.
 	 * - Character large object locator, a value of which identifies a large object character string.
 	 * - National character large object locator, a value of which identifies a national large object character string.
-	 * 
+	 *
 	 * A user-defined type locator identifies a value of the user-defined type specified by the locator specification.
 	 * An array locator identifies a value of the array type specified by the locator specification. A multiset locator
 	 * identifies a value of the multiset type specified by the locator specification.
@@ -129,7 +129,7 @@ public interface Parameter extends TypedElement {
 	 * @see #setRoutine(Routine)
 	 * @see org.eclipse.datatools.modelbase.sql.routines.SQLRoutinesPackage#getParameter_Routine()
 	 * @see org.eclipse.datatools.modelbase.sql.routines.Routine#getParameters
-	 * @model opposite="parameters" required="true"
+	 * @model opposite="parameters"
 	 * @generated
 	 */
 	Routine getRoutine();

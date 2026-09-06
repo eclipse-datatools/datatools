@@ -29,17 +29,17 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl.SybaseASABaseColumnImpl#getColumnConstraint <em>Column Constraint</em>}</li>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl.SybaseASABaseColumnImpl#getTypeOfDefault <em>Type Of Default</em>}</li>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl.SybaseASABaseColumnImpl#isUnique <em>Unique</em>}</li>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl.SybaseASABaseColumnImpl#isIsComputedColumn <em>Is Computed Column</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class SybaseASABaseColumnImpl extends ColumnImpl implements SybaseASABaseColumn 
+public class SybaseASABaseColumnImpl extends ColumnImpl implements SybaseASABaseColumn
 {
     /**
 	 * The cached value of the '{@link #getColumnConstraint() <em>Column Constraint</em>}' reference list.
@@ -126,6 +126,7 @@ public class SybaseASABaseColumnImpl extends ColumnImpl implements SybaseASABase
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass()
     {
 		return SybaseasabasesqlmodelPackage.Literals.SYBASE_ASA_BASE_COLUMN;
@@ -136,6 +137,7 @@ public class SybaseASABaseColumnImpl extends ColumnImpl implements SybaseASABase
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList getColumnConstraint()
     {
 		if (columnConstraint == null) {
@@ -149,6 +151,7 @@ public class SybaseASABaseColumnImpl extends ColumnImpl implements SybaseASABase
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TypeOfDefault getTypeOfDefault()
     {
 		return typeOfDefault;
@@ -159,12 +162,14 @@ public class SybaseASABaseColumnImpl extends ColumnImpl implements SybaseASABase
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTypeOfDefault(TypeOfDefault newTypeOfDefault)
     {
 		TypeOfDefault oldTypeOfDefault = typeOfDefault;
 		typeOfDefault = newTypeOfDefault == null ? TYPE_OF_DEFAULT_EDEFAULT : newTypeOfDefault;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_COLUMN__TYPE_OF_DEFAULT, oldTypeOfDefault, typeOfDefault));
+		}
 	}
 
     /**
@@ -172,6 +177,7 @@ public class SybaseASABaseColumnImpl extends ColumnImpl implements SybaseASABase
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isUnique()
     {
 		return unique;
@@ -182,12 +188,14 @@ public class SybaseASABaseColumnImpl extends ColumnImpl implements SybaseASABase
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setUnique(boolean newUnique)
     {
 		boolean oldUnique = unique;
 		unique = newUnique;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_COLUMN__UNIQUE, oldUnique, unique));
+		}
 	}
 
     /**
@@ -195,6 +203,7 @@ public class SybaseASABaseColumnImpl extends ColumnImpl implements SybaseASABase
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isIsComputedColumn()
     {
 		return isComputedColumn;
@@ -205,19 +214,22 @@ public class SybaseASABaseColumnImpl extends ColumnImpl implements SybaseASABase
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIsComputedColumn(boolean newIsComputedColumn)
     {
 		boolean oldIsComputedColumn = isComputedColumn;
 		isComputedColumn = newIsComputedColumn;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_COLUMN__IS_COMPUTED_COLUMN, oldIsComputedColumn, isComputedColumn));
+		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT 
+	 * @generated NOT
 	 */
+	@Override
 	public boolean isLiteralDefault() {
 		return Utils.isLiteralDefault(this.getTypeOfDefault(), this.getDefaultValue());
 	}
@@ -227,6 +239,7 @@ public class SybaseASABaseColumnImpl extends ColumnImpl implements SybaseASABase
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	@Override
 	public int getGlobalIncrementPartitionSize() {
 		return Utils.getDefaultGlobalIncrementPartitionSize(this.getTypeOfDefault(), this.getDefaultValue());
 	}
@@ -236,6 +249,7 @@ public class SybaseASABaseColumnImpl extends ColumnImpl implements SybaseASABase
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
     {
 		switch (featureID) {
@@ -250,6 +264,7 @@ public class SybaseASABaseColumnImpl extends ColumnImpl implements SybaseASABase
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
     {
 		switch (featureID) {
@@ -264,6 +279,7 @@ public class SybaseASABaseColumnImpl extends ColumnImpl implements SybaseASABase
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
     {
 		switch (featureID) {
@@ -284,6 +300,7 @@ public class SybaseASABaseColumnImpl extends ColumnImpl implements SybaseASABase
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue)
     {
 		switch (featureID) {
@@ -309,6 +326,7 @@ public class SybaseASABaseColumnImpl extends ColumnImpl implements SybaseASABase
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID)
     {
 		switch (featureID) {
@@ -333,6 +351,7 @@ public class SybaseASABaseColumnImpl extends ColumnImpl implements SybaseASABase
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID)
     {
 		switch (featureID) {
@@ -353,9 +372,12 @@ public class SybaseASABaseColumnImpl extends ColumnImpl implements SybaseASABase
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString()
     {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (typeOfDefault: ");

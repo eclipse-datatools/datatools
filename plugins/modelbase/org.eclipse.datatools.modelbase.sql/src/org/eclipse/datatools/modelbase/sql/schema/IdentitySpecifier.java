@@ -23,6 +23,7 @@ import java.math.BigInteger;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.schema.IdentitySpecifier#getGenerationType <em>Generation Type</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.schema.IdentitySpecifier#getStartValue <em>Start Value</em>}</li>
@@ -31,7 +32,6 @@ import java.math.BigInteger;
  *   <li>{@link org.eclipse.datatools.modelbase.sql.schema.IdentitySpecifier#getMaximum <em>Maximum</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.schema.IdentitySpecifier#isCycleOption <em>Cycle Option</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.datatools.modelbase.sql.schema.SQLSchemaPackage#getIdentitySpecifier()
  * @model

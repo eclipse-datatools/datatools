@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -103,58 +103,112 @@ public class SQLAccessControlSwitch {
 			case SQLAccessControlPackage.AUTHORIZATION_IDENTIFIER: {
 				AuthorizationIdentifier authorizationIdentifier = (AuthorizationIdentifier)theEObject;
 				Object result = caseAuthorizationIdentifier(authorizationIdentifier);
-				if (result == null) result = caseSQLObject(authorizationIdentifier);
-				if (result == null) result = caseENamedElement(authorizationIdentifier);
-				if (result == null) result = caseEModelElement(authorizationIdentifier);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = caseSQLObject(authorizationIdentifier);
+				}
+				if (result == null) {
+					result = caseENamedElement(authorizationIdentifier);
+				}
+				if (result == null) {
+					result = caseEModelElement(authorizationIdentifier);
+				}
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case SQLAccessControlPackage.PRIVILEGE: {
 				Privilege privilege = (Privilege)theEObject;
 				Object result = casePrivilege(privilege);
-				if (result == null) result = caseSQLObject(privilege);
-				if (result == null) result = caseENamedElement(privilege);
-				if (result == null) result = caseEModelElement(privilege);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = caseSQLObject(privilege);
+				}
+				if (result == null) {
+					result = caseENamedElement(privilege);
+				}
+				if (result == null) {
+					result = caseEModelElement(privilege);
+				}
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case SQLAccessControlPackage.GROUP: {
 				Group group = (Group)theEObject;
 				Object result = caseGroup(group);
-				if (result == null) result = caseAuthorizationIdentifier(group);
-				if (result == null) result = caseSQLObject(group);
-				if (result == null) result = caseENamedElement(group);
-				if (result == null) result = caseEModelElement(group);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = caseAuthorizationIdentifier(group);
+				}
+				if (result == null) {
+					result = caseSQLObject(group);
+				}
+				if (result == null) {
+					result = caseENamedElement(group);
+				}
+				if (result == null) {
+					result = caseEModelElement(group);
+				}
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case SQLAccessControlPackage.USER: {
 				User user = (User)theEObject;
 				Object result = caseUser(user);
-				if (result == null) result = caseAuthorizationIdentifier(user);
-				if (result == null) result = caseSQLObject(user);
-				if (result == null) result = caseENamedElement(user);
-				if (result == null) result = caseEModelElement(user);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = caseAuthorizationIdentifier(user);
+				}
+				if (result == null) {
+					result = caseSQLObject(user);
+				}
+				if (result == null) {
+					result = caseENamedElement(user);
+				}
+				if (result == null) {
+					result = caseEModelElement(user);
+				}
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case SQLAccessControlPackage.ROLE: {
 				Role role = (Role)theEObject;
 				Object result = caseRole(role);
-				if (result == null) result = caseAuthorizationIdentifier(role);
-				if (result == null) result = caseSQLObject(role);
-				if (result == null) result = caseENamedElement(role);
-				if (result == null) result = caseEModelElement(role);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = caseAuthorizationIdentifier(role);
+				}
+				if (result == null) {
+					result = caseSQLObject(role);
+				}
+				if (result == null) {
+					result = caseENamedElement(role);
+				}
+				if (result == null) {
+					result = caseEModelElement(role);
+				}
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case SQLAccessControlPackage.ROLE_AUTHORIZATION: {
 				RoleAuthorization roleAuthorization = (RoleAuthorization)theEObject;
 				Object result = caseRoleAuthorization(roleAuthorization);
-				if (result == null) result = caseSQLObject(roleAuthorization);
-				if (result == null) result = caseENamedElement(roleAuthorization);
-				if (result == null) result = caseEModelElement(roleAuthorization);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = caseSQLObject(roleAuthorization);
+				}
+				if (result == null) {
+					result = caseENamedElement(roleAuthorization);
+				}
+				if (result == null) {
+					result = caseEModelElement(roleAuthorization);
+				}
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			default: return defaultCase(theEObject);

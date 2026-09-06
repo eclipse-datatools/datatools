@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *   Ingres Corporation - initial API and implementation
  *
@@ -77,6 +77,7 @@ public class IngressqlmodelAdapterFactory extends AdapterFactoryImpl {
 	 * @return whether this factory is applicable for the type of the object.
 	 * @generated
 	 */
+	@Override
 	public boolean isFactoryForType(Object object) {
 		if (object == modelPackage) {
 			return true;
@@ -88,58 +89,74 @@ public class IngressqlmodelAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * The switch the delegates to the <code>createXXX</code> methods.
+	 * The switch that delegates to the <code>createXXX</code> methods.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected IngressqlmodelSwitch modelSwitch =
 		new IngressqlmodelSwitch() {
+			@Override
 			public Object caseIngresSynonym(IngresSynonym object) {
 				return createIngresSynonymAdapter();
 			}
+			@Override
 			public Object caseIngresDBEvent(IngresDBEvent object) {
 				return createIngresDBEventAdapter();
 			}
+			@Override
 			public Object caseIngresSchema(IngresSchema object) {
 				return createIngresSchemaAdapter();
 			}
+			@Override
 			public Object caseIngresViewTable(IngresViewTable object) {
 				return createIngresViewTableAdapter();
 			}
+			@Override
 			public Object caseIngresTrigger(IngresTrigger object) {
 				return createIngresTriggerAdapter();
 			}
+			@Override
 			public Object caseIngresIdentitySpecifier(IngresIdentitySpecifier object) {
 				return createIngresIdentitySpecifierAdapter();
 			}
+			@Override
 			public Object caseEModelElement(EModelElement object) {
 				return createEModelElementAdapter();
 			}
+			@Override
 			public Object caseENamedElement(ENamedElement object) {
 				return createENamedElementAdapter();
 			}
+			@Override
 			public Object caseSQLObject(SQLObject object) {
 				return createSQLObjectAdapter();
 			}
+			@Override
 			public Object caseSchema(Schema object) {
 				return createSchemaAdapter();
 			}
+			@Override
 			public Object caseTable(Table object) {
 				return createTableAdapter();
 			}
+			@Override
 			public Object caseDerivedTable(DerivedTable object) {
 				return createDerivedTableAdapter();
 			}
+			@Override
 			public Object caseViewTable(ViewTable object) {
 				return createViewTableAdapter();
 			}
+			@Override
 			public Object caseTrigger(Trigger object) {
 				return createTriggerAdapter();
 			}
+			@Override
 			public Object caseIdentitySpecifier(IdentitySpecifier object) {
 				return createIdentitySpecifierAdapter();
 			}
+			@Override
 			public Object defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -153,6 +170,7 @@ public class IngressqlmodelAdapterFactory extends AdapterFactoryImpl {
 	 * @return the adapter for the <code>target</code>.
 	 * @generated
 	 */
+	@Override
 	public Adapter createAdapter(Notifier target) {
 		return (Adapter)modelSwitch.doSwitch((EObject)target);
 	}

@@ -21,139 +21,144 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.impl.SybaseASECheckConstraintImpl#getCreator <em>Creator</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
 public class SybaseASECheckConstraintImpl extends CheckConstraintImpl implements SybaseASECheckConstraint {
 	/**
-     * The cached value of the '{@link #getCreator() <em>Creator</em>}' reference.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getCreator() <em>Creator</em>}' reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getCreator()
-     * @generated
-     * @ordered
-     */
+	 * @see #getCreator()
+	 * @generated
+	 * @ordered
+	 */
 	protected Schema creator;
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected SybaseASECheckConstraintImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	protected EClass eStaticClass() {
-        return SybaseasesqlmodelPackage.Literals.SYBASE_ASE_CHECK_CONSTRAINT;
-    }
+		return SybaseasesqlmodelPackage.Literals.SYBASE_ASE_CHECK_CONSTRAINT;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public Schema getCreator() {
-        if (creator != null && creator.eIsProxy())
-        {
-            InternalEObject oldCreator = (InternalEObject)creator;
-            creator = (Schema)eResolveProxy(oldCreator);
-            if (creator != oldCreator)
-            {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, SybaseasesqlmodelPackage.SYBASE_ASE_CHECK_CONSTRAINT__CREATOR, oldCreator, creator));
-            }
-        }
-        return creator;
-    }
+		if (creator != null && creator.eIsProxy()) {
+			InternalEObject oldCreator = (InternalEObject)creator;
+			creator = (Schema)eResolveProxy(oldCreator);
+			if (creator != oldCreator) {
+				if (eNotificationRequired()) {
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SybaseasesqlmodelPackage.SYBASE_ASE_CHECK_CONSTRAINT__CREATOR, oldCreator, creator));
+				}
+			}
+		}
+		return creator;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public Schema basicGetCreator() {
-        return creator;
-    }
+		return creator;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public void setCreator(Schema newCreator) {
-        Schema oldCreator = creator;
-        creator = newCreator;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SybaseasesqlmodelPackage.SYBASE_ASE_CHECK_CONSTRAINT__CREATOR, oldCreator, creator));
-    }
+		Schema oldCreator = creator;
+		creator = newCreator;
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasesqlmodelPackage.SYBASE_ASE_CHECK_CONSTRAINT__CREATOR, oldCreator, creator));
+		}
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID)
-        {
-            case SybaseasesqlmodelPackage.SYBASE_ASE_CHECK_CONSTRAINT__CREATOR:
-                if (resolve) return getCreator();
-                return basicGetCreator();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case SybaseasesqlmodelPackage.SYBASE_ASE_CHECK_CONSTRAINT__CREATOR:
+				if (resolve) {
+					return getCreator();
+				}
+				return basicGetCreator();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
-        switch (featureID)
-        {
-            case SybaseasesqlmodelPackage.SYBASE_ASE_CHECK_CONSTRAINT__CREATOR:
-                setCreator((Schema)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case SybaseasesqlmodelPackage.SYBASE_ASE_CHECK_CONSTRAINT__CREATOR:
+				setCreator((Schema)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public void eUnset(int featureID) {
-        switch (featureID)
-        {
-            case SybaseasesqlmodelPackage.SYBASE_ASE_CHECK_CONSTRAINT__CREATOR:
-                setCreator((Schema)null);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case SybaseasesqlmodelPackage.SYBASE_ASE_CHECK_CONSTRAINT__CREATOR:
+				setCreator((Schema)null);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public boolean eIsSet(int featureID) {
-        switch (featureID)
-        {
-            case SybaseasesqlmodelPackage.SYBASE_ASE_CHECK_CONSTRAINT__CREATOR:
-                return creator != null;
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case SybaseasesqlmodelPackage.SYBASE_ASE_CHECK_CONSTRAINT__CREATOR:
+				return creator != null;
+		}
+		return super.eIsSet(featureID);
+	}
 
 } //SybaseASECheckConstraintImpl

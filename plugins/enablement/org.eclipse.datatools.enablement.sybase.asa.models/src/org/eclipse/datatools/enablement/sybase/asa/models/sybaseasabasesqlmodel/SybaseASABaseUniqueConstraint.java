@@ -15,11 +15,10 @@ import org.eclipse.datatools.modelbase.sql.constraints.UniqueConstraint;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
- *   <li>{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseUniqueConstraint#isClustered <em>Clustered</em>}</li>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseUniqueConstraint#getSystemGenIndex <em>System Gen Index</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseasabasesqlmodelPackage#getSybaseASABaseUniqueConstraint()
  * @model
@@ -27,32 +26,6 @@ import org.eclipse.datatools.modelbase.sql.constraints.UniqueConstraint;
  */
 public interface SybaseASABaseUniqueConstraint extends UniqueConstraint
 {
-    /**
-	 * Returns the value of the '<em><b>Clustered</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Clustered</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Clustered</em>' attribute.
-	 * @see #setClustered(boolean)
-	 * @see org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseasabasesqlmodelPackage#getSybaseASABaseUniqueConstraint_Clustered()
-	 * @model
-	 * @generated
-	 */
-	boolean isClustered();
-
-    /**
-	 * Sets the value of the '{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseUniqueConstraint#isClustered <em>Clustered</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Clustered</em>' attribute.
-	 * @see #isClustered()
-	 * @generated
-	 */
-	void setClustered(boolean value);
-
     /**
 	 * Returns the value of the '<em><b>System Gen Index</b></em>' reference.
 	 * <!-- begin-user-doc -->

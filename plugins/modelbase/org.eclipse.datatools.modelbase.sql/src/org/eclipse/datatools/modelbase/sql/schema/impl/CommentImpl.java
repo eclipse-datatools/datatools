@@ -22,11 +22,11 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.schema.impl.CommentImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.schema.impl.CommentImpl#getSQLObject <em>SQL Object</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -75,6 +75,7 @@ public class CommentImpl extends EObjectImpl implements Comment {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return SQLSchemaPackage.Literals.COMMENT;
 	}
@@ -84,6 +85,7 @@ public class CommentImpl extends EObjectImpl implements Comment {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getDescription() {
 		return description;
 	}
@@ -93,11 +95,13 @@ public class CommentImpl extends EObjectImpl implements Comment {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDescription(String newDescription) {
 		String oldDescription = description;
 		description = newDescription;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLSchemaPackage.COMMENT__DESCRIPTION, oldDescription, description));
+		}
 	}
 
 	/**
@@ -105,13 +109,15 @@ public class CommentImpl extends EObjectImpl implements Comment {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SQLObject getSQLObject() {
 		if (sqlObject != null && sqlObject.eIsProxy()) {
 			InternalEObject oldSQLObject = (InternalEObject)sqlObject;
 			sqlObject = (SQLObject)eResolveProxy(oldSQLObject);
 			if (sqlObject != oldSQLObject) {
-				if (eNotificationRequired())
+				if (eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SQLSchemaPackage.COMMENT__SQL_OBJECT, oldSQLObject, sqlObject));
+				}
 			}
 		}
 		return sqlObject;
@@ -136,7 +142,11 @@ public class CommentImpl extends EObjectImpl implements Comment {
 		sqlObject = newSQLObject;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLSchemaPackage.COMMENT__SQL_OBJECT, oldSQLObject, newSQLObject);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			if (msgs == null) {
+				msgs = notification;
+			} else {
+				msgs.add(notification);
+			}
 		}
 		return msgs;
 	}
@@ -146,18 +156,24 @@ public class CommentImpl extends EObjectImpl implements Comment {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSQLObject(SQLObject newSQLObject) {
 		if (newSQLObject != sqlObject) {
 			NotificationChain msgs = null;
-			if (sqlObject != null)
+			if (sqlObject != null) {
 				msgs = ((InternalEObject)sqlObject).eInverseRemove(this, SQLSchemaPackage.SQL_OBJECT__COMMENTS, SQLObject.class, msgs);
-			if (newSQLObject != null)
+			}
+			if (newSQLObject != null) {
 				msgs = ((InternalEObject)newSQLObject).eInverseAdd(this, SQLSchemaPackage.SQL_OBJECT__COMMENTS, SQLObject.class, msgs);
+			}
 			msgs = basicSetSQLObject(newSQLObject, msgs);
-			if (msgs != null) msgs.dispatch();
+			if (msgs != null) {
+				msgs.dispatch();
+			}
 		}
-		else if (eNotificationRequired())
+		else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLSchemaPackage.COMMENT__SQL_OBJECT, newSQLObject, newSQLObject));
+		}
 	}
 
 	/**
@@ -165,11 +181,13 @@ public class CommentImpl extends EObjectImpl implements Comment {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case SQLSchemaPackage.COMMENT__SQL_OBJECT:
-				if (sqlObject != null)
+				if (sqlObject != null) {
 					msgs = ((InternalEObject)sqlObject).eInverseRemove(this, SQLSchemaPackage.SQL_OBJECT__COMMENTS, SQLObject.class, msgs);
+				}
 				return basicSetSQLObject((SQLObject)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -180,6 +198,7 @@ public class CommentImpl extends EObjectImpl implements Comment {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case SQLSchemaPackage.COMMENT__SQL_OBJECT:
@@ -193,12 +212,15 @@ public class CommentImpl extends EObjectImpl implements Comment {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SQLSchemaPackage.COMMENT__DESCRIPTION:
 				return getDescription();
 			case SQLSchemaPackage.COMMENT__SQL_OBJECT:
-				if (resolve) return getSQLObject();
+				if (resolve) {
+					return getSQLObject();
+				}
 				return basicGetSQLObject();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -209,6 +231,7 @@ public class CommentImpl extends EObjectImpl implements Comment {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case SQLSchemaPackage.COMMENT__DESCRIPTION:
@@ -226,6 +249,7 @@ public class CommentImpl extends EObjectImpl implements Comment {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case SQLSchemaPackage.COMMENT__DESCRIPTION:
@@ -243,6 +267,7 @@ public class CommentImpl extends EObjectImpl implements Comment {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SQLSchemaPackage.COMMENT__DESCRIPTION:
@@ -258,8 +283,11 @@ public class CommentImpl extends EObjectImpl implements Comment {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (description: "); //$NON-NLS-1$

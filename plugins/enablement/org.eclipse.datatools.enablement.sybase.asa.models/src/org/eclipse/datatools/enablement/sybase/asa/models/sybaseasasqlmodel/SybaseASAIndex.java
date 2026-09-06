@@ -15,10 +15,10 @@ import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.SybaseASAIndex#isVirtual <em>Virtual</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.SybaseasasqlmodelPackage#getSybaseASAIndex()
  * @model

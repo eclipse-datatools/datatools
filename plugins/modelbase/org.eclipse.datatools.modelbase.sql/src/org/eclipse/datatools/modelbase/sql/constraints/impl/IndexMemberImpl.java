@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -28,12 +28,12 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.constraints.impl.IndexMemberImpl#getIncrementType <em>Increment Type</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.constraints.impl.IndexMemberImpl#getColumn <em>Column</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.constraints.impl.IndexMemberImpl#getExpression <em>Expression</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -92,6 +92,7 @@ public class IndexMemberImpl extends SQLObjectImpl implements IndexMember {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return SQLConstraintsPackage.Literals.INDEX_MEMBER;
 	}
@@ -101,6 +102,7 @@ public class IndexMemberImpl extends SQLObjectImpl implements IndexMember {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IncrementType getIncrementType() {
 		return incrementType;
 	}
@@ -110,11 +112,13 @@ public class IndexMemberImpl extends SQLObjectImpl implements IndexMember {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIncrementType(IncrementType newIncrementType) {
 		IncrementType oldIncrementType = incrementType;
 		incrementType = newIncrementType == null ? INCREMENT_TYPE_EDEFAULT : newIncrementType;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLConstraintsPackage.INDEX_MEMBER__INCREMENT_TYPE, oldIncrementType, incrementType));
+		}
 	}
 
 	/**
@@ -122,13 +126,15 @@ public class IndexMemberImpl extends SQLObjectImpl implements IndexMember {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Column getColumn() {
 		if (column != null && column.eIsProxy()) {
 			InternalEObject oldColumn = (InternalEObject)column;
 			column = (Column)eResolveProxy(oldColumn);
 			if (column != oldColumn) {
-				if (eNotificationRequired())
+				if (eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SQLConstraintsPackage.INDEX_MEMBER__COLUMN, oldColumn, column));
+				}
 			}
 		}
 		return column;
@@ -148,11 +154,13 @@ public class IndexMemberImpl extends SQLObjectImpl implements IndexMember {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setColumn(Column newColumn) {
 		Column oldColumn = column;
 		column = newColumn;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLConstraintsPackage.INDEX_MEMBER__COLUMN, oldColumn, column));
+		}
 	}
 
 	/**
@@ -160,6 +168,7 @@ public class IndexMemberImpl extends SQLObjectImpl implements IndexMember {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IndexExpression getExpression() {
 		return expression;
 	}
@@ -174,7 +183,11 @@ public class IndexMemberImpl extends SQLObjectImpl implements IndexMember {
 		expression = newExpression;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLConstraintsPackage.INDEX_MEMBER__EXPRESSION, oldExpression, newExpression);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			if (msgs == null) {
+				msgs = notification;
+			} else {
+				msgs.add(notification);
+			}
 		}
 		return msgs;
 	}
@@ -184,18 +197,24 @@ public class IndexMemberImpl extends SQLObjectImpl implements IndexMember {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setExpression(IndexExpression newExpression) {
 		if (newExpression != expression) {
 			NotificationChain msgs = null;
-			if (expression != null)
+			if (expression != null) {
 				msgs = ((InternalEObject)expression).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLConstraintsPackage.INDEX_MEMBER__EXPRESSION, null, msgs);
-			if (newExpression != null)
+			}
+			if (newExpression != null) {
 				msgs = ((InternalEObject)newExpression).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SQLConstraintsPackage.INDEX_MEMBER__EXPRESSION, null, msgs);
+			}
 			msgs = basicSetExpression(newExpression, msgs);
-			if (msgs != null) msgs.dispatch();
+			if (msgs != null) {
+				msgs.dispatch();
+			}
 		}
-		else if (eNotificationRequired())
+		else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLConstraintsPackage.INDEX_MEMBER__EXPRESSION, newExpression, newExpression));
+		}
 	}
 
 	/**
@@ -203,6 +222,7 @@ public class IndexMemberImpl extends SQLObjectImpl implements IndexMember {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case SQLConstraintsPackage.INDEX_MEMBER__EXPRESSION:
@@ -216,12 +236,15 @@ public class IndexMemberImpl extends SQLObjectImpl implements IndexMember {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SQLConstraintsPackage.INDEX_MEMBER__INCREMENT_TYPE:
 				return getIncrementType();
 			case SQLConstraintsPackage.INDEX_MEMBER__COLUMN:
-				if (resolve) return getColumn();
+				if (resolve) {
+					return getColumn();
+				}
 				return basicGetColumn();
 			case SQLConstraintsPackage.INDEX_MEMBER__EXPRESSION:
 				return getExpression();
@@ -234,6 +257,7 @@ public class IndexMemberImpl extends SQLObjectImpl implements IndexMember {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case SQLConstraintsPackage.INDEX_MEMBER__INCREMENT_TYPE:
@@ -254,6 +278,7 @@ public class IndexMemberImpl extends SQLObjectImpl implements IndexMember {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case SQLConstraintsPackage.INDEX_MEMBER__INCREMENT_TYPE:
@@ -274,6 +299,7 @@ public class IndexMemberImpl extends SQLObjectImpl implements IndexMember {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SQLConstraintsPackage.INDEX_MEMBER__INCREMENT_TYPE:
@@ -291,8 +317,11 @@ public class IndexMemberImpl extends SQLObjectImpl implements IndexMember {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (incrementType: "); //$NON-NLS-1$

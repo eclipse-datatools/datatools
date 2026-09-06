@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.datatypes.impl.CharacterStringDataTypeImpl#getLength <em>Length</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.datatypes.impl.CharacterStringDataTypeImpl#getCoercibility <em>Coercibility</em>}</li>
@@ -33,7 +34,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *   <li>{@link org.eclipse.datatools.modelbase.sql.datatypes.impl.CharacterStringDataTypeImpl#getCollationName <em>Collation Name</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.datatypes.impl.CharacterStringDataTypeImpl#getCharacterSet <em>Character Set</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -142,6 +142,7 @@ public class CharacterStringDataTypeImpl extends PredefinedDataTypeImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return SQLDataTypesPackage.Literals.CHARACTER_STRING_DATA_TYPE;
 	}
@@ -151,6 +152,7 @@ public class CharacterStringDataTypeImpl extends PredefinedDataTypeImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getLength() {
 		return length;
 	}
@@ -160,11 +162,13 @@ public class CharacterStringDataTypeImpl extends PredefinedDataTypeImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLength(int newLength) {
 		int oldLength = length;
 		length = newLength;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLDataTypesPackage.CHARACTER_STRING_DATA_TYPE__LENGTH, oldLength, length));
+		}
 	}
 
 	/**
@@ -172,6 +176,7 @@ public class CharacterStringDataTypeImpl extends PredefinedDataTypeImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public CoercibilityType getCoercibility() {
 		return coercibility;
 	}
@@ -181,11 +186,13 @@ public class CharacterStringDataTypeImpl extends PredefinedDataTypeImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCoercibility(CoercibilityType newCoercibility) {
 		CoercibilityType oldCoercibility = coercibility;
 		coercibility = newCoercibility == null ? COERCIBILITY_EDEFAULT : newCoercibility;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLDataTypesPackage.CHARACTER_STRING_DATA_TYPE__COERCIBILITY, oldCoercibility, coercibility));
+		}
 	}
 
 	/**
@@ -193,6 +200,7 @@ public class CharacterStringDataTypeImpl extends PredefinedDataTypeImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isFixedLength() {
 		return fixedLength;
 	}
@@ -202,6 +210,7 @@ public class CharacterStringDataTypeImpl extends PredefinedDataTypeImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getCollationName() {
 		return collationName;
 	}
@@ -211,11 +220,13 @@ public class CharacterStringDataTypeImpl extends PredefinedDataTypeImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCollationName(String newCollationName) {
 		String oldCollationName = collationName;
 		collationName = newCollationName;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLDataTypesPackage.CHARACTER_STRING_DATA_TYPE__COLLATION_NAME, oldCollationName, collationName));
+		}
 	}
 
 	/**
@@ -223,13 +234,15 @@ public class CharacterStringDataTypeImpl extends PredefinedDataTypeImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public CharacterSet getCharacterSet() {
 		if (characterSet != null && characterSet.eIsProxy()) {
 			InternalEObject oldCharacterSet = (InternalEObject)characterSet;
 			characterSet = (CharacterSet)eResolveProxy(oldCharacterSet);
 			if (characterSet != oldCharacterSet) {
-				if (eNotificationRequired())
+				if (eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SQLDataTypesPackage.CHARACTER_STRING_DATA_TYPE__CHARACTER_SET, oldCharacterSet, characterSet));
+				}
 			}
 		}
 		return characterSet;
@@ -254,7 +267,11 @@ public class CharacterStringDataTypeImpl extends PredefinedDataTypeImpl implemen
 		characterSet = newCharacterSet;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLDataTypesPackage.CHARACTER_STRING_DATA_TYPE__CHARACTER_SET, oldCharacterSet, newCharacterSet);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			if (msgs == null) {
+				msgs = notification;
+			} else {
+				msgs.add(notification);
+			}
 		}
 		return msgs;
 	}
@@ -264,18 +281,24 @@ public class CharacterStringDataTypeImpl extends PredefinedDataTypeImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCharacterSet(CharacterSet newCharacterSet) {
 		if (newCharacterSet != characterSet) {
 			NotificationChain msgs = null;
-			if (characterSet != null)
+			if (characterSet != null) {
 				msgs = ((InternalEObject)characterSet).eInverseRemove(this, SQLDataTypesPackage.CHARACTER_SET__CHARACTER_STRING_DATA_TYPE, CharacterSet.class, msgs);
-			if (newCharacterSet != null)
+			}
+			if (newCharacterSet != null) {
 				msgs = ((InternalEObject)newCharacterSet).eInverseAdd(this, SQLDataTypesPackage.CHARACTER_SET__CHARACTER_STRING_DATA_TYPE, CharacterSet.class, msgs);
+			}
 			msgs = basicSetCharacterSet(newCharacterSet, msgs);
-			if (msgs != null) msgs.dispatch();
+			if (msgs != null) {
+				msgs.dispatch();
+			}
 		}
-		else if (eNotificationRequired())
+		else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLDataTypesPackage.CHARACTER_STRING_DATA_TYPE__CHARACTER_SET, newCharacterSet, newCharacterSet));
+		}
 	}
 
 	/**
@@ -283,11 +306,13 @@ public class CharacterStringDataTypeImpl extends PredefinedDataTypeImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case SQLDataTypesPackage.CHARACTER_STRING_DATA_TYPE__CHARACTER_SET:
-				if (characterSet != null)
+				if (characterSet != null) {
 					msgs = ((InternalEObject)characterSet).eInverseRemove(this, SQLDataTypesPackage.CHARACTER_SET__CHARACTER_STRING_DATA_TYPE, CharacterSet.class, msgs);
+				}
 				return basicSetCharacterSet((CharacterSet)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -298,6 +323,7 @@ public class CharacterStringDataTypeImpl extends PredefinedDataTypeImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case SQLDataTypesPackage.CHARACTER_STRING_DATA_TYPE__CHARACTER_SET:
@@ -311,10 +337,11 @@ public class CharacterStringDataTypeImpl extends PredefinedDataTypeImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SQLDataTypesPackage.CHARACTER_STRING_DATA_TYPE__LENGTH:
-				return Integer.valueOf(getLength());
+				return new Integer(getLength());
 			case SQLDataTypesPackage.CHARACTER_STRING_DATA_TYPE__COERCIBILITY:
 				return getCoercibility();
 			case SQLDataTypesPackage.CHARACTER_STRING_DATA_TYPE__FIXED_LENGTH:
@@ -322,7 +349,9 @@ public class CharacterStringDataTypeImpl extends PredefinedDataTypeImpl implemen
 			case SQLDataTypesPackage.CHARACTER_STRING_DATA_TYPE__COLLATION_NAME:
 				return getCollationName();
 			case SQLDataTypesPackage.CHARACTER_STRING_DATA_TYPE__CHARACTER_SET:
-				if (resolve) return getCharacterSet();
+				if (resolve) {
+					return getCharacterSet();
+				}
 				return basicGetCharacterSet();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -333,6 +362,7 @@ public class CharacterStringDataTypeImpl extends PredefinedDataTypeImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case SQLDataTypesPackage.CHARACTER_STRING_DATA_TYPE__LENGTH:
@@ -356,6 +386,7 @@ public class CharacterStringDataTypeImpl extends PredefinedDataTypeImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case SQLDataTypesPackage.CHARACTER_STRING_DATA_TYPE__LENGTH:
@@ -379,6 +410,7 @@ public class CharacterStringDataTypeImpl extends PredefinedDataTypeImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SQLDataTypesPackage.CHARACTER_STRING_DATA_TYPE__LENGTH:
@@ -400,8 +432,11 @@ public class CharacterStringDataTypeImpl extends PredefinedDataTypeImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (length: "); //$NON-NLS-1$

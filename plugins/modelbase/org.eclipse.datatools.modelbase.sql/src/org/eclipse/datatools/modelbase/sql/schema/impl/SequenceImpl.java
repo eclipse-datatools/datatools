@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -26,11 +26,11 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.schema.impl.SequenceImpl#getIdentity <em>Identity</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.schema.impl.SequenceImpl#getSchema <em>Schema</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -69,6 +69,7 @@ public class SequenceImpl extends TypedElementImpl implements Sequence {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return SQLSchemaPackage.Literals.SEQUENCE;
 	}
@@ -78,6 +79,7 @@ public class SequenceImpl extends TypedElementImpl implements Sequence {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IdentitySpecifier getIdentity() {
 		return identity;
 	}
@@ -92,7 +94,11 @@ public class SequenceImpl extends TypedElementImpl implements Sequence {
 		identity = newIdentity;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLSchemaPackage.SEQUENCE__IDENTITY, oldIdentity, newIdentity);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			if (msgs == null) {
+				msgs = notification;
+			} else {
+				msgs.add(notification);
+			}
 		}
 		return msgs;
 	}
@@ -102,18 +108,24 @@ public class SequenceImpl extends TypedElementImpl implements Sequence {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIdentity(IdentitySpecifier newIdentity) {
 		if (newIdentity != identity) {
 			NotificationChain msgs = null;
-			if (identity != null)
+			if (identity != null) {
 				msgs = ((InternalEObject)identity).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLSchemaPackage.SEQUENCE__IDENTITY, null, msgs);
-			if (newIdentity != null)
+			}
+			if (newIdentity != null) {
 				msgs = ((InternalEObject)newIdentity).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SQLSchemaPackage.SEQUENCE__IDENTITY, null, msgs);
+			}
 			msgs = basicSetIdentity(newIdentity, msgs);
-			if (msgs != null) msgs.dispatch();
+			if (msgs != null) {
+				msgs.dispatch();
+			}
 		}
-		else if (eNotificationRequired())
+		else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLSchemaPackage.SEQUENCE__IDENTITY, newIdentity, newIdentity));
+		}
 	}
 
 	/**
@@ -121,13 +133,15 @@ public class SequenceImpl extends TypedElementImpl implements Sequence {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Schema getSchema() {
 		if (schema != null && schema.eIsProxy()) {
 			InternalEObject oldSchema = (InternalEObject)schema;
 			schema = (Schema)eResolveProxy(oldSchema);
 			if (schema != oldSchema) {
-				if (eNotificationRequired())
+				if (eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SQLSchemaPackage.SEQUENCE__SCHEMA, oldSchema, schema));
+				}
 			}
 		}
 		return schema;
@@ -152,7 +166,11 @@ public class SequenceImpl extends TypedElementImpl implements Sequence {
 		schema = newSchema;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLSchemaPackage.SEQUENCE__SCHEMA, oldSchema, newSchema);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			if (msgs == null) {
+				msgs = notification;
+			} else {
+				msgs.add(notification);
+			}
 		}
 		return msgs;
 	}
@@ -162,18 +180,24 @@ public class SequenceImpl extends TypedElementImpl implements Sequence {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSchema(Schema newSchema) {
 		if (newSchema != schema) {
 			NotificationChain msgs = null;
-			if (schema != null)
+			if (schema != null) {
 				msgs = ((InternalEObject)schema).eInverseRemove(this, SQLSchemaPackage.SCHEMA__SEQUENCES, Schema.class, msgs);
-			if (newSchema != null)
+			}
+			if (newSchema != null) {
 				msgs = ((InternalEObject)newSchema).eInverseAdd(this, SQLSchemaPackage.SCHEMA__SEQUENCES, Schema.class, msgs);
+			}
 			msgs = basicSetSchema(newSchema, msgs);
-			if (msgs != null) msgs.dispatch();
+			if (msgs != null) {
+				msgs.dispatch();
+			}
 		}
-		else if (eNotificationRequired())
+		else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLSchemaPackage.SEQUENCE__SCHEMA, newSchema, newSchema));
+		}
 	}
 
 	/**
@@ -181,11 +205,13 @@ public class SequenceImpl extends TypedElementImpl implements Sequence {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case SQLSchemaPackage.SEQUENCE__SCHEMA:
-				if (schema != null)
+				if (schema != null) {
 					msgs = ((InternalEObject)schema).eInverseRemove(this, SQLSchemaPackage.SCHEMA__SEQUENCES, Schema.class, msgs);
+				}
 				return basicSetSchema((Schema)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -196,6 +222,7 @@ public class SequenceImpl extends TypedElementImpl implements Sequence {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case SQLSchemaPackage.SEQUENCE__IDENTITY:
@@ -211,12 +238,15 @@ public class SequenceImpl extends TypedElementImpl implements Sequence {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SQLSchemaPackage.SEQUENCE__IDENTITY:
 				return getIdentity();
 			case SQLSchemaPackage.SEQUENCE__SCHEMA:
-				if (resolve) return getSchema();
+				if (resolve) {
+					return getSchema();
+				}
 				return basicGetSchema();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -227,6 +257,7 @@ public class SequenceImpl extends TypedElementImpl implements Sequence {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case SQLSchemaPackage.SEQUENCE__IDENTITY:
@@ -244,6 +275,7 @@ public class SequenceImpl extends TypedElementImpl implements Sequence {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case SQLSchemaPackage.SEQUENCE__IDENTITY:
@@ -261,6 +293,7 @@ public class SequenceImpl extends TypedElementImpl implements Sequence {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SQLSchemaPackage.SEQUENCE__IDENTITY:

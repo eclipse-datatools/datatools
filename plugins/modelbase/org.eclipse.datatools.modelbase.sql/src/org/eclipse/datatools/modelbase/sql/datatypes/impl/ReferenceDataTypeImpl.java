@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -25,11 +25,11 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.datatypes.impl.ReferenceDataTypeImpl#getScopeTable <em>Scope Table</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.datatypes.impl.ReferenceDataTypeImpl#getReferencedType <em>Referenced Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -68,6 +68,7 @@ public abstract class ReferenceDataTypeImpl extends ConstructedDataTypeImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return SQLDataTypesPackage.Literals.REFERENCE_DATA_TYPE;
 	}
@@ -77,13 +78,15 @@ public abstract class ReferenceDataTypeImpl extends ConstructedDataTypeImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Table getScopeTable() {
 		if (scopeTable != null && scopeTable.eIsProxy()) {
 			InternalEObject oldScopeTable = (InternalEObject)scopeTable;
 			scopeTable = (Table)eResolveProxy(oldScopeTable);
 			if (scopeTable != oldScopeTable) {
-				if (eNotificationRequired())
+				if (eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SQLDataTypesPackage.REFERENCE_DATA_TYPE__SCOPE_TABLE, oldScopeTable, scopeTable));
+				}
 			}
 		}
 		return scopeTable;
@@ -103,11 +106,13 @@ public abstract class ReferenceDataTypeImpl extends ConstructedDataTypeImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setScopeTable(Table newScopeTable) {
 		Table oldScopeTable = scopeTable;
 		scopeTable = newScopeTable;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLDataTypesPackage.REFERENCE_DATA_TYPE__SCOPE_TABLE, oldScopeTable, scopeTable));
+		}
 	}
 
 	/**
@@ -115,13 +120,15 @@ public abstract class ReferenceDataTypeImpl extends ConstructedDataTypeImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public StructuredUserDefinedType getReferencedType() {
 		if (referencedType != null && referencedType.eIsProxy()) {
 			InternalEObject oldReferencedType = (InternalEObject)referencedType;
 			referencedType = (StructuredUserDefinedType)eResolveProxy(oldReferencedType);
 			if (referencedType != oldReferencedType) {
-				if (eNotificationRequired())
+				if (eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SQLDataTypesPackage.REFERENCE_DATA_TYPE__REFERENCED_TYPE, oldReferencedType, referencedType));
+				}
 			}
 		}
 		return referencedType;
@@ -141,11 +148,13 @@ public abstract class ReferenceDataTypeImpl extends ConstructedDataTypeImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setReferencedType(StructuredUserDefinedType newReferencedType) {
 		StructuredUserDefinedType oldReferencedType = referencedType;
 		referencedType = newReferencedType;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLDataTypesPackage.REFERENCE_DATA_TYPE__REFERENCED_TYPE, oldReferencedType, referencedType));
+		}
 	}
 
 	/**
@@ -153,13 +162,18 @@ public abstract class ReferenceDataTypeImpl extends ConstructedDataTypeImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SQLDataTypesPackage.REFERENCE_DATA_TYPE__SCOPE_TABLE:
-				if (resolve) return getScopeTable();
+				if (resolve) {
+					return getScopeTable();
+				}
 				return basicGetScopeTable();
 			case SQLDataTypesPackage.REFERENCE_DATA_TYPE__REFERENCED_TYPE:
-				if (resolve) return getReferencedType();
+				if (resolve) {
+					return getReferencedType();
+				}
 				return basicGetReferencedType();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -170,6 +184,7 @@ public abstract class ReferenceDataTypeImpl extends ConstructedDataTypeImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case SQLDataTypesPackage.REFERENCE_DATA_TYPE__SCOPE_TABLE:
@@ -187,6 +202,7 @@ public abstract class ReferenceDataTypeImpl extends ConstructedDataTypeImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case SQLDataTypesPackage.REFERENCE_DATA_TYPE__SCOPE_TABLE:
@@ -204,6 +220,7 @@ public abstract class ReferenceDataTypeImpl extends ConstructedDataTypeImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SQLDataTypesPackage.REFERENCE_DATA_TYPE__SCOPE_TABLE:

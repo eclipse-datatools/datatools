@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -20,11 +20,12 @@ import org.eclipse.datatools.modelbase.sql.schema.Schema;
  *
  * <!-- begin-model-doc -->
  * Reference: 5WD-02-Foundation-2002-12 4.2.6 Character sets, 5WD-02-Foundation-2002-12 4.2.7 Universal character sets
- * 
+ *
  * <!-- end-model-doc -->
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.datatypes.CharacterSet#getRepertoire <em>Repertoire</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.datatypes.CharacterSet#getDefaultCollation <em>Default Collation</em>}</li>
@@ -32,7 +33,6 @@ import org.eclipse.datatools.modelbase.sql.schema.Schema;
  *   <li>{@link org.eclipse.datatools.modelbase.sql.datatypes.CharacterSet#getCharacterStringDataType <em>Character String Data Type</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.datatypes.CharacterSet#getSchema <em>Schema</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage#getCharacterSet()
  * @model

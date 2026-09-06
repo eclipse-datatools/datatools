@@ -24,235 +24,266 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLPredicateExistsImpl#getXqueryExpr <em>Xquery Expr</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLPredicateExistsImpl#getXqueryArgList <em>Xquery Arg List</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
 public class XMLPredicateExistsImpl extends XMLPredicateImpl implements XMLPredicateExists {
 	/**
-     * The cached value of the '{@link #getXqueryExpr() <em>Xquery Expr</em>}' containment reference.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getXqueryExpr() <em>Xquery Expr</em>}' containment reference.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getXqueryExpr()
-     * @generated
-     * @ordered
-     */
+	 * @see #getXqueryExpr()
+	 * @generated
+	 * @ordered
+	 */
     protected XMLQueryExpression xqueryExpr;
 
 	/**
-     * The cached value of the '{@link #getXqueryArgList() <em>Xquery Arg List</em>}' containment reference.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getXqueryArgList() <em>Xquery Arg List</em>}' containment reference.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getXqueryArgList()
-     * @generated
-     * @ordered
-     */
+	 * @see #getXqueryArgList()
+	 * @generated
+	 * @ordered
+	 */
     protected XMLQueryArgumentList xqueryArgList;
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected XMLPredicateExistsImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    protected EClass eStaticClass() {
-        return SQLXMLQueryModelPackage.Literals.XML_PREDICATE_EXISTS;
-    }
+	 * @generated
+	 */
+    @Override
+	protected EClass eStaticClass() {
+		return SQLXMLQueryModelPackage.Literals.XML_PREDICATE_EXISTS;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public XMLQueryExpression getXqueryExpr() {
-        return xqueryExpr;
-    }
+	 * @generated
+	 */
+    @Override
+	public XMLQueryExpression getXqueryExpr() {
+		return xqueryExpr;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public NotificationChain basicSetXqueryExpr(XMLQueryExpression newXqueryExpr, NotificationChain msgs) {
-        XMLQueryExpression oldXqueryExpr = xqueryExpr;
-        xqueryExpr = newXqueryExpr;
-        if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_PREDICATE_EXISTS__XQUERY_EXPR, oldXqueryExpr, newXqueryExpr);
-            if (msgs == null) msgs = notification; else msgs.add(notification);
-        }
-        return msgs;
-    }
+		XMLQueryExpression oldXqueryExpr = xqueryExpr;
+		xqueryExpr = newXqueryExpr;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_PREDICATE_EXISTS__XQUERY_EXPR, oldXqueryExpr, newXqueryExpr);
+			if (msgs == null) {
+				msgs = notification;
+			} else {
+				msgs.add(notification);
+			}
+		}
+		return msgs;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setXqueryExpr(XMLQueryExpression newXqueryExpr) {
-        if (newXqueryExpr != xqueryExpr) {
-            NotificationChain msgs = null;
-            if (xqueryExpr != null)
-                msgs = ((InternalEObject)xqueryExpr).eInverseRemove(this, SQLXMLQueryModelPackage.XML_QUERY_EXPRESSION__PREDICATE_EXISTS, XMLQueryExpression.class, msgs);
-            if (newXqueryExpr != null)
-                msgs = ((InternalEObject)newXqueryExpr).eInverseAdd(this, SQLXMLQueryModelPackage.XML_QUERY_EXPRESSION__PREDICATE_EXISTS, XMLQueryExpression.class, msgs);
-            msgs = basicSetXqueryExpr(newXqueryExpr, msgs);
-            if (msgs != null) msgs.dispatch();
-        }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_PREDICATE_EXISTS__XQUERY_EXPR, newXqueryExpr, newXqueryExpr));
-    }
+	 * @generated
+	 */
+    @Override
+	public void setXqueryExpr(XMLQueryExpression newXqueryExpr) {
+		if (newXqueryExpr != xqueryExpr) {
+			NotificationChain msgs = null;
+			if (xqueryExpr != null) {
+				msgs = ((InternalEObject)xqueryExpr).eInverseRemove(this, SQLXMLQueryModelPackage.XML_QUERY_EXPRESSION__PREDICATE_EXISTS, XMLQueryExpression.class, msgs);
+			}
+			if (newXqueryExpr != null) {
+				msgs = ((InternalEObject)newXqueryExpr).eInverseAdd(this, SQLXMLQueryModelPackage.XML_QUERY_EXPRESSION__PREDICATE_EXISTS, XMLQueryExpression.class, msgs);
+			}
+			msgs = basicSetXqueryExpr(newXqueryExpr, msgs);
+			if (msgs != null) {
+				msgs.dispatch();
+			}
+		}
+		else if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_PREDICATE_EXISTS__XQUERY_EXPR, newXqueryExpr, newXqueryExpr));
+		}
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public XMLQueryArgumentList getXqueryArgList() {
-        return xqueryArgList;
-    }
+	 * @generated
+	 */
+    @Override
+	public XMLQueryArgumentList getXqueryArgList() {
+		return xqueryArgList;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public NotificationChain basicSetXqueryArgList(XMLQueryArgumentList newXqueryArgList, NotificationChain msgs) {
-        XMLQueryArgumentList oldXqueryArgList = xqueryArgList;
-        xqueryArgList = newXqueryArgList;
-        if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_PREDICATE_EXISTS__XQUERY_ARG_LIST, oldXqueryArgList, newXqueryArgList);
-            if (msgs == null) msgs = notification; else msgs.add(notification);
-        }
-        return msgs;
-    }
+		XMLQueryArgumentList oldXqueryArgList = xqueryArgList;
+		xqueryArgList = newXqueryArgList;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_PREDICATE_EXISTS__XQUERY_ARG_LIST, oldXqueryArgList, newXqueryArgList);
+			if (msgs == null) {
+				msgs = notification;
+			} else {
+				msgs.add(notification);
+			}
+		}
+		return msgs;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setXqueryArgList(XMLQueryArgumentList newXqueryArgList) {
-        if (newXqueryArgList != xqueryArgList) {
-            NotificationChain msgs = null;
-            if (xqueryArgList != null)
-                msgs = ((InternalEObject)xqueryArgList).eInverseRemove(this, SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__PREDICATE_EXISTS, XMLQueryArgumentList.class, msgs);
-            if (newXqueryArgList != null)
-                msgs = ((InternalEObject)newXqueryArgList).eInverseAdd(this, SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__PREDICATE_EXISTS, XMLQueryArgumentList.class, msgs);
-            msgs = basicSetXqueryArgList(newXqueryArgList, msgs);
-            if (msgs != null) msgs.dispatch();
-        }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_PREDICATE_EXISTS__XQUERY_ARG_LIST, newXqueryArgList, newXqueryArgList));
-    }
+	 * @generated
+	 */
+    @Override
+	public void setXqueryArgList(XMLQueryArgumentList newXqueryArgList) {
+		if (newXqueryArgList != xqueryArgList) {
+			NotificationChain msgs = null;
+			if (xqueryArgList != null) {
+				msgs = ((InternalEObject)xqueryArgList).eInverseRemove(this, SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__PREDICATE_EXISTS, XMLQueryArgumentList.class, msgs);
+			}
+			if (newXqueryArgList != null) {
+				msgs = ((InternalEObject)newXqueryArgList).eInverseAdd(this, SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__PREDICATE_EXISTS, XMLQueryArgumentList.class, msgs);
+			}
+			msgs = basicSetXqueryArgList(newXqueryArgList, msgs);
+			if (msgs != null) {
+				msgs.dispatch();
+			}
+		}
+		else if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_PREDICATE_EXISTS__XQUERY_ARG_LIST, newXqueryArgList, newXqueryArgList));
+		}
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case SQLXMLQueryModelPackage.XML_PREDICATE_EXISTS__XQUERY_EXPR:
-                if (xqueryExpr != null)
-                    msgs = ((InternalEObject)xqueryExpr).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLXMLQueryModelPackage.XML_PREDICATE_EXISTS__XQUERY_EXPR, null, msgs);
-                return basicSetXqueryExpr((XMLQueryExpression)otherEnd, msgs);
-            case SQLXMLQueryModelPackage.XML_PREDICATE_EXISTS__XQUERY_ARG_LIST:
-                if (xqueryArgList != null)
-                    msgs = ((InternalEObject)xqueryArgList).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLXMLQueryModelPackage.XML_PREDICATE_EXISTS__XQUERY_ARG_LIST, null, msgs);
-                return basicSetXqueryArgList((XMLQueryArgumentList)otherEnd, msgs);
-        }
-        return super.eInverseAdd(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case SQLXMLQueryModelPackage.XML_PREDICATE_EXISTS__XQUERY_EXPR:
+				if (xqueryExpr != null) {
+					msgs = ((InternalEObject)xqueryExpr).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLXMLQueryModelPackage.XML_PREDICATE_EXISTS__XQUERY_EXPR, null, msgs);
+				}
+				return basicSetXqueryExpr((XMLQueryExpression)otherEnd, msgs);
+			case SQLXMLQueryModelPackage.XML_PREDICATE_EXISTS__XQUERY_ARG_LIST:
+				if (xqueryArgList != null) {
+					msgs = ((InternalEObject)xqueryArgList).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLXMLQueryModelPackage.XML_PREDICATE_EXISTS__XQUERY_ARG_LIST, null, msgs);
+				}
+				return basicSetXqueryArgList((XMLQueryArgumentList)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case SQLXMLQueryModelPackage.XML_PREDICATE_EXISTS__XQUERY_EXPR:
-                return basicSetXqueryExpr(null, msgs);
-            case SQLXMLQueryModelPackage.XML_PREDICATE_EXISTS__XQUERY_ARG_LIST:
-                return basicSetXqueryArgList(null, msgs);
-        }
-        return super.eInverseRemove(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case SQLXMLQueryModelPackage.XML_PREDICATE_EXISTS__XQUERY_EXPR:
+				return basicSetXqueryExpr(null, msgs);
+			case SQLXMLQueryModelPackage.XML_PREDICATE_EXISTS__XQUERY_ARG_LIST:
+				return basicSetXqueryArgList(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case SQLXMLQueryModelPackage.XML_PREDICATE_EXISTS__XQUERY_EXPR:
-                return getXqueryExpr();
-            case SQLXMLQueryModelPackage.XML_PREDICATE_EXISTS__XQUERY_ARG_LIST:
-                return getXqueryArgList();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case SQLXMLQueryModelPackage.XML_PREDICATE_EXISTS__XQUERY_EXPR:
+				return getXqueryExpr();
+			case SQLXMLQueryModelPackage.XML_PREDICATE_EXISTS__XQUERY_ARG_LIST:
+				return getXqueryArgList();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case SQLXMLQueryModelPackage.XML_PREDICATE_EXISTS__XQUERY_EXPR:
-                setXqueryExpr((XMLQueryExpression)newValue);
-                return;
-            case SQLXMLQueryModelPackage.XML_PREDICATE_EXISTS__XQUERY_ARG_LIST:
-                setXqueryArgList((XMLQueryArgumentList)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case SQLXMLQueryModelPackage.XML_PREDICATE_EXISTS__XQUERY_EXPR:
+				setXqueryExpr((XMLQueryExpression)newValue);
+				return;
+			case SQLXMLQueryModelPackage.XML_PREDICATE_EXISTS__XQUERY_ARG_LIST:
+				setXqueryArgList((XMLQueryArgumentList)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public void eUnset(int featureID) {
-        switch (featureID) {
-            case SQLXMLQueryModelPackage.XML_PREDICATE_EXISTS__XQUERY_EXPR:
-                setXqueryExpr((XMLQueryExpression)null);
-                return;
-            case SQLXMLQueryModelPackage.XML_PREDICATE_EXISTS__XQUERY_ARG_LIST:
-                setXqueryArgList((XMLQueryArgumentList)null);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case SQLXMLQueryModelPackage.XML_PREDICATE_EXISTS__XQUERY_EXPR:
+				setXqueryExpr((XMLQueryExpression)null);
+				return;
+			case SQLXMLQueryModelPackage.XML_PREDICATE_EXISTS__XQUERY_ARG_LIST:
+				setXqueryArgList((XMLQueryArgumentList)null);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case SQLXMLQueryModelPackage.XML_PREDICATE_EXISTS__XQUERY_EXPR:
-                return xqueryExpr != null;
-            case SQLXMLQueryModelPackage.XML_PREDICATE_EXISTS__XQUERY_ARG_LIST:
-                return xqueryArgList != null;
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case SQLXMLQueryModelPackage.XML_PREDICATE_EXISTS__XQUERY_EXPR:
+				return xqueryExpr != null;
+			case SQLXMLQueryModelPackage.XML_PREDICATE_EXISTS__XQUERY_ARG_LIST:
+				return xqueryArgList != null;
+		}
+		return super.eIsSet(featureID);
+	}
 
 } //XMLPredicateExistsImpl

@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *   Ingres Corporation - initial API and implementation
  *
@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.enablement.ingres.models.ingressqlmodel.impl.IngresIdentitySpecifierImpl#getDataType <em>Data Type</em>}</li>
  *   <li>{@link org.eclipse.datatools.enablement.ingres.models.ingressqlmodel.impl.IngresIdentitySpecifierImpl#getSeqLength <em>Seq Length</em>}</li>
@@ -37,7 +38,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *   <li>{@link org.eclipse.datatools.enablement.ingres.models.ingressqlmodel.impl.IngresIdentitySpecifierImpl#getCacheOption <em>Cache Option</em>}</li>
  *   <li>{@link org.eclipse.datatools.enablement.ingres.models.ingressqlmodel.impl.IngresIdentitySpecifierImpl#getOrderOption <em>Order Option</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -223,6 +223,7 @@ public class IngresIdentitySpecifierImpl extends IdentitySpecifierImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return IngressqlmodelPackage.Literals.INGRES_IDENTITY_SPECIFIER;
 	}
@@ -232,6 +233,7 @@ public class IngresIdentitySpecifierImpl extends IdentitySpecifierImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getDataType() {
 		return dataType;
 	}
@@ -241,11 +243,13 @@ public class IngresIdentitySpecifierImpl extends IdentitySpecifierImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDataType(String newDataType) {
 		String oldDataType = dataType;
 		dataType = newDataType;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, IngressqlmodelPackage.INGRES_IDENTITY_SPECIFIER__DATA_TYPE, oldDataType, dataType));
+		}
 	}
 
 	/**
@@ -253,6 +257,7 @@ public class IngresIdentitySpecifierImpl extends IdentitySpecifierImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public BigInteger getSeqLength() {
 		return seqLength;
 	}
@@ -262,11 +267,13 @@ public class IngresIdentitySpecifierImpl extends IdentitySpecifierImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSeqLength(BigInteger newSeqLength) {
 		BigInteger oldSeqLength = seqLength;
 		seqLength = newSeqLength;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, IngressqlmodelPackage.INGRES_IDENTITY_SPECIFIER__SEQ_LENGTH, oldSeqLength, seqLength));
+		}
 	}
 
 	/**
@@ -274,6 +281,7 @@ public class IngresIdentitySpecifierImpl extends IdentitySpecifierImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public BigInteger getSeqPrecision() {
 		return seqPrecision;
 	}
@@ -283,11 +291,13 @@ public class IngresIdentitySpecifierImpl extends IdentitySpecifierImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSeqPrecision(BigInteger newSeqPrecision) {
 		BigInteger oldSeqPrecision = seqPrecision;
 		seqPrecision = newSeqPrecision;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, IngressqlmodelPackage.INGRES_IDENTITY_SPECIFIER__SEQ_PRECISION, oldSeqPrecision, seqPrecision));
+		}
 	}
 
 	/**
@@ -295,6 +305,7 @@ public class IngresIdentitySpecifierImpl extends IdentitySpecifierImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Boolean getMaximumOption() {
 		return maximumOption;
 	}
@@ -304,11 +315,13 @@ public class IngresIdentitySpecifierImpl extends IdentitySpecifierImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMaximumOption(Boolean newMaximumOption) {
 		Boolean oldMaximumOption = maximumOption;
 		maximumOption = newMaximumOption;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, IngressqlmodelPackage.INGRES_IDENTITY_SPECIFIER__MAXIMUM_OPTION, oldMaximumOption, maximumOption));
+		}
 	}
 
 	/**
@@ -316,6 +329,7 @@ public class IngresIdentitySpecifierImpl extends IdentitySpecifierImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Boolean getMinimumOption() {
 		return minimumOption;
 	}
@@ -325,11 +339,13 @@ public class IngresIdentitySpecifierImpl extends IdentitySpecifierImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMinimumOption(Boolean newMinimumOption) {
 		Boolean oldMinimumOption = minimumOption;
 		minimumOption = newMinimumOption;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, IngressqlmodelPackage.INGRES_IDENTITY_SPECIFIER__MINIMUM_OPTION, oldMinimumOption, minimumOption));
+		}
 	}
 
 	/**
@@ -337,6 +353,7 @@ public class IngresIdentitySpecifierImpl extends IdentitySpecifierImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public BigInteger getCacheSize() {
 		return cacheSize;
 	}
@@ -346,11 +363,13 @@ public class IngresIdentitySpecifierImpl extends IdentitySpecifierImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCacheSize(BigInteger newCacheSize) {
 		BigInteger oldCacheSize = cacheSize;
 		cacheSize = newCacheSize;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, IngressqlmodelPackage.INGRES_IDENTITY_SPECIFIER__CACHE_SIZE, oldCacheSize, cacheSize));
+		}
 	}
 
 	/**
@@ -358,6 +377,7 @@ public class IngresIdentitySpecifierImpl extends IdentitySpecifierImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Boolean getCacheOption() {
 		return cacheOption;
 	}
@@ -367,11 +387,13 @@ public class IngresIdentitySpecifierImpl extends IdentitySpecifierImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCacheOption(Boolean newCacheOption) {
 		Boolean oldCacheOption = cacheOption;
 		cacheOption = newCacheOption;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, IngressqlmodelPackage.INGRES_IDENTITY_SPECIFIER__CACHE_OPTION, oldCacheOption, cacheOption));
+		}
 	}
 
 	/**
@@ -379,6 +401,7 @@ public class IngresIdentitySpecifierImpl extends IdentitySpecifierImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Boolean getOrderOption() {
 		return orderOption;
 	}
@@ -388,11 +411,13 @@ public class IngresIdentitySpecifierImpl extends IdentitySpecifierImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOrderOption(Boolean newOrderOption) {
 		Boolean oldOrderOption = orderOption;
 		orderOption = newOrderOption;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, IngressqlmodelPackage.INGRES_IDENTITY_SPECIFIER__ORDER_OPTION, oldOrderOption, orderOption));
+		}
 	}
 
 	/**
@@ -400,6 +425,7 @@ public class IngresIdentitySpecifierImpl extends IdentitySpecifierImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case IngressqlmodelPackage.INGRES_IDENTITY_SPECIFIER__DATA_TYPE:
@@ -427,6 +453,7 @@ public class IngresIdentitySpecifierImpl extends IdentitySpecifierImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case IngressqlmodelPackage.INGRES_IDENTITY_SPECIFIER__DATA_TYPE:
@@ -462,6 +489,7 @@ public class IngresIdentitySpecifierImpl extends IdentitySpecifierImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case IngressqlmodelPackage.INGRES_IDENTITY_SPECIFIER__DATA_TYPE:
@@ -497,6 +525,7 @@ public class IngresIdentitySpecifierImpl extends IdentitySpecifierImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case IngressqlmodelPackage.INGRES_IDENTITY_SPECIFIER__DATA_TYPE:
@@ -524,8 +553,11 @@ public class IngresIdentitySpecifierImpl extends IdentitySpecifierImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (dataType: ");

@@ -15,8 +15,6 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Sybase View Table</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */
@@ -35,6 +33,7 @@ public class SybaseViewTableImpl extends ViewTableImpl implements SybaseViewTabl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return SybasesqlmodelPackage.Literals.SYBASE_VIEW_TABLE;
 	}
@@ -44,6 +43,7 @@ public class SybaseViewTableImpl extends ViewTableImpl implements SybaseViewTabl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSystem() {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT

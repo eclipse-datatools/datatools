@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *   Ingres Corporation - initial API and implementation
  *
@@ -139,6 +139,15 @@ public interface IngressqlmodelPackage extends EPackage {
 	int INGRES_SYNONYM__COMMENTS = SQLSchemaPackage.SQL_OBJECT__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INGRES_SYNONYM__EXTENSIONS = SQLSchemaPackage.SQL_OBJECT__EXTENSIONS;
+
+	/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -239,6 +248,15 @@ public interface IngressqlmodelPackage extends EPackage {
 	int INGRES_DB_EVENT__COMMENTS = SQLSchemaPackage.SQL_OBJECT__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INGRES_DB_EVENT__EXTENSIONS = SQLSchemaPackage.SQL_OBJECT__EXTENSIONS;
+
+	/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -328,6 +346,15 @@ public interface IngressqlmodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int INGRES_SCHEMA__COMMENTS = SQLSchemaPackage.SCHEMA__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INGRES_SCHEMA__EXTENSIONS = SQLSchemaPackage.SCHEMA__EXTENSIONS;
 
 	/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
@@ -529,6 +556,15 @@ public interface IngressqlmodelPackage extends EPackage {
 	int INGRES_VIEW_TABLE__COMMENTS = SQLTablesPackage.VIEW_TABLE__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INGRES_VIEW_TABLE__EXTENSIONS = SQLTablesPackage.VIEW_TABLE__EXTENSIONS;
+
+	/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -726,6 +762,15 @@ public interface IngressqlmodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int INGRES_TRIGGER__COMMENTS = SQLTablesPackage.TRIGGER__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INGRES_TRIGGER__EXTENSIONS = SQLTablesPackage.TRIGGER__EXTENSIONS;
 
 	/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
@@ -952,6 +997,15 @@ public interface IngressqlmodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int INGRES_IDENTITY_SPECIFIER__COMMENTS = SQLSchemaPackage.IDENTITY_SPECIFIER__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INGRES_IDENTITY_SPECIFIER__EXTENSIONS = SQLSchemaPackage.IDENTITY_SPECIFIER__EXTENSIONS;
 
 	/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.

@@ -19,7 +19,7 @@ import org.eclipse.emf.common.util.AbstractEnumerator;
  * <!-- end-user-doc -->
  * <!-- begin-model-doc -->
  * Reference: 5WD-02-Foundation-2002-12 4.2.1 Comparison of character strings
- * 
+ *
  * <!-- end-model-doc -->
  * @see org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage#getCoercibilityType()
  * @model
@@ -152,11 +152,12 @@ public final class CoercibilityType extends AbstractEnumerator {
 	 * Returns the '<em><b>Coercibility Type</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static CoercibilityType get(String literal) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			CoercibilityType result = VALUES_ARRAY[i];
+		for (CoercibilityType result : VALUES_ARRAY) {
 			if (result.toString().equals(literal)) {
 				return result;
 			}
@@ -168,11 +169,12 @@ public final class CoercibilityType extends AbstractEnumerator {
 	 * Returns the '<em><b>Coercibility Type</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static CoercibilityType getByName(String name) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			CoercibilityType result = VALUES_ARRAY[i];
+		for (CoercibilityType result : VALUES_ARRAY) {
 			if (result.getName().equals(name)) {
 				return result;
 			}
@@ -184,6 +186,8 @@ public final class CoercibilityType extends AbstractEnumerator {
 	 * Returns the '<em><b>Coercibility Type</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static CoercibilityType get(int value) {

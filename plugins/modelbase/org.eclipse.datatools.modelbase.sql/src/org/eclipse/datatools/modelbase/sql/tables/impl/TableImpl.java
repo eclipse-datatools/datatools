@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -39,6 +39,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.tables.impl.TableImpl#getColumns <em>Columns</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.tables.impl.TableImpl#getSupertable <em>Supertable</em>}</li>
@@ -51,7 +52,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.eclipse.datatools.modelbase.sql.tables.impl.TableImpl#isInsertable <em>Insertable</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.tables.impl.TableImpl#isUpdatable <em>Updatable</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -180,6 +180,7 @@ public abstract class TableImpl extends SQLObjectImpl implements Table {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return SQLTablesPackage.Literals.TABLE;
 	}
@@ -189,6 +190,7 @@ public abstract class TableImpl extends SQLObjectImpl implements Table {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList getColumns() {
 		if (columns == null) {
 			columns = new EObjectContainmentWithInverseEList(Column.class, this, SQLTablesPackage.TABLE__COLUMNS, SQLTablesPackage.COLUMN__TABLE);
@@ -201,13 +203,15 @@ public abstract class TableImpl extends SQLObjectImpl implements Table {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Table getSupertable() {
 		if (supertable != null && supertable.eIsProxy()) {
 			InternalEObject oldSupertable = (InternalEObject)supertable;
 			supertable = (Table)eResolveProxy(oldSupertable);
 			if (supertable != oldSupertable) {
-				if (eNotificationRequired())
+				if (eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SQLTablesPackage.TABLE__SUPERTABLE, oldSupertable, supertable));
+				}
 			}
 		}
 		return supertable;
@@ -232,7 +236,11 @@ public abstract class TableImpl extends SQLObjectImpl implements Table {
 		supertable = newSupertable;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLTablesPackage.TABLE__SUPERTABLE, oldSupertable, newSupertable);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			if (msgs == null) {
+				msgs = notification;
+			} else {
+				msgs.add(notification);
+			}
 		}
 		return msgs;
 	}
@@ -242,18 +250,24 @@ public abstract class TableImpl extends SQLObjectImpl implements Table {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSupertable(Table newSupertable) {
 		if (newSupertable != supertable) {
 			NotificationChain msgs = null;
-			if (supertable != null)
+			if (supertable != null) {
 				msgs = ((InternalEObject)supertable).eInverseRemove(this, SQLTablesPackage.TABLE__SUBTABLES, Table.class, msgs);
-			if (newSupertable != null)
+			}
+			if (newSupertable != null) {
 				msgs = ((InternalEObject)newSupertable).eInverseAdd(this, SQLTablesPackage.TABLE__SUBTABLES, Table.class, msgs);
+			}
 			msgs = basicSetSupertable(newSupertable, msgs);
-			if (msgs != null) msgs.dispatch();
+			if (msgs != null) {
+				msgs.dispatch();
+			}
 		}
-		else if (eNotificationRequired())
+		else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLTablesPackage.TABLE__SUPERTABLE, newSupertable, newSupertable));
+		}
 	}
 
 	/**
@@ -261,6 +275,7 @@ public abstract class TableImpl extends SQLObjectImpl implements Table {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList getSubtables() {
 		if (subtables == null) {
 			subtables = new EObjectWithInverseResolvingEList(Table.class, this, SQLTablesPackage.TABLE__SUBTABLES, SQLTablesPackage.TABLE__SUPERTABLE);
@@ -273,13 +288,15 @@ public abstract class TableImpl extends SQLObjectImpl implements Table {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Schema getSchema() {
 		if (schema != null && schema.eIsProxy()) {
 			InternalEObject oldSchema = (InternalEObject)schema;
 			schema = (Schema)eResolveProxy(oldSchema);
 			if (schema != oldSchema) {
-				if (eNotificationRequired())
+				if (eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SQLTablesPackage.TABLE__SCHEMA, oldSchema, schema));
+				}
 			}
 		}
 		return schema;
@@ -304,7 +321,11 @@ public abstract class TableImpl extends SQLObjectImpl implements Table {
 		schema = newSchema;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLTablesPackage.TABLE__SCHEMA, oldSchema, newSchema);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			if (msgs == null) {
+				msgs = notification;
+			} else {
+				msgs.add(notification);
+			}
 		}
 		return msgs;
 	}
@@ -314,18 +335,24 @@ public abstract class TableImpl extends SQLObjectImpl implements Table {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSchema(Schema newSchema) {
 		if (newSchema != schema) {
 			NotificationChain msgs = null;
-			if (schema != null)
+			if (schema != null) {
 				msgs = ((InternalEObject)schema).eInverseRemove(this, SQLSchemaPackage.SCHEMA__TABLES, Schema.class, msgs);
-			if (newSchema != null)
+			}
+			if (newSchema != null) {
 				msgs = ((InternalEObject)newSchema).eInverseAdd(this, SQLSchemaPackage.SCHEMA__TABLES, Schema.class, msgs);
+			}
 			msgs = basicSetSchema(newSchema, msgs);
-			if (msgs != null) msgs.dispatch();
+			if (msgs != null) {
+				msgs.dispatch();
+			}
 		}
-		else if (eNotificationRequired())
+		else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLTablesPackage.TABLE__SCHEMA, newSchema, newSchema));
+		}
 	}
 
 	/**
@@ -333,13 +360,15 @@ public abstract class TableImpl extends SQLObjectImpl implements Table {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public StructuredUserDefinedType getUdt() {
 		if (udt != null && udt.eIsProxy()) {
 			InternalEObject oldUdt = (InternalEObject)udt;
 			udt = (StructuredUserDefinedType)eResolveProxy(oldUdt);
 			if (udt != oldUdt) {
-				if (eNotificationRequired())
+				if (eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SQLTablesPackage.TABLE__UDT, oldUdt, udt));
+				}
 			}
 		}
 		return udt;
@@ -359,11 +388,13 @@ public abstract class TableImpl extends SQLObjectImpl implements Table {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setUdt(StructuredUserDefinedType newUdt) {
 		StructuredUserDefinedType oldUdt = udt;
 		udt = newUdt;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLTablesPackage.TABLE__UDT, oldUdt, udt));
+		}
 	}
 
 	/**
@@ -371,6 +402,7 @@ public abstract class TableImpl extends SQLObjectImpl implements Table {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList getTriggers() {
 		if (triggers == null) {
 			triggers = new EObjectWithInverseResolvingEList(Trigger.class, this, SQLTablesPackage.TABLE__TRIGGERS, SQLTablesPackage.TRIGGER__SUBJECT_TABLE);
@@ -383,6 +415,7 @@ public abstract class TableImpl extends SQLObjectImpl implements Table {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList getIndex() {
 		if (index == null) {
 			index = new EObjectWithInverseResolvingEList(Index.class, this, SQLTablesPackage.TABLE__INDEX, SQLConstraintsPackage.INDEX__TABLE);
@@ -395,6 +428,7 @@ public abstract class TableImpl extends SQLObjectImpl implements Table {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ReferenceType getSelfRefColumnGeneration() {
 		return selfRefColumnGeneration;
 	}
@@ -404,11 +438,13 @@ public abstract class TableImpl extends SQLObjectImpl implements Table {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSelfRefColumnGeneration(ReferenceType newSelfRefColumnGeneration) {
 		ReferenceType oldSelfRefColumnGeneration = selfRefColumnGeneration;
 		selfRefColumnGeneration = newSelfRefColumnGeneration == null ? SELF_REF_COLUMN_GENERATION_EDEFAULT : newSelfRefColumnGeneration;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLTablesPackage.TABLE__SELF_REF_COLUMN_GENERATION, oldSelfRefColumnGeneration, selfRefColumnGeneration));
+		}
 	}
 
 	/**
@@ -416,6 +452,7 @@ public abstract class TableImpl extends SQLObjectImpl implements Table {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isInsertable() {
 		// TODO: implement this method to return the 'Insertable' attribute
 		// Ensure that you remove @generated or mark it @generated NOT
@@ -427,6 +464,7 @@ public abstract class TableImpl extends SQLObjectImpl implements Table {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isUpdatable() {
 		// TODO: implement this method to return the 'Updatable' attribute
 		// Ensure that you remove @generated or mark it @generated NOT
@@ -438,19 +476,22 @@ public abstract class TableImpl extends SQLObjectImpl implements Table {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case SQLTablesPackage.TABLE__COLUMNS:
 				return ((InternalEList)getColumns()).basicAdd(otherEnd, msgs);
 			case SQLTablesPackage.TABLE__SUPERTABLE:
-				if (supertable != null)
+				if (supertable != null) {
 					msgs = ((InternalEObject)supertable).eInverseRemove(this, SQLTablesPackage.TABLE__SUBTABLES, Table.class, msgs);
+				}
 				return basicSetSupertable((Table)otherEnd, msgs);
 			case SQLTablesPackage.TABLE__SUBTABLES:
 				return ((InternalEList)getSubtables()).basicAdd(otherEnd, msgs);
 			case SQLTablesPackage.TABLE__SCHEMA:
-				if (schema != null)
+				if (schema != null) {
 					msgs = ((InternalEObject)schema).eInverseRemove(this, SQLSchemaPackage.SCHEMA__TABLES, Schema.class, msgs);
+				}
 				return basicSetSchema((Schema)otherEnd, msgs);
 			case SQLTablesPackage.TABLE__TRIGGERS:
 				return ((InternalEList)getTriggers()).basicAdd(otherEnd, msgs);
@@ -465,6 +506,7 @@ public abstract class TableImpl extends SQLObjectImpl implements Table {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case SQLTablesPackage.TABLE__COLUMNS:
@@ -488,20 +530,27 @@ public abstract class TableImpl extends SQLObjectImpl implements Table {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SQLTablesPackage.TABLE__COLUMNS:
 				return getColumns();
 			case SQLTablesPackage.TABLE__SUPERTABLE:
-				if (resolve) return getSupertable();
+				if (resolve) {
+					return getSupertable();
+				}
 				return basicGetSupertable();
 			case SQLTablesPackage.TABLE__SUBTABLES:
 				return getSubtables();
 			case SQLTablesPackage.TABLE__SCHEMA:
-				if (resolve) return getSchema();
+				if (resolve) {
+					return getSchema();
+				}
 				return basicGetSchema();
 			case SQLTablesPackage.TABLE__UDT:
-				if (resolve) return getUdt();
+				if (resolve) {
+					return getUdt();
+				}
 				return basicGetUdt();
 			case SQLTablesPackage.TABLE__TRIGGERS:
 				return getTriggers();
@@ -522,6 +571,7 @@ public abstract class TableImpl extends SQLObjectImpl implements Table {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case SQLTablesPackage.TABLE__COLUMNS:
@@ -561,6 +611,7 @@ public abstract class TableImpl extends SQLObjectImpl implements Table {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case SQLTablesPackage.TABLE__COLUMNS:
@@ -596,6 +647,7 @@ public abstract class TableImpl extends SQLObjectImpl implements Table {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SQLTablesPackage.TABLE__COLUMNS:
@@ -627,8 +679,11 @@ public abstract class TableImpl extends SQLObjectImpl implements Table {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (selfRefColumnGeneration: "); //$NON-NLS-1$

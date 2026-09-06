@@ -17,5 +17,13 @@
        genModel = "models/sybaseasasqlmodel.genmodel" /> 
   </extension>
 
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated sybaseasabasesqlmodel -->
+      <package
+            uri="http:///org/eclipse/datatools/connectivity/sqm/sybase/asa/sybaseasabasesqlmodel.ecore"
+            class="org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseasabasesqlmodelPackage"
+            genModel="models/sybaseasabasesqlmodel.genmodel"/>
+   </extension>
+
 </plugin>
 

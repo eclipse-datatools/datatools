@@ -20,140 +20,151 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLValueExpressionCastImpl#getPassingMechanism <em>Passing Mechanism</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
 public class XMLValueExpressionCastImpl extends ValueExpressionCastImpl implements XMLValueExpressionCast {
 	/**
-     * The default value of the '{@link #getPassingMechanism() <em>Passing Mechanism</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getPassingMechanism() <em>Passing Mechanism</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getPassingMechanism()
-     * @generated
-     * @ordered
-     */
+	 * @see #getPassingMechanism()
+	 * @generated
+	 * @ordered
+	 */
     protected static final XMLPassingType PASSING_MECHANISM_EDEFAULT = XMLPassingType.BY_REF_LITERAL;
 
 	/**
-     * The cached value of the '{@link #getPassingMechanism() <em>Passing Mechanism</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getPassingMechanism() <em>Passing Mechanism</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getPassingMechanism()
-     * @generated
-     * @ordered
-     */
+	 * @see #getPassingMechanism()
+	 * @generated
+	 * @ordered
+	 */
     protected XMLPassingType passingMechanism = PASSING_MECHANISM_EDEFAULT;
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected XMLValueExpressionCastImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    protected EClass eStaticClass() {
-        return SQLXMLQueryModelPackage.Literals.XML_VALUE_EXPRESSION_CAST;
-    }
+	 * @generated
+	 */
+    @Override
+	protected EClass eStaticClass() {
+		return SQLXMLQueryModelPackage.Literals.XML_VALUE_EXPRESSION_CAST;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public XMLPassingType getPassingMechanism() {
-        return passingMechanism;
-    }
+	 * @generated
+	 */
+    @Override
+	public XMLPassingType getPassingMechanism() {
+		return passingMechanism;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setPassingMechanism(XMLPassingType newPassingMechanism) {
-        XMLPassingType oldPassingMechanism = passingMechanism;
-        passingMechanism = newPassingMechanism == null ? PASSING_MECHANISM_EDEFAULT : newPassingMechanism;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_VALUE_EXPRESSION_CAST__PASSING_MECHANISM, oldPassingMechanism, passingMechanism));
-    }
+	 * @generated
+	 */
+    @Override
+	public void setPassingMechanism(XMLPassingType newPassingMechanism) {
+		XMLPassingType oldPassingMechanism = passingMechanism;
+		passingMechanism = newPassingMechanism == null ? PASSING_MECHANISM_EDEFAULT : newPassingMechanism;
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_VALUE_EXPRESSION_CAST__PASSING_MECHANISM, oldPassingMechanism, passingMechanism));
+		}
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case SQLXMLQueryModelPackage.XML_VALUE_EXPRESSION_CAST__PASSING_MECHANISM:
-                return getPassingMechanism();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case SQLXMLQueryModelPackage.XML_VALUE_EXPRESSION_CAST__PASSING_MECHANISM:
+				return getPassingMechanism();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case SQLXMLQueryModelPackage.XML_VALUE_EXPRESSION_CAST__PASSING_MECHANISM:
-                setPassingMechanism((XMLPassingType)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case SQLXMLQueryModelPackage.XML_VALUE_EXPRESSION_CAST__PASSING_MECHANISM:
+				setPassingMechanism((XMLPassingType)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public void eUnset(int featureID) {
-        switch (featureID) {
-            case SQLXMLQueryModelPackage.XML_VALUE_EXPRESSION_CAST__PASSING_MECHANISM:
-                setPassingMechanism(PASSING_MECHANISM_EDEFAULT);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case SQLXMLQueryModelPackage.XML_VALUE_EXPRESSION_CAST__PASSING_MECHANISM:
+				setPassingMechanism(PASSING_MECHANISM_EDEFAULT);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case SQLXMLQueryModelPackage.XML_VALUE_EXPRESSION_CAST__PASSING_MECHANISM:
-                return passingMechanism != PASSING_MECHANISM_EDEFAULT;
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case SQLXMLQueryModelPackage.XML_VALUE_EXPRESSION_CAST__PASSING_MECHANISM:
+				return passingMechanism != PASSING_MECHANISM_EDEFAULT;
+		}
+		return super.eIsSet(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public String toString() {
-        if (eIsProxy()) return super.toString();
+	 * @generated
+	 */
+    @Override
+	public String toString() {
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (passingMechanism: ");
-        result.append(passingMechanism);
-        result.append(')');
-        return result.toString();
-    }
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (passingMechanism: ");
+		result.append(passingMechanism);
+		result.append(')');
+		return result.toString();
+	}
 
 } //XMLValueExpressionCastImpl

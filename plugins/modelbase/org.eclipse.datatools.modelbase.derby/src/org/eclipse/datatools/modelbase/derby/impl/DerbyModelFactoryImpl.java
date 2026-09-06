@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -35,7 +35,7 @@ public class DerbyModelFactoryImpl extends EFactoryImpl implements DerbyModelFac
 	 */
 	public static DerbyModelFactory init() {
 		try {
-			DerbyModelFactory theDerbyModelFactory = (DerbyModelFactory)EPackage.Registry.INSTANCE.getEFactory("http:///org/eclipse/datatools/modelbase/derby/derby.ecore"); 
+			DerbyModelFactory theDerbyModelFactory = (DerbyModelFactory)EPackage.Registry.INSTANCE.getEFactory(DerbyModelPackage.eNS_URI);
 			if (theDerbyModelFactory != null) {
 				return theDerbyModelFactory;
 			}
@@ -61,6 +61,7 @@ public class DerbyModelFactoryImpl extends EFactoryImpl implements DerbyModelFac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case DerbyModelPackage.SYNONYM: return createSynonym();
@@ -75,6 +76,7 @@ public class DerbyModelFactoryImpl extends EFactoryImpl implements DerbyModelFac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Synonym createSynonym() {
 		SynonymImpl synonym = new SynonymImpl();
 		return synonym;
@@ -85,6 +87,7 @@ public class DerbyModelFactoryImpl extends EFactoryImpl implements DerbyModelFac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public DerbySchema createDerbySchema() {
 		DerbySchemaImpl derbySchema = new DerbySchemaImpl();
 		return derbySchema;
@@ -95,6 +98,7 @@ public class DerbyModelFactoryImpl extends EFactoryImpl implements DerbyModelFac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public DerbyModelPackage getDerbyModelPackage() {
 		return (DerbyModelPackage)getEPackage();
 	}
@@ -105,6 +109,7 @@ public class DerbyModelFactoryImpl extends EFactoryImpl implements DerbyModelFac
 	 * @deprecated
 	 * @generated
 	 */
+	@Deprecated
 	public static DerbyModelPackage getPackage() {
 		return DerbyModelPackage.eINSTANCE;
 	}

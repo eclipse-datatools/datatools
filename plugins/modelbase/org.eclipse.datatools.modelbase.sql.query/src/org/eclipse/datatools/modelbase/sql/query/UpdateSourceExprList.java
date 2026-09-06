@@ -15,10 +15,10 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.query.UpdateSourceExprList#getValueExprList <em>Value Expr List</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getUpdateSourceExprList()
  * @model
@@ -26,21 +26,21 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface UpdateSourceExprList extends UpdateSource{
 	/**
-     * Returns the value of the '<em><b>Value Expr List</b></em>' containment reference list.
-     * The list contents are of type {@link org.eclipse.datatools.modelbase.sql.query.QueryValueExpression}.
-     * It is bidirectional and its opposite is '{@link org.eclipse.datatools.modelbase.sql.query.QueryValueExpression#getUpdateSourceExprList <em>Update Source Expr List</em>}'.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Value Expr List</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.datatools.modelbase.sql.query.QueryValueExpression}.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.datatools.modelbase.sql.query.QueryValueExpression#getUpdateSourceExprList <em>Update Source Expr List</em>}'.
+	 * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Value Expr List</em>' containment reference list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-     * @return the value of the '<em>Value Expr List</em>' containment reference list.
-     * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getUpdateSourceExprList_ValueExprList()
-     * @see org.eclipse.datatools.modelbase.sql.query.QueryValueExpression#getUpdateSourceExprList
-     * @model type="org.eclipse.datatools.modelbase.sql.query.QueryValueExpression" opposite="updateSourceExprList" containment="true" required="true"
-     * @generated
-     */
+	 * @return the value of the '<em>Value Expr List</em>' containment reference list.
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getUpdateSourceExprList_ValueExprList()
+	 * @see org.eclipse.datatools.modelbase.sql.query.QueryValueExpression#getUpdateSourceExprList
+	 * @model type="org.eclipse.datatools.modelbase.sql.query.QueryValueExpression" opposite="updateSourceExprList" containment="true" required="true"
+	 * @generated
+	 */
   EList getValueExprList();
 
 } // UpdateSourceExprList

@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -37,11 +37,11 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.tables.impl.BaseTableImpl#getConstraints <em>Constraints</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.tables.impl.BaseTableImpl#getReferencingForeignKeys <em>Referencing Foreign Keys</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -80,6 +80,7 @@ public abstract class BaseTableImpl extends TableImpl implements BaseTable {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return SQLTablesPackage.Literals.BASE_TABLE;
 	}
@@ -89,6 +90,7 @@ public abstract class BaseTableImpl extends TableImpl implements BaseTable {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList getConstraints() {
 		if (constraints == null) {
 			constraints = new EObjectContainmentWithInverseEList(TableConstraint.class, this, SQLTablesPackage.BASE_TABLE__CONSTRAINTS, SQLConstraintsPackage.TABLE_CONSTRAINT__BASE_TABLE);
@@ -101,6 +103,7 @@ public abstract class BaseTableImpl extends TableImpl implements BaseTable {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList getReferencingForeignKeys() {
 		if (referencingForeignKeys == null) {
 			referencingForeignKeys = new EObjectWithInverseResolvingEList(ForeignKey.class, this, SQLTablesPackage.BASE_TABLE__REFERENCING_FOREIGN_KEYS, SQLConstraintsPackage.FOREIGN_KEY__REFERENCED_TABLE);
@@ -112,6 +115,7 @@ public abstract class BaseTableImpl extends TableImpl implements BaseTable {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 */
+	@Override
 	public List getUniqueConstraints() {
 		Vector uniqueConstraints = new Vector();
 		Iterator allConstraints = this.getConstraints().iterator();
@@ -121,7 +125,7 @@ public abstract class BaseTableImpl extends TableImpl implements BaseTable {
 				uniqueConstraints.add(currentConstraint);
 			}
 		}
-		
+
 		return uniqueConstraints;
 	}
 
@@ -129,6 +133,7 @@ public abstract class BaseTableImpl extends TableImpl implements BaseTable {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 */
+	@Override
 	public List getForeignKeys() {
 		Vector foreignKeys = new Vector();
 		Iterator allConstraints = this.getConstraints().iterator();
@@ -138,7 +143,7 @@ public abstract class BaseTableImpl extends TableImpl implements BaseTable {
 				foreignKeys.add(currentConstraint);
 			}
 		}
-		
+
 		return foreignKeys;
 	}
 
@@ -146,6 +151,7 @@ public abstract class BaseTableImpl extends TableImpl implements BaseTable {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 */
+	@Override
 	public PrimaryKey getPrimaryKey() {
 		Iterator allConstraints = this.getConstraints().iterator();
 		while( allConstraints.hasNext() ) {
@@ -154,7 +160,7 @@ public abstract class BaseTableImpl extends TableImpl implements BaseTable {
 				return (PrimaryKey)currentConstraint;
 			}
 		}
-		
+
 		return null;
 	}
 
@@ -163,6 +169,7 @@ public abstract class BaseTableImpl extends TableImpl implements BaseTable {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case SQLTablesPackage.BASE_TABLE__CONSTRAINTS:
@@ -178,6 +185,7 @@ public abstract class BaseTableImpl extends TableImpl implements BaseTable {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case SQLTablesPackage.BASE_TABLE__CONSTRAINTS:
@@ -193,6 +201,7 @@ public abstract class BaseTableImpl extends TableImpl implements BaseTable {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SQLTablesPackage.BASE_TABLE__CONSTRAINTS:
@@ -208,6 +217,7 @@ public abstract class BaseTableImpl extends TableImpl implements BaseTable {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case SQLTablesPackage.BASE_TABLE__CONSTRAINTS:
@@ -227,6 +237,7 @@ public abstract class BaseTableImpl extends TableImpl implements BaseTable {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case SQLTablesPackage.BASE_TABLE__CONSTRAINTS:
@@ -244,6 +255,7 @@ public abstract class BaseTableImpl extends TableImpl implements BaseTable {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SQLTablesPackage.BASE_TABLE__CONSTRAINTS:

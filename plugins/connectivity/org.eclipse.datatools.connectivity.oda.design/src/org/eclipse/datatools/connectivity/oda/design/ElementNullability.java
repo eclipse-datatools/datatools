@@ -8,7 +8,7 @@
  *
  * Contributors:
  *  Actuate Corporation  - initial API and implementation
- *  
+ *
  *************************************************************************
  *
  * $Id: ElementNullability.java,v 1.2 2007/04/11 02:59:53 lchan Exp $
@@ -34,222 +34,216 @@ import org.eclipse.emf.common.util.Enumerator;
  * @generated
  */
 public enum ElementNullability implements Enumerator {
-    /**
-     * The '<em><b>Unknown</b></em>' literal object.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #UNKNOWN
-     * @generated
-     * @ordered
-     */
-    UNKNOWN_LITERAL(0, "Unknown", "Unknown"), //$NON-NLS-1$ //$NON-NLS-2$
-    /**
-     * The '<em><b>Nullable</b></em>' literal object.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #NULLABLE
-     * @generated
-     * @ordered
-     */
-    NULLABLE_LITERAL(1, "Nullable", "Nullable"), //$NON-NLS-1$ //$NON-NLS-2$
-    /**
-     * The '<em><b>Not Nullable</b></em>' literal object.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #NOT_NULLABLE
-     * @generated
-     * @ordered
-     */
-    NOT_NULLABLE_LITERAL(2, "NotNullable", "NotNullable"); //$NON-NLS-1$ //$NON-NLS-2$
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public static final String copyright = "Copyright (c) 2005, 2009 Actuate Corporation"; //$NON-NLS-1$
+	/**
+	 * The '<em><b>Unknown</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #UNKNOWN
+	 * @generated
+	 * @ordered
+	 */
+	UNKNOWN_LITERAL(0, "Unknown", "Unknown"), //$NON-NLS-1$ //$NON-NLS-2$
+	/**
+	 * The '<em><b>Nullable</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #NULLABLE
+	 * @generated
+	 * @ordered
+	 */
+	NULLABLE_LITERAL(1, "Nullable", "Nullable"), //$NON-NLS-1$ //$NON-NLS-2$
+	/**
+	 * The '<em><b>Not Nullable</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #NOT_NULLABLE
+	 * @generated
+	 * @ordered
+	 */
+	NOT_NULLABLE_LITERAL(2, "NotNullable", "NotNullable"); //$NON-NLS-1$ //$NON-NLS-2$
 
-    /**
-     * The '<em><b>Unknown</b></em>' literal value.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #UNKNOWN_LITERAL
-     * @model name="Unknown"
-     * @generated
-     * @ordered
-     */
-    public static final int UNKNOWN = 0;
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final String copyright = "Copyright (c) 2005, 2010 Actuate Corporation"; //$NON-NLS-1$
 
-    /**
-     * The '<em><b>Nullable</b></em>' literal value.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #NULLABLE_LITERAL
-     * @model name="Nullable"
-     * @generated
-     * @ordered
-     */
-    public static final int NULLABLE = 1;
+	/**
+	 * The '<em><b>Unknown</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #UNKNOWN_LITERAL
+	 * @model name="Unknown"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int UNKNOWN = 0;
 
-    /**
-     * The '<em><b>Not Nullable</b></em>' literal value.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #NOT_NULLABLE_LITERAL
-     * @model name="NotNullable"
-     * @generated
-     * @ordered
-     */
-    public static final int NOT_NULLABLE = 2;
+	/**
+	 * The '<em><b>Nullable</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #NULLABLE_LITERAL
+	 * @model name="Nullable"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int NULLABLE = 1;
 
-    /**
-     * An array of all the '<em><b>Element Nullability</b></em>' enumerators.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    private static final ElementNullability[] VALUES_ARRAY = new ElementNullability[]
-    { UNKNOWN_LITERAL, NULLABLE_LITERAL, NOT_NULLABLE_LITERAL, };
+	/**
+	 * The '<em><b>Not Nullable</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #NOT_NULLABLE_LITERAL
+	 * @model name="NotNullable"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int NOT_NULLABLE = 2;
 
-    /**
-     * A public read-only list of all the '<em><b>Element Nullability</b></em>' enumerators.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public static final List<ElementNullability> VALUES = Collections
-            .unmodifiableList( Arrays.asList( VALUES_ARRAY ) );
+	/**
+	 * An array of all the '<em><b>Element Nullability</b></em>' enumerators.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private static final ElementNullability[] VALUES_ARRAY = new ElementNullability[] { UNKNOWN_LITERAL,
+			NULLABLE_LITERAL, NOT_NULLABLE_LITERAL, };
 
-    /**
-     * Returns the '<em><b>Element Nullability</b></em>' literal with the specified literal value.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public static ElementNullability get( String literal )
-    {
-        for( int i = 0; i < VALUES_ARRAY.length; ++i)
-        {
-            ElementNullability result = VALUES_ARRAY[i];
-            if( result.toString().equals( literal ) )
-            {
-                return result;
-            }
-        }
-        return null;
-    }
+	/**
+	 * A public read-only list of all the '<em><b>Element Nullability</b></em>' enumerators.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final List<ElementNullability> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
-    /**
-     * Returns the '<em><b>Element Nullability</b></em>' literal with the specified name.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public static ElementNullability getByName( String name )
-    {
-        for( int i = 0; i < VALUES_ARRAY.length; ++i)
-        {
-            ElementNullability result = VALUES_ARRAY[i];
-            if( result.getName().equals( name ) )
-            {
-                return result;
-            }
-        }
-        return null;
-    }
+	/**
+	 * Returns the '<em><b>Element Nullability</b></em>' literal with the specified literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
+	 * @generated
+	 */
+	public static ElementNullability get(String literal) {
+		for (ElementNullability result : VALUES_ARRAY) {
+			if (result.toString().equals(literal)) {
+				return result;
+			}
+		}
+		return null;
+	}
 
-    /**
-     * Returns the '<em><b>Element Nullability</b></em>' literal with the specified integer value.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public static ElementNullability get( int value )
-    {
-        switch( value )
-        {
-        case UNKNOWN:
-            return UNKNOWN_LITERAL;
-        case NULLABLE:
-            return NULLABLE_LITERAL;
-        case NOT_NULLABLE:
-            return NOT_NULLABLE_LITERAL;
-        }
-        return null;
-    }
+	/**
+	 * Returns the '<em><b>Element Nullability</b></em>' literal with the specified name.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
+	 * @generated
+	 */
+	public static ElementNullability getByName(String name) {
+		for (ElementNullability result : VALUES_ARRAY) {
+			if (result.getName().equals(name)) {
+				return result;
+			}
+		}
+		return null;
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    private final int value;
+	/**
+	 * Returns the '<em><b>Element Nullability</b></em>' literal with the specified integer value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
+	 * @generated
+	 */
+	public static ElementNullability get(int value) {
+		switch (value) {
+		case UNKNOWN:
+			return UNKNOWN_LITERAL;
+		case NULLABLE:
+			return NULLABLE_LITERAL;
+		case NOT_NULLABLE:
+			return NOT_NULLABLE_LITERAL;
+		}
+		return null;
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    private final String name;
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private final int value;
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    private final String literal;
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private final String name;
 
-    /**
-     * Only this class can construct instances.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    private ElementNullability( int value, String name, String literal )
-    {
-        this.value = value;
-        this.name = name;
-        this.literal = literal;
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private final String literal;
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public int getValue()
-    {
-        return value;
-    }
+	/**
+	 * Only this class can construct instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private ElementNullability(int value, String name, String literal) {
+		this.value = value;
+		this.name = name;
+		this.literal = literal;
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public String getName()
-    {
-        return name;
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int getValue() {
+		return value;
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public String getLiteral()
-    {
-        return literal;
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getName() {
+		return name;
+	}
 
-    /**
-     * Returns the literal value of the enumerator, which is its string representation.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public String toString()
-    {
-        return literal;
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getLiteral() {
+		return literal;
+	}
+
+	/**
+	 * Returns the literal value of the enumerator, which is its string representation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		return literal;
+	}
 }

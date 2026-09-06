@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -23,13 +23,13 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.UserDefinedTypeDefinitionImpl#isDefaultValueSupported <em>Default Value Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.UserDefinedTypeDefinitionImpl#isDistinctTypeSupported <em>Distinct Type Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.UserDefinedTypeDefinitionImpl#isStructuredTypeSupported <em>Structured Type Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.UserDefinedTypeDefinitionImpl#getMaximumIdentifierLength <em>Maximum Identifier Length</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -128,6 +128,7 @@ public class UserDefinedTypeDefinitionImpl extends EObjectImpl implements UserDe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return DatabaseDefinitionPackage.Literals.USER_DEFINED_TYPE_DEFINITION;
 	}
@@ -137,6 +138,7 @@ public class UserDefinedTypeDefinitionImpl extends EObjectImpl implements UserDe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isDefaultValueSupported() {
 		return defaultValueSupported;
 	}
@@ -146,11 +148,13 @@ public class UserDefinedTypeDefinitionImpl extends EObjectImpl implements UserDe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDefaultValueSupported(boolean newDefaultValueSupported) {
 		boolean oldDefaultValueSupported = defaultValueSupported;
 		defaultValueSupported = newDefaultValueSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.USER_DEFINED_TYPE_DEFINITION__DEFAULT_VALUE_SUPPORTED, oldDefaultValueSupported, defaultValueSupported));
+		}
 	}
 
 	/**
@@ -158,6 +162,7 @@ public class UserDefinedTypeDefinitionImpl extends EObjectImpl implements UserDe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isDistinctTypeSupported() {
 		return distinctTypeSupported;
 	}
@@ -167,11 +172,13 @@ public class UserDefinedTypeDefinitionImpl extends EObjectImpl implements UserDe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDistinctTypeSupported(boolean newDistinctTypeSupported) {
 		boolean oldDistinctTypeSupported = distinctTypeSupported;
 		distinctTypeSupported = newDistinctTypeSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.USER_DEFINED_TYPE_DEFINITION__DISTINCT_TYPE_SUPPORTED, oldDistinctTypeSupported, distinctTypeSupported));
+		}
 	}
 
 	/**
@@ -179,6 +186,7 @@ public class UserDefinedTypeDefinitionImpl extends EObjectImpl implements UserDe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isStructuredTypeSupported() {
 		return structuredTypeSupported;
 	}
@@ -188,11 +196,13 @@ public class UserDefinedTypeDefinitionImpl extends EObjectImpl implements UserDe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setStructuredTypeSupported(boolean newStructuredTypeSupported) {
 		boolean oldStructuredTypeSupported = structuredTypeSupported;
 		structuredTypeSupported = newStructuredTypeSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.USER_DEFINED_TYPE_DEFINITION__STRUCTURED_TYPE_SUPPORTED, oldStructuredTypeSupported, structuredTypeSupported));
+		}
 	}
 
 	/**
@@ -200,6 +210,7 @@ public class UserDefinedTypeDefinitionImpl extends EObjectImpl implements UserDe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getMaximumIdentifierLength() {
 		return maximumIdentifierLength;
 	}
@@ -209,11 +220,13 @@ public class UserDefinedTypeDefinitionImpl extends EObjectImpl implements UserDe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMaximumIdentifierLength(int newMaximumIdentifierLength) {
 		int oldMaximumIdentifierLength = maximumIdentifierLength;
 		maximumIdentifierLength = newMaximumIdentifierLength;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.USER_DEFINED_TYPE_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH, oldMaximumIdentifierLength, maximumIdentifierLength));
+		}
 	}
 
 	/**
@@ -221,6 +234,7 @@ public class UserDefinedTypeDefinitionImpl extends EObjectImpl implements UserDe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.USER_DEFINED_TYPE_DEFINITION__DEFAULT_VALUE_SUPPORTED:
@@ -230,7 +244,7 @@ public class UserDefinedTypeDefinitionImpl extends EObjectImpl implements UserDe
 			case DatabaseDefinitionPackage.USER_DEFINED_TYPE_DEFINITION__STRUCTURED_TYPE_SUPPORTED:
 				return isStructuredTypeSupported() ? Boolean.TRUE : Boolean.FALSE;
 			case DatabaseDefinitionPackage.USER_DEFINED_TYPE_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH:
-				return Integer.valueOf(getMaximumIdentifierLength());
+				return new Integer(getMaximumIdentifierLength());
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -240,6 +254,7 @@ public class UserDefinedTypeDefinitionImpl extends EObjectImpl implements UserDe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.USER_DEFINED_TYPE_DEFINITION__DEFAULT_VALUE_SUPPORTED:
@@ -263,6 +278,7 @@ public class UserDefinedTypeDefinitionImpl extends EObjectImpl implements UserDe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.USER_DEFINED_TYPE_DEFINITION__DEFAULT_VALUE_SUPPORTED:
@@ -286,6 +302,7 @@ public class UserDefinedTypeDefinitionImpl extends EObjectImpl implements UserDe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.USER_DEFINED_TYPE_DEFINITION__DEFAULT_VALUE_SUPPORTED:
@@ -305,8 +322,11 @@ public class UserDefinedTypeDefinitionImpl extends EObjectImpl implements UserDe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (defaultValueSupported: "); //$NON-NLS-1$

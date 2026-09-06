@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.FieldQualifierDefinitionImpl#getValidTrailingFieldQualifierDefinitions <em>Valid Trailing Field Qualifier Definitions</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.FieldQualifierDefinitionImpl#getName <em>Name</em>}</li>
@@ -34,7 +35,6 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.FieldQualifierDefinitionImpl#getDefaultScale <em>Default Scale</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.FieldQualifierDefinitionImpl#isScaleSupported <em>Scale Supported</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -203,6 +203,7 @@ public class FieldQualifierDefinitionImpl extends EObjectImpl implements FieldQu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return DatabaseDefinitionPackage.Literals.FIELD_QUALIFIER_DEFINITION;
 	}
@@ -212,6 +213,7 @@ public class FieldQualifierDefinitionImpl extends EObjectImpl implements FieldQu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList getValidTrailingFieldQualifierDefinitions() {
 		if (validTrailingFieldQualifierDefinitions == null) {
 			validTrailingFieldQualifierDefinitions = new EObjectResolvingEList(FieldQualifierDefinition.class, this, DatabaseDefinitionPackage.FIELD_QUALIFIER_DEFINITION__VALID_TRAILING_FIELD_QUALIFIER_DEFINITIONS);
@@ -224,6 +226,7 @@ public class FieldQualifierDefinitionImpl extends EObjectImpl implements FieldQu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IntervalQualifierType getName() {
 		return name;
 	}
@@ -233,11 +236,13 @@ public class FieldQualifierDefinitionImpl extends EObjectImpl implements FieldQu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(IntervalQualifierType newName) {
 		IntervalQualifierType oldName = name;
 		name = newName == null ? NAME_EDEFAULT : newName;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.FIELD_QUALIFIER_DEFINITION__NAME, oldName, name));
+		}
 	}
 
 	/**
@@ -245,6 +250,7 @@ public class FieldQualifierDefinitionImpl extends EObjectImpl implements FieldQu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getMaximumPrecision() {
 		return maximumPrecision;
 	}
@@ -254,11 +260,13 @@ public class FieldQualifierDefinitionImpl extends EObjectImpl implements FieldQu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMaximumPrecision(int newMaximumPrecision) {
 		int oldMaximumPrecision = maximumPrecision;
 		maximumPrecision = newMaximumPrecision;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.FIELD_QUALIFIER_DEFINITION__MAXIMUM_PRECISION, oldMaximumPrecision, maximumPrecision));
+		}
 	}
 
 	/**
@@ -266,6 +274,7 @@ public class FieldQualifierDefinitionImpl extends EObjectImpl implements FieldQu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getDefaultPrecision() {
 		return defaultPrecision;
 	}
@@ -275,11 +284,13 @@ public class FieldQualifierDefinitionImpl extends EObjectImpl implements FieldQu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDefaultPrecision(int newDefaultPrecision) {
 		int oldDefaultPrecision = defaultPrecision;
 		defaultPrecision = newDefaultPrecision;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.FIELD_QUALIFIER_DEFINITION__DEFAULT_PRECISION, oldDefaultPrecision, defaultPrecision));
+		}
 	}
 
 	/**
@@ -287,6 +298,7 @@ public class FieldQualifierDefinitionImpl extends EObjectImpl implements FieldQu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isPrecisionSupported() {
 		return precisionSupported;
 	}
@@ -296,11 +308,13 @@ public class FieldQualifierDefinitionImpl extends EObjectImpl implements FieldQu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPrecisionSupported(boolean newPrecisionSupported) {
 		boolean oldPrecisionSupported = precisionSupported;
 		precisionSupported = newPrecisionSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.FIELD_QUALIFIER_DEFINITION__PRECISION_SUPPORTED, oldPrecisionSupported, precisionSupported));
+		}
 	}
 
 	/**
@@ -308,6 +322,7 @@ public class FieldQualifierDefinitionImpl extends EObjectImpl implements FieldQu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getMaximumScale() {
 		return maximumScale;
 	}
@@ -317,11 +332,13 @@ public class FieldQualifierDefinitionImpl extends EObjectImpl implements FieldQu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMaximumScale(int newMaximumScale) {
 		int oldMaximumScale = maximumScale;
 		maximumScale = newMaximumScale;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.FIELD_QUALIFIER_DEFINITION__MAXIMUM_SCALE, oldMaximumScale, maximumScale));
+		}
 	}
 
 	/**
@@ -329,6 +346,7 @@ public class FieldQualifierDefinitionImpl extends EObjectImpl implements FieldQu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getDefaultScale() {
 		return defaultScale;
 	}
@@ -338,11 +356,13 @@ public class FieldQualifierDefinitionImpl extends EObjectImpl implements FieldQu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDefaultScale(int newDefaultScale) {
 		int oldDefaultScale = defaultScale;
 		defaultScale = newDefaultScale;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.FIELD_QUALIFIER_DEFINITION__DEFAULT_SCALE, oldDefaultScale, defaultScale));
+		}
 	}
 
 	/**
@@ -350,6 +370,7 @@ public class FieldQualifierDefinitionImpl extends EObjectImpl implements FieldQu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isScaleSupported() {
 		return scaleSupported;
 	}
@@ -359,11 +380,13 @@ public class FieldQualifierDefinitionImpl extends EObjectImpl implements FieldQu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setScaleSupported(boolean newScaleSupported) {
 		boolean oldScaleSupported = scaleSupported;
 		scaleSupported = newScaleSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.FIELD_QUALIFIER_DEFINITION__SCALE_SUPPORTED, oldScaleSupported, scaleSupported));
+		}
 	}
 
 	/**
@@ -371,6 +394,7 @@ public class FieldQualifierDefinitionImpl extends EObjectImpl implements FieldQu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.FIELD_QUALIFIER_DEFINITION__VALID_TRAILING_FIELD_QUALIFIER_DEFINITIONS:
@@ -378,15 +402,15 @@ public class FieldQualifierDefinitionImpl extends EObjectImpl implements FieldQu
 			case DatabaseDefinitionPackage.FIELD_QUALIFIER_DEFINITION__NAME:
 				return getName();
 			case DatabaseDefinitionPackage.FIELD_QUALIFIER_DEFINITION__MAXIMUM_PRECISION:
-				return Integer.valueOf(getMaximumPrecision());
+				return new Integer(getMaximumPrecision());
 			case DatabaseDefinitionPackage.FIELD_QUALIFIER_DEFINITION__DEFAULT_PRECISION:
-				return Integer.valueOf(getDefaultPrecision());
+				return new Integer(getDefaultPrecision());
 			case DatabaseDefinitionPackage.FIELD_QUALIFIER_DEFINITION__PRECISION_SUPPORTED:
 				return isPrecisionSupported() ? Boolean.TRUE : Boolean.FALSE;
 			case DatabaseDefinitionPackage.FIELD_QUALIFIER_DEFINITION__MAXIMUM_SCALE:
-				return Integer.valueOf(getMaximumScale());
+				return new Integer(getMaximumScale());
 			case DatabaseDefinitionPackage.FIELD_QUALIFIER_DEFINITION__DEFAULT_SCALE:
-				return Integer.valueOf(getDefaultScale());
+				return new Integer(getDefaultScale());
 			case DatabaseDefinitionPackage.FIELD_QUALIFIER_DEFINITION__SCALE_SUPPORTED:
 				return isScaleSupported() ? Boolean.TRUE : Boolean.FALSE;
 		}
@@ -398,6 +422,7 @@ public class FieldQualifierDefinitionImpl extends EObjectImpl implements FieldQu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.FIELD_QUALIFIER_DEFINITION__VALID_TRAILING_FIELD_QUALIFIER_DEFINITIONS:
@@ -434,6 +459,7 @@ public class FieldQualifierDefinitionImpl extends EObjectImpl implements FieldQu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.FIELD_QUALIFIER_DEFINITION__VALID_TRAILING_FIELD_QUALIFIER_DEFINITIONS:
@@ -469,6 +495,7 @@ public class FieldQualifierDefinitionImpl extends EObjectImpl implements FieldQu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.FIELD_QUALIFIER_DEFINITION__VALID_TRAILING_FIELD_QUALIFIER_DEFINITIONS:
@@ -496,8 +523,11 @@ public class FieldQualifierDefinitionImpl extends EObjectImpl implements FieldQu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (name: "); //$NON-NLS-1$

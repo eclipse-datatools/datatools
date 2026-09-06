@@ -27,21 +27,21 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl.SybaseASABaseTableImpl#getDbSpace <em>Db Space</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class SybaseASABaseTableImpl extends PersistentTableImpl implements SybaseASABaseTable 
+public class SybaseASABaseTableImpl extends PersistentTableImpl implements SybaseASABaseTable
 {
     final public static String[]   PB_SYS_TABLES     = new String[]
                                                      {
         "pbcatcol", "pbcatedt", "pbcatfmt", "pbcattbl", "pbcatvld"
                                                      };
     final public static List       PB_SYS_TABLE_LIST = Arrays.asList(PB_SYS_TABLES);
-    
+
     /**
 	 * The cached value of the '{@link #getDbSpace() <em>Db Space</em>}' reference.
 	 * <!-- begin-user-doc --> <!--
@@ -67,6 +67,7 @@ public class SybaseASABaseTableImpl extends PersistentTableImpl implements Sybas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass()
     {
 		return SybaseasabasesqlmodelPackage.Literals.SYBASE_ASA_BASE_TABLE;
@@ -77,14 +78,16 @@ public class SybaseASABaseTableImpl extends PersistentTableImpl implements Sybas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SybaseASABaseDBSpace getDbSpace()
     {
 		if (dbSpace != null && dbSpace.eIsProxy()) {
 			InternalEObject oldDbSpace = (InternalEObject)dbSpace;
 			dbSpace = (SybaseASABaseDBSpace)eResolveProxy(oldDbSpace);
 			if (dbSpace != oldDbSpace) {
-				if (eNotificationRequired())
+				if (eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TABLE__DB_SPACE, oldDbSpace, dbSpace));
+				}
 			}
 		}
 		return dbSpace;
@@ -105,18 +108,21 @@ public class SybaseASABaseTableImpl extends PersistentTableImpl implements Sybas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDbSpace(SybaseASABaseDBSpace newDbSpace)
     {
 		SybaseASABaseDBSpace oldDbSpace = dbSpace;
 		dbSpace = newDbSpace;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TABLE__DB_SPACE, oldDbSpace, dbSpace));
+		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 */
+	@Override
 	public boolean isSystem() {
 		String owner = this.getSchema().getName();
 		return owner.equals("SYS") || owner.equals("rs_systabgroup")
@@ -127,6 +133,7 @@ public class SybaseASABaseTableImpl extends PersistentTableImpl implements Sybas
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 */
+	@Override
 	public List getCheckConstraints() {
 		List result = new ArrayList();
 		EList tableConstraints = getConstraints();
@@ -146,11 +153,14 @@ public class SybaseASABaseTableImpl extends PersistentTableImpl implements Sybas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
     {
 		switch (featureID) {
 			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TABLE__DB_SPACE:
-				if (resolve) return getDbSpace();
+				if (resolve) {
+					return getDbSpace();
+				}
 				return basicGetDbSpace();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -161,6 +171,7 @@ public class SybaseASABaseTableImpl extends PersistentTableImpl implements Sybas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue)
     {
 		switch (featureID) {
@@ -176,6 +187,7 @@ public class SybaseASABaseTableImpl extends PersistentTableImpl implements Sybas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID)
     {
 		switch (featureID) {
@@ -191,6 +203,7 @@ public class SybaseASABaseTableImpl extends PersistentTableImpl implements Sybas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID)
     {
 		switch (featureID) {

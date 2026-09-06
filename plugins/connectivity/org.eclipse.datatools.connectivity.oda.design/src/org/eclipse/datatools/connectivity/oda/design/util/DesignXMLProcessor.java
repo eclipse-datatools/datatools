@@ -8,7 +8,7 @@
  *
  * Contributors:
  *  Actuate Corporation - initial API and implementation
- *  
+ *
  *************************************************************************
  *
  * $Id: DesignXMLProcessor.java,v 1.2 2007/11/17 05:30:20 lchan Exp $
@@ -31,67 +31,59 @@ import org.eclipse.emf.ecore.xmi.util.XMLProcessor;
  * <!-- end-user-doc -->
  * @generated
  */
-public class DesignXMLProcessor extends XMLProcessor
-{
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public static final String copyright = "Copyright (c) 2005, 2009 Actuate Corporation"; //$NON-NLS-1$
+public class DesignXMLProcessor extends XMLProcessor {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final String copyright = "Copyright (c) 2005, 2010 Actuate Corporation"; //$NON-NLS-1$
 
-    /**
-     * Public constructor to instantiate the helper.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public DesignXMLProcessor()
-    {
-        super( (EPackage.Registry.INSTANCE) );
-        DesignPackage.eINSTANCE.eClass();
-    }
+	/**
+	 * Public constructor to instantiate the helper.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DesignXMLProcessor() {
+		super((EPackage.Registry.INSTANCE));
+		DesignPackage.eINSTANCE.eClass();
+	}
 
-    /**
-     * Register for "*" and "xml" file extensions the DesignResourceFactoryImpl factory.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    protected Map<String, Resource.Factory> getRegistrations()
-    {
-        if( registrations == null )
-        {
-            super.getRegistrations();
-            registrations.put( XML_EXTENSION, new DesignResourceFactoryImpl() );
-            registrations.put( STAR_EXTENSION, new DesignResourceFactoryImpl() );
-        }
-        return registrations;
-    }
+	/**
+	 * Register for "*" and "xml" file extensions the DesignResourceFactoryImpl factory.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected Map<String, Resource.Factory> getRegistrations() {
+		if (registrations == null) {
+			super.getRegistrations();
+			registrations.put(XML_EXTENSION, new DesignResourceFactoryImpl());
+			registrations.put(STAR_EXTENSION, new DesignResourceFactoryImpl());
+		}
+		return registrations;
+	}
 
-    /**
-     * Creates and returns a new resource for saving or loading an ODA Design object.
-     * @param uri   the URI of the resource to create
-     * @return      a new resource
-     * @since DTP 1.6
-     * @generated NOT
-     */
-    public Resource createResource( URI uri )
-    {
-        ResourceSet resourceSet = createResourceSet();
-        // Register the Design package to ensure it is available during loading.
-        resourceSet.getPackageRegistry().put( DesignPackage.eNS_URI,
-                DesignPackage.eINSTANCE );
+	/**
+	 * Creates and returns a new resource for saving or loading an ODA Design object.
+	 * @param uri   the URI of the resource to create
+	 * @return      a new resource
+	 * @since DTP 1.6
+	 * @generated NOT
+	 */
+	public Resource createResource(URI uri) {
+		ResourceSet resourceSet = createResourceSet();
+		// Register the Design package to ensure it is available during loading.
+		resourceSet.getPackageRegistry().put(DesignPackage.eNS_URI, DesignPackage.eINSTANCE);
 
-        XMLResource resource = (XMLResource) resourceSet.createResource( uri );
+		XMLResource resource = (XMLResource) resourceSet.createResource(uri);
 
-        // Use the OPTION_SCHEMA_LOCATION_IMPLEMENTATION option to avoid pre-registration 
-        // of the generated packages 
-        resource.getDefaultSaveOptions()
-                .put( XMLResource.OPTION_SCHEMA_LOCATION_IMPLEMENTATION,
-                        Boolean.TRUE );
-        return resource;
-    }
+		// Use the OPTION_SCHEMA_LOCATION_IMPLEMENTATION option to avoid pre-registration
+		// of the generated packages
+		resource.getDefaultSaveOptions().put(XMLResource.OPTION_SCHEMA_LOCATION_IMPLEMENTATION, Boolean.TRUE);
+		return resource;
+	}
 
 } //DesignXMLProcessor

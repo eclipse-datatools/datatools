@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.TriggerDefinitionImpl#getMaximumReferencePartLength <em>Maximum Reference Part Length</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.TriggerDefinitionImpl#getMaximumActionBodyLength <em>Maximum Action Body Length</em>}</li>
@@ -33,7 +34,6 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.TriggerDefinitionImpl#isTableTriggerReferenceSupported <em>Table Trigger Reference Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.TriggerDefinitionImpl#getMaximumIdentifierLength <em>Maximum Identifier Length</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -272,6 +272,7 @@ public class TriggerDefinitionImpl extends EObjectImpl implements TriggerDefinit
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return DatabaseDefinitionPackage.Literals.TRIGGER_DEFINITION;
 	}
@@ -281,6 +282,7 @@ public class TriggerDefinitionImpl extends EObjectImpl implements TriggerDefinit
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getMaximumReferencePartLength() {
 		return maximumReferencePartLength;
 	}
@@ -290,11 +292,13 @@ public class TriggerDefinitionImpl extends EObjectImpl implements TriggerDefinit
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMaximumReferencePartLength(int newMaximumReferencePartLength) {
 		int oldMaximumReferencePartLength = maximumReferencePartLength;
 		maximumReferencePartLength = newMaximumReferencePartLength;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.TRIGGER_DEFINITION__MAXIMUM_REFERENCE_PART_LENGTH, oldMaximumReferencePartLength, maximumReferencePartLength));
+		}
 	}
 
 	/**
@@ -302,6 +306,7 @@ public class TriggerDefinitionImpl extends EObjectImpl implements TriggerDefinit
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getMaximumActionBodyLength() {
 		return maximumActionBodyLength;
 	}
@@ -311,11 +316,13 @@ public class TriggerDefinitionImpl extends EObjectImpl implements TriggerDefinit
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMaximumActionBodyLength(int newMaximumActionBodyLength) {
 		int oldMaximumActionBodyLength = maximumActionBodyLength;
 		maximumActionBodyLength = newMaximumActionBodyLength;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.TRIGGER_DEFINITION__MAXIMUM_ACTION_BODY_LENGTH, oldMaximumActionBodyLength, maximumActionBodyLength));
+		}
 	}
 
 	/**
@@ -323,6 +330,7 @@ public class TriggerDefinitionImpl extends EObjectImpl implements TriggerDefinit
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isTypeSupported() {
 		return typeSupported;
 	}
@@ -332,11 +340,13 @@ public class TriggerDefinitionImpl extends EObjectImpl implements TriggerDefinit
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTypeSupported(boolean newTypeSupported) {
 		boolean oldTypeSupported = typeSupported;
 		typeSupported = newTypeSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.TRIGGER_DEFINITION__TYPE_SUPPORTED, oldTypeSupported, typeSupported));
+		}
 	}
 
 	/**
@@ -344,6 +354,7 @@ public class TriggerDefinitionImpl extends EObjectImpl implements TriggerDefinit
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isWhenClauseSupported() {
 		return whenClauseSupported;
 	}
@@ -353,11 +364,13 @@ public class TriggerDefinitionImpl extends EObjectImpl implements TriggerDefinit
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setWhenClauseSupported(boolean newWhenClauseSupported) {
 		boolean oldWhenClauseSupported = whenClauseSupported;
 		whenClauseSupported = newWhenClauseSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.TRIGGER_DEFINITION__WHEN_CLAUSE_SUPPORTED, oldWhenClauseSupported, whenClauseSupported));
+		}
 	}
 
 	/**
@@ -365,6 +378,7 @@ public class TriggerDefinitionImpl extends EObjectImpl implements TriggerDefinit
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isGranularitySupported() {
 		return granularitySupported;
 	}
@@ -374,11 +388,13 @@ public class TriggerDefinitionImpl extends EObjectImpl implements TriggerDefinit
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setGranularitySupported(boolean newGranularitySupported) {
 		boolean oldGranularitySupported = granularitySupported;
 		granularitySupported = newGranularitySupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.TRIGGER_DEFINITION__GRANULARITY_SUPPORTED, oldGranularitySupported, granularitySupported));
+		}
 	}
 
 	/**
@@ -386,6 +402,7 @@ public class TriggerDefinitionImpl extends EObjectImpl implements TriggerDefinit
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isReferencesClauseSupported() {
 		return referencesClauseSupported;
 	}
@@ -395,11 +412,13 @@ public class TriggerDefinitionImpl extends EObjectImpl implements TriggerDefinit
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setReferencesClauseSupported(boolean newReferencesClauseSupported) {
 		boolean oldReferencesClauseSupported = referencesClauseSupported;
 		referencesClauseSupported = newReferencesClauseSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.TRIGGER_DEFINITION__REFERENCES_CLAUSE_SUPPORTED, oldReferencesClauseSupported, referencesClauseSupported));
+		}
 	}
 
 	/**
@@ -407,6 +426,7 @@ public class TriggerDefinitionImpl extends EObjectImpl implements TriggerDefinit
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isPerColumnUpdateTriggerSupported() {
 		return perColumnUpdateTriggerSupported;
 	}
@@ -416,11 +436,13 @@ public class TriggerDefinitionImpl extends EObjectImpl implements TriggerDefinit
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPerColumnUpdateTriggerSupported(boolean newPerColumnUpdateTriggerSupported) {
 		boolean oldPerColumnUpdateTriggerSupported = perColumnUpdateTriggerSupported;
 		perColumnUpdateTriggerSupported = newPerColumnUpdateTriggerSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.TRIGGER_DEFINITION__PER_COLUMN_UPDATE_TRIGGER_SUPPORTED, oldPerColumnUpdateTriggerSupported, perColumnUpdateTriggerSupported));
+		}
 	}
 
 	/**
@@ -428,6 +450,7 @@ public class TriggerDefinitionImpl extends EObjectImpl implements TriggerDefinit
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isInsteadOfTriggerSupported() {
 		return insteadOfTriggerSupported;
 	}
@@ -437,11 +460,13 @@ public class TriggerDefinitionImpl extends EObjectImpl implements TriggerDefinit
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setInsteadOfTriggerSupported(boolean newInsteadOfTriggerSupported) {
 		boolean oldInsteadOfTriggerSupported = insteadOfTriggerSupported;
 		insteadOfTriggerSupported = newInsteadOfTriggerSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.TRIGGER_DEFINITION__INSTEAD_OF_TRIGGER_SUPPORTED, oldInsteadOfTriggerSupported, insteadOfTriggerSupported));
+		}
 	}
 
 	/**
@@ -449,6 +474,7 @@ public class TriggerDefinitionImpl extends EObjectImpl implements TriggerDefinit
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isRowTriggerReferenceSupported() {
 		return rowTriggerReferenceSupported;
 	}
@@ -458,11 +484,13 @@ public class TriggerDefinitionImpl extends EObjectImpl implements TriggerDefinit
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRowTriggerReferenceSupported(boolean newRowTriggerReferenceSupported) {
 		boolean oldRowTriggerReferenceSupported = rowTriggerReferenceSupported;
 		rowTriggerReferenceSupported = newRowTriggerReferenceSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.TRIGGER_DEFINITION__ROW_TRIGGER_REFERENCE_SUPPORTED, oldRowTriggerReferenceSupported, rowTriggerReferenceSupported));
+		}
 	}
 
 	/**
@@ -470,6 +498,7 @@ public class TriggerDefinitionImpl extends EObjectImpl implements TriggerDefinit
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isTableTriggerReferenceSupported() {
 		return tableTriggerReferenceSupported;
 	}
@@ -479,11 +508,13 @@ public class TriggerDefinitionImpl extends EObjectImpl implements TriggerDefinit
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTableTriggerReferenceSupported(boolean newTableTriggerReferenceSupported) {
 		boolean oldTableTriggerReferenceSupported = tableTriggerReferenceSupported;
 		tableTriggerReferenceSupported = newTableTriggerReferenceSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.TRIGGER_DEFINITION__TABLE_TRIGGER_REFERENCE_SUPPORTED, oldTableTriggerReferenceSupported, tableTriggerReferenceSupported));
+		}
 	}
 
 	/**
@@ -491,6 +522,7 @@ public class TriggerDefinitionImpl extends EObjectImpl implements TriggerDefinit
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getMaximumIdentifierLength() {
 		return maximumIdentifierLength;
 	}
@@ -500,11 +532,13 @@ public class TriggerDefinitionImpl extends EObjectImpl implements TriggerDefinit
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMaximumIdentifierLength(int newMaximumIdentifierLength) {
 		int oldMaximumIdentifierLength = maximumIdentifierLength;
 		maximumIdentifierLength = newMaximumIdentifierLength;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.TRIGGER_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH, oldMaximumIdentifierLength, maximumIdentifierLength));
+		}
 	}
 
 	/**
@@ -512,12 +546,13 @@ public class TriggerDefinitionImpl extends EObjectImpl implements TriggerDefinit
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.TRIGGER_DEFINITION__MAXIMUM_REFERENCE_PART_LENGTH:
-				return Integer.valueOf(getMaximumReferencePartLength());
+				return new Integer(getMaximumReferencePartLength());
 			case DatabaseDefinitionPackage.TRIGGER_DEFINITION__MAXIMUM_ACTION_BODY_LENGTH:
-				return Integer.valueOf(getMaximumActionBodyLength());
+				return new Integer(getMaximumActionBodyLength());
 			case DatabaseDefinitionPackage.TRIGGER_DEFINITION__TYPE_SUPPORTED:
 				return isTypeSupported() ? Boolean.TRUE : Boolean.FALSE;
 			case DatabaseDefinitionPackage.TRIGGER_DEFINITION__WHEN_CLAUSE_SUPPORTED:
@@ -535,7 +570,7 @@ public class TriggerDefinitionImpl extends EObjectImpl implements TriggerDefinit
 			case DatabaseDefinitionPackage.TRIGGER_DEFINITION__TABLE_TRIGGER_REFERENCE_SUPPORTED:
 				return isTableTriggerReferenceSupported() ? Boolean.TRUE : Boolean.FALSE;
 			case DatabaseDefinitionPackage.TRIGGER_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH:
-				return Integer.valueOf(getMaximumIdentifierLength());
+				return new Integer(getMaximumIdentifierLength());
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -545,6 +580,7 @@ public class TriggerDefinitionImpl extends EObjectImpl implements TriggerDefinit
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.TRIGGER_DEFINITION__MAXIMUM_REFERENCE_PART_LENGTH:
@@ -589,6 +625,7 @@ public class TriggerDefinitionImpl extends EObjectImpl implements TriggerDefinit
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.TRIGGER_DEFINITION__MAXIMUM_REFERENCE_PART_LENGTH:
@@ -633,6 +670,7 @@ public class TriggerDefinitionImpl extends EObjectImpl implements TriggerDefinit
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.TRIGGER_DEFINITION__MAXIMUM_REFERENCE_PART_LENGTH:
@@ -666,8 +704,11 @@ public class TriggerDefinitionImpl extends EObjectImpl implements TriggerDefinit
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (maximumReferencePartLength: "); //$NON-NLS-1$

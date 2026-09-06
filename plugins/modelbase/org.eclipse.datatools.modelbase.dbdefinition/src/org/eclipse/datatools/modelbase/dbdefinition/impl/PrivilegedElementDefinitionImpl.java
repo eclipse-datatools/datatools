@@ -27,11 +27,11 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.PrivilegedElementDefinitionImpl#getPrivilegeDefinitions <em>Privilege Definitions</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.PrivilegedElementDefinitionImpl#getName <em>Name</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -80,6 +80,7 @@ public class PrivilegedElementDefinitionImpl extends EObjectImpl implements Priv
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return DatabaseDefinitionPackage.Literals.PRIVILEGED_ELEMENT_DEFINITION;
 	}
@@ -89,6 +90,7 @@ public class PrivilegedElementDefinitionImpl extends EObjectImpl implements Priv
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList getPrivilegeDefinitions() {
 		if (privilegeDefinitions == null) {
 			privilegeDefinitions = new EObjectContainmentEList(PrivilegeDefinition.class, this, DatabaseDefinitionPackage.PRIVILEGED_ELEMENT_DEFINITION__PRIVILEGE_DEFINITIONS);
@@ -101,6 +103,7 @@ public class PrivilegedElementDefinitionImpl extends EObjectImpl implements Priv
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName() {
 		return name;
 	}
@@ -110,11 +113,13 @@ public class PrivilegedElementDefinitionImpl extends EObjectImpl implements Priv
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.PRIVILEGED_ELEMENT_DEFINITION__NAME, oldName, name));
+		}
 	}
 
 	/**
@@ -122,6 +127,7 @@ public class PrivilegedElementDefinitionImpl extends EObjectImpl implements Priv
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.PRIVILEGED_ELEMENT_DEFINITION__PRIVILEGE_DEFINITIONS:
@@ -135,6 +141,7 @@ public class PrivilegedElementDefinitionImpl extends EObjectImpl implements Priv
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.PRIVILEGED_ELEMENT_DEFINITION__PRIVILEGE_DEFINITIONS:
@@ -150,6 +157,7 @@ public class PrivilegedElementDefinitionImpl extends EObjectImpl implements Priv
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.PRIVILEGED_ELEMENT_DEFINITION__PRIVILEGE_DEFINITIONS:
@@ -168,6 +176,7 @@ public class PrivilegedElementDefinitionImpl extends EObjectImpl implements Priv
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.PRIVILEGED_ELEMENT_DEFINITION__PRIVILEGE_DEFINITIONS:
@@ -185,6 +194,7 @@ public class PrivilegedElementDefinitionImpl extends EObjectImpl implements Priv
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.PRIVILEGED_ELEMENT_DEFINITION__PRIVILEGE_DEFINITIONS:
@@ -200,8 +210,11 @@ public class PrivilegedElementDefinitionImpl extends EObjectImpl implements Priv
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (name: "); //$NON-NLS-1$

@@ -21,17 +21,17 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl.SybaseASABaseTriggerImpl#getOrder <em>Order</em>}</li>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl.SybaseASABaseTriggerImpl#getSybaseASABaseActionTime <em>Sybase ASA Base Action Time</em>}</li>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl.SybaseASABaseTriggerImpl#getRemoteName <em>Remote Name</em>}</li>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl.SybaseASABaseTriggerImpl#isUpdateColumnType <em>Update Column Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class SybaseASABaseTriggerImpl extends TriggerImpl implements SybaseASABaseTrigger 
+public class SybaseASABaseTriggerImpl extends TriggerImpl implements SybaseASABaseTrigger
 {
     /**
 	 * The default value of the '{@link #getOrder() <em>Order</em>}' attribute.
@@ -128,6 +128,7 @@ public class SybaseASABaseTriggerImpl extends TriggerImpl implements SybaseASABa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass()
     {
 		return SybaseasabasesqlmodelPackage.Literals.SYBASE_ASA_BASE_TRIGGER;
@@ -138,6 +139,7 @@ public class SybaseASABaseTriggerImpl extends TriggerImpl implements SybaseASABa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getOrder()
     {
 		return order;
@@ -148,12 +150,14 @@ public class SybaseASABaseTriggerImpl extends TriggerImpl implements SybaseASABa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOrder(int newOrder)
     {
 		int oldOrder = order;
 		order = newOrder;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TRIGGER__ORDER, oldOrder, order));
+		}
 	}
 
     /**
@@ -161,6 +165,7 @@ public class SybaseASABaseTriggerImpl extends TriggerImpl implements SybaseASABa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SybaseASABaseActionTime getSybaseASABaseActionTime()
     {
 		return sybaseASABaseActionTime;
@@ -171,12 +176,14 @@ public class SybaseASABaseTriggerImpl extends TriggerImpl implements SybaseASABa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSybaseASABaseActionTime(SybaseASABaseActionTime newSybaseASABaseActionTime)
     {
 		SybaseASABaseActionTime oldSybaseASABaseActionTime = sybaseASABaseActionTime;
 		sybaseASABaseActionTime = newSybaseASABaseActionTime == null ? SYBASE_ASA_BASE_ACTION_TIME_EDEFAULT : newSybaseASABaseActionTime;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TRIGGER__SYBASE_ASA_BASE_ACTION_TIME, oldSybaseASABaseActionTime, sybaseASABaseActionTime));
+		}
 	}
 
     /**
@@ -184,6 +191,7 @@ public class SybaseASABaseTriggerImpl extends TriggerImpl implements SybaseASABa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getRemoteName()
     {
 		return remoteName;
@@ -194,12 +202,14 @@ public class SybaseASABaseTriggerImpl extends TriggerImpl implements SybaseASABa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRemoteName(String newRemoteName)
     {
 		String oldRemoteName = remoteName;
 		remoteName = newRemoteName;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TRIGGER__REMOTE_NAME, oldRemoteName, remoteName));
+		}
 	}
 
     /**
@@ -207,7 +217,8 @@ public class SybaseASABaseTriggerImpl extends TriggerImpl implements SybaseASABa
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public boolean isUpdateColumnType()
+    @Override
+	public boolean isUpdateColumnType()
     {
 		return updateColumnType;
 	}
@@ -217,19 +228,22 @@ public class SybaseASABaseTriggerImpl extends TriggerImpl implements SybaseASABa
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public void setUpdateColumnType(boolean newUpdateColumnType)
+    @Override
+	public void setUpdateColumnType(boolean newUpdateColumnType)
     {
 		boolean oldUpdateColumnType = updateColumnType;
 		updateColumnType = newUpdateColumnType;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TRIGGER__UPDATE_COLUMN_TYPE, oldUpdateColumnType, updateColumnType));
+		}
 	}
 
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      */
-    public String getOldName()
+    @Override
+	public String getOldName()
     {
         if (getActionGranularity().getValue() == ActionGranularityType.ROW)
         {
@@ -245,7 +259,8 @@ public class SybaseASABaseTriggerImpl extends TriggerImpl implements SybaseASABa
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      */
-    public String getNewName()
+    @Override
+	public String getNewName()
     {
         if (getActionGranularity().getValue() == ActionGranularityType.ROW)
         {
@@ -261,7 +276,8 @@ public class SybaseASABaseTriggerImpl extends TriggerImpl implements SybaseASABa
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      */
-    public void setOldName(String oldName)
+    @Override
+	public void setOldName(String oldName)
     {
         if (getActionGranularity().getValue() == ActionGranularityType.ROW)
         {
@@ -277,7 +293,8 @@ public class SybaseASABaseTriggerImpl extends TriggerImpl implements SybaseASABa
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      */
-    public void setNewName(String newName)
+    @Override
+	public void setNewName(String newName)
     {
         if (getActionGranularity().getValue() == ActionGranularityType.ROW)
         {
@@ -294,11 +311,12 @@ public class SybaseASABaseTriggerImpl extends TriggerImpl implements SybaseASABa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
     {
 		switch (featureID) {
 			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TRIGGER__ORDER:
-				return Integer.valueOf(getOrder());
+				return new Integer(getOrder());
 			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TRIGGER__SYBASE_ASA_BASE_ACTION_TIME:
 				return getSybaseASABaseActionTime();
 			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TRIGGER__REMOTE_NAME:
@@ -314,6 +332,7 @@ public class SybaseASABaseTriggerImpl extends TriggerImpl implements SybaseASABa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue)
     {
 		switch (featureID) {
@@ -338,6 +357,7 @@ public class SybaseASABaseTriggerImpl extends TriggerImpl implements SybaseASABa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID)
     {
 		switch (featureID) {
@@ -362,6 +382,7 @@ public class SybaseASABaseTriggerImpl extends TriggerImpl implements SybaseASABa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID)
     {
 		switch (featureID) {
@@ -382,9 +403,12 @@ public class SybaseASABaseTriggerImpl extends TriggerImpl implements SybaseASABa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString()
     {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (order: ");

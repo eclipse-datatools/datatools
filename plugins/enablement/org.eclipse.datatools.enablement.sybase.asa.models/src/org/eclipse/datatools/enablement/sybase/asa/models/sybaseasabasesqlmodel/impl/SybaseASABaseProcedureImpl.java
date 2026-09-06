@@ -31,14 +31,14 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl.SybaseASABaseProcedureImpl#isOnExceptionResume <em>On Exception Resume</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class SybaseASABaseProcedureImpl extends ProcedureImpl implements SybaseASABaseProcedure 
+public class SybaseASABaseProcedureImpl extends ProcedureImpl implements SybaseASABaseProcedure
 {
     /**
 	 * The default value of the '{@link #isOnExceptionResume() <em>On Exception Resume</em>}' attribute.
@@ -75,6 +75,7 @@ public class SybaseASABaseProcedureImpl extends ProcedureImpl implements SybaseA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass()
     {
 		return SybaseasabasesqlmodelPackage.Literals.SYBASE_ASA_BASE_PROCEDURE;
@@ -85,6 +86,7 @@ public class SybaseASABaseProcedureImpl extends ProcedureImpl implements SybaseA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isOnExceptionResume()
     {
 		return onExceptionResume;
@@ -95,19 +97,22 @@ public class SybaseASABaseProcedureImpl extends ProcedureImpl implements SybaseA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOnExceptionResume(boolean newOnExceptionResume)
     {
 		boolean oldOnExceptionResume = onExceptionResume;
 		onExceptionResume = newOnExceptionResume;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_PROCEDURE__ON_EXCEPTION_RESUME, oldOnExceptionResume, onExceptionResume));
+		}
 	}
 
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      */
-    public void parseParameterDefaultValues()
+    @Override
+	public void parseParameterDefaultValues()
     {
         SybaseRoutineUtil.parseParameterDefaultValues(this, parameters);
     }
@@ -117,6 +122,7 @@ public class SybaseASABaseProcedureImpl extends ProcedureImpl implements SybaseA
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	@Override
 	public boolean isSystem() {
 		String owner = this.getSchema().getName();
 		return owner.equals("SYS") || owner.equals("rs_systabgroup");
@@ -127,6 +133,7 @@ public class SybaseASABaseProcedureImpl extends ProcedureImpl implements SybaseA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
     {
 		switch (featureID) {
@@ -141,6 +148,7 @@ public class SybaseASABaseProcedureImpl extends ProcedureImpl implements SybaseA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue)
     {
 		switch (featureID) {
@@ -156,6 +164,7 @@ public class SybaseASABaseProcedureImpl extends ProcedureImpl implements SybaseA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID)
     {
 		switch (featureID) {
@@ -171,6 +180,7 @@ public class SybaseASABaseProcedureImpl extends ProcedureImpl implements SybaseA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID)
     {
 		switch (featureID) {
@@ -185,9 +195,12 @@ public class SybaseASABaseProcedureImpl extends ProcedureImpl implements SybaseA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString()
     {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (onExceptionResume: ");
@@ -200,13 +213,14 @@ public class SybaseASABaseProcedureImpl extends ProcedureImpl implements SybaseA
      * If the SQLRoutinesPackage.PROCEDURE__RESULT_SET feature is not set, this ASA implementation returns a single
      * RoutineResultTable contained in the parameter list of the type ParameterType.RESULT
      */
-    public EList getResultSet()
+    @Override
+	public EList getResultSet()
     {
         if (eIsSet(SQLRoutinesPackage.PROCEDURE__RESULT_SET))
         {
             return super.getResultSet();
         }
-        
+
         RoutineResultTable table = SQLRoutinesFactory.eINSTANCE.createRoutineResultTable();
         EList params = getParameters();
         for (Iterator it = params.iterator(); it.hasNext();)
@@ -225,7 +239,7 @@ public class SybaseASABaseProcedureImpl extends ProcedureImpl implements SybaseA
         }
         return super.getResultSet();
     }
-    
+
     private Column createColumn(Parameter param)
     {
         Column column = SQLTablesFactory.eINSTANCE.createColumn();

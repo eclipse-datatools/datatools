@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#getLeadingFieldQualifierDefinition <em>Leading Field Qualifier Definition</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#getTrailingFieldQualifierDefinition <em>Trailing Field Qualifier Definition</em>}</li>
@@ -71,7 +72,6 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#getLengthSemantic <em>Length Semantic</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#getLanguageType <em>Language Type</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getPredefinedDataTypeDefinition()
  * @model

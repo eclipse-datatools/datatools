@@ -122,11 +122,12 @@ public final class CheckOption extends AbstractEnumerator {
 	 * Returns the '<em><b>Check Option</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static CheckOption get(String literal) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			CheckOption result = VALUES_ARRAY[i];
+		for (CheckOption result : VALUES_ARRAY) {
 			if (result.toString().equals(literal)) {
 				return result;
 			}
@@ -138,11 +139,12 @@ public final class CheckOption extends AbstractEnumerator {
 	 * Returns the '<em><b>Check Option</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static CheckOption getByName(String name) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			CheckOption result = VALUES_ARRAY[i];
+		for (CheckOption result : VALUES_ARRAY) {
 			if (result.getName().equals(name)) {
 				return result;
 			}
@@ -154,6 +156,8 @@ public final class CheckOption extends AbstractEnumerator {
 	 * Returns the '<em><b>Check Option</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static CheckOption get(int value) {

@@ -15,12 +15,12 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.NicknameDefinition#isConstraintSupported <em>Constraint Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.NicknameDefinition#isIndexSupported <em>Index Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.NicknameDefinition#getMaximumIdentifierLength <em>Maximum Identifier Length</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getNicknameDefinition()
  * @model

@@ -96,7 +96,7 @@ import org.eclipse.emf.ecore.EObject;
  * @see org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseasesqlmodelPackage
  * @generated
  */
-public class SybaseasesqlmodelAdapterFactory extends AdapterFactoryImpl 
+public class SybaseasesqlmodelAdapterFactory extends AdapterFactoryImpl
 {
     /**
 	 * The cached model package.
@@ -127,6 +127,7 @@ public class SybaseasesqlmodelAdapterFactory extends AdapterFactoryImpl
 	 * @return whether this factory is applicable for the type of the object.
 	 * @generated
 	 */
+	@Override
 	public boolean isFactoryForType(Object object)
     {
 		if (object == modelPackage) {
@@ -146,234 +147,311 @@ public class SybaseasesqlmodelAdapterFactory extends AdapterFactoryImpl
 	 */
 	protected SybaseasesqlmodelSwitch modelSwitch =
         new SybaseasesqlmodelSwitch() {
+			@Override
 			public Object caseSybaseASESchema(SybaseASESchema object) {
 				return createSybaseASESchemaAdapter();
 			}
+			@Override
 			public Object caseSybaseASEDatabase(SybaseASEDatabase object) {
 				return createSybaseASEDatabaseAdapter();
 			}
+			@Override
 			public Object caseSybaseASEWebService(SybaseASEWebService object) {
 				return createSybaseASEWebServiceAdapter();
 			}
+			@Override
 			public Object caseSybaseASEPredefinedDataType(SybaseASEPredefinedDataType object) {
 				return createSybaseASEPredefinedDataTypeAdapter();
 			}
+			@Override
 			public Object caseSybaseASECatalog(SybaseASECatalog object) {
 				return createSybaseASECatalogAdapter();
 			}
+			@Override
 			public Object caseSybaseASEProcedure(SybaseASEProcedure object) {
 				return createSybaseASEProcedureAdapter();
 			}
+			@Override
 			public Object caseSybaseASEDefault(SybaseASEDefault object) {
 				return createSybaseASEDefaultAdapter();
 			}
+			@Override
 			public Object caseSybaseASERule(SybaseASERule object) {
 				return createSybaseASERuleAdapter();
 			}
+			@Override
 			public Object caseSybaseASEIndex(SybaseASEIndex object) {
 				return createSybaseASEIndexAdapter();
 			}
+			@Override
 			public Object caseSybaseASESegment(SybaseASESegment object) {
 				return createSybaseASESegmentAdapter();
 			}
+			@Override
 			public Object caseSybaseASEFuncBasedIndexMember(SybaseASEFuncBasedIndexMember object) {
 				return createSybaseASEFuncBasedIndexMemberAdapter();
 			}
+			@Override
 			public Object caseSybaseASETable(SybaseASETable object) {
 				return createSybaseASETableAdapter();
 			}
+			@Override
 			public Object caseSybaseASEColumnCheckConstraint(SybaseASEColumnCheckConstraint object) {
 				return createSybaseASEColumnCheckConstraintAdapter();
 			}
+			@Override
 			public Object caseSybaseASEColumn(SybaseASEColumn object) {
 				return createSybaseASEColumnAdapter();
 			}
+			@Override
 			public Object caseSybaseASEUniqueConstraint(SybaseASEUniqueConstraint object) {
 				return createSybaseASEUniqueConstraintAdapter();
 			}
+			@Override
 			public Object caseSybaseASEPrimaryKey(SybaseASEPrimaryKey object) {
 				return createSybaseASEPrimaryKeyAdapter();
 			}
+			@Override
 			public Object caseDeviceItem(DeviceItem object) {
 				return createDeviceItemAdapter();
 			}
+			@Override
 			public Object caseSegmentThreshold(SegmentThreshold object) {
 				return createSegmentThresholdAdapter();
 			}
+			@Override
 			public Object caseCacheInfo(CacheInfo object) {
 				return createCacheInfoAdapter();
 			}
+			@Override
 			public Object caseSybaseASEUserDefinedType(SybaseASEUserDefinedType object) {
 				return createSybaseASEUserDefinedTypeAdapter();
 			}
+			@Override
 			public Object caseSybaseASEEncryptionKey(SybaseASEEncryptionKey object) {
 				return createSybaseASEEncryptionKeyAdapter();
 			}
+			@Override
 			public Object caseLockPromotionInfo(LockPromotionInfo object) {
 				return createLockPromotionInfoAdapter();
 			}
+			@Override
 			public Object caseSybaseASERole(SybaseASERole object) {
 				return createSybaseASERoleAdapter();
 			}
+			@Override
 			public Object caseSybaseASECache(SybaseASECache object) {
 				return createSybaseASECacheAdapter();
 			}
+			@Override
 			public Object caseSybaseASEViewTable(SybaseASEViewTable object) {
 				return createSybaseASEViewTableAdapter();
 			}
+			@Override
 			public Object caseSybaseASETempTable(SybaseASETempTable object) {
 				return createSybaseASETempTableAdapter();
 			}
+			@Override
 			public Object caseSybaseASEProxyTable(SybaseASEProxyTable object) {
 				return createSybaseASEProxyTableAdapter();
 			}
+			@Override
 			public Object caseSybaseASEWebServiceTable(SybaseASEWebServiceTable object) {
 				return createSybaseASEWebServiceTableAdapter();
 			}
+			@Override
 			public Object caseSybaseASEBaseTable(SybaseASEBaseTable object) {
 				return createSybaseASEBaseTableAdapter();
 			}
+			@Override
 			public Object caseSybaseASEUser(SybaseASEUser object) {
 				return createSybaseASEUserAdapter();
 			}
+			@Override
 			public Object caseSybaseASEGroup(SybaseASEGroup object) {
 				return createSybaseASEGroupAdapter();
 			}
+			@Override
 			public Object caseSybaseASEPrivilege(SybaseASEPrivilege object) {
 				return createSybaseASEPrivilegeAdapter();
 			}
+			@Override
 			public Object caseSybaseASETrigger(SybaseASETrigger object) {
 				return createSybaseASETriggerAdapter();
 			}
+			@Override
 			public Object caseSybaseASECheckConstraint(SybaseASECheckConstraint object) {
 				return createSybaseASECheckConstraintAdapter();
 			}
+			@Override
 			public Object caseEModelElement(EModelElement object) {
 				return createEModelElementAdapter();
 			}
+			@Override
 			public Object caseENamedElement(ENamedElement object) {
 				return createENamedElementAdapter();
 			}
+			@Override
 			public Object caseSQLObject(SQLObject object) {
 				return createSQLObjectAdapter();
 			}
+			@Override
 			public Object caseSchema(Schema object) {
 				return createSchemaAdapter();
 			}
+			@Override
 			public Object caseDatabase(Database object) {
 				return createDatabaseAdapter();
 			}
+			@Override
 			public Object caseDataType(DataType object) {
 				return createDataTypeAdapter();
 			}
+			@Override
 			public Object caseSQLDataType(SQLDataType object) {
 				return createSQLDataTypeAdapter();
 			}
+			@Override
 			public Object casePredefinedDataType(PredefinedDataType object) {
 				return createPredefinedDataTypeAdapter();
 			}
+			@Override
 			public Object caseCatalog(Catalog object) {
 				return createCatalogAdapter();
 			}
+			@Override
 			public Object caseRoutine(Routine object) {
 				return createRoutineAdapter();
 			}
+			@Override
 			public Object caseProcedure(Procedure object) {
 				return createProcedureAdapter();
 			}
+			@Override
 			public Object caseSybaseAuthorizedObject(SybaseAuthorizedObject object) {
 				return createSybaseAuthorizedObjectAdapter();
 			}
+			@Override
 			public Object caseSybaseRoutine(SybaseRoutine object) {
 				return createSybaseRoutineAdapter();
 			}
+			@Override
 			public Object caseIndex(Index object) {
 				return createIndexAdapter();
 			}
+			@Override
 			public Object caseIndexMember(IndexMember object) {
 				return createIndexMemberAdapter();
 			}
+			@Override
 			public Object caseSybaseIndexMember(SybaseIndexMember object) {
 				return createSybaseIndexMemberAdapter();
 			}
+			@Override
 			public Object caseTable(Table object) {
 				return createTableAdapter();
 			}
+			@Override
 			public Object caseBaseTable(BaseTable object) {
 				return createBaseTableAdapter();
 			}
+			@Override
 			public Object casePersistentTable(PersistentTable object) {
 				return createPersistentTableAdapter();
 			}
+			@Override
 			public Object caseSybaseBaseTable(SybaseBaseTable object) {
 				return createSybaseBaseTableAdapter();
 			}
+			@Override
 			public Object caseConstraint(Constraint object) {
 				return createConstraintAdapter();
 			}
+			@Override
 			public Object caseTableConstraint(TableConstraint object) {
 				return createTableConstraintAdapter();
 			}
+			@Override
 			public Object caseCheckConstraint(CheckConstraint object) {
 				return createCheckConstraintAdapter();
 			}
+			@Override
 			public Object caseTypedElement(TypedElement object) {
 				return createTypedElementAdapter();
 			}
+			@Override
 			public Object caseColumn(Column object) {
 				return createColumnAdapter();
 			}
+			@Override
 			public Object caseReferenceConstraint(ReferenceConstraint object) {
 				return createReferenceConstraintAdapter();
 			}
+			@Override
 			public Object caseUniqueConstraint(UniqueConstraint object) {
 				return createUniqueConstraintAdapter();
 			}
+			@Override
 			public Object casePrimaryKey(PrimaryKey object) {
 				return createPrimaryKeyAdapter();
 			}
+			@Override
 			public Object caseUserDefinedType(UserDefinedType object) {
 				return createUserDefinedTypeAdapter();
 			}
+			@Override
 			public Object caseDistinctUserDefinedType(DistinctUserDefinedType object) {
 				return createDistinctUserDefinedTypeAdapter();
 			}
+			@Override
 			public Object caseAuthorizationIdentifier(AuthorizationIdentifier object) {
 				return createAuthorizationIdentifierAdapter();
 			}
+			@Override
 			public Object caseRole(Role object) {
 				return createRoleAdapter();
 			}
+			@Override
 			public Object caseSybaseAuthorizationIdentifier(SybaseAuthorizationIdentifier object) {
 				return createSybaseAuthorizationIdentifierAdapter();
 			}
+			@Override
 			public Object caseDerivedTable(DerivedTable object) {
 				return createDerivedTableAdapter();
 			}
+			@Override
 			public Object caseViewTable(ViewTable object) {
 				return createViewTableAdapter();
 			}
+			@Override
 			public Object caseSybaseViewTable(SybaseViewTable object) {
 				return createSybaseViewTableAdapter();
 			}
+			@Override
 			public Object caseTemporaryTable(TemporaryTable object) {
 				return createTemporaryTableAdapter();
 			}
+			@Override
 			public Object caseUser(User object) {
 				return createUserAdapter();
 			}
+			@Override
 			public Object caseGroup(Group object) {
 				return createGroupAdapter();
 			}
+			@Override
 			public Object casePrivilege(Privilege object) {
 				return createPrivilegeAdapter();
 			}
+			@Override
 			public Object caseSybasePrivilege(SybasePrivilege object) {
 				return createSybasePrivilegeAdapter();
 			}
+			@Override
 			public Object caseTrigger(Trigger object) {
 				return createTriggerAdapter();
 			}
+			@Override
 			public Object defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -387,6 +465,7 @@ public class SybaseasesqlmodelAdapterFactory extends AdapterFactoryImpl
 	 * @return the adapter for the <code>target</code>.
 	 * @generated
 	 */
+	@Override
 	public Adapter createAdapter(Notifier target)
     {
 		return (Adapter)modelSwitch.doSwitch((EObject)target);
@@ -866,9 +945,11 @@ public class SybaseasesqlmodelAdapterFactory extends AdapterFactoryImpl
      * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseASEPrivilege
+	 * @deprecated
 	 * @generated
 	 */
-    public Adapter createSybaseASEPrivilegeAdapter()
+    @Deprecated
+	public Adapter createSybaseASEPrivilegeAdapter()
     {
 		return null;
 	}

@@ -20,12 +20,12 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.impl.SybaseParameterImpl#isNullable <em>Nullable</em>}</li>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.impl.SybaseParameterImpl#getDefaultValue <em>Default Value</em>}</li>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.impl.SybaseParameterImpl#getJDBCParameterType <em>JDBC Parameter Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -104,6 +104,7 @@ public class SybaseParameterImpl extends ParameterImpl implements SybaseParamete
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return SybasesqlmodelPackage.Literals.SYBASE_PARAMETER;
 	}
@@ -113,6 +114,7 @@ public class SybaseParameterImpl extends ParameterImpl implements SybaseParamete
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isNullable() {
 		return nullable;
 	}
@@ -122,11 +124,13 @@ public class SybaseParameterImpl extends ParameterImpl implements SybaseParamete
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setNullable(boolean newNullable) {
 		boolean oldNullable = nullable;
 		nullable = newNullable;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SybasesqlmodelPackage.SYBASE_PARAMETER__NULLABLE, oldNullable, nullable));
+		}
 	}
 
 	/**
@@ -134,6 +138,7 @@ public class SybaseParameterImpl extends ParameterImpl implements SybaseParamete
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getDefaultValue() {
 		return defaultValue;
 	}
@@ -143,11 +148,13 @@ public class SybaseParameterImpl extends ParameterImpl implements SybaseParamete
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDefaultValue(String newDefaultValue) {
 		String oldDefaultValue = defaultValue;
 		defaultValue = newDefaultValue;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SybasesqlmodelPackage.SYBASE_PARAMETER__DEFAULT_VALUE, oldDefaultValue, defaultValue));
+		}
 	}
 
 	/**
@@ -155,6 +162,7 @@ public class SybaseParameterImpl extends ParameterImpl implements SybaseParamete
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public JDBCParameterType getJDBCParameterType() {
 		return jdbcParameterType;
 	}
@@ -164,11 +172,13 @@ public class SybaseParameterImpl extends ParameterImpl implements SybaseParamete
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setJDBCParameterType(JDBCParameterType newJDBCParameterType) {
 		JDBCParameterType oldJDBCParameterType = jdbcParameterType;
 		jdbcParameterType = newJDBCParameterType == null ? JDBC_PARAMETER_TYPE_EDEFAULT : newJDBCParameterType;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SybasesqlmodelPackage.SYBASE_PARAMETER__JDBC_PARAMETER_TYPE, oldJDBCParameterType, jdbcParameterType));
+		}
 	}
 
 	/**
@@ -176,6 +186,7 @@ public class SybaseParameterImpl extends ParameterImpl implements SybaseParamete
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SybasesqlmodelPackage.SYBASE_PARAMETER__NULLABLE:
@@ -193,6 +204,7 @@ public class SybaseParameterImpl extends ParameterImpl implements SybaseParamete
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case SybasesqlmodelPackage.SYBASE_PARAMETER__NULLABLE:
@@ -213,6 +225,7 @@ public class SybaseParameterImpl extends ParameterImpl implements SybaseParamete
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case SybasesqlmodelPackage.SYBASE_PARAMETER__NULLABLE:
@@ -233,6 +246,7 @@ public class SybaseParameterImpl extends ParameterImpl implements SybaseParamete
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SybasesqlmodelPackage.SYBASE_PARAMETER__NULLABLE:
@@ -250,8 +264,11 @@ public class SybaseParameterImpl extends ParameterImpl implements SybaseParamete
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (nullable: ");

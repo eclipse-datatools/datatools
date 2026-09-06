@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.FieldQualifierDefinition#getValidTrailingFieldQualifierDefinitions <em>Valid Trailing Field Qualifier Definitions</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.FieldQualifierDefinition#getName <em>Name</em>}</li>
@@ -27,7 +28,6 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.FieldQualifierDefinition#getDefaultScale <em>Default Scale</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.FieldQualifierDefinition#isScaleSupported <em>Scale Supported</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getFieldQualifierDefinition()
  * @model

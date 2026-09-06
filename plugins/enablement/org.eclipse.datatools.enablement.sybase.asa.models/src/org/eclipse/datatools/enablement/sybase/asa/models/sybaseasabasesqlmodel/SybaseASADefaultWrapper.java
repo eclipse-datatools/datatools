@@ -15,13 +15,13 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASADefaultWrapper#getValue <em>Value</em>}</li>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASADefaultWrapper#isIsLiteral <em>Is Literal</em>}</li>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASADefaultWrapper#getPartitionSize <em>Partition Size</em>}</li>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASADefaultWrapper#getType <em>Type</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseasabasesqlmodelPackage#getSybaseASADefaultWrapper()
  * @model
@@ -44,7 +44,7 @@ public interface SybaseASADefaultWrapper extends EObject
                                                                              {
                                                                                  "autoincrement"
                                                                              };
-    
+
     public static final String[] TIME_TYPE_SYSTEM_DEFAULTS    = new String[]
                                                               {
                                                                   "current time"
@@ -62,11 +62,11 @@ public interface SybaseASADefaultWrapper extends EObject
         "current database", "current user", "current publisher", "last user"
                                                               };
     public static final String   GLOBAL_AUTOINCREMENT         = "global autoincrement";
-    
+
     public static final String   TIME_TYPE                    = "time";
 
     public static final String   TIMESTAMP_TYPE               = "timestamp";
-    
+
     /**
 	 * Returns the value of the '<em><b>Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -184,6 +184,6 @@ public interface SybaseASADefaultWrapper extends EObject
     void parse();
 
     public String getRawValue();
-    
+
     public boolean isSystemDefault();
 } // SybaseASADefaultWrapper

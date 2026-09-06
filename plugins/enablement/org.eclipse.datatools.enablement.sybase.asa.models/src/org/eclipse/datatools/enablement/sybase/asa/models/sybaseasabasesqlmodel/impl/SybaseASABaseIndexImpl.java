@@ -21,14 +21,14 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl.SybaseASABaseIndexImpl#getDbSpace <em>Db Space</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class SybaseASABaseIndexImpl extends IndexImpl implements SybaseASABaseIndex 
+public class SybaseASABaseIndexImpl extends IndexImpl implements SybaseASABaseIndex
 {
     /**
 	 * The cached value of the '{@link #getDbSpace() <em>Db Space</em>}' reference.
@@ -55,6 +55,7 @@ public class SybaseASABaseIndexImpl extends IndexImpl implements SybaseASABaseIn
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass()
     {
 		return SybaseasabasesqlmodelPackage.Literals.SYBASE_ASA_BASE_INDEX;
@@ -65,14 +66,16 @@ public class SybaseASABaseIndexImpl extends IndexImpl implements SybaseASABaseIn
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SybaseASABaseDBSpace getDbSpace()
     {
 		if (dbSpace != null && dbSpace.eIsProxy()) {
 			InternalEObject oldDbSpace = (InternalEObject)dbSpace;
 			dbSpace = (SybaseASABaseDBSpace)eResolveProxy(oldDbSpace);
 			if (dbSpace != oldDbSpace) {
-				if (eNotificationRequired())
+				if (eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_INDEX__DB_SPACE, oldDbSpace, dbSpace));
+				}
 			}
 		}
 		return dbSpace;
@@ -93,12 +96,14 @@ public class SybaseASABaseIndexImpl extends IndexImpl implements SybaseASABaseIn
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDbSpace(SybaseASABaseDBSpace newDbSpace)
     {
 		SybaseASABaseDBSpace oldDbSpace = dbSpace;
 		dbSpace = newDbSpace;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_INDEX__DB_SPACE, oldDbSpace, dbSpace));
+		}
 	}
 
     /**
@@ -106,11 +111,14 @@ public class SybaseASABaseIndexImpl extends IndexImpl implements SybaseASABaseIn
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
     {
 		switch (featureID) {
 			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_INDEX__DB_SPACE:
-				if (resolve) return getDbSpace();
+				if (resolve) {
+					return getDbSpace();
+				}
 				return basicGetDbSpace();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -121,6 +129,7 @@ public class SybaseASABaseIndexImpl extends IndexImpl implements SybaseASABaseIn
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue)
     {
 		switch (featureID) {
@@ -136,6 +145,7 @@ public class SybaseASABaseIndexImpl extends IndexImpl implements SybaseASABaseIn
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID)
     {
 		switch (featureID) {
@@ -151,6 +161,7 @@ public class SybaseASABaseIndexImpl extends IndexImpl implements SybaseASABaseIn
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID)
     {
 		switch (featureID) {

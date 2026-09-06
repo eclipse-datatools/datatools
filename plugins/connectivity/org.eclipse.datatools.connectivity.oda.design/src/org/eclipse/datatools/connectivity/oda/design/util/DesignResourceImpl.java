@@ -8,7 +8,7 @@
  *
  * Contributors:
  *  Actuate Corporation  - initial API and implementation
- *  
+ *
  *************************************************************************
  *
  * $Id: DesignResourceImpl.java,v 1.1 2005/12/29 04:17:55 lchan Exp $
@@ -25,25 +25,23 @@ import org.eclipse.emf.ecore.xmi.impl.XMLResourceImpl;
  * @see org.eclipse.datatools.connectivity.oda.design.util.DesignResourceFactoryImpl
  * @generated
  */
-public class DesignResourceImpl extends XMLResourceImpl
-{
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public static final String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
+public class DesignResourceImpl extends XMLResourceImpl {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final String copyright = "Copyright (c) 2005, 2010 Actuate Corporation"; //$NON-NLS-1$
 
-    /**
-     * Creates an instance of the resource.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @param uri the URI of the new resource.
-     * @generated
-     */
-    public DesignResourceImpl( URI uri )
-    {
-        super( uri );
-    }
+	/**
+	 * Creates an instance of the resource.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param uri the URI of the new resource.
+	 * @generated
+	 */
+	public DesignResourceImpl(URI uri) {
+		super(uri);
+	}
 
 } //DesignResourceFactoryImpl

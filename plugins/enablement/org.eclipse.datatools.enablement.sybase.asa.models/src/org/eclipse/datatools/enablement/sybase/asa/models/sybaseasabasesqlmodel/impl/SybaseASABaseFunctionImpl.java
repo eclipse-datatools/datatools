@@ -20,14 +20,14 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl.SybaseASABaseFunctionImpl#isOnExceptionResume <em>On Exception Resume</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class SybaseASABaseFunctionImpl extends UserDefinedFunctionImpl implements SybaseASABaseFunction 
+public class SybaseASABaseFunctionImpl extends UserDefinedFunctionImpl implements SybaseASABaseFunction
 {
     /**
 	 * The default value of the '{@link #isOnExceptionResume() <em>On Exception Resume</em>}' attribute.
@@ -64,6 +64,7 @@ public class SybaseASABaseFunctionImpl extends UserDefinedFunctionImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass()
     {
 		return SybaseasabasesqlmodelPackage.Literals.SYBASE_ASA_BASE_FUNCTION;
@@ -74,6 +75,7 @@ public class SybaseASABaseFunctionImpl extends UserDefinedFunctionImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	@Override
 	public boolean isSystem() {
 		String owner = this.getSchema().getName();
 		return owner.equals("SYS") || owner.equals("rs_systabgroup");
@@ -84,6 +86,7 @@ public class SybaseASABaseFunctionImpl extends UserDefinedFunctionImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isOnExceptionResume()
     {
 		return onExceptionResume;
@@ -94,19 +97,22 @@ public class SybaseASABaseFunctionImpl extends UserDefinedFunctionImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOnExceptionResume(boolean newOnExceptionResume)
     {
 		boolean oldOnExceptionResume = onExceptionResume;
 		onExceptionResume = newOnExceptionResume;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_FUNCTION__ON_EXCEPTION_RESUME, oldOnExceptionResume, onExceptionResume));
+		}
 	}
 
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      */
-    public void parseParameterDefaultValues()
+    @Override
+	public void parseParameterDefaultValues()
     {
         SybaseRoutineUtil.parseParameterDefaultValues(this, parameters);
     }
@@ -116,6 +122,7 @@ public class SybaseASABaseFunctionImpl extends UserDefinedFunctionImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
     {
 		switch (featureID) {
@@ -130,6 +137,7 @@ public class SybaseASABaseFunctionImpl extends UserDefinedFunctionImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue)
     {
 		switch (featureID) {
@@ -145,6 +153,7 @@ public class SybaseASABaseFunctionImpl extends UserDefinedFunctionImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID)
     {
 		switch (featureID) {
@@ -160,6 +169,7 @@ public class SybaseASABaseFunctionImpl extends UserDefinedFunctionImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID)
     {
 		switch (featureID) {
@@ -174,9 +184,12 @@ public class SybaseASABaseFunctionImpl extends UserDefinedFunctionImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString()
     {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (onExceptionResume: ");

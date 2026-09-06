@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -100,21 +100,41 @@ public class DerbyModelSwitch {
 			case DerbyModelPackage.SYNONYM: {
 				Synonym synonym = (Synonym)theEObject;
 				Object result = caseSynonym(synonym);
-				if (result == null) result = caseTable(synonym);
-				if (result == null) result = caseSQLObject(synonym);
-				if (result == null) result = caseENamedElement(synonym);
-				if (result == null) result = caseEModelElement(synonym);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = caseTable(synonym);
+				}
+				if (result == null) {
+					result = caseSQLObject(synonym);
+				}
+				if (result == null) {
+					result = caseENamedElement(synonym);
+				}
+				if (result == null) {
+					result = caseEModelElement(synonym);
+				}
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case DerbyModelPackage.DERBY_SCHEMA: {
 				DerbySchema derbySchema = (DerbySchema)theEObject;
 				Object result = caseDerbySchema(derbySchema);
-				if (result == null) result = caseSchema(derbySchema);
-				if (result == null) result = caseSQLObject(derbySchema);
-				if (result == null) result = caseENamedElement(derbySchema);
-				if (result == null) result = caseEModelElement(derbySchema);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = caseSchema(derbySchema);
+				}
+				if (result == null) {
+					result = caseSQLObject(derbySchema);
+				}
+				if (result == null) {
+					result = caseENamedElement(derbySchema);
+				}
+				if (result == null) {
+					result = caseEModelElement(derbySchema);
+				}
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			default: return defaultCase(theEObject);

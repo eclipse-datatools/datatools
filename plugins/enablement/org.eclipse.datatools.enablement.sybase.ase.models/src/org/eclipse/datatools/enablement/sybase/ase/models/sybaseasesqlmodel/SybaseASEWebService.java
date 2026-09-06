@@ -15,6 +15,7 @@ import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseASEWebService#getService_id <em>Service id</em>}</li>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseASEWebService#getService_type <em>Service type</em>}</li>
@@ -27,7 +28,6 @@ import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
  *   <li>{@link org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseASEWebService#getRemarks <em>Remarks</em>}</li>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseASEWebService#getDatabase <em>Database</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseasesqlmodelPackage#getSybaseASEWebService()
  * @model

@@ -28,299 +28,335 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLQueryArgumentItemImpl#getPassingMechanism <em>Passing Mechanism</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLQueryArgumentItemImpl#getXqueryArgList <em>Xquery Arg List</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLQueryArgumentItemImpl#getValueExpr <em>Value Expr</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
 public class XMLQueryArgumentItemImpl extends QueryValueExpressionImpl implements XMLQueryArgumentItem {
 	/**
-     * The default value of the '{@link #getPassingMechanism() <em>Passing Mechanism</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getPassingMechanism() <em>Passing Mechanism</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getPassingMechanism()
-     * @generated
-     * @ordered
-     */
+	 * @see #getPassingMechanism()
+	 * @generated
+	 * @ordered
+	 */
     protected static final XMLPassingType PASSING_MECHANISM_EDEFAULT = XMLPassingType.BY_REF_LITERAL;
 
 	/**
-     * The cached value of the '{@link #getPassingMechanism() <em>Passing Mechanism</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getPassingMechanism() <em>Passing Mechanism</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getPassingMechanism()
-     * @generated
-     * @ordered
-     */
+	 * @see #getPassingMechanism()
+	 * @generated
+	 * @ordered
+	 */
     protected XMLPassingType passingMechanism = PASSING_MECHANISM_EDEFAULT;
 
 	/**
-     * The cached value of the '{@link #getValueExpr() <em>Value Expr</em>}' containment reference.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getValueExpr() <em>Value Expr</em>}' containment reference.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getValueExpr()
-     * @generated
-     * @ordered
-     */
+	 * @see #getValueExpr()
+	 * @generated
+	 * @ordered
+	 */
     protected QueryValueExpression valueExpr;
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected XMLQueryArgumentItemImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    protected EClass eStaticClass() {
-        return SQLXMLQueryModelPackage.Literals.XML_QUERY_ARGUMENT_ITEM;
-    }
+	 * @generated
+	 */
+    @Override
+	protected EClass eStaticClass() {
+		return SQLXMLQueryModelPackage.Literals.XML_QUERY_ARGUMENT_ITEM;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public XMLPassingType getPassingMechanism() {
-        return passingMechanism;
-    }
+	 * @generated
+	 */
+    @Override
+	public XMLPassingType getPassingMechanism() {
+		return passingMechanism;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setPassingMechanism(XMLPassingType newPassingMechanism) {
-        XMLPassingType oldPassingMechanism = passingMechanism;
-        passingMechanism = newPassingMechanism == null ? PASSING_MECHANISM_EDEFAULT : newPassingMechanism;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_ITEM__PASSING_MECHANISM, oldPassingMechanism, passingMechanism));
-    }
+	 * @generated
+	 */
+    @Override
+	public void setPassingMechanism(XMLPassingType newPassingMechanism) {
+		XMLPassingType oldPassingMechanism = passingMechanism;
+		passingMechanism = newPassingMechanism == null ? PASSING_MECHANISM_EDEFAULT : newPassingMechanism;
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_ITEM__PASSING_MECHANISM, oldPassingMechanism, passingMechanism));
+		}
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public XMLQueryArgumentList getXqueryArgList() {
-        if (eContainerFeatureID() != SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_ITEM__XQUERY_ARG_LIST) return null;
-        return (XMLQueryArgumentList)eContainer();
-    }
+	 * @generated
+	 */
+    @Override
+	public XMLQueryArgumentList getXqueryArgList() {
+		if (eContainerFeatureID() != SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_ITEM__XQUERY_ARG_LIST) {
+			return null;
+		}
+		return (XMLQueryArgumentList)eInternalContainer();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public NotificationChain basicSetXqueryArgList(XMLQueryArgumentList newXqueryArgList, NotificationChain msgs) {
-        msgs = eBasicSetContainer((InternalEObject)newXqueryArgList, SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_ITEM__XQUERY_ARG_LIST, msgs);
-        return msgs;
-    }
+		msgs = eBasicSetContainer((InternalEObject)newXqueryArgList, SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_ITEM__XQUERY_ARG_LIST, msgs);
+		return msgs;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setXqueryArgList(XMLQueryArgumentList newXqueryArgList) {
-        if (newXqueryArgList != eInternalContainer() || (eContainerFeatureID() != SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_ITEM__XQUERY_ARG_LIST && newXqueryArgList != null)) {
-            if (EcoreUtil.isAncestor(this, newXqueryArgList))
-                throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
-            NotificationChain msgs = null;
-            if (eInternalContainer() != null)
-                msgs = eBasicRemoveFromContainer(msgs);
-            if (newXqueryArgList != null)
-                msgs = ((InternalEObject)newXqueryArgList).eInverseAdd(this, SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__XQUERY_ARG_LIST_CHILDREN, XMLQueryArgumentList.class, msgs);
-            msgs = basicSetXqueryArgList(newXqueryArgList, msgs);
-            if (msgs != null) msgs.dispatch();
-        }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_ITEM__XQUERY_ARG_LIST, newXqueryArgList, newXqueryArgList));
-    }
+	 * @generated
+	 */
+    @Override
+	public void setXqueryArgList(XMLQueryArgumentList newXqueryArgList) {
+		if (newXqueryArgList != eInternalContainer() || (eContainerFeatureID() != SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_ITEM__XQUERY_ARG_LIST && newXqueryArgList != null)) {
+			if (EcoreUtil.isAncestor(this, newXqueryArgList)) {
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			}
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null) {
+				msgs = eBasicRemoveFromContainer(msgs);
+			}
+			if (newXqueryArgList != null) {
+				msgs = ((InternalEObject)newXqueryArgList).eInverseAdd(this, SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__XQUERY_ARG_LIST_CHILDREN, XMLQueryArgumentList.class, msgs);
+			}
+			msgs = basicSetXqueryArgList(newXqueryArgList, msgs);
+			if (msgs != null) {
+				msgs.dispatch();
+			}
+		}
+		else if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_ITEM__XQUERY_ARG_LIST, newXqueryArgList, newXqueryArgList));
+		}
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public QueryValueExpression getValueExpr() {
-        return valueExpr;
-    }
+	 * @generated
+	 */
+    @Override
+	public QueryValueExpression getValueExpr() {
+		return valueExpr;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public NotificationChain basicSetValueExpr(QueryValueExpression newValueExpr, NotificationChain msgs) {
-        QueryValueExpression oldValueExpr = valueExpr;
-        valueExpr = newValueExpr;
-        if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_ITEM__VALUE_EXPR, oldValueExpr, newValueExpr);
-            if (msgs == null) msgs = notification; else msgs.add(notification);
-        }
-        return msgs;
-    }
+		QueryValueExpression oldValueExpr = valueExpr;
+		valueExpr = newValueExpr;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_ITEM__VALUE_EXPR, oldValueExpr, newValueExpr);
+			if (msgs == null) {
+				msgs = notification;
+			} else {
+				msgs.add(notification);
+			}
+		}
+		return msgs;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setValueExpr(QueryValueExpression newValueExpr) {
-        if (newValueExpr != valueExpr) {
-            NotificationChain msgs = null;
-            if (valueExpr != null)
-                msgs = ((InternalEObject)valueExpr).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_ITEM__VALUE_EXPR, null, msgs);
-            if (newValueExpr != null)
-                msgs = ((InternalEObject)newValueExpr).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_ITEM__VALUE_EXPR, null, msgs);
-            msgs = basicSetValueExpr(newValueExpr, msgs);
-            if (msgs != null) msgs.dispatch();
-        }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_ITEM__VALUE_EXPR, newValueExpr, newValueExpr));
-    }
+	 * @generated
+	 */
+    @Override
+	public void setValueExpr(QueryValueExpression newValueExpr) {
+		if (newValueExpr != valueExpr) {
+			NotificationChain msgs = null;
+			if (valueExpr != null) {
+				msgs = ((InternalEObject)valueExpr).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_ITEM__VALUE_EXPR, null, msgs);
+			}
+			if (newValueExpr != null) {
+				msgs = ((InternalEObject)newValueExpr).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_ITEM__VALUE_EXPR, null, msgs);
+			}
+			msgs = basicSetValueExpr(newValueExpr, msgs);
+			if (msgs != null) {
+				msgs.dispatch();
+			}
+		}
+		else if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_ITEM__VALUE_EXPR, newValueExpr, newValueExpr));
+		}
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_ITEM__XQUERY_ARG_LIST:
-                if (eInternalContainer() != null)
-                    msgs = eBasicRemoveFromContainer(msgs);
-                return basicSetXqueryArgList((XMLQueryArgumentList)otherEnd, msgs);
-        }
-        return super.eInverseAdd(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_ITEM__XQUERY_ARG_LIST:
+				if (eInternalContainer() != null) {
+					msgs = eBasicRemoveFromContainer(msgs);
+				}
+				return basicSetXqueryArgList((XMLQueryArgumentList)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_ITEM__XQUERY_ARG_LIST:
-                return basicSetXqueryArgList(null, msgs);
-            case SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_ITEM__VALUE_EXPR:
-                return basicSetValueExpr(null, msgs);
-        }
-        return super.eInverseRemove(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_ITEM__XQUERY_ARG_LIST:
+				return basicSetXqueryArgList(null, msgs);
+			case SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_ITEM__VALUE_EXPR:
+				return basicSetValueExpr(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-        switch (eContainerFeatureID()) {
-            case SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_ITEM__XQUERY_ARG_LIST:
-                return eInternalContainer().eInverseRemove(this, SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__XQUERY_ARG_LIST_CHILDREN, XMLQueryArgumentList.class, msgs);
-        }
-        return super.eBasicRemoveFromContainerFeature(msgs);
-    }
+		switch (eContainerFeatureID()) {
+			case SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_ITEM__XQUERY_ARG_LIST:
+				return eInternalContainer().eInverseRemove(this, SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__XQUERY_ARG_LIST_CHILDREN, XMLQueryArgumentList.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_ITEM__PASSING_MECHANISM:
-                return getPassingMechanism();
-            case SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_ITEM__XQUERY_ARG_LIST:
-                return getXqueryArgList();
-            case SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_ITEM__VALUE_EXPR:
-                return getValueExpr();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_ITEM__PASSING_MECHANISM:
+				return getPassingMechanism();
+			case SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_ITEM__XQUERY_ARG_LIST:
+				return getXqueryArgList();
+			case SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_ITEM__VALUE_EXPR:
+				return getValueExpr();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_ITEM__PASSING_MECHANISM:
-                setPassingMechanism((XMLPassingType)newValue);
-                return;
-            case SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_ITEM__XQUERY_ARG_LIST:
-                setXqueryArgList((XMLQueryArgumentList)newValue);
-                return;
-            case SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_ITEM__VALUE_EXPR:
-                setValueExpr((QueryValueExpression)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_ITEM__PASSING_MECHANISM:
+				setPassingMechanism((XMLPassingType)newValue);
+				return;
+			case SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_ITEM__XQUERY_ARG_LIST:
+				setXqueryArgList((XMLQueryArgumentList)newValue);
+				return;
+			case SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_ITEM__VALUE_EXPR:
+				setValueExpr((QueryValueExpression)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public void eUnset(int featureID) {
-        switch (featureID) {
-            case SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_ITEM__PASSING_MECHANISM:
-                setPassingMechanism(PASSING_MECHANISM_EDEFAULT);
-                return;
-            case SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_ITEM__XQUERY_ARG_LIST:
-                setXqueryArgList((XMLQueryArgumentList)null);
-                return;
-            case SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_ITEM__VALUE_EXPR:
-                setValueExpr((QueryValueExpression)null);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_ITEM__PASSING_MECHANISM:
+				setPassingMechanism(PASSING_MECHANISM_EDEFAULT);
+				return;
+			case SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_ITEM__XQUERY_ARG_LIST:
+				setXqueryArgList((XMLQueryArgumentList)null);
+				return;
+			case SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_ITEM__VALUE_EXPR:
+				setValueExpr((QueryValueExpression)null);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_ITEM__PASSING_MECHANISM:
-                return passingMechanism != PASSING_MECHANISM_EDEFAULT;
-            case SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_ITEM__XQUERY_ARG_LIST:
-                return getXqueryArgList() != null;
-            case SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_ITEM__VALUE_EXPR:
-                return valueExpr != null;
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_ITEM__PASSING_MECHANISM:
+				return passingMechanism != PASSING_MECHANISM_EDEFAULT;
+			case SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_ITEM__XQUERY_ARG_LIST:
+				return getXqueryArgList() != null;
+			case SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_ITEM__VALUE_EXPR:
+				return valueExpr != null;
+		}
+		return super.eIsSet(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public String toString() {
-        if (eIsProxy()) return super.toString();
+	 * @generated
+	 */
+    @Override
+	public String toString() {
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (passingMechanism: ");
-        result.append(passingMechanism);
-        result.append(')');
-        return result.toString();
-    }
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (passingMechanism: ");
+		result.append(passingMechanism);
+		result.append(')');
+		return result.toString();
+	}
 
 } //XMLQueryArgumentItemImpl

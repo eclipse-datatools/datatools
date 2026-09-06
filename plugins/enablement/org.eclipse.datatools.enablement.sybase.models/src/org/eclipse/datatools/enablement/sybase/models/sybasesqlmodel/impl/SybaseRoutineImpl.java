@@ -15,8 +15,6 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Sybase Routine</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */
@@ -35,6 +33,7 @@ public abstract class SybaseRoutineImpl extends RoutineImpl implements SybaseRou
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return SybasesqlmodelPackage.Literals.SYBASE_ROUTINE;
 	}
@@ -44,6 +43,7 @@ public abstract class SybaseRoutineImpl extends RoutineImpl implements SybaseRou
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void parseParameterDefaultValues() {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
@@ -55,6 +55,7 @@ public abstract class SybaseRoutineImpl extends RoutineImpl implements SybaseRou
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSystem() {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT

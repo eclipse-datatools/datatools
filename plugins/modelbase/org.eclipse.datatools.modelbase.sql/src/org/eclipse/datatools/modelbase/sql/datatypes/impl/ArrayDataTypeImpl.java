@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -22,10 +22,10 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.datatypes.impl.ArrayDataTypeImpl#getMaxCardinality <em>Max Cardinality</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -64,6 +64,7 @@ public abstract class ArrayDataTypeImpl extends CollectionDataTypeImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return SQLDataTypesPackage.Literals.ARRAY_DATA_TYPE;
 	}
@@ -73,6 +74,7 @@ public abstract class ArrayDataTypeImpl extends CollectionDataTypeImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getMaxCardinality() {
 		return maxCardinality;
 	}
@@ -82,11 +84,13 @@ public abstract class ArrayDataTypeImpl extends CollectionDataTypeImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMaxCardinality(int newMaxCardinality) {
 		int oldMaxCardinality = maxCardinality;
 		maxCardinality = newMaxCardinality;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLDataTypesPackage.ARRAY_DATA_TYPE__MAX_CARDINALITY, oldMaxCardinality, maxCardinality));
+		}
 	}
 
 	/**
@@ -94,10 +98,11 @@ public abstract class ArrayDataTypeImpl extends CollectionDataTypeImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SQLDataTypesPackage.ARRAY_DATA_TYPE__MAX_CARDINALITY:
-				return Integer.valueOf(getMaxCardinality());
+				return new Integer(getMaxCardinality());
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -107,6 +112,7 @@ public abstract class ArrayDataTypeImpl extends CollectionDataTypeImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case SQLDataTypesPackage.ARRAY_DATA_TYPE__MAX_CARDINALITY:
@@ -121,6 +127,7 @@ public abstract class ArrayDataTypeImpl extends CollectionDataTypeImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case SQLDataTypesPackage.ARRAY_DATA_TYPE__MAX_CARDINALITY:
@@ -135,6 +142,7 @@ public abstract class ArrayDataTypeImpl extends CollectionDataTypeImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SQLDataTypesPackage.ARRAY_DATA_TYPE__MAX_CARDINALITY:
@@ -148,8 +156,11 @@ public abstract class ArrayDataTypeImpl extends CollectionDataTypeImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (maxCardinality: "); //$NON-NLS-1$

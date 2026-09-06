@@ -70,7 +70,7 @@ public class SybaseasabasesqlmodelFactoryImpl extends EFactoryImpl implements Sy
     public static SybaseasabasesqlmodelFactory init()
     {
 		try {
-			SybaseasabasesqlmodelFactory theSybaseasabasesqlmodelFactory = (SybaseasabasesqlmodelFactory)EPackage.Registry.INSTANCE.getEFactory("http:///org/eclipse/datatools/connectivity/sqm/sybase/asa/sybaseasabasesqlmodel.ecore"); 
+			SybaseasabasesqlmodelFactory theSybaseasabasesqlmodelFactory = (SybaseasabasesqlmodelFactory)EPackage.Registry.INSTANCE.getEFactory(SybaseasabasesqlmodelPackage.eNS_URI);
 			if (theSybaseasabasesqlmodelFactory != null) {
 				return theSybaseasabasesqlmodelFactory;
 			}
@@ -97,7 +97,8 @@ public class SybaseasabasesqlmodelFactoryImpl extends EFactoryImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EObject create(EClass eClass)
+    @Override
+	public EObject create(EClass eClass)
     {
 		switch (eClass.getClassifierID()) {
 			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_EVENT: return createSybaseASABaseEvent();
@@ -138,7 +139,8 @@ public class SybaseasabasesqlmodelFactoryImpl extends EFactoryImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public Object createFromString(EDataType eDataType, String initialValue)
+    @Override
+	public Object createFromString(EDataType eDataType, String initialValue)
     {
 		switch (eDataType.getClassifierID()) {
 			case SybaseasabasesqlmodelPackage.TRANSACTION_OPTION:
@@ -171,7 +173,8 @@ public class SybaseasabasesqlmodelFactoryImpl extends EFactoryImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public String convertToString(EDataType eDataType, Object instanceValue)
+    @Override
+	public String convertToString(EDataType eDataType, Object instanceValue)
     {
 		switch (eDataType.getClassifierID()) {
 			case SybaseasabasesqlmodelPackage.TRANSACTION_OPTION:
@@ -204,7 +207,8 @@ public class SybaseasabasesqlmodelFactoryImpl extends EFactoryImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public SybaseASABaseEvent createSybaseASABaseEvent()
+    @Override
+	public SybaseASABaseEvent createSybaseASABaseEvent()
     {
 		SybaseASABaseEventImpl sybaseASABaseEvent = new SybaseASABaseEventImpl();
 		return sybaseASABaseEvent;
@@ -215,7 +219,8 @@ public class SybaseasabasesqlmodelFactoryImpl extends EFactoryImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public SybaseASABaseDatabase createSybaseASABaseDatabase()
+    @Override
+	public SybaseASABaseDatabase createSybaseASABaseDatabase()
     {
 		SybaseASABaseDatabaseImpl sybaseASABaseDatabase = new SybaseASABaseDatabaseImpl();
 		return sybaseASABaseDatabase;
@@ -226,7 +231,8 @@ public class SybaseasabasesqlmodelFactoryImpl extends EFactoryImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public SybaseASAWebService createSybaseASAWebService()
+    @Override
+	public SybaseASAWebService createSybaseASAWebService()
     {
 		SybaseASAWebServiceImpl sybaseASAWebService = new SybaseASAWebServiceImpl();
 		return sybaseASAWebService;
@@ -237,7 +243,8 @@ public class SybaseasabasesqlmodelFactoryImpl extends EFactoryImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EncryptionInfo createEncryptionInfo()
+    @Override
+	public EncryptionInfo createEncryptionInfo()
     {
 		EncryptionInfoImpl encryptionInfo = new EncryptionInfoImpl();
 		return encryptionInfo;
@@ -248,7 +255,8 @@ public class SybaseasabasesqlmodelFactoryImpl extends EFactoryImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public SybaseASABaseUserDefinedType createSybaseASABaseUserDefinedType()
+    @Override
+	public SybaseASABaseUserDefinedType createSybaseASABaseUserDefinedType()
     {
 		SybaseASABaseUserDefinedTypeImpl sybaseASABaseUserDefinedType = new SybaseASABaseUserDefinedTypeImpl();
 		return sybaseASABaseUserDefinedType;
@@ -259,7 +267,8 @@ public class SybaseasabasesqlmodelFactoryImpl extends EFactoryImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public SybaseASABasePredefinedDataType createSybaseASABasePredefinedDataType()
+    @Override
+	public SybaseASABasePredefinedDataType createSybaseASABasePredefinedDataType()
     {
 		SybaseASABasePredefinedDataTypeImpl sybaseASABasePredefinedDataType = new SybaseASABasePredefinedDataTypeImpl();
 		return sybaseASABasePredefinedDataType;
@@ -270,7 +279,8 @@ public class SybaseasabasesqlmodelFactoryImpl extends EFactoryImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public SybaseASABaseTable createSybaseASABaseTable()
+    @Override
+	public SybaseASABaseTable createSybaseASABaseTable()
     {
 		SybaseASABaseTableImpl sybaseASABaseTable = new SybaseASABaseTableImpl();
 		return sybaseASABaseTable;
@@ -281,7 +291,8 @@ public class SybaseasabasesqlmodelFactoryImpl extends EFactoryImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public SybaseASABaseColumn createSybaseASABaseColumn()
+    @Override
+	public SybaseASABaseColumn createSybaseASABaseColumn()
     {
 		SybaseASABaseColumnImpl sybaseASABaseColumn = new SybaseASABaseColumnImpl();
 		return sybaseASABaseColumn;
@@ -292,7 +303,8 @@ public class SybaseasabasesqlmodelFactoryImpl extends EFactoryImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public SybaseASABaseUniqueConstraint createSybaseASABaseUniqueConstraint()
+    @Override
+	public SybaseASABaseUniqueConstraint createSybaseASABaseUniqueConstraint()
     {
 		SybaseASABaseUniqueConstraintImpl sybaseASABaseUniqueConstraint = new SybaseASABaseUniqueConstraintImpl();
 		return sybaseASABaseUniqueConstraint;
@@ -303,7 +315,8 @@ public class SybaseasabasesqlmodelFactoryImpl extends EFactoryImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public SybaseASABasePrimaryKey createSybaseASABasePrimaryKey()
+    @Override
+	public SybaseASABasePrimaryKey createSybaseASABasePrimaryKey()
     {
 		SybaseASABasePrimaryKeyImpl sybaseASABasePrimaryKey = new SybaseASABasePrimaryKeyImpl();
 		return sybaseASABasePrimaryKey;
@@ -314,7 +327,8 @@ public class SybaseasabasesqlmodelFactoryImpl extends EFactoryImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public SybaseASABaseForeignKey createSybaseASABaseForeignKey()
+    @Override
+	public SybaseASABaseForeignKey createSybaseASABaseForeignKey()
     {
 		SybaseASABaseForeignKeyImpl sybaseASABaseForeignKey = new SybaseASABaseForeignKeyImpl();
 		return sybaseASABaseForeignKey;
@@ -325,7 +339,8 @@ public class SybaseasabasesqlmodelFactoryImpl extends EFactoryImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public SybaseASABaseIndex createSybaseASABaseIndex()
+    @Override
+	public SybaseASABaseIndex createSybaseASABaseIndex()
     {
 		SybaseASABaseIndexImpl sybaseASABaseIndex = new SybaseASABaseIndexImpl();
 		return sybaseASABaseIndex;
@@ -336,7 +351,8 @@ public class SybaseasabasesqlmodelFactoryImpl extends EFactoryImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public SybaseASABaseDBSpace createSybaseASABaseDBSpace()
+    @Override
+	public SybaseASABaseDBSpace createSybaseASABaseDBSpace()
     {
 		SybaseASABaseDBSpaceImpl sybaseASABaseDBSpace = new SybaseASABaseDBSpaceImpl();
 		return sybaseASABaseDBSpace;
@@ -347,7 +363,8 @@ public class SybaseasabasesqlmodelFactoryImpl extends EFactoryImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public SybaseASABaseViewTable createSybaseASABaseViewTable()
+    @Override
+	public SybaseASABaseViewTable createSybaseASABaseViewTable()
     {
 		SybaseASABaseViewTableImpl sybaseASABaseViewTable = new SybaseASABaseViewTableImpl();
 		return sybaseASABaseViewTable;
@@ -358,7 +375,8 @@ public class SybaseasabasesqlmodelFactoryImpl extends EFactoryImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public SybaseASABaseFunction createSybaseASABaseFunction()
+    @Override
+	public SybaseASABaseFunction createSybaseASABaseFunction()
     {
 		SybaseASABaseFunctionImpl sybaseASABaseFunction = new SybaseASABaseFunctionImpl();
 		return sybaseASABaseFunction;
@@ -369,7 +387,8 @@ public class SybaseasabasesqlmodelFactoryImpl extends EFactoryImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public SybaseASABaseProcedure createSybaseASABaseProcedure()
+    @Override
+	public SybaseASABaseProcedure createSybaseASABaseProcedure()
     {
 		SybaseASABaseProcedureImpl sybaseASABaseProcedure = new SybaseASABaseProcedureImpl();
 		return sybaseASABaseProcedure;
@@ -380,7 +399,8 @@ public class SybaseasabasesqlmodelFactoryImpl extends EFactoryImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public SybaseASABaseTempTable createSybaseASABaseTempTable()
+    @Override
+	public SybaseASABaseTempTable createSybaseASABaseTempTable()
     {
 		SybaseASABaseTempTableImpl sybaseASABaseTempTable = new SybaseASABaseTempTableImpl();
 		return sybaseASABaseTempTable;
@@ -391,7 +411,8 @@ public class SybaseasabasesqlmodelFactoryImpl extends EFactoryImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public SybaseASABaseTrigger createSybaseASABaseTrigger()
+    @Override
+	public SybaseASABaseTrigger createSybaseASABaseTrigger()
     {
 		SybaseASABaseTriggerImpl sybaseASABaseTrigger = new SybaseASABaseTriggerImpl();
 		return sybaseASABaseTrigger;
@@ -402,7 +423,8 @@ public class SybaseasabasesqlmodelFactoryImpl extends EFactoryImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public SybaseASABaseProxyTable createSybaseASABaseProxyTable()
+    @Override
+	public SybaseASABaseProxyTable createSybaseASABaseProxyTable()
     {
 		SybaseASABaseProxyTableImpl sybaseASABaseProxyTable = new SybaseASABaseProxyTableImpl();
 		return sybaseASABaseProxyTable;
@@ -413,7 +435,8 @@ public class SybaseasabasesqlmodelFactoryImpl extends EFactoryImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public SybaseASABaseColumnCheckConstraint createSybaseASABaseColumnCheckConstraint()
+    @Override
+	public SybaseASABaseColumnCheckConstraint createSybaseASABaseColumnCheckConstraint()
     {
 		SybaseASABaseColumnCheckConstraintImpl sybaseASABaseColumnCheckConstraint = new SybaseASABaseColumnCheckConstraintImpl();
 		return sybaseASABaseColumnCheckConstraint;
@@ -424,7 +447,8 @@ public class SybaseasabasesqlmodelFactoryImpl extends EFactoryImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public Schedule createSchedule()
+    @Override
+	public Schedule createSchedule()
     {
 		ScheduleImpl schedule = new ScheduleImpl();
 		return schedule;
@@ -435,7 +459,8 @@ public class SybaseasabasesqlmodelFactoryImpl extends EFactoryImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public SybaseASABaseRemoteProcedure createSybaseASABaseRemoteProcedure()
+    @Override
+	public SybaseASABaseRemoteProcedure createSybaseASABaseRemoteProcedure()
     {
 		SybaseASABaseRemoteProcedureImpl sybaseASABaseRemoteProcedure = new SybaseASABaseRemoteProcedureImpl();
 		return sybaseASABaseRemoteProcedure;
@@ -446,7 +471,8 @@ public class SybaseasabasesqlmodelFactoryImpl extends EFactoryImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public SybaseASABaseParameter createSybaseASABaseParameter()
+    @Override
+	public SybaseASABaseParameter createSybaseASABaseParameter()
     {
 		SybaseASABaseParameterImpl sybaseASABaseParameter = new SybaseASABaseParameterImpl();
 		return sybaseASABaseParameter;
@@ -457,7 +483,8 @@ public class SybaseasabasesqlmodelFactoryImpl extends EFactoryImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public SybaseASABaseGroup createSybaseASABaseGroup()
+    @Override
+	public SybaseASABaseGroup createSybaseASABaseGroup()
     {
 		SybaseASABaseGroupImpl sybaseASABaseGroup = new SybaseASABaseGroupImpl();
 		return sybaseASABaseGroup;
@@ -468,7 +495,8 @@ public class SybaseasabasesqlmodelFactoryImpl extends EFactoryImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public SybaseASABaseSchema createSybaseASABaseSchema()
+    @Override
+	public SybaseASABaseSchema createSybaseASABaseSchema()
     {
 		SybaseASABaseSchemaImpl sybaseASABaseSchema = new SybaseASABaseSchemaImpl();
 		return sybaseASABaseSchema;
@@ -479,7 +507,8 @@ public class SybaseasabasesqlmodelFactoryImpl extends EFactoryImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public SybaseASABaseUser createSybaseASABaseUser()
+    @Override
+	public SybaseASABaseUser createSybaseASABaseUser()
     {
 		SybaseASABaseUserImpl sybaseASABaseUser = new SybaseASABaseUserImpl();
 		return sybaseASABaseUser;
@@ -490,6 +519,7 @@ public class SybaseasabasesqlmodelFactoryImpl extends EFactoryImpl implements Sy
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SybaseASADefaultWrapper createSybaseASADefaultWrapper()
     {
 		SybaseASADefaultWrapperImpl sybaseASADefaultWrapper = new SybaseASADefaultWrapperImpl();
@@ -501,7 +531,8 @@ public class SybaseasabasesqlmodelFactoryImpl extends EFactoryImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EventCondition createEventCondition()
+    @Override
+	public EventCondition createEventCondition()
     {
 		EventConditionImpl eventCondition = new EventConditionImpl();
 		return eventCondition;
@@ -515,7 +546,9 @@ public class SybaseasabasesqlmodelFactoryImpl extends EFactoryImpl implements Sy
     public TransactionOption createTransactionOptionFromString(EDataType eDataType, String initialValue)
     {
 		TransactionOption result = TransactionOption.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		if (result == null) {
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		}
 		return result;
 	}
 
@@ -537,7 +570,9 @@ public class SybaseasabasesqlmodelFactoryImpl extends EFactoryImpl implements Sy
     public TypeOfDefault createTypeOfDefaultFromString(EDataType eDataType, String initialValue)
     {
 		TypeOfDefault result = TypeOfDefault.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		if (result == null) {
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		}
 		return result;
 	}
 
@@ -559,7 +594,9 @@ public class SybaseasabasesqlmodelFactoryImpl extends EFactoryImpl implements Sy
     public SybaseASABaseActionTime createSybaseASABaseActionTimeFromString(EDataType eDataType, String initialValue)
     {
 		SybaseASABaseActionTime result = SybaseASABaseActionTime.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		if (result == null) {
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		}
 		return result;
 	}
 
@@ -581,7 +618,9 @@ public class SybaseasabasesqlmodelFactoryImpl extends EFactoryImpl implements Sy
     public EventType createEventTypeFromString(EDataType eDataType, String initialValue)
     {
 		EventType result = EventType.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		if (result == null) {
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		}
 		return result;
 	}
 
@@ -603,7 +642,9 @@ public class SybaseasabasesqlmodelFactoryImpl extends EFactoryImpl implements Sy
     public JavaSupportType createJavaSupportTypeFromString(EDataType eDataType, String initialValue)
     {
 		JavaSupportType result = JavaSupportType.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		if (result == null) {
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		}
 		return result;
 	}
 
@@ -625,7 +666,9 @@ public class SybaseasabasesqlmodelFactoryImpl extends EFactoryImpl implements Sy
     public EventLocationType createEventLocationTypeFromString(EDataType eDataType, String initialValue)
     {
 		EventLocationType result = EventLocationType.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		if (result == null) {
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		}
 		return result;
 	}
 
@@ -647,7 +690,9 @@ public class SybaseasabasesqlmodelFactoryImpl extends EFactoryImpl implements Sy
     public IntervalUnitType createIntervalUnitTypeFromString(EDataType eDataType, String initialValue)
     {
 		IntervalUnitType result = IntervalUnitType.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		if (result == null) {
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		}
 		return result;
 	}
 
@@ -669,7 +714,9 @@ public class SybaseasabasesqlmodelFactoryImpl extends EFactoryImpl implements Sy
     public SystemDefinedDefaultType createSystemDefinedDefaultTypeFromString(EDataType eDataType, String initialValue)
     {
 		SystemDefinedDefaultType result = SystemDefinedDefaultType.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		if (result == null) {
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		}
 		return result;
 	}
 
@@ -691,7 +738,9 @@ public class SybaseasabasesqlmodelFactoryImpl extends EFactoryImpl implements Sy
     public AllowNullType createAllowNullTypeFromString(EDataType eDataType, String initialValue)
     {
 		AllowNullType result = AllowNullType.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		if (result == null) {
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		}
 		return result;
 	}
 
@@ -713,7 +762,9 @@ public class SybaseasabasesqlmodelFactoryImpl extends EFactoryImpl implements Sy
     public ParameterType createParameterTypeFromString(EDataType eDataType, String initialValue)
     {
 		ParameterType result = ParameterType.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		if (result == null) {
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		}
 		return result;
 	}
 
@@ -732,7 +783,8 @@ public class SybaseasabasesqlmodelFactoryImpl extends EFactoryImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public SybaseasabasesqlmodelPackage getSybaseasabasesqlmodelPackage()
+    @Override
+	public SybaseasabasesqlmodelPackage getSybaseasabasesqlmodelPackage()
     {
 		return (SybaseasabasesqlmodelPackage)getEPackage();
 	}
@@ -743,7 +795,8 @@ public class SybaseasabasesqlmodelFactoryImpl extends EFactoryImpl implements Sy
 	 * @deprecated
 	 * @generated
 	 */
-    public static SybaseasabasesqlmodelPackage getPackage()
+    @Deprecated
+	public static SybaseasabasesqlmodelPackage getPackage()
     {
 		return SybaseasabasesqlmodelPackage.eINSTANCE;
 	}

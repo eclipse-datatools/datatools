@@ -25,14 +25,14 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl.SybaseASABaseTempTableImpl#getTransactionOption <em>Transaction Option</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class SybaseASABaseTempTableImpl extends TemporaryTableImpl implements SybaseASABaseTempTable 
+public class SybaseASABaseTempTableImpl extends TemporaryTableImpl implements SybaseASABaseTempTable
 {
     /**
 	 * The default value of the '{@link #getTransactionOption() <em>Transaction Option</em>}' attribute.
@@ -69,6 +69,7 @@ public class SybaseASABaseTempTableImpl extends TemporaryTableImpl implements Sy
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass()
     {
 		return SybaseasabasesqlmodelPackage.Literals.SYBASE_ASA_BASE_TEMP_TABLE;
@@ -79,6 +80,7 @@ public class SybaseASABaseTempTableImpl extends TemporaryTableImpl implements Sy
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TransactionOption getTransactionOption()
     {
 		return transactionOption;
@@ -89,12 +91,14 @@ public class SybaseASABaseTempTableImpl extends TemporaryTableImpl implements Sy
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTransactionOption(TransactionOption newTransactionOption)
     {
 		TransactionOption oldTransactionOption = transactionOption;
 		transactionOption = newTransactionOption == null ? TRANSACTION_OPTION_EDEFAULT : newTransactionOption;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TEMP_TABLE__TRANSACTION_OPTION, oldTransactionOption, transactionOption));
+		}
 	}
 
     /**
@@ -102,6 +106,7 @@ public class SybaseASABaseTempTableImpl extends TemporaryTableImpl implements Sy
 	 * <!-- end-user-doc -->
      * @generated NOT
      */
+	@Override
 	public boolean isSystem()
     {
 	    return false;
@@ -111,6 +116,7 @@ public class SybaseASABaseTempTableImpl extends TemporaryTableImpl implements Sy
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 */
+	@Override
 	public List getCheckConstraints()
     {
         List result = new ArrayList();
@@ -131,6 +137,7 @@ public class SybaseASABaseTempTableImpl extends TemporaryTableImpl implements Sy
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
     {
 		switch (featureID) {
@@ -145,6 +152,7 @@ public class SybaseASABaseTempTableImpl extends TemporaryTableImpl implements Sy
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue)
     {
 		switch (featureID) {
@@ -160,6 +168,7 @@ public class SybaseASABaseTempTableImpl extends TemporaryTableImpl implements Sy
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID)
     {
 		switch (featureID) {
@@ -175,6 +184,7 @@ public class SybaseASABaseTempTableImpl extends TemporaryTableImpl implements Sy
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID)
     {
 		switch (featureID) {
@@ -189,9 +199,12 @@ public class SybaseASABaseTempTableImpl extends TemporaryTableImpl implements Sy
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString()
     {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (transactionOption: ");

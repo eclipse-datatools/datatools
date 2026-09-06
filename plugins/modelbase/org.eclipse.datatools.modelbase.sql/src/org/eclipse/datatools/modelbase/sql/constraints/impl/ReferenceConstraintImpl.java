@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -25,10 +25,10 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.constraints.impl.ReferenceConstraintImpl#getMembers <em>Members</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -57,6 +57,7 @@ public abstract class ReferenceConstraintImpl extends TableConstraintImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return SQLConstraintsPackage.Literals.REFERENCE_CONSTRAINT;
 	}
@@ -66,6 +67,7 @@ public abstract class ReferenceConstraintImpl extends TableConstraintImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList getMembers() {
 		if (members == null) {
 			members = new EObjectResolvingEList(Column.class, this, SQLConstraintsPackage.REFERENCE_CONSTRAINT__MEMBERS);
@@ -78,6 +80,7 @@ public abstract class ReferenceConstraintImpl extends TableConstraintImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SQLConstraintsPackage.REFERENCE_CONSTRAINT__MEMBERS:
@@ -91,6 +94,7 @@ public abstract class ReferenceConstraintImpl extends TableConstraintImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case SQLConstraintsPackage.REFERENCE_CONSTRAINT__MEMBERS:
@@ -106,6 +110,7 @@ public abstract class ReferenceConstraintImpl extends TableConstraintImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case SQLConstraintsPackage.REFERENCE_CONSTRAINT__MEMBERS:
@@ -120,6 +125,7 @@ public abstract class ReferenceConstraintImpl extends TableConstraintImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SQLConstraintsPackage.REFERENCE_CONSTRAINT__MEMBERS:

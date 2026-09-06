@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -49,6 +49,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.schema.impl.SchemaImpl#getTriggers <em>Triggers</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.schema.impl.SchemaImpl#getIndices <em>Indices</em>}</li>
@@ -62,7 +63,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.eclipse.datatools.modelbase.sql.schema.impl.SchemaImpl#getRoutines <em>Routines</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.schema.impl.SchemaImpl#getOwner <em>Owner</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -191,6 +191,7 @@ public class SchemaImpl extends SQLObjectImpl implements Schema {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return SQLSchemaPackage.Literals.SCHEMA;
 	}
@@ -200,6 +201,7 @@ public class SchemaImpl extends SQLObjectImpl implements Schema {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList getTriggers() {
 		if (triggers == null) {
 			triggers = new EObjectWithInverseResolvingEList(Trigger.class, this, SQLSchemaPackage.SCHEMA__TRIGGERS, SQLTablesPackage.TRIGGER__SCHEMA);
@@ -212,6 +214,7 @@ public class SchemaImpl extends SQLObjectImpl implements Schema {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList getIndices() {
 		if (indices == null) {
 			indices = new EObjectWithInverseResolvingEList(Index.class, this, SQLSchemaPackage.SCHEMA__INDICES, SQLConstraintsPackage.INDEX__SCHEMA);
@@ -224,6 +227,7 @@ public class SchemaImpl extends SQLObjectImpl implements Schema {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList getTables() {
 		if (tables == null) {
 			tables = new EObjectWithInverseResolvingEList(Table.class, this, SQLSchemaPackage.SCHEMA__TABLES, SQLTablesPackage.TABLE__SCHEMA);
@@ -236,6 +240,7 @@ public class SchemaImpl extends SQLObjectImpl implements Schema {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList getSequences() {
 		if (sequences == null) {
 			sequences = new EObjectWithInverseResolvingEList(Sequence.class, this, SQLSchemaPackage.SCHEMA__SEQUENCES, SQLSchemaPackage.SEQUENCE__SCHEMA);
@@ -248,13 +253,15 @@ public class SchemaImpl extends SQLObjectImpl implements Schema {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Database getDatabase() {
 		if (database != null && database.eIsProxy()) {
 			InternalEObject oldDatabase = (InternalEObject)database;
 			database = (Database)eResolveProxy(oldDatabase);
 			if (database != oldDatabase) {
-				if (eNotificationRequired())
+				if (eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SQLSchemaPackage.SCHEMA__DATABASE, oldDatabase, database));
+				}
 			}
 		}
 		return database;
@@ -279,7 +286,11 @@ public class SchemaImpl extends SQLObjectImpl implements Schema {
 		database = newDatabase;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLSchemaPackage.SCHEMA__DATABASE, oldDatabase, newDatabase);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			if (msgs == null) {
+				msgs = notification;
+			} else {
+				msgs.add(notification);
+			}
 		}
 		return msgs;
 	}
@@ -289,18 +300,24 @@ public class SchemaImpl extends SQLObjectImpl implements Schema {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDatabase(Database newDatabase) {
 		if (newDatabase != database) {
 			NotificationChain msgs = null;
-			if (database != null)
+			if (database != null) {
 				msgs = ((InternalEObject)database).eInverseRemove(this, SQLSchemaPackage.DATABASE__SCHEMAS, Database.class, msgs);
-			if (newDatabase != null)
+			}
+			if (newDatabase != null) {
 				msgs = ((InternalEObject)newDatabase).eInverseAdd(this, SQLSchemaPackage.DATABASE__SCHEMAS, Database.class, msgs);
+			}
 			msgs = basicSetDatabase(newDatabase, msgs);
-			if (msgs != null) msgs.dispatch();
+			if (msgs != null) {
+				msgs.dispatch();
+			}
 		}
-		else if (eNotificationRequired())
+		else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLSchemaPackage.SCHEMA__DATABASE, newDatabase, newDatabase));
+		}
 	}
 
 	/**
@@ -308,13 +325,15 @@ public class SchemaImpl extends SQLObjectImpl implements Schema {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Catalog getCatalog() {
 		if (catalog != null && catalog.eIsProxy()) {
 			InternalEObject oldCatalog = (InternalEObject)catalog;
 			catalog = (Catalog)eResolveProxy(oldCatalog);
 			if (catalog != oldCatalog) {
-				if (eNotificationRequired())
+				if (eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SQLSchemaPackage.SCHEMA__CATALOG, oldCatalog, catalog));
+				}
 			}
 		}
 		return catalog;
@@ -339,7 +358,11 @@ public class SchemaImpl extends SQLObjectImpl implements Schema {
 		catalog = newCatalog;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLSchemaPackage.SCHEMA__CATALOG, oldCatalog, newCatalog);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			if (msgs == null) {
+				msgs = notification;
+			} else {
+				msgs.add(notification);
+			}
 		}
 		return msgs;
 	}
@@ -349,18 +372,24 @@ public class SchemaImpl extends SQLObjectImpl implements Schema {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCatalog(Catalog newCatalog) {
 		if (newCatalog != catalog) {
 			NotificationChain msgs = null;
-			if (catalog != null)
+			if (catalog != null) {
 				msgs = ((InternalEObject)catalog).eInverseRemove(this, SQLSchemaPackage.CATALOG__SCHEMAS, Catalog.class, msgs);
-			if (newCatalog != null)
+			}
+			if (newCatalog != null) {
 				msgs = ((InternalEObject)newCatalog).eInverseAdd(this, SQLSchemaPackage.CATALOG__SCHEMAS, Catalog.class, msgs);
+			}
 			msgs = basicSetCatalog(newCatalog, msgs);
-			if (msgs != null) msgs.dispatch();
+			if (msgs != null) {
+				msgs.dispatch();
+			}
 		}
-		else if (eNotificationRequired())
+		else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLSchemaPackage.SCHEMA__CATALOG, newCatalog, newCatalog));
+		}
 	}
 
 	/**
@@ -368,6 +397,7 @@ public class SchemaImpl extends SQLObjectImpl implements Schema {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList getAssertions() {
 		if (assertions == null) {
 			assertions = new EObjectWithInverseResolvingEList(Assertion.class, this, SQLSchemaPackage.SCHEMA__ASSERTIONS, SQLConstraintsPackage.ASSERTION__SCHEMA);
@@ -380,6 +410,7 @@ public class SchemaImpl extends SQLObjectImpl implements Schema {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList getUserDefinedTypes() {
 		if (userDefinedTypes == null) {
 			userDefinedTypes = new EObjectWithInverseResolvingEList(UserDefinedType.class, this, SQLSchemaPackage.SCHEMA__USER_DEFINED_TYPES, SQLDataTypesPackage.USER_DEFINED_TYPE__SCHEMA);
@@ -392,6 +423,7 @@ public class SchemaImpl extends SQLObjectImpl implements Schema {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList getCharSets() {
 		if (charSets == null) {
 			charSets = new EObjectWithInverseResolvingEList(CharacterSet.class, this, SQLSchemaPackage.SCHEMA__CHAR_SETS, SQLDataTypesPackage.CHARACTER_SET__SCHEMA);
@@ -404,6 +436,7 @@ public class SchemaImpl extends SQLObjectImpl implements Schema {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList getRoutines() {
 		if (routines == null) {
 			routines = new EObjectWithInverseResolvingEList(Routine.class, this, SQLSchemaPackage.SCHEMA__ROUTINES, SQLRoutinesPackage.ROUTINE__SCHEMA);
@@ -414,21 +447,24 @@ public class SchemaImpl extends SQLObjectImpl implements Schema {
    /**
     * Get a list of procedures belonging to this schema.
     */
-   public EList getProcedures() {
+   @Override
+public EList getProcedures() {
       return getSpecializedRoutines(Procedure.class);
    }
 
    /**
     * Get a list of user-defined functions belonging to this schema.
     */
-   public EList getUDFs() {
+   @Override
+public EList getUDFs() {
       return getSpecializedRoutines(UserDefinedFunction.class);
    }
 
    /**
     * Get a list of built-in (aka system) functions belonging to this schema.
     */
-   public EList getBuiltInFunctions() {
+   @Override
+public EList getBuiltInFunctions() {
       return getSpecializedRoutines(BuiltInFunction.class);
    }
 
@@ -454,13 +490,15 @@ public class SchemaImpl extends SQLObjectImpl implements Schema {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public AuthorizationIdentifier getOwner() {
 		if (owner != null && owner.eIsProxy()) {
 			InternalEObject oldOwner = (InternalEObject)owner;
 			owner = (AuthorizationIdentifier)eResolveProxy(oldOwner);
 			if (owner != oldOwner) {
-				if (eNotificationRequired())
+				if (eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SQLSchemaPackage.SCHEMA__OWNER, oldOwner, owner));
+				}
 			}
 		}
 		return owner;
@@ -485,7 +523,11 @@ public class SchemaImpl extends SQLObjectImpl implements Schema {
 		owner = newOwner;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLSchemaPackage.SCHEMA__OWNER, oldOwner, newOwner);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			if (msgs == null) {
+				msgs = notification;
+			} else {
+				msgs.add(notification);
+			}
 		}
 		return msgs;
 	}
@@ -495,18 +537,24 @@ public class SchemaImpl extends SQLObjectImpl implements Schema {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwner(AuthorizationIdentifier newOwner) {
 		if (newOwner != owner) {
 			NotificationChain msgs = null;
-			if (owner != null)
+			if (owner != null) {
 				msgs = ((InternalEObject)owner).eInverseRemove(this, SQLAccessControlPackage.AUTHORIZATION_IDENTIFIER__OWNED_SCHEMA, AuthorizationIdentifier.class, msgs);
-			if (newOwner != null)
+			}
+			if (newOwner != null) {
 				msgs = ((InternalEObject)newOwner).eInverseAdd(this, SQLAccessControlPackage.AUTHORIZATION_IDENTIFIER__OWNED_SCHEMA, AuthorizationIdentifier.class, msgs);
+			}
 			msgs = basicSetOwner(newOwner, msgs);
-			if (msgs != null) msgs.dispatch();
+			if (msgs != null) {
+				msgs.dispatch();
+			}
 		}
-		else if (eNotificationRequired())
+		else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLSchemaPackage.SCHEMA__OWNER, newOwner, newOwner));
+		}
 	}
 
 	/**
@@ -514,6 +562,7 @@ public class SchemaImpl extends SQLObjectImpl implements Schema {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case SQLSchemaPackage.SCHEMA__TRIGGERS:
@@ -525,12 +574,14 @@ public class SchemaImpl extends SQLObjectImpl implements Schema {
 			case SQLSchemaPackage.SCHEMA__SEQUENCES:
 				return ((InternalEList)getSequences()).basicAdd(otherEnd, msgs);
 			case SQLSchemaPackage.SCHEMA__DATABASE:
-				if (database != null)
+				if (database != null) {
 					msgs = ((InternalEObject)database).eInverseRemove(this, SQLSchemaPackage.DATABASE__SCHEMAS, Database.class, msgs);
+				}
 				return basicSetDatabase((Database)otherEnd, msgs);
 			case SQLSchemaPackage.SCHEMA__CATALOG:
-				if (catalog != null)
+				if (catalog != null) {
 					msgs = ((InternalEObject)catalog).eInverseRemove(this, SQLSchemaPackage.CATALOG__SCHEMAS, Catalog.class, msgs);
+				}
 				return basicSetCatalog((Catalog)otherEnd, msgs);
 			case SQLSchemaPackage.SCHEMA__ASSERTIONS:
 				return ((InternalEList)getAssertions()).basicAdd(otherEnd, msgs);
@@ -541,8 +592,9 @@ public class SchemaImpl extends SQLObjectImpl implements Schema {
 			case SQLSchemaPackage.SCHEMA__ROUTINES:
 				return ((InternalEList)getRoutines()).basicAdd(otherEnd, msgs);
 			case SQLSchemaPackage.SCHEMA__OWNER:
-				if (owner != null)
+				if (owner != null) {
 					msgs = ((InternalEObject)owner).eInverseRemove(this, SQLAccessControlPackage.AUTHORIZATION_IDENTIFIER__OWNED_SCHEMA, AuthorizationIdentifier.class, msgs);
+				}
 				return basicSetOwner((AuthorizationIdentifier)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -553,6 +605,7 @@ public class SchemaImpl extends SQLObjectImpl implements Schema {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case SQLSchemaPackage.SCHEMA__TRIGGERS:
@@ -586,6 +639,7 @@ public class SchemaImpl extends SQLObjectImpl implements Schema {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SQLSchemaPackage.SCHEMA__TRIGGERS:
@@ -597,10 +651,14 @@ public class SchemaImpl extends SQLObjectImpl implements Schema {
 			case SQLSchemaPackage.SCHEMA__SEQUENCES:
 				return getSequences();
 			case SQLSchemaPackage.SCHEMA__DATABASE:
-				if (resolve) return getDatabase();
+				if (resolve) {
+					return getDatabase();
+				}
 				return basicGetDatabase();
 			case SQLSchemaPackage.SCHEMA__CATALOG:
-				if (resolve) return getCatalog();
+				if (resolve) {
+					return getCatalog();
+				}
 				return basicGetCatalog();
 			case SQLSchemaPackage.SCHEMA__ASSERTIONS:
 				return getAssertions();
@@ -611,7 +669,9 @@ public class SchemaImpl extends SQLObjectImpl implements Schema {
 			case SQLSchemaPackage.SCHEMA__ROUTINES:
 				return getRoutines();
 			case SQLSchemaPackage.SCHEMA__OWNER:
-				if (resolve) return getOwner();
+				if (resolve) {
+					return getOwner();
+				}
 				return basicGetOwner();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -622,6 +682,7 @@ public class SchemaImpl extends SQLObjectImpl implements Schema {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case SQLSchemaPackage.SCHEMA__TRIGGERS:
@@ -674,6 +735,7 @@ public class SchemaImpl extends SQLObjectImpl implements Schema {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case SQLSchemaPackage.SCHEMA__TRIGGERS:
@@ -718,6 +780,7 @@ public class SchemaImpl extends SQLObjectImpl implements Schema {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SQLSchemaPackage.SCHEMA__TRIGGERS:

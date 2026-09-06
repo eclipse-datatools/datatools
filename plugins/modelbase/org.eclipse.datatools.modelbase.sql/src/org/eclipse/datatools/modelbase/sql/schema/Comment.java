@@ -15,11 +15,11 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.schema.Comment#getDescription <em>Description</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.schema.Comment#getSQLObject <em>SQL Object</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.datatools.modelbase.sql.schema.SQLSchemaPackage#getComment()
  * @model

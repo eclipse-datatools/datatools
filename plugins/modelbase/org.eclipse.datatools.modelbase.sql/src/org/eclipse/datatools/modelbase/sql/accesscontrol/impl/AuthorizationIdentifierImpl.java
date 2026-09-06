@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -36,6 +36,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.accesscontrol.impl.AuthorizationIdentifierImpl#getOwnedSchema <em>Owned Schema</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.accesscontrol.impl.AuthorizationIdentifierImpl#getDatabase <em>Database</em>}</li>
@@ -44,7 +45,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.eclipse.datatools.modelbase.sql.accesscontrol.impl.AuthorizationIdentifierImpl#getGrantedPrivilege <em>Granted Privilege</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.accesscontrol.impl.AuthorizationIdentifierImpl#getReceivedPrivilege <em>Received Privilege</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -123,6 +123,7 @@ public abstract class AuthorizationIdentifierImpl extends SQLObjectImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return SQLAccessControlPackage.Literals.AUTHORIZATION_IDENTIFIER;
 	}
@@ -132,6 +133,7 @@ public abstract class AuthorizationIdentifierImpl extends SQLObjectImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList getOwnedSchema() {
 		if (ownedSchema == null) {
 			ownedSchema = new EObjectWithInverseResolvingEList(Schema.class, this, SQLAccessControlPackage.AUTHORIZATION_IDENTIFIER__OWNED_SCHEMA, SQLSchemaPackage.SCHEMA__OWNER);
@@ -144,13 +146,15 @@ public abstract class AuthorizationIdentifierImpl extends SQLObjectImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Database getDatabase() {
 		if (database != null && database.eIsProxy()) {
 			InternalEObject oldDatabase = (InternalEObject)database;
 			database = (Database)eResolveProxy(oldDatabase);
 			if (database != oldDatabase) {
-				if (eNotificationRequired())
+				if (eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SQLAccessControlPackage.AUTHORIZATION_IDENTIFIER__DATABASE, oldDatabase, database));
+				}
 			}
 		}
 		return database;
@@ -175,7 +179,11 @@ public abstract class AuthorizationIdentifierImpl extends SQLObjectImpl implemen
 		database = newDatabase;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLAccessControlPackage.AUTHORIZATION_IDENTIFIER__DATABASE, oldDatabase, newDatabase);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			if (msgs == null) {
+				msgs = notification;
+			} else {
+				msgs.add(notification);
+			}
 		}
 		return msgs;
 	}
@@ -185,18 +193,24 @@ public abstract class AuthorizationIdentifierImpl extends SQLObjectImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDatabase(Database newDatabase) {
 		if (newDatabase != database) {
 			NotificationChain msgs = null;
-			if (database != null)
+			if (database != null) {
 				msgs = ((InternalEObject)database).eInverseRemove(this, SQLSchemaPackage.DATABASE__AUTHORIZATION_IDS, Database.class, msgs);
-			if (newDatabase != null)
+			}
+			if (newDatabase != null) {
 				msgs = ((InternalEObject)newDatabase).eInverseAdd(this, SQLSchemaPackage.DATABASE__AUTHORIZATION_IDS, Database.class, msgs);
+			}
 			msgs = basicSetDatabase(newDatabase, msgs);
-			if (msgs != null) msgs.dispatch();
+			if (msgs != null) {
+				msgs.dispatch();
+			}
 		}
-		else if (eNotificationRequired())
+		else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLAccessControlPackage.AUTHORIZATION_IDENTIFIER__DATABASE, newDatabase, newDatabase));
+		}
 	}
 
 	/**
@@ -204,6 +218,7 @@ public abstract class AuthorizationIdentifierImpl extends SQLObjectImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList getReceivedRoleAuthorization() {
 		if (receivedRoleAuthorization == null) {
 			receivedRoleAuthorization = new EObjectWithInverseResolvingEList(RoleAuthorization.class, this, SQLAccessControlPackage.AUTHORIZATION_IDENTIFIER__RECEIVED_ROLE_AUTHORIZATION, SQLAccessControlPackage.ROLE_AUTHORIZATION__GRANTEE);
@@ -216,6 +231,7 @@ public abstract class AuthorizationIdentifierImpl extends SQLObjectImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList getGrantedRoleAuthorization() {
 		if (grantedRoleAuthorization == null) {
 			grantedRoleAuthorization = new EObjectWithInverseResolvingEList(RoleAuthorization.class, this, SQLAccessControlPackage.AUTHORIZATION_IDENTIFIER__GRANTED_ROLE_AUTHORIZATION, SQLAccessControlPackage.ROLE_AUTHORIZATION__GRANTOR);
@@ -228,6 +244,7 @@ public abstract class AuthorizationIdentifierImpl extends SQLObjectImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList getGrantedPrivilege() {
 		if (grantedPrivilege == null) {
 			grantedPrivilege = new EObjectWithInverseResolvingEList(Privilege.class, this, SQLAccessControlPackage.AUTHORIZATION_IDENTIFIER__GRANTED_PRIVILEGE, SQLAccessControlPackage.PRIVILEGE__GRANTOR);
@@ -240,6 +257,7 @@ public abstract class AuthorizationIdentifierImpl extends SQLObjectImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList getReceivedPrivilege() {
 		if (receivedPrivilege == null) {
 			receivedPrivilege = new EObjectContainmentWithInverseEList(Privilege.class, this, SQLAccessControlPackage.AUTHORIZATION_IDENTIFIER__RECEIVED_PRIVILEGE, SQLAccessControlPackage.PRIVILEGE__GRANTEE);
@@ -252,13 +270,15 @@ public abstract class AuthorizationIdentifierImpl extends SQLObjectImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case SQLAccessControlPackage.AUTHORIZATION_IDENTIFIER__OWNED_SCHEMA:
 				return ((InternalEList)getOwnedSchema()).basicAdd(otherEnd, msgs);
 			case SQLAccessControlPackage.AUTHORIZATION_IDENTIFIER__DATABASE:
-				if (database != null)
+				if (database != null) {
 					msgs = ((InternalEObject)database).eInverseRemove(this, SQLSchemaPackage.DATABASE__AUTHORIZATION_IDS, Database.class, msgs);
+				}
 				return basicSetDatabase((Database)otherEnd, msgs);
 			case SQLAccessControlPackage.AUTHORIZATION_IDENTIFIER__RECEIVED_ROLE_AUTHORIZATION:
 				return ((InternalEList)getReceivedRoleAuthorization()).basicAdd(otherEnd, msgs);
@@ -277,6 +297,7 @@ public abstract class AuthorizationIdentifierImpl extends SQLObjectImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case SQLAccessControlPackage.AUTHORIZATION_IDENTIFIER__OWNED_SCHEMA:
@@ -300,12 +321,15 @@ public abstract class AuthorizationIdentifierImpl extends SQLObjectImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SQLAccessControlPackage.AUTHORIZATION_IDENTIFIER__OWNED_SCHEMA:
 				return getOwnedSchema();
 			case SQLAccessControlPackage.AUTHORIZATION_IDENTIFIER__DATABASE:
-				if (resolve) return getDatabase();
+				if (resolve) {
+					return getDatabase();
+				}
 				return basicGetDatabase();
 			case SQLAccessControlPackage.AUTHORIZATION_IDENTIFIER__RECEIVED_ROLE_AUTHORIZATION:
 				return getReceivedRoleAuthorization();
@@ -324,6 +348,7 @@ public abstract class AuthorizationIdentifierImpl extends SQLObjectImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case SQLAccessControlPackage.AUTHORIZATION_IDENTIFIER__OWNED_SCHEMA:
@@ -358,6 +383,7 @@ public abstract class AuthorizationIdentifierImpl extends SQLObjectImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case SQLAccessControlPackage.AUTHORIZATION_IDENTIFIER__OWNED_SCHEMA:
@@ -387,6 +413,7 @@ public abstract class AuthorizationIdentifierImpl extends SQLObjectImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SQLAccessControlPackage.AUTHORIZATION_IDENTIFIER__OWNED_SCHEMA:

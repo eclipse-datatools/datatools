@@ -15,29 +15,28 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Sybase ASE Partition</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */
-public class SybaseASEPartitionImpl extends SQLObjectImpl implements SybaseASEPartition 
+public class SybaseASEPartitionImpl extends SQLObjectImpl implements SybaseASEPartition
 {
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected SybaseASEPartitionImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	protected EClass eStaticClass() {
-        return PartitionPackage.Literals.SYBASE_ASE_PARTITION;
-    }
+		return PartitionPackage.Literals.SYBASE_ASE_PARTITION;
+	}
 
 } //SybaseASEPartitionImpl

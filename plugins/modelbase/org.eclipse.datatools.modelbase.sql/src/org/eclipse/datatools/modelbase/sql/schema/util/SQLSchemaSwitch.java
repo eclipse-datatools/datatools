@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -106,94 +106,170 @@ public class SQLSchemaSwitch {
 			case SQLSchemaPackage.IDENTITY_SPECIFIER: {
 				IdentitySpecifier identitySpecifier = (IdentitySpecifier)theEObject;
 				Object result = caseIdentitySpecifier(identitySpecifier);
-				if (result == null) result = caseSQLObject(identitySpecifier);
-				if (result == null) result = caseENamedElement(identitySpecifier);
-				if (result == null) result = caseEModelElement(identitySpecifier);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = caseSQLObject(identitySpecifier);
+				}
+				if (result == null) {
+					result = caseENamedElement(identitySpecifier);
+				}
+				if (result == null) {
+					result = caseEModelElement(identitySpecifier);
+				}
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case SQLSchemaPackage.TYPED_ELEMENT: {
 				TypedElement typedElement = (TypedElement)theEObject;
 				Object result = caseTypedElement(typedElement);
-				if (result == null) result = caseSQLObject(typedElement);
-				if (result == null) result = caseENamedElement(typedElement);
-				if (result == null) result = caseEModelElement(typedElement);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = caseSQLObject(typedElement);
+				}
+				if (result == null) {
+					result = caseENamedElement(typedElement);
+				}
+				if (result == null) {
+					result = caseEModelElement(typedElement);
+				}
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case SQLSchemaPackage.DEPENDENCY: {
 				Dependency dependency = (Dependency)theEObject;
 				Object result = caseDependency(dependency);
-				if (result == null) result = caseSQLObject(dependency);
-				if (result == null) result = caseENamedElement(dependency);
-				if (result == null) result = caseEModelElement(dependency);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = caseSQLObject(dependency);
+				}
+				if (result == null) {
+					result = caseENamedElement(dependency);
+				}
+				if (result == null) {
+					result = caseEModelElement(dependency);
+				}
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case SQLSchemaPackage.SCHEMA: {
 				Schema schema = (Schema)theEObject;
 				Object result = caseSchema(schema);
-				if (result == null) result = caseSQLObject(schema);
-				if (result == null) result = caseENamedElement(schema);
-				if (result == null) result = caseEModelElement(schema);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = caseSQLObject(schema);
+				}
+				if (result == null) {
+					result = caseENamedElement(schema);
+				}
+				if (result == null) {
+					result = caseEModelElement(schema);
+				}
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case SQLSchemaPackage.SQL_OBJECT: {
 				SQLObject sqlObject = (SQLObject)theEObject;
 				Object result = caseSQLObject(sqlObject);
-				if (result == null) result = caseENamedElement(sqlObject);
-				if (result == null) result = caseEModelElement(sqlObject);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = caseENamedElement(sqlObject);
+				}
+				if (result == null) {
+					result = caseEModelElement(sqlObject);
+				}
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case SQLSchemaPackage.SEQUENCE: {
 				Sequence sequence = (Sequence)theEObject;
 				Object result = caseSequence(sequence);
-				if (result == null) result = caseTypedElement(sequence);
-				if (result == null) result = caseSQLObject(sequence);
-				if (result == null) result = caseENamedElement(sequence);
-				if (result == null) result = caseEModelElement(sequence);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = caseTypedElement(sequence);
+				}
+				if (result == null) {
+					result = caseSQLObject(sequence);
+				}
+				if (result == null) {
+					result = caseENamedElement(sequence);
+				}
+				if (result == null) {
+					result = caseEModelElement(sequence);
+				}
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case SQLSchemaPackage.DATABASE: {
 				Database database = (Database)theEObject;
 				Object result = caseDatabase(database);
-				if (result == null) result = caseSQLObject(database);
-				if (result == null) result = caseENamedElement(database);
-				if (result == null) result = caseEModelElement(database);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = caseSQLObject(database);
+				}
+				if (result == null) {
+					result = caseENamedElement(database);
+				}
+				if (result == null) {
+					result = caseEModelElement(database);
+				}
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case SQLSchemaPackage.EVENT: {
 				Event event = (Event)theEObject;
 				Object result = caseEvent(event);
-				if (result == null) result = caseSQLObject(event);
-				if (result == null) result = caseENamedElement(event);
-				if (result == null) result = caseEModelElement(event);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = caseSQLObject(event);
+				}
+				if (result == null) {
+					result = caseENamedElement(event);
+				}
+				if (result == null) {
+					result = caseEModelElement(event);
+				}
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case SQLSchemaPackage.COMMENT: {
 				Comment comment = (Comment)theEObject;
 				Object result = caseComment(comment);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case SQLSchemaPackage.CATALOG: {
 				Catalog catalog = (Catalog)theEObject;
 				Object result = caseCatalog(catalog);
-				if (result == null) result = caseSQLObject(catalog);
-				if (result == null) result = caseENamedElement(catalog);
-				if (result == null) result = caseEModelElement(catalog);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = caseSQLObject(catalog);
+				}
+				if (result == null) {
+					result = caseENamedElement(catalog);
+				}
+				if (result == null) {
+					result = caseEModelElement(catalog);
+				}
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case SQLSchemaPackage.OBJECT_EXTENSION: {
 				ObjectExtension objectExtension = (ObjectExtension)theEObject;
 				Object result = caseObjectExtension(objectExtension);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			default: return defaultCase(theEObject);

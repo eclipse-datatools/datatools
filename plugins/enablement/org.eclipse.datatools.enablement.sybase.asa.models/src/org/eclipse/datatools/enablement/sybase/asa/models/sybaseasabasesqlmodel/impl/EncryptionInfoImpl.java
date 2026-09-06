@@ -19,16 +19,16 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl.EncryptionInfoImpl#isEncryptedTable <em>Encrypted Table</em>}</li>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl.EncryptionInfoImpl#getEncryptionKey <em>Encryption Key</em>}</li>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl.EncryptionInfoImpl#getAlgorithm <em>Algorithm</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class EncryptionInfoImpl extends EObjectImpl implements EncryptionInfo 
+public class EncryptionInfoImpl extends EObjectImpl implements EncryptionInfo
 {
     /**
 	 * The default value of the '{@link #isEncryptedTable() <em>Encrypted Table</em>}' attribute.
@@ -105,6 +105,7 @@ public class EncryptionInfoImpl extends EObjectImpl implements EncryptionInfo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass()
     {
 		return SybaseasabasesqlmodelPackage.Literals.ENCRYPTION_INFO;
@@ -115,6 +116,7 @@ public class EncryptionInfoImpl extends EObjectImpl implements EncryptionInfo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isEncryptedTable()
     {
 		return encryptedTable;
@@ -125,12 +127,14 @@ public class EncryptionInfoImpl extends EObjectImpl implements EncryptionInfo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setEncryptedTable(boolean newEncryptedTable)
     {
 		boolean oldEncryptedTable = encryptedTable;
 		encryptedTable = newEncryptedTable;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.ENCRYPTION_INFO__ENCRYPTED_TABLE, oldEncryptedTable, encryptedTable));
+		}
 	}
 
     /**
@@ -138,6 +142,7 @@ public class EncryptionInfoImpl extends EObjectImpl implements EncryptionInfo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getEncryptionKey()
     {
 		return encryptionKey;
@@ -148,12 +153,14 @@ public class EncryptionInfoImpl extends EObjectImpl implements EncryptionInfo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setEncryptionKey(String newEncryptionKey)
     {
 		String oldEncryptionKey = encryptionKey;
 		encryptionKey = newEncryptionKey;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.ENCRYPTION_INFO__ENCRYPTION_KEY, oldEncryptionKey, encryptionKey));
+		}
 	}
 
     /**
@@ -161,6 +168,7 @@ public class EncryptionInfoImpl extends EObjectImpl implements EncryptionInfo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getAlgorithm()
     {
 		return algorithm;
@@ -171,12 +179,14 @@ public class EncryptionInfoImpl extends EObjectImpl implements EncryptionInfo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setAlgorithm(String newAlgorithm)
     {
 		String oldAlgorithm = algorithm;
 		algorithm = newAlgorithm;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.ENCRYPTION_INFO__ALGORITHM, oldAlgorithm, algorithm));
+		}
 	}
 
     /**
@@ -184,6 +194,7 @@ public class EncryptionInfoImpl extends EObjectImpl implements EncryptionInfo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
     {
 		switch (featureID) {
@@ -202,6 +213,7 @@ public class EncryptionInfoImpl extends EObjectImpl implements EncryptionInfo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue)
     {
 		switch (featureID) {
@@ -223,6 +235,7 @@ public class EncryptionInfoImpl extends EObjectImpl implements EncryptionInfo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID)
     {
 		switch (featureID) {
@@ -244,6 +257,7 @@ public class EncryptionInfoImpl extends EObjectImpl implements EncryptionInfo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID)
     {
 		switch (featureID) {
@@ -262,9 +276,12 @@ public class EncryptionInfoImpl extends EObjectImpl implements EncryptionInfo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString()
     {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (encryptedTable: ");

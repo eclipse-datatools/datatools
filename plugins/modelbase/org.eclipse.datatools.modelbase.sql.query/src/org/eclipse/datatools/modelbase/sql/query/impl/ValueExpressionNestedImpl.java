@@ -22,165 +22,184 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.query.impl.ValueExpressionNestedImpl#getNestedValueExpr <em>Nested Value Expr</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
 public class ValueExpressionNestedImpl extends QueryValueExpressionImpl implements ValueExpressionNested {
 	/**
-     * The cached value of the '{@link #getNestedValueExpr() <em>Nested Value Expr</em>}' containment reference.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getNestedValueExpr() <em>Nested Value Expr</em>}' containment reference.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @see #getNestedValueExpr()
-     * @generated
-     * @ordered
-     */
+	 * @see #getNestedValueExpr()
+	 * @generated
+	 * @ordered
+	 */
   protected QueryValueExpression nestedValueExpr;
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected ValueExpressionNestedImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    protected EClass eStaticClass() {
-        return SQLQueryModelPackage.Literals.VALUE_EXPRESSION_NESTED;
-    }
+	 * @generated
+	 */
+    @Override
+	protected EClass eStaticClass() {
+		return SQLQueryModelPackage.Literals.VALUE_EXPRESSION_NESTED;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
-  public QueryValueExpression getNestedValueExpr() {
-        return nestedValueExpr;
-    }
+	 * @generated
+	 */
+  @Override
+public QueryValueExpression getNestedValueExpr() {
+		return nestedValueExpr;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
   public NotificationChain basicSetNestedValueExpr(QueryValueExpression newNestedValueExpr, NotificationChain msgs) {
-        QueryValueExpression oldNestedValueExpr = nestedValueExpr;
-        nestedValueExpr = newNestedValueExpr;
-        if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.VALUE_EXPRESSION_NESTED__NESTED_VALUE_EXPR, oldNestedValueExpr, newNestedValueExpr);
-            if (msgs == null) msgs = notification; else msgs.add(notification);
-        }
-        return msgs;
-    }
+		QueryValueExpression oldNestedValueExpr = nestedValueExpr;
+		nestedValueExpr = newNestedValueExpr;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.VALUE_EXPRESSION_NESTED__NESTED_VALUE_EXPR, oldNestedValueExpr, newNestedValueExpr);
+			if (msgs == null) {
+				msgs = notification;
+			} else {
+				msgs.add(notification);
+			}
+		}
+		return msgs;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
-  public void setNestedValueExpr(QueryValueExpression newNestedValueExpr) {
-        if (newNestedValueExpr != nestedValueExpr) {
-            NotificationChain msgs = null;
-            if (nestedValueExpr != null)
-                msgs = ((InternalEObject)nestedValueExpr).eInverseRemove(this, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__NEST, QueryValueExpression.class, msgs);
-            if (newNestedValueExpr != null)
-                msgs = ((InternalEObject)newNestedValueExpr).eInverseAdd(this, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__NEST, QueryValueExpression.class, msgs);
-            msgs = basicSetNestedValueExpr(newNestedValueExpr, msgs);
-            if (msgs != null) msgs.dispatch();
-        }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.VALUE_EXPRESSION_NESTED__NESTED_VALUE_EXPR, newNestedValueExpr, newNestedValueExpr));
-    }
+	 * @generated
+	 */
+  @Override
+public void setNestedValueExpr(QueryValueExpression newNestedValueExpr) {
+		if (newNestedValueExpr != nestedValueExpr) {
+			NotificationChain msgs = null;
+			if (nestedValueExpr != null) {
+				msgs = ((InternalEObject)nestedValueExpr).eInverseRemove(this, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__NEST, QueryValueExpression.class, msgs);
+			}
+			if (newNestedValueExpr != null) {
+				msgs = ((InternalEObject)newNestedValueExpr).eInverseAdd(this, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__NEST, QueryValueExpression.class, msgs);
+			}
+			msgs = basicSetNestedValueExpr(newNestedValueExpr, msgs);
+			if (msgs != null) {
+				msgs.dispatch();
+			}
+		}
+		else if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.VALUE_EXPRESSION_NESTED__NESTED_VALUE_EXPR, newNestedValueExpr, newNestedValueExpr));
+		}
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case SQLQueryModelPackage.VALUE_EXPRESSION_NESTED__NESTED_VALUE_EXPR:
-                if (nestedValueExpr != null)
-                    msgs = ((InternalEObject)nestedValueExpr).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLQueryModelPackage.VALUE_EXPRESSION_NESTED__NESTED_VALUE_EXPR, null, msgs);
-                return basicSetNestedValueExpr((QueryValueExpression)otherEnd, msgs);
-        }
-        return super.eInverseAdd(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case SQLQueryModelPackage.VALUE_EXPRESSION_NESTED__NESTED_VALUE_EXPR:
+				if (nestedValueExpr != null) {
+					msgs = ((InternalEObject)nestedValueExpr).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLQueryModelPackage.VALUE_EXPRESSION_NESTED__NESTED_VALUE_EXPR, null, msgs);
+				}
+				return basicSetNestedValueExpr((QueryValueExpression)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case SQLQueryModelPackage.VALUE_EXPRESSION_NESTED__NESTED_VALUE_EXPR:
-                return basicSetNestedValueExpr(null, msgs);
-        }
-        return super.eInverseRemove(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case SQLQueryModelPackage.VALUE_EXPRESSION_NESTED__NESTED_VALUE_EXPR:
+				return basicSetNestedValueExpr(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case SQLQueryModelPackage.VALUE_EXPRESSION_NESTED__NESTED_VALUE_EXPR:
-                return getNestedValueExpr();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case SQLQueryModelPackage.VALUE_EXPRESSION_NESTED__NESTED_VALUE_EXPR:
+				return getNestedValueExpr();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case SQLQueryModelPackage.VALUE_EXPRESSION_NESTED__NESTED_VALUE_EXPR:
-                setNestedValueExpr((QueryValueExpression)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case SQLQueryModelPackage.VALUE_EXPRESSION_NESTED__NESTED_VALUE_EXPR:
+				setNestedValueExpr((QueryValueExpression)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public void eUnset(int featureID) {
-        switch (featureID) {
-            case SQLQueryModelPackage.VALUE_EXPRESSION_NESTED__NESTED_VALUE_EXPR:
-                setNestedValueExpr((QueryValueExpression)null);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case SQLQueryModelPackage.VALUE_EXPRESSION_NESTED__NESTED_VALUE_EXPR:
+				setNestedValueExpr((QueryValueExpression)null);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case SQLQueryModelPackage.VALUE_EXPRESSION_NESTED__NESTED_VALUE_EXPR:
-                return nestedValueExpr != null;
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case SQLQueryModelPackage.VALUE_EXPRESSION_NESTED__NESTED_VALUE_EXPR:
+				return nestedValueExpr != null;
+		}
+		return super.eIsSet(featureID);
+	}
 
 } //SQLValueExpressionNestedImpl

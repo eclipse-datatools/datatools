@@ -18,201 +18,211 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.impl.SybaseASEWebServiceTableImpl#getMethod <em>Method</em>}</li>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.impl.SybaseASEWebServiceTableImpl#getWSDLURI <em>WSDLURI</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class SybaseASEWebServiceTableImpl extends SybaseASEProxyTableImpl implements SybaseASEWebServiceTable 
+public class SybaseASEWebServiceTableImpl extends SybaseASEProxyTableImpl implements SybaseASEWebServiceTable
 {
 	/**
-     * The default value of the '{@link #getMethod() <em>Method</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getMethod() <em>Method</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getMethod()
-     * @generated
-     * @ordered
-     */
+	 * @see #getMethod()
+	 * @generated
+	 * @ordered
+	 */
 	protected static final String METHOD_EDEFAULT = ""; //$NON-NLS-1$
 
 	/**
-     * The cached value of the '{@link #getMethod() <em>Method</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getMethod() <em>Method</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getMethod()
-     * @generated
-     * @ordered
-     */
+	 * @see #getMethod()
+	 * @generated
+	 * @ordered
+	 */
 	protected String method = METHOD_EDEFAULT;
 
 	/**
-     * The default value of the '{@link #getWSDLURI() <em>WSDLURI</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getWSDLURI() <em>WSDLURI</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getWSDLURI()
-     * @generated
-     * @ordered
-     */
+	 * @see #getWSDLURI()
+	 * @generated
+	 * @ordered
+	 */
     protected static final String WSDLURI_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #getWSDLURI() <em>WSDLURI</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getWSDLURI() <em>WSDLURI</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getWSDLURI()
-     * @generated
-     * @ordered
-     */
+	 * @see #getWSDLURI()
+	 * @generated
+	 * @ordered
+	 */
     protected String wsdluri = WSDLURI_EDEFAULT;
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected SybaseASEWebServiceTableImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	protected EClass eStaticClass() {
-        return SybaseasesqlmodelPackage.Literals.SYBASE_ASE_WEB_SERVICE_TABLE;
-    }
+		return SybaseasesqlmodelPackage.Literals.SYBASE_ASE_WEB_SERVICE_TABLE;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public String getMethod() {
-        return method;
-    }
+		return method;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public void setMethod(String newMethod) {
-        String oldMethod = method;
-        method = newMethod;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SybaseasesqlmodelPackage.SYBASE_ASE_WEB_SERVICE_TABLE__METHOD, oldMethod, method));
-    }
+		String oldMethod = method;
+		method = newMethod;
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasesqlmodelPackage.SYBASE_ASE_WEB_SERVICE_TABLE__METHOD, oldMethod, method));
+		}
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public String getWSDLURI()
+	 * @generated
+	 */
+    @Override
+	public String getWSDLURI()
     {
-        return wsdluri;
-    }
+		return wsdluri;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setWSDLURI(String newWSDLURI)
+	 * @generated
+	 */
+    @Override
+	public void setWSDLURI(String newWSDLURI)
     {
-        String oldWSDLURI = wsdluri;
-        wsdluri = newWSDLURI;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SybaseasesqlmodelPackage.SYBASE_ASE_WEB_SERVICE_TABLE__WSDLURI, oldWSDLURI, wsdluri));
-    }
+		String oldWSDLURI = wsdluri;
+		wsdluri = newWSDLURI;
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasesqlmodelPackage.SYBASE_ASE_WEB_SERVICE_TABLE__WSDLURI, oldWSDLURI, wsdluri));
+		}
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID)
-        {
-            case SybaseasesqlmodelPackage.SYBASE_ASE_WEB_SERVICE_TABLE__METHOD:
-                return getMethod();
-            case SybaseasesqlmodelPackage.SYBASE_ASE_WEB_SERVICE_TABLE__WSDLURI:
-                return getWSDLURI();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case SybaseasesqlmodelPackage.SYBASE_ASE_WEB_SERVICE_TABLE__METHOD:
+				return getMethod();
+			case SybaseasesqlmodelPackage.SYBASE_ASE_WEB_SERVICE_TABLE__WSDLURI:
+				return getWSDLURI();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
-        switch (featureID)
-        {
-            case SybaseasesqlmodelPackage.SYBASE_ASE_WEB_SERVICE_TABLE__METHOD:
-                setMethod((String)newValue);
-                return;
-            case SybaseasesqlmodelPackage.SYBASE_ASE_WEB_SERVICE_TABLE__WSDLURI:
-                setWSDLURI((String)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case SybaseasesqlmodelPackage.SYBASE_ASE_WEB_SERVICE_TABLE__METHOD:
+				setMethod((String)newValue);
+				return;
+			case SybaseasesqlmodelPackage.SYBASE_ASE_WEB_SERVICE_TABLE__WSDLURI:
+				setWSDLURI((String)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public void eUnset(int featureID) {
-        switch (featureID)
-        {
-            case SybaseasesqlmodelPackage.SYBASE_ASE_WEB_SERVICE_TABLE__METHOD:
-                setMethod(METHOD_EDEFAULT);
-                return;
-            case SybaseasesqlmodelPackage.SYBASE_ASE_WEB_SERVICE_TABLE__WSDLURI:
-                setWSDLURI(WSDLURI_EDEFAULT);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case SybaseasesqlmodelPackage.SYBASE_ASE_WEB_SERVICE_TABLE__METHOD:
+				setMethod(METHOD_EDEFAULT);
+				return;
+			case SybaseasesqlmodelPackage.SYBASE_ASE_WEB_SERVICE_TABLE__WSDLURI:
+				setWSDLURI(WSDLURI_EDEFAULT);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public boolean eIsSet(int featureID) {
-        switch (featureID)
-        {
-            case SybaseasesqlmodelPackage.SYBASE_ASE_WEB_SERVICE_TABLE__METHOD:
-                return METHOD_EDEFAULT == null ? method != null : !METHOD_EDEFAULT.equals(method);
-            case SybaseasesqlmodelPackage.SYBASE_ASE_WEB_SERVICE_TABLE__WSDLURI:
-                return WSDLURI_EDEFAULT == null ? wsdluri != null : !WSDLURI_EDEFAULT.equals(wsdluri);
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case SybaseasesqlmodelPackage.SYBASE_ASE_WEB_SERVICE_TABLE__METHOD:
+				return METHOD_EDEFAULT == null ? method != null : !METHOD_EDEFAULT.equals(method);
+			case SybaseasesqlmodelPackage.SYBASE_ASE_WEB_SERVICE_TABLE__WSDLURI:
+				return WSDLURI_EDEFAULT == null ? wsdluri != null : !WSDLURI_EDEFAULT.equals(wsdluri);
+		}
+		return super.eIsSet(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public String toString() {
-        if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (method: "); //$NON-NLS-1$
-        result.append(method);
-        result.append(", WSDLURI: "); //$NON-NLS-1$
-        result.append(wsdluri);
-        result.append(')');
-        return result.toString();
-    }
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (method: "); //$NON-NLS-1$
+		result.append(method);
+		result.append(", WSDLURI: "); //$NON-NLS-1$
+		result.append(wsdluri);
+		result.append(')');
+		return result.toString();
+	}
 
 } //SybaseASEWebServiceTableImpl

@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.datatypes.impl.DataLinkDataTypeImpl#getLength <em>Length</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.datatypes.impl.DataLinkDataTypeImpl#getLinkControl <em>Link Control</em>}</li>
@@ -36,7 +37,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *   <li>{@link org.eclipse.datatools.modelbase.sql.datatypes.impl.DataLinkDataTypeImpl#isRecovery <em>Recovery</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.datatypes.impl.DataLinkDataTypeImpl#getUnlink <em>Unlink</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -195,6 +195,7 @@ public class DataLinkDataTypeImpl extends PredefinedDataTypeImpl implements Data
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return SQLDataTypesPackage.Literals.DATA_LINK_DATA_TYPE;
 	}
@@ -204,6 +205,7 @@ public class DataLinkDataTypeImpl extends PredefinedDataTypeImpl implements Data
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getLength() {
 		return length;
 	}
@@ -213,11 +215,13 @@ public class DataLinkDataTypeImpl extends PredefinedDataTypeImpl implements Data
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLength(int newLength) {
 		int oldLength = length;
 		length = newLength;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLDataTypesPackage.DATA_LINK_DATA_TYPE__LENGTH, oldLength, length));
+		}
 	}
 
 	/**
@@ -225,6 +229,7 @@ public class DataLinkDataTypeImpl extends PredefinedDataTypeImpl implements Data
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public LinkControlOption getLinkControl() {
 		return linkControl;
 	}
@@ -234,11 +239,13 @@ public class DataLinkDataTypeImpl extends PredefinedDataTypeImpl implements Data
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLinkControl(LinkControlOption newLinkControl) {
 		LinkControlOption oldLinkControl = linkControl;
 		linkControl = newLinkControl == null ? LINK_CONTROL_EDEFAULT : newLinkControl;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLDataTypesPackage.DATA_LINK_DATA_TYPE__LINK_CONTROL, oldLinkControl, linkControl));
+		}
 	}
 
 	/**
@@ -246,6 +253,7 @@ public class DataLinkDataTypeImpl extends PredefinedDataTypeImpl implements Data
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IntegrityControlOption getIntegrityControl() {
 		return integrityControl;
 	}
@@ -255,11 +263,13 @@ public class DataLinkDataTypeImpl extends PredefinedDataTypeImpl implements Data
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIntegrityControl(IntegrityControlOption newIntegrityControl) {
 		IntegrityControlOption oldIntegrityControl = integrityControl;
 		integrityControl = newIntegrityControl == null ? INTEGRITY_CONTROL_EDEFAULT : newIntegrityControl;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLDataTypesPackage.DATA_LINK_DATA_TYPE__INTEGRITY_CONTROL, oldIntegrityControl, integrityControl));
+		}
 	}
 
 	/**
@@ -267,6 +277,7 @@ public class DataLinkDataTypeImpl extends PredefinedDataTypeImpl implements Data
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ReadPermissionOption getReadPermission() {
 		return readPermission;
 	}
@@ -276,11 +287,13 @@ public class DataLinkDataTypeImpl extends PredefinedDataTypeImpl implements Data
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setReadPermission(ReadPermissionOption newReadPermission) {
 		ReadPermissionOption oldReadPermission = readPermission;
 		readPermission = newReadPermission == null ? READ_PERMISSION_EDEFAULT : newReadPermission;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLDataTypesPackage.DATA_LINK_DATA_TYPE__READ_PERMISSION, oldReadPermission, readPermission));
+		}
 	}
 
 	/**
@@ -288,6 +301,7 @@ public class DataLinkDataTypeImpl extends PredefinedDataTypeImpl implements Data
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public WritePermissionOption getWritePermission() {
 		return writePermission;
 	}
@@ -297,11 +311,13 @@ public class DataLinkDataTypeImpl extends PredefinedDataTypeImpl implements Data
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setWritePermission(WritePermissionOption newWritePermission) {
 		WritePermissionOption oldWritePermission = writePermission;
 		writePermission = newWritePermission == null ? WRITE_PERMISSION_EDEFAULT : newWritePermission;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLDataTypesPackage.DATA_LINK_DATA_TYPE__WRITE_PERMISSION, oldWritePermission, writePermission));
+		}
 	}
 
 	/**
@@ -309,6 +325,7 @@ public class DataLinkDataTypeImpl extends PredefinedDataTypeImpl implements Data
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isRecovery() {
 		return recovery;
 	}
@@ -318,11 +335,13 @@ public class DataLinkDataTypeImpl extends PredefinedDataTypeImpl implements Data
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRecovery(boolean newRecovery) {
 		boolean oldRecovery = recovery;
 		recovery = newRecovery;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLDataTypesPackage.DATA_LINK_DATA_TYPE__RECOVERY, oldRecovery, recovery));
+		}
 	}
 
 	/**
@@ -330,6 +349,7 @@ public class DataLinkDataTypeImpl extends PredefinedDataTypeImpl implements Data
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public UnlinkOption getUnlink() {
 		return unlink;
 	}
@@ -339,11 +359,13 @@ public class DataLinkDataTypeImpl extends PredefinedDataTypeImpl implements Data
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setUnlink(UnlinkOption newUnlink) {
 		UnlinkOption oldUnlink = unlink;
 		unlink = newUnlink == null ? UNLINK_EDEFAULT : newUnlink;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLDataTypesPackage.DATA_LINK_DATA_TYPE__UNLINK, oldUnlink, unlink));
+		}
 	}
 
 	/**
@@ -351,10 +373,11 @@ public class DataLinkDataTypeImpl extends PredefinedDataTypeImpl implements Data
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SQLDataTypesPackage.DATA_LINK_DATA_TYPE__LENGTH:
-				return Integer.valueOf(getLength());
+				return new Integer(getLength());
 			case SQLDataTypesPackage.DATA_LINK_DATA_TYPE__LINK_CONTROL:
 				return getLinkControl();
 			case SQLDataTypesPackage.DATA_LINK_DATA_TYPE__INTEGRITY_CONTROL:
@@ -376,6 +399,7 @@ public class DataLinkDataTypeImpl extends PredefinedDataTypeImpl implements Data
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case SQLDataTypesPackage.DATA_LINK_DATA_TYPE__LENGTH:
@@ -408,6 +432,7 @@ public class DataLinkDataTypeImpl extends PredefinedDataTypeImpl implements Data
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case SQLDataTypesPackage.DATA_LINK_DATA_TYPE__LENGTH:
@@ -440,6 +465,7 @@ public class DataLinkDataTypeImpl extends PredefinedDataTypeImpl implements Data
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SQLDataTypesPackage.DATA_LINK_DATA_TYPE__LENGTH:
@@ -465,8 +491,11 @@ public class DataLinkDataTypeImpl extends PredefinedDataTypeImpl implements Data
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (length: "); //$NON-NLS-1$

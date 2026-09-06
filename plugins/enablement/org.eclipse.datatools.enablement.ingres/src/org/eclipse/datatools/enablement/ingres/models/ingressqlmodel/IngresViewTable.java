@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *   Ingres Corporation - initial API and implementation
  *
@@ -22,10 +22,10 @@ import org.eclipse.datatools.modelbase.sql.tables.ViewTable;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.enablement.ingres.models.ingressqlmodel.IngresViewTable#getSource <em>Source</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.datatools.enablement.ingres.models.ingressqlmodel.IngressqlmodelPackage#getIngresViewTable()
  * @model

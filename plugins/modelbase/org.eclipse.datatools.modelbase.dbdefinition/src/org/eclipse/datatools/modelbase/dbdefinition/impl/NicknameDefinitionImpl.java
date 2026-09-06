@@ -20,12 +20,12 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.NicknameDefinitionImpl#isConstraintSupported <em>Constraint Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.NicknameDefinitionImpl#isIndexSupported <em>Index Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.NicknameDefinitionImpl#getMaximumIdentifierLength <em>Maximum Identifier Length</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -104,6 +104,7 @@ public class NicknameDefinitionImpl extends EObjectImpl implements NicknameDefin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return DatabaseDefinitionPackage.Literals.NICKNAME_DEFINITION;
 	}
@@ -113,6 +114,7 @@ public class NicknameDefinitionImpl extends EObjectImpl implements NicknameDefin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isConstraintSupported() {
 		return constraintSupported;
 	}
@@ -122,11 +124,13 @@ public class NicknameDefinitionImpl extends EObjectImpl implements NicknameDefin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setConstraintSupported(boolean newConstraintSupported) {
 		boolean oldConstraintSupported = constraintSupported;
 		constraintSupported = newConstraintSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.NICKNAME_DEFINITION__CONSTRAINT_SUPPORTED, oldConstraintSupported, constraintSupported));
+		}
 	}
 
 	/**
@@ -134,6 +138,7 @@ public class NicknameDefinitionImpl extends EObjectImpl implements NicknameDefin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isIndexSupported() {
 		return indexSupported;
 	}
@@ -143,11 +148,13 @@ public class NicknameDefinitionImpl extends EObjectImpl implements NicknameDefin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIndexSupported(boolean newIndexSupported) {
 		boolean oldIndexSupported = indexSupported;
 		indexSupported = newIndexSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.NICKNAME_DEFINITION__INDEX_SUPPORTED, oldIndexSupported, indexSupported));
+		}
 	}
 
 	/**
@@ -155,6 +162,7 @@ public class NicknameDefinitionImpl extends EObjectImpl implements NicknameDefin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getMaximumIdentifierLength() {
 		return maximumIdentifierLength;
 	}
@@ -164,11 +172,13 @@ public class NicknameDefinitionImpl extends EObjectImpl implements NicknameDefin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMaximumIdentifierLength(int newMaximumIdentifierLength) {
 		int oldMaximumIdentifierLength = maximumIdentifierLength;
 		maximumIdentifierLength = newMaximumIdentifierLength;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.NICKNAME_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH, oldMaximumIdentifierLength, maximumIdentifierLength));
+		}
 	}
 
 	/**
@@ -176,6 +186,7 @@ public class NicknameDefinitionImpl extends EObjectImpl implements NicknameDefin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.NICKNAME_DEFINITION__CONSTRAINT_SUPPORTED:
@@ -183,7 +194,7 @@ public class NicknameDefinitionImpl extends EObjectImpl implements NicknameDefin
 			case DatabaseDefinitionPackage.NICKNAME_DEFINITION__INDEX_SUPPORTED:
 				return isIndexSupported() ? Boolean.TRUE : Boolean.FALSE;
 			case DatabaseDefinitionPackage.NICKNAME_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH:
-				return Integer.valueOf(getMaximumIdentifierLength());
+				return new Integer(getMaximumIdentifierLength());
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -193,6 +204,7 @@ public class NicknameDefinitionImpl extends EObjectImpl implements NicknameDefin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.NICKNAME_DEFINITION__CONSTRAINT_SUPPORTED:
@@ -213,6 +225,7 @@ public class NicknameDefinitionImpl extends EObjectImpl implements NicknameDefin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.NICKNAME_DEFINITION__CONSTRAINT_SUPPORTED:
@@ -233,6 +246,7 @@ public class NicknameDefinitionImpl extends EObjectImpl implements NicknameDefin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.NICKNAME_DEFINITION__CONSTRAINT_SUPPORTED:
@@ -250,8 +264,11 @@ public class NicknameDefinitionImpl extends EObjectImpl implements NicknameDefin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (constraintSupported: "); //$NON-NLS-1$

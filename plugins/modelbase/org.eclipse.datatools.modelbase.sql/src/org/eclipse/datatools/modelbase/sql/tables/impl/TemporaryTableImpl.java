@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -22,11 +22,11 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.tables.impl.TemporaryTableImpl#isLocal <em>Local</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.tables.impl.TemporaryTableImpl#isDeleteOnCommit <em>Delete On Commit</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -85,6 +85,7 @@ public class TemporaryTableImpl extends BaseTableImpl implements TemporaryTable 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return SQLTablesPackage.Literals.TEMPORARY_TABLE;
 	}
@@ -94,6 +95,7 @@ public class TemporaryTableImpl extends BaseTableImpl implements TemporaryTable 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isLocal() {
 		return local;
 	}
@@ -103,11 +105,13 @@ public class TemporaryTableImpl extends BaseTableImpl implements TemporaryTable 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLocal(boolean newLocal) {
 		boolean oldLocal = local;
 		local = newLocal;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLTablesPackage.TEMPORARY_TABLE__LOCAL, oldLocal, local));
+		}
 	}
 
 	/**
@@ -115,6 +119,7 @@ public class TemporaryTableImpl extends BaseTableImpl implements TemporaryTable 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isDeleteOnCommit() {
 		return deleteOnCommit;
 	}
@@ -124,11 +129,13 @@ public class TemporaryTableImpl extends BaseTableImpl implements TemporaryTable 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDeleteOnCommit(boolean newDeleteOnCommit) {
 		boolean oldDeleteOnCommit = deleteOnCommit;
 		deleteOnCommit = newDeleteOnCommit;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLTablesPackage.TEMPORARY_TABLE__DELETE_ON_COMMIT, oldDeleteOnCommit, deleteOnCommit));
+		}
 	}
 
 	/**
@@ -136,6 +143,7 @@ public class TemporaryTableImpl extends BaseTableImpl implements TemporaryTable 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SQLTablesPackage.TEMPORARY_TABLE__LOCAL:
@@ -151,6 +159,7 @@ public class TemporaryTableImpl extends BaseTableImpl implements TemporaryTable 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case SQLTablesPackage.TEMPORARY_TABLE__LOCAL:
@@ -168,6 +177,7 @@ public class TemporaryTableImpl extends BaseTableImpl implements TemporaryTable 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case SQLTablesPackage.TEMPORARY_TABLE__LOCAL:
@@ -185,6 +195,7 @@ public class TemporaryTableImpl extends BaseTableImpl implements TemporaryTable 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SQLTablesPackage.TEMPORARY_TABLE__LOCAL:
@@ -200,8 +211,11 @@ public class TemporaryTableImpl extends BaseTableImpl implements TemporaryTable 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (local: "); //$NON-NLS-1$

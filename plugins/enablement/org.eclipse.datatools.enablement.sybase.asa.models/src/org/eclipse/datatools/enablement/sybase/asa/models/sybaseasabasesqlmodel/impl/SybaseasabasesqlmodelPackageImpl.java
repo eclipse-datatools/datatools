@@ -50,6 +50,7 @@ import org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.Sybasesqlmo
 import org.eclipse.datatools.modelbase.sql.accesscontrol.SQLAccessControlPackage;
 import org.eclipse.datatools.modelbase.sql.constraints.SQLConstraintsPackage;
 import org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage;
+import org.eclipse.datatools.modelbase.sql.expressions.SQLExpressionsPackage;
 import org.eclipse.datatools.modelbase.sql.routines.SQLRoutinesPackage;
 import org.eclipse.datatools.modelbase.sql.schema.SQLSchemaPackage;
 import org.eclipse.datatools.modelbase.sql.statements.SQLStatementsPackage;
@@ -365,20 +366,10 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
     private static boolean isInited = false;
 
     /**
-	 * Creates, registers, and initializes the <b>Package</b> for this
-	 * model, and for any others upon which it depends.  Simple
-	 * dependencies are satisfied by calling this method on all
-	 * dependent packages before doing anything else.  This method drives
-	 * initialization for interdependent packages directly, in parallel
-	 * with this package, itself.
-	 * <p>Of this package and its interdependencies, all packages which
-	 * have not yet been registered by their URI values are first created
-	 * and registered.  The packages are then initialized in two steps:
-	 * meta-model objects for all of the packages are created before any
-	 * are initialized, since one package's meta-model objects may refer to
-	 * those of another.
-	 * <p>Invocation of this method will not affect any packages that have
-	 * already been initialized.
+	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
+	 *
+	 * <p>This method is used to initialize {@link SybaseasabasesqlmodelPackage#eINSTANCE} when that field is accessed.
+	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @see #eNS_URI
@@ -388,14 +379,26 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
 	 */
     public static SybaseasabasesqlmodelPackage init()
     {
-		if (isInited) return (SybaseasabasesqlmodelPackage)EPackage.Registry.INSTANCE.getEPackage(SybaseasabasesqlmodelPackage.eNS_URI);
+		if (isInited) {
+			return (SybaseasabasesqlmodelPackage)EPackage.Registry.INSTANCE.getEPackage(SybaseasabasesqlmodelPackage.eNS_URI);
+		}
 
 		// Obtain or create and register package
-		SybaseasabasesqlmodelPackageImpl theSybaseasabasesqlmodelPackage = (SybaseasabasesqlmodelPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(eNS_URI) instanceof SybaseasabasesqlmodelPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(eNS_URI) : new SybaseasabasesqlmodelPackageImpl());
+		Object registeredSybaseasabasesqlmodelPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		SybaseasabasesqlmodelPackageImpl theSybaseasabasesqlmodelPackage = registeredSybaseasabasesqlmodelPackage instanceof SybaseasabasesqlmodelPackageImpl ? (SybaseasabasesqlmodelPackageImpl)registeredSybaseasabasesqlmodelPackage : new SybaseasabasesqlmodelPackageImpl();
 
 		isInited = true;
 
 		// Initialize simple dependencies
+		EcorePackage.eINSTANCE.eClass();
+		SQLSchemaPackage.eINSTANCE.eClass();
+		SQLConstraintsPackage.eINSTANCE.eClass();
+		SQLDataTypesPackage.eINSTANCE.eClass();
+		SQLExpressionsPackage.eINSTANCE.eClass();
+		SQLRoutinesPackage.eINSTANCE.eClass();
+		SQLStatementsPackage.eINSTANCE.eClass();
+		SQLTablesPackage.eINSTANCE.eClass();
+		SQLAccessControlPackage.eINSTANCE.eClass();
 		SybasesqlmodelPackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
@@ -407,6 +410,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
 		// Mark meta-data to indicate it can't be changed
 		theSybaseasabasesqlmodelPackage.freeze();
 
+		// Update the registry and return the package
+		EPackage.Registry.INSTANCE.put(SybaseasabasesqlmodelPackage.eNS_URI, theSybaseasabasesqlmodelPackage);
 		return theSybaseasabasesqlmodelPackage;
 	}
 
@@ -415,7 +420,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EClass getSybaseASABaseEvent()
+    @Override
+	public EClass getSybaseASABaseEvent()
     {
 		return sybaseASABaseEventEClass;
 	}
@@ -425,7 +431,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EAttribute getSybaseASABaseEvent_EventType()
+    @Override
+	public EAttribute getSybaseASABaseEvent_EventType()
     {
 		return (EAttribute)sybaseASABaseEventEClass.getEStructuralFeatures().get(0);
 	}
@@ -435,7 +442,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EReference getSybaseASABaseEvent_EventCreator()
+    @Override
+	public EReference getSybaseASABaseEvent_EventCreator()
     {
 		return (EReference)sybaseASABaseEventEClass.getEStructuralFeatures().get(1);
 	}
@@ -445,7 +453,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EAttribute getSybaseASABaseEvent_Location()
+    @Override
+	public EAttribute getSybaseASABaseEvent_Location()
     {
 		return (EAttribute)sybaseASABaseEventEClass.getEStructuralFeatures().get(2);
 	}
@@ -455,7 +464,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EReference getSybaseASABaseEvent_Schedules()
+    @Override
+	public EReference getSybaseASABaseEvent_Schedules()
     {
 		return (EReference)sybaseASABaseEventEClass.getEStructuralFeatures().get(3);
 	}
@@ -465,7 +475,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EReference getSybaseASABaseEvent_ConditionDetails()
+    @Override
+	public EReference getSybaseASABaseEvent_ConditionDetails()
     {
 		return (EReference)sybaseASABaseEventEClass.getEStructuralFeatures().get(4);
 	}
@@ -475,7 +486,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EClass getSybaseASABaseDatabase()
+    @Override
+	public EClass getSybaseASABaseDatabase()
     {
 		return sybaseASABaseDatabaseEClass;
 	}
@@ -485,7 +497,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EReference getSybaseASABaseDatabase_DataTypes()
+    @Override
+	public EReference getSybaseASABaseDatabase_DataTypes()
     {
 		return (EReference)sybaseASABaseDatabaseEClass.getEStructuralFeatures().get(0);
 	}
@@ -495,7 +508,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EReference getSybaseASABaseDatabase_WebServices()
+    @Override
+	public EReference getSybaseASABaseDatabase_WebServices()
     {
 		return (EReference)sybaseASABaseDatabaseEClass.getEStructuralFeatures().get(1);
 	}
@@ -505,7 +519,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EReference getSybaseASABaseDatabase_DbSpaces()
+    @Override
+	public EReference getSybaseASABaseDatabase_DbSpaces()
     {
 		return (EReference)sybaseASABaseDatabaseEClass.getEStructuralFeatures().get(2);
 	}
@@ -515,7 +530,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EAttribute getSybaseASABaseDatabase_DatabaseFileName()
+    @Override
+	public EAttribute getSybaseASABaseDatabase_DatabaseFileName()
     {
 		return (EAttribute)sybaseASABaseDatabaseEClass.getEStructuralFeatures().get(3);
 	}
@@ -525,7 +541,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EAttribute getSybaseASABaseDatabase_LogFileName()
+    @Override
+	public EAttribute getSybaseASABaseDatabase_LogFileName()
     {
 		return (EAttribute)sybaseASABaseDatabaseEClass.getEStructuralFeatures().get(4);
 	}
@@ -535,7 +552,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EAttribute getSybaseASABaseDatabase_MirrorFileName()
+    @Override
+	public EAttribute getSybaseASABaseDatabase_MirrorFileName()
     {
 		return (EAttribute)sybaseASABaseDatabaseEClass.getEStructuralFeatures().get(5);
 	}
@@ -545,7 +563,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EAttribute getSybaseASABaseDatabase_CaseSensitive()
+    @Override
+	public EAttribute getSybaseASABaseDatabase_CaseSensitive()
     {
 		return (EAttribute)sybaseASABaseDatabaseEClass.getEStructuralFeatures().get(6);
 	}
@@ -555,7 +574,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EAttribute getSybaseASABaseDatabase_Collation()
+    @Override
+	public EAttribute getSybaseASABaseDatabase_Collation()
     {
 		return (EAttribute)sybaseASABaseDatabaseEClass.getEStructuralFeatures().get(7);
 	}
@@ -565,7 +585,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EAttribute getSybaseASABaseDatabase_BlankPaddingOn()
+    @Override
+	public EAttribute getSybaseASABaseDatabase_BlankPaddingOn()
     {
 		return (EAttribute)sybaseASABaseDatabaseEClass.getEStructuralFeatures().get(8);
 	}
@@ -575,7 +596,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EAttribute getSybaseASABaseDatabase_CheckSumOn()
+    @Override
+	public EAttribute getSybaseASABaseDatabase_CheckSumOn()
     {
 		return (EAttribute)sybaseASABaseDatabaseEClass.getEStructuralFeatures().get(9);
 	}
@@ -585,7 +607,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EAttribute getSybaseASABaseDatabase_JConnectOn()
+    @Override
+	public EAttribute getSybaseASABaseDatabase_JConnectOn()
     {
 		return (EAttribute)sybaseASABaseDatabaseEClass.getEStructuralFeatures().get(10);
 	}
@@ -595,7 +618,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EAttribute getSybaseASABaseDatabase_PageSize()
+    @Override
+	public EAttribute getSybaseASABaseDatabase_PageSize()
     {
 		return (EAttribute)sybaseASABaseDatabaseEClass.getEStructuralFeatures().get(11);
 	}
@@ -605,7 +629,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EReference getSybaseASABaseDatabase_EncryptionInfo()
+    @Override
+	public EReference getSybaseASABaseDatabase_EncryptionInfo()
     {
 		return (EReference)sybaseASABaseDatabaseEClass.getEStructuralFeatures().get(12);
 	}
@@ -615,7 +640,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EAttribute getSybaseASABaseDatabase_JavaSupport()
+    @Override
+	public EAttribute getSybaseASABaseDatabase_JavaSupport()
     {
 		return (EAttribute)sybaseASABaseDatabaseEClass.getEStructuralFeatures().get(13);
 	}
@@ -625,7 +651,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EAttribute getSybaseASABaseDatabase_PasswordCaseSensitive()
+    @Override
+	public EAttribute getSybaseASABaseDatabase_PasswordCaseSensitive()
     {
 		return (EAttribute)sybaseASABaseDatabaseEClass.getEStructuralFeatures().get(14);
 	}
@@ -635,7 +662,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EClass getSybaseASAWebService()
+    @Override
+	public EClass getSybaseASAWebService()
     {
 		return sybaseASAWebServiceEClass;
 	}
@@ -645,7 +673,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EAttribute getSybaseASAWebService_Service_id()
+    @Override
+	public EAttribute getSybaseASAWebService_Service_id()
     {
 		return (EAttribute)sybaseASAWebServiceEClass.getEStructuralFeatures().get(0);
 	}
@@ -655,7 +684,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EAttribute getSybaseASAWebService_Service_type()
+    @Override
+	public EAttribute getSybaseASAWebService_Service_type()
     {
 		return (EAttribute)sybaseASAWebServiceEClass.getEStructuralFeatures().get(1);
 	}
@@ -665,7 +695,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EAttribute getSybaseASAWebService_Auth_required()
+    @Override
+	public EAttribute getSybaseASAWebService_Auth_required()
     {
 		return (EAttribute)sybaseASAWebServiceEClass.getEStructuralFeatures().get(2);
 	}
@@ -675,7 +706,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EAttribute getSybaseASAWebService_Secure_required()
+    @Override
+	public EAttribute getSybaseASAWebService_Secure_required()
     {
 		return (EAttribute)sybaseASAWebServiceEClass.getEStructuralFeatures().get(3);
 	}
@@ -685,7 +717,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EAttribute getSybaseASAWebService_Url_path()
+    @Override
+	public EAttribute getSybaseASAWebService_Url_path()
     {
 		return (EAttribute)sybaseASAWebServiceEClass.getEStructuralFeatures().get(4);
 	}
@@ -695,7 +728,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EAttribute getSybaseASAWebService_User_name()
+    @Override
+	public EAttribute getSybaseASAWebService_User_name()
     {
 		return (EAttribute)sybaseASAWebServiceEClass.getEStructuralFeatures().get(5);
 	}
@@ -705,7 +739,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EAttribute getSybaseASAWebService_Parameter()
+    @Override
+	public EAttribute getSybaseASAWebService_Parameter()
     {
 		return (EAttribute)sybaseASAWebServiceEClass.getEStructuralFeatures().get(6);
 	}
@@ -715,7 +750,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EAttribute getSybaseASAWebService_Statement()
+    @Override
+	public EAttribute getSybaseASAWebService_Statement()
     {
 		return (EAttribute)sybaseASAWebServiceEClass.getEStructuralFeatures().get(7);
 	}
@@ -725,7 +761,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EReference getSybaseASAWebService_Database()
+    @Override
+	public EReference getSybaseASAWebService_Database()
     {
 		return (EReference)sybaseASAWebServiceEClass.getEStructuralFeatures().get(8);
 	}
@@ -735,7 +772,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EClass getEncryptionInfo()
+    @Override
+	public EClass getEncryptionInfo()
     {
 		return encryptionInfoEClass;
 	}
@@ -745,7 +783,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EAttribute getEncryptionInfo_EncryptedTable()
+    @Override
+	public EAttribute getEncryptionInfo_EncryptedTable()
     {
 		return (EAttribute)encryptionInfoEClass.getEStructuralFeatures().get(0);
 	}
@@ -755,7 +794,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EAttribute getEncryptionInfo_EncryptionKey()
+    @Override
+	public EAttribute getEncryptionInfo_EncryptionKey()
     {
 		return (EAttribute)encryptionInfoEClass.getEStructuralFeatures().get(1);
 	}
@@ -765,7 +805,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EAttribute getEncryptionInfo_Algorithm()
+    @Override
+	public EAttribute getEncryptionInfo_Algorithm()
     {
 		return (EAttribute)encryptionInfoEClass.getEStructuralFeatures().get(2);
 	}
@@ -775,7 +816,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EClass getSybaseASABaseUserDefinedType()
+    @Override
+	public EClass getSybaseASABaseUserDefinedType()
     {
 		return sybaseASABaseUserDefinedTypeEClass;
 	}
@@ -785,7 +827,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EAttribute getSybaseASABaseUserDefinedType_Nullable()
+    @Override
+	public EAttribute getSybaseASABaseUserDefinedType_Nullable()
     {
 		return (EAttribute)sybaseASABaseUserDefinedTypeEClass.getEStructuralFeatures().get(0);
 	}
@@ -795,7 +838,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EAttribute getSybaseASABaseUserDefinedType_DefaultType()
+    @Override
+	public EAttribute getSybaseASABaseUserDefinedType_DefaultType()
     {
 		return (EAttribute)sybaseASABaseUserDefinedTypeEClass.getEStructuralFeatures().get(1);
 	}
@@ -805,7 +849,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EClass getSybaseASABasePredefinedDataType()
+    @Override
+	public EClass getSybaseASABasePredefinedDataType()
     {
 		return sybaseASABasePredefinedDataTypeEClass;
 	}
@@ -815,7 +860,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EReference getSybaseASABasePredefinedDataType_Database()
+    @Override
+	public EReference getSybaseASABasePredefinedDataType_Database()
     {
 		return (EReference)sybaseASABasePredefinedDataTypeEClass.getEStructuralFeatures().get(0);
 	}
@@ -825,7 +871,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EClass getSybaseASABaseTable()
+    @Override
+	public EClass getSybaseASABaseTable()
     {
 		return sybaseASABaseTableEClass;
 	}
@@ -835,7 +882,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EReference getSybaseASABaseTable_DbSpace()
+    @Override
+	public EReference getSybaseASABaseTable_DbSpace()
     {
 		return (EReference)sybaseASABaseTableEClass.getEStructuralFeatures().get(0);
 	}
@@ -845,7 +893,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EClass getSybaseASABaseColumn()
+    @Override
+	public EClass getSybaseASABaseColumn()
     {
 		return sybaseASABaseColumnEClass;
 	}
@@ -855,7 +904,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EReference getSybaseASABaseColumn_ColumnConstraint()
+    @Override
+	public EReference getSybaseASABaseColumn_ColumnConstraint()
     {
 		return (EReference)sybaseASABaseColumnEClass.getEStructuralFeatures().get(0);
 	}
@@ -865,7 +915,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EAttribute getSybaseASABaseColumn_TypeOfDefault()
+    @Override
+	public EAttribute getSybaseASABaseColumn_TypeOfDefault()
     {
 		return (EAttribute)sybaseASABaseColumnEClass.getEStructuralFeatures().get(1);
 	}
@@ -875,7 +926,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EAttribute getSybaseASABaseColumn_Unique()
+    @Override
+	public EAttribute getSybaseASABaseColumn_Unique()
     {
 		return (EAttribute)sybaseASABaseColumnEClass.getEStructuralFeatures().get(2);
 	}
@@ -885,6 +937,7 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getSybaseASABaseColumn_IsComputedColumn()
     {
 		return (EAttribute)sybaseASABaseColumnEClass.getEStructuralFeatures().get(3);
@@ -895,7 +948,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EClass getSybaseASABaseUniqueConstraint()
+    @Override
+	public EClass getSybaseASABaseUniqueConstraint()
     {
 		return sybaseASABaseUniqueConstraintEClass;
 	}
@@ -905,9 +959,10 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EAttribute getSybaseASABaseUniqueConstraint_Clustered()
+    @Override
+	public EReference getSybaseASABaseUniqueConstraint_SystemGenIndex()
     {
-		return (EAttribute)sybaseASABaseUniqueConstraintEClass.getEStructuralFeatures().get(0);
+		return (EReference)sybaseASABaseUniqueConstraintEClass.getEStructuralFeatures().get(0);
 	}
 
     /**
@@ -915,17 +970,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EReference getSybaseASABaseUniqueConstraint_SystemGenIndex()
-    {
-		return (EReference)sybaseASABaseUniqueConstraintEClass.getEStructuralFeatures().get(1);
-	}
-
-    /**
-	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-	 * @generated
-	 */
-    public EClass getSybaseASABasePrimaryKey()
+    @Override
+	public EClass getSybaseASABasePrimaryKey()
     {
 		return sybaseASABasePrimaryKeyEClass;
 	}
@@ -935,7 +981,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EClass getSybaseASABaseForeignKey()
+    @Override
+	public EClass getSybaseASABaseForeignKey()
     {
 		return sybaseASABaseForeignKeyEClass;
 	}
@@ -945,7 +992,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EAttribute getSybaseASABaseForeignKey_RoleName()
+    @Override
+	public EAttribute getSybaseASABaseForeignKey_RoleName()
     {
 		return (EAttribute)sybaseASABaseForeignKeyEClass.getEStructuralFeatures().get(0);
 	}
@@ -955,7 +1003,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EAttribute getSybaseASABaseForeignKey_Clustered()
+    @Override
+	public EAttribute getSybaseASABaseForeignKey_Clustered()
     {
 		return (EAttribute)sybaseASABaseForeignKeyEClass.getEStructuralFeatures().get(1);
 	}
@@ -965,7 +1014,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EClass getSybaseASABaseIndex()
+    @Override
+	public EClass getSybaseASABaseIndex()
     {
 		return sybaseASABaseIndexEClass;
 	}
@@ -975,7 +1025,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EReference getSybaseASABaseIndex_DbSpace()
+    @Override
+	public EReference getSybaseASABaseIndex_DbSpace()
     {
 		return (EReference)sybaseASABaseIndexEClass.getEStructuralFeatures().get(0);
 	}
@@ -985,7 +1036,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EClass getSybaseASABaseDBSpace()
+    @Override
+	public EClass getSybaseASABaseDBSpace()
     {
 		return sybaseASABaseDBSpaceEClass;
 	}
@@ -995,7 +1047,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EAttribute getSybaseASABaseDBSpace_FileName()
+    @Override
+	public EAttribute getSybaseASABaseDBSpace_FileName()
     {
 		return (EAttribute)sybaseASABaseDBSpaceEClass.getEStructuralFeatures().get(0);
 	}
@@ -1005,7 +1058,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EReference getSybaseASABaseDBSpace_Database()
+    @Override
+	public EReference getSybaseASABaseDBSpace_Database()
     {
 		return (EReference)sybaseASABaseDBSpaceEClass.getEStructuralFeatures().get(1);
 	}
@@ -1015,7 +1069,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EClass getSybaseASABaseViewTable()
+    @Override
+	public EClass getSybaseASABaseViewTable()
     {
 		return sybaseASABaseViewTableEClass;
 	}
@@ -1025,7 +1080,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EAttribute getSybaseASABaseViewTable_WithCheckOption()
+    @Override
+	public EAttribute getSybaseASABaseViewTable_WithCheckOption()
     {
 		return (EAttribute)sybaseASABaseViewTableEClass.getEStructuralFeatures().get(0);
 	}
@@ -1035,7 +1091,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EReference getSybaseASABaseViewTable_Statement()
+    @Override
+	public EReference getSybaseASABaseViewTable_Statement()
     {
 		return (EReference)sybaseASABaseViewTableEClass.getEStructuralFeatures().get(1);
 	}
@@ -1045,7 +1102,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EClass getSybaseASABaseFunction()
+    @Override
+	public EClass getSybaseASABaseFunction()
     {
 		return sybaseASABaseFunctionEClass;
 	}
@@ -1055,7 +1113,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EAttribute getSybaseASABaseFunction_OnExceptionResume()
+    @Override
+	public EAttribute getSybaseASABaseFunction_OnExceptionResume()
     {
 		return (EAttribute)sybaseASABaseFunctionEClass.getEStructuralFeatures().get(0);
 	}
@@ -1065,7 +1124,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EClass getSybaseASABaseProcedure()
+    @Override
+	public EClass getSybaseASABaseProcedure()
     {
 		return sybaseASABaseProcedureEClass;
 	}
@@ -1075,7 +1135,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EAttribute getSybaseASABaseProcedure_OnExceptionResume()
+    @Override
+	public EAttribute getSybaseASABaseProcedure_OnExceptionResume()
     {
 		return (EAttribute)sybaseASABaseProcedureEClass.getEStructuralFeatures().get(0);
 	}
@@ -1085,7 +1146,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EClass getSybaseASABaseTempTable()
+    @Override
+	public EClass getSybaseASABaseTempTable()
     {
 		return sybaseASABaseTempTableEClass;
 	}
@@ -1095,7 +1157,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EAttribute getSybaseASABaseTempTable_TransactionOption()
+    @Override
+	public EAttribute getSybaseASABaseTempTable_TransactionOption()
     {
 		return (EAttribute)sybaseASABaseTempTableEClass.getEStructuralFeatures().get(0);
 	}
@@ -1105,7 +1168,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EClass getSybaseASABaseTrigger()
+    @Override
+	public EClass getSybaseASABaseTrigger()
     {
 		return sybaseASABaseTriggerEClass;
 	}
@@ -1115,7 +1179,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EAttribute getSybaseASABaseTrigger_Order()
+    @Override
+	public EAttribute getSybaseASABaseTrigger_Order()
     {
 		return (EAttribute)sybaseASABaseTriggerEClass.getEStructuralFeatures().get(0);
 	}
@@ -1125,7 +1190,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EAttribute getSybaseASABaseTrigger_SybaseASABaseActionTime()
+    @Override
+	public EAttribute getSybaseASABaseTrigger_SybaseASABaseActionTime()
     {
 		return (EAttribute)sybaseASABaseTriggerEClass.getEStructuralFeatures().get(1);
 	}
@@ -1135,7 +1201,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EAttribute getSybaseASABaseTrigger_RemoteName()
+    @Override
+	public EAttribute getSybaseASABaseTrigger_RemoteName()
     {
 		return (EAttribute)sybaseASABaseTriggerEClass.getEStructuralFeatures().get(2);
 	}
@@ -1145,7 +1212,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EAttribute getSybaseASABaseTrigger_UpdateColumnType()
+    @Override
+	public EAttribute getSybaseASABaseTrigger_UpdateColumnType()
     {
 		return (EAttribute)sybaseASABaseTriggerEClass.getEStructuralFeatures().get(3);
 	}
@@ -1155,7 +1223,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EClass getSybaseASABaseProxyTable()
+    @Override
+	public EClass getSybaseASABaseProxyTable()
     {
 		return sybaseASABaseProxyTableEClass;
 	}
@@ -1165,7 +1234,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EAttribute getSybaseASABaseProxyTable_RemoteObjectLocation()
+    @Override
+	public EAttribute getSybaseASABaseProxyTable_RemoteObjectLocation()
     {
 		return (EAttribute)sybaseASABaseProxyTableEClass.getEStructuralFeatures().get(0);
 	}
@@ -1175,7 +1245,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EAttribute getSybaseASABaseProxyTable_Existing()
+    @Override
+	public EAttribute getSybaseASABaseProxyTable_Existing()
     {
 		return (EAttribute)sybaseASABaseProxyTableEClass.getEStructuralFeatures().get(1);
 	}
@@ -1185,7 +1256,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EClass getSybaseASABaseColumnCheckConstraint()
+    @Override
+	public EClass getSybaseASABaseColumnCheckConstraint()
     {
 		return sybaseASABaseColumnCheckConstraintEClass;
 	}
@@ -1195,7 +1267,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EReference getSybaseASABaseColumnCheckConstraint_Column()
+    @Override
+	public EReference getSybaseASABaseColumnCheckConstraint_Column()
     {
 		return (EReference)sybaseASABaseColumnCheckConstraintEClass.getEStructuralFeatures().get(0);
 	}
@@ -1205,7 +1278,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EClass getSchedule()
+    @Override
+	public EClass getSchedule()
     {
 		return scheduleEClass;
 	}
@@ -1215,7 +1289,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EAttribute getSchedule_Recurring()
+    @Override
+	public EAttribute getSchedule_Recurring()
     {
 		return (EAttribute)scheduleEClass.getEStructuralFeatures().get(0);
 	}
@@ -1225,7 +1300,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EAttribute getSchedule_StartTime()
+    @Override
+	public EAttribute getSchedule_StartTime()
     {
 		return (EAttribute)scheduleEClass.getEStructuralFeatures().get(1);
 	}
@@ -1235,7 +1311,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EAttribute getSchedule_StopTime()
+    @Override
+	public EAttribute getSchedule_StopTime()
     {
 		return (EAttribute)scheduleEClass.getEStructuralFeatures().get(2);
 	}
@@ -1245,7 +1322,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EAttribute getSchedule_StartDate()
+    @Override
+	public EAttribute getSchedule_StartDate()
     {
 		return (EAttribute)scheduleEClass.getEStructuralFeatures().get(3);
 	}
@@ -1255,7 +1333,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EAttribute getSchedule_DaysOfWeek()
+    @Override
+	public EAttribute getSchedule_DaysOfWeek()
     {
 		return (EAttribute)scheduleEClass.getEStructuralFeatures().get(4);
 	}
@@ -1265,7 +1344,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EAttribute getSchedule_DaysOfMonth()
+    @Override
+	public EAttribute getSchedule_DaysOfMonth()
     {
 		return (EAttribute)scheduleEClass.getEStructuralFeatures().get(5);
 	}
@@ -1275,7 +1355,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EAttribute getSchedule_IntervalUnit()
+    @Override
+	public EAttribute getSchedule_IntervalUnit()
     {
 		return (EAttribute)scheduleEClass.getEStructuralFeatures().get(6);
 	}
@@ -1285,7 +1366,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EAttribute getSchedule_IntervalMount()
+    @Override
+	public EAttribute getSchedule_IntervalMount()
     {
 		return (EAttribute)scheduleEClass.getEStructuralFeatures().get(7);
 	}
@@ -1295,7 +1377,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EReference getSchedule_Event()
+    @Override
+	public EReference getSchedule_Event()
     {
 		return (EReference)scheduleEClass.getEStructuralFeatures().get(8);
 	}
@@ -1305,7 +1388,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EClass getSybaseASABaseRemoteProcedure()
+    @Override
+	public EClass getSybaseASABaseRemoteProcedure()
     {
 		return sybaseASABaseRemoteProcedureEClass;
 	}
@@ -1315,7 +1399,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EAttribute getSybaseASABaseRemoteProcedure_Location()
+    @Override
+	public EAttribute getSybaseASABaseRemoteProcedure_Location()
     {
 		return (EAttribute)sybaseASABaseRemoteProcedureEClass.getEStructuralFeatures().get(0);
 	}
@@ -1325,7 +1410,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EClass getSybaseASABaseParameter()
+    @Override
+	public EClass getSybaseASABaseParameter()
     {
 		return sybaseASABaseParameterEClass;
 	}
@@ -1335,7 +1421,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EAttribute getSybaseASABaseParameter_ParmType()
+    @Override
+	public EAttribute getSybaseASABaseParameter_ParmType()
     {
 		return (EAttribute)sybaseASABaseParameterEClass.getEStructuralFeatures().get(0);
 	}
@@ -1345,7 +1432,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EClass getSybaseASABaseGroup()
+    @Override
+	public EClass getSybaseASABaseGroup()
     {
 		return sybaseASABaseGroupEClass;
 	}
@@ -1355,7 +1443,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EClass getSybaseASABaseSchema()
+    @Override
+	public EClass getSybaseASABaseSchema()
     {
 		return sybaseASABaseSchemaEClass;
 	}
@@ -1365,7 +1454,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EClass getSybaseASABaseUser()
+    @Override
+	public EClass getSybaseASABaseUser()
     {
 		return sybaseASABaseUserEClass;
 	}
@@ -1375,6 +1465,7 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getSybaseASADefaultWrapper()
     {
 		return sybaseASADefaultWrapperEClass;
@@ -1385,6 +1476,7 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getSybaseASADefaultWrapper_Value()
     {
 		return (EAttribute)sybaseASADefaultWrapperEClass.getEStructuralFeatures().get(0);
@@ -1395,6 +1487,7 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getSybaseASADefaultWrapper_IsLiteral()
     {
 		return (EAttribute)sybaseASADefaultWrapperEClass.getEStructuralFeatures().get(1);
@@ -1405,6 +1498,7 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getSybaseASADefaultWrapper_PartitionSize()
     {
 		return (EAttribute)sybaseASADefaultWrapperEClass.getEStructuralFeatures().get(2);
@@ -1415,6 +1509,7 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getSybaseASADefaultWrapper_Type()
     {
 		return (EAttribute)sybaseASADefaultWrapperEClass.getEStructuralFeatures().get(3);
@@ -1425,7 +1520,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EClass getEventCondition()
+    @Override
+	public EClass getEventCondition()
     {
 		return eventConditionEClass;
 	}
@@ -1435,7 +1531,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EAttribute getEventCondition_Operator()
+    @Override
+	public EAttribute getEventCondition_Operator()
     {
 		return (EAttribute)eventConditionEClass.getEStructuralFeatures().get(0);
 	}
@@ -1445,7 +1542,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EAttribute getEventCondition_Value()
+    @Override
+	public EAttribute getEventCondition_Value()
     {
 		return (EAttribute)eventConditionEClass.getEStructuralFeatures().get(1);
 	}
@@ -1455,7 +1553,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EReference getEventCondition_Event()
+    @Override
+	public EReference getEventCondition_Event()
     {
 		return (EReference)eventConditionEClass.getEStructuralFeatures().get(2);
 	}
@@ -1465,7 +1564,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EEnum getTransactionOption()
+    @Override
+	public EEnum getTransactionOption()
     {
 		return transactionOptionEEnum;
 	}
@@ -1475,7 +1575,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EEnum getTypeOfDefault()
+    @Override
+	public EEnum getTypeOfDefault()
     {
 		return typeOfDefaultEEnum;
 	}
@@ -1485,7 +1586,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EEnum getSybaseASABaseActionTime()
+    @Override
+	public EEnum getSybaseASABaseActionTime()
     {
 		return sybaseASABaseActionTimeEEnum;
 	}
@@ -1495,7 +1597,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EEnum getEventType()
+    @Override
+	public EEnum getEventType()
     {
 		return eventTypeEEnum;
 	}
@@ -1505,7 +1608,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EEnum getJavaSupportType()
+    @Override
+	public EEnum getJavaSupportType()
     {
 		return javaSupportTypeEEnum;
 	}
@@ -1515,7 +1619,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EEnum getEventLocationType()
+    @Override
+	public EEnum getEventLocationType()
     {
 		return eventLocationTypeEEnum;
 	}
@@ -1525,7 +1630,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EEnum getIntervalUnitType()
+    @Override
+	public EEnum getIntervalUnitType()
     {
 		return intervalUnitTypeEEnum;
 	}
@@ -1535,7 +1641,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EEnum getSystemDefinedDefaultType()
+    @Override
+	public EEnum getSystemDefinedDefaultType()
     {
 		return systemDefinedDefaultTypeEEnum;
 	}
@@ -1545,7 +1652,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EEnum getAllowNullType()
+    @Override
+	public EEnum getAllowNullType()
     {
 		return allowNullTypeEEnum;
 	}
@@ -1555,7 +1663,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EEnum getParameterType()
+    @Override
+	public EEnum getParameterType()
     {
 		return parameterTypeEEnum;
 	}
@@ -1565,7 +1674,8 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public SybaseasabasesqlmodelFactory getSybaseasabasesqlmodelFactory()
+    @Override
+	public SybaseasabasesqlmodelFactory getSybaseasabasesqlmodelFactory()
     {
 		return (SybaseasabasesqlmodelFactory)getEFactoryInstance();
 	}
@@ -1586,7 +1696,9 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
 	 */
     public void createPackageContents()
     {
-		if (isCreated) return;
+		if (isCreated) {
+			return;
+		}
 		isCreated = true;
 
 		// Create classes and their features
@@ -1647,7 +1759,6 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
 		createEAttribute(sybaseASABaseColumnEClass, SYBASE_ASA_BASE_COLUMN__IS_COMPUTED_COLUMN);
 
 		sybaseASABaseUniqueConstraintEClass = createEClass(SYBASE_ASA_BASE_UNIQUE_CONSTRAINT);
-		createEAttribute(sybaseASABaseUniqueConstraintEClass, SYBASE_ASA_BASE_UNIQUE_CONSTRAINT__CLUSTERED);
 		createEReference(sybaseASABaseUniqueConstraintEClass, SYBASE_ASA_BASE_UNIQUE_CONSTRAINT__SYSTEM_GEN_INDEX);
 
 		sybaseASABasePrimaryKeyEClass = createEClass(SYBASE_ASA_BASE_PRIMARY_KEY);
@@ -1752,7 +1863,9 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
 	 */
     public void initializePackageContents()
     {
-		if (isInitialized) return;
+		if (isInitialized) {
+			return;
+		}
 		isInitialized = true;
 
 		// Initialize package
@@ -1881,7 +1994,6 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
 		addEOperation(sybaseASABaseColumnEClass, theEcorePackage.getEInt(), "getGlobalIncrementPartitionSize", 0, 1);
 
 		initEClass(sybaseASABaseUniqueConstraintEClass, SybaseASABaseUniqueConstraint.class, "SybaseASABaseUniqueConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getSybaseASABaseUniqueConstraint_Clustered(), ecorePackage.getEBoolean(), "clustered", null, 0, 1, SybaseASABaseUniqueConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSybaseASABaseUniqueConstraint_SystemGenIndex(), this.getSybaseASABaseIndex(), null, "systemGenIndex", null, 0, 1, SybaseASABaseUniqueConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(sybaseASABasePrimaryKeyEClass, SybaseASABasePrimaryKey.class, "SybaseASABasePrimaryKey", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2078,13 +2190,13 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
 	 */
     protected void createGenModel_1Annotations()
     {
-		String source = "GenModel";														
+		String source = "GenModel";
 		addAnnotation
-		  (sybaseASABaseActionTimeEEnum, 
-		   source, 
+		  (sybaseASABaseActionTimeEEnum,
+		   source,
 		   new String[] {
-			 "document", "In Sybase ASA, there are 3 kinds of action time for trigger which are: BEFORE, AFTER and RESOLVE.\r\nThe predefined action time enumeration in sql model can not meet our requirement. And we can not \r\nextends the predefined one since it\'s declared as final.\r\nThe actual action time for \"ASE\" type is \"AFTER\", but ASA treats it as another action time."
-		   });			
+			   "document", "In Sybase ASA, there are 3 kinds of action time for trigger which are: BEFORE, AFTER and RESOLVE.\r\nThe predefined action time enumeration in sql model can not meet our requirement. And we can not \r\nextends the predefined one since it\'s declared as final.\r\nThe actual action time for \"ASE\" type is \"AFTER\", but ASA treats it as another action time."
+		   });
 	}
 
 } //SybaseasabasesqlmodelPackageImpl

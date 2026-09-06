@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -27,12 +27,12 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.datatypes.impl.UserDefinedTypeOrderingImpl#getOrderingForm <em>Ordering Form</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.datatypes.impl.UserDefinedTypeOrderingImpl#getOrderingCategory <em>Ordering Category</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.datatypes.impl.UserDefinedTypeOrderingImpl#getOrderingRoutine <em>Ordering Routine</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -101,6 +101,7 @@ public class UserDefinedTypeOrderingImpl extends SQLObjectImpl implements UserDe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return SQLDataTypesPackage.Literals.USER_DEFINED_TYPE_ORDERING;
 	}
@@ -110,6 +111,7 @@ public class UserDefinedTypeOrderingImpl extends SQLObjectImpl implements UserDe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public OrderingType getOrderingForm() {
 		return orderingForm;
 	}
@@ -119,11 +121,13 @@ public class UserDefinedTypeOrderingImpl extends SQLObjectImpl implements UserDe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOrderingForm(OrderingType newOrderingForm) {
 		OrderingType oldOrderingForm = orderingForm;
 		orderingForm = newOrderingForm == null ? ORDERING_FORM_EDEFAULT : newOrderingForm;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLDataTypesPackage.USER_DEFINED_TYPE_ORDERING__ORDERING_FORM, oldOrderingForm, orderingForm));
+		}
 	}
 
 	/**
@@ -131,6 +135,7 @@ public class UserDefinedTypeOrderingImpl extends SQLObjectImpl implements UserDe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public OrderingCategoryType getOrderingCategory() {
 		return orderingCategory;
 	}
@@ -140,11 +145,13 @@ public class UserDefinedTypeOrderingImpl extends SQLObjectImpl implements UserDe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOrderingCategory(OrderingCategoryType newOrderingCategory) {
 		OrderingCategoryType oldOrderingCategory = orderingCategory;
 		orderingCategory = newOrderingCategory == null ? ORDERING_CATEGORY_EDEFAULT : newOrderingCategory;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLDataTypesPackage.USER_DEFINED_TYPE_ORDERING__ORDERING_CATEGORY, oldOrderingCategory, orderingCategory));
+		}
 	}
 
 	/**
@@ -152,13 +159,15 @@ public class UserDefinedTypeOrderingImpl extends SQLObjectImpl implements UserDe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Routine getOrderingRoutine() {
 		if (orderingRoutine != null && orderingRoutine.eIsProxy()) {
 			InternalEObject oldOrderingRoutine = (InternalEObject)orderingRoutine;
 			orderingRoutine = (Routine)eResolveProxy(oldOrderingRoutine);
 			if (orderingRoutine != oldOrderingRoutine) {
-				if (eNotificationRequired())
+				if (eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SQLDataTypesPackage.USER_DEFINED_TYPE_ORDERING__ORDERING_ROUTINE, oldOrderingRoutine, orderingRoutine));
+				}
 			}
 		}
 		return orderingRoutine;
@@ -178,11 +187,13 @@ public class UserDefinedTypeOrderingImpl extends SQLObjectImpl implements UserDe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOrderingRoutine(Routine newOrderingRoutine) {
 		Routine oldOrderingRoutine = orderingRoutine;
 		orderingRoutine = newOrderingRoutine;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLDataTypesPackage.USER_DEFINED_TYPE_ORDERING__ORDERING_ROUTINE, oldOrderingRoutine, orderingRoutine));
+		}
 	}
 
 	/**
@@ -190,6 +201,7 @@ public class UserDefinedTypeOrderingImpl extends SQLObjectImpl implements UserDe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SQLDataTypesPackage.USER_DEFINED_TYPE_ORDERING__ORDERING_FORM:
@@ -197,7 +209,9 @@ public class UserDefinedTypeOrderingImpl extends SQLObjectImpl implements UserDe
 			case SQLDataTypesPackage.USER_DEFINED_TYPE_ORDERING__ORDERING_CATEGORY:
 				return getOrderingCategory();
 			case SQLDataTypesPackage.USER_DEFINED_TYPE_ORDERING__ORDERING_ROUTINE:
-				if (resolve) return getOrderingRoutine();
+				if (resolve) {
+					return getOrderingRoutine();
+				}
 				return basicGetOrderingRoutine();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -208,6 +222,7 @@ public class UserDefinedTypeOrderingImpl extends SQLObjectImpl implements UserDe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case SQLDataTypesPackage.USER_DEFINED_TYPE_ORDERING__ORDERING_FORM:
@@ -228,6 +243,7 @@ public class UserDefinedTypeOrderingImpl extends SQLObjectImpl implements UserDe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case SQLDataTypesPackage.USER_DEFINED_TYPE_ORDERING__ORDERING_FORM:
@@ -248,6 +264,7 @@ public class UserDefinedTypeOrderingImpl extends SQLObjectImpl implements UserDe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SQLDataTypesPackage.USER_DEFINED_TYPE_ORDERING__ORDERING_FORM:
@@ -265,8 +282,11 @@ public class UserDefinedTypeOrderingImpl extends SQLObjectImpl implements UserDe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (orderingForm: "); //$NON-NLS-1$

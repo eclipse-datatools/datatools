@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.ConstructedDataTypeDefinition#isArrayDatatypeSupported <em>Array Datatype Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.ConstructedDataTypeDefinition#isMultisetDatatypeSupported <em>Multiset Datatype Supported</em>}</li>
@@ -22,7 +23,6 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.ConstructedDataTypeDefinition#isReferenceDatatypeSupported <em>Reference Datatype Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.ConstructedDataTypeDefinition#isCursorDatatypeSupported <em>Cursor Datatype Supported</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getConstructedDataTypeDefinition()
  * @model

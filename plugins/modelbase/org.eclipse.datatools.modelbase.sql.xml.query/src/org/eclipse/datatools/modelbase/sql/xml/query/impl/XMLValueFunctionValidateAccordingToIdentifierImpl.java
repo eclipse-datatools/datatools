@@ -18,194 +18,208 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLValueFunctionValidateAccordingToIdentifierImpl#getSchemaName <em>Schema Name</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLValueFunctionValidateAccordingToIdentifierImpl#getRegisteredXMLSchemaName <em>Registered XML Schema Name</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
 public class XMLValueFunctionValidateAccordingToIdentifierImpl extends XMLValueFunctionValidateAccordingToImpl implements XMLValueFunctionValidateAccordingToIdentifier {
 	/**
-     * The default value of the '{@link #getSchemaName() <em>Schema Name</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getSchemaName() <em>Schema Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getSchemaName()
-     * @generated
-     * @ordered
-     */
+	 * @see #getSchemaName()
+	 * @generated
+	 * @ordered
+	 */
     protected static final String SCHEMA_NAME_EDEFAULT = null;
 
 	/**
-     * The cached value of the '{@link #getSchemaName() <em>Schema Name</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getSchemaName() <em>Schema Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getSchemaName()
-     * @generated
-     * @ordered
-     */
+	 * @see #getSchemaName()
+	 * @generated
+	 * @ordered
+	 */
     protected String schemaName = SCHEMA_NAME_EDEFAULT;
 
 	/**
-     * The default value of the '{@link #getRegisteredXMLSchemaName() <em>Registered XML Schema Name</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getRegisteredXMLSchemaName() <em>Registered XML Schema Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getRegisteredXMLSchemaName()
-     * @generated
-     * @ordered
-     */
+	 * @see #getRegisteredXMLSchemaName()
+	 * @generated
+	 * @ordered
+	 */
     protected static final String REGISTERED_XML_SCHEMA_NAME_EDEFAULT = null;
 
 	/**
-     * The cached value of the '{@link #getRegisteredXMLSchemaName() <em>Registered XML Schema Name</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getRegisteredXMLSchemaName() <em>Registered XML Schema Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getRegisteredXMLSchemaName()
-     * @generated
-     * @ordered
-     */
+	 * @see #getRegisteredXMLSchemaName()
+	 * @generated
+	 * @ordered
+	 */
     protected String registeredXMLSchemaName = REGISTERED_XML_SCHEMA_NAME_EDEFAULT;
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected XMLValueFunctionValidateAccordingToIdentifierImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    protected EClass eStaticClass() {
-        return SQLXMLQueryModelPackage.Literals.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER;
-    }
+	 * @generated
+	 */
+    @Override
+	protected EClass eStaticClass() {
+		return SQLXMLQueryModelPackage.Literals.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public String getSchemaName() {
-        return schemaName;
-    }
+	 * @generated
+	 */
+    @Override
+	public String getSchemaName() {
+		return schemaName;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setSchemaName(String newSchemaName) {
-        String oldSchemaName = schemaName;
-        schemaName = newSchemaName;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__SCHEMA_NAME, oldSchemaName, schemaName));
-    }
+	 * @generated
+	 */
+    @Override
+	public void setSchemaName(String newSchemaName) {
+		String oldSchemaName = schemaName;
+		schemaName = newSchemaName;
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__SCHEMA_NAME, oldSchemaName, schemaName));
+		}
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public String getRegisteredXMLSchemaName() {
-        return registeredXMLSchemaName;
-    }
+	 * @generated
+	 */
+    @Override
+	public String getRegisteredXMLSchemaName() {
+		return registeredXMLSchemaName;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setRegisteredXMLSchemaName(String newRegisteredXMLSchemaName) {
-        String oldRegisteredXMLSchemaName = registeredXMLSchemaName;
-        registeredXMLSchemaName = newRegisteredXMLSchemaName;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__REGISTERED_XML_SCHEMA_NAME, oldRegisteredXMLSchemaName, registeredXMLSchemaName));
-    }
+	 * @generated
+	 */
+    @Override
+	public void setRegisteredXMLSchemaName(String newRegisteredXMLSchemaName) {
+		String oldRegisteredXMLSchemaName = registeredXMLSchemaName;
+		registeredXMLSchemaName = newRegisteredXMLSchemaName;
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__REGISTERED_XML_SCHEMA_NAME, oldRegisteredXMLSchemaName, registeredXMLSchemaName));
+		}
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__SCHEMA_NAME:
-                return getSchemaName();
-            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__REGISTERED_XML_SCHEMA_NAME:
-                return getRegisteredXMLSchemaName();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__SCHEMA_NAME:
+				return getSchemaName();
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__REGISTERED_XML_SCHEMA_NAME:
+				return getRegisteredXMLSchemaName();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__SCHEMA_NAME:
-                setSchemaName((String)newValue);
-                return;
-            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__REGISTERED_XML_SCHEMA_NAME:
-                setRegisteredXMLSchemaName((String)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__SCHEMA_NAME:
+				setSchemaName((String)newValue);
+				return;
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__REGISTERED_XML_SCHEMA_NAME:
+				setRegisteredXMLSchemaName((String)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public void eUnset(int featureID) {
-        switch (featureID) {
-            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__SCHEMA_NAME:
-                setSchemaName(SCHEMA_NAME_EDEFAULT);
-                return;
-            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__REGISTERED_XML_SCHEMA_NAME:
-                setRegisteredXMLSchemaName(REGISTERED_XML_SCHEMA_NAME_EDEFAULT);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__SCHEMA_NAME:
+				setSchemaName(SCHEMA_NAME_EDEFAULT);
+				return;
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__REGISTERED_XML_SCHEMA_NAME:
+				setRegisteredXMLSchemaName(REGISTERED_XML_SCHEMA_NAME_EDEFAULT);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__SCHEMA_NAME:
-                return SCHEMA_NAME_EDEFAULT == null ? schemaName != null : !SCHEMA_NAME_EDEFAULT.equals(schemaName);
-            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__REGISTERED_XML_SCHEMA_NAME:
-                return REGISTERED_XML_SCHEMA_NAME_EDEFAULT == null ? registeredXMLSchemaName != null : !REGISTERED_XML_SCHEMA_NAME_EDEFAULT.equals(registeredXMLSchemaName);
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__SCHEMA_NAME:
+				return SCHEMA_NAME_EDEFAULT == null ? schemaName != null : !SCHEMA_NAME_EDEFAULT.equals(schemaName);
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__REGISTERED_XML_SCHEMA_NAME:
+				return REGISTERED_XML_SCHEMA_NAME_EDEFAULT == null ? registeredXMLSchemaName != null : !REGISTERED_XML_SCHEMA_NAME_EDEFAULT.equals(registeredXMLSchemaName);
+		}
+		return super.eIsSet(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public String toString() {
-        if (eIsProxy()) return super.toString();
+	 * @generated
+	 */
+    @Override
+	public String toString() {
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (schemaName: ");
-        result.append(schemaName);
-        result.append(", registeredXMLSchemaName: ");
-        result.append(registeredXMLSchemaName);
-        result.append(')');
-        return result.toString();
-    }
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (schemaName: ");
+		result.append(schemaName);
+		result.append(", registeredXMLSchemaName: ");
+		result.append(registeredXMLSchemaName);
+		result.append(')');
+		return result.toString();
+	}
 
 } //XMLValueFunctionValidateAccordingToIdentifierImpl

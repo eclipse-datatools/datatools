@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.schema.impl.IdentitySpecifierImpl#getGenerationType <em>Generation Type</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.schema.impl.IdentitySpecifierImpl#getStartValue <em>Start Value</em>}</li>
@@ -34,7 +35,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *   <li>{@link org.eclipse.datatools.modelbase.sql.schema.impl.IdentitySpecifierImpl#getMaximum <em>Maximum</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.schema.impl.IdentitySpecifierImpl#isCycleOption <em>Cycle Option</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -173,6 +173,7 @@ public class IdentitySpecifierImpl extends SQLObjectImpl implements IdentitySpec
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return SQLSchemaPackage.Literals.IDENTITY_SPECIFIER;
 	}
@@ -182,6 +183,7 @@ public class IdentitySpecifierImpl extends SQLObjectImpl implements IdentitySpec
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenerateType getGenerationType() {
 		return generationType;
 	}
@@ -191,11 +193,13 @@ public class IdentitySpecifierImpl extends SQLObjectImpl implements IdentitySpec
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setGenerationType(GenerateType newGenerationType) {
 		GenerateType oldGenerationType = generationType;
 		generationType = newGenerationType == null ? GENERATION_TYPE_EDEFAULT : newGenerationType;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLSchemaPackage.IDENTITY_SPECIFIER__GENERATION_TYPE, oldGenerationType, generationType));
+		}
 	}
 
 	/**
@@ -203,6 +207,7 @@ public class IdentitySpecifierImpl extends SQLObjectImpl implements IdentitySpec
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public BigInteger getStartValue() {
 		return startValue;
 	}
@@ -212,11 +217,13 @@ public class IdentitySpecifierImpl extends SQLObjectImpl implements IdentitySpec
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setStartValue(BigInteger newStartValue) {
 		BigInteger oldStartValue = startValue;
 		startValue = newStartValue;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLSchemaPackage.IDENTITY_SPECIFIER__START_VALUE, oldStartValue, startValue));
+		}
 	}
 
 	/**
@@ -224,6 +231,7 @@ public class IdentitySpecifierImpl extends SQLObjectImpl implements IdentitySpec
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public BigInteger getIncrement() {
 		return increment;
 	}
@@ -233,11 +241,13 @@ public class IdentitySpecifierImpl extends SQLObjectImpl implements IdentitySpec
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIncrement(BigInteger newIncrement) {
 		BigInteger oldIncrement = increment;
 		increment = newIncrement;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLSchemaPackage.IDENTITY_SPECIFIER__INCREMENT, oldIncrement, increment));
+		}
 	}
 
 	/**
@@ -245,6 +255,7 @@ public class IdentitySpecifierImpl extends SQLObjectImpl implements IdentitySpec
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public BigInteger getMinimum() {
 		return minimum;
 	}
@@ -254,11 +265,13 @@ public class IdentitySpecifierImpl extends SQLObjectImpl implements IdentitySpec
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMinimum(BigInteger newMinimum) {
 		BigInteger oldMinimum = minimum;
 		minimum = newMinimum;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLSchemaPackage.IDENTITY_SPECIFIER__MINIMUM, oldMinimum, minimum));
+		}
 	}
 
 	/**
@@ -266,6 +279,7 @@ public class IdentitySpecifierImpl extends SQLObjectImpl implements IdentitySpec
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public BigInteger getMaximum() {
 		return maximum;
 	}
@@ -275,11 +289,13 @@ public class IdentitySpecifierImpl extends SQLObjectImpl implements IdentitySpec
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMaximum(BigInteger newMaximum) {
 		BigInteger oldMaximum = maximum;
 		maximum = newMaximum;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLSchemaPackage.IDENTITY_SPECIFIER__MAXIMUM, oldMaximum, maximum));
+		}
 	}
 
 	/**
@@ -287,6 +303,7 @@ public class IdentitySpecifierImpl extends SQLObjectImpl implements IdentitySpec
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isCycleOption() {
 		return cycleOption;
 	}
@@ -296,11 +313,13 @@ public class IdentitySpecifierImpl extends SQLObjectImpl implements IdentitySpec
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCycleOption(boolean newCycleOption) {
 		boolean oldCycleOption = cycleOption;
 		cycleOption = newCycleOption;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLSchemaPackage.IDENTITY_SPECIFIER__CYCLE_OPTION, oldCycleOption, cycleOption));
+		}
 	}
 
 	/**
@@ -308,6 +327,7 @@ public class IdentitySpecifierImpl extends SQLObjectImpl implements IdentitySpec
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SQLSchemaPackage.IDENTITY_SPECIFIER__GENERATION_TYPE:
@@ -331,6 +351,7 @@ public class IdentitySpecifierImpl extends SQLObjectImpl implements IdentitySpec
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case SQLSchemaPackage.IDENTITY_SPECIFIER__GENERATION_TYPE:
@@ -360,6 +381,7 @@ public class IdentitySpecifierImpl extends SQLObjectImpl implements IdentitySpec
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case SQLSchemaPackage.IDENTITY_SPECIFIER__GENERATION_TYPE:
@@ -389,6 +411,7 @@ public class IdentitySpecifierImpl extends SQLObjectImpl implements IdentitySpec
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SQLSchemaPackage.IDENTITY_SPECIFIER__GENERATION_TYPE:
@@ -412,8 +435,11 @@ public class IdentitySpecifierImpl extends SQLObjectImpl implements IdentitySpec
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (generationType: "); //$NON-NLS-1$

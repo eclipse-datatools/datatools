@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -397,20 +397,10 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	private static boolean isInited = false;
 
 	/**
-	 * Creates, registers, and initializes the <b>Package</b> for this
-	 * model, and for any others upon which it depends.  Simple
-	 * dependencies are satisfied by calling this method on all
-	 * dependent packages before doing anything else.  This method drives
-	 * initialization for interdependent packages directly, in parallel
-	 * with this package, itself.
-	 * <p>Of this package and its interdependencies, all packages which
-	 * have not yet been registered by their URI values are first created
-	 * and registered.  The packages are then initialized in two steps:
-	 * meta-model objects for all of the packages are created before any
-	 * are initialized, since one package's meta-model objects may refer to
-	 * those of another.
-	 * <p>Invocation of this method will not affect any packages that have
-	 * already been initialized.
+	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
+	 *
+	 * <p>This method is used to initialize {@link SQLDataTypesPackage#eINSTANCE} when that field is accessed.
+	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #eNS_URI
@@ -419,10 +409,13 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * @generated
 	 */
 	public static SQLDataTypesPackage init() {
-		if (isInited) return (SQLDataTypesPackage)EPackage.Registry.INSTANCE.getEPackage(SQLDataTypesPackage.eNS_URI);
+		if (isInited) {
+			return (SQLDataTypesPackage)EPackage.Registry.INSTANCE.getEPackage(SQLDataTypesPackage.eNS_URI);
+		}
 
 		// Obtain or create and register package
-		SQLDataTypesPackageImpl theSQLDataTypesPackage = (SQLDataTypesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(eNS_URI) instanceof SQLDataTypesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(eNS_URI) : new SQLDataTypesPackageImpl());
+		Object registeredSQLDataTypesPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		SQLDataTypesPackageImpl theSQLDataTypesPackage = registeredSQLDataTypesPackage instanceof SQLDataTypesPackageImpl ? (SQLDataTypesPackageImpl)registeredSQLDataTypesPackage : new SQLDataTypesPackageImpl();
 
 		isInited = true;
 
@@ -430,13 +423,20 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 		EcorePackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
-		SQLSchemaPackageImpl theSQLSchemaPackage = (SQLSchemaPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SQLSchemaPackage.eNS_URI) instanceof SQLSchemaPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SQLSchemaPackage.eNS_URI) : SQLSchemaPackage.eINSTANCE);
-		SQLConstraintsPackageImpl theSQLConstraintsPackage = (SQLConstraintsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SQLConstraintsPackage.eNS_URI) instanceof SQLConstraintsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SQLConstraintsPackage.eNS_URI) : SQLConstraintsPackage.eINSTANCE);
-		SQLExpressionsPackageImpl theSQLExpressionsPackage = (SQLExpressionsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SQLExpressionsPackage.eNS_URI) instanceof SQLExpressionsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SQLExpressionsPackage.eNS_URI) : SQLExpressionsPackage.eINSTANCE);
-		SQLRoutinesPackageImpl theSQLRoutinesPackage = (SQLRoutinesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SQLRoutinesPackage.eNS_URI) instanceof SQLRoutinesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SQLRoutinesPackage.eNS_URI) : SQLRoutinesPackage.eINSTANCE);
-		SQLStatementsPackageImpl theSQLStatementsPackage = (SQLStatementsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SQLStatementsPackage.eNS_URI) instanceof SQLStatementsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SQLStatementsPackage.eNS_URI) : SQLStatementsPackage.eINSTANCE);
-		SQLTablesPackageImpl theSQLTablesPackage = (SQLTablesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SQLTablesPackage.eNS_URI) instanceof SQLTablesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SQLTablesPackage.eNS_URI) : SQLTablesPackage.eINSTANCE);
-		SQLAccessControlPackageImpl theSQLAccessControlPackage = (SQLAccessControlPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SQLAccessControlPackage.eNS_URI) instanceof SQLAccessControlPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SQLAccessControlPackage.eNS_URI) : SQLAccessControlPackage.eINSTANCE);
+		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(SQLSchemaPackage.eNS_URI);
+		SQLSchemaPackageImpl theSQLSchemaPackage = (SQLSchemaPackageImpl)(registeredPackage instanceof SQLSchemaPackageImpl ? registeredPackage : SQLSchemaPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(SQLConstraintsPackage.eNS_URI);
+		SQLConstraintsPackageImpl theSQLConstraintsPackage = (SQLConstraintsPackageImpl)(registeredPackage instanceof SQLConstraintsPackageImpl ? registeredPackage : SQLConstraintsPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(SQLExpressionsPackage.eNS_URI);
+		SQLExpressionsPackageImpl theSQLExpressionsPackage = (SQLExpressionsPackageImpl)(registeredPackage instanceof SQLExpressionsPackageImpl ? registeredPackage : SQLExpressionsPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(SQLRoutinesPackage.eNS_URI);
+		SQLRoutinesPackageImpl theSQLRoutinesPackage = (SQLRoutinesPackageImpl)(registeredPackage instanceof SQLRoutinesPackageImpl ? registeredPackage : SQLRoutinesPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(SQLStatementsPackage.eNS_URI);
+		SQLStatementsPackageImpl theSQLStatementsPackage = (SQLStatementsPackageImpl)(registeredPackage instanceof SQLStatementsPackageImpl ? registeredPackage : SQLStatementsPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(SQLTablesPackage.eNS_URI);
+		SQLTablesPackageImpl theSQLTablesPackage = (SQLTablesPackageImpl)(registeredPackage instanceof SQLTablesPackageImpl ? registeredPackage : SQLTablesPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(SQLAccessControlPackage.eNS_URI);
+		SQLAccessControlPackageImpl theSQLAccessControlPackage = (SQLAccessControlPackageImpl)(registeredPackage instanceof SQLAccessControlPackageImpl ? registeredPackage : SQLAccessControlPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theSQLDataTypesPackage.createPackageContents();
@@ -461,6 +461,8 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 		// Mark meta-data to indicate it can't be changed
 		theSQLDataTypesPackage.freeze();
 
+		// Update the registry and return the package
+		EPackage.Registry.INSTANCE.put(SQLDataTypesPackage.eNS_URI, theSQLDataTypesPackage);
 		return theSQLDataTypesPackage;
 	}
 
@@ -469,6 +471,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getUserDefinedType() {
 		return userDefinedTypeEClass;
 	}
@@ -478,6 +481,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getUserDefinedType_Schema() {
 		return (EReference)userDefinedTypeEClass.getEStructuralFeatures().get(0);
 	}
@@ -487,6 +491,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getUserDefinedType_Ordering() {
 		return (EReference)userDefinedTypeEClass.getEStructuralFeatures().get(1);
 	}
@@ -496,6 +501,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getDataType() {
 		return dataTypeEClass;
 	}
@@ -505,6 +511,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getPredefinedDataType() {
 		return predefinedDataTypeEClass;
 	}
@@ -514,6 +521,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getPredefinedDataType_PrimitiveType() {
 		return (EAttribute)predefinedDataTypeEClass.getEStructuralFeatures().get(0);
 	}
@@ -523,6 +531,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getCollectionDataType() {
 		return collectionDataTypeEClass;
 	}
@@ -532,6 +541,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getCollectionDataType_ElementType() {
 		return (EReference)collectionDataTypeEClass.getEStructuralFeatures().get(0);
 	}
@@ -541,6 +551,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getNumericalDataType() {
 		return numericalDataTypeEClass;
 	}
@@ -550,6 +561,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getNumericalDataType_Precision() {
 		return (EAttribute)numericalDataTypeEClass.getEStructuralFeatures().get(0);
 	}
@@ -559,6 +571,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getCharacterStringDataType() {
 		return characterStringDataTypeEClass;
 	}
@@ -568,6 +581,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getCharacterStringDataType_Length() {
 		return (EAttribute)characterStringDataTypeEClass.getEStructuralFeatures().get(0);
 	}
@@ -577,6 +591,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getCharacterStringDataType_Coercibility() {
 		return (EAttribute)characterStringDataTypeEClass.getEStructuralFeatures().get(1);
 	}
@@ -586,6 +601,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getCharacterStringDataType_FixedLength() {
 		return (EAttribute)characterStringDataTypeEClass.getEStructuralFeatures().get(2);
 	}
@@ -595,6 +611,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getCharacterStringDataType_CollationName() {
 		return (EAttribute)characterStringDataTypeEClass.getEStructuralFeatures().get(3);
 	}
@@ -604,6 +621,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getCharacterStringDataType_CharacterSet() {
 		return (EReference)characterStringDataTypeEClass.getEStructuralFeatures().get(4);
 	}
@@ -613,6 +631,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getRowDataType() {
 		return rowDataTypeEClass;
 	}
@@ -622,6 +641,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getRowDataType_Fields() {
 		return (EReference)rowDataTypeEClass.getEStructuralFeatures().get(0);
 	}
@@ -631,6 +651,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getArrayDataType() {
 		return arrayDataTypeEClass;
 	}
@@ -640,6 +661,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getArrayDataType_MaxCardinality() {
 		return (EAttribute)arrayDataTypeEClass.getEStructuralFeatures().get(0);
 	}
@@ -649,6 +671,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getMultisetDataType() {
 		return multisetDataTypeEClass;
 	}
@@ -658,6 +681,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getBooleanDataType() {
 		return booleanDataTypeEClass;
 	}
@@ -667,6 +691,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getIntervalDataType() {
 		return intervalDataTypeEClass;
 	}
@@ -676,6 +701,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getIntervalDataType_LeadingQualifier() {
 		return (EAttribute)intervalDataTypeEClass.getEStructuralFeatures().get(0);
 	}
@@ -685,6 +711,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getIntervalDataType_TrailingQualifier() {
 		return (EAttribute)intervalDataTypeEClass.getEStructuralFeatures().get(1);
 	}
@@ -694,6 +721,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getIntervalDataType_LeadingFieldPrecision() {
 		return (EAttribute)intervalDataTypeEClass.getEStructuralFeatures().get(2);
 	}
@@ -703,6 +731,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getIntervalDataType_TrailingFieldPrecision() {
 		return (EAttribute)intervalDataTypeEClass.getEStructuralFeatures().get(3);
 	}
@@ -712,6 +741,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getIntervalDataType_FractionalSecondsPrecision() {
 		return (EAttribute)intervalDataTypeEClass.getEStructuralFeatures().get(4);
 	}
@@ -721,6 +751,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getBinaryStringDataType() {
 		return binaryStringDataTypeEClass;
 	}
@@ -730,6 +761,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getBinaryStringDataType_Length() {
 		return (EAttribute)binaryStringDataTypeEClass.getEStructuralFeatures().get(0);
 	}
@@ -739,6 +771,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getCharacterSet() {
 		return characterSetEClass;
 	}
@@ -748,6 +781,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getCharacterSet_Repertoire() {
 		return (EAttribute)characterSetEClass.getEStructuralFeatures().get(0);
 	}
@@ -757,6 +791,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getCharacterSet_DefaultCollation() {
 		return (EAttribute)characterSetEClass.getEStructuralFeatures().get(1);
 	}
@@ -766,6 +801,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getCharacterSet_Encoding() {
 		return (EAttribute)characterSetEClass.getEStructuralFeatures().get(2);
 	}
@@ -775,6 +811,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getCharacterSet_CharacterStringDataType() {
 		return (EReference)characterSetEClass.getEStructuralFeatures().get(3);
 	}
@@ -784,6 +821,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getCharacterSet_Schema() {
 		return (EReference)characterSetEClass.getEStructuralFeatures().get(4);
 	}
@@ -793,6 +831,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getTimeDataType() {
 		return timeDataTypeEClass;
 	}
@@ -802,6 +841,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getTimeDataType_FractionalSecondsPrecision() {
 		return (EAttribute)timeDataTypeEClass.getEStructuralFeatures().get(0);
 	}
@@ -811,6 +851,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getTimeDataType_TimeZone() {
 		return (EAttribute)timeDataTypeEClass.getEStructuralFeatures().get(1);
 	}
@@ -820,6 +861,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getDistinctUserDefinedType() {
 		return distinctUserDefinedTypeEClass;
 	}
@@ -829,6 +871,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getDistinctUserDefinedType_PredefinedRepresentation() {
 		return (EReference)distinctUserDefinedTypeEClass.getEStructuralFeatures().get(0);
 	}
@@ -838,6 +881,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getStructuredUserDefinedType() {
 		return structuredUserDefinedTypeEClass;
 	}
@@ -847,6 +891,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getStructuredUserDefinedType_Instantiable() {
 		return (EAttribute)structuredUserDefinedTypeEClass.getEStructuralFeatures().get(0);
 	}
@@ -856,6 +901,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getStructuredUserDefinedType_Final() {
 		return (EAttribute)structuredUserDefinedTypeEClass.getEStructuralFeatures().get(1);
 	}
@@ -865,6 +911,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getStructuredUserDefinedType_Super() {
 		return (EReference)structuredUserDefinedTypeEClass.getEStructuralFeatures().get(2);
 	}
@@ -874,6 +921,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getStructuredUserDefinedType_Sub() {
 		return (EReference)structuredUserDefinedTypeEClass.getEStructuralFeatures().get(3);
 	}
@@ -883,6 +931,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getStructuredUserDefinedType_Attributes() {
 		return (EReference)structuredUserDefinedTypeEClass.getEStructuralFeatures().get(4);
 	}
@@ -892,6 +941,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getStructuredUserDefinedType_Methods() {
 		return (EReference)structuredUserDefinedTypeEClass.getEStructuralFeatures().get(5);
 	}
@@ -901,6 +951,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getAttributeDefinition() {
 		return attributeDefinitionEClass;
 	}
@@ -910,6 +961,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getAttributeDefinition_ScopeCheck() {
 		return (EAttribute)attributeDefinitionEClass.getEStructuralFeatures().get(0);
 	}
@@ -919,6 +971,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getAttributeDefinition_ScopeChecked() {
 		return (EAttribute)attributeDefinitionEClass.getEStructuralFeatures().get(1);
 	}
@@ -928,6 +981,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getAttributeDefinition_DefaultValue() {
 		return (EAttribute)attributeDefinitionEClass.getEStructuralFeatures().get(2);
 	}
@@ -937,6 +991,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getFixedPrecisionDataType() {
 		return fixedPrecisionDataTypeEClass;
 	}
@@ -946,6 +1001,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getDomain() {
 		return domainEClass;
 	}
@@ -955,6 +1011,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getDomain_Constraint() {
 		return (EReference)domainEClass.getEStructuralFeatures().get(0);
 	}
@@ -964,6 +1021,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getDomain_DefaultValue() {
 		return (EAttribute)domainEClass.getEStructuralFeatures().get(1);
 	}
@@ -973,6 +1031,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getField() {
 		return fieldEClass;
 	}
@@ -982,6 +1041,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getField_ScopeCheck() {
 		return (EAttribute)fieldEClass.getEStructuralFeatures().get(0);
 	}
@@ -991,6 +1051,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getField_ScopeChecked() {
 		return (EAttribute)fieldEClass.getEStructuralFeatures().get(1);
 	}
@@ -1000,6 +1061,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getReferenceDataType() {
 		return referenceDataTypeEClass;
 	}
@@ -1009,6 +1071,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getReferenceDataType_ScopeTable() {
 		return (EReference)referenceDataTypeEClass.getEStructuralFeatures().get(0);
 	}
@@ -1018,6 +1081,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getReferenceDataType_ReferencedType() {
 		return (EReference)referenceDataTypeEClass.getEStructuralFeatures().get(1);
 	}
@@ -1027,6 +1091,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getConstructedDataType() {
 		return constructedDataTypeEClass;
 	}
@@ -1036,6 +1101,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getSQLDataType() {
 		return sqlDataTypeEClass;
 	}
@@ -1045,6 +1111,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getDataLinkDataType() {
 		return dataLinkDataTypeEClass;
 	}
@@ -1054,6 +1121,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getDataLinkDataType_Length() {
 		return (EAttribute)dataLinkDataTypeEClass.getEStructuralFeatures().get(0);
 	}
@@ -1063,6 +1131,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getDataLinkDataType_LinkControl() {
 		return (EAttribute)dataLinkDataTypeEClass.getEStructuralFeatures().get(1);
 	}
@@ -1072,6 +1141,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getDataLinkDataType_IntegrityControl() {
 		return (EAttribute)dataLinkDataTypeEClass.getEStructuralFeatures().get(2);
 	}
@@ -1081,6 +1151,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getDataLinkDataType_ReadPermission() {
 		return (EAttribute)dataLinkDataTypeEClass.getEStructuralFeatures().get(3);
 	}
@@ -1090,6 +1161,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getDataLinkDataType_WritePermission() {
 		return (EAttribute)dataLinkDataTypeEClass.getEStructuralFeatures().get(4);
 	}
@@ -1099,6 +1171,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getDataLinkDataType_Recovery() {
 		return (EAttribute)dataLinkDataTypeEClass.getEStructuralFeatures().get(5);
 	}
@@ -1108,6 +1181,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getDataLinkDataType_Unlink() {
 		return (EAttribute)dataLinkDataTypeEClass.getEStructuralFeatures().get(6);
 	}
@@ -1117,6 +1191,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getUserDefinedTypeOrdering() {
 		return userDefinedTypeOrderingEClass;
 	}
@@ -1126,6 +1201,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getUserDefinedTypeOrdering_OrderingForm() {
 		return (EAttribute)userDefinedTypeOrderingEClass.getEStructuralFeatures().get(0);
 	}
@@ -1135,6 +1211,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getUserDefinedTypeOrdering_OrderingCategory() {
 		return (EAttribute)userDefinedTypeOrderingEClass.getEStructuralFeatures().get(1);
 	}
@@ -1144,6 +1221,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getUserDefinedTypeOrdering_OrderingRoutine() {
 		return (EReference)userDefinedTypeOrderingEClass.getEStructuralFeatures().get(2);
 	}
@@ -1153,6 +1231,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getDateDataType() {
 		return dateDataTypeEClass;
 	}
@@ -1162,6 +1241,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getExactNumericDataType() {
 		return exactNumericDataTypeEClass;
 	}
@@ -1171,6 +1251,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getExactNumericDataType_Scale() {
 		return (EAttribute)exactNumericDataTypeEClass.getEStructuralFeatures().get(0);
 	}
@@ -1180,6 +1261,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getApproximateNumericDataType() {
 		return approximateNumericDataTypeEClass;
 	}
@@ -1189,6 +1271,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getIntegerDataType() {
 		return integerDataTypeEClass;
 	}
@@ -1198,6 +1281,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getXMLDataType() {
 		return xmlDataTypeEClass;
 	}
@@ -1207,6 +1291,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getElementType() {
 		return elementTypeEClass;
 	}
@@ -1216,6 +1301,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getElementType_CollectionDataType() {
 		return (EReference)elementTypeEClass.getEStructuralFeatures().get(0);
 	}
@@ -1225,6 +1311,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EEnum getCoercibilityType() {
 		return coercibilityTypeEEnum;
 	}
@@ -1234,6 +1321,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EEnum getIntervalQualifierType() {
 		return intervalQualifierTypeEEnum;
 	}
@@ -1243,6 +1331,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EEnum getOrderingType() {
 		return orderingTypeEEnum;
 	}
@@ -1252,6 +1341,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EEnum getOrderingCategoryType() {
 		return orderingCategoryTypeEEnum;
 	}
@@ -1261,6 +1351,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EEnum getPrimitiveType() {
 		return primitiveTypeEEnum;
 	}
@@ -1270,6 +1361,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EEnum getLinkControlOption() {
 		return linkControlOptionEEnum;
 	}
@@ -1279,6 +1371,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EEnum getIntegrityControlOption() {
 		return integrityControlOptionEEnum;
 	}
@@ -1288,6 +1381,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EEnum getReadPermissionOption() {
 		return readPermissionOptionEEnum;
 	}
@@ -1297,6 +1391,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EEnum getWritePermissionOption() {
 		return writePermissionOptionEEnum;
 	}
@@ -1306,6 +1401,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EEnum getUnlinkOption() {
 		return unlinkOptionEEnum;
 	}
@@ -1315,6 +1411,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SQLDataTypesFactory getSQLDataTypesFactory() {
 		return (SQLDataTypesFactory)getEFactoryInstance();
 	}
@@ -1334,7 +1431,9 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * @generated
 	 */
 	public void createPackageContents() {
-		if (isCreated) return;
+		if (isCreated) {
+			return;
+		}
 		isCreated = true;
 
 		// Create classes and their features
@@ -1481,7 +1580,9 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * @generated
 	 */
 	public void initializePackageContents() {
-		if (isInitialized) return;
+		if (isInitialized) {
+			return;
+		}
 		isInitialized = true;
 
 		// Initialize package

@@ -15,11 +15,11 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.schema.Catalog#getDatabase <em>Database</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.schema.Catalog#getSchemas <em>Schemas</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.datatools.modelbase.sql.schema.SQLSchemaPackage#getCatalog()
  * @model

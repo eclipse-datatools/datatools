@@ -110,87 +110,179 @@ public class SybasesqlmodelSwitch {
 			case SybasesqlmodelPackage.SYBASE_PARAMETER: {
 				SybaseParameter sybaseParameter = (SybaseParameter)theEObject;
 				Object result = caseSybaseParameter(sybaseParameter);
-				if (result == null) result = caseParameter(sybaseParameter);
-				if (result == null) result = caseTypedElement(sybaseParameter);
-				if (result == null) result = caseSQLObject(sybaseParameter);
-				if (result == null) result = caseENamedElement(sybaseParameter);
-				if (result == null) result = caseEModelElement(sybaseParameter);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = caseParameter(sybaseParameter);
+				}
+				if (result == null) {
+					result = caseTypedElement(sybaseParameter);
+				}
+				if (result == null) {
+					result = caseSQLObject(sybaseParameter);
+				}
+				if (result == null) {
+					result = caseENamedElement(sybaseParameter);
+				}
+				if (result == null) {
+					result = caseEModelElement(sybaseParameter);
+				}
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case SybasesqlmodelPackage.SYBASE_ROUTINE: {
 				SybaseRoutine sybaseRoutine = (SybaseRoutine)theEObject;
 				Object result = caseSybaseRoutine(sybaseRoutine);
-				if (result == null) result = caseRoutine(sybaseRoutine);
-				if (result == null) result = caseSybaseAuthorizedObject(sybaseRoutine);
-				if (result == null) result = caseSQLObject(sybaseRoutine);
-				if (result == null) result = caseENamedElement(sybaseRoutine);
-				if (result == null) result = caseEModelElement(sybaseRoutine);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = caseRoutine(sybaseRoutine);
+				}
+				if (result == null) {
+					result = caseSybaseAuthorizedObject(sybaseRoutine);
+				}
+				if (result == null) {
+					result = caseSQLObject(sybaseRoutine);
+				}
+				if (result == null) {
+					result = caseENamedElement(sybaseRoutine);
+				}
+				if (result == null) {
+					result = caseEModelElement(sybaseRoutine);
+				}
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case SybasesqlmodelPackage.SYBASE_BASE_TABLE: {
 				SybaseBaseTable sybaseBaseTable = (SybaseBaseTable)theEObject;
 				Object result = caseSybaseBaseTable(sybaseBaseTable);
-				if (result == null) result = caseBaseTable(sybaseBaseTable);
-				if (result == null) result = caseSybaseAuthorizedObject(sybaseBaseTable);
-				if (result == null) result = caseTable(sybaseBaseTable);
-				if (result == null) result = caseSQLObject(sybaseBaseTable);
-				if (result == null) result = caseENamedElement(sybaseBaseTable);
-				if (result == null) result = caseEModelElement(sybaseBaseTable);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = caseBaseTable(sybaseBaseTable);
+				}
+				if (result == null) {
+					result = caseSybaseAuthorizedObject(sybaseBaseTable);
+				}
+				if (result == null) {
+					result = caseTable(sybaseBaseTable);
+				}
+				if (result == null) {
+					result = caseSQLObject(sybaseBaseTable);
+				}
+				if (result == null) {
+					result = caseENamedElement(sybaseBaseTable);
+				}
+				if (result == null) {
+					result = caseEModelElement(sybaseBaseTable);
+				}
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case SybasesqlmodelPackage.SYBASE_VIEW_TABLE: {
 				SybaseViewTable sybaseViewTable = (SybaseViewTable)theEObject;
 				Object result = caseSybaseViewTable(sybaseViewTable);
-				if (result == null) result = caseViewTable(sybaseViewTable);
-				if (result == null) result = caseSybaseAuthorizedObject(sybaseViewTable);
-				if (result == null) result = caseDerivedTable(sybaseViewTable);
-				if (result == null) result = caseSQLObject(sybaseViewTable);
-				if (result == null) result = caseTable(sybaseViewTable);
-				if (result == null) result = caseENamedElement(sybaseViewTable);
-				if (result == null) result = caseEModelElement(sybaseViewTable);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = caseViewTable(sybaseViewTable);
+				}
+				if (result == null) {
+					result = caseSybaseAuthorizedObject(sybaseViewTable);
+				}
+				if (result == null) {
+					result = caseDerivedTable(sybaseViewTable);
+				}
+				if (result == null) {
+					result = caseTable(sybaseViewTable);
+				}
+				if (result == null) {
+					result = caseSQLObject(sybaseViewTable);
+				}
+				if (result == null) {
+					result = caseENamedElement(sybaseViewTable);
+				}
+				if (result == null) {
+					result = caseEModelElement(sybaseViewTable);
+				}
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case SybasesqlmodelPackage.SYBASE_AUTHORIZATION_IDENTIFIER: {
 				SybaseAuthorizationIdentifier sybaseAuthorizationIdentifier = (SybaseAuthorizationIdentifier)theEObject;
 				Object result = caseSybaseAuthorizationIdentifier(sybaseAuthorizationIdentifier);
-				if (result == null) result = caseAuthorizationIdentifier(sybaseAuthorizationIdentifier);
-				if (result == null) result = caseSQLObject(sybaseAuthorizationIdentifier);
-				if (result == null) result = caseENamedElement(sybaseAuthorizationIdentifier);
-				if (result == null) result = caseEModelElement(sybaseAuthorizationIdentifier);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = caseAuthorizationIdentifier(sybaseAuthorizationIdentifier);
+				}
+				if (result == null) {
+					result = caseSQLObject(sybaseAuthorizationIdentifier);
+				}
+				if (result == null) {
+					result = caseENamedElement(sybaseAuthorizationIdentifier);
+				}
+				if (result == null) {
+					result = caseEModelElement(sybaseAuthorizationIdentifier);
+				}
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case SybasesqlmodelPackage.SYBASE_INDEX_MEMBER: {
 				SybaseIndexMember sybaseIndexMember = (SybaseIndexMember)theEObject;
 				Object result = caseSybaseIndexMember(sybaseIndexMember);
-				if (result == null) result = caseIndexMember(sybaseIndexMember);
-				if (result == null) result = caseSQLObject(sybaseIndexMember);
-				if (result == null) result = caseENamedElement(sybaseIndexMember);
-				if (result == null) result = caseEModelElement(sybaseIndexMember);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = caseIndexMember(sybaseIndexMember);
+				}
+				if (result == null) {
+					result = caseSQLObject(sybaseIndexMember);
+				}
+				if (result == null) {
+					result = caseENamedElement(sybaseIndexMember);
+				}
+				if (result == null) {
+					result = caseEModelElement(sybaseIndexMember);
+				}
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case SybasesqlmodelPackage.SYBASE_AUTHORIZED_OBJECT: {
 				SybaseAuthorizedObject sybaseAuthorizedObject = (SybaseAuthorizedObject)theEObject;
 				Object result = caseSybaseAuthorizedObject(sybaseAuthorizedObject);
-				if (result == null) result = caseSQLObject(sybaseAuthorizedObject);
-				if (result == null) result = caseENamedElement(sybaseAuthorizedObject);
-				if (result == null) result = caseEModelElement(sybaseAuthorizedObject);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = caseSQLObject(sybaseAuthorizedObject);
+				}
+				if (result == null) {
+					result = caseENamedElement(sybaseAuthorizedObject);
+				}
+				if (result == null) {
+					result = caseEModelElement(sybaseAuthorizedObject);
+				}
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case SybasesqlmodelPackage.SYBASE_PRIVILEGE: {
 				SybasePrivilege sybasePrivilege = (SybasePrivilege)theEObject;
 				Object result = caseSybasePrivilege(sybasePrivilege);
-				if (result == null) result = casePrivilege(sybasePrivilege);
-				if (result == null) result = caseSQLObject(sybasePrivilege);
-				if (result == null) result = caseENamedElement(sybasePrivilege);
-				if (result == null) result = caseEModelElement(sybasePrivilege);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = casePrivilege(sybasePrivilege);
+				}
+				if (result == null) {
+					result = caseSQLObject(sybasePrivilege);
+				}
+				if (result == null) {
+					result = caseENamedElement(sybasePrivilege);
+				}
+				if (result == null) {
+					result = caseEModelElement(sybasePrivilege);
+				}
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			default: return defaultCase(theEObject);

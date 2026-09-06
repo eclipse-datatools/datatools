@@ -14,10 +14,10 @@ package org.eclipse.datatools.modelbase.sql.query;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.query.GroupingSpecification#getQuerySelect <em>Query Select</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getGroupingSpecification()
  * @model abstract="true"
@@ -25,31 +25,31 @@ package org.eclipse.datatools.modelbase.sql.query;
  */
 public interface GroupingSpecification extends SQLQueryObject{
 	/**
-     * Returns the value of the '<em><b>Query Select</b></em>' container reference.
-     * It is bidirectional and its opposite is '{@link org.eclipse.datatools.modelbase.sql.query.QuerySelect#getGroupByClause <em>Group By Clause</em>}'.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Query Select</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.datatools.modelbase.sql.query.QuerySelect#getGroupByClause <em>Group By Clause</em>}'.
+	 * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Query Select</em>' container reference isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Query Select</em>' container reference.
-     * @see #setQuerySelect(QuerySelect)
-     * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getGroupingSpecification_QuerySelect()
-     * @see org.eclipse.datatools.modelbase.sql.query.QuerySelect#getGroupByClause
-     * @model opposite="groupByClause"
-     * @generated
-     */
+	 * @return the value of the '<em>Query Select</em>' container reference.
+	 * @see #setQuerySelect(QuerySelect)
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getGroupingSpecification_QuerySelect()
+	 * @see org.eclipse.datatools.modelbase.sql.query.QuerySelect#getGroupByClause
+	 * @model opposite="groupByClause"
+	 * @generated
+	 */
     QuerySelect getQuerySelect();
 
 	/**
-     * Sets the value of the '{@link org.eclipse.datatools.modelbase.sql.query.GroupingSpecification#getQuerySelect <em>Query Select</em>}' container reference.
-     * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.datatools.modelbase.sql.query.GroupingSpecification#getQuerySelect <em>Query Select</em>}' container reference.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Query Select</em>' container reference.
-     * @see #getQuerySelect()
-     * @generated
-     */
+	 * @param value the new value of the '<em>Query Select</em>' container reference.
+	 * @see #getQuerySelect()
+	 * @generated
+	 */
     void setQuerySelect(QuerySelect value);
 
 } // SQLGroupBySpecification

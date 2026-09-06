@@ -8,7 +8,7 @@
  *
  * Contributors:
  *  Actuate Corporation - initial API and implementation
- *  
+ *
  *************************************************************************
  *
  * $Id: CompositeFilterExpression.java,v 1.1 2009/01/30 00:23:57 lchan Exp $
@@ -28,47 +28,45 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.CompositeFilterExpression#getChildren <em>Children</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getCompositeFilterExpression()
- * @since 3.3 (DTP 1.8)
  * @model extendedMetaData="name='CompositeFilterExpression' kind='elementOnly'"
  * @generated
  */
-public interface CompositeFilterExpression extends FilterExpression
-{
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    String copyright = "Copyright (c) 2009 Actuate Corporation"; //$NON-NLS-1$
+public interface CompositeFilterExpression extends FilterExpression {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	String copyright = "Copyright (c) 2005, 2010 Actuate Corporation"; //$NON-NLS-1$
 
-    /**
-     * Returns the value of the '<em><b>Children</b></em>' containment reference list.
-     * The list contents are of type {@link org.eclipse.datatools.connectivity.oda.design.FilterExpression}.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Children</em>' containment reference list isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Children</em>' containment reference list.
-     * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getCompositeFilterExpression_Children()
-     * @model containment="true" required="true"
-     *        extendedMetaData="kind='element' name='children' namespace='##targetNamespace'"
-     * @generated
-     */
-    EList<FilterExpression> getChildren();
+	/**
+	 * Returns the value of the '<em><b>Children</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.datatools.connectivity.oda.design.FilterExpression}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Children</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Children</em>' containment reference list.
+	 * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getCompositeFilterExpression_Children()
+	 * @model containment="true" required="true"
+	 *        extendedMetaData="kind='element' name='children' namespace='##targetNamespace'"
+	 * @generated
+	 */
+	EList<FilterExpression> getChildren();
 
-    /**
-     * Appends the specified FilterExpression to its '<em><b>Children</b></em>' containment reference list.
-     * @param childExpr a child filter expression
-     * @generated NOT
-     */
-    void add( FilterExpression childExpr );
-    
+	/**
+	 * Appends the specified FilterExpression to its '<em><b>Children</b></em>' containment reference list.
+	 * @param childExpr a child filter expression
+	 * @generated NOT
+	 */
+	void add(FilterExpression childExpr);
+
 } // CompositeFilterExpression

@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -20,16 +20,16 @@ import org.eclipse.datatools.modelbase.sql.schema.Schema;
  *
  * <!-- begin-model-doc -->
  * Reference: 5WD-02-Foundation-2002-12 4.7 User-defined types
- * 
+ *
  * <!-- end-model-doc -->
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.datatypes.UserDefinedType#getSchema <em>Schema</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.datatypes.UserDefinedType#getOrdering <em>Ordering</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage#getUserDefinedType()
  * @model abstract="true"

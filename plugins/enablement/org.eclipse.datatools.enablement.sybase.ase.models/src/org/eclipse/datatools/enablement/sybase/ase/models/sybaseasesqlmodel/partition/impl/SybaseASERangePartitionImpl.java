@@ -22,148 +22,149 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.partition.impl.SybaseASERangePartitionImpl#getColumns <em>Columns</em>}</li>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.partition.impl.SybaseASERangePartitionImpl#getRangePartitionItems <em>Range Partition Items</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class SybaseASERangePartitionImpl extends SybaseASEPartitionImpl implements SybaseASERangePartition 
+public class SybaseASERangePartitionImpl extends SybaseASEPartitionImpl implements SybaseASERangePartition
 {
 	/**
-     * The cached value of the '{@link #getColumns() <em>Columns</em>}' reference list.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getColumns() <em>Columns</em>}' reference list.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getColumns()
-     * @generated
-     * @ordered
-     */
+	 * @see #getColumns()
+	 * @generated
+	 * @ordered
+	 */
 	protected EList columns;
 
 	/**
-     * The cached value of the '{@link #getRangePartitionItems() <em>Range Partition Items</em>}' reference list.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getRangePartitionItems() <em>Range Partition Items</em>}' reference list.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getRangePartitionItems()
-     * @generated
-     * @ordered
-     */
+	 * @see #getRangePartitionItems()
+	 * @generated
+	 * @ordered
+	 */
 	protected EList rangePartitionItems;
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected SybaseASERangePartitionImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	protected EClass eStaticClass() {
-        return PartitionPackage.Literals.SYBASE_ASE_RANGE_PARTITION;
-    }
+		return PartitionPackage.Literals.SYBASE_ASE_RANGE_PARTITION;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public EList getColumns() {
-        if (columns == null)
-        {
-            columns = new EObjectResolvingEList(Column.class, this, PartitionPackage.SYBASE_ASE_RANGE_PARTITION__COLUMNS);
-        }
-        return columns;
-    }
+		if (columns == null) {
+			columns = new EObjectResolvingEList(Column.class, this, PartitionPackage.SYBASE_ASE_RANGE_PARTITION__COLUMNS);
+		}
+		return columns;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public EList getRangePartitionItems() {
-        if (rangePartitionItems == null)
-        {
-            rangePartitionItems = new EObjectResolvingEList(ListRangePartitionItem.class, this, PartitionPackage.SYBASE_ASE_RANGE_PARTITION__RANGE_PARTITION_ITEMS);
-        }
-        return rangePartitionItems;
-    }
+		if (rangePartitionItems == null) {
+			rangePartitionItems = new EObjectResolvingEList(ListRangePartitionItem.class, this, PartitionPackage.SYBASE_ASE_RANGE_PARTITION__RANGE_PARTITION_ITEMS);
+		}
+		return rangePartitionItems;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID)
-        {
-            case PartitionPackage.SYBASE_ASE_RANGE_PARTITION__COLUMNS:
-                return getColumns();
-            case PartitionPackage.SYBASE_ASE_RANGE_PARTITION__RANGE_PARTITION_ITEMS:
-                return getRangePartitionItems();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case PartitionPackage.SYBASE_ASE_RANGE_PARTITION__COLUMNS:
+				return getColumns();
+			case PartitionPackage.SYBASE_ASE_RANGE_PARTITION__RANGE_PARTITION_ITEMS:
+				return getRangePartitionItems();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
-        switch (featureID)
-        {
-            case PartitionPackage.SYBASE_ASE_RANGE_PARTITION__COLUMNS:
-                getColumns().clear();
-                getColumns().addAll((Collection)newValue);
-                return;
-            case PartitionPackage.SYBASE_ASE_RANGE_PARTITION__RANGE_PARTITION_ITEMS:
-                getRangePartitionItems().clear();
-                getRangePartitionItems().addAll((Collection)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case PartitionPackage.SYBASE_ASE_RANGE_PARTITION__COLUMNS:
+				getColumns().clear();
+				getColumns().addAll((Collection)newValue);
+				return;
+			case PartitionPackage.SYBASE_ASE_RANGE_PARTITION__RANGE_PARTITION_ITEMS:
+				getRangePartitionItems().clear();
+				getRangePartitionItems().addAll((Collection)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public void eUnset(int featureID) {
-        switch (featureID)
-        {
-            case PartitionPackage.SYBASE_ASE_RANGE_PARTITION__COLUMNS:
-                getColumns().clear();
-                return;
-            case PartitionPackage.SYBASE_ASE_RANGE_PARTITION__RANGE_PARTITION_ITEMS:
-                getRangePartitionItems().clear();
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case PartitionPackage.SYBASE_ASE_RANGE_PARTITION__COLUMNS:
+				getColumns().clear();
+				return;
+			case PartitionPackage.SYBASE_ASE_RANGE_PARTITION__RANGE_PARTITION_ITEMS:
+				getRangePartitionItems().clear();
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public boolean eIsSet(int featureID) {
-        switch (featureID)
-        {
-            case PartitionPackage.SYBASE_ASE_RANGE_PARTITION__COLUMNS:
-                return columns != null && !columns.isEmpty();
-            case PartitionPackage.SYBASE_ASE_RANGE_PARTITION__RANGE_PARTITION_ITEMS:
-                return rangePartitionItems != null && !rangePartitionItems.isEmpty();
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case PartitionPackage.SYBASE_ASE_RANGE_PARTITION__COLUMNS:
+				return columns != null && !columns.isEmpty();
+			case PartitionPackage.SYBASE_ASE_RANGE_PARTITION__RANGE_PARTITION_ITEMS:
+				return rangePartitionItems != null && !rangePartitionItems.isEmpty();
+		}
+		return super.eIsSet(featureID);
+	}
 
 } //SybaseASERangePartitionImpl

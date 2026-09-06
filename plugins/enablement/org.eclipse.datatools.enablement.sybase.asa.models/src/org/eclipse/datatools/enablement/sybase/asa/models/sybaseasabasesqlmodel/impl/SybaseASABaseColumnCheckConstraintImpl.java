@@ -22,14 +22,14 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl.SybaseASABaseColumnCheckConstraintImpl#getColumn <em>Column</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class SybaseASABaseColumnCheckConstraintImpl extends CheckConstraintImpl implements SybaseASABaseColumnCheckConstraint 
+public class SybaseASABaseColumnCheckConstraintImpl extends CheckConstraintImpl implements SybaseASABaseColumnCheckConstraint
 {
     /**
 	 * The cached value of the '{@link #getColumn() <em>Column</em>}' reference.
@@ -56,6 +56,7 @@ public class SybaseASABaseColumnCheckConstraintImpl extends CheckConstraintImpl 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass()
     {
 		return SybaseasabasesqlmodelPackage.Literals.SYBASE_ASA_BASE_COLUMN_CHECK_CONSTRAINT;
@@ -66,14 +67,16 @@ public class SybaseASABaseColumnCheckConstraintImpl extends CheckConstraintImpl 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SybaseASABaseColumn getColumn()
     {
 		if (column != null && column.eIsProxy()) {
 			InternalEObject oldColumn = (InternalEObject)column;
 			column = (SybaseASABaseColumn)eResolveProxy(oldColumn);
 			if (column != oldColumn) {
-				if (eNotificationRequired())
+				if (eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_COLUMN_CHECK_CONSTRAINT__COLUMN, oldColumn, column));
+				}
 			}
 		}
 		return column;
@@ -100,7 +103,11 @@ public class SybaseASABaseColumnCheckConstraintImpl extends CheckConstraintImpl 
 		column = newColumn;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_COLUMN_CHECK_CONSTRAINT__COLUMN, oldColumn, newColumn);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			if (msgs == null) {
+				msgs = notification;
+			} else {
+				msgs.add(notification);
+			}
 		}
 		return msgs;
 	}
@@ -110,19 +117,25 @@ public class SybaseASABaseColumnCheckConstraintImpl extends CheckConstraintImpl 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setColumn(SybaseASABaseColumn newColumn)
     {
 		if (newColumn != column) {
 			NotificationChain msgs = null;
-			if (column != null)
+			if (column != null) {
 				msgs = ((InternalEObject)column).eInverseRemove(this, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_COLUMN__COLUMN_CONSTRAINT, SybaseASABaseColumn.class, msgs);
-			if (newColumn != null)
+			}
+			if (newColumn != null) {
 				msgs = ((InternalEObject)newColumn).eInverseAdd(this, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_COLUMN__COLUMN_CONSTRAINT, SybaseASABaseColumn.class, msgs);
+			}
 			msgs = basicSetColumn(newColumn, msgs);
-			if (msgs != null) msgs.dispatch();
+			if (msgs != null) {
+				msgs.dispatch();
+			}
 		}
-		else if (eNotificationRequired())
+		else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_COLUMN_CHECK_CONSTRAINT__COLUMN, newColumn, newColumn));
+		}
 	}
 
     /**
@@ -130,12 +143,14 @@ public class SybaseASABaseColumnCheckConstraintImpl extends CheckConstraintImpl 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
     {
 		switch (featureID) {
 			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_COLUMN_CHECK_CONSTRAINT__COLUMN:
-				if (column != null)
+				if (column != null) {
 					msgs = ((InternalEObject)column).eInverseRemove(this, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_COLUMN__COLUMN_CONSTRAINT, SybaseASABaseColumn.class, msgs);
+				}
 				return basicSetColumn((SybaseASABaseColumn)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -146,6 +161,7 @@ public class SybaseASABaseColumnCheckConstraintImpl extends CheckConstraintImpl 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
     {
 		switch (featureID) {
@@ -160,11 +176,14 @@ public class SybaseASABaseColumnCheckConstraintImpl extends CheckConstraintImpl 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
     {
 		switch (featureID) {
 			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_COLUMN_CHECK_CONSTRAINT__COLUMN:
-				if (resolve) return getColumn();
+				if (resolve) {
+					return getColumn();
+				}
 				return basicGetColumn();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -175,6 +194,7 @@ public class SybaseASABaseColumnCheckConstraintImpl extends CheckConstraintImpl 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue)
     {
 		switch (featureID) {
@@ -190,6 +210,7 @@ public class SybaseASABaseColumnCheckConstraintImpl extends CheckConstraintImpl 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID)
     {
 		switch (featureID) {
@@ -205,6 +226,7 @@ public class SybaseASABaseColumnCheckConstraintImpl extends CheckConstraintImpl 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID)
     {
 		switch (featureID) {

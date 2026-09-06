@@ -1673,6 +1673,15 @@ public interface SybaseasabasesqlmodelPackage extends EPackage
 	int SYBASE_ASA_BASE_UNIQUE_CONSTRAINT__MEMBERS = SQLConstraintsPackage.UNIQUE_CONSTRAINT__MEMBERS;
 
     /**
+	 * The feature id for the '<em><b>Clustered</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYBASE_ASA_BASE_UNIQUE_CONSTRAINT__CLUSTERED = SQLConstraintsPackage.UNIQUE_CONSTRAINT__CLUSTERED;
+
+				/**
 	 * The feature id for the '<em><b>Foreign Key</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1682,22 +1691,13 @@ public interface SybaseasabasesqlmodelPackage extends EPackage
 	int SYBASE_ASA_BASE_UNIQUE_CONSTRAINT__FOREIGN_KEY = SQLConstraintsPackage.UNIQUE_CONSTRAINT__FOREIGN_KEY;
 
     /**
-	 * The feature id for the '<em><b>Clustered</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SYBASE_ASA_BASE_UNIQUE_CONSTRAINT__CLUSTERED = SQLConstraintsPackage.UNIQUE_CONSTRAINT_FEATURE_COUNT + 0;
-
-    /**
 	 * The feature id for the '<em><b>System Gen Index</b></em>' reference.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-    int SYBASE_ASA_BASE_UNIQUE_CONSTRAINT__SYSTEM_GEN_INDEX = SQLConstraintsPackage.UNIQUE_CONSTRAINT_FEATURE_COUNT + 1;
+    int SYBASE_ASA_BASE_UNIQUE_CONSTRAINT__SYSTEM_GEN_INDEX = SQLConstraintsPackage.UNIQUE_CONSTRAINT_FEATURE_COUNT + 0;
 
     /**
 	 * The number of structural features of the '<em>Sybase ASA Base Unique Constraint</em>' class.
@@ -1706,7 +1706,7 @@ public interface SybaseasabasesqlmodelPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SYBASE_ASA_BASE_UNIQUE_CONSTRAINT_FEATURE_COUNT = SQLConstraintsPackage.UNIQUE_CONSTRAINT_FEATURE_COUNT + 2;
+	int SYBASE_ASA_BASE_UNIQUE_CONSTRAINT_FEATURE_COUNT = SQLConstraintsPackage.UNIQUE_CONSTRAINT_FEATURE_COUNT + 1;
 
     /**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -1826,15 +1826,6 @@ public interface SybaseasabasesqlmodelPackage extends EPackage
 	int SYBASE_ASA_BASE_PRIMARY_KEY__MEMBERS = SYBASE_ASA_BASE_UNIQUE_CONSTRAINT__MEMBERS;
 
     /**
-	 * The feature id for the '<em><b>Foreign Key</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SYBASE_ASA_BASE_PRIMARY_KEY__FOREIGN_KEY = SYBASE_ASA_BASE_UNIQUE_CONSTRAINT__FOREIGN_KEY;
-
-    /**
 	 * The feature id for the '<em><b>Clustered</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1842,6 +1833,15 @@ public interface SybaseasabasesqlmodelPackage extends EPackage
 	 * @ordered
 	 */
 	int SYBASE_ASA_BASE_PRIMARY_KEY__CLUSTERED = SYBASE_ASA_BASE_UNIQUE_CONSTRAINT__CLUSTERED;
+
+				/**
+	 * The feature id for the '<em><b>Foreign Key</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYBASE_ASA_BASE_PRIMARY_KEY__FOREIGN_KEY = SYBASE_ASA_BASE_UNIQUE_CONSTRAINT__FOREIGN_KEY;
 
     /**
 	 * The feature id for the '<em><b>System Gen Index</b></em>' reference.
@@ -5708,17 +5708,6 @@ public interface SybaseasabasesqlmodelPackage extends EPackage
 	EClass getSybaseASABaseUniqueConstraint();
 
     /**
-	 * Returns the meta object for the attribute '{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseUniqueConstraint#isClustered <em>Clustered</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Clustered</em>'.
-	 * @see org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseUniqueConstraint#isClustered()
-	 * @see #getSybaseASABaseUniqueConstraint()
-	 * @generated
-	 */
-	EAttribute getSybaseASABaseUniqueConstraint_Clustered();
-
-    /**
 	 * Returns the meta object for the reference '{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseUniqueConstraint#getSystemGenIndex <em>System Gen Index</em>}'.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -6534,7 +6523,7 @@ public interface SybaseasabasesqlmodelPackage extends EPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	interface Literals 
+	interface Literals
 	{
         /**
 		 * The meta object literal for the '{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl.SybaseASABaseEventImpl <em>Sybase ASA Base Event</em>}' class.
@@ -6863,14 +6852,6 @@ public interface SybaseasabasesqlmodelPackage extends EPackage
 		 * @generated
 		 */
 		EClass SYBASE_ASA_BASE_UNIQUE_CONSTRAINT = eINSTANCE.getSybaseASABaseUniqueConstraint();
-
-        /**
-		 * The meta object literal for the '<em><b>Clustered</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute SYBASE_ASA_BASE_UNIQUE_CONSTRAINT__CLUSTERED = eINSTANCE.getSybaseASABaseUniqueConstraint_Clustered();
 
         /**
 		 * The meta object literal for the '<em><b>System Gen Index</b></em>' reference feature.

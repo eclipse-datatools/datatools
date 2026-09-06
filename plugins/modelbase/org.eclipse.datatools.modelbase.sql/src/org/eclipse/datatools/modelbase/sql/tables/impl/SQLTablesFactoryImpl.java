@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -43,7 +43,7 @@ public class SQLTablesFactoryImpl extends EFactoryImpl implements SQLTablesFacto
 	 */
 	public static SQLTablesFactory init() {
 		try {
-			SQLTablesFactory theSQLTablesFactory = (SQLTablesFactory)EPackage.Registry.INSTANCE.getEFactory("http:///org/eclipse/datatools/modelbase/sql/tables.ecore"); //$NON-NLS-1$ 
+			SQLTablesFactory theSQLTablesFactory = (SQLTablesFactory)EPackage.Registry.INSTANCE.getEFactory(SQLTablesPackage.eNS_URI);
 			if (theSQLTablesFactory != null) {
 				return theSQLTablesFactory;
 			}
@@ -69,6 +69,7 @@ public class SQLTablesFactoryImpl extends EFactoryImpl implements SQLTablesFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case SQLTablesPackage.VIEW_TABLE: return createViewTable();
@@ -86,6 +87,7 @@ public class SQLTablesFactoryImpl extends EFactoryImpl implements SQLTablesFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
 			case SQLTablesPackage.CHECK_TYPE:
@@ -106,6 +108,7 @@ public class SQLTablesFactoryImpl extends EFactoryImpl implements SQLTablesFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
 			case SQLTablesPackage.CHECK_TYPE:
@@ -126,6 +129,7 @@ public class SQLTablesFactoryImpl extends EFactoryImpl implements SQLTablesFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ViewTable createViewTable() {
 		ViewTableImpl viewTable = new ViewTableImpl();
 		return viewTable;
@@ -136,6 +140,7 @@ public class SQLTablesFactoryImpl extends EFactoryImpl implements SQLTablesFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TemporaryTable createTemporaryTable() {
 		TemporaryTableImpl temporaryTable = new TemporaryTableImpl();
 		return temporaryTable;
@@ -146,6 +151,7 @@ public class SQLTablesFactoryImpl extends EFactoryImpl implements SQLTablesFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public PersistentTable createPersistentTable() {
 		PersistentTableImpl persistentTable = new PersistentTableImpl();
 		return persistentTable;
@@ -156,6 +162,7 @@ public class SQLTablesFactoryImpl extends EFactoryImpl implements SQLTablesFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Column createColumn() {
 		ColumnImpl column = new ColumnImpl();
 		return column;
@@ -166,6 +173,7 @@ public class SQLTablesFactoryImpl extends EFactoryImpl implements SQLTablesFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Trigger createTrigger() {
 		TriggerImpl trigger = new TriggerImpl();
 		return trigger;
@@ -178,7 +186,9 @@ public class SQLTablesFactoryImpl extends EFactoryImpl implements SQLTablesFacto
 	 */
 	public CheckType createCheckTypeFromString(EDataType eDataType, String initialValue) {
 		CheckType result = CheckType.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		if (result == null) {
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		}
 		return result;
 	}
 
@@ -198,7 +208,9 @@ public class SQLTablesFactoryImpl extends EFactoryImpl implements SQLTablesFacto
 	 */
 	public ReferenceType createReferenceTypeFromString(EDataType eDataType, String initialValue) {
 		ReferenceType result = ReferenceType.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		if (result == null) {
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		}
 		return result;
 	}
 
@@ -218,7 +230,9 @@ public class SQLTablesFactoryImpl extends EFactoryImpl implements SQLTablesFacto
 	 */
 	public ActionTimeType createActionTimeTypeFromString(EDataType eDataType, String initialValue) {
 		ActionTimeType result = ActionTimeType.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		if (result == null) {
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		}
 		return result;
 	}
 
@@ -238,7 +252,9 @@ public class SQLTablesFactoryImpl extends EFactoryImpl implements SQLTablesFacto
 	 */
 	public ActionGranularityType createActionGranularityTypeFromString(EDataType eDataType, String initialValue) {
 		ActionGranularityType result = ActionGranularityType.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		if (result == null) {
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		}
 		return result;
 	}
 
@@ -256,6 +272,7 @@ public class SQLTablesFactoryImpl extends EFactoryImpl implements SQLTablesFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SQLTablesPackage getSQLTablesPackage() {
 		return (SQLTablesPackage)getEPackage();
 	}
@@ -266,6 +283,7 @@ public class SQLTablesFactoryImpl extends EFactoryImpl implements SQLTablesFacto
 	 * @deprecated
 	 * @generated
 	 */
+	@Deprecated
 	public static SQLTablesPackage getPackage() {
 		return SQLTablesPackage.eINSTANCE;
 	}

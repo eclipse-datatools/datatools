@@ -19,7 +19,7 @@ import org.eclipse.emf.common.util.AbstractEnumerator;
  * <!-- end-user-doc -->
  * <!-- begin-model-doc -->
  * Reference: 5WD-02-Foundation-2002-12 4.6.2 Intervals
- * 
+ *
  * <!-- end-model-doc -->
  * @see org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage#getIntervalQualifierType()
  * @model
@@ -230,11 +230,12 @@ public final class IntervalQualifierType extends AbstractEnumerator {
 	 * Returns the '<em><b>Interval Qualifier Type</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IntervalQualifierType get(String literal) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			IntervalQualifierType result = VALUES_ARRAY[i];
+		for (IntervalQualifierType result : VALUES_ARRAY) {
 			if (result.toString().equals(literal)) {
 				return result;
 			}
@@ -246,11 +247,12 @@ public final class IntervalQualifierType extends AbstractEnumerator {
 	 * Returns the '<em><b>Interval Qualifier Type</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IntervalQualifierType getByName(String name) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			IntervalQualifierType result = VALUES_ARRAY[i];
+		for (IntervalQualifierType result : VALUES_ARRAY) {
 			if (result.getName().equals(name)) {
 				return result;
 			}
@@ -262,6 +264,8 @@ public final class IntervalQualifierType extends AbstractEnumerator {
 	 * Returns the '<em><b>Interval Qualifier Type</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static IntervalQualifierType get(int value) {

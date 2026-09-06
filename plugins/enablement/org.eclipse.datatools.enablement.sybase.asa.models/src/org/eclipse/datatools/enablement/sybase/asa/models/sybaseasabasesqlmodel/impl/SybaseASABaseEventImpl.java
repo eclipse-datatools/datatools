@@ -31,6 +31,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl.SybaseASABaseEventImpl#getEventType <em>Event Type</em>}</li>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl.SybaseASABaseEventImpl#getEventCreator <em>Event Creator</em>}</li>
@@ -38,11 +39,10 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl.SybaseASABaseEventImpl#getSchedules <em>Schedules</em>}</li>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl.SybaseASABaseEventImpl#getConditionDetails <em>Condition Details</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class SybaseASABaseEventImpl extends EventImpl implements SybaseASABaseEvent 
+public class SybaseASABaseEventImpl extends EventImpl implements SybaseASABaseEvent
 {
     /**
 	 * The default value of the '{@link #getEventType() <em>Event Type</em>}' attribute.
@@ -129,6 +129,7 @@ public class SybaseASABaseEventImpl extends EventImpl implements SybaseASABaseEv
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass()
     {
 		return SybaseasabasesqlmodelPackage.Literals.SYBASE_ASA_BASE_EVENT;
@@ -139,6 +140,7 @@ public class SybaseASABaseEventImpl extends EventImpl implements SybaseASABaseEv
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EventType getEventType()
     {
 		return eventType;
@@ -149,12 +151,14 @@ public class SybaseASABaseEventImpl extends EventImpl implements SybaseASABaseEv
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setEventType(EventType newEventType)
     {
 		EventType oldEventType = eventType;
 		eventType = newEventType == null ? EVENT_TYPE_EDEFAULT : newEventType;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_EVENT__EVENT_TYPE, oldEventType, eventType));
+		}
 	}
 
     /**
@@ -162,14 +166,16 @@ public class SybaseASABaseEventImpl extends EventImpl implements SybaseASABaseEv
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Schema getEventCreator()
     {
 		if (eventCreator != null && eventCreator.eIsProxy()) {
 			InternalEObject oldEventCreator = (InternalEObject)eventCreator;
 			eventCreator = (Schema)eResolveProxy(oldEventCreator);
 			if (eventCreator != oldEventCreator) {
-				if (eNotificationRequired())
+				if (eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_EVENT__EVENT_CREATOR, oldEventCreator, eventCreator));
+				}
 			}
 		}
 		return eventCreator;
@@ -190,12 +196,14 @@ public class SybaseASABaseEventImpl extends EventImpl implements SybaseASABaseEv
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setEventCreator(Schema newEventCreator)
     {
 		Schema oldEventCreator = eventCreator;
 		eventCreator = newEventCreator;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_EVENT__EVENT_CREATOR, oldEventCreator, eventCreator));
+		}
 	}
 
     /**
@@ -203,6 +211,7 @@ public class SybaseASABaseEventImpl extends EventImpl implements SybaseASABaseEv
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EventLocationType getLocation()
     {
 		return location;
@@ -213,12 +222,14 @@ public class SybaseASABaseEventImpl extends EventImpl implements SybaseASABaseEv
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLocation(EventLocationType newLocation)
     {
 		EventLocationType oldLocation = location;
 		location = newLocation == null ? LOCATION_EDEFAULT : newLocation;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_EVENT__LOCATION, oldLocation, location));
+		}
 	}
 
     /**
@@ -226,6 +237,7 @@ public class SybaseASABaseEventImpl extends EventImpl implements SybaseASABaseEv
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList getSchedules()
     {
 		if (schedules == null) {
@@ -239,7 +251,8 @@ public class SybaseASABaseEventImpl extends EventImpl implements SybaseASABaseEv
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EList getConditionDetails()
+    @Override
+	public EList getConditionDetails()
     {
 		if (conditionDetails == null) {
 			conditionDetails = new EObjectContainmentWithInverseEList(EventCondition.class, this, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_EVENT__CONDITION_DETAILS, SybaseasabasesqlmodelPackage.EVENT_CONDITION__EVENT);
@@ -252,6 +265,7 @@ public class SybaseASABaseEventImpl extends EventImpl implements SybaseASABaseEv
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
     {
 		switch (featureID) {
@@ -268,6 +282,7 @@ public class SybaseASABaseEventImpl extends EventImpl implements SybaseASABaseEv
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
     {
 		switch (featureID) {
@@ -284,13 +299,16 @@ public class SybaseASABaseEventImpl extends EventImpl implements SybaseASABaseEv
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
     {
 		switch (featureID) {
 			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_EVENT__EVENT_TYPE:
 				return getEventType();
 			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_EVENT__EVENT_CREATOR:
-				if (resolve) return getEventCreator();
+				if (resolve) {
+					return getEventCreator();
+				}
 				return basicGetEventCreator();
 			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_EVENT__LOCATION:
 				return getLocation();
@@ -307,6 +325,7 @@ public class SybaseASABaseEventImpl extends EventImpl implements SybaseASABaseEv
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue)
     {
 		switch (featureID) {
@@ -336,6 +355,7 @@ public class SybaseASABaseEventImpl extends EventImpl implements SybaseASABaseEv
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID)
     {
 		switch (featureID) {
@@ -363,6 +383,7 @@ public class SybaseASABaseEventImpl extends EventImpl implements SybaseASABaseEv
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID)
     {
 		switch (featureID) {
@@ -385,9 +406,12 @@ public class SybaseASABaseEventImpl extends EventImpl implements SybaseASABaseEv
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString()
     {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (eventType: ");

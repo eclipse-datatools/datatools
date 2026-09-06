@@ -23,10 +23,10 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl.SybaseASABaseUserImpl#getSqlContainer <em>Sql Container</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -56,7 +56,8 @@ public class SybaseASABaseUserImpl extends UserImpl implements SybaseASABaseUser
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    protected EClass eStaticClass()
+    @Override
+	protected EClass eStaticClass()
     {
 		return SybaseasabasesqlmodelPackage.Literals.SYBASE_ASA_BASE_USER;
 	}
@@ -66,14 +67,16 @@ public class SybaseASABaseUserImpl extends UserImpl implements SybaseASABaseUser
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public SQLObject getSqlContainer()
+    @Override
+	public SQLObject getSqlContainer()
     {
 		if (sqlContainer != null && sqlContainer.eIsProxy()) {
 			InternalEObject oldSqlContainer = (InternalEObject)sqlContainer;
 			sqlContainer = (SQLObject)eResolveProxy(oldSqlContainer);
 			if (sqlContainer != oldSqlContainer) {
-				if (eNotificationRequired())
+				if (eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_USER__SQL_CONTAINER, oldSqlContainer, sqlContainer));
+				}
 			}
 		}
 		return sqlContainer;
@@ -94,12 +97,14 @@ public class SybaseASABaseUserImpl extends UserImpl implements SybaseASABaseUser
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public void setSqlContainer(SQLObject newSqlContainer)
+    @Override
+	public void setSqlContainer(SQLObject newSqlContainer)
     {
 		SQLObject oldSqlContainer = sqlContainer;
 		sqlContainer = newSqlContainer;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_USER__SQL_CONTAINER, oldSqlContainer, sqlContainer));
+		}
 	}
 
     /**
@@ -107,11 +112,14 @@ public class SybaseASABaseUserImpl extends UserImpl implements SybaseASABaseUser
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public Object eGet(int featureID, boolean resolve, boolean coreType)
+    @Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType)
     {
 		switch (featureID) {
 			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_USER__SQL_CONTAINER:
-				if (resolve) return getSqlContainer();
+				if (resolve) {
+					return getSqlContainer();
+				}
 				return basicGetSqlContainer();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -122,7 +130,8 @@ public class SybaseASABaseUserImpl extends UserImpl implements SybaseASABaseUser
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public void eSet(int featureID, Object newValue)
+    @Override
+	public void eSet(int featureID, Object newValue)
     {
 		switch (featureID) {
 			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_USER__SQL_CONTAINER:
@@ -137,7 +146,8 @@ public class SybaseASABaseUserImpl extends UserImpl implements SybaseASABaseUser
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public void eUnset(int featureID)
+    @Override
+	public void eUnset(int featureID)
     {
 		switch (featureID) {
 			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_USER__SQL_CONTAINER:
@@ -152,7 +162,8 @@ public class SybaseASABaseUserImpl extends UserImpl implements SybaseASABaseUser
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public boolean eIsSet(int featureID)
+    @Override
+	public boolean eIsSet(int featureID)
     {
 		switch (featureID) {
 			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_USER__SQL_CONTAINER:
@@ -166,7 +177,8 @@ public class SybaseASABaseUserImpl extends UserImpl implements SybaseASABaseUser
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public int eBaseStructuralFeatureID(int derivedFeatureID, Class baseClass)
+    @Override
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class baseClass)
     {
 		if (baseClass == SybaseAuthorizationIdentifier.class) {
 			switch (derivedFeatureID) {
@@ -182,7 +194,8 @@ public class SybaseASABaseUserImpl extends UserImpl implements SybaseASABaseUser
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public int eDerivedStructuralFeatureID(int baseFeatureID, Class baseClass)
+    @Override
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class baseClass)
     {
 		if (baseClass == SybaseAuthorizationIdentifier.class) {
 			switch (baseFeatureID) {

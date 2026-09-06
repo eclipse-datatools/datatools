@@ -122,11 +122,12 @@ public static final AccessRuleType AND_LITERAL = new AccessRuleType(AND, "AND", 
 	 * Returns the '<em><b>Access Rule Type</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static AccessRuleType get(String literal) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			AccessRuleType result = VALUES_ARRAY[i];
+		for (AccessRuleType result : VALUES_ARRAY) {
 			if (result.toString().equals(literal)) {
 				return result;
 			}
@@ -138,11 +139,12 @@ public static final AccessRuleType AND_LITERAL = new AccessRuleType(AND, "AND", 
 	 * Returns the '<em><b>Access Rule Type</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static AccessRuleType getByName(String name) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			AccessRuleType result = VALUES_ARRAY[i];
+		for (AccessRuleType result : VALUES_ARRAY) {
 			if (result.getName().equals(name)) {
 				return result;
 			}
@@ -154,6 +156,8 @@ public static final AccessRuleType AND_LITERAL = new AccessRuleType(AND, "AND", 
 	 * Returns the '<em><b>Access Rule Type</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static AccessRuleType get(int value) {

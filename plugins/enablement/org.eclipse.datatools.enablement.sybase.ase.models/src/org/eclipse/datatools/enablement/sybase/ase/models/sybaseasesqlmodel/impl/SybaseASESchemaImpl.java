@@ -38,108 +38,110 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.impl.SybaseASESchemaImpl#getDefaults <em>Defaults</em>}</li>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.impl.SybaseASESchemaImpl#getRules <em>Rules</em>}</li>
  *   <li>{@link org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.impl.SybaseASESchemaImpl#getEncryptionKeys <em>Encryption Keys</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class SybaseASESchemaImpl extends SchemaImpl implements SybaseASESchema 
+public class SybaseASESchemaImpl extends SchemaImpl implements SybaseASESchema
 {
 	/**
-     * The cached value of the '{@link #getDefaults() <em>Defaults</em>}' reference list.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getDefaults() <em>Defaults</em>}' reference list.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getDefaults()
-     * @generated
-     * @ordered
-     */
+	 * @see #getDefaults()
+	 * @generated
+	 * @ordered
+	 */
 	protected EList defaults;
 
 	/**
-     * The cached value of the '{@link #getRules() <em>Rules</em>}' reference list.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getRules() <em>Rules</em>}' reference list.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getRules()
-     * @generated
-     * @ordered
-     */
+	 * @see #getRules()
+	 * @generated
+	 * @ordered
+	 */
 	protected EList rules;
 
 	/**
-     * The cached value of the '{@link #getEncryptionKeys() <em>Encryption Keys</em>}' reference list.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getEncryptionKeys() <em>Encryption Keys</em>}' reference list.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getEncryptionKeys()
-     * @generated
-     * @ordered
-     */
+	 * @see #getEncryptionKeys()
+	 * @generated
+	 * @ordered
+	 */
 	protected EList encryptionKeys;
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected SybaseASESchemaImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	protected EClass eStaticClass() {
-        return SybaseasesqlmodelPackage.Literals.SYBASE_ASE_SCHEMA;
-    }
+		return SybaseasesqlmodelPackage.Literals.SYBASE_ASE_SCHEMA;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public EList getDefaults() {
-        if (defaults == null)
-        {
-            defaults = new EObjectWithInverseResolvingEList(SybaseASEDefault.class, this, SybaseasesqlmodelPackage.SYBASE_ASE_SCHEMA__DEFAULTS, SybaseasesqlmodelPackage.SYBASE_ASE_DEFAULT__SCHEMA);
-        }
-        return defaults;
-    }
+		if (defaults == null) {
+			defaults = new EObjectWithInverseResolvingEList(SybaseASEDefault.class, this, SybaseasesqlmodelPackage.SYBASE_ASE_SCHEMA__DEFAULTS, SybaseasesqlmodelPackage.SYBASE_ASE_DEFAULT__SCHEMA);
+		}
+		return defaults;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public EList getRules() {
-        if (rules == null)
-        {
-            rules = new EObjectWithInverseResolvingEList(SybaseASERule.class, this, SybaseasesqlmodelPackage.SYBASE_ASE_SCHEMA__RULES, SybaseasesqlmodelPackage.SYBASE_ASE_RULE__SCHEMA);
-        }
-        return rules;
-    }
+		if (rules == null) {
+			rules = new EObjectWithInverseResolvingEList(SybaseASERule.class, this, SybaseasesqlmodelPackage.SYBASE_ASE_SCHEMA__RULES, SybaseasesqlmodelPackage.SYBASE_ASE_RULE__SCHEMA);
+		}
+		return rules;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public EList getEncryptionKeys() {
-        if (encryptionKeys == null)
-        {
-            encryptionKeys = new EObjectWithInverseResolvingEList(SybaseASEEncryptionKey.class, this, SybaseasesqlmodelPackage.SYBASE_ASE_SCHEMA__ENCRYPTION_KEYS, SybaseasesqlmodelPackage.SYBASE_ASE_ENCRYPTION_KEY__SCHEMA);
-        }
-        return encryptionKeys;
-    }
+		if (encryptionKeys == null) {
+			encryptionKeys = new EObjectWithInverseResolvingEList(SybaseASEEncryptionKey.class, this, SybaseasesqlmodelPackage.SYBASE_ASE_SCHEMA__ENCRYPTION_KEYS, SybaseasesqlmodelPackage.SYBASE_ASE_ENCRYPTION_KEY__SCHEMA);
+		}
+		return encryptionKeys;
+	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 */
+	@Override
 	public List getWebServicesAsTables() {
 		List result = new java.util.ArrayList();
 		List tableList = this.getTables();
@@ -155,7 +157,8 @@ public class SybaseASESchemaImpl extends SchemaImpl implements SybaseASESchema
 		return result;
 	}
 
-    public List getSystemProcedures(){
+    @Override
+	public List getSystemProcedures(){
         List result = new ArrayList();
         List procedureList = getProcedures();
         for(int i = 0;i<procedureList.size();i++)
@@ -167,11 +170,12 @@ public class SybaseASESchemaImpl extends SchemaImpl implements SybaseASESchema
         }
         return result;
     }
-    
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 */
+	@Override
 	public List getNormalTables(){
 		List result = new ArrayList();
 		List tableList = getTables();
@@ -193,7 +197,8 @@ public class SybaseASESchemaImpl extends SchemaImpl implements SybaseASESchema
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      */
-    public List getSystemTables(){
+    @Override
+	public List getSystemTables(){
         List result = new ArrayList();
         List tableList = getTables();
         for(int i = 0;i<tableList.size();i++)
@@ -209,7 +214,8 @@ public class SybaseASESchemaImpl extends SchemaImpl implements SybaseASESchema
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      */
-    public List getSystemAndNormalTable()
+    @Override
+	public List getSystemAndNormalTable()
     {
         List result = new ArrayList();
         List tableList = getTables();
@@ -221,13 +227,14 @@ public class SybaseASESchemaImpl extends SchemaImpl implements SybaseASESchema
                 result.add(table);
             }
         }
-        return result;        
+        return result;
     }
 
     /**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 */
+	@Override
 	public List getProxyTables() {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
@@ -247,6 +254,7 @@ public class SybaseASESchemaImpl extends SchemaImpl implements SybaseASESchema
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 */
+	@Override
 	public List getViewTables() {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
@@ -263,129 +271,131 @@ public class SybaseASESchemaImpl extends SchemaImpl implements SybaseASESchema
 	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID)
-        {
-            case SybaseasesqlmodelPackage.SYBASE_ASE_SCHEMA__DEFAULTS:
-                return ((InternalEList)getDefaults()).basicAdd(otherEnd, msgs);
-            case SybaseasesqlmodelPackage.SYBASE_ASE_SCHEMA__RULES:
-                return ((InternalEList)getRules()).basicAdd(otherEnd, msgs);
-            case SybaseasesqlmodelPackage.SYBASE_ASE_SCHEMA__ENCRYPTION_KEYS:
-                return ((InternalEList)getEncryptionKeys()).basicAdd(otherEnd, msgs);
-        }
-        return super.eInverseAdd(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case SybaseasesqlmodelPackage.SYBASE_ASE_SCHEMA__DEFAULTS:
+				return ((InternalEList)getDefaults()).basicAdd(otherEnd, msgs);
+			case SybaseasesqlmodelPackage.SYBASE_ASE_SCHEMA__RULES:
+				return ((InternalEList)getRules()).basicAdd(otherEnd, msgs);
+			case SybaseasesqlmodelPackage.SYBASE_ASE_SCHEMA__ENCRYPTION_KEYS:
+				return ((InternalEList)getEncryptionKeys()).basicAdd(otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID)
-        {
-            case SybaseasesqlmodelPackage.SYBASE_ASE_SCHEMA__DEFAULTS:
-                return ((InternalEList)getDefaults()).basicRemove(otherEnd, msgs);
-            case SybaseasesqlmodelPackage.SYBASE_ASE_SCHEMA__RULES:
-                return ((InternalEList)getRules()).basicRemove(otherEnd, msgs);
-            case SybaseasesqlmodelPackage.SYBASE_ASE_SCHEMA__ENCRYPTION_KEYS:
-                return ((InternalEList)getEncryptionKeys()).basicRemove(otherEnd, msgs);
-        }
-        return super.eInverseRemove(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case SybaseasesqlmodelPackage.SYBASE_ASE_SCHEMA__DEFAULTS:
+				return ((InternalEList)getDefaults()).basicRemove(otherEnd, msgs);
+			case SybaseasesqlmodelPackage.SYBASE_ASE_SCHEMA__RULES:
+				return ((InternalEList)getRules()).basicRemove(otherEnd, msgs);
+			case SybaseasesqlmodelPackage.SYBASE_ASE_SCHEMA__ENCRYPTION_KEYS:
+				return ((InternalEList)getEncryptionKeys()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID)
-        {
-            case SybaseasesqlmodelPackage.SYBASE_ASE_SCHEMA__DEFAULTS:
-                return getDefaults();
-            case SybaseasesqlmodelPackage.SYBASE_ASE_SCHEMA__RULES:
-                return getRules();
-            case SybaseasesqlmodelPackage.SYBASE_ASE_SCHEMA__ENCRYPTION_KEYS:
-                return getEncryptionKeys();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case SybaseasesqlmodelPackage.SYBASE_ASE_SCHEMA__DEFAULTS:
+				return getDefaults();
+			case SybaseasesqlmodelPackage.SYBASE_ASE_SCHEMA__RULES:
+				return getRules();
+			case SybaseasesqlmodelPackage.SYBASE_ASE_SCHEMA__ENCRYPTION_KEYS:
+				return getEncryptionKeys();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
-        switch (featureID)
-        {
-            case SybaseasesqlmodelPackage.SYBASE_ASE_SCHEMA__DEFAULTS:
-                getDefaults().clear();
-                getDefaults().addAll((Collection)newValue);
-                return;
-            case SybaseasesqlmodelPackage.SYBASE_ASE_SCHEMA__RULES:
-                getRules().clear();
-                getRules().addAll((Collection)newValue);
-                return;
-            case SybaseasesqlmodelPackage.SYBASE_ASE_SCHEMA__ENCRYPTION_KEYS:
-                getEncryptionKeys().clear();
-                getEncryptionKeys().addAll((Collection)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case SybaseasesqlmodelPackage.SYBASE_ASE_SCHEMA__DEFAULTS:
+				getDefaults().clear();
+				getDefaults().addAll((Collection)newValue);
+				return;
+			case SybaseasesqlmodelPackage.SYBASE_ASE_SCHEMA__RULES:
+				getRules().clear();
+				getRules().addAll((Collection)newValue);
+				return;
+			case SybaseasesqlmodelPackage.SYBASE_ASE_SCHEMA__ENCRYPTION_KEYS:
+				getEncryptionKeys().clear();
+				getEncryptionKeys().addAll((Collection)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public void eUnset(int featureID) {
-        switch (featureID)
-        {
-            case SybaseasesqlmodelPackage.SYBASE_ASE_SCHEMA__DEFAULTS:
-                getDefaults().clear();
-                return;
-            case SybaseasesqlmodelPackage.SYBASE_ASE_SCHEMA__RULES:
-                getRules().clear();
-                return;
-            case SybaseasesqlmodelPackage.SYBASE_ASE_SCHEMA__ENCRYPTION_KEYS:
-                getEncryptionKeys().clear();
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case SybaseasesqlmodelPackage.SYBASE_ASE_SCHEMA__DEFAULTS:
+				getDefaults().clear();
+				return;
+			case SybaseasesqlmodelPackage.SYBASE_ASE_SCHEMA__RULES:
+				getRules().clear();
+				return;
+			case SybaseasesqlmodelPackage.SYBASE_ASE_SCHEMA__ENCRYPTION_KEYS:
+				getEncryptionKeys().clear();
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
 	public boolean eIsSet(int featureID) {
-        switch (featureID)
-        {
-            case SybaseasesqlmodelPackage.SYBASE_ASE_SCHEMA__DEFAULTS:
-                return defaults != null && !defaults.isEmpty();
-            case SybaseasesqlmodelPackage.SYBASE_ASE_SCHEMA__RULES:
-                return rules != null && !rules.isEmpty();
-            case SybaseasesqlmodelPackage.SYBASE_ASE_SCHEMA__ENCRYPTION_KEYS:
-                return encryptionKeys != null && !encryptionKeys.isEmpty();
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case SybaseasesqlmodelPackage.SYBASE_ASE_SCHEMA__DEFAULTS:
+				return defaults != null && !defaults.isEmpty();
+			case SybaseasesqlmodelPackage.SYBASE_ASE_SCHEMA__RULES:
+				return rules != null && !rules.isEmpty();
+			case SybaseasesqlmodelPackage.SYBASE_ASE_SCHEMA__ENCRYPTION_KEYS:
+				return encryptionKeys != null && !encryptionKeys.isEmpty();
+		}
+		return super.eIsSet(featureID);
+	}
 
-    public Database getDatabase()
+    @Override
+	public Database getDatabase()
     {
         Catalog catalog = this.getCatalog();
-        if (catalog == null)
-            return null;
-        else
-            return catalog.getDatabase();
+        if (catalog == null) {
+			return null;
+		} else {
+			return catalog.getDatabase();
+		}
     }
 
 } //SybaseASESchemaImpl

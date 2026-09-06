@@ -14,28 +14,27 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>SQL Value Expression Default</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */
 public class ValueExpressionDefaultValueImpl extends ValueExpressionAtomicImpl implements ValueExpressionDefaultValue {
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected ValueExpressionDefaultValueImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    protected EClass eStaticClass() {
-        return SQLQueryModelPackage.Literals.VALUE_EXPRESSION_DEFAULT_VALUE;
-    }
+	 * @generated
+	 */
+    @Override
+	protected EClass eStaticClass() {
+		return SQLQueryModelPackage.Literals.VALUE_EXPRESSION_DEFAULT_VALUE;
+	}
 
 } //SQLValueExpressionDefaultImpl

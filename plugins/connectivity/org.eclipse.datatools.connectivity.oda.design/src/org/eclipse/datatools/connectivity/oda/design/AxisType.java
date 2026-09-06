@@ -8,7 +8,7 @@
  *
  * Contributors:
  *  Actuate Corporation  - initial API and implementation
- *  
+ *
  *************************************************************************
  *
  * $Id: AxisType.java,v 1.2 2007/04/11 02:59:53 lchan Exp $
@@ -34,222 +34,216 @@ import org.eclipse.emf.common.util.Enumerator;
  * @generated
  */
 public enum AxisType implements Enumerator {
-    /**
-     * The '<em><b>Dimension Member</b></em>' literal object.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #DIMENSION_MEMBER
-     * @generated
-     * @ordered
-     */
-    DIMENSION_MEMBER_LITERAL(0, "DimensionMember", "DimensionMember"), //$NON-NLS-1$ //$NON-NLS-2$
-    /**
-     * The '<em><b>Dimension Attribute</b></em>' literal object.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #DIMENSION_ATTRIBUTE
-     * @generated
-     * @ordered
-     */
-    DIMENSION_ATTRIBUTE_LITERAL(1, "DimensionAttribute", "DimensionAttribute"), //$NON-NLS-1$ //$NON-NLS-2$
-    /**
-     * The '<em><b>Measure</b></em>' literal object.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #MEASURE
-     * @generated
-     * @ordered
-     */
-    MEASURE_LITERAL(2, "Measure", "Measure"); //$NON-NLS-1$ //$NON-NLS-2$
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public static final String copyright = "Copyright (c) 2005, 2009 Actuate Corporation"; //$NON-NLS-1$
+	/**
+	 * The '<em><b>Dimension Member</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #DIMENSION_MEMBER
+	 * @generated
+	 * @ordered
+	 */
+	DIMENSION_MEMBER_LITERAL(0, "DimensionMember", "DimensionMember"), //$NON-NLS-1$ //$NON-NLS-2$
+	/**
+	 * The '<em><b>Dimension Attribute</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #DIMENSION_ATTRIBUTE
+	 * @generated
+	 * @ordered
+	 */
+	DIMENSION_ATTRIBUTE_LITERAL(1, "DimensionAttribute", "DimensionAttribute"), //$NON-NLS-1$ //$NON-NLS-2$
+	/**
+	 * The '<em><b>Measure</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #MEASURE
+	 * @generated
+	 * @ordered
+	 */
+	MEASURE_LITERAL(2, "Measure", "Measure"); //$NON-NLS-1$ //$NON-NLS-2$
 
-    /**
-     * The '<em><b>Dimension Member</b></em>' literal value.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #DIMENSION_MEMBER_LITERAL
-     * @model name="DimensionMember"
-     * @generated
-     * @ordered
-     */
-    public static final int DIMENSION_MEMBER = 0;
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final String copyright = "Copyright (c) 2005, 2010 Actuate Corporation"; //$NON-NLS-1$
 
-    /**
-     * The '<em><b>Dimension Attribute</b></em>' literal value.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #DIMENSION_ATTRIBUTE_LITERAL
-     * @model name="DimensionAttribute"
-     * @generated
-     * @ordered
-     */
-    public static final int DIMENSION_ATTRIBUTE = 1;
+	/**
+	 * The '<em><b>Dimension Member</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #DIMENSION_MEMBER_LITERAL
+	 * @model name="DimensionMember"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int DIMENSION_MEMBER = 0;
 
-    /**
-     * The '<em><b>Measure</b></em>' literal value.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #MEASURE_LITERAL
-     * @model name="Measure"
-     * @generated
-     * @ordered
-     */
-    public static final int MEASURE = 2;
+	/**
+	 * The '<em><b>Dimension Attribute</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #DIMENSION_ATTRIBUTE_LITERAL
+	 * @model name="DimensionAttribute"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int DIMENSION_ATTRIBUTE = 1;
 
-    /**
-     * An array of all the '<em><b>Axis Type</b></em>' enumerators.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    private static final AxisType[] VALUES_ARRAY = new AxisType[]
-    { DIMENSION_MEMBER_LITERAL, DIMENSION_ATTRIBUTE_LITERAL, MEASURE_LITERAL, };
+	/**
+	 * The '<em><b>Measure</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #MEASURE_LITERAL
+	 * @model name="Measure"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int MEASURE = 2;
 
-    /**
-     * A public read-only list of all the '<em><b>Axis Type</b></em>' enumerators.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public static final List<AxisType> VALUES = Collections
-            .unmodifiableList( Arrays.asList( VALUES_ARRAY ) );
+	/**
+	 * An array of all the '<em><b>Axis Type</b></em>' enumerators.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private static final AxisType[] VALUES_ARRAY = new AxisType[] { DIMENSION_MEMBER_LITERAL,
+			DIMENSION_ATTRIBUTE_LITERAL, MEASURE_LITERAL, };
 
-    /**
-     * Returns the '<em><b>Axis Type</b></em>' literal with the specified literal value.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public static AxisType get( String literal )
-    {
-        for( int i = 0; i < VALUES_ARRAY.length; ++i)
-        {
-            AxisType result = VALUES_ARRAY[i];
-            if( result.toString().equals( literal ) )
-            {
-                return result;
-            }
-        }
-        return null;
-    }
+	/**
+	 * A public read-only list of all the '<em><b>Axis Type</b></em>' enumerators.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final List<AxisType> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
-    /**
-     * Returns the '<em><b>Axis Type</b></em>' literal with the specified name.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public static AxisType getByName( String name )
-    {
-        for( int i = 0; i < VALUES_ARRAY.length; ++i)
-        {
-            AxisType result = VALUES_ARRAY[i];
-            if( result.getName().equals( name ) )
-            {
-                return result;
-            }
-        }
-        return null;
-    }
+	/**
+	 * Returns the '<em><b>Axis Type</b></em>' literal with the specified literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
+	 * @generated
+	 */
+	public static AxisType get(String literal) {
+		for (AxisType result : VALUES_ARRAY) {
+			if (result.toString().equals(literal)) {
+				return result;
+			}
+		}
+		return null;
+	}
 
-    /**
-     * Returns the '<em><b>Axis Type</b></em>' literal with the specified integer value.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public static AxisType get( int value )
-    {
-        switch( value )
-        {
-        case DIMENSION_MEMBER:
-            return DIMENSION_MEMBER_LITERAL;
-        case DIMENSION_ATTRIBUTE:
-            return DIMENSION_ATTRIBUTE_LITERAL;
-        case MEASURE:
-            return MEASURE_LITERAL;
-        }
-        return null;
-    }
+	/**
+	 * Returns the '<em><b>Axis Type</b></em>' literal with the specified name.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
+	 * @generated
+	 */
+	public static AxisType getByName(String name) {
+		for (AxisType result : VALUES_ARRAY) {
+			if (result.getName().equals(name)) {
+				return result;
+			}
+		}
+		return null;
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    private final int value;
+	/**
+	 * Returns the '<em><b>Axis Type</b></em>' literal with the specified integer value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
+	 * @generated
+	 */
+	public static AxisType get(int value) {
+		switch (value) {
+		case DIMENSION_MEMBER:
+			return DIMENSION_MEMBER_LITERAL;
+		case DIMENSION_ATTRIBUTE:
+			return DIMENSION_ATTRIBUTE_LITERAL;
+		case MEASURE:
+			return MEASURE_LITERAL;
+		}
+		return null;
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    private final String name;
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private final int value;
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    private final String literal;
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private final String name;
 
-    /**
-     * Only this class can construct instances.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    private AxisType( int value, String name, String literal )
-    {
-        this.value = value;
-        this.name = name;
-        this.literal = literal;
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private final String literal;
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public int getValue()
-    {
-        return value;
-    }
+	/**
+	 * Only this class can construct instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private AxisType(int value, String name, String literal) {
+		this.value = value;
+		this.name = name;
+		this.literal = literal;
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public String getName()
-    {
-        return name;
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int getValue() {
+		return value;
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public String getLiteral()
-    {
-        return literal;
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getName() {
+		return name;
+	}
 
-    /**
-     * Returns the literal value of the enumerator, which is its string representation.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public String toString()
-    {
-        return literal;
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getLiteral() {
+		return literal;
+	}
+
+	/**
+	 * Returns the literal value of the enumerator, which is its string representation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		return literal;
+	}
 }

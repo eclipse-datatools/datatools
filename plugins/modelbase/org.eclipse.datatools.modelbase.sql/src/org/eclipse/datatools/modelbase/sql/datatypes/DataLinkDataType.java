@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -17,11 +17,12 @@ package org.eclipse.datatools.modelbase.sql.datatypes;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * Represents a link to a file/location outside the system. 
+ * Represents a link to a file/location outside the system.
  * <!-- end-model-doc -->
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.datatypes.DataLinkDataType#getLength <em>Length</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.datatypes.DataLinkDataType#getLinkControl <em>Link Control</em>}</li>
@@ -31,7 +32,6 @@ package org.eclipse.datatools.modelbase.sql.datatypes;
  *   <li>{@link org.eclipse.datatools.modelbase.sql.datatypes.DataLinkDataType#isRecovery <em>Recovery</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.datatypes.DataLinkDataType#getUnlink <em>Unlink</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage#getDataLinkDataType()
  * @model

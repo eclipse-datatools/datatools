@@ -10,5 +10,20 @@
 
 <plugin>
 
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated sybaseasesqlmodel -->
+      <package
+            uri="http:///org/eclipse/datatools/connectivity/sqm/sybase/ase/sybaseasesqlmodel.ecore"
+            class="org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseasesqlmodelPackage"
+            genModel="models/sybaseasesqlmodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated sybaseasesqlmodel -->
+      <package
+            uri="http:///org/eclipse/datatools/connectivity/sqm/sybase/ase/sybasease../../org.eclipse.datatools.modelbase.sql/model/../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore/partition.ecore"
+            class="org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.partition.PartitionPackage"
+            genModel="models/sybaseasesqlmodel.genmodel"/>
+   </extension>
 </plugin>
 

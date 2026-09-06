@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.TableSpaceDefinitionImpl#isTypeSupported <em>Type Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.TableSpaceDefinitionImpl#isExtentSizeSupported <em>Extent Size Supported</em>}</li>
@@ -42,7 +43,6 @@ import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.TableSpaceDefinitionImpl#getTableSpaceType <em>Table Space Type</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.TableSpaceDefinitionImpl#getMaximumIdentifierLength <em>Maximum Identifier Length</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -291,6 +291,7 @@ public class TableSpaceDefinitionImpl extends EObjectImpl implements TableSpaceD
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return DatabaseDefinitionPackage.Literals.TABLE_SPACE_DEFINITION;
 	}
@@ -300,6 +301,7 @@ public class TableSpaceDefinitionImpl extends EObjectImpl implements TableSpaceD
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isTypeSupported() {
 		return typeSupported;
 	}
@@ -309,11 +311,13 @@ public class TableSpaceDefinitionImpl extends EObjectImpl implements TableSpaceD
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTypeSupported(boolean newTypeSupported) {
 		boolean oldTypeSupported = typeSupported;
 		typeSupported = newTypeSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.TABLE_SPACE_DEFINITION__TYPE_SUPPORTED, oldTypeSupported, typeSupported));
+		}
 	}
 
 	/**
@@ -321,6 +325,7 @@ public class TableSpaceDefinitionImpl extends EObjectImpl implements TableSpaceD
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isExtentSizeSupported() {
 		return extentSizeSupported;
 	}
@@ -330,11 +335,13 @@ public class TableSpaceDefinitionImpl extends EObjectImpl implements TableSpaceD
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setExtentSizeSupported(boolean newExtentSizeSupported) {
 		boolean oldExtentSizeSupported = extentSizeSupported;
 		extentSizeSupported = newExtentSizeSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.TABLE_SPACE_DEFINITION__EXTENT_SIZE_SUPPORTED, oldExtentSizeSupported, extentSizeSupported));
+		}
 	}
 
 	/**
@@ -342,6 +349,7 @@ public class TableSpaceDefinitionImpl extends EObjectImpl implements TableSpaceD
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isPrefetchSizeSupported() {
 		return prefetchSizeSupported;
 	}
@@ -351,11 +359,13 @@ public class TableSpaceDefinitionImpl extends EObjectImpl implements TableSpaceD
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPrefetchSizeSupported(boolean newPrefetchSizeSupported) {
 		boolean oldPrefetchSizeSupported = prefetchSizeSupported;
 		prefetchSizeSupported = newPrefetchSizeSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.TABLE_SPACE_DEFINITION__PREFETCH_SIZE_SUPPORTED, oldPrefetchSizeSupported, prefetchSizeSupported));
+		}
 	}
 
 	/**
@@ -363,6 +373,7 @@ public class TableSpaceDefinitionImpl extends EObjectImpl implements TableSpaceD
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isManagedBySupported() {
 		return managedBySupported;
 	}
@@ -372,11 +383,13 @@ public class TableSpaceDefinitionImpl extends EObjectImpl implements TableSpaceD
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setManagedBySupported(boolean newManagedBySupported) {
 		boolean oldManagedBySupported = managedBySupported;
 		managedBySupported = newManagedBySupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.TABLE_SPACE_DEFINITION__MANAGED_BY_SUPPORTED, oldManagedBySupported, managedBySupported));
+		}
 	}
 
 	/**
@@ -384,6 +397,7 @@ public class TableSpaceDefinitionImpl extends EObjectImpl implements TableSpaceD
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isPageSizeSupported() {
 		return pageSizeSupported;
 	}
@@ -393,11 +407,13 @@ public class TableSpaceDefinitionImpl extends EObjectImpl implements TableSpaceD
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPageSizeSupported(boolean newPageSizeSupported) {
 		boolean oldPageSizeSupported = pageSizeSupported;
 		pageSizeSupported = newPageSizeSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.TABLE_SPACE_DEFINITION__PAGE_SIZE_SUPPORTED, oldPageSizeSupported, pageSizeSupported));
+		}
 	}
 
 	/**
@@ -405,6 +421,7 @@ public class TableSpaceDefinitionImpl extends EObjectImpl implements TableSpaceD
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isBufferPoolSupported() {
 		return bufferPoolSupported;
 	}
@@ -414,11 +431,13 @@ public class TableSpaceDefinitionImpl extends EObjectImpl implements TableSpaceD
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setBufferPoolSupported(boolean newBufferPoolSupported) {
 		boolean oldBufferPoolSupported = bufferPoolSupported;
 		bufferPoolSupported = newBufferPoolSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.TABLE_SPACE_DEFINITION__BUFFER_POOL_SUPPORTED, oldBufferPoolSupported, bufferPoolSupported));
+		}
 	}
 
 	/**
@@ -426,6 +445,7 @@ public class TableSpaceDefinitionImpl extends EObjectImpl implements TableSpaceD
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isDefaultSupported() {
 		return defaultSupported;
 	}
@@ -435,11 +455,13 @@ public class TableSpaceDefinitionImpl extends EObjectImpl implements TableSpaceD
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDefaultSupported(boolean newDefaultSupported) {
 		boolean oldDefaultSupported = defaultSupported;
 		defaultSupported = newDefaultSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.TABLE_SPACE_DEFINITION__DEFAULT_SUPPORTED, oldDefaultSupported, defaultSupported));
+		}
 	}
 
 	/**
@@ -447,6 +469,7 @@ public class TableSpaceDefinitionImpl extends EObjectImpl implements TableSpaceD
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isContainerMaximumSizeSupported() {
 		return containerMaximumSizeSupported;
 	}
@@ -456,11 +479,13 @@ public class TableSpaceDefinitionImpl extends EObjectImpl implements TableSpaceD
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setContainerMaximumSizeSupported(boolean newContainerMaximumSizeSupported) {
 		boolean oldContainerMaximumSizeSupported = containerMaximumSizeSupported;
 		containerMaximumSizeSupported = newContainerMaximumSizeSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.TABLE_SPACE_DEFINITION__CONTAINER_MAXIMUM_SIZE_SUPPORTED, oldContainerMaximumSizeSupported, containerMaximumSizeSupported));
+		}
 	}
 
 	/**
@@ -468,6 +493,7 @@ public class TableSpaceDefinitionImpl extends EObjectImpl implements TableSpaceD
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isContainerInitialSizeSupported() {
 		return containerInitialSizeSupported;
 	}
@@ -477,11 +503,13 @@ public class TableSpaceDefinitionImpl extends EObjectImpl implements TableSpaceD
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setContainerInitialSizeSupported(boolean newContainerInitialSizeSupported) {
 		boolean oldContainerInitialSizeSupported = containerInitialSizeSupported;
 		containerInitialSizeSupported = newContainerInitialSizeSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.TABLE_SPACE_DEFINITION__CONTAINER_INITIAL_SIZE_SUPPORTED, oldContainerInitialSizeSupported, containerInitialSizeSupported));
+		}
 	}
 
 	/**
@@ -489,6 +517,7 @@ public class TableSpaceDefinitionImpl extends EObjectImpl implements TableSpaceD
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isContainerExtentSizeSupported() {
 		return containerExtentSizeSupported;
 	}
@@ -498,11 +527,13 @@ public class TableSpaceDefinitionImpl extends EObjectImpl implements TableSpaceD
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setContainerExtentSizeSupported(boolean newContainerExtentSizeSupported) {
 		boolean oldContainerExtentSizeSupported = containerExtentSizeSupported;
 		containerExtentSizeSupported = newContainerExtentSizeSupported;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.TABLE_SPACE_DEFINITION__CONTAINER_EXTENT_SIZE_SUPPORTED, oldContainerExtentSizeSupported, containerExtentSizeSupported));
+		}
 	}
 
 	/**
@@ -510,6 +541,7 @@ public class TableSpaceDefinitionImpl extends EObjectImpl implements TableSpaceD
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList getTableSpaceType() {
 		if (tableSpaceType == null) {
 			tableSpaceType = new EDataTypeUniqueEList(TableSpaceType.class, this, DatabaseDefinitionPackage.TABLE_SPACE_DEFINITION__TABLE_SPACE_TYPE);
@@ -522,6 +554,7 @@ public class TableSpaceDefinitionImpl extends EObjectImpl implements TableSpaceD
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getMaximumIdentifierLength() {
 		return maximumIdentifierLength;
 	}
@@ -531,11 +564,13 @@ public class TableSpaceDefinitionImpl extends EObjectImpl implements TableSpaceD
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMaximumIdentifierLength(int newMaximumIdentifierLength) {
 		int oldMaximumIdentifierLength = maximumIdentifierLength;
 		maximumIdentifierLength = newMaximumIdentifierLength;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.TABLE_SPACE_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH, oldMaximumIdentifierLength, maximumIdentifierLength));
+		}
 	}
 
 	/**
@@ -543,6 +578,7 @@ public class TableSpaceDefinitionImpl extends EObjectImpl implements TableSpaceD
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.TABLE_SPACE_DEFINITION__TYPE_SUPPORTED:
@@ -568,7 +604,7 @@ public class TableSpaceDefinitionImpl extends EObjectImpl implements TableSpaceD
 			case DatabaseDefinitionPackage.TABLE_SPACE_DEFINITION__TABLE_SPACE_TYPE:
 				return getTableSpaceType();
 			case DatabaseDefinitionPackage.TABLE_SPACE_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH:
-				return Integer.valueOf(getMaximumIdentifierLength());
+				return new Integer(getMaximumIdentifierLength());
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -578,6 +614,7 @@ public class TableSpaceDefinitionImpl extends EObjectImpl implements TableSpaceD
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.TABLE_SPACE_DEFINITION__TYPE_SUPPORTED:
@@ -626,6 +663,7 @@ public class TableSpaceDefinitionImpl extends EObjectImpl implements TableSpaceD
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.TABLE_SPACE_DEFINITION__TYPE_SUPPORTED:
@@ -673,6 +711,7 @@ public class TableSpaceDefinitionImpl extends EObjectImpl implements TableSpaceD
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.TABLE_SPACE_DEFINITION__TYPE_SUPPORTED:
@@ -708,8 +747,11 @@ public class TableSpaceDefinitionImpl extends EObjectImpl implements TableSpaceD
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (typeSupported: "); //$NON-NLS-1$

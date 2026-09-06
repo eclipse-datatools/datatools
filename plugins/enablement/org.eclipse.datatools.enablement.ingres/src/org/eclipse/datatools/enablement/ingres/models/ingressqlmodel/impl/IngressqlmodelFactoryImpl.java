@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *   Ingres Corporation - initial API and implementation
  *
@@ -48,7 +48,7 @@ public class IngressqlmodelFactoryImpl extends EFactoryImpl implements Ingressql
 	 */
 	public static IngressqlmodelFactory init() {
 		try {
-			IngressqlmodelFactory theIngressqlmodelFactory = (IngressqlmodelFactory)EPackage.Registry.INSTANCE.getEFactory("http:///org/eclipse/datatools/enablement/ingres/ingressqlmodel.ecore"); 
+			IngressqlmodelFactory theIngressqlmodelFactory = (IngressqlmodelFactory)EPackage.Registry.INSTANCE.getEFactory(IngressqlmodelPackage.eNS_URI);
 			if (theIngressqlmodelFactory != null) {
 				return theIngressqlmodelFactory;
 			}
@@ -74,6 +74,7 @@ public class IngressqlmodelFactoryImpl extends EFactoryImpl implements Ingressql
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case IngressqlmodelPackage.INGRES_SYNONYM: return createIngresSynonym();
@@ -92,6 +93,7 @@ public class IngressqlmodelFactoryImpl extends EFactoryImpl implements Ingressql
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IngresSynonym createIngresSynonym() {
 		IngresSynonymImpl ingresSynonym = new IngresSynonymImpl();
 		return ingresSynonym;
@@ -102,6 +104,7 @@ public class IngressqlmodelFactoryImpl extends EFactoryImpl implements Ingressql
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IngresDBEvent createIngresDBEvent() {
 		IngresDBEventImpl ingresDBEvent = new IngresDBEventImpl();
 		return ingresDBEvent;
@@ -112,6 +115,7 @@ public class IngressqlmodelFactoryImpl extends EFactoryImpl implements Ingressql
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IngresSchema createIngresSchema() {
 		IngresSchemaImpl ingresSchema = new IngresSchemaImpl();
 		return ingresSchema;
@@ -122,6 +126,7 @@ public class IngressqlmodelFactoryImpl extends EFactoryImpl implements Ingressql
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IngresViewTable createIngresViewTable() {
 		IngresViewTableImpl ingresViewTable = new IngresViewTableImpl();
 		return ingresViewTable;
@@ -132,6 +137,7 @@ public class IngressqlmodelFactoryImpl extends EFactoryImpl implements Ingressql
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IngresTrigger createIngresTrigger() {
 		IngresTriggerImpl ingresTrigger = new IngresTriggerImpl();
 		return ingresTrigger;
@@ -142,6 +148,7 @@ public class IngressqlmodelFactoryImpl extends EFactoryImpl implements Ingressql
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IngresIdentitySpecifier createIngresIdentitySpecifier() {
 		IngresIdentitySpecifierImpl ingresIdentitySpecifier = new IngresIdentitySpecifierImpl();
 		return ingresIdentitySpecifier;
@@ -152,6 +159,7 @@ public class IngressqlmodelFactoryImpl extends EFactoryImpl implements Ingressql
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IngressqlmodelPackage getIngressqlmodelPackage() {
 		return (IngressqlmodelPackage)getEPackage();
 	}
@@ -162,6 +170,7 @@ public class IngressqlmodelFactoryImpl extends EFactoryImpl implements Ingressql
 	 * @deprecated
 	 * @generated
 	 */
+	@Deprecated
 	public static IngressqlmodelPackage getPackage() {
 		return IngressqlmodelPackage.eINSTANCE;
 	}

@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -38,6 +38,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.schema.impl.DatabaseImpl#getVendor <em>Vendor</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.schema.impl.DatabaseImpl#getVersion <em>Version</em>}</li>
@@ -46,7 +47,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.eclipse.datatools.modelbase.sql.schema.impl.DatabaseImpl#getCatalogs <em>Catalogs</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.schema.impl.DatabaseImpl#getAuthorizationIds <em>Authorization Ids</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -145,6 +145,7 @@ public class DatabaseImpl extends SQLObjectImpl implements Database {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return SQLSchemaPackage.Literals.DATABASE;
 	}
@@ -154,6 +155,7 @@ public class DatabaseImpl extends SQLObjectImpl implements Database {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getVendor() {
 		return vendor;
 	}
@@ -163,11 +165,13 @@ public class DatabaseImpl extends SQLObjectImpl implements Database {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setVendor(String newVendor) {
 		String oldVendor = vendor;
 		vendor = newVendor;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLSchemaPackage.DATABASE__VENDOR, oldVendor, vendor));
+		}
 	}
 
 	/**
@@ -175,6 +179,7 @@ public class DatabaseImpl extends SQLObjectImpl implements Database {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getVersion() {
 		return version;
 	}
@@ -184,11 +189,13 @@ public class DatabaseImpl extends SQLObjectImpl implements Database {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setVersion(String newVersion) {
 		String oldVersion = version;
 		version = newVersion;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLSchemaPackage.DATABASE__VERSION, oldVersion, version));
+		}
 	}
 
 	/**
@@ -196,6 +203,7 @@ public class DatabaseImpl extends SQLObjectImpl implements Database {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList getSchemas() {
 		if (schemas == null) {
 			schemas = new EObjectWithInverseResolvingEList(Schema.class, this, SQLSchemaPackage.DATABASE__SCHEMAS, SQLSchemaPackage.SCHEMA__DATABASE);
@@ -208,6 +216,7 @@ public class DatabaseImpl extends SQLObjectImpl implements Database {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList getEvents() {
 		if (events == null) {
 			events = new EObjectWithInverseResolvingEList(Event.class, this, SQLSchemaPackage.DATABASE__EVENTS, SQLSchemaPackage.EVENT__DATABASE);
@@ -220,6 +229,7 @@ public class DatabaseImpl extends SQLObjectImpl implements Database {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList getCatalogs() {
 		if (catalogs == null) {
 			catalogs = new EObjectWithInverseResolvingEList(Catalog.class, this, SQLSchemaPackage.DATABASE__CATALOGS, SQLSchemaPackage.CATALOG__DATABASE);
@@ -232,6 +242,7 @@ public class DatabaseImpl extends SQLObjectImpl implements Database {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList getAuthorizationIds() {
 		if (authorizationIds == null) {
 			authorizationIds = new EObjectWithInverseResolvingEList(AuthorizationIdentifier.class, this, SQLSchemaPackage.DATABASE__AUTHORIZATION_IDS, SQLAccessControlPackage.AUTHORIZATION_IDENTIFIER__DATABASE);
@@ -243,6 +254,7 @@ public class DatabaseImpl extends SQLObjectImpl implements Database {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 */
+	@Override
 	public List getUserDefinedTypes() {
 		Vector udtList = new Vector();
 		EList schemas = this.getSchemas();
@@ -260,7 +272,7 @@ public class DatabaseImpl extends SQLObjectImpl implements Database {
 				}
 			}
 		}
-		return (List)udtList;
+		return udtList;
 	}
 
 	/**
@@ -268,6 +280,7 @@ public class DatabaseImpl extends SQLObjectImpl implements Database {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case SQLSchemaPackage.DATABASE__SCHEMAS:
@@ -287,6 +300,7 @@ public class DatabaseImpl extends SQLObjectImpl implements Database {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case SQLSchemaPackage.DATABASE__SCHEMAS:
@@ -306,6 +320,7 @@ public class DatabaseImpl extends SQLObjectImpl implements Database {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SQLSchemaPackage.DATABASE__VENDOR:
@@ -329,6 +344,7 @@ public class DatabaseImpl extends SQLObjectImpl implements Database {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case SQLSchemaPackage.DATABASE__VENDOR:
@@ -362,6 +378,7 @@ public class DatabaseImpl extends SQLObjectImpl implements Database {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case SQLSchemaPackage.DATABASE__VENDOR:
@@ -391,6 +408,7 @@ public class DatabaseImpl extends SQLObjectImpl implements Database {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SQLSchemaPackage.DATABASE__VENDOR:
@@ -414,8 +432,11 @@ public class DatabaseImpl extends SQLObjectImpl implements Database {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (vendor: "); //$NON-NLS-1$

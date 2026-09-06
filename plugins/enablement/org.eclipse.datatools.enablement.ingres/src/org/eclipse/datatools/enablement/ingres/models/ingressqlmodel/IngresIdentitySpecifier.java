@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * Contributors:
  *   Ingres Corporation - initial API and implementation
  *
@@ -23,6 +23,7 @@ import org.eclipse.datatools.modelbase.sql.schema.IdentitySpecifier;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.datatools.enablement.ingres.models.ingressqlmodel.IngresIdentitySpecifier#getDataType <em>Data Type</em>}</li>
  *   <li>{@link org.eclipse.datatools.enablement.ingres.models.ingressqlmodel.IngresIdentitySpecifier#getSeqLength <em>Seq Length</em>}</li>
@@ -33,7 +34,6 @@ import org.eclipse.datatools.modelbase.sql.schema.IdentitySpecifier;
  *   <li>{@link org.eclipse.datatools.enablement.ingres.models.ingressqlmodel.IngresIdentitySpecifier#getCacheOption <em>Cache Option</em>}</li>
  *   <li>{@link org.eclipse.datatools.enablement.ingres.models.ingressqlmodel.IngresIdentitySpecifier#getOrderOption <em>Order Option</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.datatools.enablement.ingres.models.ingressqlmodel.IngressqlmodelPackage#getIngresIdentitySpecifier()
  * @model

@@ -14,12 +14,10 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Sybase ASA Base Primary Key</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */
-public class SybaseASABasePrimaryKeyImpl extends SybaseASABaseUniqueConstraintImpl implements SybaseASABasePrimaryKey 
+public class SybaseASABasePrimaryKeyImpl extends SybaseASABaseUniqueConstraintImpl implements SybaseASABasePrimaryKey
 {
     /**
 	 * <!-- begin-user-doc -->
@@ -36,6 +34,7 @@ public class SybaseASABasePrimaryKeyImpl extends SybaseASABaseUniqueConstraintIm
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass()
     {
 		return SybaseasabasesqlmodelPackage.Literals.SYBASE_ASA_BASE_PRIMARY_KEY;
