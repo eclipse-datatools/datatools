@@ -80,7 +80,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="cache" eType="#//SybaseASECache"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="catalogType" eType="#//SybaseASECatalogType"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SybaseASEProcedure" eSuperTypes="../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//routines/Procedure ../../org.eclipse.datatools.enablement.sybase/models/sybasesqlmodel.ecore#//SybaseRoutine">
+  <eClassifiers xsi:type="ecore:EClass" name="SybaseASEProcedure" eSuperTypes="../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//routines/Procedure ../../org.eclipse.datatools.enablement.sybase.models/models/sybasesqlmodel.ecore#//SybaseRoutine">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="groupNumber" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
         defaultValueLiteral="-1"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="transactionMode" eType="#//TransactionModeType"/>
@@ -142,7 +142,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="thresholds" upperBound="-1"
         eType="#//SegmentThreshold"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SybaseASEFuncBasedIndexMember" eSuperTypes="../../org.eclipse.datatools.enablement.sybase/models/sybasesqlmodel.ecore#//SybaseIndexMember"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SybaseASEFuncBasedIndexMember" eSuperTypes="../../org.eclipse.datatools.enablement.sybase.models/models/sybasesqlmodel.ecore#//SybaseIndexMember"/>
   <eClassifiers xsi:type="ecore:EEnum" name="CacheStrategyType">
     <eLiterals name="PREFETCH" value="1"/>
     <eLiterals name="MRU" value="2"/>
@@ -154,7 +154,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="column" lowerBound="1"
         eType="#//SybaseASEColumn" eOpposite="#//SybaseASEColumn/columnCheck"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SybaseASEColumn" eSuperTypes="../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//tables/Column ../../org.eclipse.datatools.enablement.sybase/models/sybasesqlmodel.ecore#//SybaseAuthorizedObject">
+  <eClassifiers xsi:type="ecore:EClass" name="SybaseASEColumn" eSuperTypes="../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//tables/Column ../../org.eclipse.datatools.enablement.sybase.models/models/sybasesqlmodel.ecore#//SybaseAuthorizedObject">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="ASE column's defaultValue attribute will hold either inline default &#xD;&#xA;or bound default value. Judge boundDefault is null or not to determine&#xD;&#xA;the defaultValue's holder(inline or bound defualt). -- To be consistent&#xD;&#xA;with the standard SQL model"/>
     </eAnnotations>
@@ -229,7 +229,7 @@
     <eLiterals name="FILE" value="2" literal="file"/>
     <eLiterals name="DIRECTORY" value="3" literal="directory"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SybaseASERole" eSuperTypes="../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//accesscontrol/Role ../../org.eclipse.datatools.enablement.sybase/models/sybasesqlmodel.ecore#//SybaseAuthorizationIdentifier">
+  <eClassifiers xsi:type="ecore:EClass" name="SybaseASERole" eSuperTypes="../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//accesscontrol/Role ../../org.eclipse.datatools.enablement.sybase.models/models/sybasesqlmodel.ecore#//SybaseAuthorizationIdentifier">
     <eOperations name="getReceivedPrivileges" eType="ecore:EDataType ../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//schema/List">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="Get privileges of role for specified catalog"/>
@@ -246,7 +246,7 @@
     <eLiterals name="AND" value="1"/>
     <eLiterals name="OR" value="2"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SybaseASEViewTable" eSuperTypes="../../org.eclipse.datatools.enablement.sybase/models/sybasesqlmodel.ecore#//SybaseViewTable">
+  <eClassifiers xsi:type="ecore:EClass" name="SybaseASEViewTable" eSuperTypes="../../org.eclipse.datatools.enablement.sybase.models/models/sybasesqlmodel.ecore#//SybaseViewTable">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="withCheckOption" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="SybaseASECatalogType">
@@ -270,7 +270,7 @@
         defaultValueLiteral=""/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="WSDLURI" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SybaseASEBaseTable" eSuperTypes="../../org.eclipse.datatools.enablement.sybase/models/sybasesqlmodel.ecore#//SybaseBaseTable">
+  <eClassifiers xsi:type="ecore:EClass" name="SybaseASEBaseTable" eSuperTypes="../../org.eclipse.datatools.enablement.sybase.models/models/sybasesqlmodel.ecore#//SybaseBaseTable">
     <eAnnotations source="GenModel">
       <details key="documentation" value="Store attributes shared by SybaseASETable and SybaseASETempTable"/>
     </eAnnotations>
@@ -302,12 +302,12 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="textImageSegment" eType="#//SybaseASESegment"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="systemTable" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SybaseASEUser" eSuperTypes="../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//accesscontrol/User ../../org.eclipse.datatools.enablement.sybase/models/sybasesqlmodel.ecore#//SybaseAuthorizationIdentifier">
+  <eClassifiers xsi:type="ecore:EClass" name="SybaseASEUser" eSuperTypes="../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//accesscontrol/User ../../org.eclipse.datatools.enablement.sybase.models/models/sybasesqlmodel.ecore#//SybaseAuthorizationIdentifier">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="loginName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         defaultValueLiteral=""/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SybaseASEGroup" eSuperTypes="../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//accesscontrol/Group ../../org.eclipse.datatools.enablement.sybase/models/sybasesqlmodel.ecore#//SybaseAuthorizationIdentifier"/>
-  <eClassifiers xsi:type="ecore:EClass" name="SybaseASEPrivilege" eSuperTypes="../../org.eclipse.datatools.enablement.sybase/models/sybasesqlmodel.ecore#//SybasePrivilege">
+  <eClassifiers xsi:type="ecore:EClass" name="SybaseASEGroup" eSuperTypes="../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//accesscontrol/Group ../../org.eclipse.datatools.enablement.sybase.models/models/sybasesqlmodel.ecore#//SybaseAuthorizationIdentifier"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SybaseASEPrivilege" eSuperTypes="../../org.eclipse.datatools.enablement.sybase.models/models/sybasesqlmodel.ecore#//SybasePrivilege">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="@deprecated"/>
     </eAnnotations>
