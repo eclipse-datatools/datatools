@@ -18,9 +18,7 @@ import java.io.PrintWriter;
 import java.util.Iterator;
 import java.util.Properties;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-
+import org.eclipse.datatools.connectivity.XMLUtil;
 import org.eclipse.datatools.sqltools.result.IResultSetObject;
 import org.eclipse.datatools.sqltools.result.IResultSetRow;
 import org.eclipse.datatools.sqltools.result.XMLResultSetObject;
@@ -168,8 +166,7 @@ public class XMLOutputter extends AbstractOutputter
                 String s1 = data.getData(0).toString();
                 try
                 {
-                    DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-                    builder.parse(new ByteArrayInputStream(s1.getBytes()));
+                    XMLUtil.newDocumentBuilder().parse(new ByteArrayInputStream(s1.getBytes()));
                     
 //                    DOMSource source = new DOMSource(document.getDocumentElement());
 //                    ByteArrayOutputStream output = new ByteArrayOutputStream();

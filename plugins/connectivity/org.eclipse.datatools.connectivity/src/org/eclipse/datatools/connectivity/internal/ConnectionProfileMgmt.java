@@ -35,7 +35,6 @@ import javax.crypto.Cipher;
 import javax.crypto.CipherInputStream;
 import javax.crypto.CipherOutputStream;
 import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerConfigurationException;
@@ -54,6 +53,7 @@ import org.eclipse.datatools.connectivity.ConnectionProfileConstants;
 import org.eclipse.datatools.connectivity.ConnectionProfileException;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.ProfileManager;
+import org.eclipse.datatools.connectivity.XMLUtil;
 import org.eclipse.datatools.connectivity.drivers.DriverInstance;
 import org.eclipse.datatools.connectivity.drivers.DriverManager;
 import org.eclipse.datatools.connectivity.drivers.DriverValidator;
@@ -133,7 +133,6 @@ public class ConnectionProfileMgmt {
 
 	private static IPath storageLocation = null;
 	
-	private static DocumentBuilderFactory documentBuilderFactory = null;
 	private static DocumentBuilder documentBuilder = null;
 	private static TransformerFactory transFactory = null;
 	private static Transformer transformer = null;
@@ -1092,10 +1091,8 @@ public class ConnectionProfileMgmt {
 	}
 	private static DocumentBuilder getDocumentBuilder(boolean reset) {
 		if ((documentBuilder == null ) || reset) {
-		    documentBuilderFactory = DocumentBuilderFactory.newInstance();
-		    documentBuilderFactory.setNamespaceAware(true);
 		    try {
-				documentBuilder = documentBuilderFactory.newDocumentBuilder();
+				documentBuilder = XMLUtil.newDocumentBuilder(true);
 			} catch (ParserConfigurationException e) {
 				ConnectivityPlugin.getDefault().log(e);
 			}

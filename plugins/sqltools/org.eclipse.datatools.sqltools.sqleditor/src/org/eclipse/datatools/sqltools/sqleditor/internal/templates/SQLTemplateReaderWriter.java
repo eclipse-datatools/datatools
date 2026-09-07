@@ -19,8 +19,6 @@ import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 import java.util.Set;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
@@ -30,6 +28,7 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
 import org.eclipse.core.runtime.Assert;
+import org.eclipse.datatools.connectivity.XMLUtil;
 import org.eclipse.datatools.sqltools.editor.template.SQLTemplate;
 import org.eclipse.jface.text.templates.Template;
 import org.eclipse.jface.text.templates.persistence.TemplatePersistenceData;
@@ -157,9 +156,7 @@ public class SQLTemplateReaderWriter
             Collection templates = new ArrayList();
             Set ids = new HashSet();
 
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder parser = factory.newDocumentBuilder();
-            Document document = parser.parse(source);
+            Document document = XMLUtil.newDocumentBuilder().parse(source);
 
             NodeList elements = document.getElementsByTagName(TEMPLATE_ELEMENT);
 
@@ -303,9 +300,7 @@ public class SQLTemplateReaderWriter
     {
         try
         {
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            Document document = builder.newDocument();
+            Document document = XMLUtil.newDocumentBuilder().newDocument();
 
             Node root = document.createElement(TEMPLATE_ROOT);
             document.appendChild(root);

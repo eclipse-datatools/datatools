@@ -19,8 +19,6 @@ import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.xml.parsers.DocumentBuilderFactory;
-
 import org.apache.xerces.dom.DOMInputImpl;
 import org.apache.xerces.impl.xs.XMLSchemaLoader;
 import org.apache.xerces.impl.xs.XSElementDecl;
@@ -467,8 +465,6 @@ final class XSDFileSchemaTreePopulator
 	private static XSNamedMap loadSchema( String schemafileName, Object resourceIdentifiers) throws MalformedURLException,
 			URISyntaxException, OdaException
 	{
-		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance( );
-		factory.setNamespaceAware( true );
 		XSLoader xsLoader = new XMLSchemaLoader( );
 		XSModel xsModel = null;
 		
@@ -487,9 +483,6 @@ final class XSDFileSchemaTreePopulator
 			String xmlEncoding, Object resourceIdentifiers ) throws MalformedURLException,
 			URISyntaxException, OdaException
 	{
-		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance( );
-		factory.setNamespaceAware( true );
-				
 		XSLoader xsLoader = new XMLSchemaLoader( );
 		LSInput input = new DOMInputImpl( );
 		try

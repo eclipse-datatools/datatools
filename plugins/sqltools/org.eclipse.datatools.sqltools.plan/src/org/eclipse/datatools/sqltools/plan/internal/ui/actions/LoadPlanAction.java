@@ -12,11 +12,9 @@ package org.eclipse.datatools.sqltools.plan.internal.ui.actions;
 
 import java.io.File;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.datatools.connectivity.XMLUtil;
 import org.eclipse.datatools.help.HelpUtil;
 import org.eclipse.datatools.sqltools.plan.IHelpConstants;
 import org.eclipse.datatools.sqltools.plan.IPlanService;
@@ -90,8 +88,7 @@ public class LoadPlanAction extends Action
             }
             try
             {
-                DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-                Document document = builder.parse(file);
+                Document document = XMLUtil.newDocumentBuilder().parse(file);
                 NodeList list = document.getDocumentElement().getChildNodes();
                 int nodeCount = list.getLength();
                 for (int i = 0; i < nodeCount; i++)
