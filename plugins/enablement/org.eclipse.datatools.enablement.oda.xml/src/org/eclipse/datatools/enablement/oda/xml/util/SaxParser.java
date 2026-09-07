@@ -13,8 +13,6 @@ package org.eclipse.datatools.enablement.oda.xml.util;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -22,10 +20,11 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.xml.parsers.SAXParser;
+
+import org.eclipse.datatools.connectivity.XMLUtil;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.xml.sax.Attributes;
-import org.xml.sax.ContentHandler;
-import org.xml.sax.ErrorHandler;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
@@ -39,7 +38,6 @@ import org.xml.sax.helpers.DefaultHandler;
 public class SaxParser extends DefaultHandler implements Runnable
 {
 	private static Logger logger = Logger.getLogger( SaxParser.class.getName( ) );
-	private static final String SAX_PARSER ="org.apache.xerces.parsers.SAXParser";  //$NON-NLS-1$
 
     private InputStream inputStream;
     private String encoding;
@@ -60,17 +58,18 @@ public class SaxParser extends DefaultHandler implements Runnable
 
 	Based on the above consideration, we decide to cache the chars fetched from the 
 	characters method and proceed them when endElement method is called */
-	private Map<String, StringBuilder> cachedValues;
+	final private Map<String, StringBuilder> cachedValues = new HashMap<String, StringBuilder>();
 
 	private boolean stopFlag;
 	private boolean useNamespace;
 	
-	private Map prefixMap;
+	final private Map<String, String> prefixMap = new HashMap<String, String>();
 
-	private List exceptions;
+	final private List<Exception> exceptions = new ArrayList<Exception>();
 	
 	private XMLPathHolder pathHolder;
 	private XMLPath currentElementPath;
+
 	/**
 	 * 
 	 * @param fileName
@@ -85,9 +84,6 @@ public class SaxParser extends DefaultHandler implements Runnable
 		spConsumer = consumer;
 		this.useNamespace = useNamespace;
 		stopFlag = false;
-		cachedValues = new HashMap( );
-		exceptions = new ArrayList( );
-		prefixMap = new HashMap( );
 	}
 
 	/*
@@ -98,28 +94,10 @@ public class SaxParser extends DefaultHandler implements Runnable
 	{
 		try
 		{
-			//We should use reflect to create SAXParser and execute its methods. For in 
-			//apache Xerces SAXParser it will create other necessary objects using class loader.
-			//And sometimes the classloader it uses is not the one which load itself,especially
-			//in case that several version of Xerces coexist in the environment, say, IBM java 5.0
-			//has include Xerces in its jre library, which takes higher priority to be loaded, take 
-			//Tomcat's classloading mechanism into consideration, than eclipse OSGi classloader.We 
-			//use reflect here to ensure the class and its object can be successfully created.Please 
-			//note that all the item created here using reflecting are loaded by classloader of higher
-			//priority. In case of IBM java 5.0, the Xerces in its lib is loaded.Meanwhile, all the
-			//other Xerces classes referenced here are loaded by OSGi classloader.
-			//
-			//This implementation cannot resolve all the conflict but at least it works for the problem
-			//we are meeting now.
-			Object xmlReader = createXMLReader( );
-	
-			setFeatures( xmlReader );
-
-			setContentHandler( xmlReader );
-			
-			setErrorHandler( xmlReader );
-			
-			parse( xmlReader );
+			SAXParser saxParser = XMLUtil.createSAXParser(true);
+			InputSource source = new InputSource(inputStream);
+			source.setEncoding( encoding );
+			saxParser.parse(source, this);
 		}
 		catch ( Exception e )
 		{
@@ -150,147 +128,6 @@ public class SaxParser extends DefaultHandler implements Runnable
 	public boolean exceptionOccurred( )
 	{
 		return !exceptions.isEmpty( );
-	}
-
-	/**
-	 * 
-	 * @param xmlReader
-	 * @throws NoSuchMethodException
-	 * @throws IllegalAccessException
-	 * @throws InvocationTargetException
-	 */
-	private void parse( Object xmlReader ) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException
-	{
-		Method parse = this.getMethod( "parse",//$NON-NLS-1$
-				xmlReader.getClass( ),
-				new Class[]{
-					InputSource.class
-				} );
-		InputSource source = new InputSource(inputStream);
-		source.setEncoding( encoding );
-		parse.invoke( xmlReader, new Object[]{
-			source
-		} );
-	}
-
-	/**
-	 * 
-	 * @param xmlReader
-	 * @throws NoSuchMethodException
-	 * @throws IllegalAccessException
-	 * @throws InvocationTargetException
-	 */
-	private void setErrorHandler( Object xmlReader ) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException
-	{
-		Method setErrorHandler = this.getMethod( "setErrorHandler",//$NON-NLS-1$
-				xmlReader.getClass( ),
-				new Class[]{
-					ErrorHandler.class
-				} );
-		this.invokeMethod( setErrorHandler, xmlReader, new Object[]{this} );
-	}
-
-	/**
-	 * 
-	 * @param xmlReader
-	 * @throws NoSuchMethodException
-	 * @throws IllegalAccessException
-	 * @throws InvocationTargetException
-	 */
-	private void setFeatures( Object xmlReader ) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException
-	{
-		Method setFeature = this.getMethod( "setFeature",//$NON-NLS-1$
-				xmlReader.getClass( ),
-				new Class[]{
-					String.class,
-					boolean.class
-				} );
-
-		this.invokeMethod(setFeature, xmlReader, new Object[] { "http://apache.org/xml/features/disallow-doctype-decl", true });
-		this.invokeMethod(setFeature, xmlReader, new Object[] { "http://apache.org/xml/features/nonvalidating/load-external-dtd", false});
-		this.invokeMethod(setFeature, xmlReader, new Object[] { "http://xml.org/sax/features/external-general-entities", false });
-		this.invokeMethod(setFeature, xmlReader, new Object[] { "http://xml.org/sax/features/external-parameter-entities", false });
-	}
-
-
-	/**
-	 * 
-	 * @param xmlReader
-	 * @throws NoSuchMethodException
-	 * @throws IllegalAccessException
-	 * @throws InvocationTargetException
-	 */
-	private void setContentHandler( Object xmlReader ) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException
-	{
-		Method setContentHandler = this.getMethod( "setContentHandler",//$NON-NLS-1$
-				xmlReader.getClass( ),
-				new Class[]{
-					ContentHandler.class
-				} );
-		
-		this.invokeMethod( setContentHandler, xmlReader, new Object[]{
-				this
-			} );
-	}
-
-	/**
-	 * 
-	 * @return
-	 * @throws InstantiationException
-	 * @throws IllegalAccessException
-	 * @throws ClassNotFoundException
-	 */
-	private Object createXMLReader( ) throws InstantiationException,
-			IllegalAccessException, ClassNotFoundException
-	{
-		try
-		{
-			Object xmlReader = Thread.currentThread( )
-					.getContextClassLoader( )
-					.loadClass( SAX_PARSER )
-					.newInstance( );
-			return xmlReader;
-		}
-		catch ( ClassNotFoundException e )
-		{
-			return Class.forName( SAX_PARSER )
-					.newInstance( );
-		}
-
-	}
-
-	/**
-	 * Return a method using reflect.
-	 * 
-	 * @param methodName
-	 * @param targetClass
-	 * @param argument
-	 * @return
-	 * @throws SecurityException
-	 * @throws NoSuchMethodException
-	 */
-	private Method getMethod(String methodName, Class targetClass, Class[] argument) throws SecurityException, NoSuchMethodException
-	{
-		assert methodName != null;
-		assert targetClass != null;
-		assert argument != null;
-		
-		return targetClass.getMethod( methodName, argument );
-	}
-	
-	/**
-	 * Invoke a method.
-	 * 
-	 * @param method
-	 * @param targetObject
-	 * @param argument
-	 * @throws IllegalArgumentException
-	 * @throws IllegalAccessException
-	 * @throws InvocationTargetException
-	 */
-	private void invokeMethod( Method method, Object targetObject, Object[] argument ) throws IllegalArgumentException, IllegalAccessException, InvocationTargetException
-	{
-		method.invoke( targetObject, argument );
 	}
 	
 	/*
@@ -434,7 +271,7 @@ public class SaxParser extends DefaultHandler implements Runnable
 	 * 
 	 * @return
 	 */
-	public Map getPrefixMapping( )
+	public Map<String, String> getPrefixMapping( )
 	{
 		return this.prefixMap;
 	}
@@ -478,7 +315,7 @@ public class SaxParser extends DefaultHandler implements Runnable
 class XMLPathHolder
 {
 	//List<XMLElementBlock>
-	private List elementBlocks = new ArrayList( );
+	private List<XMLElementBlock> elementBlocks = new ArrayList<XMLElementBlock>( );
 	
 	public XMLPathHolder(  )
 	{
@@ -527,7 +364,7 @@ class XMLPathHolder
 		private XMLElement element;
 		
 		//Map<String, int>
-		private Map childCounts = new HashMap( );
+		private Map<String, Integer> childCounts = new HashMap<String, Integer>( );
 		
 		public XMLElementBlock( XMLElement element )
 		{
@@ -541,7 +378,7 @@ class XMLPathHolder
 			int index = 0;
 			if ( childCounts.get( elementName ) != null )
 			{
-				index = ((Integer)childCounts.get( elementName )).intValue( );
+				index = childCounts.get( elementName );
 			}
 			index++;
 			childCounts.put( elementName, Integer.valueOf(index) );

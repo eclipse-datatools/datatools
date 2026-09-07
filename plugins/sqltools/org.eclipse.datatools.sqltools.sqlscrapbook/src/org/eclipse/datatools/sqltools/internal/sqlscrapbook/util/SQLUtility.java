@@ -17,7 +17,6 @@ import java.util.Iterator;
 import java.util.Map;
 
 import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.FactoryConfigurationError;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.OutputKeys;
@@ -28,6 +27,7 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
+import org.eclipse.datatools.connectivity.XMLUtil;
 import org.eclipse.datatools.sqltools.editor.core.connection.ISQLEditorConnectionInfo;
 import org.eclipse.datatools.sqltools.sqleditor.SQLEditorConnectionInfo;
 import org.w3c.dom.Attr;
@@ -51,10 +51,9 @@ public class SQLUtility {
         // tau 27.06.04 06.07.04
 
 		org.w3c.dom.Document doc = null;
-        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = null;
         try {
-            builder = factory.newDocumentBuilder();
+            builder = XMLUtil.newDocumentBuilder();
         } catch (ParserConfigurationException e1) {
             // TODO Auto-generated catch block
             e1.printStackTrace();
@@ -147,10 +146,7 @@ public class SQLUtility {
 		NodeSQLPage nodeSQLPage = null;
 		
         try {
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder = factory.newDocumentBuilder();
-                
-			xmlDocument = builder.parse(fileXMLin);
+			xmlDocument = XMLUtil.newDocumentBuilder().parse(fileXMLin);
 		
             Element xmlElement = xmlDocument.getDocumentElement();
 		

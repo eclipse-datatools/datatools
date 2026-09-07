@@ -17,9 +17,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-
+import org.eclipse.datatools.connectivity.XMLUtil;
 import org.eclipse.datatools.sqltools.result.internal.core.IResultManager;
 import org.eclipse.datatools.sqltools.result.internal.model.ResultInstance;
 import org.eclipse.datatools.sqltools.result.internal.model.ResultInstanceFactory;
@@ -432,8 +430,7 @@ public class ResultsViewAPI
         // should be a well-formed XML document
         try
         {
-        	DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-        	builder.parse(new ByteArrayInputStream(xmlString.getBytes()));
+        	XMLUtil.newDocumentBuilder().parse(new ByteArrayInputStream(xmlString.getBytes()));
         }
         catch(Exception dex)
         {

@@ -11,15 +11,14 @@
 package org.eclipse.datatools.enablement.oda.ws.util;
 
 import java.io.InputStream;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.xml.parsers.SAXParser;
+
+import org.eclipse.datatools.connectivity.XMLUtil;
 import org.eclipse.datatools.enablement.oda.ws.i18n.Messages;
 import org.xml.sax.Attributes;
-import org.xml.sax.ContentHandler;
-import org.xml.sax.ErrorHandler;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -46,7 +45,7 @@ class SOAPFaultParser extends DefaultHandler
 	private String[] elementValues = new String[elementNames.length];
 	private int elementIndex;
 	private boolean isSoapFault = false;
-	private Map prefixMap = new HashMap( );
+	final private Map<String, String> prefixMap = new HashMap<String, String>( );
 
 	private InputStream inputStream;
 	
@@ -114,146 +113,19 @@ class SOAPFaultParser extends DefaultHandler
 		}
 		return buffer.toString( );
 	}
-	
-	/**
-	 * 
-	 */
+
 	public void parse( InputStream stream )
 	{
-		Object xmlReader;
 		try
 		{
 			inputStream = stream;
-
-			xmlReader = createXMLReader( );
-			setContentHandler( xmlReader );
-			setErrorHandler( xmlReader );
-			parse( xmlReader );
-
+			SAXParser saxParser = XMLUtil.createSAXParser(true);
+			InputSource source = new InputSource(inputStream);
+			saxParser.parse(source, this);
 		}
 		catch ( Exception e )
 		{
 		}
-	}
-	
-	private void parse( Object xmlReader ) throws NoSuchMethodException,
-			IllegalAccessException, InvocationTargetException
-	{
-		Method parse = this.getMethod( "parse", //$NON-NLS-1$
-				xmlReader.getClass( ),
-				new Class[]{
-					InputSource.class
-				} );
-		try
-		{
-			InputSource source = new InputSource( inputStream );
-			source.setEncoding( source.getEncoding( ) );
-			parse.invoke( xmlReader, new Object[]{
-				source
-			} );
-			inputStream.close( );
-		}
-		catch ( Exception e )
-		{
-		}
-	}
-
-	/**
-	 * 
-	 * @param xmlReader
-	 * @throws NoSuchMethodException
-	 * @throws IllegalAccessException
-	 * @throws InvocationTargetException
-	 */
-	private void setErrorHandler( Object xmlReader ) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException
-	{
-		Method setErrorHandler = this.getMethod( "setErrorHandler", //$NON-NLS-1$
-				xmlReader.getClass( ),
-				new Class[]{
-					ErrorHandler.class
-				} );
-		this.invokeMethod( setErrorHandler, xmlReader, new Object[]{this} );
-	}
-
-	/**
-	 * 
-	 * @param xmlReader
-	 * @throws NoSuchMethodException
-	 * @throws IllegalAccessException
-	 * @throws InvocationTargetException
-	 */
-	private void setContentHandler( Object xmlReader ) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException
-	{
-		Method setContentHandler = this.getMethod( "setContentHandler", //$NON-NLS-1$
-				xmlReader.getClass( ),
-				new Class[]{
-					ContentHandler.class
-				} );
-		
-		this.invokeMethod( setContentHandler, xmlReader, new Object[]{
-				this
-			} );
-	}
-	/**
-	 * 
-	 * @return
-	 * @throws InstantiationException
-	 * @throws IllegalAccessException
-	 * @throws ClassNotFoundException
-	 */
-	private Object createXMLReader( ) throws InstantiationException,
-			IllegalAccessException, ClassNotFoundException
-	{
-		try
-		{
-			Object xmlReader = Thread.currentThread( )
-					.getContextClassLoader( )
-					.loadClass( "org.apache.xerces.parsers.SAXParser" ) //$NON-NLS-1$
-					.newInstance( );
-			return xmlReader;
-		}
-		catch ( ClassNotFoundException e )
-		{
-			return Class.forName( "org.apache.xerces.parsers.SAXParser" ) //$NON-NLS-1$
-					.newInstance( );
-		}
-
-	}
-
-	/**
-	 * Return a method using reflect.
-	 * 
-	 * @param methodName
-	 * @param targetClass
-	 * @param argument
-	 * @return
-	 * @throws SecurityException
-	 * @throws NoSuchMethodException
-	 */
-	private Method getMethod(String methodName, Class targetClass, Class[] argument) throws SecurityException, NoSuchMethodException
-	{
-		assert methodName != null;
-		assert targetClass != null;
-		assert argument != null;
-		
-		return targetClass.getMethod( methodName, argument );
-	}
-
-	/**
-	 * Invoke a method.
-	 * 
-	 * @param method
-	 * @param targetObject
-	 * @param argument
-	 * @throws IllegalArgumentException
-	 * @throws IllegalAccessException
-	 * @throws InvocationTargetException
-	 */
-	private void invokeMethod( Method method, Object targetObject,
-			Object[] argument ) throws IllegalArgumentException,
-			IllegalAccessException, InvocationTargetException
-	{
-		method.invoke( targetObject, argument );
 	}
 
 	/*

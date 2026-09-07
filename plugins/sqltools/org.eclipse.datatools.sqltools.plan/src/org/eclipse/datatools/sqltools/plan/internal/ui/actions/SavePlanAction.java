@@ -15,7 +15,6 @@ import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
 
 import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
@@ -23,6 +22,7 @@ import javax.xml.transform.stream.StreamResult;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.datatools.connectivity.XMLUtil;
 import org.eclipse.datatools.help.HelpUtil;
 import org.eclipse.datatools.sqltools.plan.IHelpConstants;
 import org.eclipse.datatools.sqltools.plan.IPlanService;
@@ -157,7 +157,7 @@ public class SavePlanAction extends Action
             DocumentBuilder builder = null;
             try
             {
-                builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+                builder = XMLUtil.newDocumentBuilder();
             }
             catch(Exception ex)
             {

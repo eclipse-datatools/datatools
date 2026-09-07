@@ -24,7 +24,6 @@ import java.util.Enumeration;
 import java.util.Properties;
 
 import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerConfigurationException;
@@ -36,6 +35,7 @@ import javax.xml.transform.stream.StreamResult;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.datatools.connectivity.XMLUtil;
 import org.eclipse.datatools.connectivity.internal.ConnectivityPlugin;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -75,7 +75,6 @@ public class XMLFileManager {
 	// file name
 	private static String mFileName = null;
 
-	private static DocumentBuilderFactory documentBuilderFactory = null;
 	private static DocumentBuilder documentBuilder = null;
 	private static TransformerFactory transFactory = null;
 	private static Transformer transformer = null;
@@ -130,10 +129,7 @@ public class XMLFileManager {
 		throws CoreException 
 	{
 		try {
-		    DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
-		    documentBuilderFactory.setNamespaceAware(true);
-		    DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
-		    Document document = documentBuilder.newDocument();
+		    Document document = XMLUtil.newDocumentBuilder(true).newDocument();
 		    Element rootElement = document.createElement(ROOTNAME);
 		    document.appendChild(rootElement);
 		    Element child = null;
@@ -311,10 +307,8 @@ public class XMLFileManager {
 	 */
 	private static DocumentBuilder getDocumentBuilder() {
 		if (documentBuilder == null) {
-		    documentBuilderFactory = DocumentBuilderFactory.newInstance();
-		    documentBuilderFactory.setNamespaceAware(true);
 		    try {
-				documentBuilder = documentBuilderFactory.newDocumentBuilder();
+				documentBuilder = XMLUtil.newDocumentBuilder(true);
 			} catch (ParserConfigurationException e) {
 				ConnectivityPlugin.getDefault().log(e);
 			}
