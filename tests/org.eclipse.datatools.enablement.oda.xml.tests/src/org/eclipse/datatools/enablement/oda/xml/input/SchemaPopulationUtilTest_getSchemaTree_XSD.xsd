@@ -42,7 +42,7 @@
         <xs:complexContent>
             <xs:extension base="Classifier"> 
  			<xs:sequence minOccurs="0" maxOccurs="unbounded">
-                    <xs:element name="class" type="Class" minOccurs="0" maxOccurs="unbounded"/>
+                    <xs:element name="class_ext" type="Class" minOccurs="0" maxOccurs="unbounded"/>
                	</xs:sequence>
 		</xs:extension>
         </xs:complexContent>

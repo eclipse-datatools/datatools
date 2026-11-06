@@ -20,14 +20,13 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.xml.parsers.SAXParser;
-
 import org.eclipse.datatools.connectivity.XMLUtil;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
+import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.DefaultHandler;
 
 /**
@@ -58,14 +57,14 @@ public class SaxParser extends DefaultHandler implements Runnable
 
 	Based on the above consideration, we decide to cache the chars fetched from the 
 	characters method and proceed them when endElement method is called */
-	final private Map<String, StringBuilder> cachedValues = new HashMap<String, StringBuilder>();
+	final private Map<String, StringBuilder> cachedValues = new HashMap<>( );
 
 	private boolean stopFlag;
 	private boolean useNamespace;
 	
-	final private Map<String, String> prefixMap = new HashMap<String, String>();
+	final private Map<String, String> prefixMap = new HashMap<>();
 
-	final private List<Exception> exceptions = new ArrayList<Exception>();
+	final private List<Exception> exceptions = new ArrayList<>();;
 	
 	private XMLPathHolder pathHolder;
 	private XMLPath currentElementPath;
@@ -94,14 +93,16 @@ public class SaxParser extends DefaultHandler implements Runnable
 	{
 		try
 		{
-			SAXParser saxParser = XMLUtil.createSAXParser(true);
-			InputSource source = new InputSource(inputStream);
+			XMLReader xmlReader = XMLUtil.createSAXParser(true).getXMLReader();
+			xmlReader.setContentHandler( this );
+			xmlReader.setErrorHandler( this );
+			InputSource source = new InputSource( inputStream );
 			source.setEncoding( encoding );
-			saxParser.parse(source, this);
+			xmlReader.parse( source );
 		}
 		catch ( Exception e )
 		{
-			if ( !(e.getCause( ) instanceof ThreadStopException) )
+			if ( !(e instanceof ThreadStopException) )
 			{
 				logger.log( Level.WARNING, "Exceptions occur during xml parsing", e );
 				exceptions.add( e );
@@ -129,7 +130,7 @@ public class SaxParser extends DefaultHandler implements Runnable
 	{
 		return !exceptions.isEmpty( );
 	}
-	
+
 	/*
 	 *  (non-Javadoc)
 	 * @see org.xml.sax.ContentHandler#startDocument()
@@ -298,7 +299,7 @@ public class SaxParser extends DefaultHandler implements Runnable
 	}
 
 	/**
-	 * This class wrapps a RuntimeException. It is used to stop the execution of
+	 * This class wraps a RuntimeException. It is used to stop the execution of
 	 * current thread.
 	 */
 	private static class ThreadStopException extends RuntimeException
@@ -315,7 +316,7 @@ public class SaxParser extends DefaultHandler implements Runnable
 class XMLPathHolder
 {
 	//List<XMLElementBlock>
-	private List<XMLElementBlock> elementBlocks = new ArrayList<XMLElementBlock>( );
+	private List<XMLElementBlock> elementBlocks = new ArrayList<>( );
 	
 	public XMLPathHolder(  )
 	{
@@ -363,8 +364,7 @@ class XMLPathHolder
 	{
 		private XMLElement element;
 		
-		//Map<String, int>
-		private Map<String, Integer> childCounts = new HashMap<String, Integer>( );
+		private Map<String, Integer> childCounts = new HashMap<>( );
 		
 		public XMLElementBlock( XMLElement element )
 		{
