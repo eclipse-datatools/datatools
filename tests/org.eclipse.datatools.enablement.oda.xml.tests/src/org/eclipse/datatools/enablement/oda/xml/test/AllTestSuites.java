@@ -32,6 +32,7 @@ public class AllTestSuites extends TestSuite {
 //	    addTestSuite(org.eclipse.datatools.enablement.oda.xml.util.SaxParserTest.class);
 //	    addTestSuite(org.eclipse.datatools.enablement.oda.xml.util.ui.SchemaPopulationUtilTest.class);
 	    addTestSuite(org.eclipse.datatools.enablement.oda.xml.util.ui.XPathPopulationUtilTest.class);
+	    addTestSuite(org.eclipse.datatools.enablement.oda.xml.util.ui.XsdSchemaTest.class);
 	    addTestSuite(org.eclipse.datatools.enablement.oda.xml.util.XPathParserTest.class);
 	}
 

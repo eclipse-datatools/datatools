@@ -6,7 +6,6 @@
 					<xsd:complexType>
 						<xsd:sequence>
 							<xsd:element name="String1" type="xsd:string" minOccurs="1" maxOccurs="1"/>
-							<xsd:element name="String2" type="xsd:str" minOccurs="1" maxOccurs="1"/>
 							<xsd:element name="String3" type="xsd:long" minOccurs="1" maxOccurs="1"/>
 							<xsd:element name="String4" type="xsd:gDay" minOccurs="1" maxOccurs="1"/>
 							<xsd:element name="Int1" type="xsd:int" minOccurs="1" maxOccurs="1"/>

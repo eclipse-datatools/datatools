@@ -48,8 +48,6 @@ import org.w3c.dom.CDATASection;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-//import com.sun.org.apache.xerces.internal.dom.DocumentImpl;
-
 /**
  * Saves the plans.
  * <p>

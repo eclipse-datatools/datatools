@@ -13,25 +13,16 @@ package org.eclipse.datatools.enablement.oda.xml.util.ui;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
-import org.apache.xerces.impl.xs.XSAttributeGroupDecl;
-import org.apache.xerces.impl.xs.XSAttributeUseImpl;
-import org.apache.xerces.impl.xs.XSComplexTypeDecl;
-import org.apache.xerces.impl.xs.XSElementDecl;
-import org.apache.xerces.impl.xs.XSModelGroupImpl;
-import org.apache.xerces.impl.xs.XSParticleDecl;
-import org.apache.xerces.xs.XSAttributeDeclaration;
-import org.apache.xerces.xs.XSObjectList;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.enablement.oda.xml.impl.DataTypes;
+import org.w3c.dom.Element;
 
 /**
  * The instance of this class is used as tree node of the xml schema tree that
  * is passed to gui.
  */
-public class ATreeNode
-{
+public class ATreeNode {
 
 	//
 	public static final int ELEMENT_TYPE = 1;
@@ -42,7 +33,7 @@ public class ATreeNode
 	private Object value;
 
 	// The children list of certain tree node.
-	private ArrayList children;
+	private ArrayList<Object> children;
 
 	// The parent of tree node.
 	private ATreeNode parent;
@@ -53,103 +44,86 @@ public class ATreeNode
 	// The data type is the complex type that defined in an xsd file.
 	private String dataType;
 
-	private static HashMap xmlTypeToDataType = new HashMap( );
+	private static HashMap<String, String> xmlTypeToDataType = new HashMap<>();
 
-	static
-	{
-		try
-		{
-			xmlTypeToDataType.put( "string", //$NON-NLS-1$
-					DataTypes.getTypeString( DataTypes.STRING ) );
-			xmlTypeToDataType.put( "byte",   //$NON-NLS-1$
-					DataTypes.getTypeString( DataTypes.INT ) );
-			xmlTypeToDataType.put( "decimal",    //$NON-NLS-1$    
-					DataTypes.getTypeString( DataTypes.BIGDECIMAL ) );
-			xmlTypeToDataType.put( "long",    //$NON-NLS-1$    
-					DataTypes.getTypeString( DataTypes.BIGDECIMAL ) );
-			xmlTypeToDataType.put( "double",   //$NON-NLS-1$
-					DataTypes.getTypeString( DataTypes.DOUBLE ) );
-			xmlTypeToDataType.put( "float",   //$NON-NLS-1$
-					DataTypes.getTypeString( DataTypes.DOUBLE ) );
-			xmlTypeToDataType.put( "int",    //$NON-NLS-1$
-					DataTypes.getTypeString( DataTypes.INT ) );
-			xmlTypeToDataType.put( "integer",    //$NON-NLS-1$
-					DataTypes.getTypeString( DataTypes.INT ) );
-			xmlTypeToDataType.put( "negativeInteger",    //$NON-NLS-1$
-					DataTypes.getTypeString( DataTypes.INT ) );
-			xmlTypeToDataType.put( "nonNegativeInteger", //$NON-NLS-1$
-					DataTypes.getTypeString( DataTypes.INT ) );
-			xmlTypeToDataType.put( "nonPositiveInteger", //$NON-NLS-1$
-					DataTypes.getTypeString( DataTypes.INT ) );
-			xmlTypeToDataType.put( "positiveInteger",    //$NON-NLS-1$
-					DataTypes.getTypeString( DataTypes.INT ) );
-			xmlTypeToDataType.put( "short",  //$NON-NLS-1$
-					DataTypes.getTypeString( DataTypes.INT ) );
-			xmlTypeToDataType.put( "date",   //$NON-NLS-1$
-					DataTypes.getTypeString( DataTypes.DATE ) );
-			xmlTypeToDataType.put( "dateTime",   //$NON-NLS-1$
-					DataTypes.getTypeString( DataTypes.TIMESTAMP ) );
-			xmlTypeToDataType.put( "time",   //$NON-NLS-1$       
-					DataTypes.getTypeString( DataTypes.TIME ) );
-			xmlTypeToDataType.put( "boolean",    //$NON-NLS-1$
-					DataTypes.getTypeString( DataTypes.BOOLEAN ) );
-		}
-		catch ( OdaException e )
-		{
+	static {
+		try {
+			xmlTypeToDataType.put("string", //$NON-NLS-1$
+					DataTypes.getTypeString(DataTypes.STRING));
+			xmlTypeToDataType.put("byte", //$NON-NLS-1$
+					DataTypes.getTypeString(DataTypes.INT));
+			xmlTypeToDataType.put("decimal", //$NON-NLS-1$
+					DataTypes.getTypeString(DataTypes.BIGDECIMAL));
+			xmlTypeToDataType.put("long", //$NON-NLS-1$
+					DataTypes.getTypeString(DataTypes.BIGDECIMAL));
+			xmlTypeToDataType.put("double", //$NON-NLS-1$
+					DataTypes.getTypeString(DataTypes.DOUBLE));
+			xmlTypeToDataType.put("float", //$NON-NLS-1$
+					DataTypes.getTypeString(DataTypes.DOUBLE));
+			xmlTypeToDataType.put("int", //$NON-NLS-1$
+					DataTypes.getTypeString(DataTypes.INT));
+			xmlTypeToDataType.put("integer", //$NON-NLS-1$
+					DataTypes.getTypeString(DataTypes.INT));
+			xmlTypeToDataType.put("negativeInteger", //$NON-NLS-1$
+					DataTypes.getTypeString(DataTypes.INT));
+			xmlTypeToDataType.put("nonNegativeInteger", //$NON-NLS-1$
+					DataTypes.getTypeString(DataTypes.INT));
+			xmlTypeToDataType.put("nonPositiveInteger", //$NON-NLS-1$
+					DataTypes.getTypeString(DataTypes.INT));
+			xmlTypeToDataType.put("positiveInteger", //$NON-NLS-1$
+					DataTypes.getTypeString(DataTypes.INT));
+			xmlTypeToDataType.put("short", //$NON-NLS-1$
+					DataTypes.getTypeString(DataTypes.INT));
+			xmlTypeToDataType.put("date", //$NON-NLS-1$
+					DataTypes.getTypeString(DataTypes.DATE));
+			xmlTypeToDataType.put("dateTime", //$NON-NLS-1$
+					DataTypes.getTypeString(DataTypes.TIMESTAMP));
+			xmlTypeToDataType.put("time", //$NON-NLS-1$
+					DataTypes.getTypeString(DataTypes.TIME));
+			xmlTypeToDataType.put("boolean", //$NON-NLS-1$
+					DataTypes.getTypeString(DataTypes.BOOLEAN));
+		} catch (OdaException e) {
 			// Should not arrive here
 		}
 	}
 
-	private static String getDataType( String type ) throws OdaException
-	{
-		Object result = xmlTypeToDataType.get( type );
-		if ( result == null )
+	private static String getDataType(String type) throws OdaException {
+		Object result = xmlTypeToDataType.get(type);
+		if (result == null)
 			return type;
 		else
-			return result.toString( );
+			return result.toString();
 
 	}
 
-	private XSElementDecl element;
-	private XSAttributeDeclaration attr;
+	private Element declaration;
+	private XsdSchema schema;
+	private boolean childrenPopulated;
 
 	/**
 	 * 
 	 * 
 	 */
-	protected ATreeNode( )
-	{
-		this.children = new ArrayList();
+	protected ATreeNode() {
+		this.children = new ArrayList<>();
 	}
 
 	/**
 	 * 
-	 * @param element
+	 * @param element an XML Schema element declaration in a namespace-aware DOM
 	 * @throws OdaException
 	 */
-	public ATreeNode( XSElementDecl element ) throws OdaException
-	{
-		this();
-		this.element = element;
-		this.value = element.getName( );
-		this.type = ELEMENT_TYPE;
-
-		if ( element.getTypeDefinition( ).getName( ) != null )
-			this.dataType = getDataType( element.getTypeDefinition( ).getName( ) );
-		else
-			this.dataType = getDataType( element.getName( ) );
-
+	public ATreeNode(Element element) throws OdaException {
+		this(new XsdSchema(element.getOwnerDocument()), element, ELEMENT_TYPE);
 	}
 
-	private ATreeNode( XSAttributeDeclaration attrDeclaration )
-			throws OdaException
-	{
+	ATreeNode(XsdSchema schema, Element declaration, int type) throws OdaException {
 		this();
-		this.attr = attrDeclaration;
-		this.value = this.attr.getName( );
-		this.type = ATTRIBUTE_TYPE;
-		this.dataType = getDataType( attrDeclaration.getTypeDefinition( )
-				.getName( ) );
+		this.schema = schema;
+		this.declaration = schema.resolveDeclaration(declaration);
+		this.value = this.declaration.getAttribute("name"); //$NON-NLS-1$
+		this.type = type;
+		this.dataType = getDataType(schema.getTypeName(this.declaration));
 	}
 
 	/**
@@ -157,8 +131,7 @@ public class ATreeNode
 	 * 
 	 * @return
 	 */
-	public Object getValue( )
-	{
+	public Object getValue() {
 		return value;
 	}
 
@@ -168,88 +141,16 @@ public class ATreeNode
 	 * @return
 	 * @throws OdaException
 	 */
-	public Object[] getChildren( ) throws OdaException
-	{
-		if ( this.children.size( ) != 0 )
-			return this.children.toArray( );
-		List result = new ArrayList( );
-		if ( this.attr != null )
-			return result.toArray( );
-
-		if ( this.element != null )
-		{
-			if ( this.element.getTypeDefinition( ) instanceof XSComplexTypeDecl )
-			{
-				XSModelGroupImpl group = null;
-
-				if ( ( (XSComplexTypeDecl) this.element.getTypeDefinition( ) ).getParticle( ) != null )
-				{
-					group = (XSModelGroupImpl) ( (XSComplexTypeDecl) this.element.getTypeDefinition( ) ).getParticle( )
-							.getTerm( );
-
-					populateModelGroup( result, group );
-				}
-				if ( ( (XSComplexTypeDecl) this.element.getTypeDefinition( ) ).getAttrGrp( ) != null )
-				{
-					XSAttributeGroupDecl gp1 = ( (XSComplexTypeDecl) this.element.getTypeDefinition( ) ).getAttrGrp( );
-					XSObjectList list = gp1.getAttributeUses( );
-
-					for ( int i = 0; i < list.getLength( ); i++ )
-					{
-						XSAttributeUseImpl impl = (XSAttributeUseImpl) list.item( i );
-						ATreeNode node = new ATreeNode( impl.getAttrDeclaration( ) );
-						addNodeToChild( result, node );
-					}
-				}
+	public Object[] getChildren() throws OdaException {
+		if (children.size() != 0 || childrenPopulated)
+			return children.toArray();
+		if (declaration != null && type == ELEMENT_TYPE) {
+			for (ATreeNode node : schema.getChildren(declaration)) {
+				node.setParent(this);
 			}
 		}
-		for ( int i = 0; i < result.size(); i++ ) 
-		{
-			( ( ATreeNode ) result.get( i ) ).setParent( this );
-		}
-		return result.toArray( );
-	}
-
-	/**
-	 * 
-	 * @param result
-	 * @param group
-	 * @throws OdaException
-	 */
-	private void populateModelGroup( List result, XSModelGroupImpl group )
-			throws OdaException
-	{
-		for ( int i = 0; i < group.getParticles( ).getLength( ); i++ )
-		{
-			ATreeNode node = null;
-			Object o = ( (XSParticleDecl) group.getParticles( ).item( i ) ).getTerm( );
-			if ( o instanceof XSModelGroupImpl )
-			{
-				populateModelGroup( result, (XSModelGroupImpl) o );
-
-			}
-			else if ( o instanceof XSElementDecl )
-			{
-				node = new ATreeNode( (XSElementDecl) o );
-				addNodeToChild( result, node );
-			}
-		}
-	}
-
-	/**
-	 * 
-	 * @param result
-	 * @param node
-	 */
-	private void addNodeToChild( List result, ATreeNode node )
-	{
-		for ( int i = 0; i < result.size( ); i++ )
-		{
-			if ( ( (ATreeNode) result.get( i ) ).getValue( )
-					.equals( node.getValue( ) ) )
-				return;
-		}
-		result.add( node );
+		childrenPopulated = true;
+		return children.toArray();
 	}
 
 	/**
@@ -257,8 +158,7 @@ public class ATreeNode
 	 * 
 	 * @return
 	 */
-	public ATreeNode getParent( )
-	{
+	public ATreeNode getParent() {
 		return parent;
 	}
 
@@ -267,8 +167,7 @@ public class ATreeNode
 	 * 
 	 * @param value
 	 */
-	public void setValue( Object value )
-	{
+	public void setValue(Object value) {
 		this.value = value;
 	}
 
@@ -277,10 +176,9 @@ public class ATreeNode
 	 * 
 	 * @param child
 	 */
-	public void addChild( Object child )
-	{
-		this.children.add( child );
-		( (ATreeNode) child ).parent = this;
+	public void addChild(Object child) {
+		this.children.add(child);
+		((ATreeNode) child).parent = this;
 	}
 
 	/**
@@ -288,18 +186,16 @@ public class ATreeNode
 	 * 
 	 * @param parent
 	 */
-	public void setParent( ATreeNode parent )
-	{
+	public void setParent(ATreeNode parent) {
 		this.parent = parent;
-		parent.addChild( this );
+		parent.addChild(this);
 	}
 
 	/*
 	 * @see java.lang.Object#toString()
 	 */
-	public String toString( )
-	{
-		return value.toString( );
+	public String toString() {
+		return value.toString();
 	}
 
 	/**
@@ -307,8 +203,7 @@ public class ATreeNode
 	 * 
 	 * @return
 	 */
-	public int getType( )
-	{
+	public int getType() {
 		return type;
 	}
 
@@ -317,8 +212,7 @@ public class ATreeNode
 	 * 
 	 * @param type
 	 */
-	public void setType( int type )
-	{
+	public void setType(int type) {
 		this.type = type;
 	}
 
@@ -329,8 +223,7 @@ public class ATreeNode
 	 * @return
 	 * @throws OdaException
 	 */
-	public String getDataType( ) throws OdaException
-	{
+	public String getDataType() throws OdaException {
 		return dataType;
 	}
 
@@ -340,8 +233,7 @@ public class ATreeNode
 	 * @param type
 	 * @throws OdaException
 	 */
-	public void setDataType( String type ) throws OdaException
-	{
-		this.dataType = getDataType( type );
+	public void setDataType(String type) throws OdaException {
+		this.dataType = getDataType(type);
 	}
 }
