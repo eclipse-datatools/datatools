@@ -28,19 +28,15 @@
    </requires>
 
    <plugin
+         id="javax.wsdl"
+         version="0.0.0"/>
+
+   <plugin
          id="org.apache.lucene.core"
          version="0.0.0"/>
 
    <plugin
          id="org.apache.lucene.queryparser"
-         version="0.0.0"/>
-
-   <plugin
-         id="javax.wsdl"
-         version="0.0.0"/>
-
-   <plugin
-         id="org.apache.xml.resolver"
          version="0.0.0"/>
 
    <plugin
