@@ -12,7 +12,6 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.datatools.connectivity.oda.design.ui,
  org.eclipse.datatools.enablement.oda.ws,
  org.eclipse.datatools.enablement.oda.xml.ui,
- javax.wsdl,
  org.eclipse.jface.text
 Bundle-ActivationPolicy: lazy
 Automatic-Module-Name: org.eclipse.datatools.enablement.oda.ws.ui
