@@ -16,8 +16,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.xml.parsers.DocumentBuilderFactory;
-
+import org.eclipse.datatools.connectivity.XMLUtil;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.enablement.oda.xml.util.ISaxParserConsumer;
 import org.eclipse.datatools.enablement.oda.xml.util.IXMLSource;
@@ -196,12 +195,10 @@ public class XsdSchemaTest extends TestCase {
 	}
 
 	public void testDomConstructorAndEmptyChildren() throws Exception {
-		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-		factory.setNamespaceAware(true);
 		String xml = SCHEMA + "<xs:element name='root'><xs:complexType><xs:sequence>"
 				+ "<xs:element name='leaf' type='xs:string'/></xs:sequence></xs:complexType>"
 				+ "</xs:element></xs:schema>";
-		Element declaration = (Element) factory.newDocumentBuilder()
+		Element declaration = (Element) XMLUtil.newDocumentBuilder(true)
 				.parse(new ByteArrayInputStream(xml.getBytes(StandardCharsets.UTF_8)))
 				.getElementsByTagNameNS("http://www.w3.org/2001/XMLSchema", "element").item(0);
 		ATreeNode root = new ATreeNode(declaration);

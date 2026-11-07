@@ -16,14 +16,13 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.Map;
 
-import javax.wsdl.Definition;
-import javax.wsdl.Service;
-
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.enablement.oda.ws.BaseTest;
 import org.eclipse.datatools.enablement.oda.ws.util.TestConstants;
 import org.eclipse.datatools.enablement.oda.ws.util.TestUtil;
 import org.eclipse.datatools.enablement.oda.ws.util.WSDLAdvisor;
+import org.eclipse.datatools.enablement.oda.ws.util.WSDLModel.Definition;
+import org.eclipse.datatools.enablement.oda.ws.util.WSDLModel.Service;
 
 /**
  * 
@@ -39,8 +38,8 @@ public class WSDLAdvisorTest extends BaseTest
 	public void testQName( ) throws Exception
 	{
 		Definition definition = WSDLAdvisor.getDefinition( TestConstants.WSDL_FILE_ADDRESS );
-		if ( definition == null )
-			return;
+		assertNotNull( definition );
+		assertEquals( 1, definition.getServices( ).size( ) );
 
 		Map services = definition.getServices( );
 		Iterator srcIT = services.keySet( ).iterator( );
